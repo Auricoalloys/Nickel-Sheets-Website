@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aurico Alloys LLP - Pure Nickel Strip, Nickel Alloy, Titanium, Titanium Alloy, Duplex Steel, Stainless Steel, Cobalt Alloys Supplier in Sheets, Plates, Wires, Round Bars, Hex Bars, Foils, Coils, Strips, Powders, Tubing, Pipes, Tubes, Wire Mesh, Busbars, Fittings">
+    <meta name="keywords" content="Pure Nickel Strips, Nickel Alloys, Inconel, Incoloy, Monel, Hastelloy in Sheets, Plates, Strips, Pipes, Tubes, Powders, Wires, Fittings, Round Bar, Hex Bar, Rods, Hollow Bar ">
+    
+    <title>Aurico Alloys LLP | Nickel Strips, Nickel Alloy, Inconel, Incoloy, Hastelloy, Nimonic </title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="png" href="aurico-favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    
+     <style>
+   /* Global Styles */
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #e67e22;
+            --dark-color: #2c3e50;
+            --light-color: #f4f6f7;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        body a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background: #154360;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .language-selector {
+            position: relative;
+        }
+        
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            right: 0;
+            width: 150px;
+        }
+        
+        .language-dropdown li {
+            padding: 10px 15px;
+            margin: 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .language-dropdown li:last-child {
+            border-bottom: none;
+        }
+        
+        .language-selector:hover .language-dropdown {
+            display: block;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('docs/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Products Preview */
+        .products-preview {
+            padding: 80px 0;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 250px;
+        }
+        
+        .product-card img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
+        }
+        
+        /* About Teaser */
+        .about-teaser {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+      
+
+
+@media (max-width: 768px) {
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #fff;
+        margin-top: 10px;
+        padding: 10px 0;
+        border-top: 1px solid #ddd;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 20px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav ul {
+        margin-top: 20px;
+    }
+
+    nav ul li {
+        margin-left: 15px;
+    }
+
+    .hero {
+        height: auto;
+        padding: 100px 0;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+}
+
+    
+</style>
+   
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="docs/images/aurico-logo.jpg" alt="Aurico Alloys LLP">
+                <h1>Aurico Alloys LLP</h1>
+            </div>
+  
+
+            <!-- Mobile Toggle Icon -->
+            <div class="mobile-menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pages/about.html">About Us</a></li>
+                    <li><a href="pages/materials.html">Materials</a></li>
+                    <li><a href="pages/products.html">Products</a></li>
+                    <li><a href="pages/quality.html">Quality</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
+                    <li class="language-selector">
+                        <a href="#"><i class="fas fa-globe"></i> EN</a>
+                        <ul class="language-dropdown">
+                            <li><a href="index.html?lang=en">English</a></li>
+                            <li><a href="index.html?lang=hi">हिन्दी</a></li>
+                            <li><a href="index.html?lang=es">Español</a></li>
+                            <li><a href="index.html?lang=ar">العربية</a></li>
+                            <li><a href="index.html?lang=zh">中文</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Premium Alloy Solutions for Demanding Industries</h2>
+                <p>High-quality custom alloy formulations with technical expertise and global supply network</p>
+                <div class="hero-buttons">
+                    <a href="pages/products.html" class="btn">View Products</a>
+                    <a href="pages/contact.html" class="btn btn-primary">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Aurico Alloys</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>High Quality</h3>
+                    <p>Manufactured to meet international standards and specifications</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Delivery From Stock</h3>
+                    <p>Tailored alloy solutions for your specific requirements</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Supply Network</h3>
+                    <p>Reliable delivery to customers worldwide</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Technical Expertise</h3>
+                    <p>Years of experience in the Industry</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Preview -->
+    <section class="products-preview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Product Range</h2>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+ <a href="pages/materials/pure-nickel-strips.html">
+                    <img src="docs/images/pure-nickel.png" alt="Pure Nickel Strips">
+                    <div class="product-overlay">
+                        <h3>Pure Nickel</h3>
+                        <p>Corrosion-resistant solutions</p>
+                    </div>
+                   </a>
+                </div>
+                
+
+               <div class="product-card">
+                 <a href="pages/materials/incoloy.html">
+                    <img src="docs/images/incoloy.jpg" alt="Incoloy Sheets, Plates, Strips, Round Bar, Hollow Bar, Hex Bar, Pipes, Tubes, Powder, Wire Supplier">
+                      <div class="product-overlay">
+                        <h3>Incoloy</h3>
+                          <p>Lightweight and durable</p>
+                      </div>
+                    </a>
+                </div>
+
+
+                <div class="product-card">
+                  <a href="pages/materials/inconel.html">
+                    <img src="docs/images/inconel.jpg" alt="Inconel Sheets, Plates, Strips, Round Bar, Hollow Bar, Hex Bar, Pipes, Tubes, Powder, Wire Supplier">
+                     <div class="product-overlay">
+                        <h3>Inconel</h3>
+                         <p>High-temperature & Corrosion resistant applications</p>
+                    </div>
+                  </a>
+                </div>
+
+
+                   <div class="product-card">
+                    <a href="pages/materials/hastelloy.html">
+                     <img src="docs/images/hastelloy.jpg" alt="Hastelloy Sheets, Plates, Strips, Round Bar, Hollow Bar, Hex Bar, Pipes, Tubes, Powder, Wire Supplier">
+                      <div class="product-overlay">
+                        <h3>Hastelloy</h3>
+                        <p>Custom formulations</p>
+                      </div>
+                    </a>
+                  </div>
+              
+
+                <div class="product-card">
+                  <a href="pages/materials/monel.html">
+                    <img src="docs/images/monel.jpg" alt="Monel Sheets, Plates, Strips, Round Bar, Hollow Bar, Hex Bar, Pipes, Tubes, Powder, Wire Supplier">
+                     <div class="product-overlay">
+                        <h3>Monel</h3>
+                        <p>Lightweight and durable</p>
+                    </div>
+                  </a>
+                </div>
+                
+            
+             
+               <div class="product-card">
+                 <a href="pages/materials/nimonic.html">
+                    <img src="docs/images/nimonic.jpg" alt="Nimonic Sheets, Plates, Strips, Round Bar, Hollow Bar, Hex Bar, Pipes, Tubes, Powder, Wire Supplier">
+                      <div class="product-overlay">
+                        <h3>Nimonic</h3>
+                          <p>Lightweight and durable</p>
+                      </div>
+                  </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Teaser -->
+    <section class="about-teaser">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Aurico Alloys LLP</h2>
+                    <p>Founded in 2010, Aurico Alloys LLP has grown to become a trusted name in the alloy industry, serving clients across multiple continents. Our commitment to quality, innovation, and customer service sets us apart in the competitive metals market.</p>
+                    <p>With state-of-the-art manufacturing facilities and a team of experienced metallurgists, we deliver alloy solutions that meet the most demanding specifications.</p>
+                    <a href="pages/about.html" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="docs/images/aurico-office.jpg" alt="Aurico Alloys Office">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="docs/images/aurico-logo.jpg" alt="Aurico Alloys LLP" width="150">
+                    </div>
+                    <p>Premium alloy solutions for demanding industrial applications worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/about.html">About Us</a></li>
+                        <li><a href="pages/products.html">Product Forms</a></li>
+                        <li><a href="pages/materials.html">Materials</a></li>
+                        <li><a href="pages/quality.html">Quality</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="pages/materials/pure-nickel-strips.html">Pure Nickel</a></li>
+                        <li><a href="pages/materials/incoloy.html">Incoloy</a></li>
+                        <li><a href="pages/materials/inconel.html">Inconel</a></li>
+                        <li><a href="pages/materials/hastelloy.html">Hastelloy</a></li>
+                        <li><a href="pages/materials/monel.html">Monel</a></li>
+                        <li><a href="pages/materials/nimonic.html">Nimonic</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 112, 1st Floor, Aman Grih, Carptenter 1st Street, C.P.Tank, Mumbai-400004, India</p>
+                    <p><i class="fas fa-phone"></i> +91 22 6743 6611</p>
+                    <p><i class="fas fa-phone"></i> +91 7977 88 6611</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@auricoalloys.com">info@auricoalloys.com</a></p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Aurico Alloys LLP. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+   
+<script // script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Language Switcher Functionality
+    const languageSelector = document.querySelector('.language-selector');
+    const languageDropdown = document.querySelector('.language-dropdown');
+    
+    if (languageSelector) {
+        languageSelector.addEventListener('click', function(e) {
+            e.preventDefault();
+            languageDropdown.style.display = languageDropdown.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!languageSelector.contains(e.target)) {
+                languageDropdown.style.display = 'none';
+            }
+        });
+    }
+    
+    // Load translations based on selected language
+    function loadTranslations(lang) {
+        fetch(`translations/${lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                // Apply translations to all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (data[key]) {
+                        element.textContent = data[key];
+                    }
+                });
+                
+                // Update active language in selector
+                const langSelector = document.querySelector('.language-selector a');
+                if (langSelector) {
+                    langSelector.innerHTML = `<i class="fas fa-globe"></i> ${lang.toUpperCase()}`;
+                }
+                
+                // Store selected language in localStorage
+                localStorage.setItem('selectedLanguage', lang);
+            })
+            .catch(error => console.error('Error loading translations:', error));
+    }
+    
+    // Check for language in URL or localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    const storedLang = localStorage.getItem('selectedLanguage');
+    const defaultLang = 'en';
+    
+    const currentLang = urlLang || storedLang || defaultLang;
+    loadTranslations(currentLang);
+    
+    // Handle language selection
+    document.querySelectorAll('.language-dropdown a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const selectedLang = this.getAttribute('href').split('=')[1];
+            window.location.search = `?lang=${selectedLang}`;
+        });
+    });
+    
+    // Mobile Menu Toggle (for responsive design)
+    const mobileMenuToggle = document.createElement('div');
+    mobileMenuToggle.className = 'mobile-menu-toggle';
+    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    document.querySelector('header .container').prepend(mobileMenuToggle);
+    
+    const nav = document.querySelector('nav');
+    mobileMenuToggle.addEventListener('click', function() {
+        nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+    });
+    
+    // Hide nav on larger screens if it was hidden on mobile
+    function handleResize() {
+        if (window.innerWidth > 768) {
+            nav.style.display = '';
+        } else {
+            nav.style.display = 'none';
+        }
+    }
+    
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+ // Feature Card Animation - Trigger visibility on scroll (Intersection Observer)
+    const featureCards = document.querySelectorAll('.feature-card');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once it's animated
+            }
+        });
+    }, {
+        threshold: 0.5 // Trigger when 50% of the card is visible
+    });
+
+    featureCards.forEach(card => {
+        observer.observe(card);
+    });
+});
+
+</script>
+</body>
+</html>

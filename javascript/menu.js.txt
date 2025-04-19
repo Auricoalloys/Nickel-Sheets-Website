@@ -1,0 +1,104 @@
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Language Switcher Functionality
+    const languageSelector = document.querySelector('.language-selector');
+    const languageDropdown = document.querySelector('.language-dropdown');
+    
+    if (languageSelector) {
+        languageSelector.addEventListener('click', function(e) {
+            e.preventDefault();
+            languageDropdown.style.display = languageDropdown.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!languageSelector.contains(e.target)) {
+                languageDropdown.style.display = 'none';
+            }
+        });
+    }
+    
+    // Load translations based on selected language
+    function loadTranslations(lang) {
+        fetch(`translations/${lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                // Apply translations to all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (data[key]) {
+                        element.textContent = data[key];
+                    }
+                });
+                
+                // Update active language in selector
+                const langSelector = document.querySelector('.language-selector a');
+                if (langSelector) {
+                    langSelector.innerHTML = `<i class="fas fa-globe"></i> ${lang.toUpperCase()}`;
+                }
+                
+                // Store selected language in localStorage
+                localStorage.setItem('selectedLanguage', lang);
+            })
+            .catch(error => console.error('Error loading translations:', error));
+    }
+    
+    // Check for language in URL or localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    const storedLang = localStorage.getItem('selectedLanguage');
+    const defaultLang = 'en';
+    
+    const currentLang = urlLang || storedLang || defaultLang;
+    loadTranslations(currentLang);
+    
+    // Handle language selection
+    document.querySelectorAll('.language-dropdown a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const selectedLang = this.getAttribute('href').split('=')[1];
+            window.location.search = `?lang=${selectedLang}`;
+        });
+    });
+    
+    // Mobile Menu Toggle (for responsive design)
+    const mobileMenuToggle = document.createElement('div');
+    mobileMenuToggle.className = 'mobile-menu-toggle';
+    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    document.querySelector('header .container').prepend(mobileMenuToggle);
+    
+    const nav = document.querySelector('nav');
+    mobileMenuToggle.addEventListener('click', function() {
+        nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+    });
+    
+    // Hide nav on larger screens if it was hidden on mobile
+    function handleResize() {
+        if (window.innerWidth > 768) {
+            nav.style.display = '';
+        } else {
+            nav.style.display = 'none';
+        }
+    }
+    
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+ // Feature Card Animation - Trigger visibility on scroll (Intersection Observer)
+    const featureCards = document.querySelectorAll('.feature-card');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once it's animated
+            }
+        });
+    }, {
+        threshold: 0.5 // Trigger when 50% of the card is visible
+    });
+
+    featureCards.forEach(card => {
+        observer.observe(card);
+    });
+});
