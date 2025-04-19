@@ -1,4 +1,4 @@
-// script.js
+//script//
 document.addEventListener('DOMContentLoaded', function() {
     // Language Switcher Functionality
     const languageSelector = document.querySelector('.language-selector');
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, {
         threshold: 0.5 // Trigger when 50% of the card is visible
-    })
+    });
 
     featureCards.forEach(card => {
         observer.observe(card);
