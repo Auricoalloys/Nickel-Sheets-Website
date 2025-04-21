@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle Functionality (Define it early)
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('nav');
+    const mobile_menu_toggle = document.querySelector('.mobile_menu_toggle');
+    const navMenu = document.querySelector('nav ul');
     if (nav) {
         nav.setAttribute('id', 'main-nav'); // Add an ID to the nav for aria-controls
     }
 
-    if (mobileMenuToggle && nav) {
-        mobileMenuToggle.addEventListener('click', function() {
-            nav.classList.toggle('active'); // Toggle the 'active' class on the nav
+    if (mobile_menu_toggle && navMenu) {
+        mobile_menu_toggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active'); // Toggle the 'active' class on the nav
             const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
             this.setAttribute('aria-expanded', !isExpanded);
         });
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.remove('active'); // Ensure it's not active on larger screens
                 nav.style.display = ''; // Reset display style
             }
-            if (mobileMenuToggle) {
-                mobileMenuToggle.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
+            if (mobile_menu_toggle) {
+                mobile_menu_toggle.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
             }
         } else if (nav && !nav.classList.contains('active')) {
             nav.style.display = 'none'; // Ensure it's hidden on small screens initially
