@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('nav ul');
     if (nav) {
         nav.setAttribute('id', 'main-nav'); // Add an ID to the nav for aria-controls
+        const nav = document.querySelector('nav');
     }
 
     if (mobile_menu_toggle && navMenu) {
