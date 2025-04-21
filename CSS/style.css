@@ -145,13 +145,14 @@
         
 /* Desktop Styles - Min width 769px */
 @media (min-width: 769px) {
-    .about-content {
+    .about-teaser .about-content {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 50px;
     }
 }
+
     
 
         
@@ -169,6 +170,8 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            padding-top: 70px;
+            box-sizing: border-box;
         }
         
         .hero-content {
@@ -324,7 +327,7 @@
         }
         
         /* About Teaser */
-        .about-teaser {
+        body .about-teaser {
             padding: 40px 0;
             background: var(--light-color);
         }
