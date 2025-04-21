@@ -143,9 +143,10 @@
         }
 
         
-        }
-        @media (max-width: 768px) {
-        .mobile-menu-toggle {
+        
+/* Mobile Styles - Max width 768px */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
         display: block;
         position: absolute;
         top: 15px;
@@ -155,14 +156,14 @@
         cursor: pointer;
         padding: 10px;
         z-index: 1001;
-            }
+    }
 
-        .mobile-menu-toggle i.fas.fa-bars {
+    .mobile-menu-toggle i.fas.fa-bars {
         font-size: 1.5rem;
-        color: var(--primary-color); /* Adjust color as needed */
-           }
+        color: var(--primary-color);
+    }
 
-        nav ul {
+    nav ul {
         display: none;
         flex-direction: column;
         width: 100%;
@@ -171,56 +172,59 @@
         padding: 10px 0;
         border-top: 1px solid #ddd;
         transition: all 0.3s ease;
-           }
+    }
 
-        nav ul.active {
+    nav ul.active {
         display: flex;
-        }
+    }
 
-        nav ul li {
+    nav ul li {
         margin: 10px 20px;
-        }
+    }
 
-        .header-container {
+    .header-container {
         flex-direction: column;
         padding: 15px;
-      }
+    }
 
-        nav ul {
+    nav ul {
         margin-top: 20px;
-        }
+    }
 
-        nav ul li {
+    nav ul li {
         margin-left: 15px;
-        }
+    }
 
-        .hero {
+    .hero {
         height: auto;
         padding: 100px 0;
-        }
+    }
 
-        .hero-buttons {
+    .hero-buttons {
         flex-direction: column;
         align-items: center;
-       }
+    }
 
-        .about-content {
+    .about-content {
         flex-direction: column;
-        }
-        @media (min-width: 769px) {
-            .about-content {
-                display: flex; /* Ensure it's flexbox */
-                flex-direction: row; /* Explicitly set to row for desktop */
-                align-items: center;
-                gap: 50px; /* You already have this, but ensure it's here or in the general .about-content rule */
-            }
-        }
+    }
+}
 
+/* Desktop Styles - Min width 769px */
+@media (min-width: 769px) {
+    .about-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
+    }
+}
+    
 
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../docs/images/hero-bg.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('docs/images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
             height: 80vh;
@@ -300,7 +304,9 @@
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        
+        .feature-card {
+            opacity: 0;
+        }    
         .feature-card.visible {
             opacity: 1;
             transform: translateY(0);
@@ -387,10 +393,3 @@
             border-radius: 5px;
             overflow: hidden;
         }
-        
-        
-      
-
-
-
-}
