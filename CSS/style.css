@@ -189,7 +189,7 @@
         
         .section-title h2 {
             font-size: 2rem;
-            color: var(--primary-color);
+            color: var(--light-color);
             position: relative;
             display: inline-block;
             padding-bottom: 15px;
@@ -245,6 +245,7 @@
         /* Products Preview */
         .products-preview {
             padding: 80px 0;
+            background-color: rgba(65, 64, 64, 0.793);
         }
         
         .products-grid {
