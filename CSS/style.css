@@ -343,7 +343,17 @@
         .footer-links ul li a:hover {
             color: var(--secondary-color);
         }
-        
+
+        .footer-links p a { /* Target the links within the <p> tag inside .footer-links in the footer */
+         color: #ddd;
+         transition: color 0.3s ease;
+         text-decoration: none; /* Remove the default underline if you prefer */
+        }
+
+         footer .footer-links p a:hover {
+         color: var(--secondary-color);
+        }
+
         .social-links {
             display: flex;
             gap: 15px;
