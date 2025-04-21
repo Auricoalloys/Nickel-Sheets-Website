@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Feature Card Animation - Trigger visibility on scroll (Intersection Observer)
+    document.addEventListener('DOMContentLoaded', function(){
     const featureCards = document.querySelectorAll('.feature-card');
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -111,4 +112,4 @@ document.addEventListener('DOMContentLoaded', function() {
     featureCards.forEach(card => {
         observer.observe(card);
     });
-});
+})
