@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const nav = document.querySelector('nav');
 nav.setAttribute('id', 'main-nav'); // Add an ID to the nav for aria-controls
 
-mobileMenuToggle.addEventListener('click', function() {
+mobile-menu-toggle.addEventListener('click', function() {
     nav.classList.toggle('active'); // Toggle the 'active' class on the nav
     const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
     this.setAttribute('aria-expanded', !isExpanded);
@@ -77,7 +77,7 @@ function handleResize() {
     if (window.innerWidth > 768) {
         nav.classList.remove('active'); // Ensure it's not active on larger screens
         nav.style.display = ''; // Reset display style
-        mobileMenuToggle.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
+        mobile-menu-toggle.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
     } else if (!nav.classList.contains('active')) {
         nav.style.display = 'none'; // Ensure it's hidden on small screens initially
     }
