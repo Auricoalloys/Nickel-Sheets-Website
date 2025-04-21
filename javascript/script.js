@@ -61,28 +61,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Mobile Menu Toggle (for responsive design)
-    const mobileMenuToggle = document.createElement('div');
-    mobileMenuToggle.className = 'mobile-menu-toggle';
-    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    document.querySelector('header .container').prepend(mobileMenuToggle);
-    
-    const nav = document.querySelector('nav');
-    mobileMenuToggle.addEventListener('click', function() {
-        nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
-    });
-    
-    // Hide nav on larger screens if it was hidden on mobile
-    function handleResize() {
-        if (window.innerWidth > 768) {
-            nav.style.display = '';
-        } else {
-            nav.style.display = 'none';
-        }
+   // Mobile Menu Toggle (for responsive design)
+const mobileMenuToggle = document.createElement('button'); // Use a <button> for better semantics
+mobileMenuToggle.className = 'mobile-menu-toggle';
+mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+mobileMenuToggle.setAttribute('aria-label', 'Toggle menu');
+mobileMenuToggle.setAttribute('aria-expanded', 'false'); // Initial state
+mobileMenuToggle.setAttribute('aria-controls', 'main-nav'); // Link to the nav element
+document.querySelector('header .container').prepend(mobileMenuToggle);
+
+const nav = document.querySelector('nav');
+nav.setAttribute('id', 'main-nav'); // Add an ID to the nav for aria-controls
+
+mobileMenuToggle.addEventListener('click', function() {
+    nav.classList.toggle('active'); // Toggle the 'active' class on the nav
+    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+    this.setAttribute('aria-expanded', !isExpanded);
+});
+
+// Hide nav on larger screens
+function handleResize() {
+    if (window.innerWidth > 768) {
+        nav.classList.remove('active'); // Ensure it's not active on larger screens
+        nav.style.display = ''; // Reset display style
+        mobileMenuToggle.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
+    } else if (!nav.classList.contains('active')) {
+        nav.style.display = 'none'; // Ensure it's hidden on small screens initially
     }
-    
-    window.addEventListener('resize', handleResize);
-    handleResize();
+}
+
+window.addEventListener('resize', handleResize);
+handleResize();
 
  // Feature Card Animation - Trigger visibility on scroll (Intersection Observer)
     const featureCards = document.querySelectorAll('.feature-card');
