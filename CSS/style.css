@@ -146,7 +146,7 @@
         
 /* Mobile Styles - Max width 768px */
 @media (max-width: 768px) {
-    .mobile-menu-toggle {
+    .mobile_menu_toggle {
         display: block;
         position: absolute;
         top: 15px;
@@ -158,7 +158,7 @@
         z-index: 1001;
     }
 
-    .mobile-menu-toggle i.fas.fa-bars {
+    .mobile_menu_toggle i.fas.fa-bars {
         font-size: 1.5rem;
         color: var(--primary-color);
     }
