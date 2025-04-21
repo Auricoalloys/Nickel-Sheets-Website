@@ -218,9 +218,15 @@
             border-radius: 5px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }       
+
         .feature-card:hover {
             transform: translateY(-10px);
         }
@@ -363,8 +369,21 @@
 
 
 @media (max-width: 768px) {
-    .mobile-menu-icon {
+    .mobile-menu-toggle {
         display: block;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle i.fas.fa-bars {
+        font-size: 1.5rem;
+        color: var(--primary-color); /* Adjust color as needed */
     }
 
     nav ul {
@@ -375,6 +394,7 @@
         margin-top: 10px;
         padding: 10px 0;
         border-top: 1px solid #ddd;
+        transition: all 0.3s ease;
     }
 
     nav ul.active {
