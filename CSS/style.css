@@ -141,6 +141,74 @@
         .language-selector:hover .language-dropdown {
             display: block;
         }
+
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle i.fas.fa-bars {
+        font-size: 1.5rem;
+        color: var(--primary-color); /* Adjust color as needed */
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #fff;
+        margin-top: 10px;
+        padding: 10px 0;
+        border-top: 1px solid #ddd;
+        transition: all 0.3s ease;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 20px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav ul {
+        margin-top: 20px;
+    }
+
+    nav ul li {
+        margin-left: 15px;
+    }
+
+    .hero {
+        height: auto;
+        padding: 100px 0;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+
+
         
         /* Hero Section */
         .hero {
@@ -378,67 +446,5 @@
       
 
 
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block;
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        z-index: 1001;
-    }
 
-    .mobile-menu-toggle i.fas.fa-bars {
-        font-size: 1.5rem;
-        color: var(--primary-color); /* Adjust color as needed */
-    }
-
-    nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #fff;
-        margin-top: 10px;
-        padding: 10px 0;
-        border-top: 1px solid #ddd;
-        transition: all 0.3s ease;
-    }
-
-    nav ul.active {
-        display: flex;
-    }
-
-    nav ul li {
-        margin: 10px 20px;
-    }
-
-    .header-container {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    nav ul {
-        margin-top: 20px;
-    }
-
-    nav ul li {
-        margin-left: 15px;
-    }
-
-    .hero {
-        height: auto;
-        padding: 100px 0;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .about-content {
-        flex-direction: column;
-    }
 }
