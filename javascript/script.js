@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle Functionality (Define it early)
     const mobile_menu_toggle = document.querySelector('.mobile_menu_toggle');
     const navMenu = document.querySelector('nav ul');
+    const nav = document.querySelector('nav');
     if (nav) {
         nav.setAttribute('id', 'main-nav'); // Add an ID to the nav for aria-controls
-        const nav = document.querySelector('nav');
+        
     }
 
     if (mobile_menu_toggle && navMenu) {
