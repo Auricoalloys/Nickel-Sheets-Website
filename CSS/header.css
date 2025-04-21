@@ -7,7 +7,7 @@
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
-  height: 100px
+  height: 100px;
   width: 100%;
   top: 0;
   z-index: 1000;
@@ -95,7 +95,7 @@
 }
 
 /* Mobile Menu Toggle */
-.header__toggle {
+.mobile_menu_toggle {
   display: none;
   position: absolute;
   top: 15px;
@@ -107,7 +107,7 @@
   z-index: 1001;
 }
 
-.header__toggle-icon {
+.mobile_menu_toggle-icon {
   font-size: 1.5rem;
   color: var(--primary-color);
 }
@@ -138,7 +138,7 @@
     padding: 15px;
   }
 
-  .header__toggle {
+  .mobile_menu_toggle {
     display: block;
   }
 }
