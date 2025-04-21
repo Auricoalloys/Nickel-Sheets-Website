@@ -61,14 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-   // Mobile Menu Toggle (for responsive design)
-const mobileMenuToggle = document.createElement('button'); // Use a <button> for better semantics
-mobileMenuToggle.className = 'mobile-menu-toggle';
-mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-mobileMenuToggle.setAttribute('aria-label', 'Toggle menu');
-mobileMenuToggle.setAttribute('aria-expanded', 'false'); // Initial state
-mobileMenuToggle.setAttribute('aria-controls', 'main-nav'); // Link to the nav element
-document.querySelector('header .container').prepend(mobileMenuToggle);
+   
 
 const nav = document.querySelector('nav');
 nav.setAttribute('id', 'main-nav'); // Add an ID to the nav for aria-controls
