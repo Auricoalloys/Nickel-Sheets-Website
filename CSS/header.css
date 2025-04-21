@@ -30,7 +30,7 @@
 }
 
 .header__logo img {
-  width: 50px;
+  width: 40px;
   margin-right: 10px;
 }
 
@@ -52,6 +52,7 @@
 .header__nav-item {
   margin-left: 30px;
   position: relative;
+  padding: 15px;
 }
 
 .header__nav-link {
@@ -84,6 +85,7 @@
 .header__language-item {
   padding: 10px 15px;
   border-bottom: 1px solid #eee;
+  cursor: pointer;
 }
 
 .header__language-item:last-child {
@@ -97,7 +99,7 @@
 /* Mobile Menu Toggle */
 .mobile_menu_toggle {
   display: none;
-  position: right;
+  position: absolute;
   top: 15px;
   right: 20px;
   background: none;
@@ -108,7 +110,7 @@
 }
 
 .mobile_menu_toggle-icon {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: var(--primary-color);
 }
 
@@ -130,13 +132,14 @@
   }
 
   .header__nav-item {
-    margin: 10px 20px;
-    padding: 15px;
+    margin: 8px 0;
+    padding: 12px 20px;
   }
 
   .header__container {
     flex-direction: column;
     padding: 15px;
+    align-items: flex-start;
   }
 
   .mobile_menu_toggle {
@@ -152,12 +155,14 @@ nav ul li {
 
 .hero {
     height: auto;
-    padding-top: 50px 0;
+    padding: 60px 20px 30px;
+    text-align: center;
 }
 
 .hero-buttons {
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .about-content {
