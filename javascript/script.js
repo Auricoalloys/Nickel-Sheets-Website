@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle (for responsive design)
-    const mobile_menu_toggle = document.querySelector('header .container .mobile-menu-toggle');
+    const mobile_menu_toggle = document.querySelector('header .container .mobile_menu_toggle');
     const navUl = document.querySelector('nav ul'); // Target the <ul> for toggling
 
     if (mobile_menu_toggle && navUl) {
