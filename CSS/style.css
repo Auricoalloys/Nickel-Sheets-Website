@@ -268,7 +268,7 @@
             }
           
             .hero-content {
-              text-align: left; /* Example: Align text to the left on mobile */
+              text-align: center; /* Example: Align text to the left on mobile */
               max-width: 100%; /* Allow content to take full width */
               padding: 0 20px; /* Add some side padding */
             }
