@@ -268,7 +268,7 @@
             }
           
             .hero-content {
-              text-align: center; /* Example: Align text to the left on mobile */
+              text-align: center; /* Example: Align text to center on mobile */
               max-width: 100%; /* Allow content to take full width */
               padding: 0 20px; /* Add some side padding */
             }
@@ -288,7 +288,8 @@
               align-items: flex-start; /* Align buttons to the left */
               gap: 10px;
               display: block
-              
+              margin-top: 20px;
+
             }
           
             .hero-buttons .btn {
