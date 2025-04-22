@@ -259,3 +259,38 @@
             objext-fit: cover;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+        @media (max-width: 768px) {
+            .hero {
+              height: 60vh; /* Adjust height for mobile */
+              padding-top: 90px; /* Adjust top padding to account for fixed header */
+              align-items: flex-start; /* Example: Align content to the top on mobile */
+              justify-content: center; /* Example: Center content vertically */
+            }
+          
+            .hero-content {
+              text-align: left; /* Example: Align text to the left on mobile */
+              max-width: 100%; /* Allow content to take full width */
+              padding: 0 20px; /* Add some side padding */
+            }
+          
+            .hero h2 {
+              font-size: 2rem; /* Smaller font size for mobile */
+              margin-bottom: 10px;
+            }
+          
+            .hero p {
+              font-size: 1rem; /* Smaller font size for mobile */
+              margin-bottom: 20px;
+            }
+          
+            .hero-buttons {
+              flex-direction: column; /* Stack buttons vertically on mobile */
+              align-items: flex-start; /* Align buttons to the left */
+              gap: 10px;
+            }
+          
+            .hero-buttons .btn {
+              width: 100%; /* Make buttons full width on mobile */
+              text-align: center;
+            }
+          }
