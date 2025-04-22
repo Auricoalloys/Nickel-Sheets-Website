@@ -293,4 +293,8 @@
               width: 100%; /* Make buttons full width on mobile */
               text-align: center;
             }
+            .about-image {
+                max-height: 350px; /* Example: Adjust as needed */
+                
+            }
           }
