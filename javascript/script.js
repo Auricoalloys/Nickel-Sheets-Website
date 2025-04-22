@@ -14,21 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleResize() {
         if (window.innerWidth > 768) {
-            navUl.classList.remove('active'); // Ensure it's hidden on larger screens
-            if (mobile_menu_toggle) {
-                mobile_menu_toggle.setAttribute('aria-expanded', 'false');
-            }
-        }
-    }
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    // Hide nav on larger screens
-    function handleResize() {
-        if (window.innerWidth > 768) {
-            if (nav) {
-                nav.classList.remove('active'); // Ensure it's not active on larger screens
+            if (navUl) { // Use the correctly named variable
+                navUl.classList.remove('active'); // Ensure it's not active on larger screens
             }
             if (mobile_menu_toggle) {
                 mobile_menu_toggle.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
