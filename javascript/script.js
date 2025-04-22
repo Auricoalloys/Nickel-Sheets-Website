@@ -1,20 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle Functionality (Define it early)
-    const mobile_menu_toggle = document.querySelector('.mobile_menu_toggle');
-    const navMenu = document.querySelector('nav ul');
-    const nav = document.querySelector('nav');
-    
-    if (nav) {
-        nav.setAttribute('id', 'main-nav'); // Add an ID to the nav for aria-controls
+    // Mobile Menu Toggle (for responsive design)
+    const mobile_menu_toggle = document.querySelector('header .container .mobile-menu-toggle');
+    const navUl = document.querySelector('nav ul'); // Target the <ul> for toggling
+
+    if (mobile_menu_toggle && navUl) {
+        mobile_menu_toggle.addEventListener('click', function() {
+            navUl.classList.toggle('active');
+            this.setAttribute('aria-expanded', navUl.classList.contains('active')); // Update aria-expanded
+        });
+    } else {
+        console.error("Mobile toggle or navigation UL element not found!");
     }
 
-    if (mobile_menu_toggle && navMenu) {
-        mobile_menu_toggle.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded); // Toggle aria-expanded
-            navMenu.classList.toggle('active'); // Toggle the 'active' class on the nav
-        });
+    function handleResize() {
+        if (window.innerWidth > 768) {
+            navUl.classList.remove('active'); // Ensure it's hidden on larger screens
+            if (mobile_menu_toggle) {
+                mobile_menu_toggle.setAttribute('aria-expanded', 'false');
+            }
+        }
     }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
 
     // Hide nav on larger screens
     function handleResize() {
