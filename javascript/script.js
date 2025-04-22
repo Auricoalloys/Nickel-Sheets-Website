@@ -1,32 +1,25 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle (for responsive design)
-    const mobile_menu_toggle = document.querySelector('header .container .mobile_menu_toggle');
-    const navUl = document.querySelector('nav ul'); // Target the <ul> for toggling
-
-    if (mobile_menu_toggle && navUl) {
-        mobile_menu_toggle.addEventListener('click', function() {
-            navUl.classList.toggle('active');
-            this.setAttribute('aria-expanded', navUl.classList.contains('active')); // Update aria-expanded
-        });
-    } else {
-        console.error("Mobile toggle or navigation UL element not found!");
+document.addEventListener('DOMContentLoaded', function () {
+    const mobileToggle = document.querySelector('.mobile_menu_toggle');
+    const navList = document.querySelector('.header__nav-list');
+  
+    if (mobileToggle && navList) {
+      mobileToggle.addEventListener('click', function () {
+        navList.classList.toggle('active');
+        const isActive = navList.classList.contains('active');
+        this.setAttribute('aria-expanded', isActive);
+      });
     }
-
+  
     function handleResize() {
-        if (window.innerWidth > 768) {
-            if (navUl) { // Use the correctly named variable
-                navUl.classList.remove('active'); // Ensure it's not active on larger screens
-            }
-            if (mobile_menu_toggle) {
-                mobile_menu_toggle.setAttribute('aria-expanded', 'false'); // Reset aria-expanded
-            }
-        }
+      if (window.innerWidth > 768) {
+        navList.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
     }
-
+  
     window.addEventListener('resize', handleResize);
-    handleResize(); // Call on initial load to apply proper state
-});
-
+    handleResize(); // Run on page load
+  });
 
     // Language Switcher Functionality
     const languageSelector = document.querySelector('.language-selector');

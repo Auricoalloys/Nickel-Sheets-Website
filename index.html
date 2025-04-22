@@ -21,34 +21,38 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-container">
-            <div class="logo">
+        <div class="header__container">
+            <div class="header__logo">
                 <img src="docs/images/aurico-logo.jpg" alt="Aurico Alloys LLP">
                 <h1>Aurico Alloys LLP</h1>
             </div>
   
 
-            <!-- Mobile Toggle Icon -->
+            <!-- Mobile Menu Toggle -->
               <button class="mobile_menu_toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
-            <i class="fas fa-bars"></i>
+                <span class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                </span> 
         </button>
 
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="pages/about.html">About Us</a></li>
-                    <li><a href="pages/materials.html">Materials</a></li>
-                    <li><a href="pages/products.html">Products</a></li>
-                    <li><a href="pages/quality.html">Quality</a></li>
-                    <li><a href="pages/contact.html">Contact</a></li>
-                    <li class="language-selector">
-                        <a href="#"><i class="fas fa-globe"></i> EN</a>
+            <nav class="header__nav" id="main-nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="index.html">Home</a></li>
+                    <li class="header__nav-item"><a href="pages/about.html">About Us</a></li>
+                    <li class="header__nav-item"><a href="pages/materials.html">Materials</a></li>
+                    <li class="header__nav-item"><a href="pages/products.html">Products</a></li>
+                    <li class="header__nav-item"><a href="pages/quality.html">Quality</a></li>
+                    <li class="header__nav-item"><a href="pages/contact.html">Contact</a></li>
+                    <li class="header__language-dropdown">
+                        <a href="#" class="header__nav-link"><i class="fas fa-globe"></i> EN</a>
                         <ul class="language-dropdown">
-                            <li><a href="index.html?lang=en">English</a></li>
-                            <li><a href="index.html?lang=hi">हिन्दी</a></li>
-                            <li><a href="index.html?lang=es">Español</a></li>
-                            <li><a href="index.html?lang=ar">العربية</a></li>
-                            <li><a href="index.html?lang=zh">中文</a></li>
+                            <li class="header__language-item"><a href="index.html?lang=en">English</a></li>
+                            <li class="header__language-item"><a href="index.html?lang=hi">हिन्दी</a></li>
+                            <li class="header__language-item"><a href="index.html?lang=es">Español</a></li>
+                            <li class="header__language-item"><a href="index.html?lang=ar">العربية</a></li>
+                            <li class="header__language-item"><a href="index.html?lang=zh">中文</a></li>
                         </ul>
                     </li>
                 </ul>
