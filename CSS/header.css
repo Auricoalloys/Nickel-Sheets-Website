@@ -164,4 +164,8 @@
   .mobile_menu_toggle {
     display: block;
   }
+  .about-image {
+    max-height: 550px; /* Example: Adjust as needed */
+    height: auto;
+}
 }
