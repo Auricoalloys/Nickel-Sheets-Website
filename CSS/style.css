@@ -141,20 +141,6 @@
         .language-selector:hover .language-dropdown {
             display: block;
         }
-
-        
-/* Desktop Styles - Min width 769px */
-@media (min-width: 769px) {
-    .about-teaser .about-content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 50px;
-    }
-}
-
-    
-
         
         /* Hero Section */
         .hero {
