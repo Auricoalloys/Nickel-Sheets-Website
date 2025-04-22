@@ -262,7 +262,7 @@
         @media (max-width: 768px) {
             .hero {
               height: 60vh; /* Adjust height for mobile */
-              padding-top: 90px; /* Adjust top padding to account for fixed header */
+              padding-top: 70px; /* Adjust top padding to account for fixed header */
               align-items: flex-start; /* Example: Align content to the top on mobile */
               justify-content: center; /* Example: Center content vertically */
             }
@@ -274,12 +274,12 @@
             }
           
             .hero h2 {
-              font-size: 2rem; /* Smaller font size for mobile */
+              font-size: 1.8rem; /* Smaller font size for mobile */
               margin-bottom: 10px;
             }
           
             .hero p {
-              font-size: 1rem; /* Smaller font size for mobile */
+              font-size: 0.9rem; /* Smaller font size for mobile */
               margin-bottom: 20px;
             }
           
@@ -287,6 +287,8 @@
               flex-direction: column; /* Stack buttons vertically on mobile */
               align-items: flex-start; /* Align buttons to the left */
               gap: 10px;
+              display: block
+              
             }
           
             .hero-buttons .btn {
