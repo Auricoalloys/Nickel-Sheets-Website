@@ -300,4 +300,14 @@
                 max-height: 350px; /* Example: Adjust as needed */
                 
             }
+            @media (max-width: 410px) {
+                .hero h2 {
+                  font-size: 1.7rem; /* Further reduce */
+                  margin-bottom: 10px; /* Further reduce */
+                }
+                .hero p {
+                  font-size: 0.85rem; /* Further reduce */
+                  margin-bottom: 20px; /* Further reduce */
+                }
+              }
           }
