@@ -115,6 +115,10 @@
   justify-content: space-between;
   width: 24px;
   height: 18px;
+  margin-top: 8px;
+  margin-left: 20px;
+  margin-right: 0px;
+
 }
 
 .bar {
