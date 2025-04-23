@@ -93,6 +93,9 @@
     padding: 10px 15px;
     border-bottom: 1px solid #eee;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    right:0;
+    z-index: 10;
   }
 
   .header__language-item:last-child {
@@ -160,6 +163,7 @@
     padding: 10px 0;
     margin-top: 10px;
     border-top: 1px solid #ddd;
+    margin-left: 0;
   }
 
   .header__nav-list.active {
@@ -167,7 +171,7 @@
   }
 
   .header__nav-item {
-    margin: 10px 20px;
+    margin: 0;
   }
 
   .mobile_menu_toggle {
