@@ -21,6 +21,161 @@ title: Home (You can set a title here that Jekyll can use)
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/header.css">
+    .hero-slider {
+        position: relative;
+        height: 80vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center the content horizontally */
+        box-sizing: border-box;
+        padding-top: 70px; /* Adjust if you have a fixed header */
+    }
+    
+    .slider-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 92%; 
+    }
+    
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 92%; 
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-position: center;
+        z-index: -1; /* Ensure images are behind the controls */
+    }
+    
+    .slide.active {
+        opacity: 1;
+        z-index: 0;
+    }
+    
+    .slide img {
+        display: block; /* Prevent extra space below image */
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+    }
+    
+    .slider-controls {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        z-index: 10; /* Ensure controls are on top */
+        color: #fff;
+    }
+    
+    .slider-controls button {
+        background: none;
+        color: #fff;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .slider-controls button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .slide-description {
+        font-size: 2.2rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+    
+    /* Optional: Add overlay for better text readability */
+    .hero-slider::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 92%;
+        background: rgba(0, 0, 0, 0.6); /* Adjust opacity as needed */
+        z-index: 1;
+    }
+    
+    .slider-controls, .slide-description {
+        position: relative; /* Bring controls and description above the overlay */
+        z-index: 2;
+    }
+    
+    /* Responsive adjustments (optional) */
+    @media (max-width: 768px) {
+        .slider-controls {
+            bottom: 20px;
+            gap: 10px;
+        }
+        .slider-controls button {
+            font-size: 1rem;
+            padding: 8px 12px;
+        }
+        .slide-description {
+            font-size: 2rem;
+            padding: 16px 32px;
+        }
+    }
+             .hero {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../docs/images/hero-bg.jpg');
+                background-size: cover;
+                background-position: center;
+                height: 80vh;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #fff;
+                padding: 0 20px;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+                padding-top: 70px;
+                box-sizing: border-box;
+            }
+            
+            .hero-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+             
+    
+    
+    
 
 </head>
 <body>
@@ -92,7 +247,30 @@ title: Home (You can set a title here that Jekyll can use)
     </header>
     
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slide active" data-description="High-Performance Metals: Powering Innovation.">
+                <img src="docs/images/image-aerospace.png" alt="Alloy Manufacturing">
+            </div>
+            <div class="slide" data-description="High-Integrity Metal Components for Defense Systems">
+                <img src="docs/images/image-defense.png" alt="Alloy Application 1">
+            </div>
+            <div class="slide" data-description="Custom Metal Solutions for a Secure World">
+                <img src="docs/images/image-metal.png" alt="Global Supply Chain">
+            </div>
+            <div class="slide active" data-description="Specializing in high-performance alloys engineered for exceptional corrosion resistance in demanding chemical environments.">
+                <img src="docs/images/image-chemical.png" alt="Alloy Manufacturing ">
+            </div>
+            <div class="slide active" data-description="Advanced Metal Manufacturing for the Oil & Gas Industry">
+                <img src="docs/images/image-oil-&-gas.png" alt="Alloy Manufacturing 1">
+            </div>
+            </div>
+        <div class="slider-controls">
+            <button class="prev-slide">&lt;</button>
+            <div class="slide-description">High-quality custom alloy formulations with technical expertise and global supply network</div>
+            <button class="next-slide">&gt;</button>
+        </div>
+    
         <div class="container">
             <div class="hero-content">
                 <h2>Premium Alloys for Demanding Industries</h2>
@@ -284,7 +462,54 @@ title: Home (You can set a title here that Jekyll can use)
         </div>
     </footer>
    
-<script src="/javascript/script.js"></script>
+<script src="/javascript/script.js">
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.slide');
+    const sliderContainer = document.querySelector('.slider-container');
+    const prevButton = document.querySelector('.prev-slide');
+    const nextButton = document.querySelector('.next-slide');
+    const descriptionElement = document.querySelector('.slide-description');
+    let currentIndex = 0;
+    const intervalTime = 5000; // Time in milliseconds between slides
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+        descriptionElement.textContent = slides[index].dataset.description;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    // Automatic sliding
+    let slideInterval = setInterval(nextSlide, intervalTime);
+
+    // Event listeners for manual navigation
+    nextButton.addEventListener('click', () => {
+        clearInterval(slideInterval); // Stop automatic sliding on manual navigation
+        nextSlide();
+        slideInterval = setInterval(nextSlide, intervalTime); // Restart automatic sliding
+    });
+
+    prevButton.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        prevSlide();
+        slideInterval = setInterval(nextSlide, intervalTime);
+    });
+
+    // Initial display
+    showSlide(currentIndex);
+});
+
+</script>
 </body>
 </html>
 
