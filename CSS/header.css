@@ -101,7 +101,10 @@
   .header__language-item:last-child {
     border-bottom: none;
   }
-
+  .header__language-selector a[href="/nickel-alloys/"] + .header__language-dropdown.nickel-alloys-dropdown {
+    right: 0;
+    left: auto; /* Override the default left: 0; */
+}
  
   
 /* Mobile Toggle */
