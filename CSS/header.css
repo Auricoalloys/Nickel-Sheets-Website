@@ -101,9 +101,40 @@
   .header__language-item:last-child {
     border-bottom: none;
   }
-  .header__language-selector a[href="/nickel-alloys/"] + .header__language-dropdown.nickel-alloys-dropdown {
-    right: 0;
-    left: auto; /* Override the default left: 0; */
+/* Style for the "Nickel Alloys" list item that contains the submenu */
+.header__language-selector.materials-dropdown .header__language-item.has-submenu {
+  position: relative; /* Needed for absolute positioning of the submenu */
+}
+
+/* Initially hide the "Nickel Alloys" dropdown */
+.header__language-selector.materials-dropdown .header__language-item.has-submenu .header__language-dropdown.nickel-alloys-dropdown {
+  display: none;
+  position: absolute;
+  top: 0; /* Align with the top of the parent link */
+  left: 100%; /* Position to the right of the parent link */
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 150px;
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+/* Show the "Nickel Alloys" dropdown on hover of its parent list item */
+.header__language-selector.materials-dropdown .header__language-item.has-submenu:hover .header__language-dropdown.nickel-alloys-dropdown {
+  display: block;
+}
+
+/* Style for items within the nested "Nickel Alloys" dropdown */
+.header__language-dropdown.nickel-alloys-dropdown .header__language-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.header__language-dropdown.nickel-alloys-dropdown .header__language-item:last-child {
+  border-bottom: none;
 }
  
   
