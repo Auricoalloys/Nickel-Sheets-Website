@@ -27,17 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let slideInterval = setInterval(nextSlide, intervalTime);
 
     // Event listeners for manual navigation
-    nextButton.addEventListener('click', () => {
-        clearInterval(slideInterval); // Stop automatic sliding on manual navigation
-        nextSlide();
-        slideInterval = setInterval(nextSlide, intervalTime); // Restart automatic sliding
-    });
+    // nextButton.addEventListener('click', () => {
+    //     clearInterval(slideInterval); // Stop automatic sliding on manual navigation
+    //     nextSlide();
+    //     slideInterval = setInterval(nextSlide, intervalTime); // Restart automatic sliding
+    // });
 
-    prevButton.addEventListener('click', () => {
-        clearInterval(slideInterval);
-        prevSlide();
-        slideInterval = setInterval(nextSlide, intervalTime);
-    });
+    // prevButton.addEventListener('click', () => {
+    //     clearInterval(slideInterval);
+    //     prevSlide();
+    //     slideInterval = setInterval(nextSlide, intervalTime);
+    // });
 
     // Initial display
     showSlide(currentIndex);
