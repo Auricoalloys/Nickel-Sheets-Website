@@ -76,6 +76,7 @@
 /* Dropdown base styles */
 .header__dropdown {
   position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .dropdown-menu {
