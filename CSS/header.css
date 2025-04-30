@@ -106,7 +106,6 @@
   color: var(--primary-color);
   text-decoration: none;
   display: block;
-  box-shadow: 0 4px 8px rgb(118, 117, 117);
 }
 
 .dropdown-item:hover {
