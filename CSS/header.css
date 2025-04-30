@@ -59,6 +59,7 @@
 .header__nav-item {
   position: relative;
   padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Nav links */
@@ -76,7 +77,7 @@
 /* Dropdown base styles */
 .header__dropdown {
   position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+
 }
 
 .dropdown-menu {
