@@ -1,0 +1,198 @@
+/* ========== Layout Structure ========== */
+/* .main-container {
+  display: grid;
+  grid-template-columns: 280px 1fr; /* Sidebar + Main content */
+  /* gap: 40px;
+  padding: 40px;} */
+
+/* ========== Sidebar ========== */
+.products-sidebar {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 30px 20px;
+    border-radius: 12px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .products-sidebar h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .products-sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .products-sidebar li {
+    margin: 12px 0;
+  }
+  
+  .products-sidebar a {
+    color: grey;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .products-sidebar a:hover {
+    color: black;
+  }
+  
+  /* ========== Banner ========== */
+  .flat-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .flat-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: zoomBanner 10s ease-in-out infinite alternate;
+  }
+  
+  @keyframes zoomBanner {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+  
+  .banner-title {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 1px 1px 2px black;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+  }
+  
+  /* ========== Product Grid ========== */
+  .product-content {
+    width: 100%;
+    z-index: 1;
+    padding: 0 40px; 
+  }
+  
+  .product-grid {
+    /* display: grid; */
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+  
+  /* ========== Product Card ========== */
+  .product-card {
+    background-color: #f9f9f9;
+    color: #333;
+    border-radius: 12px;
+    min-height: 400px;
+    overflow: hidden;
+    width: 380px;
+    display: flex;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card img.product-img {
+    width: 100%;
+    object-fit: cover;
+    height: 150px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .product-card .card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .product-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px grey;
+  }
+  
+  .product-card ul {
+    padding-left: 20px;
+    line-height: 1.8;
+  }
+  
+  /* Optional Link Style */
+  .link_editing a {
+    color: grey;
+    text-decoration: none;
+  }
+  
+  .link_editing a:hover {
+    color: #ccc;
+  }
+  
+  /* Extra Image Styling */
+  .detailed-image {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: #f4f6f7;
+    height: 100px;
+    width: 200px;
+  }
+  
+  /* ========== Responsive Design ========== */
+  @media (max-width: 768px) {
+    .main-container {
+      grid-template-columns: 1fr;
+    }
+  
+    .products-sidebar {
+      position: static;
+      box-shadow: none;
+      border: none;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+  
+    .product-grid {
+      grid-template-columns: 1fr;
+      padding: 20px 0;
+    }
+  
+    .flat-banner {
+      height: 200px;
+    }
+  
+    .banner-title {
+      font-size: 24px;
+    }
+  }
