@@ -146,11 +146,6 @@
   display: block;
 }
 
-.submenu a:hover {
-  background-color: #eee;
-}
-
-
   /* Language Selector */
   .header__language-selector {
     position:relative;
