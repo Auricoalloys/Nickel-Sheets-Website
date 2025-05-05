@@ -109,12 +109,12 @@
   
   /* Optional Link Style */
   .link_editing a {
-    color: grey;
+    color: var(--primary-color);
     text-decoration: none;
   }
   
   .link_editing a:hover {
-    color: #ccc;
+    color:var(--secondary-color);
   }
   
   /* Extra Image Styling */
