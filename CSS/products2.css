@@ -5,48 +5,6 @@
   /* gap: 40px;
   padding: 40px;} */
 
-/* ========== Sidebar ========== */
-.products-sidebar {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    padding: 30px 20px;
-    border-radius: 12px;
-    position: sticky;
-    top: 20px;
-    height: fit-content;
-    z-index: 1;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .products-sidebar h3 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .products-sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .products-sidebar li {
-    margin: 12px 0;
-  }
-  
-  .products-sidebar a {
-    color: grey;
-    font-weight: 500;
-    font-size: 15px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .products-sidebar a:hover {
-    color: black;
-  }
-  
   /* ========== Banner ========== */
   .flat-banner {
     position: relative;
@@ -140,9 +98,8 @@
   .product-card h3 {
     font-size: 24px;
     font-weight: 600;
-    color: #2c2c2c;
+    color: var(--primary-color);
     margin-bottom: 10px;
-    text-shadow: 1px 1px 2px grey;
   }
   
   .product-card ul {
