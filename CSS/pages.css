@@ -1,4 +1,12 @@
 
+  .flat-banner {
+    height: 200px;
+  }
+
+  .banner-title {
+    font-size: 24px;
+  }
+
   /* ========== Product Grid ========== */
   .product-content {
     width: 100%;
