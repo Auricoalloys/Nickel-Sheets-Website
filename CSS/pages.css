@@ -970,9 +970,9 @@
         }
         
         * {
-            margin: 0;
+            /* margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box; */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
@@ -1094,5 +1094,47 @@
 
          footer .footer-links p a:hover {
          color: var(--secondary-color);
-        }        
+        }      
+         /* Responsive Design */
+ @media (max-width: 768px) {
+     .page-layout {
+         flex-direction: column;
+         margin-top: 0;
+         overflow-y: auto;
+     }
+
+     .sidebar-nav {
+         position: relative;
+         width: 100%;
+         height: auto;
+         overflow-y: auto;
+         max-height: 300px;
+         margin-bottom: 60px;
+     }
+
+     .main-content {
+         margin-left: 0;
+         padding: 15px;
+     }
+
+     .flat-banner-detail {
+         height: 200px;
+     }
+
+     .banner-title {
+         font-size: 24px;
+     }
+
+     .toc-description-wrapper {
+         flex-direction: column;
+     }
+
+     .table-of-content,
+     .description {
+         width: 100%;
+         transform: none;
+         /* remove scale effect on mobile */
+         margin: 10px 0;
+     }
+ }  
       
