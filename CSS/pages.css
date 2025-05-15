@@ -247,7 +247,7 @@
     max-width: 1000px;
     width: 90%;
 }
-.title {
+ .title {
      margin: 0 auto;
      width: 100%;
      font-size: 1.2rem;
@@ -306,17 +306,6 @@
  .table-of-content li a:hover {
      color: var(--secondary-color);
      padding-left: 8px;
- }
-
- .description {
-     flex: 1 1 0;
-     padding: 10px;
-     box-sizing: border-box;
- }
-
- .description p {
-     line-height: 1.6;
-     font-size: 1rem;
  }
 
   @media (max-width: 768px) {
