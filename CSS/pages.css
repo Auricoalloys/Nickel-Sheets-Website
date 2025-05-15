@@ -1,3 +1,137 @@
+  .page-layout {
+     display: flex;
+     min-height: auto;
+     align-items: flex-start;
+ }
+
+ /* Sidebar Navigation */
+ .sidebar-nav {
+     width: 250px;
+     background-color: #f8f9fa;
+     padding: 20px;
+     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+     position: fixed;
+     top: 80px;
+     bottom: 0;
+     height: auto;
+     overflow-y: auto;
+ }
+.sidebar-title {
+     color: #2c3e50;
+     font-size: 1.2rem;
+     margin-bottom: 20px;
+     padding-bottom: 10px;
+     border-bottom: 1px solid #ddd;
+ }
+
+ .sidebar-menu {
+     list-style: none;
+     padding: 0;
+     margin: 0 0 30px 0;
+ }
+
+ .sidebar-menu li {
+     margin-bottom: 8px;
+ }
+
+ .sidebar-menu a {
+     display: block;
+     padding: 8px 10px;
+     color: #2c3e50;
+     text-decoration: none;
+     border-radius: 4px;
+     transition: all 0.3s ease;
+ }
+
+ /* Form styles */
+ .sidebar-form {
+     background-color: var(--light-color);
+     border-radius: 8px;
+     padding: 20px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     color: var(--text-color);
+     margin-top: 20px;
+     margin-left: 0%;
+ }
+
+ .sidebar-form h3 {
+     margin-top: 0;
+     font-size: 1.1rem;
+     color: var(--text-color);
+ }
+
+ .sidebar-form input,
+ .sidebar-form textarea {
+     width: 100%;
+     padding: 6px;
+     margin-top: 5px;
+     border: 1px solid #ccc;
+     border-radius: 6px;
+ }
+
+ .sidebar-form label {
+     display: block;
+     margin-bottom: 5px;
+     font-weight: 600;
+ }
+
+ .sidebar-form input {
+     width: 100%;
+     padding: 6px;
+     margin-bottom: 15px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+ }
+
+ .checkbox-wrapper {
+     margin: 20px 0;
+ }
+
+ .checkbox-label {
+     display: flex;
+     align-items: center;
+     /* font-size: 12px; */
+     color: var(--text-color);
+     gap: 8px;
+     line-height: 1.5;
+ }
+
+ .checkbox-label input[type="checkbox"] {
+     margin: 0;
+     appearance: checkbox;
+     width: 16px;
+     height: 16px;
+     cursor: pointer;
+ }
+
+ .sidebar-form button {
+     background-color: var(--primary-color);
+     color: white;
+     border: none;
+     padding: 10px 15px;
+     border-radius: 4px;
+     cursor: pointer;
+     width: 100%;
+ }
+
+ .sidebar-form button:hover {
+     background-color: var(--dark-color);
+ }
+
+ /* Main Content */
+ .main-content {
+     flex: 1;
+     padding: 30px 50px;
+     margin-left: 290px;
+     margin-right: auto;
+     position: relative;
+     top: 0;
+     bottom: 0;
+     height: auto;
+     overflow-y: auto;
+ }
+
+
   /* ========== Banner ========== */
   .flat-banner {
     position: relative;
