@@ -6,15 +6,11 @@
 
  /* Sidebar Navigation */
  .sidebar-nav {
-     width: 250px;
-     background-color: #f8f9fa;
-     padding: 20px;
-     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-     position: fixed;
-     top: 80px;
-     bottom: 0;
-     height: auto;
-     overflow-y: auto;
+   width: 250px;
+   padding: 10px;
+   position: relative;
+   top: 10px;
+   transition: transform 0.3s ease;
  }
 .sidebar-title {
      color: #2c3e50;
