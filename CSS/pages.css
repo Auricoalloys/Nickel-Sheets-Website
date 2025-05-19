@@ -14,7 +14,7 @@
    padding: 10px;
    position: relative;
    top: 10px;
-   margin-left: 40;
+   margin-left: 40px;
    transition: transform 0.3s ease;
  }
 .sidebar {
@@ -81,8 +81,13 @@
 
 #floatingButton:hover {
   transform: scale(1.1);
+  width: 180px;
+  padding-right:15px ;
 }
-
+ #floatingButton:hover span {
+    display: inline-block;
+    margin-right: 10px;
+  }
 #floatingButton .pulse {
   position: absolute;
   width: 60px;
