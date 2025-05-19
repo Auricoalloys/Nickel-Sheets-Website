@@ -45,6 +45,17 @@
  .sidebar a:hover{
   color: var(--secondary-color);
  }
+ .link-list {
+  display: none; /* Ensure it’s hidden by default */
+  padding-left: 16px;
+  margin-bottom: 10px;
+}
+
+.sidebar-title.active {
+  background: var(--primary-color);
+  color: white;
+}
+
  #floatingButton {
   position: fixed;
   bottom: 30px;
