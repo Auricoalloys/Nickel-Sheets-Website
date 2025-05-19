@@ -10,10 +10,11 @@
 
  /* Sidebar Navigation */
  .sidebar-nav {
-   width: 250px;
+   width: 25%;
    padding: 10px;
    position: relative;
    top: 10px;
+   margin-left: 40;
    transition: transform 0.3s ease;
  }
 .sidebar {
@@ -21,7 +22,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 250px;
+  max-width: 320px;
 }
 
 .sidebar-title {
@@ -229,7 +230,9 @@
  /* Main Content */
  .main-content {
    flex: 1;
+   width: 74.303%;
    padding: 30px 40px;
+   padding-left: 0px;
    margin-left: auto;
    margin-right: auto;
    position: relative;
@@ -812,82 +815,6 @@
   align-items: flex-end;
   /* flex-wrap: wrap; */
 }
-
-/* .products-sidebar {
-  flex: 2;
-  min-width: 300px;
-} */
-/* .products-sidebar {
-  position: absolute; 
-  right: 20px;
-  top: 400px;
-  margin-top: 20px;
-  width: 270px;
-  background-color: var(--light-color);
-  border: white;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all var(--transition-speed) ease;
-  color: var(--text-color);
-}
-
-.products-sidebar h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  text-align: center;
-  color: var(--primary-color);
-  font-size: 1.2rem;
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 5px;
-}
-
-.products-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.products-sidebar ul li {
-  padding: 10px 8px;
-  border-bottom: 1px solid #ddd;
-  transition: background-color var(--transition-speed) ease;
-}
-
-.products-sidebar ul li:last-child {
-  border-bottom: none;
-}
-
-.products-sidebar ul li a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  display: block;
-  transition: color var(--transition-speed), padding-left var(--transition-speed);
-}
-
-.products-sidebar ul li:hover {
-  background-color: var(--light-color);
-}
-
-.products-sidebar ul li a:hover {
-  color: var(--secondary-color);
-  padding-left: 10px;
-}
-
-
-.grade-list {
-  background: #f4f6f7;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-.grade-item {
-  padding: 15px 10px;
-  border-bottom: 1px solid #ccc;
-  font-weight: bold;
-} */
 
 /* Contact  */
 .floating-contact-bar {
