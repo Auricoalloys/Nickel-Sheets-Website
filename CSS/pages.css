@@ -780,7 +780,7 @@
   flex: 2;
   min-width: 300px;
 } */
-.products-sidebar {
+/* .products-sidebar {
   position: absolute; 
   right: 20px;
   top: 400px;
@@ -850,7 +850,7 @@
   padding: 15px 10px;
   border-bottom: 1px solid #ccc;
   font-weight: bold;
-}
+} */
 
 /* Contact  */
 .floating-contact-bar {
