@@ -19,11 +19,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 20px 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
-
 /* Logo */
 .header__logo {
   display: flex;
@@ -31,7 +30,7 @@
 }
 
 .header__logo img {
-  width: 40px;
+  width: 50px;
   margin-right: 10px;
 }
 
@@ -59,7 +58,7 @@
 /* Top-level nav items */
 .header__nav-item {
   position: relative;
-  padding: 15px 20px;
+  padding: 10px 15px;
 }
 
 /* Nav links */
