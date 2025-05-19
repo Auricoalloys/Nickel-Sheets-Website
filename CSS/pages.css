@@ -83,13 +83,16 @@
 
 #floatingButton:hover {
   transform: scale(1.1);
-  width: 180px;
-  padding-right:15px ;
 }
- #floatingButton:hover span {
-    display: inline-block;
-    margin-right: 10px;
-  }
+#ask:hover {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#floatingButton:hover span {
+  display: inline-block;
+  margin-right: 10px;
+}
 #floatingButton .pulse {
   position: absolute;
   width: 60px;
