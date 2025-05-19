@@ -150,7 +150,7 @@
   /* Language Selector */
   .header__language-selector {
     position:relative;
-    padding: 15px;
+    padding: 15px 20px;
   }
   .header__language-selector:hover .header__language-dropdown {
     display: block;
