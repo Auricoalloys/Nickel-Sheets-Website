@@ -114,12 +114,12 @@
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
-  overflow-x: scroll;
+  overflow-x: auto;
   background: #f8f9fa;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   border-radius: 10px;
-  display: none; /* Hidden initially */
+  display: none; 
   z-index: 999;
 }
 
