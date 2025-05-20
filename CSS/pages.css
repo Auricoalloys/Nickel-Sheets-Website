@@ -6,6 +6,7 @@
      display: flex;
      min-height: auto;
      align-items: flex-start;
+     gap: 0px;
      margin-top: 40px;
      margin-bottom: 40px;
  }
@@ -240,11 +241,10 @@
  /* Main Content */
  .main-content {
    flex: 1;
-   width: 74.303%;
-   padding: 30px 40px;
+   width: 73%;
+   padding: 10px 20px;
    padding-left: 0px;
-   margin-left: auto;
-   margin-right: auto;
+   margin: 0;
    position: relative;
    height: auto;
    overflow-y: auto;
@@ -373,7 +373,7 @@
      font-weight: 700;
      text-align: justify;
      text-transform: capitalize;
-     margin-bottom: 20px;
+     margin-bottom: 40px;
      color: var(--text-color);
  }
 
@@ -823,7 +823,7 @@
   gap: 20px;
   padding: 20px;
   align-items: flex-end;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
 }
 
 /* Contact  */
@@ -926,7 +926,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
         
         .btn {
