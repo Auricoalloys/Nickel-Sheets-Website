@@ -858,32 +858,40 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 });
 </script>
 
-  <script>
-        document.addEventListener('DOMContentLoaded', () => {
-                const toggleButtons = document.querySelectorAll('.toggle-btn');
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
 
-                toggleButtons.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const list = btn.nextElementSibling;
+        toggleButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const list = btn.nextElementSibling;
 
-                        // Collapse all others
-                        document.querySelectorAll('.link-list').forEach(el => {
-                            if (el !== list) el.style.display = 'none';
-                        });
-
-                        // Toggle current one
-                        list.style.display = list.style.display === 'block' ? 'none' : 'block';
-                    });
-                });
-                document.getElementById("closeFormText").addEventListener("click", function () {
-                    document.getElementById("formSidebar").style.display = "none";
-                });
-
+            // Collapse all others
+            document.querySelectorAll('.link-list').forEach(el => {
+              if (el !== list) el.style.display = 'none';
             });
-            document.getElementById("floatingButton").addEventListener("click", function () {
-                const formSidebar = document.getElementById("formSidebar");
-                formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
-            });
+
+            // Toggle current one
+            list.style.display = list.style.display === 'block' ? 'none' : 'block';
+          });
+        });
+
+        // Close form
+        document.getElementById("closeFormText").addEventListener("click", function () {
+          document.getElementById("formSidebar").style.display = "none";
+        });
+
+        // Floating button click
+        document.getElementById("floatingButton").addEventListener("click", function () {
+          const formSidebar = document.getElementById("formSidebar");
+
+          // Toggle the form visibility
+          formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
+
+          // Add the 'clicked' class to prevent tooltip on hover
+          this.classList.add("clicked");
+        });
+      });
     </script>
 
 </body>

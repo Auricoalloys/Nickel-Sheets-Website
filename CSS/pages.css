@@ -93,7 +93,7 @@
    top: 50%;
    left: 70px;
    transform: translateY(-50%);
-   background-color: var(--primary-color);
+   background-color: grey;
    color: #fff;
    padding: 6px 12px;
    border-radius: 6px;
@@ -110,7 +110,12 @@
    visibility: visible;
    left: 80px;
  }
-
+/* Prevent tooltip from showing after click */
+#floatingButton.clicked:hover .tooltip-msg {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  left: 70px !important;
+}
  /* Pulse animation */
  #floatingButton .pulse {
    position: absolute;
