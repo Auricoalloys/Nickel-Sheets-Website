@@ -809,34 +809,52 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 </script>
 <script>
   document.getElementById("inquiryForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = document.getElementById("submitBtn");
+  const statusElement = document.getElementById("formStatus");
+  
+  // Disable button to prevent multiple submissions
+  submitBtn.disabled = true;
+  statusElement.innerText = "Submitting...";
+  statusElement.style.color = "inherit";
 
-    const form = e.target;
-    const data = {
-      country: form.country.value,
-      name: form.name.value,
-      email: form.email.value,
-      inquiry: form.inquiry.value,
-      privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
-    };
+  const formData = {
+    country: form.country.value,
+    name: form.name.value,
+    email: form.email.value,
+    inquiry: form.inquiry.value,
+    privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
+  };
 
-    fetch("https://script.google.com/macros/s/AKfycbzTxjnbvZflXQd5BF8scRqCBGzP6s_g565pMmXicV5QCFSmqVivux_FSJk_WHJXUMJu/exec", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => response.text())
-      .then(response => {
-        document.getElementById("formStatus").innerText = "Inquiry submitted successfully!";
-        form.reset();
-      })
-      .catch(error => {
-        document.getElementById("formStatus").innerText = "Error submitting inquiry.";
-        console.error("Submission error:", error);
-      });
+  // Use the latest deployment URL
+  const scriptUrl = "YOUR_SCRIPT_URL_HERE";
+
+  fetch(scriptUrl, {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Network response was not ok");
+    return response.json();
+  })
+  .then(data => {
+    statusElement.innerText = "Inquiry submitted successfully!";
+    statusElement.style.color = "green";
+    form.reset();
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    statusElement.innerText = "Error submitting inquiry: " + error.message;
+    statusElement.style.color = "red";
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
   });
+});
 </script>
 
   <script>
