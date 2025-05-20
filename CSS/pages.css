@@ -68,7 +68,6 @@
    position: fixed;
    bottom: 30px;
    left: 30px;
-   /* Changed from auto */
    background-color: var(--secondary-color);
    color: white;
    width: 60px;
