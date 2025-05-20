@@ -806,80 +806,38 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
 
 </script>
- <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+<script>
+  document.getElementById("inquiryForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  <!-- <script src="../javascript/firebasejs.js"></script> -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
-
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBS3tT7v2fn0bZkgrwngnW5yEPLwgvFjC8",
-      authDomain: "nickel-sheets-database.firebaseapp.com",
-      projectId: "nickel-sheets-database",
-      storageBucket: "nickel-sheets-database.appspot.com",
-      messagingSenderId: "134607483030",
-      appId: "1:134607483030:web:0ab88954064c74797b52b7",
-      measurementId: "G-XZL7EXDTQ0"
+    const form = e.target;
+    const data = {
+      country: form.country.value,
+      name: form.name.value,
+      email: form.email.value,
+      inquiry: form.inquiry.value,
+      privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
     };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    // Form submission handler
-    document.getElementById('inquiryForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const form = e.target;
-      const submitBtn = document.getElementById('submitBtn');
-      const statusDiv = document.getElementById('formStatus');
-
-      // Disable button to prevent multiple submissions
-      submitBtn.disabled = true;
-      statusDiv.textContent = 'Submitting...';
-      statusDiv.style.color = 'blue';
-
-      try {
-        // Get form values
-        const formData = {
-          country: form.country.value,
-          name: form.name.value,
-          email: form.email.value,
-          inquiry: form.inquiry.value,
-          privacy_accepted: form.privacy_accepted.checked,
-          timestamp: serverTimestamp()
-        };
-
-        // Add a new document to Firestore
-        const docRef = await addDoc(collection(db, "inquiries"), formData);
-
-        // Success handling
-        statusDiv.textContent = 'Thank you! Your inquiry has been submitted.';
-        statusDiv.style.color = 'green';
-        form.reset();
-
-        console.log("Document written with ID: ", docRef.id);
-      } catch (error) {
-        // Error handling
-        console.error("Error adding document: ", error);
-        statusDiv.textContent = 'Error submitting form. Please try again later.';
-        statusDiv.style.color = 'red';
-
-        // Re-enable button
-        submitBtn.disabled = false;
-      } finally {
-        // Re-enable button after 3 seconds even if successful
-        setTimeout(() => {
-          submitBtn.disabled = false;
-        }, 3000);
+    fetch("https://script.google.com/macros/s/AKfycbx7mmVmldvFRGMIzYlm_Qy9Hi6j65OSeX0KDwsuviileil7OXkgNdfeEcj_O4ArIiSe/exec", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
       }
-    });
-  </script>
+    })
+      .then(response => response.text())
+      .then(response => {
+        document.getElementById("formStatus").innerText = "Inquiry submitted successfully!";
+        form.reset();
+      })
+      .catch(error => {
+        document.getElementById("formStatus").innerText = "Error submitting inquiry.";
+        console.error("Submission error:", error);
+      });
+  });
+</script>
+
   <script>
         document.addEventListener('DOMContentLoaded', () => {
                 const toggleButtons = document.querySelectorAll('.toggle-btn');
