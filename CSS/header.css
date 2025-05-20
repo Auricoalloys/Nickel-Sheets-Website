@@ -258,3 +258,16 @@
     height: auto;
 }
 }
+@media (max-width: 600px) {
+  .header__logo img {
+    width: 40px;
+    margin-right: 8px;
+  }
+
+  .header__logo-title {
+    font-size: 1.1rem;
+    flex: 1 1 auto;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
