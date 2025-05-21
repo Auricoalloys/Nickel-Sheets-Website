@@ -265,45 +265,45 @@ title: Round Bars (You can set a title here that Jekyll can use)
       </div>
       <script src="/javascript/inquiry-form.js"></script>
     <script>
-      // // JavaScript to fetch and insert header (if you haven't already)
-      // fetch('/html/header.html')
-      //   .then(response => response.text())
-      //   .then(html => {
-      //     document.getElementById('header__container').innerHTML = html;
-      //     initMobileMenu();
-      //   })
-      //   .catch(error => {
-      //     console.error('Failed to load header:', error);
-      //   });
-      // function initMobileMenu() {
-      //   const toggle = document.querySelector('.header__mobile-toggle');
-      //   const navList = document.querySelector('.header__nav-list');
+      // JavaScript to fetch and insert header (if you haven't already)
+      fetch('/html/header.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('header__container').innerHTML = html;
+          initMobileMenu();
+        })
+        .catch(error => {
+          console.error('Failed to load header:', error);
+        });
+      function initMobileMenu() {
+        const toggle = document.querySelector('.header__mobile-toggle');
+        const navList = document.querySelector('.header__nav-list');
 
-      //   if (toggle && navList) {
-      //     toggle.addEventListener('click', () => {
-      //       toggle.classList.toggle('active');
-      //       navList.classList.toggle('active');
-      //     });
+        if (toggle && navList) {
+          toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            navList.classList.toggle('active');
+          });
 
-      //     // Close menu when clicking on links (for single page navigation)
-      //     navList.querySelectorAll('a[href^="#"]').forEach(link => {
-      //       link.addEventListener('click', () => {
-      //         toggle.classList.remove('active');
-      //         navList.classList.remove('active');
-      //       });
-      //     });
-      //   }
-      // }
+          // Close menu when clicking on links (for single page navigation)
+          navList.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', () => {
+              toggle.classList.remove('active');
+              navList.classList.remove('active');
+            });
+          });
+        }
+      }
 
-      //   // JavaScript to fetch and insert footer
-      //   fetch('/html/footer.html')
-      //     .then(response => response.text())
-      //     .then(html => {
-      //       document.getElementById('footer-container').innerHTML = html;
-      //     })
-      //     .catch(error => {
-      //       console.error('Failed to load footer:', error);
-      //     });
+        // JavaScript to fetch and insert footer
+        fetch('/html/footer.html')
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('footer-container').innerHTML = html;
+          })
+          .catch(error => {
+            console.error('Failed to load footer:', error);
+          });
     </script>
   </body>
   </html>
