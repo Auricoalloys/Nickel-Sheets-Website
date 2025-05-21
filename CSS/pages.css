@@ -424,7 +424,7 @@
 
  .toc-description-wrapper {
      text-align: justify;
-     gap: 30px;
+     gap: 2px;
      display: flex;
      flex-direction: row;
      flex-wrap: wrap;
