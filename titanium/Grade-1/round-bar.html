@@ -835,7 +835,8 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
         body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json"
-        }
+        },
+        redirect: "follow"
       });
 
       // Handle response if it's JSON
