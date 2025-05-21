@@ -271,3 +271,221 @@
     word-break: break-word;
   }
 }
+ #floatingButton {
+   position: fixed;
+   bottom: 30px;
+   left: 30px;
+   background-color: var(--secondary-color);
+   color: white;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   font-size: 24px;
+   text-align: center;
+   line-height: 60px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+   cursor: pointer;
+   z-index: 1000;
+   transition: transform 0.3s ease;
+   overflow: visible;
+ }
+
+ #floatingButton:hover {
+   transform: scale(1.1);
+ }
+
+ /* Tooltip message */
+ .tooltip-msg {
+   position: absolute;
+   top: 50%;
+   left: 70px;
+   transform: translateY(-50%);
+   background-color: grey;
+   color: #fff;
+   padding: 6px 12px;
+   border-radius: 6px;
+   white-space: nowrap;
+   font-size: 14px;
+   opacity: 0;
+   visibility: hidden;
+   transition: opacity 0.4s ease, left 0.4s ease;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ #floatingButton:hover .tooltip-msg {
+   opacity: 1;
+   visibility: visible;
+   left: 80px;
+ }
+/* Prevent tooltip from showing after click */
+#floatingButton.clicked:hover .tooltip-msg {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  left: 70px !important;
+}
+ /* Pulse animation */
+ #floatingButton .pulse {
+   position: absolute;
+   width: 60px;
+   height: 60px;
+   background: rgba(33, 39, 63, 0.4);
+   border-radius: 50%;
+   animation: pulse-animation 1.5s infinite;
+   top: 0;
+   left: 0;
+   z-index: -1;
+ }
+
+ @keyframes pulse-animation {
+   0% {
+     transform: scale(1);
+     opacity: 0.7;
+   }
+
+   100% {
+     transform: scale(1.8);
+     opacity: 0;
+   }
+ }
+
+ /* Optional mobile adjustments */
+ @media (max-width: 600px) {
+   #floatingButton {
+     bottom: 20px;
+     left: 20px;
+     width: 50px;
+     height: 50px;
+     font-size: 20px;
+     line-height: 50px;
+   }
+
+   .tooltip-msg {
+     font-size: 12px;
+     left: 60px;
+   }
+
+   #floatingButton:hover .tooltip-msg {
+     left: 70px;
+   }
+ }
+/* Sidebar Form Styling */
+#formSidebar {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  left: 120px;
+  max-width: 300px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: #f8f9fa;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  display: none; 
+  z-index: 999;
+}
+
+ /* Form styles */
+ .sidebar-form {
+     /* background-color: var(--light-color); */
+     border-radius: 8px;
+     padding: 10px;
+     color: var(--text-color);
+ }
+.close-text {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-text:hover {
+  color: #000;
+  transform: scale(1.2);
+}
+.sidebar-form h3 {
+     margin-top: 0;
+     font-size: 1rem;
+     color: var(--text-color);
+ }
+
+ .sidebar-form input,
+ .sidebar-form textarea {
+     width: 100%;
+     padding: 5px;
+     margin-top: 5px;
+     border: 1px solid #ccc;
+     border-radius: 6px;
+ }
+
+ .sidebar-form label {
+     display: block;
+     margin-bottom: 0px;
+     font-weight: 600;
+ }
+
+ .sidebar-form input {
+     width: 100%;
+     padding: 6px;
+     margin-bottom: 15px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+ }
+
+ .checkbox-wrapper {
+     margin: 20px 0;
+ }
+
+ .checkbox-label {
+     display: flex;
+     align-items: center;
+     /* font-size: 12px; */
+     color: var(--text-color);
+     gap: 8px;
+     line-height: 1.5;
+ }
+
+ .checkbox-label input[type="checkbox"] {
+     margin: 0;
+     appearance: checkbox;
+     width: 16px;
+     height: 16px;
+     cursor: pointer;
+ }
+
+ .sidebar-form button {
+     background-color: var(--primary-color);
+     color: white;
+     border: none;
+     padding: 10px 15px;
+     border-radius: 4px;
+     cursor: pointer;
+     width: 100%;
+ }
+
+ .sidebar-form button:hover {
+     background-color: var(--dark-color);
+ }
+ @media (max-width: 600px) {
+  #floatingButton {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+  }
+
+  #formSidebar {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-width: none;
+  }
+}
