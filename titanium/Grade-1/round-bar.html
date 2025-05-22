@@ -26,6 +26,36 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
   <link rel="stylesheet" href="/CSS/header.css">
 
 </head>
+<div id="floatingButton">
+        <div class="pulse"></div>
+        <i class="fas fa-comment-dots"></i> <!-- Font Awesome -->
+        <span class="tooltip-msg">Request an Offer</span>
+      </div>
+      <aside class="sidebar-form" id="formSidebar">
+        <span id="closeFormText" class="close-text" aria-label="Close form">×</span>
+        <h3>Request an Offer</h3>
+        <form id="inquiryForm" action="https://script.google.com/macros/s/AKfycbx5qgBmVotZ-ndhF8FsRPojrBitXqDBoGMQpw6w3n_lkoUrrLIr5rchmPY4ddh0RHZ-/exec">
+          <label>Country*</label>
+          <input type="text" name="country" required>
+          <label>Name*</label>
+          <input type="text" name="name" required>
+          <label>E-Mail*</label>
+          <input type="email" name="email" required>
+          <label>Inquiry*</label>
+          <textarea name="inquiry" rows="4" required></textarea>
+          <div class="checkbox-wrapper">
+            <label class="checkbox-label">
+              <input type="checkbox" name="privacy" required>
+              I hereby accept the <a href="/privacy-policy" target="_blank">privacy policy</a> and I am
+              aware that I am using
+              this form to send personal information!
+            </label>
+          </div>
+    
+          <button type="submit" id="submitBtn">Submit Inquiry</button>
+          <div id="formStatus"></div>
+        </form>
+      </aside>
 
 <body>
   <header class="header">
@@ -179,37 +209,6 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
             <li><a href="/NiCr/20:25/round-bar/">NiCr 20:25 Round Bars</a></li>
           </ul>
         </div>
-      </aside>
-    
-      <div id="floatingButton">
-        <div class="pulse"></div>
-        <i class="fas fa-comment-dots"></i> <!-- Font Awesome -->
-        <span class="tooltip-msg">Request an Offer</span>
-      </div>
-      <aside class="sidebar-form" id="formSidebar">
-        <span id="closeFormText" class="close-text" aria-label="Close form">×</span>
-        <h3>Request an Offer</h3>
-        <form id="inquiryForm" action="https://script.google.com/macros/s/AKfycbx5qgBmVotZ-ndhF8FsRPojrBitXqDBoGMQpw6w3n_lkoUrrLIr5rchmPY4ddh0RHZ-/exec">
-          <label>Country*</label>
-          <input type="text" name="country" required>
-          <label>Name*</label>
-          <input type="text" name="name" required>
-          <label>E-Mail*</label>
-          <input type="email" name="email" required>
-          <label>Inquiry*</label>
-          <textarea name="inquiry" rows="4" required></textarea>
-          <div class="checkbox-wrapper">
-            <label class="checkbox-label">
-              <input type="checkbox" name="privacy" required>
-              I hereby accept the <a href="/privacy-policy" target="_blank">privacy policy</a> and I am
-              aware that I am using
-              this form to send personal information!
-            </label>
-          </div>
-    
-          <button type="submit" id="submitBtn">Submit Inquiry</button>
-          <div id="formStatus"></div>
-        </form>
       </aside>
     
     </nav>

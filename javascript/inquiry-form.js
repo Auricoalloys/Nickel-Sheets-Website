@@ -1,6 +1,6 @@
-// document.getElementById("closeFormText").addEventListener("click", function () {
-//   document.getElementById("formSidebar").style.display = "none";
-// });
+document.getElementById("closeFormText").addEventListener("click", function () {
+  document.getElementById("formSidebar").style.display = "none";
+});
 document.getElementById("floatingButton").addEventListener("click", function () {
   const formSidebar = document.getElementById("formSidebar");
   formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
