@@ -1,11 +1,11 @@
-document.getElementById("closeFormText").addEventListener("click", function () {
-          document.getElementById("formSidebar").style.display = "none";
-        });
-        document.getElementById("floatingButton").addEventListener("click", function () {
-          const formSidebar = document.getElementById("formSidebar");
-          formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
-          this.classList.add("clicked");
-        });
+document.getElementById(" FormText").addEventListener("click", function () {
+  document.getElementById("formSidebar").style.display = "none";
+});
+document.getElementById("floatingButton").addEventListener("click", function () {
+  const formSidebar = document.getElementById("formSidebar");
+  formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
+  this.classList.add("clicked");
+});
 
 document.getElementById("inquiryForm").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -51,58 +51,66 @@ document.getElementById("inquiryForm").addEventListener("submit", function (e) {
       submitBtn.disabled = false;
     });
 });
+document.getElementById("closeFormText").addEventListener("click", function () {
+  document.getElementById("formSidebar").style.display = "none";
+});
+document.getElementById("floatingButton").addEventListener("click", function () {
+  const formSidebar = document.getElementById("formSidebar");
+  formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
+  this.classList.add("clicked");
+});
 
 // JavaScript to fetch and insert header (if you haven't already)
-  fetch('/html/header.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('header__container').innerHTML = html;
-    })
-    .catch(error => {
-      console.error('Failed to load header:', error);
-    });
+fetch('/html/header.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('header__container').innerHTML = html;
+  })
+  .catch(error => {
+    console.error('Failed to load header:', error);
+  });
 
-  // JavaScript to fetch and insert footer
-  fetch('/html/footer.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('footer-container').innerHTML = html;
-    })
-    .catch(error => {
-      console.error('Failed to load footer:', error);
-    });
-
-
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute("href").substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      });
-    });
+// JavaScript to fetch and insert footer
+fetch('/html/footer.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('footer-container').innerHTML = html;
+  })
+  .catch(error => {
+    console.error('Failed to load footer:', error);
   });
 
 
-  // Show button when scrolling down
-  window.onscroll = function () {
-    const btn = document.getElementById("scrollUpBtn");
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-      btn.style.display = "block";
-    } else {
-      btn.style.display = "none";
-    }
-  };
-
-  // Scroll to the #introduction section
-  document.getElementById("scrollUpBtn").addEventListener("click", function () {
-    document.querySelector("#introduction").scrollIntoView({
-      behavior: "smooth"
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
     });
   });
+});
+
+
+// Show button when scrolling down
+window.onscroll = function () {
+  const btn = document.getElementById("scrollUpBtn");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+// Scroll to the #introduction section
+document.getElementById("scrollUpBtn").addEventListener("click", function () {
+  document.querySelector("#introduction").scrollIntoView({
+    behavior: "smooth"
+  });
+});
