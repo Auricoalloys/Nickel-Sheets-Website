@@ -54,12 +54,6 @@ document.getElementById("inquiryForm").addEventListener("submit", function (e) {
 document.getElementById("closeFormText").addEventListener("click", function () {
   document.getElementById("formSidebar").style.display = "none";
 });
-document.getElementById("floatingButton").addEventListener("click", function () {
-  const formSidebar = document.getElementById("formSidebar");
-  formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
-  this.classList.add("clicked");
-});
-
 // JavaScript to fetch and insert header (if you haven't already)
 fetch('/html/header.html')
   .then(response => response.text())
