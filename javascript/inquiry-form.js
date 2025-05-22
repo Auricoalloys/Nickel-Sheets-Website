@@ -1,4 +1,4 @@
-document.getElementById(" FormText").addEventListener("click", function () {
+document.getElementById("closeFormText").addEventListener("click", function () {
   document.getElementById("formSidebar").style.display = "none";
 });
 document.getElementById("floatingButton").addEventListener("click", function () {
@@ -51,9 +51,6 @@ document.getElementById("inquiryForm").addEventListener("submit", function (e) {
       submitBtn.disabled = false;
     });
 });
-// document.getElementById("closeFormText").addEventListener("click", function () {
-//   document.getElementById("formSidebar").style.display = "none";
-// });
 
 // JavaScript to fetch and insert header (if you haven't already)
 fetch('/html/header.html')
