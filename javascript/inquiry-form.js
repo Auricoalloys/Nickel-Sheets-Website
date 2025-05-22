@@ -52,6 +52,20 @@ document.getElementById("inquiryForm").addEventListener("submit", function (e) {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+        toggleButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const list = btn.nextElementSibling;
+            document.querySelectorAll('.link-list').forEach(el => {
+              if (el !== list) el.style.display = 'none';
+            });
+            list.style.display = list.style.display === 'block' ? 'none' : 'block';
+          });
+        });
+      
+       });
+
 // JavaScript to fetch and insert header (if you haven't already)
 fetch('/html/header.html')
   .then(response => response.text())
