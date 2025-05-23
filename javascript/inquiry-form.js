@@ -64,28 +64,28 @@ function initInquiryFormListeners() {
 }
 
 // Inject header, then attach events
-fetch("/html/header.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("header__container").innerHTML = html;
-  })
-  .then(() => {
-    // Delay or directly call the init function
-    setTimeout(initInquiryFormListeners, 100); // or use MutationObserver for precision
-  })
-  .catch((error) => {
-    console.error("Failed to load header:", error);
-  });
+// fetch("/html/header.html")
+//   .then((response) => response.text())
+//   .then((html) => {
+//     document.getElementById("header__container").innerHTML = html;
+//   })
+//   .then(() => {
+//     // Delay or directly call the init function
+//     setTimeout(initInquiryFormListeners, 100); // or use MutationObserver for precision
+//   })
+//   .catch((error) => {
+//     console.error("Failed to load header:", error);
+//   });
 
-// Inject footer
-fetch("/html/footer.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("footer-container").innerHTML = html;
-  })
-  .catch((error) => {
-    console.error("Failed to load footer:", error);
-  });
+// // Inject footer
+// fetch("/html/footer.html")
+//   .then((response) => response.text())
+//   .then((html) => {
+//     document.getElementById("footer-container").innerHTML = html;
+//   })
+//   .catch((error) => {
+//     console.error("Failed to load footer:", error);
+//   });
 
 document.addEventListener('DOMContentLoaded', () => {
         const toggleButtons = document.querySelectorAll('.toggle-btn');
