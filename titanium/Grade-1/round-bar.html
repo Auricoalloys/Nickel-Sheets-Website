@@ -751,21 +751,28 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
 <script src="/javascript/inquiry-form.js"></script>
 
-    <script>
-      // document.addEventListener('DOMContentLoaded', () => {
-      //   const toggleButtons = document.querySelectorAll('.toggle-btn');
-      //   toggleButtons.forEach(btn => {
-      //     btn.addEventListener('click', () => {
-      //       const list = btn.nextElementSibling;
-      //       document.querySelectorAll('.link-list').forEach(el => {
-      //         if (el !== list) el.style.display = 'none';
-      //       });
-      //       list.style.display = list.style.display === 'block' ? 'none' : 'block';
-      //     });
-      //   });
-      
-      //  });
-    </script>
+<script>
+  // JavaScript to fetch and insert header (if you haven't already)
+  fetch('/html/header.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('header__container').innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Failed to load header:', error);
+    });
+
+  // JavaScript to fetch and insert footer
+  fetch('/html/footer.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-container').innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Failed to load footer:', error);
+    });
+
+</script>
 
 </body>
 </html>
