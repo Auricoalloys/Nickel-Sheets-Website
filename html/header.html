@@ -27,7 +27,9 @@
         <label>Country*</label>
         <input type="text" name="country" required>
         <label>Name*</label>
-        <input type="text" name="name" required>
+        <input type="text" name="country" required>
+        <label>Mobile Number*</label>
+        <input type="number" name="mobile" required>
         <label>E-Mail*</label>
         <input type="email" name="email" required>
         <label>Inquiry*</label>
@@ -249,65 +251,3 @@
     </nav>
   </div>
 </header>
-<script>
-  document.getElementById("closeFormText").addEventListener("click", function () {
-      document.getElementById("formSidebar").style.display = "none";
-    });
-    document.getElementById("floatingButton").addEventListener("click", function () {
-      const formSidebar = document.getElementById("formSidebar");
-      formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
-      this.classList.add("clicked");
-    });
-document.getElementById("inquiryForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const form = e.target;
-  const submitBtn = document.getElementById("submitBtn");
-  const statusElement = document.getElementById("formStatus");
-
-  submitBtn.disabled = true;
-  statusElement.innerText = "Submitting...";
-  statusElement.style.color = "inherit";
-
-  const formData = {
-    country: form.country.value,
-    name: form.name.value,
-    email: form.email.value,
-    inquiry: form.inquiry.value,
-    privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
-  };
-
-  // Make sure this is your NEW deployment URL
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbx5qgBmVotZ-ndhF8FsRPojrBitXqDBoGMQpw6w3n_lkoUrrLIr5rchmPY4ddh0RHZ-/exec";
-
-  fetch(scriptUrl, {
-    method: "POST",
-    body: JSON.stringify(formData),
-    headers: {
-      "Content-Type": "application/json"
-    },
-    mode: 'no-cors'
-  })
-    .then(response => {
-      // With no-cors mode, we can't read the response directly
-      statusElement.innerText = "Inquiry submitted successfully!";
-      statusElement.style.color = "green";
-      form.reset();
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      statusElement.innerText = "Error submitting inquiry. Please try again later.";
-      statusElement.style.color = "red";
-    })
-    .finally(() => {
-      submitBtn.disabled = false;
-    });
-});
-  document.getElementById("closeFormText").addEventListener("click", function () {
-          document.getElementById("formSidebar").style.display = "none";
-        });
-        document.getElementById("floatingButton").addEventListener("click", function () {
-          const formSidebar = document.getElementById("formSidebar");
-          formSidebar.style.display = formSidebar.style.display === "block" ? "none" : "block";
-          this.classList.add("clicked");
-        });
-</script>
