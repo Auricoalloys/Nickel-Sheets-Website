@@ -31,7 +31,7 @@ function initInquiryFormListeners() {
     const formData = {
       country: form.country.value,
       name: form.name.value,
-      phone: form.phone?.value || "",
+      mobile: form.phone.value,
       email: form.email.value,
       inquiry: form.inquiry.value,
       privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
