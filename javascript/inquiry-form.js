@@ -66,25 +66,25 @@ document.addEventListener('DOMContentLoaded', () => {
       
        });
 
-// JavaScript to fetch and insert header (if you haven't already)
-fetch('/html/header.html')
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById('header__container').innerHTML = html;
-  })
-  .catch(error => {
-    console.error('Failed to load header:', error);
-  });
+// // JavaScript to fetch and insert header (if you haven't already)
+// fetch('/html/header.html')
+//   .then(response => response.text())
+//   .then(html => {
+//     document.getElementById('header__container').innerHTML = html;
+//   })
+//   .catch(error => {
+//     console.error('Failed to load header:', error);
+//   });
 
-// JavaScript to fetch and insert footer
-fetch('/html/footer.html')
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById('footer-container').innerHTML = html;
-  })
-  .catch(error => {
-    console.error('Failed to load footer:', error);
-  });
+// // JavaScript to fetch and insert footer
+// fetch('/html/footer.html')
+//   .then(response => response.text())
+//   .then(html => {
+//     document.getElementById('footer-container').innerHTML = html;
+//   })
+//   .catch(error => {
+//     console.error('Failed to load footer:', error);
+//   });
 
 
 document.addEventListener("DOMContentLoaded", function () {
