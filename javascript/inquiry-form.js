@@ -20,6 +20,7 @@ document.getElementById("inquiryForm").addEventListener("submit", function (e) {
   const formData = {
     country: form.country.value,
     name: form.name.value,
+    mobile:form.mobile.value,
     email: form.email.value,
     inquiry: form.inquiry.value,
     privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
