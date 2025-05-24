@@ -719,27 +719,36 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 <script src="/javascript/inquiry-form.js"></script>
 <script src="/javascript/detailed.js"></script>
 
-<script>
-  // JavaScript to fetch and insert header (if you haven't already)
-  fetch('/html/header.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('header__container').innerHTML = html;
-    })
-    .catch(error => {
-      console.error('Failed to load header:', error);
-    });
+ <script>
+        // Load header and initialize form listeners after it loads
+        fetch('/html/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header__container').innerHTML = html;
+                console.log(" Header loaded successfully");
+                
+                // Initialize form listeners after header is loaded
+                setTimeout(() => {
+                    if (window.initInquiryFormListeners) {
+                        window.initInquiryFormListeners();
+                    }
+                }, 100);
+            })
+            .catch(error => {
+                console.error(' Failed to load header:', error);
+            });
 
-  // JavaScript to fetch and insert footer
-  fetch('/html/footer.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('footer-container').innerHTML = html;
-    })
-    .catch(error => {
-      console.error('Failed to load footer:', error);
-    });
-</script>
+        // Load footer
+        fetch('/html/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+                console.log("Footer loaded successfully");
+            })
+            .catch(error => {
+                console.error('Failed to load footer:', error);
+            });
+    </script>
 
 </body>
 </html>
