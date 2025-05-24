@@ -28,10 +28,11 @@ function initInquiryFormListeners() {
     statusElement.innerText = "Submitting...";
     statusElement.style.color = "inherit";
 
+  
     const formData = {
       country: form.country.value,
       name: form.name.value,
-      mobile: form.phone.value,
+      phone: form.phone.value,
       email: form.email.value,
       inquiry: form.inquiry.value,
       privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
