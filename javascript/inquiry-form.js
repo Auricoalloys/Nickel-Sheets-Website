@@ -38,7 +38,7 @@ function initInquiryFormListeners() {
       privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
     };
 
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbx5qgBmVotZ-ndhF8FsRPojrBitXqDBoGMQpw6w3n_lkoUrrLIr5rchmPY4ddh0RHZ-/exec";
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbwzxL3Z3fxIWCnQO6EyEu1r3_QttTFE1uLkl3tx8QpCoGecyohNy1lK-mIHXlJFRwM9/exec";
 
     fetch(scriptUrl, {
       method: "POST",
