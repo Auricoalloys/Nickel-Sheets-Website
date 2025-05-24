@@ -721,32 +721,36 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
  <script>
         // Load header and initialize form listeners after it loads
-        fetch('/html/header.html')
+          fetch('/html/header.html')
             .then(response => response.text())
             .then(html => {
-                document.getElementById('header__container').innerHTML = html;
-                console.log(" Header loaded successfully");
-                
-                // Initialize form listeners after header is loaded
-                setTimeout(() => {
-                    if (window.initInquiryFormListeners) {
-                        window.initInquiryFormListeners();
-                    }
-                }, 100);
+              document.getElementById('header__container').innerHTML = html;
+              console.log(" Header loaded successfully");
+
+              // // Initialize form listeners after header is loaded
+              // setTimeout(() => {
+              //   if (window.initInquiryFormListeners) {
+              //     window.initInquiryFormListeners();
+              //   }
+              // }, 100);
+            })
+            .then(() => {
+              // Delay or directly call the init function
+              setTimeout(initInquiryFormListeners, 100); // or use MutationObserver for precision
             })
             .catch(error => {
-                console.error(' Failed to load header:', error);
+              console.error(' Failed to load header:', error);
             });
 
-        // Load footer
-        fetch('/html/footer.html')
+          // Load footer
+          fetch('/html/footer.html')
             .then(response => response.text())
             .then(html => {
-                document.getElementById('footer-container').innerHTML = html;
-                console.log("Footer loaded successfully");
+              document.getElementById('footer-container').innerHTML = html;
+              console.log("Footer loaded successfully");
             })
             .catch(error => {
-                console.error('Failed to load footer:', error);
+              console.error('Failed to load footer:', error);
             });
     </script>
 
