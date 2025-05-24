@@ -448,6 +448,7 @@
  .table-of-content h2 {
      text-align: center;
      color: var(--light-color);
+     border-bottom: 1px solid var(--light-color);
  }
 
  .table-of-content a {
