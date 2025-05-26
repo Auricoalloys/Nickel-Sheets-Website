@@ -5,7 +5,7 @@ function initInquiryFormListeners() {
 
   if (!closeBtn || !floatingBtn || !inquiryForm) {
     console.warn("Form elements not found yet");
-    return;
+    return false;
   }
 
   closeBtn.addEventListener("click", function () {
@@ -28,7 +28,6 @@ function initInquiryFormListeners() {
     statusElement.innerText = "Submitting...";
     statusElement.style.color = "inherit";
 
-  
     const formData = {
       country: form.country.value,
       name: form.name.value,
@@ -62,23 +61,55 @@ function initInquiryFormListeners() {
         submitBtn.disabled = false;
       });
   });
+
+  console.log("Form listeners initialized successfully!");
+  return true;
 }
 
-// Inject header, then attach events
+// Function to wait for specific elements to appear
+function waitForElements(selectors, callback, timeout = 5000) {
+  const startTime = Date.now();
+
+  function checkElements() {
+    const elements = selectors.map(selector => document.getElementById(selector));
+    const allExist = elements.every(el => el !== null);
+
+    if (allExist) {
+      callback();
+      return;
+    }
+
+    if (Date.now() - startTime > timeout) {
+      console.error("Timeout waiting for elements:", selectors);
+      return;
+    }
+
+    // Check again in 50ms
+    setTimeout(checkElements, 50);
+  }
+
+  checkElements();
+}
+
+// Inject header, then attach events using element waiting
 fetch("/html/header.html")
   .then((response) => response.text())
   .then((html) => {
     document.getElementById("header__container").innerHTML = html;
-  })
-  .then(() => {
-    // Delay or directly call the init function
-    setTimeout(initInquiryFormListeners, 100); // or use MutationObserver for precision
+
+    // Wait for the specific form elements to appear
+    waitForElements(
+      ["closeFormText", "floatingButton", "inquiryForm"],
+      () => {
+        initInquiryFormListeners();
+      }
+    );
   })
   .catch((error) => {
     console.error("Failed to load header:", error);
   });
 
-// Inject footer
+// Inject footer 
 fetch("/html/footer.html")
   .then((response) => response.text())
   .then((html) => {
