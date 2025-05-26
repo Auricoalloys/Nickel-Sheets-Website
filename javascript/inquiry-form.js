@@ -5,10 +5,8 @@ function initInquiryFormListeners() {
 
   if (!closeBtn || !floatingBtn || !inquiryForm) {
     console.warn("Form elements not found yet");
-    return;
+    return false; // Return false to indicate failure
   }
-
-  console.log("Initializing form listeners...");
 
   closeBtn.addEventListener("click", function () {
     document.getElementById("formSidebar").style.display = "none";
@@ -26,8 +24,6 @@ function initInquiryFormListeners() {
     const submitBtn = document.getElementById("submitBtn");
     const statusElement = document.getElementById("formStatus");
 
-    console.log("Form submitted!"); // Debug log
-
     submitBtn.disabled = true;
     statusElement.innerText = "Submitting...";
     statusElement.style.color = "inherit";
@@ -41,8 +37,6 @@ function initInquiryFormListeners() {
       privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
     };
 
-    console.log("Form data:", formData); // Debug log
-
     const scriptUrl = "https://script.google.com/macros/s/AKfycbwzxL3Z3fxIWCnQO6EyEu1r3_QttTFE1uLkl3tx8QpCoGecyohNy1lK-mIHXlJFRwM9/exec";
 
     fetch(scriptUrl, {
@@ -54,7 +48,7 @@ function initInquiryFormListeners() {
       mode: "no-cors"
     })
       .then(() => {
-        statusElement.innerText = "Inquiry submitted successfully!";
+        statusElement.innerText = "Inquiry submitted successfully 1!";
         statusElement.style.color = "green";
         form.reset();
       })
@@ -68,31 +62,45 @@ function initInquiryFormListeners() {
       });
   });
 
-  console.log("Form listeners attached successfully!");
+  return true; // Return true to indicate success
 }
 
-// Wait for DOM to be ready, then load components
-document.addEventListener('DOMContentLoaded', function () {
-  // Inject header, then attach events 
-  fetch("/html/header.html")
-    .then((response) => response.text())
-    .then((html) => {
-      document.getElementById("header__container").innerHTML = html;
+// Inject header, then attach events 
+fetch("/html/header.html")
+  .then((response) => response.text())
+  .then((html) => {
+    document.getElementById("header__container").innerHTML = html;
 
-      // Use a longer delay to ensure elements are rendered
-      setTimeout(initInquiryFormListeners, 500);
-    })
-    .catch((error) => {
-      console.error("Failed to load header:", error);
+    // Wait a bit for DOM to settle, then try to initialize
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const success = initInquiryFormListeners();
+        if (!success) {
+          // If it failed, try a few more times
+          let attempts = 0;
+          const retryInterval = setInterval(() => {
+            attempts++;
+            if (initInquiryFormListeners() || attempts >= 5) {
+              clearInterval(retryInterval);
+              resolve();
+            }
+          }, 200);
+        } else {
+          resolve();
+        }
+      }, 100);
     });
+  })
+  .catch((error) => {
+    console.error("Failed to load header:", error);
+  });
 
-  // Inject footer 
-  fetch("/html/footer.html")
-    .then((response) => response.text())
-    .then((html) => {
-      document.getElementById("footer-container").innerHTML = html;
-    })
-    .catch((error) => {
-      console.error("Failed to load footer:", error);
-    });
-});
+// Inject footer 
+fetch("/html/footer.html")
+  .then((response) => response.text())
+  .then((html) => {
+    document.getElementById("footer-container").innerHTML = html;
+  })
+  .catch((error) => {
+    console.error("Failed to load footer:", error);
+  });
