@@ -5,8 +5,10 @@ function initInquiryFormListeners() {
 
   if (!closeBtn || !floatingBtn || !inquiryForm) {
     console.warn("Form elements not found yet");
-    return false;
+    return;
   }
+
+  console.log("Initializing form listeners...");
 
   closeBtn.addEventListener("click", function () {
     document.getElementById("formSidebar").style.display = "none";
@@ -24,6 +26,8 @@ function initInquiryFormListeners() {
     const submitBtn = document.getElementById("submitBtn");
     const statusElement = document.getElementById("formStatus");
 
+    console.log("Form submitted!"); // Debug log
+
     submitBtn.disabled = true;
     statusElement.innerText = "Submitting...";
     statusElement.style.color = "inherit";
@@ -36,6 +40,8 @@ function initInquiryFormListeners() {
       inquiry: form.inquiry.value,
       privacy: form.privacy.checked ? "Accepted" : "Not Accepted"
     };
+
+    console.log("Form data:", formData); // Debug log
 
     const scriptUrl = "https://script.google.com/macros/s/AKfycbwzxL3Z3fxIWCnQO6EyEu1r3_QttTFE1uLkl3tx8QpCoGecyohNy1lK-mIHXlJFRwM9/exec";
 
@@ -62,59 +68,31 @@ function initInquiryFormListeners() {
       });
   });
 
-  console.log("Form listeners initialized successfully!");
-  return true;
+  console.log("Form listeners attached successfully!");
 }
 
-// Function to wait for specific elements to appear
-function waitForElements(selectors, callback, timeout = 5000) {
-  const startTime = Date.now();
+// Wait for DOM to be ready, then load components
+document.addEventListener('DOMContentLoaded', function () {
+  // Inject header, then attach events 
+  fetch("/html/header.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("header__container").innerHTML = html;
 
-  function checkElements() {
-    const elements = selectors.map(selector => document.getElementById(selector));
-    const allExist = elements.every(el => el !== null);
+      // Use a longer delay to ensure elements are rendered
+      setTimeout(initInquiryFormListeners, 500);
+    })
+    .catch((error) => {
+      console.error("Failed to load header:", error);
+    });
 
-    if (allExist) {
-      callback();
-      return;
-    }
-
-    if (Date.now() - startTime > timeout) {
-      console.error("Timeout waiting for elements:", selectors);
-      return;
-    }
-
-    // Check again in 50ms
-    setTimeout(checkElements, 50);
-  }
-
-  checkElements();
-}
-
-// Inject header, then attach events using element waiting
-fetch("/html/header.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("header__container").innerHTML = html;
-
-    // Wait for the specific form elements to appear
-    waitForElements(
-      ["closeFormText", "floatingButton", "inquiryForm"],
-      () => {
-        initInquiryFormListeners();
-      }
-    );
-  })
-  .catch((error) => {
-    console.error("Failed to load header:", error);
-  });
-
-// Inject footer 
-fetch("/html/footer.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("footer-container").innerHTML = html;
-  })
-  .catch((error) => {
-    console.error("Failed to load footer:", error);
-  });
+  // Inject footer 
+  fetch("/html/footer.html")
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("footer-container").innerHTML = html;
+    })
+    .catch((error) => {
+      console.error("Failed to load footer:", error);
+    });
+});
