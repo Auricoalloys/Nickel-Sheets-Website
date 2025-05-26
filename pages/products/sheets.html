@@ -265,16 +265,28 @@ title: Sheets (You can set a title here that Jekyll can use)
       </div>
   
     <script>
-      // JavaScript to fetch and insert header (if you haven't already)
+      // JavaScript to fetch and insert header FIRST
       fetch('/html/header.html')
         .then(response => response.text())
         .then(html => {
           document.getElementById('header__container').innerHTML = html;
+
+          // AFTER header is loaded, load and execute the form JavaScript
+          return new Promise((resolve) => {
+            const script = document.createElement('script');
+            script.src = '/javascript/inquiry-form.js';
+            script.onload = resolve;
+            script.onerror = () => {
+              console.error('Failed to load inquiry-form.js');
+              resolve();
+            };
+            document.head.appendChild(script);
+          });
         })
         .catch(error => {
           console.error('Failed to load header:', error);
         });
-  
+
       // JavaScript to fetch and insert footer
       fetch('/html/footer.html')
         .then(response => response.text())
@@ -285,6 +297,5 @@ title: Sheets (You can set a title here that Jekyll can use)
           console.error('Failed to load footer:', error);
         });
     </script>
-    <script src="/javascript/inquiry-form.js"></script>
-  </body>
+    <script src="/javascript/inquiry-form.js"></script></body>
   
