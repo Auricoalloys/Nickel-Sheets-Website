@@ -256,7 +256,7 @@ img {
 
 .products-preview {
     padding: 80px 0;
-    background-color: rgba(65, 64, 64, 0.793);
+    background: linear-gradient(135deg, #cccccc 0%, #888888 100%);
 }
 
 .product-overlay .product-title.white {
