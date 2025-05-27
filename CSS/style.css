@@ -256,8 +256,7 @@ img {
 
 .products-preview {
     padding: 80px 0;
-    /* background-color: rgba(65, 64, 64, 0.793); */
-    background-image: url(/docs/images/hero-bg.jpg);
+    background-color: rgba(65, 64, 64, 0.793);
 }
 
 .product-overlay .product-title.white {
