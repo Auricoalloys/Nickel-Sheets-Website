@@ -64,6 +64,7 @@ ul {
   font-size: 36px;
   font-weight: 700;
   letter-spacing: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
 }
 
