@@ -34,13 +34,13 @@ title: Busbar (You can set a title here that Jekyll can use)
   <div id="header__container">
   </div>
 
-  <div class="flat-banner">
+  <!-- <div class="flat-banner">
     <img src="/docs/images/coil.jpg" alt="Flat Banner Image" />
     <div class="banner-title"> BUSBAR</div>
   </div>
   <div id="floatingButton">
     <div class="pulse"></div>
-    <i class="fas fa-comment-dots"></i> <!-- Font Awesome -->
+    <i class="fas fa-comment-dots"></i>
     <span class="tooltip-msg">Request an Offer</span>
   </div>
   <aside class="sidebar-form" id="formSidebar">
@@ -66,7 +66,7 @@ title: Busbar (You can set a title here that Jekyll can use)
       <button type="submit" id="submitBtn">Submit Inquiry</button>
       <div id="formStatus"></div>
     </form>
-  </aside>
+  </aside> -->
   <!-- Main Container -->
   <main class="main-container">
     <!-- Contact Floating Bar -->
@@ -181,6 +181,11 @@ title: Busbar (You can set a title here that Jekyll can use)
   <div id="footer-container">
   </div>
 
+  Usage in any HTML page:
+  <script type="module">
+    import { FloatingForm } from './floating-form.js';
+    new FloatingForm();
+  </script>
   <script>
     // JavaScript to fetch and insert header (if you haven't already)
     fetch('/html/header.html')
@@ -202,7 +207,7 @@ title: Busbar (You can set a title here that Jekyll can use)
         console.error('Failed to load footer:', error);
       });
   </script>
-  <script>
+  <!-- <script>
     document.getElementById("closeFormText").addEventListener("click", function () {
       document.getElementById("formSidebar").style.display = "none";
     });
@@ -256,5 +261,5 @@ title: Busbar (You can set a title here that Jekyll can use)
           submitBtn.disabled = false;
         });
     });
-  </script>
+  </script> -->
 </body>
