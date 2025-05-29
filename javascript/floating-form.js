@@ -5,7 +5,7 @@ export class FloatingForm {
             scriptUrl: "https://script.google.com/macros/s/AKfycbwzxL3Z3fxIWCnQO6EyEu1r3_QttTFE1uLkl3tx8QpCoGecyohNy1lK-mIHXlJFRwM9/exec",
             buttonText: "Request an Offer",
             formTitle: "Request an Offer",
-            position: "bottom-right",
+            position: "bottom-left",
             ...config
         };
         
