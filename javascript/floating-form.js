@@ -48,14 +48,6 @@ export class FloatingForm {
                 box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             }
             
-            .floating-form-pulse {
-                width: 10px;
-                height: 10px;
-                background: #fff;
-                border-radius: 50%;
-                animation: floating-form-pulse 2s infinite;
-            }
-            
             @keyframes floating-form-pulse {
                 0% { transform: scale(0.95); opacity: 1; }
                 70% { transform: scale(1); opacity: 0.7; }
