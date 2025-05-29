@@ -48,12 +48,6 @@ export class FloatingForm {
                 box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             }
             
-            @keyframes floating-form-pulse {
-                0% { transform: scale(0.95); opacity: 1; }
-                70% { transform: scale(1); opacity: 0.7; }
-                100% { transform: scale(0.95); opacity: 1; }
-            }
-            
             .floating-form-sidebar {
                 position: fixed;
                 top: 0;
@@ -209,7 +203,6 @@ export class FloatingForm {
         this.button = document.createElement('button');
         this.button.className = 'floating-form-button';
         this.button.innerHTML = `
-            <div class="floating-form-pulse"></div>
             <i class="fas fa-comment-dots"></i>
             <span>${this.config.buttonText}</span>
         `;
