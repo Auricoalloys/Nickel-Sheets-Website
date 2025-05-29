@@ -65,6 +65,7 @@ export class FloatingForm {
             .floating-form-sidebar {
                 position: fixed;
                 top: 0;
+                right: -400px;
                 width: 400px;
                 height: 100vh;
                 background: white;
