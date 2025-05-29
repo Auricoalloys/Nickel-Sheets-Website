@@ -367,3 +367,7 @@ export class FloatingForm {
         if (styles) styles.remove();
     }
 }
+// Automatically initialize when loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.floatingForm = new FloatingForm();
+});
