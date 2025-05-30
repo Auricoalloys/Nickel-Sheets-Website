@@ -27,7 +27,7 @@ export class FloatingForm {
                 position: fixed;
                 ${this.config.position === 'bottom-left' ? 'left: 20px;' : 'right: 20px;'}
                 bottom: 20px;
-                background: linear-gradient(135deg, #CFD8DC 0%, #455A64 100%);
+                background: linear-gradient(135deg, #CFD8DC 0%, #e67e22 100%);
                 color: white;
                 border-radius: 50px;
                 padding: 15px 20px;
@@ -133,7 +133,7 @@ export class FloatingForm {
             .floating-form-submit {
                 width: 100%;
                 padding: 12px;
-                background: linear-gradient(135deg, #CFD8DC 0%, #455A64 100%);
+                background: linear-gradient(135deg, #CFD8DC 0%, #e67e22 100%);
                 color: white;
                 border: none;
                 border-radius: 4px;
