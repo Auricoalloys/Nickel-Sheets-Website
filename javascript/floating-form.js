@@ -357,21 +357,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.floatingForm = new FloatingForm();
 });
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBS3tT7v2fn0bZkgrwngnW5yEPLwgvFjC8",
-    authDomain: "nickel-sheets-database.firebaseapp.com",
-    projectId: "nickel-sheets-database",
-    storageBucket: "nickel-sheets-database.firebasestorage.app",
-    messagingSenderId: "134607483030",
-    appId: "1:134607483030:web:0ab88954064c74797b52b7",
-    measurementId: "G-XZL7EXDTQ0"
-};
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBS3tT7v2fn0bZkgrwngnW5yEPLwgvFjC8",
+//     authDomain: "nickel-sheets-database.firebaseapp.com",
+//     projectId: "nickel-sheets-database",
+//     storageBucket: "nickel-sheets-database.firebasestorage.app",
+//     messagingSenderId: "134607483030",
+//     appId: "1:134607483030:web:0ab88954064c74797b52b7",
+//     measurementId: "G-XZL7EXDTQ0"
+// };
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// const database = firebase.database();

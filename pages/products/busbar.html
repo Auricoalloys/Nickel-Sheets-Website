@@ -17,8 +17,8 @@ title: Busbar (You can set a title here that Jekyll can use)
 
   <title>BUSBAR</title>
 
-  <script src="https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js"></script> -->
 
   <!-- Favicon -->
   <link rel="icon" type="png" href="/aurico-favicon.png">
@@ -178,7 +178,11 @@ title: Busbar (You can set a title here that Jekyll can use)
         console.error('Failed to load footer:', error);
       });
   </script>
-  <script>
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyBS3tT7v2fn0bZkgrwngnW5yEPLwgvFjC8",
       authDomain: "nickel-sheets-database.firebaseapp.com",
