@@ -769,7 +769,7 @@
     overflow: auto;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   }
-  .countries-we-export{
+  /* .countries-we-export{
     background-color: white;
     padding: 3% 1%;
     color: black;
@@ -777,7 +777,7 @@
     border-radius: 15px;
     overflow: auto;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  }
+  } */
 
   .table-container-city h2 {
     text-align: center;
