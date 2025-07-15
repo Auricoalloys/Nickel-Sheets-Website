@@ -804,7 +804,7 @@
   tr:nth-child(even) {
     background-color: #f4f4f4;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     table, tr, td {
       display: block;
       width: 100%;
