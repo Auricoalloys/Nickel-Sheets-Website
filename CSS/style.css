@@ -304,36 +304,3 @@ img {
     transform: translateY(0);
 }
 
-/* About Teaser */
-body .about-teaser {
-    padding: 40px 0;
-    background: var(--light-color);
-}
-
-.about-content {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-}
-
-.about-text {
-    flex: 1;
-}
-
-.about-image {
-    flex: 1;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 550px;
-    width: 100%;
-    objext-fit: cover;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 768px) {
-    .about-image {
-        max-height: 350px;
-        /* Example: Adjust as needed */
-
-    }
-}

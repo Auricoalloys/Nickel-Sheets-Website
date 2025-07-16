@@ -21,6 +21,7 @@ title: Home (You can set a title here that Jekyll can use)
     <link rel="icon" type="png" href="/aurico-favicon.png">
 
     <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/CSS/footer.css">
@@ -445,24 +446,38 @@ title: Home (You can set a title here that Jekyll can use)
 
 
     <!-- About Teaser -->
-    <section class="about-teaser">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
+    <!-- About Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center g-4">
+
+            <!-- Text Column -->
+            <div class="col-12 col-md-6">
+                <div>
                     <h2>About Aurico Alloys LLP</h2>
-                    <p>Founded in 2010, Aurico Alloys LLP has grown to become a trusted name in the alloy industry,
+                    <p>
+                        Founded in 2010, Aurico Alloys LLP has grown to become a trusted name in the alloy industry,
                         serving clients across multiple continents. Our commitment to quality, innovation, and customer
-                        service sets us apart in the competitive metals market.</p>
-                    <p>With state-of-the-art manufacturing facilities and a team of experienced metallurgists, we
-                        deliver alloy solutions that meet the most demanding specifications.</p>
+                        service sets us apart in the competitive metals market.
+                    </p>
+                    <p>
+                        With state-of-the-art manufacturing facilities and a team of experienced metallurgists, we
+                        deliver alloy solutions that meet the most demanding specifications.
+                    </p>
                     <a href="/pages/about/" class="btn btn-primary">Learn More</a>
                 </div>
-                <div class="about-image">
-                    <img src="/docs/images/aurico-office.jpg" alt="Aurico Alloys Office">
-                </div>
             </div>
+
+            <!-- Image Column -->
+            <div class="col-12 col-md-6">
+                <img src="/docs/images/aurico-office.jpg" alt="Aurico Alloys Office"
+                    class="img-fluid rounded shadow-sm w-100" style="height: 550px; object-fit: cover;">
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
 
 
     <!-- Footer -->
@@ -531,6 +546,8 @@ title: Home (You can set a title here that Jekyll can use)
     <script src="/javascript/script.js"></script>
     <script src="/javascript/hero.js"></script>
     <script type="module" src="/javascript/floating-form.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
