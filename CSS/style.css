@@ -331,74 +331,9 @@ body .about-teaser {
 }
 
 @media (max-width: 768px) {
-    .hero {
-        height: 60vh;
-        /* Adjust height for mobile */
-        padding-top: 70px;
-        /* Adjust top padding to account for fixed header */
-        align-items: flex-start;
-        /* Example: Align content to the top on mobile */
-        justify-content: center;
-        /* Example: Center content vertically */
-    }
-
-    .hero-content {
-        text-align: center;
-        /* Example: Align text to center on mobile */
-        max-width: 100%;
-        /* Allow content to take full width */
-        padding: 0 20px;
-        /* Add some side padding */
-    }
-
-    .hero h2 {
-        font-size: 1.8rem;
-        /* Smaller font size for mobile */
-        margin-bottom: 10px;
-    }
-
-    .hero p {
-        font-size: 0.9rem;
-        /* Smaller font size for mobile */
-        margin-bottom: 20px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        /* Stack buttons vertically on mobile */
-        align-items: flex-start;
-        /* Align buttons to the left */
-        gap: 10px;
-        display: block;
-        margin-top: 20px;
-
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
-        /* Make buttons full width on mobile */
-        text-align: center;
-    }
-
     .about-image {
         max-height: 350px;
         /* Example: Adjust as needed */
 
-    }
-
-    @media (max-width: 410px) {
-        .hero h2 {
-            font-size: 1.7rem;
-            /* Further reduce */
-            margin-bottom: 10px;
-            /* Further reduce */
-        }
-
-        .hero p {
-            font-size: 0.85rem;
-            /* Further reduce */
-            margin-bottom: 20px;
-            /* Further reduce */
-        }
     }
 }
