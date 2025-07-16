@@ -13,15 +13,8 @@
 
  /* Sidebar Navigation */
  .sidebar-nav {
-   background-color: #f8f9fa;
    padding: 15px;
    border-radius: 8px;
-   /* width: 25%;
-   padding: 10px;
-   position: relative;
-   top: 10px;
-   margin-left: 40px;
-   transition: transform 0.3s ease; */
  }
 .sidebar {
   padding: 5px;
@@ -287,15 +280,6 @@
 
  /* Main Content */
  .main-content {
-   /* flex: 1;
-   width: 73%;
-   padding: 10px 20px;
-   padding-left: 0px;
-   margin: 0;
-   position: relative;
-   height: auto;
-   overflow-y: auto; */
-   background-color: #ffffff;
    padding: 20px;
    border-radius: 8px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -673,14 +657,6 @@
     }
   }
   
-  /* Responsive */
-  @media (max-width: 768px) {
-    .spec-table th,
-    .spec-table td {
-      padding: 12px 15px;
-      font-size: 14px;
-    }
-  }
   
   .grade-table-section {
     padding: 40px 20px;
@@ -743,15 +719,6 @@
       transform: translateY(0);
     }
   }
-  
-  @media (max-width: 768px) {
-    .grade-table th,
-    .grade-table td {
-      font-size: 13px;
-      padding: 10px;
-    }
-  }
-
   .people-search{
     background-color: #ffffff;
     animation: fadeIn 0.6s ease-in-out;
@@ -810,27 +777,6 @@
   }
   tr:nth-child(even) {
     background-color: #f4f4f4;
-  }
-  @media screen and (max-width: 767px) {
-    table, tr, td {
-      display: block;
-      width: 100%;
-    }
-    tr {
-      margin-bottom: 10px;
-    }
-    td {
-      text-align: right;
-      position: relative;
-      padding-left: 50%;
-    }
-    td::before {
-      content: attr(data-label);
-      position: absolute;
-      left: 15px;
-      font-weight: bold;
-      text-align: left;
-    }
   }
 /* Scroll  */
   section {
@@ -1009,10 +955,6 @@
             background: #154360;
         }
         
-        
-
-       
-        
         /* Footer */
         footer {
             background: var(--dark-color);
@@ -1080,45 +1022,3 @@
          footer .footer-links p a:hover {
          color: var(--secondary-color);
         }      
-         /* Responsive Design */
- /* @media (max-width: 768px) {
-     .page-layout {
-         flex-direction: column;
-         margin-top: 0;
-         overflow-y: auto;
-     }
-
-     .sidebar-nav {
-         position: relative;
-         width: 100%;
-         height: auto;
-         overflow-y: auto;
-         max-height: 300px;
-         margin-bottom: 60px;
-     }
-
-     .main-content {
-         margin-left: 0;
-         padding: 15px;
-     }
-
-     .flat-banner-detail {
-         height: 200px;
-     }
-
-     .banner-title {
-         font-size: 24px;
-     }
-
-     .toc-description-wrapper {
-         flex-direction: column;
-     }
-
-     .table-of-content,
-     .description {
-         width: 100%;
-         transform: none;
-         margin: 10px 0;
-     }
- }  
-       */
