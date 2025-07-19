@@ -235,7 +235,7 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
             <!-- Description Section -->
             <div class="description" id="introduction">
-              <p>
+              <!-- <p>
                 <strong>Titanium Grade 1 bar</strong>, going a bit beyond the concise description, stands out as the
                 purest form of commercially pure titanium. This high purity translates directly to its exceptional
                 corrosion resistance, particularly against chloride-rich environments like seawater, making it a prime
@@ -253,7 +253,7 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
                 structural
                 demands are moderate. Its combination of workability and resistance makes it a versatile material for
                 specific demanding environments.
-              </p>
+              </p> -->
             </div>
           </div>
 
@@ -739,6 +739,34 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
 <script src="/javascript/inquiry-form.js"></script>
 <script src="/javascript/detailed.js"></script>
+
+<script>
+    const supabase = supabase.createClient(
+      'nnxiioeqroxutwwcqnpg',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGlpb2Vxcm94dXR3d2NxbnBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NTc0NTMsImV4cCI6MjA2NDQzMzQ1M30.msCK7AQz4zmqauVSlWa6hpDWLGCkDRse7D4kxDPCVaw'
+    );
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = "titanium-grade-1-bar";
+
+    document.getElementById('product_pages').textContent = slug.replace(/-/g, ' ').toUpperCase();
+
+    const sectionIds = ['introduction', 'specification', 'uses'];
+
+    sectionIds.forEach(async (sectionId) => {
+      const { data, error } = await supabase
+        .from('product_pages')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+
+      if (error) {
+        document.getElementById("product-title").textContent = data.title;
+      } else {
+        document.getElementById("introduction").innerHTML = data.introduction;
+      }
+    });
+  </script>
 
 <script>
   // JavaScript to fetch and insert header (if you haven't already)
