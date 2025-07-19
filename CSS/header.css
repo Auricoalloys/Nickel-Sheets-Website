@@ -56,8 +56,6 @@
   position: relative;
   padding: 15px 20px;
 }
-
-/* Nav links */
 .header__nav-link {
   font-weight: 600;
   color: var(--primary-color);
@@ -69,7 +67,6 @@
   color: var(--secondary-color);
 }
 
-/* Dropdown base styles */
 .header__dropdown {
   position: relative;
 
