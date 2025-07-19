@@ -232,9 +232,16 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
                 <li><a href="#city">Supply Destinations for Titanium Gr 1 Round Bar</a></li>
               </ul>
             </div>
-
+            
+             <!-- The page heading from the slug -->
+              <div id="product_pages"></div>
+            
+              <!-- Title from Supabase -->
+              <h1 id="product-title"></h1>
+            
             <!-- Description Section -->
             <div class="description" id="introduction">
+
               <!-- <p>
                 <strong>Titanium Grade 1 bar</strong>, going a bit beyond the concise description, stands out as the
                 purest form of commercially pure titanium. This high purity translates directly to its exceptional
@@ -742,7 +749,7 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
 <script>
     const supabase = supabase.createClient(
-      'nnxiioeqroxutwwcqnpg',
+      'https://supabase.com/dashboard/project/nnxiioeqroxutwwcqnpg/editor/19887',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGlpb2Vxcm94dXR3d2NxbnBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NTc0NTMsImV4cCI6MjA2NDQzMzQ1M30.msCK7AQz4zmqauVSlWa6hpDWLGCkDRse7D4kxDPCVaw'
     );
 
@@ -761,7 +768,7 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
         .single();
 
       if (error) {
-        document.getElementById("product-title").textContent = data.title;
+        document.getElementById("product-title").textContent = "Loading...";
       } else {
         document.getElementById("introduction").innerHTML = data.introduction;
       }
