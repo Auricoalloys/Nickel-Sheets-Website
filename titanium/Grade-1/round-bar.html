@@ -330,7 +330,7 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
       
       const { data, error } = await supabase
         .from('product_pages')
-        .select('flat-banner,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,chemical,mechanical-properties,uses,search,countries,city')
+        .select('flat-banner,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
         .eq('slug', slug)
         .maybeSingle();
       
