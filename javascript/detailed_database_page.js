@@ -95,7 +95,6 @@
     }
   });
 
-  document.addEventListener("DOMContentLoaded", () => {
   // === Toggle Link Lists ===
   const toggleButtons = document.querySelectorAll(".toggle-btn");
   toggleButtons.forEach((btn) => {
@@ -110,7 +109,6 @@
       // Toggle current list
       list.style.display = list.style.display === "block" ? "none" : "block";
     });
-  });
 
   // === Smooth Scroll for Anchor Links ===
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
