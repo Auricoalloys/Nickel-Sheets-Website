@@ -1,19 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // === Toggle Link Lists ===
-  const toggleButtons = document.querySelectorAll(".toggle-btn");
-  toggleButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const list = btn.nextElementSibling;
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("toggle-btn")) {
+    const list = e.target.nextElementSibling;
 
-      // Hide all other lists
-      document.querySelectorAll(".link-list").forEach((el) => {
-        if (el !== list) el.style.display = "none";
-      });
-
-      // Toggle current list
-      list.style.display = list.style.display === "block" ? "none" : "block";
+    // Hide all other lists
+    document.querySelectorAll(".link-list").forEach((el) => {
+      if (el !== list) el.style.display = "none";
     });
-  });
+
+    // Toggle current list
+    list.style.display = list.style.display === "block" ? "none" : "block";
+  }
+});
+
 
   // === Smooth Scroll for Anchor Links ===
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -49,4 +47,3 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-});
