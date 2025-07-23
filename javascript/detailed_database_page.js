@@ -43,7 +43,7 @@
     showDebugMessage('Starting to load product data...');
     
     try {
-      const slug = new URLSearchParams(window.location.search).get('product') || "titanium-grade-1-bar";
+      const slug = new URLSearchParams(window.location.search).get('product') || "titanium-grade-1-round-bar";
       
       showDebugMessage(`Fetching data for product: ${slug}`);
       
