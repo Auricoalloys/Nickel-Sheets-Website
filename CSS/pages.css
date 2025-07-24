@@ -930,7 +930,11 @@ th{
         img {
             width: 100%;
         }
-        
+                p {
+                  text-align: justify;
+                  color: var(--text-color);
+                  line-height: 1.6;
+                }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -948,7 +952,7 @@ th{
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        
+              
         .btn:hover {
             background: #d35400;
             transform: translateY(-2px);
