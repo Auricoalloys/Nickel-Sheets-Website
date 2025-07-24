@@ -4,9 +4,12 @@
 h2 {
   text-align: center;
   font-size: 1.8rem;
-  color: #154360;
+  color: var(--primary-color);
 }
 
+th{
+  background-color: #154360;
+}
   .page-layout {
      display: flex;
      min-height: auto;
@@ -437,7 +440,7 @@ h2 {
      padding: 4px 20px 5px 30px;
      margin: 20px;
      border-radius: 8px;
-     background-color: var(--primary-color);
+     background-color: #154360;
      transition: box-shadow var(--transition-speed);
      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
      transform: scale(1.05);
