@@ -59,7 +59,7 @@ th{
   color: var(--secondary-color);
  }
  .link-list {
-  display: none; /* Ensure it’s hidden by default */
+  display: none;
   padding-left: 16px;
   margin-bottom: 10px;
 }
