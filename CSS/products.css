@@ -204,20 +204,15 @@ footer {
 }
 
 .footer-links p a {
-  /* Target the links within the <p> tag inside .footer-links in the footer */
   color: #ddd;
   transition: color 0.3s ease;
   text-decoration: none;
-  /* Remove the default underline if you prefer */
 }
 
 footer .footer-links p a:hover {
   color: var(--secondary-color);
 }
 
-
-
-/* Flat Banner */
 .flat-banner {
   position: relative;
   width: 100%;
@@ -255,7 +250,6 @@ footer .footer-links p a:hover {
   text-shadow: 1px 1px 2px black;
 }
 
-/* Product Grid */
 .product-grid {
   display: flex;
   flex-wrap: wrap;
@@ -264,7 +258,6 @@ footer .footer-links p a:hover {
   padding: 40px;
 }
 
-/* Product Card */
 .product-card {
   background-color: #666666;
   border-radius: 10px;
@@ -275,7 +268,6 @@ footer .footer-links p a:hover {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /* Ensures clean clipping if needed */
 }
 
 /* Image */
@@ -285,7 +277,6 @@ footer .footer-links p a:hover {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 150px;
-  /* Optional: cap height to keep layout tidy */
 }
 
 /* Card Content */
