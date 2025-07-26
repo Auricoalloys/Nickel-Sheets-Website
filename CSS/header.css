@@ -1,239 +1,155 @@
-/* --- Global Variables (Assuming these are defined elsewhere) --- */
-/* For example:
-:root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --dark-color: #343a40;
-    --light-color: #f8f9fa;
-    --text-color: #212529;
-}
-*/
-
 /* Base Header */
 .header {
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    /* 'left: 0px;' is usually redundant with width: 100% unless you have specific offset needs */
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    /* Bootstrap's navbar by default has some padding, ensure your container padding works with it */
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  left: 0px;
+  /* height: 80px; */
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
 /* Header Container */
 .header__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px; /* Keep your custom padding */
-    max-width: 1200px;
-    margin: 0 auto;
-    /* Bootstrap's .container, .container-fluid would handle this,
-       but if header__container is your custom wrapper, keep it. */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
 /* Logo */
 .header__logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .header__logo img {
-    width: 50px;
-    margin-right: 10px;
+  width: 50px;
+  margin-right: 10px;
 }
 
 .header__logo-title {
-    font-size: 1.5rem;
-    color: var(--dark-color);
-    font-weight: 600;
-    /* Bootstrap's heading styles might override, but your custom class should take precedence */
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  font-weight: 600;
 }
-
 /* Navigation */
-/* Override Bootstrap's default background-color if needed for .navbar */
+/* Navigation container */
 .header__nav {
-    /* `display: flex; justify-content: center;` is handled by Bootstrap's .navbar-expand-* classes
-       for collapsing. Your specific 'justify-content: center' for the whole nav might conflict
-       with 'ms-auto' on .navbar-nav. Usually, the .navbar-nav gets flex properties. */
-    background-color: #fff; /* Ensure it's white even when open on mobile */
-    font-family: Arial, sans-serif; /* Keep your font preference */
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-/* Ensure list is styled correctly, Bootstrap adds its own list-style, margin, padding */
 .header__nav-list {
-    /* Bootstrap's .navbar-nav handles display: flex; list-style: none; margin: 0; padding: 0; */
-    /* You had `display: flex;` here, but Bootstrap's `navbar-nav` already does this for desktop. */
-    /* On mobile, when collapsed, it will be `flex-direction: column`. */
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* Top-level nav items */
 .header__nav-item {
-    position: relative;
-    /* Bootstrap's .nav-item has some padding, your 15px 20px might need adjustment
-       or you might just use Bootstrap's spacing utilities */
-    padding: 15px 20px; /* Keep your desired spacing for top-level items */
-    /* Remove Bootstrap's default margin on .nav-item if it conflicts: */
-    margin: 0;
+  position: relative;
+  padding: 15px 20px;
 }
-
 .header__nav-link {
-    font-weight: 600;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    /* Bootstrap's .nav-link has its own padding and color.
-       Your styles here will override them, which is good. */
-    /* Make sure this is applied to the actual <a> tag inside .nav-item */
-    padding: 0; /* Remove Bootstrap's default .nav-link padding if .header__nav-item handles it */
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .header__nav-link:hover {
-    color: var(--secondary-color); /* Maintain your hover color */
+  color: var(--secondary-color);
 }
 
-/* Dropdown specific styles */
-/* Bootstrap's .dropdown is on the .nav-item, your .header__dropdown is also on the .nav-item.
-   Make sure they don't conflict or use one consistently.
-   I've assumed header__dropdown will be applied alongside nav-item.
-*/
 .header__dropdown {
-    position: relative;
-    /* `padding: 15px 20px;` is already on .header__nav-item, so this might be redundant here. */
+  position: relative;
+
 }
 
-/* For the main dropdown menu (e.g., Materials) */
 .dropdown-menu {
-    /* Bootstrap's .dropdown-menu defaults to `display: none;` and is managed by JS. */
-    /* Your `display: none;` and `display: block;` on hover will *not* work with Bootstrap's JS.
-       You need to rely on Bootstrap's JS for showing/hiding on click, OR
-       add custom JS/CSS for hover behavior. */
-    position: absolute; /* Bootstrap handles this */
-    top: 100%; /* Bootstrap handles this */
-    left: 0; /* Bootstrap handles this */
-    background-color: #fff;
-    min-width: 200px;
-    padding: 0; /* Bootstrap adds padding; ensure your desired padding */
-    list-style: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensure it's above other content */
-    border: none; /* Remove Bootstrap's default border */
-    border-radius: .375rem; /* Match Bootstrap's default border-radius or define your own */
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 200px;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
 }
 
-/* **IMPORTANT for hover dropdowns:** */
-/* To make Bootstrap dropdowns open on hover (desktop only), you'll need this: */
-@media (min-width: 992px) { /* Adjust breakpoint as needed (lg in Bootstrap is 992px) */
-    .header__dropdown.dropdown:hover > .dropdown-menu {
-        display: block;
-        margin-top: 0; /* Removes default small margin added by Bootstrap */
-    }
+.header__dropdown:hover > .dropdown-menu {
+  display: block;
 }
-
 
 /* Dropdown items */
 .dropdown-item {
-    /* Bootstrap's .dropdown-item applies styles directly to the <a> tag.
-       Your .dropdown-item styles on the <li> will need to be applied carefully
-       or merged with Bootstrap's <a> styles. */
-    white-space: nowrap;
-    padding: 10px 15px; /* Your custom padding for dropdown items */
-    border-bottom: 1px solid #eee; /* Your custom border */
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Your custom shadow */
-    background-color: transparent; /* Ensure no default Bootstrap background */
+  padding: 8px 2px;
+  white-space: nowrap;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-.dropdown-item:last-child {
-    border-bottom: none; /* Good practice to remove last border */
+.dropdown-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: block;
 }
 
-/* Style the actual link inside the dropdown item */
-.dropdown-item a.dropdown-item { /* Target the <a> with dropdown-item and your custom class */
-    color: var(--primary-color);
-    text-decoration: none;
-    display: block;
-    padding: 0; /* Remove Bootstrap's default .dropdown-item padding as it's handled by parent li */
-}
-
-/* Hover state for dropdown items (matches Bootstrap's default, but ensures your color) */
-.dropdown-item:hover {
-    background-color: #f8f9fa; /* Lighter background on hover for readability */
-    color: var(--secondary-color); /* Change text color on hover */
-}
-
-.dropdown-item a.dropdown-item:hover {
-    color: var(--secondary-color); /* Ensure link color also changes */
-}
-
+/* .dropdown-item:hover {
+  background-color: #f5f5f5;
+} */
 
 /* Submenu (2nd-level) */
 .has-submenu {
-    position: relative; /* Keep this for positioning the submenu */
-    /* The Bootstrap equivalent for `has-submenu` on a `dropdown-item` is `dropend` or `dropstart`.
-       You've used `dropend` in HTML, which sets up the right-hand arrow and positioning. */
+  position: relative;
 }
 
 .submenu {
-    /* This will be the nested .dropdown-menu */
-    /* Bootstrap's .dropdown-menu inside a .dropend will automatically be positioned. */
-    display: none; /* Hidden by default */
-    position: absolute; /* Handled by Bootstrap .dropdown-menu */
-    top: 0; /* Position at the top of the parent dropdown item */
-    left: 100%; /* Position to the right of the parent */
-    background-color: #fff;
-    min-width: 180px;
-    list-style: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1001; /* Higher z-index than main dropdown */
-    border: none;
-    border-radius: .375rem;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: #fff;
+  min-width: 180px;
+  list-style: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-/* **IMPORTANT for nested hover dropdowns:** */
-@media (min-width: 992px) { /* Adjust breakpoint as needed */
-    .has-submenu.dropend:hover > .submenu.dropdown-menu { /* Target the actual submenu list */
-        display: block; /* Show on hover */
-        margin-left: .125rem; /* Small gap to the right */
-        /* If using dropend, Bootstrap handles position and top/left,
-           but display needs to be overridden for hover. */
-    }
+.has-submenu:hover > .submenu {
+  display: block;
 }
 
 .submenu li {
-    padding: 10px 14px; /* Your custom padding for submenu items */
-    border-bottom: 1px solid #eee;
-}
-
-.submenu li:last-child {
-    border-bottom: none;
+  padding: 10px 14px;
 }
 
 .submenu a {
-    color: var(--primary-color);
-    text-decoration: none;
-    display: block;
-    /* Ensure no extra padding from Bootstrap's .dropdown-item if applied directly to the link */
+  color: var(--primary-color);
+  text-decoration: none;
+  display: block;
 }
 
-.submenu a:hover {
-    color: var(--secondary-color); /* Maintain hover color */
-    background-color: #f8f9fa; /* Lighter background on hover for readability */
-}
-
-/* Language Selector */
-/* This is similar to your other dropdowns, so apply the same principles. */
-.header__language-selector {
-    position: relative;
+  /* Language Selector */
+  .header__language-selector {
+    position:relative;
     padding: 15px 20px;
-    /* This will also be a nav-item dropdown */
-}
+  }
+  .header__language-selector:hover .header__language-dropdown {
+    display: block;
+  }
 
-.header__language-dropdown {
-    /* This is essentially another dropdown-menu */
-    /* Apply similar styles as .dropdown-menu */
-    display: none; /* Controlled by Bootstrap JS/your hover CSS */
+  .header__language-dropdown {
+    display: none;
     position: absolute;
     background: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -241,318 +157,327 @@
     left: 0;
     width: 150px;
     z-index: 999;
-    border: none; /* Remove Bootstrap default border */
-}
+  }
 
-@media (min-width: 992px) {
-    .header__language-selector:hover > .header__language-dropdown {
-        display: block; /* Show on hover for desktop */
-        margin-top: 0;
-    }
-}
-
-
-.header__language-item {
-    padding: 10px 15px; /* Your custom padding */
+  .header__language-item {
+    padding: 10px 15px;
     border-bottom: 1px solid #eee;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     z-index: 10;
-    /* This will likely be inside a Bootstrap .dropdown-menu,
-       so your .dropdown-item styles might also apply here.
-       Ensure consistency. */
-}
+  }
 
-.header__language-item:last-child {
+  .header__language-item:last-child {
     border-bottom: none;
-}
+  }
 
-.header__language-item a {
-    color: var(--primary-color);
-    text-decoration: none;
-    display: block;
-}
-.header__language-item a:hover {
-    color: var(--secondary-color);
-    background-color: #f8f9fa;
-}
-
+ 
+  
 /* Mobile Toggle */
 .mobile_menu_toggle {
-    /* Bootstrap's .navbar-toggler typically handles display for breakpoints. */
-    /* Your CSS here should be fine to style the hamburger icon itself. */
-    display: none; /* Hidden by default on desktop */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    position: absolute; /* Keep absolute position to align with header__container flex */
-    top: 15px;
-    right: 20px;
-    z-index: 1002;
-    /* Bootstrap's .navbar-toggler will have some default styling, your custom styles will override. */
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 1002;
 }
 
-/* Hamburger icon styling */
 .hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 24px;
-    height: 18px;
-    margin-top: 8px; /* Adjust as needed for alignment */
-    margin-left: 8px; /* Adjust as needed for alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  margin-top: 8px;
+  margin-left: 8px;
+  
+
 }
 
 .bar {
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: all 0.3s ease;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease;
 }
 
-/* Hamburger animation for open/close state */
-/* Bootstrap's `aria-expanded` toggling will drive these animations */
 .mobile_menu_toggle[aria-expanded="true"] .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .mobile_menu_toggle[aria-expanded="true"] .bar:nth-child(2) {
-    opacity: 0;
+  opacity: 0;
 }
 
 .mobile_menu_toggle[aria-expanded="true"] .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Responsive */
-@media (max-width: 991.98px) { /* Bootstrap's 'lg' breakpoint is 992px. Use 991.98px for max-width to target below desktop */
-    .header__container {
-        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-        /* Align items differently if needed, Bootstrap might take over */
-    }
+@media (max-width: 768px) {
+  .header__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .header__nav {
-        width: 100%; /* Take full width when collapsed on mobile */
-        /* Bootstrap's .collapse and .collapsing classes will handle the display toggle */
-        /* Your .header__nav-list.active is no longer needed if using Bootstrap JS */
-    }
+  .header__nav-list {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    margin-left: 0;
+  }
 
-    .header__nav-list {
-        flex-direction: column; /* Stack nav items vertically on mobile */
-        width: 100%;
-        padding: 10px 0;
-        margin-top: 10px;
-        border-top: 1px solid #ddd;
-        margin-left: 0;
-        /* `display: none;` and `display: flex;` for `header__nav-list.active` are replaced by Bootstrap's `.collapse` and `.show` classes. */
-    }
-
-    /* Bootstrap navbar-collapse hides elements. Override if you want your custom structure */
-    .header__nav.navbar-collapse:not(.show) {
-        display: none; /* Explicitly hide when not 'show' */
-    }
-
-    .header__nav.navbar-collapse.show {
-        display: block; /* Or flex, depending on your desired layout when open */
-    }
-
-
-    .header__nav-item {
-        /* Adjust padding for mobile menu items */
-        padding: 10px 15px; /* Smaller padding for mobile items */
-        width: 100%; /* Make each item take full width */
-    }
-    .header__dropdown .dropdown-menu,
-    .header__language-dropdown {
-        position: static; /* Stack vertically, don't use absolute positioning */
-        width: 100%; /* Take full width of parent on mobile */
-        box-shadow: none; /* Remove shadows for mobile dropdowns */
-        border-top: 1px solid #eee; /* Add a separator */
-        margin-left: 0;
-        padding-left: 20px; /* Indent sub-items */
-        border-radius: 0; /* Remove border-radius */
-    }
-
-    .submenu {
-        position: static;
-        width: 100%;
-        box-shadow: none;
-        border-top: 1px solid #eee;
-        margin-left: 0;
-        padding-left: 40px; /* Even more indent for second level */
-        border-radius: 0;
-    }
-
-    .dropdown-menu, .submenu {
-        display: none;
-    }
-
-    .dropdown.show > .dropdown-menu,
-    .dropend.show > .submenu {
-        display: block; /* Show the dropdown when Bootstrap marks it as open */
-    }
-
-    .mobile_menu_toggle {
-        display: block; 
-        position: static; 
-        margin-left: auto; /* Push to the right within the flex container */
-        top: auto; /* Remove fixed top/right positioning */
-        right: auto;
-    }
-}
-
-
-/* Your existing mobile responsiveness for header__logo */
-@media (max-width: 600px) {
-    .header__logo img {
-        width: 40px;
-        margin-right: 8px;
-    }
-
-    .header__logo-title {
-        font-size: 1.1rem;
-        flex: 1 1 auto;
-        white-space: normal;
-        word-break: break-word;
-    }
-}
-.floating-contact-bar {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 1001; /* Ensure it's above other content */
-    display: flex; /* Arrange items */
-    flex-direction: column; /* Stack vertically */
-    gap: 10px; /* Space between items */
-}
-
-.contact-item {
+  .header__nav-list.active {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
+  }
 
-.contact-item:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-}
+  .header__nav-item {
+    margin: 0;
+  }
 
-.contact-item i {
-    font-size: 1.2rem;
+  .mobile_menu_toggle {
+    display: block;
+  }
+  .about-image {
+    max-height: 550px; /* Example: Adjust as needed */
+    height: auto;
 }
+}
+@media (max-width: 600px) {
+  .header__logo img {
+    width: 40px;
+    margin-right: 8px;
+  }
 
-.contact-item span {
-    font-weight: 500;
+  .header__logo-title {
+    font-size: 1.1rem;
+    flex: 1 1 auto;
+    white-space: normal;
+    word-break: break-word;
+  }
 }
+ #floatingButton {
+   position: fixed;
+   bottom: 30px;
+   left: 30px;
+   background-color: var(--secondary-color);
+   color: white;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   font-size: 24px;
+   text-align: center;
+   line-height: 60px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+   cursor: pointer;
+   z-index: 1000;
+   transition: transform 0.3s ease;
+   overflow: visible;
+ }
+
+ #floatingButton:hover {
+   transform: scale(1.1);
+ }
+
+ /* Tooltip message */
+ .tooltip-msg {
+   position: absolute;
+   top: 50%;
+   left: 70px;
+   transform: translateY(-50%);
+   background-color: grey;
+   color: #fff;
+   padding: 6px 12px;
+   border-radius: 6px;
+   white-space: nowrap;
+   font-size: 14px;
+   opacity: 0;
+   visibility: hidden;
+   transition: opacity 0.4s ease, left 0.4s ease;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ #floatingButton:hover .tooltip-msg {
+   opacity: 1;
+   visibility: visible;
+   left: 80px;
+ }
+/* Prevent tooltip from showing after click */
+#floatingButton.clicked:hover .tooltip-msg {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  left: 70px !important;
+}
+ /* Pulse animation */
+ #floatingButton .pulse {
+   position: absolute;
+   width: 60px;
+   height: 60px;
+   background: rgba(33, 39, 63, 0.4);
+   border-radius: 50%;
+   animation: pulse-animation 1.5s infinite;
+   top: 0;
+   left: 0;
+   z-index: -1;
+ }
+
+ @keyframes pulse-animation {
+   0% {
+     transform: scale(1);
+     opacity: 0.7;
+   }
+
+   100% {
+     transform: scale(1.8);
+     opacity: 0;
+   }
+ }
+
+ /* Optional mobile adjustments */
+ @media (max-width: 600px) {
+   #floatingButton {
+     bottom: 20px;
+     left: 20px;
+     width: 50px;
+     height: 50px;
+     font-size: 20px;
+     line-height: 50px;
+   }
+
+   .tooltip-msg {
+     font-size: 12px;
+     left: 60px;
+   }
+
+   #floatingButton:hover .tooltip-msg {
+     left: 70px;
+   }
+ }
 /* Sidebar Form Styling */
 #formSidebar {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 25%; /* Or set a max-width for desktop */
-    max-height: 70vh;
-    overflow-y: auto;
-    overflow-x: auto;
-    background: #f8f9fa;
-    padding: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    display: none;
-    z-index: 999;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  left: 120px;
+  width: 25%;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: #f8f9fa;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  display: none; 
+  z-index: 999;
 }
 
-/* Form styles */
-.sidebar-form {
-    /* background-color: var(--light-color); */
-    border-radius: 8px;
-    padding: 10px;
-    color: var(--text-color);
-}
-
+ /* Form styles */
+ .sidebar-form {
+     /* background-color: var(--light-color); */
+     border-radius: 8px;
+     padding: 10px;
+     color: var(--text-color);
+ }
 .close-text {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #666;
-    cursor: pointer;
-    z-index: 1001;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  z-index: 1001;
 }
 
 .close-text:hover {
-    color: #000;
-    transform: scale(1.2);
+  color: #000;
+  transform: scale(1.2);
 }
-
 .sidebar-form h3 {
-    margin-top: 0;
-    font-size: 1rem;
-    color: var(--text-color);
-}
+     margin-top: 0;
+     font-size: 1rem;
+     color: var(--text-color);
+ }
 
-.sidebar-form input,
-.sidebar-form textarea {
-    width: 100%;
-    padding: 5px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
+ .sidebar-form input,
+ .sidebar-form textarea {
+     width: 100%;
+     padding: 5px;
+     margin-top: 5px;
+     border: 1px solid #ccc;
+     border-radius: 6px;
+ }
 
-.sidebar-form label {
-    display: block;
-    margin-bottom: 0px;
-    font-weight: 600;
-}
+ .sidebar-form label {
+     display: block;
+     margin-bottom: 0px;
+     font-weight: 600;
+ }
 
-.sidebar-form input {
-    width: 100%;
-    padding: 6px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
+ .sidebar-form input {
+     width: 100%;
+     padding: 6px;
+     margin-bottom: 15px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+ }
 
-.checkbox-wrapper {
-    margin: 20px 0;
-}
+ .checkbox-wrapper {
+     margin: 20px 0;
+ }
 
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    /* font-size: 12px; */
-    color: var(--text-color);
-    gap: 8px;
-    line-height: 1.5;
-}
+ .checkbox-label {
+     display: flex;
+     align-items: center;
+     /* font-size: 12px; */
+     color: var(--text-color);
+     gap: 8px;
+     line-height: 1.5;
+ }
 
-.checkbox-label input[type="checkbox"] {
-    margin: 0;
-    appearance: checkbox;
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-}
+ .checkbox-label input[type="checkbox"] {
+     margin: 0;
+     appearance: checkbox;
+     width: 16px;
+     height: 16px;
+     cursor: pointer;
+ }
 
-.sidebar-form button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
+ .sidebar-form button {
+     background-color: var(--primary-color);
+     color: white;
+     border: none;
+     padding: 10px 15px;
+     border-radius: 4px;
+     cursor: pointer;
+     width: 100%;
+ }
 
-.sidebar-form button:hover {
-    background-color: var(--dark-color);
+ .sidebar-form button:hover {
+     background-color: var(--dark-color);
+ }
+ @media (max-width: 600px) {
+  #floatingButton {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+  }
+
+  #formSidebar {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-width: none;
+  }
 }
