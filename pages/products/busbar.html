@@ -39,7 +39,7 @@ title: Busbar (You can set a title here that Jekyll can use)
   </div>
 
   <div class="flat-banner">
-    <img src="/docs/images/H Type 3P (2).jpg" alt="Flat Banner Image" />
+    <img src="/docs/images/Nickel Strip (3).png" alt="Flat Banner Image" />
     <div class="banner-title"> Busbars</div>
   </div>
 
@@ -49,7 +49,7 @@ title: Busbar (You can set a title here that Jekyll can use)
 
       <div class="product-grid">
         <div class="product-card">
-          <img src="/docs/images/Pure Nickel Strip H Type 2P &  3P.jpg" alt="Nickel Busbar Manufacturer"
+          <img src="/docs/images/Nickel Strip (4).png" alt="Nickel Busbar Manufacturer"
             class="product-img">
           <div class="card-content">
             <h3><a href="/pure-nickel-strip/18650/"> 18650 Nickel Strips & Busbars</h3>
@@ -62,7 +62,7 @@ title: Busbar (You can set a title here that Jekyll can use)
         </div>
 
         <div class="product-card">
-          <img src="/docs/images/Nickel Busbsrs H Type (4).jpeg"
+          <img src="/docs/images/Nickel Strip (5).png"
             alt="Nickel Busbar Manufacturer" class="product-img">
           <div class="card-content">
             <h3><a href="/pure-nickel-strip/21700/"> 21700 Nickel Strips & Busbars</h3>
@@ -76,7 +76,7 @@ title: Busbar (You can set a title here that Jekyll can use)
 
 
         <div class="product-card">
-          <img src="/docs/images/H Type 3P (2).jpg"
+          <img src="/docs/images/Nickel Strip (6).png"
             alt="Nickel Busbar Manufacturer" class="product-img">
           <div class="card-content">
             <h3><a href="/pure-nickel-strip/26650/"> 26650 Nickel Strips & Busbars</h3>
@@ -91,7 +91,7 @@ title: Busbar (You can set a title here that Jekyll can use)
 
 
         <div class="product-card">
-          <img src="/docs/images/H-Type Busbar (4).png" alt="Nickel Busbar Manufacturer"
+          <img src="/docs/images/Nickel Strip (7).png" alt="Nickel Busbar Manufacturer"
             class="product-img">
           <div class="card-content">
             <h3><a href="/pure-nickel-strip/32140/"> 32140 Nickel Strips & Busbars</h3>
@@ -108,7 +108,7 @@ title: Busbar (You can set a title here that Jekyll can use)
 
         <div class="product-card">
           <img
-            src="/docs/images/H-Type Busbar (2).png"
+            src="/docs/images/Nickel Strip.png"
             alt="Nickel Busbar Manufacturer" class="product-img">
           <div class="card-content">
             <h3><a href="/pure-nickel-strip/32650/"> 32650 / 32700 Nickel Strips & Busbars</h3>
@@ -122,7 +122,7 @@ title: Busbar (You can set a title here that Jekyll can use)
 
 
         <div class="product-card">
-          <img src="/docs/images/Copper Busbar (11).jpeg"
+          <img src="/docs/images/Copper Busbar.png"
             alt="Copper Busbar Manufacturer" class="product-img">
           <div class="card-content">
             <h3><a href="/copper-busbar/"> Copper Busbars</h3>
@@ -136,7 +136,7 @@ title: Busbar (You can set a title here that Jekyll can use)
         </div>
 
         <div class="product-card">
-          <img src="/docs/images/WhatsApp Image 2025-01-15 at 6.38.56 PM.jpeg" alt="Aluminum Busbar Manufacturer & Supplier"
+          <img src="/docs/images/Busbar (2).png" alt="Aluminum Busbar Manufacturer & Supplier"
             class="product-img">
           <div class="card-content">
             <h3><a href="/Aluminum-busbar/"> Aluminum Busbars</h3>
@@ -150,10 +150,6 @@ title: Busbar (You can set a title here that Jekyll can use)
       </div>
     </section>
   </main>
-
-
-
-
 
   <div id="footer-container">
   </div>
@@ -179,68 +175,5 @@ title: Busbar (You can set a title here that Jekyll can use)
         console.error('Failed to load footer:', error);
       });
   </script>
-  <!-- <script type="module">
-    // Import the Firebase modules you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
-
-    // Your Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBS3tT7v2fn0bZkgrwngnW5yEPLwgvFjC8",
-      authDomain: "nickel-sheets-database.firebaseapp.com",
-      projectId: "nickel-sheets-database",
-      storageBucket: "nickel-sheets-database.appspot.com",
-      messagingSenderId: "134607483030",
-      appId: "1:134607483030:web:0ab88954064c74797b52b7",
-      measurementId: "G-XZL7EXDTQ0"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Function to create product cards
-    function createProductCard(product) {
-      return `
-        <div class="product-card">
-          <img src="${product.imageUrl}" alt="${product.altText}" class="product-img">
-          <div class="card-content">
-            <h3><a href="${product.mainLink}">${product.title}</a></h3>
-            <ul class="link_editing">
-              ${product.links.map(link =>
-        `<li><a href="${link.url}">${link.text}</a></li>`
-      ).join('')}
-            </ul>
-          </div>
-        </div>
-      `;
-    }
-
-    // Load products from Firestore
-    async function loadProducts() {
-      try {
-        const querySnapshot = await getDocs(collection(db, "products"));
-        const container = document.getElementById('products-container');
-
-        if (querySnapshot.empty) {
-          container.innerHTML = '<h3>No products found</h3>';
-          return;
-        }
-
-        container.innerHTML = ''; // Clear loading message
-        querySnapshot.forEach((doc) => {
-          const product = doc.data();
-          container.innerHTML += createProductCard(product);
-        });
-      } catch (error) {
-        console.error("Error getting products: ", error);
-        document.getElementById('products-container').innerHTML =
-          '<h3>Error loading products. Please try again later.</h3>';
-      }
-    }
-
-    // Call the function when the page loads
-    document.addEventListener('DOMContentLoaded', loadProducts);
-  </script> -->
   <script type="module" src="/javascript/floating-form.js"></script>
 </body>
