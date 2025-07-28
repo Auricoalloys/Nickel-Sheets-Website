@@ -1,375 +1,41 @@
-/* Base Header */
-.header {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  left: 0px;
-  /* height: 80px; */
-  width: 100%;
-  top: 0;
-  z-index: 1000;
+:root {
+    --primary-color: #154360;
+    --secondary-color: #e67e22;
+    --dark-color: #2c3e50;
+    --light-color: #f4f6f7;
+    --text-color: #333;
 }
-
-/* Header Container */
-.header__container {
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-/* Logo */
-.header__logo {
-  display: flex;
-  align-items: center;
-}
-
-.header__logo img {
-  width: 50px;
-  margin-right: 10px;
-}
-
-.header__logo-title {
-  font-size: 1.5rem;
-  color: var(--dark-color);
-  font-weight: 600;
-}
-/* Navigation container */
-.header__nav {
-  display: flex;
-  justify-content: center;
-  background-color: #fff;
-  font-family: Arial, sans-serif;
-}
-
-.header__nav-list {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Top-level nav items */
-.header__nav-item {
-  position: relative;
-  padding: 15px 20px;
-}
-.header__nav-link {
-  font-weight: 600;
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.header__nav-link:hover {
+/* Custom hover effects */
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
   color: var(--secondary-color);
 }
 
-.header__dropdown {
-  position: relative;
-
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  min-width: 200px;
-  padding: 0;
-  list-style: none;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
-
-.header__dropdown:hover > .dropdown-menu {
-  display: block;
-}
-
-/* Dropdown items */
-.dropdown-item {
-  padding: 8px 2px;
-  white-space: nowrap;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-
-.dropdown-item a {
-  color: var(--primary-color);
-  text-decoration: none;
-  display: block;
-}
-
-/* Submenu (2nd-level) */
-.has-submenu {
-  position: relative;
-}
-
-.submenu {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: #fff;
-  min-width: 180px;
-  list-style: none;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-.has-submenu:hover > .submenu {
-  display: block;
-}
-
-.submenu li {
-  padding: 10px 14px;
-}
-
-.submenu a {
-  color: var(--primary-color);
-  text-decoration: none;
-  display: block;
-}
-
-  /* Language Selector */
-  .header__language-selector {
-    position:relative;
-    padding: 15px 20px;
-  }
-  .header__language-selector:hover .header__language-dropdown {
+/* Multi-level dropdown hover effects */
+@media (min-width: 992px) {
+  .dropdown:hover > .dropdown-menu {
     display: block;
   }
-
-  .header__language-dropdown {
-    display: none;
-    position: absolute;
-    background: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    left: 0;
-    width: 150px;
-    z-index: 999;
+  .nav-link{
+    color: var(--primary-color);
   }
-
-  .header__language-item {
-    padding: 5px 5px;
-    cursor: pointer;
-    z-index: 10;
-  }
-
-  .header__language-item:last-child {
-    border-bottom: none;
-  }
-
-/* Mobile Toggle */
-.mobile_menu_toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  z-index: 1002;
-}
-
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-  margin-top: 8px;
-  margin-left: 8px;
   
-
-}
-
-.bar {
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-color);
-  transition: all 0.3s ease;
-}
-
-.mobile_menu_toggle[aria-expanded="true"] .bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.mobile_menu_toggle[aria-expanded="true"] .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.mobile_menu_toggle[aria-expanded="true"] .bar:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .header__container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header__nav-list {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #fff;
-    padding: 10px 0;
-    margin-top: 10px;
-    border-top: 1px solid #ddd;
-    margin-left: 0;
-  }
-
-  .header__nav-list.active {
-    display: flex;
-  }
-
-  .header__nav-item {
-    margin: 0;
-  }
-
-  .mobile_menu_toggle {
+  .dropend:hover > .dropdown-menu {
     display: block;
-  }
-  .about-image {
-    max-height: 550px;
-    height: auto;
-}
-}
-@media (max-width: 600px) {
-  .header__logo img {
-    width: 40px;
-    margin-right: 8px;
-  }
-
-  .header__logo-title {
-    font-size: 1.1rem;
-    flex: 1 1 auto;
-    white-space: normal;
-    word-break: break-word;
+    margin-top: -2.5rem;
+    margin-left: 10rem;
+    color: var(--secondary-color);
   }
 }
-/* Sidebar Form Styling */
-#formSidebar {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  left: 120px;
-  width: 25%;
-  max-height: 70vh;
-  overflow-y: auto;
-  overflow-x: auto;
-  background: #f8f9fa;
-  padding: 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  border-radius: 10px;
-  display: none; 
-  z-index: 999;
+.dropdown-item:hover{
+  color: var(--secondary-color);
+}
+.dropdown-item{
+  color: var(--primary-color);
 }
 
- /* Form styles */
- .sidebar-form {
-     /* background-color: var(--light-color); */
-     border-radius: 8px;
-     padding: 10px;
-     color: var(--text-color);
- }
-.close-text {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #666;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.close-text:hover {
-  color: #000;
-  transform: scale(1.2);
-}
-.sidebar-form h3 {
-     margin-top: 0;
-     font-size: 1rem;
-     color: var(--text-color);
- }
-
- .sidebar-form input,
- .sidebar-form textarea {
-     width: 100%;
-     padding: 5px;
-     margin-top: 5px;
-     border: 1px solid #ccc;
-     border-radius: 6px;
- }
-
- .sidebar-form label {
-     display: block;
-     margin-bottom: 0px;
-     font-weight: 600;
- }
-
- .sidebar-form input {
-     width: 100%;
-     padding: 6px;
-     margin-bottom: 15px;
-     border: 1px solid #ddd;
-     border-radius: 4px;
- }
-
- .checkbox-wrapper {
-     margin: 20px 0;
- }
-
- .checkbox-label {
-     display: flex;
-     align-items: center;
-     /* font-size: 12px; */
-     color: var(--text-color);
-     gap: 8px;
-     line-height: 1.5;
- }
-
- .checkbox-label input[type="checkbox"] {
-     margin: 0;
-     appearance: checkbox;
-     width: 16px;
-     height: 16px;
-     cursor: pointer;
- }
-
- .sidebar-form button {
-     background-color: var(--primary-color);
-     color: white;
-     border: none;
-     padding: 10px 15px;
-     border-radius: 4px;
-     cursor: pointer;
-     width: 100%;
- }
-
- .sidebar-form button:hover {
-     background-color: var(--dark-color);
- }
- @media (max-width: 600px) {
-  #floatingButton {
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    line-height: 50px;
-  }
-
-  #formSidebar {
-    left: 10px;
-    right: 10px;
-    width: auto;
-    max-width: none;
-  }
+/* Logo text color */
+.navbar-brand {
+  color: var(--bs-primary);
 }
