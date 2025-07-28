@@ -94,9 +94,7 @@
   padding: 8px 2px;
   white-space: nowrap;
   padding: 10px 15px;
-  border-bottom: 1px solid #eee;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .dropdown-item a {
@@ -104,10 +102,6 @@
   text-decoration: none;
   display: block;
 }
-
-/* .dropdown-item:hover {
-  background-color: #f5f5f5;
-} */
 
 /* Submenu (2nd-level) */
 .has-submenu {
@@ -160,10 +154,8 @@
   }
 
   .header__language-item {
-    padding: 10px 15px;
-    border-bottom: 1px solid #eee;
+    padding: 5px 5px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     z-index: 10;
   }
 
@@ -171,8 +163,6 @@
     border-bottom: none;
   }
 
- 
-  
 /* Mobile Toggle */
 .mobile_menu_toggle {
   display: none;
