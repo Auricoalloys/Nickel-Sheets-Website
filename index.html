@@ -41,21 +41,16 @@ title: Home (You can set a title here that Jekyll can use)
 
 <body>
     <!-- Header -->
-    <header >
+    <header class="sticky-top">
         <div class="header__container">
             <div class="header__logo">
                 <img src="/docs/images/aurico-logo.jpg" alt="AURICO ALLOYS LLP">
                 <h1 class="header__logo-title">AURICO ALLOYS LLP</h1>
             </div>
-
-
-            <!-- Mobile Menu Toggle -->
-            <button class="mobile_menu_toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
-                <span class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </span>
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <nav class="header__nav" id="main-nav">
@@ -63,12 +58,12 @@ title: Home (You can set a title here that Jekyll can use)
                     <li class="header__nav-item"><a href="/" class="header__nav-link">Home</a></li>
                     <li class="header__nav-item"><a href="/pages/about/" class="header__nav-link">About Us</a></li>
 
+
                     <!-- Materials Dropdown -->
 
                     <li class="header__nav-item header__dropdown">
                         <a href="#" class="header__nav-link">Materials ▾</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item has-submenu">
+                        <ul class="dropdown-menu"> <li class="dropdown-item has-submenu">
                                 <a href="/pure-nickel-strips/" class="header__nav-link">Pure Nickel Strips ▸</a>
                                 <ul class="submenu">
                                     <li class="header__language-item"><a href="/nickel-200-201/"
