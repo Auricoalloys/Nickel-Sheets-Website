@@ -946,6 +946,15 @@
     color: var(--text-color);
   }
 
+  body a {
+    text-decoration: none;
+    color: var(--primary-color);
+  }
+
+  ul {
+    list-style: none;
+  }
+
   img {
     width: 100%;
   }
@@ -1049,7 +1058,6 @@
     color: #ddd;
     transition: color 0.3s ease;
     text-decoration: none;
-    /* Remove the default underline if you prefer */
   }
 
   footer .footer-links p a:hover {

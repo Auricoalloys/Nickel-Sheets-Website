@@ -19,6 +19,15 @@ body {
   color: var(--text-color);
 }
 
+body a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+ul {
+  list-style: none;
+}
+
 /* Contact  */
 .floating-contact-bar {
   position: fixed;
