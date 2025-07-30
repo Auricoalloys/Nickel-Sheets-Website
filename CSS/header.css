@@ -37,5 +37,5 @@
 
 /* Logo text color */
 .navbar-brand {
-  color: var(--bs-primary);
+  color: var(--primary-color);
 }
