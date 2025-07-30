@@ -11,37 +11,33 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<header id="header__container" class="sticky-top bg-white shadow-sm">
+<!-- Header -->
+    <header id="header__container" class="sticky-top bg-white shadow-sm">
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center" href="/">
-        <img src="/aurico-favicon.png" alt="AURICO ALLOYS LLP" height="40" class="me-2">
+        <img src="aurico-favicon.png" alt="AURICO ALLOYS LLP" height="40" class="me-2">
         <span class="fw-bold" style="color: #1a5276;">AURICO ALLOYS LLP</span>
       </a>
 
       <!-- Mobile Toggle -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <!-- Main Navigation -->
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/about/">About Us</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/pages/about/">About Us</a></li>
+
           <!-- Materials Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="materialsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Materials
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="materialsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Materials</a>
             <ul class="dropdown-menu dropdown-menu-end">
               <!-- Pure Nickel Strips -->
-              <li class="dropend">
+              <li class="dropdown-submenu dropend">
                 <a class="dropdown-item dropdown-toggle" href="/pure-nickel-strips/">Pure Nickel Strips</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/nickel-200-201/">Nickel 200 / 201 / N6</a></li>
@@ -54,8 +50,9 @@
                   <li><a class="dropdown-item" href="/pure-nickel-strip/nickel-copper-sandwich/">Nickel-Copper Sandwich Busbar</a></li>
                 </ul>
               </li>
+
               <!-- Nickel Alloys -->
-              <li class="dropend">
+              <li class="dropdown-submenu dropend">
                 <a class="dropdown-item dropdown-toggle" href="#">Nickel Alloys</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/hastelloy/">Hastelloy</a></li>
@@ -73,150 +70,126 @@
                 </ul>
               </li>
 
-            <li class="dropend">
-              <a href="/titanium/" class="dropdown-item dropdown-toggle">Titanium & Alloys</a>
-              <ul class="dropdown-menu">
-                <li ><a href="/titanium/grade-1/" class="dropdown-item">Titanium Grade 1
-                  </a></li>
-                <li ><a href="/titanium/grade-2/" class=“dropdown-item”>Titanium Grade 2
-                  </a></li>
-                <li ><a href="/titanium/grade-3/" class=“dropdown-item”>Titanium Grade
-                    3</a></li>
-                <li ><a href="/titanium/grade-4/" class=“dropdown-item”>Titanium Grade
-                    4</a></li>
-                <li ><a href="/titanium/grade-5/" class=“dropdown-item”>Titanium Grade
-                    5</a></li>
-                <li ><a href="/titanium/grade-6/" class=“dropdown-item”>Titanium Grade
-                    6</a></li>
-                <li ><a href="/titanium/grade-7/" class=“dropdown-item”>Titanium Grade
-                    7</a></li>
-                <li ><a href="/titanium/grade-9/" class=“dropdown-item”>Titanium Grade
-                    9</a></li>
-                <li ><a href="/titanium/grade-11/" class=“dropdown-item”>Titanium Grade
-                    11</a></li>
-                <li ><a href="/titanium/grade-12/" class=“dropdown-item”>Titanium Grade
-                    12</a></li>
-                <li><a href="/titanium/grade-16/" class=“dropdown-item”>Titanium Grade
-                    16</a></li>
-                <li ><a href="/titanium/grade-23/" class=“dropdown-item”>Titanium Grade
-                    23</a></li>
-              </ul>
-            </li>
+              <!-- Titanium & Alloys -->
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="/titanium/">Titanium & Alloys</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/titanium/grade-1/">Titanium Grade 1</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-2/">Titanium Grade 2</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-3/">Titanium Grade 3</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-4/">Titanium Grade 4</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-5/">Titanium Grade 5</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-6/">Titanium Grade 6</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-7/">Titanium Grade 7</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-9/">Titanium Grade 9</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-11/">Titanium Grade 11</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-12/">Titanium Grade 12</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-16/">Titanium Grade 16</a></li>
+                  <li><a class="dropdown-item" href="/titanium/grade-23/">Titanium Grade 23</a></li>
+                </ul>
+              </li>
 
-            <li class="dropend">
-              <a href="/duplex-steel/" class="dropdown-item dropdown-toggle">Duplex Stainless Steel</a>
-              <ul class="dropdown-menu">
-                <li   ><a href="" class=“dropdown-item”>Duplex 2205 / 31803</a></li>
-                <li   ><a href="" class=“dropdown-item”>Lean Duplex 2101</a></li>
-                <li   ><a href="" class=“dropdown-item”>Duplex 2304</a></li>
-                <li   ><a href="" class=“dropdown-item”>Super Duplex 32750 / 2507 /
-                    F53</a></li>
-                <li   ><a href="" class=“dropdown-item”>Super Duplex 32760 / F55</a></li>
-              </ul>
-            </li>
+              <!-- Duplex Stainless Steel -->
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="/duplex-steel/">Duplex Stainless Steel</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Duplex 2205 / 31803</a></li>
+                  <li><a class="dropdown-item" href="#">Lean Duplex 2101</a></li>
+                  <li><a class="dropdown-item" href="#">Duplex 2304</a></li>
+                  <li><a class="dropdown-item" href="#">Super Duplex 32750 / 2507 / F53</a></li>
+                  <li><a class="dropdown-item" href="#">Super Duplex 32760 / F55</a></li>
+                </ul>
+              </li>
 
-            <li class="dropend">
-              <a href="/cobalt-alloys/" class="dropdown-item dropdown-toggle">Cobalt Alloys ▸</a>
-              <ul class="dropdown-menu">
-                <li   ><a href="/elgiloy/" class=“dropdown-item”>Elgiloy</a></li>
-                <li   ><a href="/haynes/" class=“dropdown-item”>Haynes</a></li>
-                <li   ><a href="/stellite/" class=“dropdown-item”>Stellite</a></li>
-                <li   ><a href="/udimet/" class=“dropdown-item”>UDIMET</a></li>
-                <li   ><a href="/Co-Ni-Cr-Mo/" class=“dropdown-item”>Co-Ni-Cr-Mo
-                    Biomedical Alloys</a></li>
-                <li   ><a href="/Co-Cr/" class=“dropdown-item”>Co-Cr Biomedical Alloys</a>
-                </li>
-              </ul>
-            </li>
+              <!-- Cobalt Alloys -->
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="/cobalt-alloys/">Cobalt Alloys</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/elgiloy/">Elgiloy</a></li>
+                  <li><a class="dropdown-item" href="/haynes/">Haynes</a></li>
+                  <li><a class="dropdown-item" href="/stellite/">Stellite</a></li>
+                  <li><a class="dropdown-item" href="/udimet/">UDIMET</a></li>
+                  <li><a class="dropdown-item" href="/Co-Ni-Cr-Mo/">Co-Ni-Cr-Mo Biomedical Alloys</a></li>
+                  <li><a class="dropdown-item" href="/Co-Cr/">Co-Cr Biomedical Alloys</a></li>
+                </ul>
+              </li>
 
-            <li class="dropend">
-              <a href="/stainless/" class="dropdown-item dropdown-toggle">Special Stainless Steel ▸</a>
-              <ul class="dropdown-menu">
-                <li ><a href="/alloy-20/" class=“dropdown-item”>Alloy 20</a></li>
-                <li ><a href="/alloy-28/" class=“dropdown-item”>Alloy 28</a></li>
-                <li ><a href="/alloy-31/" class=“dropdown-item”>Alloy 31</a></li>
-                <li ><a href="/SMO-254/" class=“dropdown-item”>SMO 254</a></li>
-                <li ><a href="/904L/" class=“dropdown-item”>904L</a></li>
-                <li ><a href="/AL-6XN/" class=“dropdown-item”>Al6XN</a></li>
-                <li ><a href="/alloy-926/" class=“dropdown-item”>Alloy 926</a></li>
-                <li ><a href="/AM-350/" class=“dropdown-item”>AM 350</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+              <!-- Special Stainless Steel -->
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="/stainless/">Special Stainless Steel</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/alloy-20/">Alloy 20</a></li>
+                  <li><a class="dropdown-item" href="/alloy-28/">Alloy 28</a></li>
+                  <li><a class="dropdown-item" href="/alloy-31/">Alloy 31</a></li>
+                  <li><a class="dropdown-item" href="/SMO-254/">SMO 254</a></li>
+                  <li><a class="dropdown-item" href="/904L/">904L</a></li>
+                  <li><a class="dropdown-item" href="/AL-6XN/">Al6XN</a></li>
+                  <li><a class="dropdown-item" href="/alloy-926/">Alloy 926</a></li>
+                  <li><a class="dropdown-item" href="/AM-350/">AM 350</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
 
+          <!-- Products Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/pages/products/sheets/">Sheets</a></li>
+              <li><a class="dropdown-item" href="/pages/products/plates/">Plates</a></li>
+              <li><a class="dropdown-item" href="/pages/products/foil/">Foil</a></li>
+              <li><a class="dropdown-item" href="/pages/products/coil/">Coil</a></li>
+              <li><a class="dropdown-item" href="/pages/products/round-bar/">Round Bar</a></li>
+              <li><a class="dropdown-item" href="/pages/products/hollow-bar/">Hollow Bar</a></li>
+              <li><a class="dropdown-item" href="/pages/products/hex-bar/">Hex Bar</a></li>
+              <li><a class="dropdown-item" href="/pages/products/wire/">Wire</a></li>
+              <li><a class="dropdown-item" href="/pages/products/busbar/">Busbars</a></li>
+              <li><a class="dropdown-item" href="/pages/products/pipes/">Pipes</a></li>
+              <li><a class="dropdown-item" href="/pages/products/tubes/">Tubes</a></li>
+              <li><a class="dropdown-item" href="/pages/products/fittings/">Fittings</a></li>
+              <li><a class="dropdown-item" href="/pages/products/scrap/">Scrap</a></li>
+            </ul>
+          </li>
 
+          <!-- Services Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/pages/services/laser-cutting.html">Laser Cutting</a></li>
+              <li><a class="dropdown-item" href="/pages/services/waterjet-cutting.html">Waterjet Cutting</a></li>
+              <li><a class="dropdown-item" href="/pages/services/stamping.html">Stamping</a></li>
+              <li><a class="dropdown-item" href="/pages/services/shearing.html">Shearing</a></li>
+              <li><a class="dropdown-item" href="/pages/services/slitting.html">Slitting</a></li>
+              <li><a class="dropdown-item" href="/pages/services/plasma-cutting.html">Plasma Cutting</a></li>
+              <li><a class="dropdown-item" href="/pages/services/wire-cutting.html">Wire Cutting</a></li>
+              <li><a class="dropdown-item" href="/pages/services/tooling.html">Tooling</a></li>
+              <li><a class="dropdown-item" href="/pages/services/bending.html">Bending</a></li>
+              <li><a class="dropdown-item" href="/pages/services/laser-welding.html">Laser Welding</a></li>
+              <li><a class="dropdown-item" href="/pages/services/plating.html">Plating</a></li>
+              <li><a class="dropdown-item" href="/pages/services/pvc-dip-coating.html">PVC Dip Coating</a></li>
+            </ul>
+          </li>
 
+          <li class="nav-item"><a class="nav-link" href="/pages/quality/">Quality</a></li>
+          <li class="nav-item"><a class="nav-link" href="/pages/contact/">Contact</a></li>
 
-        <li class="header__language-selector">
-          <a href="#" class="header__nav-link"></i> Products ▾</a>
-          <ul class="header__language-dropdown">
-            <li class="header__language-item"><a href="/pages/products/sheets/" class="header__nav-link">Sheets</a></li>
-            <li class="header__language-item"><a href="/pages/products/plates/" class="header__nav-link">Plates</a></li>
-            <li class="header__language-item"><a href="/pages/products/foil/" class="header__nav-link">Foil</a></li>
-            <li class="header__language-item"><a href="/pages/products/coil/" class="header__nav-link">Coil</a></li>
-            <li class="header__language-item"><a href="/pages/products/round-bar/" class="header__nav-link">Round
-                Bar</a></li>
-            <li class="header__language-item"><a href="/pages/products/hollow-bar/" class="header__nav-link">Hollow
-                Bar</a></li>
-            <li class="header__language-item"><a href="/pages/products/hex-bar/" class="header__nav-link">Hex Bar</a>
-            </li>
-            <li class="header__language-item"><a href="/pages/products/wire/" class="header__nav-link">Wire</a></li>
-            <li class="header__language-item"><a href="/pages/products/busbar/" class="header__nav-link">Busbars</a>
-            </li>
-            <li class="header__language-item"><a href="/pages/products/pipes/" class="header__nav-link">Pipes</a></li>
-            <li class="header__language-item"><a href="/pages/products/tubes/" class="header__nav-link">Tubes</a></li>
-            <li class="header__language-item"><a href="/pages/products/fittings/" class="header__nav-link">Fittings</a>
-            </li>
-            <li class="header__language-item"><a href="/pages/products/scrap/" class="header__nav-link">Scrap</a></li>
-          </ul>
-          </a>
-        </li>
-        <li class="header__language-selector">
-          <a href="#" class="header__nav-link"></i> Services ▾</a>
-          <ul class="header__language-dropdown">
-            <li class="header__language-item"><a href="/pages/services/laser-cutting.html"
-                class="header__nav-link">Laser Cutting</a></li>
-            <li class="header__language-item"><a href="/pages/services/waterjet-cutting.html"
-                class="header__nav-link">Waterjet Cutting</a></li>
-            <li class="header__language-item"><a href="/pages/services/stamping.html"
-                class="header__nav-link">Stamping</a></li>
-            <li class="header__language-item"><a href="/pages/services/shearing.html"
-                class="header__nav-link">Shearing</a></li>
-            <li class="header__language-item"><a href="/pages/services/slitting.html"
-                class="header__nav-link">Slitting</a></li>
-            <li class="header__language-item"><a href="/pages/services/plasma-cutting.html"
-                class="header__nav-link">Plasma Cutting</a></li>
-            <li class="header__language-item"><a href="/pages/services/wire-cutting.html" class="header__nav-link">Wire
-                Cutting</a></li>
-            <li class="header__language-item"><a href="/pages/services/tooling.html"
-                class="header__nav-link">Tooling</a></li>
-            <li class="header__language-item"><a href="/pages/services/bending.html"
-                class="header__nav-link">Bending</a></li>
-            <li class="header__language-item"><a href="/pages/services/laser-welding.html"
-                class="header__nav-link">Laser Welding</a></li>
-            <li class="header__language-item"><a href="/pages/services/plating.html"
-                class="header__nav-link">Plating</a></li>
-            <li class="header__language-item"><a href="/pages/services/pvc-dip-coating.html"
-                class="header__nav-link">PVC Dip Coating</a></li>
-          </ul>
-          </a>
-        </li>
-
-        <li class="header__nav-item"><a href="/pages/quality/" class="header__nav-link">Quality</a></li>
-        <li class="header__nav-item"><a href="/pages/contact/" class="header__nav-link">Contact</a></li>
-        <li class="header__language-selector">
-          <a href="#" class="header__nav-link"><i class="fas fa-globe"></i>EN ▾</a>
-          <ul class="header__language-dropdown">
-            <li class="header__language-item"><a href="/languages/index.hi/" class="header__nav-link">हिन्दी</a></li>
-            <li class="header__language-item"><a href="/languages/index.es/" class="header__nav-link">Español</a></li>
-            <li class="header__language-item"><a href="/languages/index.de/" class="header__nav-link">Deutsch</a></li>
-            <li class="header__language-item"><a href="/languages/index.fr/" class="header__nav-link">Français</a></li>
-            <li class="header__language-item"><a href="/languages/index.jp/" class="header__nav-link">日本語</a></li>
-            <li class="header__language-item"><a href="/languages/index.ar/" class="header__nav-link">العربية</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
+          <!-- Language Selector -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-globe me-1"></i> EN
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/languages/index.hi/">हिन्दी</a></li>
+              <li><a class="dropdown-item" href="/languages/index.es/">Español</a></li>
+              <li><a class="dropdown-item" href="/languages/index.de/">Deutsch</a></li>
+              <li><a class="dropdown-item" href="/languages/index.fr/">Français</a></li>
+              <li><a class="dropdown-item" href="/languages/index.jp/">日本語</a></li>
+              <li><a class="dropdown-item" href="/languages/index.ar/">العربية</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
