@@ -28,13 +28,21 @@
     color: var(--secondary-color);
   }
 }
+.nav-link{
+    color: var(--primary-color);
+  }
 .dropdown-item:hover{
   color: var(--secondary-color);
 }
 .dropdown-item{
   color: var(--primary-color);
 }
-
+.nav-item{
+  color: var(--primary-color);
+}
+.nav-item:hover{
+  color: var(--secondary-color);
+}
 /* Logo text color */
 .navbar-brand {
   color: var(--primary-color);
