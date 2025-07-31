@@ -417,14 +417,14 @@
     padding-left: 20px;
     line-height: 1.8;
   }
-  /* .link_editing a {
+  .link_editing a {
   color: var(--primary-color);
   text-decoration: none;
 }
 
 .link_editing a:hover {
   color: var(--secondary-color);
-} */
+}
 
 
   .container {
