@@ -268,25 +268,6 @@ title: Round Bars (You can set a title here that Jekyll can use)
         .catch(error => {
           console.error('Failed to load header:', error);
         });
-      function initMobileMenu() {
-        const toggle = document.querySelector('.header__mobile-toggle');
-        const navList = document.querySelector('.header__nav-list');
-
-        if (toggle && navList) {
-          toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            navList.classList.toggle('active');
-          });
-
-          // Close menu when clicking on links (for single page navigation)
-          navList.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', () => {
-              toggle.classList.remove('active');
-              navList.classList.remove('active');
-            });
-          });
-        }
-      }
 
         // JavaScript to fetch and insert footer
         fetch('/html/footer.html')
@@ -298,6 +279,7 @@ title: Round Bars (You can set a title here that Jekyll can use)
             console.error('Failed to load footer:', error);
           });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="/javascript/floating-form.js"></script>
   </body>
   </html>
