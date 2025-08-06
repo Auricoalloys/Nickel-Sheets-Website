@@ -259,6 +259,7 @@ title: Special Stainless Steels
   document.addEventListener('DOMContentLoaded', async () => {
     const isConnected = await testSupabaseConnection();
     if (isConnected) {
+      await debugListAllSlugs();
       await loadProductData();
     }
   });
