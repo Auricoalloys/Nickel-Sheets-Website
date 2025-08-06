@@ -18,9 +18,7 @@ title: Special Stainless Steels
 </head>
 
 <body>
-    <!-- Header -->
     <div id="header__container"></div>
-
     <!-- Hero Banner -->
     <div class="flat-banner container-fluid position-relative">
         <img class="img-fluid w-100 h-100 object-fit-cover d-block animate__animated animate__zoomIn"
@@ -155,23 +153,26 @@ title: Special Stainless Steels
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        fetch('/html/header.html')
-            .then(Response => response.text())
-            .then(html => {
-                document.getElementById('header__container').innerHTML = html;
-            })
-            .catch(error => {
-                console.error('Failed to load header:', error);
-            });
-        fetch('/html/footer.html')
-            .then(Response => response.text())
-            .then(html => {
-                document.getElementById('footer-container').innerHTML = html;
-            })
-            .catch(error => {
-                console.error('Failed to load header:', error);
-            });
-    </Script>
+    // JavaScript to fetch and insert header (if you haven't already)
+    fetch('/html/header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header__container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load header:', error);
+      });
+
+    // JavaScript to fetch and insert footer
+    fetch('/html/footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load footer:', error);
+      });
+  </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="/javascript/floating-form.js"></script>
 </body>
