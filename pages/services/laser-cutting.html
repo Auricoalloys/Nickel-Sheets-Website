@@ -32,6 +32,7 @@ title: Special Stainless Steels
 
 <body>
     <div id="header__container"></div>
+    <div id="Services"></div>
     <div class="flat-banner" id="banner">
         <!-- <img src="/docs/images/plates.jpg" alt="Duplex Steel" />
         <div class="banner-title fw-bold"> Titanium & Alloys </div> -->
@@ -178,92 +179,92 @@ title: Special Stainless Steels
     <script type="module" src="/javascript/floating-form.js"></script>
     <script>
         // Debug display element - will show connection status and errors
-  const debugElement = document.createElement('div');
-  debugElement.style.position = 'fixed';
-  debugElement.style.zIndex = '1000';
-  document.body.appendChild(debugElement);
+        const debugElement = document.createElement('div');
+        debugElement.style.position = 'fixed';
+        debugElement.style.zIndex = '1000';
+        document.body.appendChild(debugElement);
 
-  function showDebugMessage(message, isError = false) {
-    debugElement.style.backgroundColor = isError ? '#ffebee' : '#e8f5e9';
-    debugElement.style.borderColor = isError ? '#f44336' : '#4caf50';
-    debugElement.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
-    console.log(message);
-  }
+        function showDebugMessage(message, isError = false) {
+            debugElement.style.backgroundColor = isError ? '#ffebee' : '#e8f5e9';
+            debugElement.style.borderColor = isError ? '#f44336' : '#4caf50';
+            debugElement.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            console.log(message);
+        }
 
-  // 1. Test Supabase Connection
-  async function testSupabaseConnection() {
-    showDebugMessage('Testing Supabase connection...');
-    
-    try {
-      const supabaseUrl = 'https://nnxiioeqroxutwwcqnpg.supabase.co';
-      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGlpb2Vxcm94dXR3d2NxbnBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NTc0NTMsImV4cCI6MjA2NDQzMzQ1M30.msCK7AQz4zmqauVSlWa6hpDWLGCkDRse7D4kxDPCVaw';
-      
-      if (!supabaseUrl || !supabaseKey) {
-        throw new Error('Supabase URL or Key is missing');
-      }
-      
-      window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
-      showDebugMessage('Supabase client created successfully');
-      
-      // Test a simple query
-      const { error } = await supabase.from('Services').select('*').limit(1);
-      
-      if (error) throw error;
-      showDebugMessage('Database connection successful!');
-      return true;
-    } catch (error) {
-      showDebugMessage(`Connection failed: ${error.message}`, true);
-      return false;
-    }
-  }
-// 2. Load Product Data
-  async function loadProductData() {
-    showDebugMessage('Starting to load product data...');
+        // 1. Test Supabase Connection
+        async function testSupabaseConnection() {
+            showDebugMessage('Testing Supabase connection...');
 
-    try {
-      const slug = new URLSearchParams(window.location.search).get('product') || "laser-cutting-services";
+            try {
+                const supabaseUrl = 'https://nnxiioeqroxutwwcqnpg.supabase.co';
+                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGlpb2Vxcm94dXR3d2NxbnBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NTc0NTMsImV4cCI6MjA2NDQzMzQ1M30.msCK7AQz4zmqauVSlWa6hpDWLGCkDRse7D4kxDPCVaw';
 
-      showDebugMessage(`Fetching data for product: ${slug}`);
+                if (!supabaseUrl || !supabaseKey) {
+                    throw new Error('Supabase URL or Key is missing');
+                }
 
-      const { data, error } = await supabase
-        .from('Services')
-        .select('banner,intro-img,intro,why-choose,unique,contact')
-        .eq('slug', slug)
-        .maybeSingle();
+                window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
+                showDebugMessage('Supabase client created successfully');
 
-      if (error) throw error;
+                // Test a simple query
+                const { error } = await supabase.from('Services').select('*').limit(1);
 
-      if (!data) {
-        throw new Error('No product found with this slug');
-      }
+                if (error) throw error;
+                showDebugMessage('Database connection successful!');
+                return true;
+            } catch (error) {
+                showDebugMessage(`Connection failed: ${error.message}`, true);
+                return false;
+            }
+        }
+        // 2. Load Product Data
+        async function loadProductData() {
+            showDebugMessage('Starting to load product data...');
 
-      if (!data["intro"]) {
-        throw new Error('Product found but introduction content is empty');
-      }
+            try {
+                const slug = new URLSearchParams(window.location.search).get('product') || "laser-cutting-services";
 
-      document.getElementById('banner').innerHTML = data["banner"];
-      document.getElementById('intro-img').innerHTML = data["intro-img"];
-      document.getElementById('intro').innerHTML = data["intro"];
-      document.getElementById('why-choose').innerHTML = data["why-choose"];
-      document.getElementById('unique').innerHTML = data["unique"];
-      document.getElementById('contact').innerHTML = data["contact"];
-      showDebugMessage('Content loaded successfully!');
+                showDebugMessage(`Fetching data for product: ${slug}`);
 
-    } catch (error) {
-      showDebugMessage(`Content load failed: ${error.message}`, true);
+                const { data, error } = await supabase
+                    .from('Services')
+                    .select('banner,intro-img,intro,why-choose,unique,contact')
+                    .eq('slug', slug)
+                    .maybeSingle();
 
-    }
-  }
+                if (error) throw error;
 
-  // Main execution flow
-  document.addEventListener('DOMContentLoaded', async () => {
-    const isConnected = await testSupabaseConnection();
-    if (isConnected) {
-      await debugListAllSlugs();
-      await loadProductData();
-    }
-  });
-  
+                if (!data) {
+                    throw new Error('No product found with this slug');
+                }
+
+                if (!data["intro"]) {
+                    throw new Error('Product found but introduction content is empty');
+                }
+
+                document.getElementById('banner').innerHTML = data["banner"];
+                document.getElementById('intro-img').innerHTML = data["intro-img"];
+                document.getElementById('intro').innerHTML = data["intro"];
+                document.getElementById('why-choose').innerHTML = data["why-choose"];
+                document.getElementById('unique').innerHTML = data["unique"];
+                document.getElementById('contact').innerHTML = data["contact"];
+                showDebugMessage('Content loaded successfully!');
+
+            } catch (error) {
+                showDebugMessage(`Content load failed: ${error.message}`, true);
+
+            }
+        }
+
+        // Main execution flow
+        document.addEventListener('DOMContentLoaded', async () => {
+            const isConnected = await testSupabaseConnection();
+            if (isConnected) {
+                await debugListAllSlugs();
+                await loadProductData();
+            }
+        });
+
     </script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </body>
