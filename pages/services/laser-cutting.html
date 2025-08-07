@@ -253,8 +253,17 @@ title: Special Stainless Steels
             } catch (error) {
                 showDebugMessage(`Content load failed: ${error.message}`, true);
 
-            }
         }
+    }
+    async function debugListAllSlugs() {
+        showDebugMessage('Fetching all slugs for debugging...');
+        const { data, error } = await supabase
+            .from('Services')
+            .select('slug');
+        if (error) throw error;
+        showDebugMessage(`Available slugs: ${data.map(d => d.slug).join(', ')}`);
+        return data;
+    }
 
         // Main execution flow
         document.addEventListener('DOMContentLoaded', async () => {
