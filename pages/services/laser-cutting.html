@@ -206,7 +206,6 @@ title: Special Stainless Steels
                 window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
                 showDebugMessage('Supabase client created successfully');
 
-                // Test a simple query
                 const { error } = await supabase.from('Services').select('*').limit(1);
 
                 if (error) throw error;
