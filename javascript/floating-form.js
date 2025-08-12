@@ -34,7 +34,7 @@ export class FloatingForm {
                 cursor: pointer;
                 box-shadow: 0 4px 15px rgba(0,0,0,0.2);
                 transition: all 0.3s ease;
-                z-index: 1000;
+                z-index: 9999;
                 display: flex;
                 align-items: center;
                 gap: 10px;
