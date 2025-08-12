@@ -5,9 +5,9 @@
     overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the content horizontally */
+    justify-content: center; 
     box-sizing: border-box;
-    padding-top: 70px; /* Adjust if you have a fixed header */
+    padding-top: 70px; 
 }
 
 .slider-container {
@@ -28,7 +28,7 @@
     width: 100%;
     height: 100%; 
     opacity: 1;
-    z-index: -3; /* Ensure images are behind the controls */
+    z-index: -3;
     transition: opacity 1s ease-in-out;
     background-size: cover;
     background-position: center;
@@ -36,16 +36,15 @@
 }
 
 .slide.active {
-/* opacity: 0; */
 z-index: 0;
 }
 
 .slide img {
-display: block; /* Prevent extra space below image */
+display: block; 
 width: 100%;
 height: 100%;
 pointer-events: none;
-object-fit: cover; /* Maintain aspect ratio and cover the container */
+object-fit: cover; 
 }
 
 .slider-controls {
@@ -55,11 +54,10 @@ transform: translateX(-50%);
 display: flex;
 align-items: center;
 gap: 20px;
-z-index: 10; /* Ensure controls are on top */
+z-index: 10; 
 color: #fff;
 }
 
-/* Description animation class (restarts on each slide) */
 @keyframes zoomFadeUp {
 0% {
 opacity: 0;
