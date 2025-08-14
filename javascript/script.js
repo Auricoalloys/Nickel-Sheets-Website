@@ -82,6 +82,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+// Product track animation
+
+const slider = document.querySelector(".product-track");
+
+slider.addEventListener("mouseenter", () => {
+    slider.style.animationPlayState = "paused";
+});
+
+slider.addEventListener("mouseleave", () => {
+    slider.style.animationPlayState = "running";
+});
+
     // Feature Card Animation - Trigger visibility on scroll (Intersection Observer)
     document.addEventListener('DOMContentLoaded', function(){
     const featureCards = document.querySelectorAll('.feature-card');
