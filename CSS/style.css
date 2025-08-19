@@ -117,7 +117,7 @@ img {
 }
 
 .btn:hover {
-    background: #d35400;
+    color: var(--secondary-color);
     transform: translateY(-2px);
 }
 
