@@ -222,7 +222,6 @@ img {
 
 .product-overlay .product-title.white {
     color: var(--light-color);
-    /* 🎨 Pick your color here */
     margin: 0;
 }
 
@@ -280,7 +279,7 @@ img {
 .product-track {
   display: flex;
   gap: 20px;
-  animation: scrollLoop 20s linear infinite;
+  animation: scrollLoop 50s linear infinite;
 }
 
 .product-card {
