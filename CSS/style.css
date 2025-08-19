@@ -265,6 +265,7 @@ img {
 }
 
 /* product track */
+
 .products-preview {
   padding: 80px 0;
   background: linear-gradient(to bottom, #e0e0e0, rgba(255, 255, 255, 0.05));
@@ -282,7 +283,7 @@ img {
   animation: scrollLoop 50s linear infinite;
 }
 
-.product-card {
+.product-card-1 {
   background: white;
   border-radius: 12px;
   min-width: 220px;
@@ -290,7 +291,7 @@ img {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product-card:hover {
+.product-card-1:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -301,7 +302,7 @@ img {
   }
 
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
