@@ -333,3 +333,24 @@ img {
 .vmgv-card:hover .feature-icon {
   transform: rotate(360deg);
 }
+.company-overview h2 {
+  color: var(--dark-color);
+}
+.company-overview p {
+  color: var(--text-color);
+  line-height: 1.7;
+}
+.company-overview img {
+  transition: transform 0.4s ease;
+}
+.company-overview img:hover {
+  transform: scale(1.05);
+}
+.company-overview .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.company-overview .btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
