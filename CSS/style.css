@@ -279,8 +279,7 @@ img {
 .product-track {
   display: flex;
   gap: 20px;
-  animation: rotateLoop 20s linear infinite; 
-  transform-origin: center;
+  animation: scrollLoop 50s linear infinite;
 }
 
 .product-card {
@@ -296,12 +295,13 @@ img {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-@keyframes rotateLoop {
+@keyframes scrollLoop {
   0% {
-    transform: rotate(0deg); 
+    transform: translateX(0);
   }
+
   100% {
-    transform: rotate(360deg); 
+    transform: translateX(-50%);
   }
 }
 
