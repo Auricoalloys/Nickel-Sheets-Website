@@ -113,3 +113,27 @@ slider.addEventListener("mouseleave", () => {
         observer.observe(card);
     });
 })
+ document.addEventListener("DOMContentLoaded", function(){
+  const cards = document.querySelectorAll('.vmgv-card');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  cards.forEach(card => observer.observe(card));
+});
+document.addEventListener("DOMContentLoaded", function(){
+  const sections = document.querySelectorAll('.company-overview .row');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  sections.forEach(sec => observer.observe(sec));
+});
