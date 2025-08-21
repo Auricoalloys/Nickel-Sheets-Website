@@ -364,8 +364,16 @@ img {
 
 /* Contact Page */
 
-.contact-container{
+.contact_container {
+    background-color: #f8f9fa;
     margin: 10px;
+}
+
+.header {
+    background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
 }
 
 .map-container {
