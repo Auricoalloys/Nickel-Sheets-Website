@@ -267,90 +267,123 @@ img {
 /* product track */
 
 .products-preview-1 {
-  padding: 80px 0;
-  background: linear-gradient(to bottom, #e0e0e0, rgba(255, 255, 255, 0.05));
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 80px 0;
+    background: linear-gradient(to bottom, #e0e0e0, rgba(255, 255, 255, 0.05));
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-slider {
-  overflow: hidden;
-  position: relative;
+    overflow: hidden;
+    position: relative;
 }
 
 .product-track {
-  display: flex;
-  gap: 20px;
-  animation: scrollLoop 50s linear infinite;
+    display: flex;
+    gap: 20px;
+    animation: scrollLoop 50s linear infinite;
 }
 
 .product-card-1 {
-  background: white;
-  border-radius: 12px;
-  min-width: 220px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    border-radius: 12px;
+    min-width: 220px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card-1:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes scrollLoop {
-  0% {
-    transform: translateX(0);
-  }
+    0% {
+        transform: translateX(0);
+    }
 
-  100% {
-    transform: translateX(-100%);
-  }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* About Us Page Content */
 
 .vmgv-card {
-  border: none;
-  border-radius: 12px;
-  background: #fff;
-  transition: all 0.4s ease;
-  opacity: 0;
-  transform: translateY(40px);
+    border: none;
+    border-radius: 12px;
+    background: #fff;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(40px);
 }
 
 .vmgv-card.visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .vmgv-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .feature-icon {
-  transition: transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
+
 .vmgv-card:hover .feature-icon {
-  transform: rotate(360deg);
+    transform: rotate(360deg);
 }
+
 .company-overview h2 {
-  color: var(--dark-color);
+    color: var(--dark-color);
 }
+
 .company-overview p {
-  color: var(--text-color);
-  line-height: 1.7;
+    color: var(--text-color);
+    line-height: 1.7;
 }
+
 .company-overview img {
-  transition: transform 0.4s ease;
+    transition: transform 0.4s ease;
 }
+
 .company-overview img:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
+
 .company-overview .btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
+
 .company-overview .btn-primary:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+/* Contact Page */
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.directions-btn {
+    transition: all 0.3s ease;
+}
+
+.directions-btn:hover {
+    transform: translateY(-2px);
+    color: #e67e22;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
