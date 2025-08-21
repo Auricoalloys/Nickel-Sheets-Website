@@ -280,7 +280,7 @@ img {
 .product-track {
     display: flex;
     gap: 20px;
-    animation: scrollLoop 50s linear infinite;
+    animation: scrollLoop 10s linear infinite;
 }
 
 .product-card-1 {
