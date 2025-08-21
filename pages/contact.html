@@ -1,0 +1,104 @@
+---
+permalink: /pages/contact/
+title: Contact Aurico Alloys LLP for inquiries or a quote
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contact Aurico Alloys LLP, a leading global supplier of high-performance nickel, titanium, and other specialty alloys. Get in touch for product inquiries, custom metal fabrication, or to request a quote.">
+    <meta name="keywords"
+        content="contact Aurico Alloys, alloys supplier, nickel alloys, titanium alloys, Inconel alloys, Hastelloy alloys, Duplex alloys, cobalt alloys, metal fabrication, laser cutting, request a quote, Mumbai, India, get in touch">
+    <title>Get in Touch</title>
+    <!-- Favicon -->
+    <link rel="icon" type="png" href="/aurico-favicon.png">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/header.css">
+    <link rel="stylesheet" href="/CSS/pages.css">
+</head>
+<body>
+    <div id="header__container"></div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="row">
+            <!-- Map Section -->
+            <div class="col-lg-8">
+                <div class="map-container">
+                    <!-- Embedded Google Map -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.603845486767!2d72.824485!3d18.956356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf8d133c2225%3A0xf9707ddaf2510d60!2sAurico%20Alloys%20LLP!5e0!3m2!1sen!2sin!4v1692459226730!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+            
+            <!-- Location Information -->
+            <div class="col-lg-4">
+                <div class="info-card">
+                    <h3 class="mb-4">Location Details</h3>
+                    <p><strong>Address:</strong> Aurico Alloys LLP, Mumbai, Maharashtra, India</p>
+                    <p><strong>Hours:</strong> Monday to Saturday: 9:00 AM - 8:00 PM</p>
+                    <p><strong>Phone:</strong> +917977886611</p>
+                    <p><strong>Email:</strong> info@auricoalloys.com</p>
+                    <hr>
+                    <a href="https://www.google.com/maps/dir//Aurico+Alloys+LLP/@18.956356,72.824485,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3be7cf8d133c2225:0xf9707ddaf2510d60!2m2!1d72.8270747!2d18.956356?entry=ttu" 
+                       target="_blank" 
+                       class="btn btn-primary directions-btn w-100" style="background-color: #154360;">
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    fetch('/html/header.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('header__container').innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Failed to load header:', error);
+        });
+
+    fetch('/html/footer.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('footer-container').innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Failed to load footer:', error);
+        });
+    // Initialize and add the map
+    function initMap() {
+        // The location of Aurico Alloys
+        const location = { lat: 18.956356, lng: 72.8270747 };
+        // The map, centered at location
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 17,
+            center: location,
+        });
+        // The marker, positioned at location
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/javascript/floating-form.js"></script>
+</html>
