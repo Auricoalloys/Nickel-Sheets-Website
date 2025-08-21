@@ -364,6 +364,10 @@ img {
 
 /* Contact Page */
 
+.contact-container{
+    margin: 10px;
+}
+
 .map-container {
     border-radius: 10px;
     overflow: hidden;
