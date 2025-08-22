@@ -113,3 +113,13 @@ slider.addEventListener("mouseleave", () => {
         observer.observe(card);
     });
 })
+
+// carousel
+  // Optional: Pause slider on hover
+const carouselElement = document.querySelector('#tvCarousel');
+carouselElement.addEventListener('mouseenter', () => {
+  bootstrap.Carousel.getInstance(carouselElement).pause();
+});
+carouselElement.addEventListener('mouseleave', () => {
+  bootstrap.Carousel.getInstance(carouselElement).cycle();
+});
