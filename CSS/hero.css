@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-.slide {
+.slide-1 {
     position: absolute;
     top: 0;
     left: 0;
@@ -35,11 +35,11 @@
     pointer-events: none;
 }
 
-.slide.active {
+.slide-1.active {
 z-index: 0;
 }
 
-.slide img {
+.slide-1 img {
 display: block; 
 width: 100%;
 height: 100%;
@@ -87,7 +87,7 @@ animation: fadeInUp 1s ease-out;
 /* opacity: 0; */
 }
 
-.slide.active .slide-description {
+.slide-1.active .slide-description {
 opacity: 1;
 }
 
