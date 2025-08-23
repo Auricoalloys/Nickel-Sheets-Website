@@ -469,8 +469,8 @@ img {
 .header {
     background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
     color: white;
-    padding: 2rem 0;
-    margin-bottom: 2rem;
+    padding: 5rem 0;
+    margin-bottom: 3rem;
 }
 
 .map-container {
@@ -496,3 +496,62 @@ img {
     color: #e67e22;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Quality Page */
+
+.pdf-container {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            height: 100%;
+            min-height: 500px;
+        }
+        
+        .pdf-viewer {
+            height: 100%;
+            width: 100%;
+            min-height: 500px;
+        }
+        
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #1a252f;
+            color: var(--secondary-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            color: white;
+        }
