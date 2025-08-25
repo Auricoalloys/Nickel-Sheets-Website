@@ -878,3 +878,10 @@
   .navbar-brand {
     color: var(--primary-color);
   }
+
+      .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
+      .btn-primary:hover { background-color: var(--secondary-color); border-color: var(--secondary-color); }
+      .table { background-color: #fff; }
+      .table th { background-color: var(--primary-color); color: #fff; }
+      .accordion-button { color: var(--primary-color); }
+      .accordion-button:not(.collapsed) { background-color: var(--light-color); color: var(--primary-color); }
