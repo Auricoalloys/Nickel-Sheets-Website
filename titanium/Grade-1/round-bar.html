@@ -9,8 +9,10 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore Titanium Grade 2 Round Bars, ASTM B348 and UNS R50250 compliant, ideal for aerospace, marine, medical, and chemical industries. Trusted supplier in India and globally.">
-  <meta name="keywords" content="Titanium Grade 2 Round Bar, ASTM B348, Titanium UNS R50250, Titanium Grade 2 suppliers in India, corrosion resistance, biocompatibility, DIN 3.7025">
+  <meta name="description"
+    content="Explore Titanium Grade 2 Round Bars, ASTM B348 and UNS R50250 compliant, ideal for aerospace, marine, medical, and chemical industries. Trusted supplier in India and globally.">
+  <meta name="keywords"
+    content="Titanium Grade 2 Round Bar, ASTM B348, Titanium UNS R50250, Titanium Grade 2 suppliers in India, corrosion resistance, biocompatibility, DIN 3.7025">
   <meta name="author" content="Your Company Name">
   <title>Titanium Grade 2 Round Bars: The Ultimate Solution for Demanding Industries</title>
   <!-- Favicon -->
@@ -96,6 +98,13 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
           <section class="py-5" id="city"></section>
 
           <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
+          <div class="row">
+            <div class="col text-center">
+              <a href="/pages/about.html" class="btn btn-primary me-3">Learn About Us</a>
+              <a href="/pages/contact.html" class="btn btn-outline-dark --bs-btn-hover-color: #e67e22;"
+                style="color: white;">Get in Touch</a>
+            </div>
+          </div>
         </div>
       </main>
     </div>
@@ -105,88 +114,88 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script type="module" src="/javascript/floating-form.js"></script>
-<script src="/javascript/detailed.js"></script>
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<script src="/javascript/detailed_database_page.js"></script>
+  <script type="module" src="/javascript/floating-form.js"></script>
+  <script src="/javascript/detailed.js"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="/javascript/detailed_database_page.js"></script>
 
-<script>
-  // JavaScript to fetch and insert header (if you haven't already)
-  fetch('/html/header.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('header__container').innerHTML = html;
-    })
-    .catch(error => {
-      console.error('Failed to load header:', error);
-    });
+  <script>
+    // JavaScript to fetch and insert header (if you haven't already)
+    fetch('/html/header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header__container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load header:', error);
+      });
 
-  // JavaScript to fetch and insert footer
-  fetch('/html/footer.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('footer-container').innerHTML = html;
-    })
-    .catch(error => {
-      console.error('Failed to load footer:', error);
-    });
+    // JavaScript to fetch and insert footer
+    fetch('/html/footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load footer:', error);
+      });
 
     // 2. Load Product Data
-  async function loadProductData() {
-    showDebugMessage('Starting to load product data...');
+    async function loadProductData() {
+      showDebugMessage('Starting to load product data...');
 
-    try {
-      const slug = new URLSearchParams(window.location.search).get('product') || "titanium-grade-1-round-bar";
+      try {
+        const slug = new URLSearchParams(window.location.search).get('product') || "titanium-grade-1-round-bar";
 
-      showDebugMessage(`Fetching data for product: ${slug}`);
+        showDebugMessage(`Fetching data for product: ${slug}`);
 
-      const { data, error } = await supabase
-        .from('product_pages')
-        .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
-        .eq('slug', slug)
-        .maybeSingle();
+        const { data, error } = await supabase
+          .from('product_pages')
+          .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
+          .eq('slug', slug)
+          .maybeSingle();
 
-      if (error) throw error;
+        if (error) throw error;
 
-      if (!data) {
-        throw new Error('No product found with this slug');
+        if (!data) {
+          throw new Error('No product found with this slug');
+        }
+
+        if (!data["introduction"]) {
+          throw new Error('Product found but introduction content is empty');
+        }
+
+        document.getElementById('flat-banner').innerHTML = data["flat-banner"];
+        document.getElementById('sidebar').innerHTML = data["sidebar"];
+        document.getElementById('title').innerHTML = data["title"];
+        document.getElementById('toc').innerHTML = data["toc"];
+        document.getElementById('introduction').innerHTML = data["introduction"];
+        document.getElementById('ss-content').innerHTML = data["ss-content"];
+        document.getElementById('specification').innerHTML = data["specification"];
+        document.getElementById('imageSection').innerHTML = data["imageSection"];
+        document.getElementById('equivalent-grades').innerHTML = data["equivalent-grades"];
+        document.getElementById('product-grade').innerHTML = data["product-grade"];
+        document.getElementById('chemical').innerHTML = data["chemical"];
+        document.getElementById('mechanical-properties').innerHTML = data["mechanical-properties"];
+        document.getElementById('uses').innerHTML = data["uses"];
+        document.getElementById('search').innerHTML = data["search"];
+        document.getElementById('countries').innerHTML = data["countries"];
+        document.getElementById('city').innerHTML = data["city"];
+        showDebugMessage('Content loaded successfully!');
+
+      } catch (error) {
+        showDebugMessage(`Content load failed: ${error.message}`, true);
       }
+    }
 
-      if (!data["introduction"]) {
-        throw new Error('Product found but introduction content is empty');
+    // Main execution flow
+    document.addEventListener('DOMContentLoaded', async () => {
+      const isConnected = await testSupabaseConnection();
+      if (isConnected) {
+        await loadProductData();
       }
-
-      document.getElementById('flat-banner').innerHTML = data["flat-banner"];
-      document.getElementById('sidebar').innerHTML = data["sidebar"];
-      document.getElementById('title').innerHTML = data["title"];
-      document.getElementById('toc').innerHTML = data["toc"];
-      document.getElementById('introduction').innerHTML = data["introduction"];
-      document.getElementById('ss-content').innerHTML = data["ss-content"];
-      document.getElementById('specification').innerHTML = data["specification"];
-      document.getElementById('imageSection').innerHTML = data["imageSection"];
-      document.getElementById('equivalent-grades').innerHTML = data["equivalent-grades"];
-      document.getElementById('product-grade').innerHTML = data["product-grade"];
-      document.getElementById('chemical').innerHTML = data["chemical"];
-      document.getElementById('mechanical-properties').innerHTML = data["mechanical-properties"];
-      document.getElementById('uses').innerHTML = data["uses"];
-      document.getElementById('search').innerHTML = data["search"];
-      document.getElementById('countries').innerHTML = data["countries"];
-      document.getElementById('city').innerHTML = data["city"];
-      showDebugMessage('Content loaded successfully!');
-
-    } catch (error) {
-      showDebugMessage(`Content load failed: ${error.message}`, true);
-    }
-  }
-
-  // Main execution flow
-  document.addEventListener('DOMContentLoaded', async () => {
-    const isConnected = await testSupabaseConnection();
-    if (isConnected) {
-      await loadProductData();
-    }
-  });
-</script>
+    });
+  </script>
 
 </body>
 
