@@ -53,30 +53,51 @@
   }
   // Create floating particles for background
         function createParticles() {
-            const colors = ['rgba(26, 82, 118, 0.6)', 'rgba(44, 62, 80, 0.6)', 'rgba(230, 126, 34, 0.6)'];
+            const colors = ['rgba(26, 82, 118, 0.6)', 'rgba(44, 62, 80, 0.6)', 'rgba(44, 62, 80, 0.6)'];
             
             setInterval(() => {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
                 // Random properties
-                const size = Math.random() * 10 + 5;
+                const size = Math.random() * 8 + 4;
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.background = color;
                 particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animation = `float ${Math.random() * 6 + 4}s linear forwards`;
+                particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
                 
-                document.body.appendChild(particle);
+                document.getElementById('loading-overlay').appendChild(particle);
                 
                 // Remove particle after animation completes
                 setTimeout(() => {
                     particle.remove();
                 }, 10000);
+            }, 400);
+        }
+        
+        // Simulate progress bar movement
+        function simulateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            let width = 0;
+            
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                } else {
+                    width += Math.random() * 5;
+                    progressBar.style.width = Math.min(width, 100) + '%';
+                }
             }, 300);
         }
+        
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            simulateProgress();
+        });
         
         // Simulate loading process
         document.addEventListener('DOMContentLoaded', () => {
