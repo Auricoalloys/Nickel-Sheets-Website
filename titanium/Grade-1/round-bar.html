@@ -61,15 +61,22 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
       <main class="col-12 col-md-9 ">
         <div class="main-content">
-
+      
+          <div id="loading-overlay">
+            <!-- Replace with your company logo URL -->
+            <img src="/docs/images/transparent_aurico_logo.png" alt="Loading..." class="loading-logo">
+            <p class="loading-text">Loading product information...</p>
+          </div>
+      
+      
           <div class="title" id="title">
           </div>
-
+      
           <div class="toc-description-wrapper">
             <div class="table-of-content" id="toc"></div>
-
+      
             <div id="product_pages"></div>
-
+      
             <div class="description" id="introduction"></div>
           </div>
 
@@ -183,9 +190,15 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
         document.getElementById('city').innerHTML = data["city"];
         showDebugMessage('Content loaded successfully!');
 
-      } catch (error) {
-        showDebugMessage(`Content load failed: ${error.message}`, true);
-      }
+      // Hide loading overlay after content is loaded
+            hideLoadingOverlay();
+
+        } catch (error) {
+            showDebugMessage(`Content load failed: ${error.message}`, true);
+            
+            // Still hide loading overlay even if there's an error
+            hideLoadingOverlay();
+        }
     }
 
     // Main execution flow
@@ -193,7 +206,10 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
       const isConnected = await testSupabaseConnection();
       if (isConnected) {
         await loadProductData();
-      }
+      }else {
+            // Hide loading overlay if connection fails
+            hideLoadingOverlay();
+        }
     });
   </script>
 

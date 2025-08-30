@@ -3,16 +3,18 @@
   *::after {
     box-sizing: border-box;
   }
+
   :root {
     --primary-color: #1a5276;
     --secondary-color: #e67e22;
     --dark-color: #2c3e50;
     --light-color: #f4f6f7;
     --text-color: #333;
-}
+  }
 
 
-  h1, h2 {
+  h1,
+  h2 {
     font-size: 1.8rem;
     color: var(--primary-color);
   }
@@ -30,7 +32,7 @@
     margin-top: 40px;
     margin-bottom: 40px;
   }
-  
+
   .sidebar-nav {
     background-color: #ffffff;
     padding: 15px;
@@ -82,6 +84,7 @@
     background: var(--primary-color);
     color: white;
   }
+
   /* Main Content */
   .main-content {
     background-color: #ffffff;
@@ -210,6 +213,7 @@
   .link_editing a:hover {
     color: var(--secondary-color);
   }
+
   /* .container {
     margin: 0 auto;
     padding: 20px;
@@ -879,9 +883,78 @@
     color: var(--primary-color);
   }
 
-      .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
-      .btn-primary:hover { background-color: var(--secondary-color); border-color: var(--secondary-color); }
-      .table { background-color: #fff; }
-      .table th { background-color: var(--primary-color); color: #fff; }
-      .accordion-button { color: var(--primary-color); }
-      .accordion-button:not(.collapsed) { background-color: var(--light-color); color: var(--primary-color); }
+  .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+
+  .table {
+    background-color: #fff;
+  }
+
+  .table th {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+
+  .accordion-button {
+    color: var(--primary-color);
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+  }
+
+  #loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+  }
+
+  .loading-logo {
+    width: 100px;
+    height: 100px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  .loading-text {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Hide content initially */
+  .content-container {
+    display: none;
+  }
