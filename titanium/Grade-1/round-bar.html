@@ -61,65 +61,31 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
 
       <main class="col-12 col-md-9 ">
         <div class="main-content">
-      
+
           <div id="loading-overlay">
-            <!-- Replace with your company logo URL -->
-            <img src="/docs/images/aurico-logo.jpg" alt="Loading..." class="loading-logo">
+            <div class="logo-container">
+              <div class="logo-outer-ring"></div>
+              <div class="logo-middle-ring"></div>
+              <div class="logo-inner-ring"></div>
+              <img src="/docs/images/aurico-logo.jpg" alt="Aurico Alloys" class="loading-logo">
+            </div>
+
             <p class="loading-text">Loading product information...</p>
+
+            <div class="progress-container">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="hint">Your trusted partner for high-quality metal alloys</p>
           </div>
-          <div class="loading-container" id="loading-container">
-        <div class="logo-container">
-            <div class="logo-outer-ring"></div>
-            <div class="logo-middle-ring"></div>
-            <div class="logo-inner-ring"></div>
-            <div class="logo-text">AURICO
-                <div class="logo-subtext">ALLOYS LLP</div>
-            </div>
-        </div>
-        
-        <div class="loading-text">Loading Premium Metal Products</div>
-        
-        <div class="loading-bar-container">
-            <div class="loading-bar"></div>
-        </div>
-        
-        <div class="loading-dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-        
-        <div class="hint">Your trusted partner for high-quality metal alloys</div>
-    </div>
-    
-    <div class="content" id="content">
-        <h1>Welcome to Aurico Alloys</h1>
-        <p>We provide premium metal products and solutions for industries worldwide. Our commitment to quality and excellence has made us a trusted name in the metal industry.</p>
-        
-        <div class="product-showcase">
-            <div class="product-card">
-                <h3>Titanium Bars</h3>
-                <p>Grade 1-5 available</p>
-            </div>
-            <div class="product-card">
-                <h3>Nickel Alloys</h3>
-                <p>High-temperature resistant</p>
-            </div>
-            <div class="product-card">
-                <h3>Stainless Steel</h3>
-                <p>Various grades available</p>
-            </div>
-        </div>
-    </div>
-     
+
           <div class="title" id="title">
           </div>
-      
+
           <div class="toc-description-wrapper">
             <div class="table-of-content" id="toc"></div>
-      
+
             <div id="product_pages"></div>
-      
+
             <div class="description" id="introduction"></div>
           </div>
 
@@ -150,7 +116,8 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
           <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
           <div class="row">
             <div class="col text-center">
-              <a href="/pages/about.html" class="btn btn-primary me-3" style="background-color: #1a5276;" >Learn About Us</a>
+              <a href="/pages/about.html" class="btn btn-primary me-3" style="background-color: #1a5276;">Learn About
+                Us</a>
               <a href="/pages/contact.html" class="btn btn-outline-dark --bs-btn-hover-color: #e67e22;"
                 style="color: var(--bs-dark);">Get in Touch</a>
             </div>
@@ -233,15 +200,15 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
         document.getElementById('city').innerHTML = data["city"];
         showDebugMessage('Content loaded successfully!');
 
-      // Hide loading overlay after content is loaded
-            hideLoadingOverlay();
+        // Hide loading overlay after content is loaded
+        hideLoadingOverlay();
 
-        } catch (error) {
-            showDebugMessage(`Content load failed: ${error.message}`, true);
-            
-            // Still hide loading overlay even if there's an error
-            hideLoadingOverlay();
-        }
+      } catch (error) {
+        showDebugMessage(`Content load failed: ${error.message}`, true);
+
+        // Still hide loading overlay even if there's an error
+        hideLoadingOverlay();
+      }
     }
 
     // Main execution flow
@@ -249,10 +216,10 @@ title: Titanium Grade 1 Round bar(You can set a title here that Jekyll can use)
       const isConnected = await testSupabaseConnection();
       if (isConnected) {
         await loadProductData();
-      }else {
-            // Hide loading overlay if connection fails
-            hideLoadingOverlay();
-        }
+      } else {
+        // Hide loading overlay if connection fails
+        hideLoadingOverlay();
+      }
     });
   </script>
 
