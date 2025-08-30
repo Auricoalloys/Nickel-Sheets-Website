@@ -954,17 +954,7 @@
     border-radius: 50%;
     animation: spinReverse 1.5s linear infinite;
   }
-
-  .logo-inner-ring {
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    border: 2px solid rgba(109, 213, 250, 0.3);
-    border-top: 2px solid var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
+  
   .loading-logo {
     width: 100px;
     height: 100px;
@@ -1057,7 +1047,6 @@
       transform: translateY(-8px);
     }
   }
-
   .particle {
     position: absolute;
     background: #6c6d72;

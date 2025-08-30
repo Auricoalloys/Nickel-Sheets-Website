@@ -108,10 +108,14 @@ title: Titanium Grade 12 Round Bar (You can set a title here that Jekyll can use
       document.getElementById('countries').innerHTML = data["countries"];
       document.getElementById('city').innerHTML = data["city"];
       showDebugMessage('Content loaded successfully!');
+// Hide loading overlay after content is loaded
+      hideLoadingOverlay();
 
     } catch (error) {
       showDebugMessage(`Content load failed: ${error.message}`, true);
 
+      // Still hide loading overlay even if there's an error
+      hideLoadingOverlay();
     }
   }
 
@@ -120,6 +124,9 @@ title: Titanium Grade 12 Round Bar (You can set a title here that Jekyll can use
     const isConnected = await testSupabaseConnection();
     if (isConnected) {
       await loadProductData();
+    } else {
+      // Hide loading overlay if connection fails
+      hideLoadingOverlay();
     }
   });
   </script>

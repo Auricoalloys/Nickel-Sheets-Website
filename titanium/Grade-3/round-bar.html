@@ -26,9 +26,10 @@ title: Titanium Grade 3 Round Bar (You can set a title here that Jekyll can use)
   <link rel="stylesheet" href="/CSS/header.css">
 
 </head>
+
 <body>
-    <div id="header__container"></div>
-  
+  <div id="header__container"></div>
+
   <div class="flat-banner" id="flat-banner"></div>
 
   <div class="container-fluid my-4">
@@ -90,7 +91,7 @@ title: Titanium Grade 3 Round Bar (You can set a title here that Jekyll can use)
 
 </body>
 
-  <script type="module" src="/javascript/floating-form.js"></script>
+<script type="module" src="/javascript/floating-form.js"></script>
 <script src="/javascript/detailed.js"></script>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="/javascript/detailed_database_page.js"></script>
@@ -116,7 +117,7 @@ title: Titanium Grade 3 Round Bar (You can set a title here that Jekyll can use)
       console.error('Failed to load footer:', error);
     });
 
-    // 2. Load Product Data
+  // 2. Load Product Data
   async function loadProductData() {
     showDebugMessage('Starting to load product data...');
 
@@ -158,10 +159,14 @@ title: Titanium Grade 3 Round Bar (You can set a title here that Jekyll can use)
       document.getElementById('countries').innerHTML = data["countries"];
       document.getElementById('city').innerHTML = data["city"];
       showDebugMessage('Content loaded successfully!');
+      // Hide loading overlay after content is loaded
+      hideLoadingOverlay();
 
     } catch (error) {
       showDebugMessage(`Content load failed: ${error.message}`, true);
 
+      // Still hide loading overlay even if there's an error
+      hideLoadingOverlay();
     }
   }
 
@@ -170,8 +175,10 @@ title: Titanium Grade 3 Round Bar (You can set a title here that Jekyll can use)
     const isConnected = await testSupabaseConnection();
     if (isConnected) {
       await loadProductData();
+    } else {
+      // Hide loading overlay if connection fails
+      hideLoadingOverlay();
     }
   });
 </script>
-
 </html>
