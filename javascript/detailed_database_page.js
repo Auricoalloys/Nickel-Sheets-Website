@@ -10,6 +10,20 @@
     debugElement.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
     console.log(message);
   }
+   // Function to hide the loading overlay
+    function hideLoadingOverlay() {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const contentContainer = document.querySelector('.content-container');
+        
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'none';
+        }
+        
+        if (contentContainer) {
+            contentContainer.style.display = 'block';
+        }
+    }
+
 
   // 1. Test Supabase Connection
   async function testSupabaseConnection() {
