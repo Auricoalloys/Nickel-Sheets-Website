@@ -917,7 +917,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 32, 39, 0.95);
+    background: var(--light-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -950,7 +950,7 @@
     width: 80%;
     height: 80%;
     border: 2px solid rgba(0, 198, 255, 0.3);
-    border-top: 2px solid #00c6ff;
+    border-top: 2px solid var(--primary-color);
     border-radius: 50%;
     animation: spinReverse 1.5s linear infinite;
   }
@@ -960,7 +960,7 @@
     width: 60%;
     height: 60%;
     border: 2px solid rgba(109, 213, 250, 0.3);
-    border-top: 2px solid #6dd5fa;
+    border-top: 2px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
@@ -971,25 +971,25 @@
     z-index: 10;
     border-radius: 50%;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 25px rgba(0, 198, 255, 0.4);
+    background: var(--primary-color);
+    box-shadow: 0 0 25px rgba(4, 49, 65, 0.7);
     animation: pulse 2s infinite ease-in-out;
   }
 
   .loading-text {
     font-size: 1.4rem;
     margin-top: 20px;
-    color: #6dd5fa;
+    color:var(--primary-color);
     text-align: center;
     font-weight: 300;
     letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(109, 213, 250, 0.7);
+    text-shadow: 0 0 10px rgba(4, 49, 65, 0.7);
   }
 
   .progress-container {
     width: 280px;
     height: 6px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--light-color);
     border-radius: 10px;
     overflow: hidden;
     margin-top: 25px;
