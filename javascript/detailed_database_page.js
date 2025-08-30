@@ -51,5 +51,42 @@
       return false;
     }
   }
+  // Create floating particles for background
+        function createParticles() {
+            const colors = ['rgba(26, 82, 118, 0.6)', 'rgba(44, 62, 80, 0.6)', 'rgba(230, 126, 34, 0.6)'];
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.background = color;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animation = `float ${Math.random() * 6 + 4}s linear forwards`;
+                
+                document.body.appendChild(particle);
+                
+                // Remove particle after animation completes
+                setTimeout(() => {
+                    particle.remove();
+                }, 10000);
+            }, 300);
+        }
+        
+        // Simulate loading process
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Simulate a 5-second loading process
+            setTimeout(() => {
+                document.getElementById('loading-container').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }, 5000);
+        });
 
   
