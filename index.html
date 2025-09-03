@@ -122,10 +122,14 @@ title: Home (You can set a title here that Jekyll can use)
                                         <li><a class="dropdown-item" href="/titanium/grade-6/">Titanium Grade 6</a></li>
                                         <li><a class="dropdown-item" href="/titanium/grade-7/">Titanium Grade 7</a></li>
                                         <li><a class="dropdown-item" href="/titanium/grade-9/">Titanium Grade 9</a></li>
-                                        <li><a class="dropdown-item" href="/titanium/grade-11/">Titanium Grade 11</a></li>
-                                        <li><a class="dropdown-item" href="/titanium/grade-12/">Titanium Grade 12</a></li>
-                                        <li><a class="dropdown-item" href="/titanium/grade-16/">Titanium Grade 16</a></li>
-                                        <li><a class="dropdown-item" href="/titanium/grade-23/">Titanium Grade 23</a></li>
+                                        <li><a class="dropdown-item" href="/titanium/grade-11/">Titanium Grade 11</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/titanium/grade-12/">Titanium Grade 12</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/titanium/grade-16/">Titanium Grade 16</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/titanium/grade-23/">Titanium Grade 23</a>
+                                        </li>
                                     </ul>
                                 </li>
 
@@ -245,35 +249,24 @@ title: Home (You can set a title here that Jekyll can use)
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-slider">
-        <div class="slider-container">
-            <div class="slide-1 active"
-                data-description="High-Performance Nickel and Specialty Alloys for Aerospace Innovation">
-                <img src="/docs/images/aerospace_metal.jpg" alt="Aerospace Grade Nickel Alloys Supplier">
-            </div>
-            <div class="slide-1" data-description="Precision Alloy Components for Military and Defense Applications">
-                <img src="/docs/images/defense_metal.jpg" alt="Defense Industry Alloy Components Manufacturer">
-            </div>
-            <div class="slide-1" data-description="Custom Engineered Metal Solutions for Industrial Excellence">
-                <img src="/docs/images/multi metal manufacturing .jpg" alt="Custom Alloy Manufacturing Solutions">
-            </div>
-            <div class="slide-1" data-description="Nickel and Cobalt Alloys for Extreme Chemical Environments">
-                <img src="/docs/images/chemical manufacturing .jpg"
-                    alt="Corrosion-Resistant Alloys for Chemical Plants">
-            </div>
-            <div class="slide-1" data-description="High-Strength Alloys for Oil & Gas Exploration Equipment">
-                <img src="/docs/images/Oil and gas industry.jpg" alt="Oil and Gas Industry Metal Supply">
-            </div>
-            <div class="slide-1" data-description="Nickel Strips and Tubes for Electric Vehicle Battery Systems">
-                <img src="/docs/images/Electric vehicle battery.jpg" alt="EV Battery Component Nickel Alloy Supplier">
+    <!-- Hero Section with Video Background -->
+    <section class="hero-section position-relative overflow-hidden">
+        <!-- Video Container -->
+        <div class="video-container">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="/docs/hero_video.mp4" type="video/mp4">
+                <img src="/docs/images/aerospace_metal.jpg" alt="Aerospace Grade Nickel Alloys Supplier" class="fallback-image">
+            </video>
+        </div>
+
+        <div class="hero-content position-absolute text-center text-white">
+            <div class="container">
             </div>
         </div>
-        <div class="slider-controls">
-            <div class="slide-description">Global experts in high-performance alloy solutions for aerospace, chemical,
-                energy, and defense industries.</div>
-        </div>
+
+        <div class="video-overlay position-absolute"></div>
     </section>
+
 
     <!-- About Section -->
     <section class="py-5 bg-light">
