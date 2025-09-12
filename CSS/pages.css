@@ -293,6 +293,13 @@
       width: 100%;
     }
   }
+  .ss-section-img{
+    text-align: justify;
+    gap: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
   .description {
     flex: 1;
@@ -305,6 +312,9 @@
   }
 
   .image-section {
+    flex: 0 0 auto;
+    width: fit-content;
+    block-size: auto;
     margin-top: 5px;
     text-align: center;
     position: relative;
@@ -347,6 +357,7 @@
 
 
   .ss-section {
+    flex: 1;
     padding: 10px 5px;
   }
 
