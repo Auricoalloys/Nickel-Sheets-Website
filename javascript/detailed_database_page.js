@@ -107,7 +107,7 @@
             setTimeout(() => {
                 document.getElementById('loading-container').style.display = 'none';
                 document.getElementById('content').style.display = 'block';
-            }, 5000);
+            }, 1000);
         });
 
   
