@@ -1,6 +1,6 @@
 ---
 permalink: /laser-cutting/
-title: Excellence Laser Cutting Services by Aurico Alloys LLP 
+title: Excellence Laser Cutting Services by Aurico Alloys LLP
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -37,20 +37,20 @@ title: Excellence Laser Cutting Services by Aurico Alloys LLP
     <div class="flat-banner" id="banner"></div>
 
     <div class="container my-5">
-        <div class="row align-items-center mb-5" id="intro-img">           
+        <div class="row align-items-center mb-5" id="intro-img">
         </div>
-    
+
         <!-- Secondary Section -->
-        <div class="container" id="intro">          
+        <div class="container" id="intro">
         </div>
 
-        <div class="container" id="why-choose">          
+        <div class="container" id="why-choose">
         </div>
 
-        <div class="container" id="unique">        
+        <div class="container" id="unique">
         </div>
 
-        <div class="container" id="contact">            
+        <div class="container" id="contact">
         </div>
 
 
@@ -153,17 +153,17 @@ title: Excellence Laser Cutting Services by Aurico Alloys LLP
             } catch (error) {
                 showDebugMessage(`Content load failed: ${error.message}`, true);
 
+            }
         }
-    }
-    async function debugListAllSlugs() {
-        showDebugMessage('Fetching all slugs for debugging...');
-        const { data, error } = await supabase
-            .from('services')
-            .select('slug');
-        if (error) throw error;
-        showDebugMessage(`Available slugs: ${data.map(d => d.slug).join(', ')}`);
-        return data;
-    }
+        async function debugListAllSlugs() {
+            showDebugMessage('Fetching all slugs for debugging...');
+            const { data, error } = await supabase
+                .from('services')
+                .select('slug');
+            if (error) throw error;
+            showDebugMessage(`Available slugs: ${data.map(d => d.slug).join(', ')}`);
+            return data;
+        }
 
         // Main execution flow
         document.addEventListener('DOMContentLoaded', async () => {
