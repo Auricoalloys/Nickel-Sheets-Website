@@ -45,15 +45,6 @@ title: Waterjet Cutting
         <div class="container" id="intro">
         </div>
 
-        <div class="container" id="intro-img">
-        </div>
-
-        <div class="container" id="unique">
-        </div>
-
-        <div class="container" id="contact">
-        </div>
-
     </div>
     <div id="footer-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -128,7 +119,7 @@ title: Waterjet Cutting
 
                 const { data, error } = await supabase
                     .from('services')
-                    .select('banner,intro-img,intro,why-choose,unique,contact')
+                    .select('banner,intro-img,intro')
                     .eq('slug', slug)
                     .maybeSingle();
 
@@ -145,9 +136,6 @@ title: Waterjet Cutting
                 document.getElementById('banner').innerHTML = data["banner"];
                 document.getElementById('intro-img').innerHTML = data["intro-img"];
                 document.getElementById('intro').innerHTML = data["intro"];
-                document.getElementById('why-choose').innerHTML = data["why-choose"];
-                document.getElementById('unique').innerHTML = data["unique"];
-                document.getElementById('contact').innerHTML = data["contact"];
                 showDebugMessage('Content loaded successfully!');
 
             } catch (error) {
