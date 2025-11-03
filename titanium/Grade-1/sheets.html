@@ -186,7 +186,7 @@ title: Titanium Grade 1 Sheets(You can set a title here that Jekyll can use)
         showDebugMessage(`Fetching data for product: ${slug}`);
 
         const { data, error } = await supabase
-          .from('product_pages')
+          .from('sheets-detailed-page')
           .select('flat-banner,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
           .eq('slug', slug)
           .maybeSingle();
