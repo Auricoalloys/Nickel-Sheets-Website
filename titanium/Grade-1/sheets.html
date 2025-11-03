@@ -54,10 +54,10 @@ title: Titanium Grade 1 Sheets(You can set a title here that Jekyll can use)
       .catch(error => {
         console.error('Failed to load footer:', error);
       });
-    fetch('/html/sheets_detailed_page.html')
+    fetch('/html/sheets-detailed-page.html')
       .then(response => response.text())
       .then(html => {
-        document.getElementById('sheets_detailed_page').innerHTML = html;
+        document.getElementById('sheets-detailed-page').innerHTML = html;
       })
       .catch(error => {
         console.error('Failed to load detailed page:', error);
@@ -105,7 +105,7 @@ title: Titanium Grade 1 Sheets(You can set a title here that Jekyll can use)
       showDebugMessage('Supabase client created successfully');
       
       // Test a simple query
-      const { error } = await supabase.from('product_pages').select('*').limit(1);
+      const { error } = await supabase.from('sheets-detailed-page').select('*').limit(1);
       
       if (error) throw error;
       showDebugMessage('Database connection successful!');
