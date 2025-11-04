@@ -27,7 +27,7 @@ title: Titanium Grade 1 Sheets(You can set a title here that Jekyll can use)
   </div>
 
   <main>
-    <div id="sheets-detailed-page"></div>
+    <div id="sheets-detailed"></div>
     <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
   </main>
 
@@ -57,7 +57,7 @@ title: Titanium Grade 1 Sheets(You can set a title here that Jekyll can use)
     fetch('/html/sheets-detailed-page.html')
       .then(response => response.text())
       .then(html => {
-        document.getElementById('sheets-detailed-page').innerHTML = html;
+        document.getElementById('sheets-detailed').innerHTML = html;
       })
       .catch(error => {
         console.error('Failed to load detailed page:', error);
