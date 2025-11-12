@@ -8,9 +8,9 @@ title: Haynes Sheets
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Duplex 32760 Round Bars | Exceptional Strength & Corrosion Resistance for Chemical, Oil & Gas, Marine & Power</title> 
-    <meta name="description" content="Learn about Aurico Alloys LLP Super Duplex 32760 Round Bars with UNS S32760 and ASTM A182 standards. Ideal for chemical, oil & gas, marine, pharma, and power industries. Detailed specs, mechanical properties, applications, and benefits." /> 
-    <meta name="keywords" content="Super Duplex 32760 Round Bars, UNS S32760, ASTM A182, Duplex Steel, Corrosion Resistant Bars, Aurico Alloys LLP, Chemical Industry, Marine, Oil & Gas, Pharma, Power Generation" /> 
+    <title>Haynes Sheets | High-Temperature and Corrosion-Resistant Cobalt Alloy Sheets</title>
+    <meta name="description" content="Aurico Alloys LLP Haynes Sheets (UNS R30605, ASTM B435) renowned for exceptional strength and oxidation resistance at high temperatures, ideal for chemical, oil & gas, marine, pharma, and power generation industries." />
+    <meta name="keywords" content="Haynes Sheets, UNS R30605, ASTM B435, Cobalt Alloy, Aurico Alloys LLP, High Temperature, Corrosion Resistant, Chemical Industry, Oil & Gas, Marine, Pharma, Power" />
 
     <!-- Favicon -->
     <link rel="icon" type="png" href="/aurico-favicon.png">
@@ -72,7 +72,7 @@ title: Haynes Sheets
       showDebugMessage(`Fetching data for product: ${slug}`);
 
       const { data, error } = await supabase
-        .from('product_pages')
+        .from('busbarproduct')
         .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
         .eq('slug', slug)
         .maybeSingle();
