@@ -74,7 +74,7 @@ title: Duplex Steel 32760 Sheets
                 showDebugMessage(`Fetching data for product: ${slug}`);
 
                 const { data, error } = await supabase
-                    .from('product_pages')
+                    .from('busbarproduct')
                     .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
                     .eq('slug', slug)
                     .maybeSingle();
