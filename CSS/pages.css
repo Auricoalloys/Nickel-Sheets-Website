@@ -1012,6 +1012,7 @@
     text-align: center;
   }
 
+
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -1075,4 +1076,8 @@
       transform: translateY(-100vh) rotate(360deg);
       opacity: 0;
     }
+  }
+
+  .trademark-note{
+    text-align: center;
   }
