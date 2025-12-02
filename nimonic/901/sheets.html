@@ -95,7 +95,7 @@ title: Nimonic 901 Sheets
       showDebugMessage('Supabase client created successfully');
       
       // Test a simple query
-      const { error } = await supabase.from('busbarproduct').select('*').limit(1);
+      const { error } = await supabase.from('sheets_plates').select('*').limit(1);
       
       if (error) throw error;
       showDebugMessage('Database connection successful!');
@@ -176,7 +176,7 @@ title: Nimonic 901 Sheets
         showDebugMessage(`Fetching data for product: ${slug}`);
 
         const { data, error } = await supabase
-          .from('busbarproduct')
+          .from('sheets_plates')
           .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
           .eq('slug', slug)
           .maybeSingle();
