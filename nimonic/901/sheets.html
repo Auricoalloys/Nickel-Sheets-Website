@@ -95,7 +95,7 @@ title: Nimonic 901 Sheets
       showDebugMessage('Supabase client created successfully');
       
       // Test a simple query
-      const { error } = await supabase.from('busbarproduct').select('*').limit(1);
+      const { error } = await supabase.from('sheets_plates').select('*').limit(1);
       
       if (error) throw error;
       showDebugMessage('Database connection successful!');
@@ -176,8 +176,8 @@ title: Nimonic 901 Sheets
         showDebugMessage(`Fetching data for product: ${slug}`);
 
         const { data, error } = await supabase
-          .from('busbarproduct')
-          .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
+          .from('sheets_plates')
+          .select('intro')
           .eq('slug', slug)
           .maybeSingle();
 
@@ -191,22 +191,8 @@ title: Nimonic 901 Sheets
           throw new Error('Product found but introduction content is empty');
         }
 
-        document.getElementById('flat-banner').innerHTML = data["flat-banner"];
-        document.getElementById('sidebar').innerHTML = data["sidebar"];
-        document.getElementById('title').innerHTML = data["title"];
-        document.getElementById('toc').innerHTML = data["toc"];
-        document.getElementById('introduction').innerHTML = data["introduction"];
-        document.getElementById('ss-content').innerHTML = data["ss-content"];
-        document.getElementById('specification').innerHTML = data["specification"];
-        document.getElementById('imageSection').innerHTML = data["imageSection"];
-        document.getElementById('equivalent-grades').innerHTML = data["equivalent-grades"];
-        document.getElementById('product-grade').innerHTML = data["product-grade"];
-        document.getElementById('chemical').innerHTML = data["chemical"];
-        document.getElementById('mechanical-properties').innerHTML = data["mechanical-properties"];
-        document.getElementById('uses').innerHTML = data["uses"];
-        document.getElementById('search').innerHTML = data["search"];
-        document.getElementById('countries').innerHTML = data["countries"];
-        document.getElementById('city').innerHTML = data["city"];
+        document.getElementById('intro').innerHTML = data["intro"];
+       
         showDebugMessage('Content loaded successfully!');
 
         hideLoadingOverlay();
