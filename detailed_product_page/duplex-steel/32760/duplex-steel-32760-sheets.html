@@ -8,12 +8,10 @@ title: Duplex Steel 32760 Sheets
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Titanium Grade 9 Round bar Supplier, ASTM B348 UNS R52250 Round bar Supplier, Titanium Grade 9 Round bar Supplier & Stockholder, 3.7225 Round bar Supplier, 3.7225 Round bar Manufacturer, 3.7225 Round bar Stockholder ">
-    <meta name="keywords"
-        content="Titanium Grade 9 Round bar Supplier, ASTM B348 UNS R52250 Round bar Supplier, Titanium Grade 9 Round bar Supplier, ASTM B348 UNS R52250 Round bar Supplier, Titanium Grade 9 Round bar Stockholder, ASTM B348 UNS R52250 Round bar Stockholder, ASTM B348 UNS R52250 Round bar Stockholder, ASTM B348 UNS R52250 Round bar Manufacturer, ASTM B348 UNS R52250 Round bar Manufacturer, Titanium Grade 9 Round bar Manufacturer, Titanium Grade 9 Round bar Manufacturer, 3.7225 Round bars Supplier, 3.7225 Round bars Supplier, 3.7225 Round bar Supplier">
+    <title>Super Duplex 32760 Sheets | Enhanced Corrosion Resistance for Extreme Offshore & Chemical Service</title>
+    <meta name="description" content="Aurico Alloys LLP Super Duplex 32760 Sheets (UNS S32760, F55, 1.4501, ASTM A240) certified with tungsten and copper for superior chloride and stress corrosion cracking resistance. Ideal for offshore, chemical, marine, pharma, and power generation." />
+    <meta name="keywords" content="Super Duplex 32760, UNS S32760, F55, ASTM A240, Super Duplex Stainless Steel, Aurico Alloys LLP, Offshore, Chemical, Marine, Pharma, Power Generation" />
 
-    <title>Titanium Grade 9 | UNS R52250 | 3.7225 Round bar</title>
 
     <!-- Favicon -->
     <link rel="icon" type="png" href="/aurico-favicon.png">
@@ -71,12 +69,12 @@ title: Duplex Steel 32760 Sheets
             showDebugMessage('Starting to load product data...');
 
             try {
-                const slug = new URLSearchParams(window.location.search).get('product') || "titanium-grade-9-round-bar";
+                const slug = new URLSearchParams(window.location.search).get('product') || "Super-Duplex-32760-Sheets";
 
                 showDebugMessage(`Fetching data for product: ${slug}`);
 
                 const { data, error } = await supabase
-                    .from('product_pages')
+                    .from('busbarproduct')
                     .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
                     .eq('slug', slug)
                     .maybeSingle();

@@ -8,9 +8,9 @@ title: Stellite Sheets
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Duplex 32760 Round Bars | Exceptional Strength & Corrosion Resistance for Chemical, Oil & Gas, Marine & Power</title> 
-    <meta name="description" content="Learn about Aurico Alloys LLP Super Duplex 32760 Round Bars with UNS S32760 and ASTM A182 standards. Ideal for chemical, oil & gas, marine, pharma, and power industries. Detailed specs, mechanical properties, applications, and benefits." /> 
-    <meta name="keywords" content="Super Duplex 32760 Round Bars, UNS S32760, ASTM A182, Duplex Steel, Corrosion Resistant Bars, Aurico Alloys LLP, Chemical Industry, Marine, Oil & Gas, Pharma, Power Generation" /> 
+    <title>Stellite Sheets | Superlative Wear, Corrosion & Heat-Resistant Cobalt Alloy</title>
+    <meta name="description" content="Aurico Alloys LLP Stellite Sheets (UNS R30545, ASTM F1058) known for exceptional wear resistance, corrosion resistance and high temperature performance across chemical, oil & gas, marine, pharma and power industries." />
+    <meta name="keywords" content="Stellite Sheets, UNS R30545, ASTM F1058, Cobalt Alloy, Aurico Alloys LLP, Wear Resistant, Corrosion Resistant, High Strength, Chemical Industry, Oil & Gas, Marine, Pharma, Power" />
 
     <!-- Favicon -->
     <link rel="icon" type="png" href="/aurico-favicon.png">
@@ -72,7 +72,7 @@ title: Stellite Sheets
       showDebugMessage(`Fetching data for product: ${slug}`);
 
       const { data, error } = await supabase
-        .from('product_pages')
+        .from('busbarproduct')
         .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
         .eq('slug', slug)
         .maybeSingle();
