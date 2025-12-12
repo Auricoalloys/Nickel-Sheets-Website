@@ -10,9 +10,9 @@ keywords: Alloy 59, Nickel Alloy, Plates, Corrosion Resistance, High Temperature
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Alloy 59 Plates | Nickel-Chromium-Molybdenum Plates for the Harshest Chemical, Marine & Power Environments</title>
-  <meta name="description" content="Alloy 59 plates (UNS N06059, 2.4605) from Aurico Alloys LLP deliver outstanding resistance to mixed acids, chlorides and FGD media with high strength and weldability. See UNS N06059, ASTM B575 style data, composition, mechanical properties, and why chemical, oil & gas, marine, pharma and power plants upgrade from 904L, Alloy 20 and C276 to Alloy 59 plates." />
-  <meta name="keywords" content="Alloy 59 plates, UNS N06059 plate, 2.4605 plate, ASTM B575 Alloy 59, nickel chromium molybdenum plate, Hastelloy 59 plate, Haynes 59 plate, Nicrofer 5923hMo, corrosion resistant plate, flue gas desulfurization plate, FGD absorber plate, chemical reactor plate, Alloy 59 plates supplier, Alloy 59 plates stockist, Alloy 59 plates exporter in India, Nimonic 75 sheets supplier, Nimonic 75 stockist, Nimonic 75 exporter, UNS N06075 sheet price, BS HR 203 Nimonic 75 sheet, Nimonic 75 sheet cut to size, Nimonic 75 thin gauge sheet, Nimonic 75 shim stock, Nimonic 75 ready stock India, Nimonic 75 plate immediate delivery, Global Nimonic 75 supplier" />
+    <title>Alloy 59 Plates | Nickel-Chromium-Molybdenum Plates for the Harshest Chemical, Marine & Power Environments</title>
+    <meta name="description" content="Alloy 59 plates (UNS N06059, 2.4605) from Aurico Alloys LLP deliver outstanding resistance to mixed acids, chlorides and FGD media with high strength and weldability. See UNS N06059, ASTM B575 style data, composition, mechanical properties, and why chemical, oil & gas, marine, pharma and power plants upgrade from 904L, Alloy 20 and C276 to Alloy 59 plates." />
+    <meta name="keywords" content="Alloy 59 plates, UNS N06059 plate, 2.4605 plate, ASTM B575 Alloy 59, nickel chromium molybdenum plate, Hastelloy 59 plate, Haynes 59 plate, Nicrofer 5923hMo, corrosion resistant plate, flue gas desulfurization plate, FGD absorber plate, chemical reactor plate, Alloy 59 plates supplier, Alloy 59 plates stockist, Alloy 59 plates exporter in India, Nimonic 75 sheets supplier, Nimonic 75 stockist, Nimonic 75 exporter, UNS N06075 sheet price, BS HR 203 Nimonic 75 sheet, Nimonic 75 sheet cut to size, Nimonic 75 thin gauge sheet, Nimonic 75 shim stock, Nimonic 75 ready stock India, Nimonic 75 plate immediate delivery, Global Nimonic 75 supplier" />
 
     <!-- Favicon -->
     <link rel="icon" type="png" href="/aurico-favicon.png">
@@ -75,7 +75,7 @@ keywords: Alloy 59, Nickel Alloy, Plates, Corrosion Resistance, High Temperature
                 showDebugMessage(`Fetching data for product: ${slug}`);
 
                 const { data, error } = await supabase
-                    .from('product_pages')
+                    .from('busbarproduct')
                     .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
                     .eq('slug', slug)
                     .maybeSingle();
