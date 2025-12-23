@@ -1,17 +1,16 @@
 ---
 permalink: /duplex-steel/2205/plates/
-title: /duplex-steel/2205/plates/
+title: Duplex Steel 2205 Plates
 ---
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Titanium Grade 9 Round bar Supplier, ASTM B348 UNS R52250 Round bar Supplier, Titanium Grade 9 Round bar Supplier & Stockholder, 3.7225 Round bar Supplier, 3.7225 Round bar Manufacturer, 3.7225 Round bar Stockholder ">
-    <meta name="keywords" content="Titanium Grade 9 Round bar Supplier, ASTM B348 UNS R52250 Round bar Supplier, Titanium Grade 9 Round bar Supplier, ASTM B348 UNS R52250 Round bar Supplier, Titanium Grade 9 Round bar Stockholder, ASTM B348 UNS R52250 Round bar Stockholder, ASTM B348 UNS R52250 Round bar Stockholder, ASTM B348 UNS R52250 Round bar Manufacturer, ASTM B348 UNS R52250 Round bar Manufacturer, Titanium Grade 9 Round bar Manufacturer, Titanium Grade 9 Round bar Manufacturer, 3.7225 Round bars Supplier, 3.7225 Round bars Supplier, 3.7225 Round bar Supplier">
-    
-    <title>Titanium Grade 9 | UNS R52250 | 3.7225 Round bar</title>
-    
+    <title>Duplex 2205 & 31803 Plates | UNS S32205/S31803 Strength & Corrosion Advantage for Process, Marine & Power</title>
+    <meta name="description" content="Duplex 2205 & 31803 plates (UNS S32205/S31803, 1.4462, ASTM A240) deliver double the yield strength of 316L with far better chloride pitting, crevice and SCC resistance for chemical, oil & gas, marine, pharma and power plants. See duplex 2205 / 31803 chemical composition, mechanical properties, ASTM/UNS data, and why engineers upgrade from 304L/316L to duplex plates." />
+    <meta name="keywords" content="Duplex 2205 Plates, Duplex 31803 Plates, UNS S32205 plate, UNS S31803 plate, WNR 1.4462 plate, ASTM A240 duplex 2205, SAF 2205 plate, duplex stainless plate, chloride SCC resistant plate, seawater duplex plate, Duplex 2205 & 31803 Plates supplier, Duplex 2205 & 31803 Plates stockist, Duplex 2205 & 31803 Plates exporter in India to abroad" />
+
     <!-- Favicon -->
     <link rel="icon" type="png" href="/aurico-favicon.png">
     
@@ -67,12 +66,12 @@ title: /duplex-steel/2205/plates/
     showDebugMessage('Starting to load product data...');
 
     try {
-      const slug = new URLSearchParams(window.location.search).get('product') || "titanium-grade-9-round-bar";
+      const slug = new URLSearchParams(window.location.search).get('product') || "Duplex-2205-&-31803-Plates";
 
       showDebugMessage(`Fetching data for product: ${slug}`);
 
       const { data, error } = await supabase
-        .from('product_pages')
+        .from('busbarproduct')
         .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
         .eq('slug', slug)
         .maybeSingle();
