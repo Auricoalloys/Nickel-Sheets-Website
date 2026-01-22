@@ -4,3 +4,40 @@ title: Hastelloy Coil - Nickel Alloy
 description: Explore our Hastelloy coils, known for their exceptional resistance to corrosion and high temperatures. Idea for demanding applications in chemical processing, aerospace, and more.
 keywords: Hastelloy, Nickel Alloy, Coil, Corrosion Resistance, High Temperature, Chemical Processing, Aerospace
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="header__container">
+  </div>
+
+  <div id="footer-container">
+  </div>
+
+</body>
+<script>
+    // JavaScript to fetch and insert header (if you haven't already)
+    fetch('/html/header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header__container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load header:', error);
+      });
+
+    // JavaScript to fetch and insert footer
+    fetch('/html/footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load footer:', error);
+      });
+  </script>
+</html>
