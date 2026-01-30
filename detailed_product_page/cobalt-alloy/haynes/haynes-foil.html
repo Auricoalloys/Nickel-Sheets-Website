@@ -5,23 +5,54 @@ title: Haynes Foils
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Duplex 32760 Round Bars | Exceptional Strength & Corrosion Resistance for Chemical, Oil & Gas, Marine & Power</title> 
-    <meta name="description" content="Learn about Aurico Alloys LLP Super Duplex 32760 Round Bars with UNS S32760 and ASTM A182 standards. Ideal for chemical, oil & gas, marine, pharma, and power industries. Detailed specs, mechanical properties, applications, and benefits." /> 
-    <meta name="keywords" content="Super Duplex 32760 Round Bars, UNS S32760, ASTM A182, Duplex Steel, Corrosion Resistant Bars, Aurico Alloys LLP, Chemical Industry, Marine, Oil & Gas, Pharma, Power Generation" /> 
 
-    <!-- Favicon -->
-    <link rel="icon" type="png" href="/aurico-favicon.png">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/CSS/pages.css">
-    <link rel="stylesheet" href="/CSS/footer.css">
-    <link rel="stylesheet" href="/CSS/header.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haynes® UNS N10242 ASTM B572 Foil | Aerospace Seal Rings & Gas Turbine Precision Components</title>
+  <meta name="description"
+    content="Aurico Alloys LLP - Haynes UNS N10242 ASTM B572 foil stockist India to abroad. Low thermal expansion Haynes 242 foil supplier Mumbai for aerospace seal rings, gas turbine duct segments, HF acid chemical reactors. Thin gauge 0.025-0.1mm Haynes 242 foil with MTC EN 10204 3.1 for global defense MRO." />
+  <meta name="keywords"
+    content="Haynes 242 foil supplier Mumbai aerospace seal rings, UNS N10242 age-hardenable alloy foil gas turbine duct segments, ASTM B572 Haynes 242 stockist high-strength fasteners, low thermal expansion nickel alloy foil gas turbine components, Haynes 242 vs Hastelloy S containment ring strength, Haynes 242 foil hydrofluoric HF acid vapor processes, UNS N10242 foil fluoride salt chemical reactors, Haynes 242 shim stock chemical pump rocket nozzle seals, thin gauge Haynes 242 foil 0.025mm honeycomb structures, verified Haynes 242 stockholders Maharashtra MTC EN 10204 3.1, custom slit UNS N10242 foil aerospace stamping, high fatigue strength Haynes 242 foil rocket nozzle pumps, Haynes 242 UNS N10242 exporter India global defense" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="png" href="/aurico-favicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/CSS/pages.css">
+  <link rel="stylesheet" href="/CSS/footer.css">
+  <link rel="stylesheet" href="/CSS/header.css">
+  <!-- Schema.org Product Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Haynes® UNS N10242 ASTM B572 Foil",
+    "brand": {"@type": "Brand", "name": "Haynes International"},
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Aurico Alloys LLP",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mumbai",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "material": "Age-hardenable Nickel-Molybdenum-Chromium",
+    "description": "Haynes 242 UNS N10242 foil for aerospace seal rings, gas turbine containment, chemical HF processing.",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "INR",
+      "seller": {"@type": "Organization", "name": "Aurico Alloys LLP"}
+    }
+  }
+  </script>
 
 </head>
+
 <body>
   <div id="header__container">
   </div>
@@ -63,66 +94,66 @@ title: Haynes Foils
       });
 
     // 2. Load Product Data
-  async function loadProductData() {
-    showDebugMessage('Starting to load product data...');
+    async function loadProductData() {
+      showDebugMessage('Starting to load product data...');
 
-    try {
-      const slug = new URLSearchParams(window.location.search).get('product') || "Haynes-Foil";
+      try {
+        const slug = new URLSearchParams(window.location.search).get('product') || "Haynes-Foil";
 
-      showDebugMessage(`Fetching data for product: ${slug}`);
+        showDebugMessage(`Fetching data for product: ${slug}`);
 
-      const { data, error } = await supabase
-        .from('product_pages')
-        .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
-        .eq('slug', slug)
-        .maybeSingle();
+        const { data, error } = await supabase
+          .from('busbarproduct')
+          .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
+          .eq('slug', slug)
+          .maybeSingle();
 
-      if (error) throw error;
+        if (error) throw error;
 
-      if (!data) {
-        throw new Error('No product found with this slug');
+        if (!data) {
+          throw new Error('No product found with this slug');
+        }
+
+        if (!data["introduction"]) {
+          throw new Error('Product found but introduction content is empty');
+        }
+
+        document.getElementById('flat-banner').innerHTML = data["flat-banner"];
+        document.getElementById('sidebar').innerHTML = data["sidebar"];
+        document.getElementById('title').innerHTML = data["title"];
+        document.getElementById('toc').innerHTML = data["toc"];
+        document.getElementById('introduction').innerHTML = data["introduction"];
+        document.getElementById('ss-content').innerHTML = data["ss-content"];
+        document.getElementById('specification').innerHTML = data["specification"];
+        document.getElementById('imageSection').innerHTML = data["imageSection"];
+        document.getElementById('equivalent-grades').innerHTML = data["equivalent-grades"];
+        document.getElementById('product-grade').innerHTML = data["product-grade"];
+        document.getElementById('chemical').innerHTML = data["chemical"];
+        document.getElementById('mechanical-properties').innerHTML = data["mechanical-properties"];
+        document.getElementById('uses').innerHTML = data["uses"];
+        document.getElementById('search').innerHTML = data["search"];
+        document.getElementById('countries').innerHTML = data["countries"];
+        document.getElementById('city').innerHTML = data["city"];
+        showDebugMessage('Content loaded successfully!');
+
+        hideLoadingOverlay();
+
+      } catch (error) {
+        showDebugMessage(`Content load failed: ${error.message}`, true);
+
+        hideLoadingOverlay();
       }
-
-      if (!data["introduction"]) {
-        throw new Error('Product found but introduction content is empty');
+    }
+    // Main execution
+    document.addEventListener('DOMContentLoaded', async () => {
+      const isConnected = await testSupabaseConnection();
+      if (isConnected) {
+        await loadProductData();
+      } else {
+        // Hide loading overlay if connection fails
+        hideLoadingOverlay();
       }
-
-      document.getElementById('flat-banner').innerHTML = data["flat-banner"];
-      document.getElementById('sidebar').innerHTML = data["sidebar"];
-      document.getElementById('title').innerHTML = data["title"];
-      document.getElementById('toc').innerHTML = data["toc"];
-      document.getElementById('introduction').innerHTML = data["introduction"];
-      document.getElementById('ss-content').innerHTML = data["ss-content"];
-      document.getElementById('specification').innerHTML = data["specification"];
-      document.getElementById('imageSection').innerHTML = data["imageSection"];
-      document.getElementById('equivalent-grades').innerHTML = data["equivalent-grades"];
-      document.getElementById('product-grade').innerHTML = data["product-grade"];
-      document.getElementById('chemical').innerHTML = data["chemical"];
-      document.getElementById('mechanical-properties').innerHTML = data["mechanical-properties"];
-      document.getElementById('uses').innerHTML = data["uses"];
-      document.getElementById('search').innerHTML = data["search"];
-      document.getElementById('countries').innerHTML = data["countries"];
-      document.getElementById('city').innerHTML = data["city"];
-      showDebugMessage('Content loaded successfully!');
-
-      hideLoadingOverlay();
-
-    } catch (error) {
-      showDebugMessage(`Content load failed: ${error.message}`, true);
-
-      hideLoadingOverlay();
-    }
-  }
-  // Main execution
-  document.addEventListener('DOMContentLoaded', async () => {
-    const isConnected = await testSupabaseConnection();
-    if (isConnected) {
-      await loadProductData();
-    } else {
-      // Hide loading overlay if connection fails
-      hideLoadingOverlay();
-    }
-  });
+    });
   </script>
   <script type="module" src="/javascript/floating-form.js"></script>
   <script src="/javascript/detailed.js"></script>
@@ -130,4 +161,5 @@ title: Haynes Foils
   <script src="/javascript/detailed_database_page.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>  
+
+</html>
