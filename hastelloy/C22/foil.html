@@ -1,0 +1,122 @@
+---
+permalink: /hastelloy-C22-foil-supplier-exporter/
+title: Hastelloy C22 foil
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hastelloy C22 Foil UNS N06022 ASTM B575 | Superior Corrosion Resistance for Chemical, Oil & Gas, Marine & Pharma</title>
+    <meta name="description" content="Explore Hastelloy C22 foil (UNS N06022, ASTM B575, DIN 2.4602) for exceptional resistance to acids, chlorides, and mixed corrosives in chemical processing, oil & gas, marine, pharma, and power. Specs, properties, applications, and why it outperforms C-276 and 904L.">
+    <meta name="keywords" content="Hastelloy C22 foil, UNS N06022 foil, ASTM B575 Hastelloy C22, Hastelloy C22 sheet strip foil supplier, DIN 2.4602 Hastelloy C22, Hastelloy C22 chemical processing, Hastelloy C22 oil gas marine pharma power, Hastelloy C22 vs C276 Alloy 59, corrosion resistant nickel alloy foil, Hastelloy C22 specifications mechanical properties">
+</head>
+<body>
+  <div id="header__container">
+  </div>
+
+  <div id="detailed_page"></div>
+  <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
+
+  <div id="footer-container">
+  </div>
+
+  <script>
+    // JavaScript to fetch and insert header (if you haven't already)
+    fetch('/html/header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header__container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load header:', error);
+      });
+
+    // JavaScript to fetch and insert footer
+    fetch('/html/footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load footer:', error);
+      });
+
+    fetch('/html/product_detailed_page.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('detailed_page').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load detailed page:', error);
+      });
+
+    // 2. Load Product Data
+  async function loadProductData() {
+    showDebugMessage('Starting to load product data...');
+
+    try {
+      const slug = new URLSearchParams(window.location.search).get('product') || "Hastelloy-C22-Foil";
+
+      showDebugMessage(`Fetching data for product: ${slug}`);
+
+      const { data, error } = await supabase
+        .from('busbarproduct')
+        .select('flat-banner,sidebar,introduction,ss-content,specification,imageSection,toc,title,equivalent-grades,product-grade,chemical,mechanical-properties,uses,search,countries,city')
+        .eq('slug', slug)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (!data) {
+        throw new Error('No product found with this slug');
+      }
+
+      if (!data["introduction"]) {
+        throw new Error('Product found but introduction content is empty');
+      }
+
+      document.getElementById('flat-banner').innerHTML = data["flat-banner"];
+      document.getElementById('sidebar').innerHTML = data["sidebar"];
+      document.getElementById('title').innerHTML = data["title"];
+      document.getElementById('toc').innerHTML = data["toc"];
+      document.getElementById('introduction').innerHTML = data["introduction"];
+      document.getElementById('ss-content').innerHTML = data["ss-content"];
+      document.getElementById('specification').innerHTML = data["specification"];
+      document.getElementById('imageSection').innerHTML = data["imageSection"];
+      document.getElementById('equivalent-grades').innerHTML = data["equivalent-grades"];
+      document.getElementById('product-grade').innerHTML = data["product-grade"];
+      document.getElementById('chemical').innerHTML = data["chemical"];
+      document.getElementById('mechanical-properties').innerHTML = data["mechanical-properties"];
+      document.getElementById('uses').innerHTML = data["uses"];
+      document.getElementById('search').innerHTML = data["search"];
+      document.getElementById('countries').innerHTML = data["countries"];
+      document.getElementById('city').innerHTML = data["city"];
+      showDebugMessage('Content loaded successfully!');
+
+      hideLoadingOverlay();
+
+    } catch (error) {
+      showDebugMessage(`Content load failed: ${error.message}`, true);
+
+      hideLoadingOverlay();
+    }
+  }
+  // Main execution
+  document.addEventListener('DOMContentLoaded', async () => {
+    const isConnected = await testSupabaseConnection();
+    if (isConnected) {
+      await loadProductData();
+    } else {
+      // Hide loading overlay if connection fails
+      hideLoadingOverlay();
+    }
+  });
+  </script>
+  <script type="module" src="/javascript/floating-form.js"></script>
+  <script src="/javascript/detailed.js"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="/javascript/detailed_database_page.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>  
