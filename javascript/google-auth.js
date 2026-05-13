@@ -1,7 +1,7 @@
 (() => {
   const supabaseUrl = 'https://nnxiioeqroxutwwcqnpg.supabase.co';
   const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ueGlpb2Vxcm94dXR3d2NxbnBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NTc0NTMsImV4cCI6MjA2NDQzMzQ1M30.msCK7AQz4zmqauVSlWa6hpDWLGCkDRse7D4kxDPCVaw';
-  const googleClientId = '484630972579-grdajldvjaviievdsej8svl87hge2fj.apps.googleusercontent.com';
+  const googleClientId = '484630972579-grdajldvjiaviievdsej8svl87hge2fj.apps.googleusercontent.com';
 
   const googleWaitTimeoutMs = 8000;
   let cachedNonce = null;
