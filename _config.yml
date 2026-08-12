@@ -1,2 +1,21 @@
-
 permalink: pretty
+
+# Site identity, available to templates and used when generating the sitemap.
+title: Aurico Alloys LLP
+url: https://www.nickelsheets.com
+description: >-
+  Global supplier and stockist of pure nickel strips, nickel alloys, titanium,
+  duplex and stainless steel, and cobalt alloys in sheet, plate, bar, coil,
+  foil, wire, pipe, tube and fitting form.
+
+# Keep working files out of the published site. Note that html/ is NOT excluded:
+# header.html, footer.html and product_detailed_page.html are fetched at runtime
+# by product-page-runtime.js, so they have to be served.
+exclude:
+  - README.md
+  - package-lock.json
+  - node_modules
+  - .vscode
+  - desktop.ini
+  - "**/desktop.ini"
+  - docs/product-page-migration.md
