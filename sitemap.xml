@@ -141,6 +141,11 @@ sitemap: false
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/aluminium/alsi10mg/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/Aluminum-Busbar-for-Prismatic-Cells/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.8</priority>
@@ -204,6 +209,11 @@ sitemap: false
     <loc>https://www.nickelsheets.com/cobalt-alloys/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/cocrmo/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/Copper-Aluminum-Sandwich-Busbar/</loc>
@@ -1351,6 +1361,11 @@ sitemap: false
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/inconel/625/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/inconel/625/round-bar/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.6</priority>
@@ -1551,6 +1566,11 @@ sitemap: false
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/inconel/718/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/inconel/718/round-bar/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.6</priority>
@@ -1627,6 +1647,11 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/plates/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/inconel/powder/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.7</priority>
   </url>
@@ -3216,6 +3241,16 @@ sitemap: false
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/stainless/17-4-ph/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/stainless/316l/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/stainless/904L/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.7</priority>
@@ -3247,6 +3282,11 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/AM-350/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/stainless/powder/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.7</priority>
   </url>
@@ -3486,6 +3526,11 @@ sitemap: false
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/titanium/grade-23/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/titanium/grade-23/round-bar/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.6</priority>
@@ -3567,6 +3612,11 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-5/foil/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/titanium/grade-5/powder/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.6</priority>
   </url>
@@ -3654,6 +3704,26 @@ sitemap: false
     <loc>https://www.nickelsheets.com/titanium/grade-9/sheets/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/titanium/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/tool-steel/h13/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/tool-steel/maraging/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/tool-steel/powder/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/waspalloy/</loc>
