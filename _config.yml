@@ -19,3 +19,7 @@ exclude:
   - desktop.ini
   - "**/desktop.ini"
   - docs/product-page-migration.md
+  # local build toolchain, not site content
+  - Gemfile
+  - Gemfile.lock
+  - vendor

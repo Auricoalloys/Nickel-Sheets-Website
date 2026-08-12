@@ -1,0 +1,7 @@
+# Local Jekyll build toolchain and output. GitHub Pages builds the site itself,
+# so none of this belongs in the repository.
+vendor/
+_site/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
