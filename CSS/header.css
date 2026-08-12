@@ -107,13 +107,104 @@
     border-top: 1px solid #fff;
 }
 
-.contact-item:hover {
+.contact-item:hover,
+.contact-item:focus-visible {
     width: 150px;
     justify-content: start;
     padding-left: 15px;
 }
 
-.contact-item:hover span {
+.contact-item:hover span,
+.contact-item:focus-visible span {
     display: inline-block;
     margin-left: 10px;
+}
+
+/* The bar animates via `pulse`, which lives in style.css - a stylesheet most
+   pages do not load. Declared here so the rule resolves wherever it renders. */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Accessibility ---------------------------------------------------------- */
+
+/* Lets keyboard users jump the 40-item nav; visible only once focused. */
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    z-index: 10000;
+    padding: 0.75rem 1.25rem;
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 6px 0;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+/* Bootstrap's reset removes the UA outline; without a replacement there is no
+   keyboard focus indicator anywhere on the site. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Quote CTA in the navbar */
+.navbar .nav-link.nav-cta {
+    background: var(--secondary-color);
+    color: #fff !important;
+    border-radius: 5px;
+    padding: 0.45rem 1.1rem;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+.navbar .nav-link.nav-cta:hover,
+.navbar .nav-link.nav-cta:focus {
+    background: #cf6f18;
+    color: #fff !important;
+}
+
+@media (max-width: 991.98px) {
+    .navbar .nav-link.nav-cta {
+        display: inline-block;
+        margin: 0.5rem 0 0;
+    }
+
+    /* 60px-wide icons are below the 44px comfortable-tap guidance once the
+       vertical padding is counted; give them room on small screens. */
+    .contact-item {
+        min-height: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .floating-contact-bar {
+        animation: none;
+    }
+
+    .contact-item,
+    .navbar .nav-link,
+    .navbar-brand span {
+        transition: none;
+    }
 }
