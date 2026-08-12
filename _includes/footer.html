@@ -1,9 +1,7 @@
 <!--
-  Injected with innerHTML into <div id="footer-container">, so this must be a
-  fragment. All hrefs are root-relative: this footer renders on pages served at
-  nested pretty URLs, where "privacy/" resolved to /titanium/grade-1/privacy/.
-  A <script> tag here would never execute, so script.js is loaded by the host
-  page instead.
+  Shared site footer, rendered into every page at build time. All hrefs are
+  root-relative because this renders on pages served at nested pretty URLs,
+  where a relative "privacy/" resolved to /titanium/grade-1/privacy/.
 -->
 <footer>
   <div class="container">

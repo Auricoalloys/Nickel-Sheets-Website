@@ -327,6 +327,62 @@ title: Metal Powders for Additive Manufacturing
         </div>
       </section>
 
+      <section class="py-4" id="size-fractions">
+        <h2>Standard Particle Size Fractions</h2>
+        <p>A sieve fraction is defined by the process it feeds, not by the alloy in it. These are the standard cuts
+          and what each is used for. Distributions outside them, or tightened within one, are classified to
+          specification.</p>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <caption>Standard particle size fractions and their applications</caption>
+            <thead>
+              <tr>
+                <th scope="col">Size fraction</th>
+                <th scope="col">Typical applications</th>
+                <th scope="col">Why this cut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>0-15 µm</strong></td><td>Binder jetting, metal injection moulding, research and specialty work</td><td>Below the practical limit for powder-bed spreading. Very high surface area, so oxygen pickup and handling matter.</td></tr>
+              <tr><td><strong>15-45 µm</strong></td><td>Laser powder-bed fusion (LPBF / SLM / DMLS)</td><td>The default AM cut. Fine enough for 20-60 µm layers, coarse enough to spread and flow.</td></tr>
+              <tr><td><strong>15-53 µm</strong></td><td>Additive manufacturing and metal injection moulding</td><td>A slightly wider cut, often used where powder is shared between LPBF and MIM feedstock.</td></tr>
+              <tr><td><strong>20-63 µm</strong></td><td>General AM, and the usual cut for aluminium</td><td>Coarser bottom end suits light alloys, whose fine particles are cohesive and flow poorly.</td></tr>
+              <tr><td><strong>45-106 µm</strong></td><td>Directed energy deposition, electron beam melting, laser cladding</td><td>Blown or beam-melted powder needs mass and flowability more than fineness. EBM also needs coarser powder to avoid charge-driven smoke.</td></tr>
+              <tr><td><strong>53-150 µm</strong></td><td>Thermal spray, HVOF and industrial metallurgy</td><td>Coarse fraction for coating processes, where deposition efficiency governs.</td></tr>
+              <tr><td><strong>Custom</strong></td><td>Application-specific</td><td>Cuts outside the standard fractions, or a tightened distribution within one, sieved and classified to your specification.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="py-4" id="selection">
+        <h2>Powder Selection by Manufacturing Process</h2>
+        <p>Not every alloy runs in every process. Aluminium is difficult to blow in directed energy deposition and
+          poor in metal injection moulding; maraging steel is not a thermal spray material; electron beam melting
+          needs a conductive powder and a coarser cut than some grades are made in. Where a route is marked
+          <em>limited</em> it is done, but it is not the normal way that alloy is processed.</p>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <caption>Which processes each powder grade is run in</caption>
+            <thead>
+              <tr><th scope="col">Powder</th><th scope="col">LPBF</th><th scope="col">EBM</th><th scope="col">DED / cladding</th><th scope="col">MIM</th><th scope="col">Binder jetting</th><th scope="col">Thermal spray</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><a href="#inconel-718">Inconel 718</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row"><a href="#inconel-625">Inconel 625</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row"><a href="#316l-stainless">316L</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row"><a href="#17-4-ph">17-4 PH</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td></tr>
+              <tr><th scope="row"><a href="#maraging-steel">Maraging 18Ni300</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&mdash;</span><span class="visually-hidden">Not applicable</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td><td>Limited</td><td><span aria-hidden="true">&mdash;</span><span class="visually-hidden">Not applicable</span></td></tr>
+              <tr><th scope="row"><a href="#h13-tool-steel">H13</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&mdash;</span><span class="visually-hidden">Not applicable</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row"><a href="#cocrmo">CoCrMo</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td></tr>
+              <tr><th scope="row"><a href="#titanium-grade-5">Ti-6Al-4V Grade 5</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td><td>Limited</td></tr>
+              <tr><th scope="row"><a href="#titanium-grade-23">Ti-6Al-4V ELI Grade 23</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td>Limited</td><td><span aria-hidden="true">&mdash;</span><span class="visually-hidden">Not applicable</span></td></tr>
+              <tr><th scope="row"><a href="#alsi10mg">AlSi10Mg</a></th><td><span aria-hidden="true">&#10003;</span><span class="visually-hidden">Yes</span></td><td><span aria-hidden="true">&mdash;</span><span class="visually-hidden">Not applicable</span></td><td>Limited</td><td>Limited</td><td>Limited</td><td>Limited</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section class="py-4" id="inconel-718">
         <h2>Inconel 718 Powder</h2>
         <p>The most widely printed superalloy in the world. Its sluggish ageing response means a printed part can be stress relieved, HIPed and aged without strain-age cracking.</p>
@@ -338,7 +394,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>N07718</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>2.4668</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F3055 (PBF), AMS 5662 / 5663 for the wrought equivalent</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF), 45-106 µm (EBM and DED)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>15-45 µm &middot; 15-53 µm &middot; 45-106 µm &middot; 53-150 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF), 45-106 µm (EBM and DED)</td></tr>
               <tr><th scope="row">Production route</th><td>Vacuum induction melted, argon gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>Nickel 50-55% with 17-21% chromium, 4.75-5.5% niobium and 2.8-3.3% molybdenum, strengthened by gamma-double-prime on ageing.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Turbine wheels, impellers, combustion hardware, downhole tools and high-load aerospace brackets.</td></tr>
@@ -360,7 +417,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>N06625</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>2.4856</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F3056 (PBF), AMS 5599 for the wrought equivalent</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF), 45-106 µm (DED and cladding)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>15-45 µm &middot; 15-53 µm &middot; 45-106 µm &middot; 53-150 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF), 45-106 µm (DED and cladding)</td></tr>
               <tr><th scope="row">Production route</th><td>Vacuum induction melted, argon gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>Nickel 58% minimum with 20-23% chromium, 8-10% molybdenum and 3.15-4.15% niobium. Solid-solution strengthened, so no ageing treatment is needed.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Seawater and subsea hardware, chemical process components, exhaust and bellows parts, and laser cladding of valve and shaft surfaces.</td></tr>
@@ -382,7 +440,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>S31603</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>1.4404</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F3184 (PBF), ASTM A276 for the wrought equivalent</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF), 45-106 µm (DED)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>0-15 µm &middot; 15-45 µm &middot; 15-53 µm &middot; 45-106 µm &middot; 53-150 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF), 45-106 µm (DED)</td></tr>
               <tr><th scope="row">Production route</th><td>Argon or nitrogen gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>16-18% chromium, 10-14% nickel and 2-3% molybdenum with carbon held to 0.03% maximum, which is what the L designates.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Medical and surgical instruments, food and pharmaceutical process parts, marine fittings, and heat exchangers.</td></tr>
@@ -404,7 +463,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>S17400</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>1.4542</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F3301 (PBF post-processing), AMS 5643 for the wrought equivalent</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>0-15 µm &middot; 15-45 µm &middot; 15-53 µm &middot; 45-106 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF)</td></tr>
               <tr><th scope="row">Production route</th><td>Argon or nitrogen gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>15-17.5% chromium, 3-5% nickel and 3-5% copper with niobium. Copper precipitation on ageing is what produces the strength.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Tooling, aerospace brackets, valve and pump components, and moulds.</td></tr>
@@ -426,7 +486,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>1.2709 / X3NiCoMoTi 18-9-5</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>1.2709</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>Supplied to producer specification; wrought equivalent per DIN 1.2709</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>15-45 µm &middot; 15-53 µm &middot; 45-106 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF)</td></tr>
               <tr><th scope="row">Production route</th><td>Vacuum induction melted, argon gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>18% nickel with 9% cobalt and 5% molybdenum, and carbon kept very low. Strength comes from intermetallic precipitation, not from carbon.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Injection mould inserts with conformal cooling, die-casting tooling, and high-strength aerospace hardware.</td></tr>
@@ -447,7 +508,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>T20813</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>1.2344</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM A681 for the wrought equivalent</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF), 45-106 µm (DED and cladding)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>15-45 µm &middot; 15-53 µm &middot; 45-106 µm &middot; 53-150 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF), 45-106 µm (DED and cladding)</td></tr>
               <tr><th scope="row">Production route</th><td>Argon gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>4.75-5.5% chromium with 1.1-1.75% molybdenum and 0.8-1.2% vanadium, at 0.32-0.45% carbon.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Die-casting dies, hot forging tooling, extrusion dies, and repair cladding of worn tool surfaces.</td></tr>
@@ -468,7 +530,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>R31537 / R30075</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>2.4723</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F3213 (PBF), ASTM F75 for the cast equivalent, ISO 5832-4</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF), 45-106 µm (EBM)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>15-45 µm &middot; 15-53 µm &middot; 45-106 µm &middot; 53-150 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF), 45-106 µm (EBM)</td></tr>
               <tr><th scope="row">Production route</th><td>Vacuum induction melted, argon gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>26-30% chromium and 5-7% molybdenum over a cobalt balance, with carbon, nickel and iron closely controlled for implant use.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Hip and knee implants, dental frameworks and crowns, and wear-resistant industrial components.</td></tr>
@@ -490,7 +553,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>R56400</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>3.7165</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F2924 (PBF), ASTM B348 for the wrought equivalent</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF), 45-106 µm (EBM)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>15-45 µm &middot; 15-53 µm &middot; 45-106 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF), 45-106 µm (EBM)</td></tr>
               <tr><th scope="row">Production route</th><td>Plasma atomised or plasma rotating electrode, for sphericity and low satellite content</td></tr>
               <tr><th scope="row">Composition</th><td>5.5-6.75% aluminium and 3.5-4.5% vanadium, with oxygen to 0.20% maximum.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Aerospace structure and brackets, motorsport components, marine hardware and industrial tooling.</td></tr>
@@ -512,7 +576,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>R56407</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>3.7165</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F3001 (PBF), ASTM F136 for the wrought implant equivalent, ISO 5832-3</td></tr>
-              <tr><th scope="row">Particle size</th><td>15-45 µm (LPBF), 45-106 µm (EBM)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>15-45 µm &middot; 15-53 µm &middot; 45-106 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>15-45 µm (LPBF), 45-106 µm (EBM)</td></tr>
               <tr><th scope="row">Production route</th><td>Plasma atomised or plasma rotating electrode</td></tr>
               <tr><th scope="row">Composition</th><td>The Grade 5 composition with interstitials tightened - oxygen to 0.13%, iron to 0.25% and carbon to 0.08% maximum.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Orthopaedic and spinal implants, trauma fixation, dental, and cryogenic or damage-tolerant aerospace parts.</td></tr>
@@ -534,7 +599,8 @@ title: Metal Powders for Additive Manufacturing
               <tr><th scope="row">UNS / designation</th><td>EN AC-43000 equivalent</td></tr>
               <tr><th scope="row">Werkstoff (W.Nr.)</th><td>3.2381</td></tr>
               <tr><th scope="row">Feedstock specification</th><td>ASTM F3318 (PBF)</td></tr>
-              <tr><th scope="row">Particle size</th><td>20-63 µm (LPBF)</td></tr>
+              <tr><th scope="row">Size fractions</th><td>20-63 µm &middot; 15-53 µm &middot; 45-106 µm</td></tr>
+              <tr><th scope="row">Most common cut</th><td>20-63 µm (LPBF)</td></tr>
               <tr><th scope="row">Production route</th><td>Nitrogen or argon gas atomised</td></tr>
               <tr><th scope="row">Composition</th><td>9-11% silicon with 0.2-0.45% magnesium. The near-eutectic silicon content is what gives it the fluidity and narrow freezing range that suit a melt pool.</td></tr>
               <tr><th scope="row">Typical applications</th><td>Lightweight structural parts, heat exchangers and cold plates, automotive and motorsport components, and housings.</td></tr>
