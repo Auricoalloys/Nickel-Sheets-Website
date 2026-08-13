@@ -1,16 +1,20 @@
 // floating-form.js - The reusable module
+const LEAD_ENDPOINT = "https://nnxiioeqroxutwwcqnpg.supabase.co/functions/v1/lead-intake";
+const RETRY_STORAGE_KEY = "aurico_pending_enquiries";
+
 export class FloatingForm {
     constructor(config = {}) {
         this.config = {
-            scriptUrl: "https://script.google.com/macros/s/AKfycbwzxL3Z3fxIWCnQO6EyEu1r3_QttTFE1uLkl3tx8QpCoGecyohNy1lK-mIHXlJFRwM9/exec",
+            endpointUrl: LEAD_ENDPOINT,
             buttonText: "Request an Offer",
             formTitle: "Request an Offer",
             position: "bottom-left",
             ...config
         };
-        
+
         this.isVisible = false;
         this.init();
+        this.flushPending();
     }
     
     init() {
@@ -147,6 +151,15 @@ export class FloatingForm {
                 cursor: not-allowed;
             }
             
+            /* Honeypot: off-screen rather than display:none, which some bots skip. */
+            .floating-form-hp {
+                position: absolute;
+                left: -9999px;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+            }
+
             .floating-form-status {
                 margin-top: 10px;
                 padding: 10px;
@@ -233,6 +246,9 @@ export class FloatingForm {
                     <label class="floating-form-label">Inquiry*</label>
                     <textarea name="inquiry" rows="4" class="floating-form-textarea" required></textarea>
                 </div>
+                <div class="floating-form-hp" aria-hidden="true">
+                    <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+                </div>
                 <div class="floating-form-checkbox-wrapper">
                     <label class="floating-form-checkbox-label">
                         <input type="checkbox" name="privacy" class="floating-form-checkbox" required>
@@ -290,53 +306,144 @@ export class FloatingForm {
         document.body.style.overflow = '';
     }
     
+    // Campaign attribution. Without this there is no way to tell which page or
+    // ad produced a lead once it reaches the CRM.
+    collectAttribution() {
+        const params = new URLSearchParams(window.location.search);
+        const utm = (key) => params.get(key) || '';
+        return {
+            page_path: window.location.pathname,
+            page_url: window.location.href,
+            page_title: document.title,
+            referrer: document.referrer || '',
+            utm_source: utm('utm_source'),
+            utm_medium: utm('utm_medium'),
+            utm_campaign: utm('utm_campaign'),
+            utm_term: utm('utm_term'),
+            utm_content: utm('utm_content'),
+            gclid: utm('gclid')
+        };
+    }
+
+    async postLead(payload) {
+        const response = await fetch(this.config.endpointUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        // Read the real result. The previous implementation used mode:'no-cors',
+        // which made every response opaque and reported success even when the
+        // enquiry never arrived.
+        let body = null;
+        try {
+            body = await response.json();
+        } catch (_) {
+            /* fall through to the status check below */
+        }
+
+        if (!response.ok || !body || body.ok !== true) {
+            const message = (body && body.error) || `Server responded ${response.status}`;
+            throw new Error(message);
+        }
+        return body;
+    }
+
+    // If the network is down we keep the enquiry locally and retry on the next
+    // page load, rather than telling the customer it was sent.
+    storePending(payload) {
+        try {
+            const queue = JSON.parse(localStorage.getItem(RETRY_STORAGE_KEY) || '[]');
+            queue.push(payload);
+            localStorage.setItem(RETRY_STORAGE_KEY, JSON.stringify(queue.slice(-10)));
+            return true;
+        } catch (_) {
+            return false;
+        }
+    }
+
+    async flushPending() {
+        let queue;
+        try {
+            queue = JSON.parse(localStorage.getItem(RETRY_STORAGE_KEY) || '[]');
+        } catch (_) {
+            return;
+        }
+        if (!queue.length) return;
+
+        const remaining = [];
+        for (const payload of queue) {
+            try {
+                await this.postLead(payload);
+            } catch (_) {
+                remaining.push(payload);
+            }
+        }
+
+        try {
+            if (remaining.length) {
+                localStorage.setItem(RETRY_STORAGE_KEY, JSON.stringify(remaining));
+            } else {
+                localStorage.removeItem(RETRY_STORAGE_KEY);
+            }
+        } catch (_) { /* storage unavailable */ }
+    }
+
     async handleSubmit(e) {
         e.preventDefault();
-        
+
         const form = e.target;
         const submitBtn = form.querySelector('.floating-form-submit');
         const statusElement = form.querySelector('.floating-form-status');
-        
+
+        if (submitBtn.disabled) return;
+
         submitBtn.disabled = true;
         statusElement.textContent = 'Submitting...';
         statusElement.style.color = '#666';
         statusElement.style.background = '#f0f0f0';
-        
-        const formData = {
+
+        const payload = {
             country: form.country.value,
             name: form.name.value,
             phone: form.phone.value,
             email: form.email.value,
             inquiry: form.inquiry.value,
-            privacy: form.privacy.checked ? 'Accepted' : 'Not Accepted',
-            timestamp: new Date().toISOString(),
-            page: window.location.pathname
+            privacy_accepted: form.privacy.checked,
+            company_website: form.company_website ? form.company_website.value : '',
+            ...this.collectAttribution()
         };
-        
+
         try {
-            await fetch(this.config.scriptUrl, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                mode: 'no-cors'
-            });
-            
+            await this.postLead(payload);
+
             statusElement.textContent = 'Inquiry submitted successfully!';
             statusElement.style.color = 'white';
             statusElement.style.background = '#4CAF50';
             form.reset();
-            
+
             setTimeout(() => {
                 this.close();
             }, 2000);
-            
+
         } catch (error) {
-            console.error('Error:', error);
-            statusElement.textContent = 'Error submitting inquiry. Please try again.';
+            console.error('Enquiry submission failed:', error);
+
+            // Only queue for retry if this looks like a transport failure. A 400
+            // means the submission itself was rejected and retrying won't help.
+            const isNetworkError = error instanceof TypeError;
+            const queued = isNetworkError && this.storePending(payload);
+
             statusElement.style.color = 'white';
-            statusElement.style.background = '#f44336';
+            if (queued) {
+                statusElement.style.background = '#ff9800';
+                statusElement.textContent =
+                    'Connection problem. Your enquiry is saved and will be sent automatically — or email info@auricoalloys.com.';
+            } else {
+                statusElement.style.background = '#f44336';
+                statusElement.textContent =
+                    `${error.message} If this continues, please email info@auricoalloys.com.`;
+            }
         } finally {
             submitBtn.disabled = false;
         }

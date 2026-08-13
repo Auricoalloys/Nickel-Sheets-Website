@@ -1,0 +1,22 @@
+# Secrets — CRM credentials, Supabase service role key, API keys.
+# These belong in Supabase Edge Function secrets, never in this repository.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Supabase CLI local state
+supabase/.branches/
+supabase/.temp/
+supabase/.env
+
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Tooling
+node_modules/
+.DS_Store
+Thumbs.db

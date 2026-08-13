@@ -1,2 +1,9 @@
 
 permalink: pretty
+
+# Server-side code and tooling must never be copied into the published site.
+exclude:
+  - supabase/
+  - package-lock.json
+  - README.md
+  - .vscode/
