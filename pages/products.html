@@ -54,9 +54,8 @@ title: Products - Sheets, Plates, Bars, Wire, Tube, Pipe, Coil, Foil & Busbars |
     { "@type": "WebPage", "name": "Coil", "url": "https://www.nickelsheets.com/pages/products/coil/" },
     { "@type": "WebPage", "name": "Fittings", "url": "https://www.nickelsheets.com/pages/products/fittings/" },
     { "@type": "WebPage", "name": "Foil", "url": "https://www.nickelsheets.com/pages/products/foil/" },
-    { "@type": "WebPage", "name": "Powder", "url": "https://www.nickelsheets.com/titanium-grade-2-powder-manufacturer-supplier-exporter/" },
-    { "@type": "WebPage", "name": "Titanium Powder", "url": "https://www.nickelsheets.com/titanium-grade-2-powder-manufacturer-supplier-exporter/" },
-    { "@type": "WebPage", "name": "Busbars", "url": "https://www.nickelsheets.com/pure-nickel-strips-&-busbar-manufacturer-supplier-exporter-in-mumbai-india/" }
+    { "@type": "WebPage", "name": "Powder", "url": "https://www.nickelsheets.com/pages/products/powder/" },
+    { "@type": "WebPage", "name": "Busbars", "url": "https://www.nickelsheets.com/pure-nickel-strips-&amp;-busbar-manufacturer-supplier-exporter-in-mumbai-india/" }
   ]
 }
     </script>
@@ -74,27 +73,180 @@ title: Products - Sheets, Plates, Bars, Wire, Tube, Pipe, Coil, Foil & Busbars |
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main class="container my-5">
-    <h1>Our Products</h1>
-    <p>Aurico Alloys LLP supplies nickel, titanium, and specialty alloys across every major mill form. Browse by product form below to find specifications, standards, and available grades.</p>
+  <main class="container my-5" id="main">
+    <section id="introduction">
+      <h1>Our Products</h1>
+      <p class="lead">Aurico Alloys LLP supplies nickel, titanium and special steel in every major mill form,
+        from Mumbai. Each form below covers the same twelve alloy families, so the choice is which shape you
+        need first and which grade second.</p>
+      <p>Material is supplied cut to size against EN 10204 3.1 mill test certificates, held in stock or arranged
+        with the manufacturer depending on grade and quantity.</p>
+    </section>
 
-    <ul>
-        <li><a href="/pages/products/sheets/">Sheets</a></li>
-        <li><a href="/pages/products/plates/">Plates</a></li>
-        <li><a href="/pages/products/round-bar/">Round Bars</a></li>
-        <li><a href="/pages/products/hex-bar/">Hex Bars</a></li>
-        <li><a href="/pages/products/hollow-bar/">Hollow Bars</a></li>
-        <li><a href="/pages/products/wire/">Wire</a></li>
-        <li><a href="/pages/products/tubes/">Tubes</a></li>
-        <li><a href="/pages/products/pipes/">Pipes</a></li>
-        <li><a href="/pages/products/coil/">Coil</a></li>
-        <li><a href="/pages/products/fittings/">Fittings</a></li>
-        <li><a href="/pages/products/foil/">Foil</a></li>
-        <li><a href="/titanium-grade-2-powder-manufacturer-supplier-exporter/">Metal Powder</a></li>
-        <li><a href="/pure-nickel-strips-&-busbar-manufacturer-supplier-exporter-in-mumbai-india/">Pure Nickel Strips &amp; Busbars</a></li>
-    </ul>
+    <section class="py-4" id="flat-products">
+      <h2>Flat Products</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <caption>Rolled flat forms, twelve alloy families in each</caption>
+          <thead>
+            <tr>
+              <th scope="col">Form</th>
+              <th scope="col">What it is</th>
+              <th scope="col">Usually bought for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="/pages/products/sheets/">Sheets</a></th>
+              <td>Rolled flat stock, the thinner of the two flat gauges</td>
+              <td>Fabricated vessels, linings, ducting and formed components</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/plates/">Plates</a></th>
+              <td>Rolled flat stock in the heavier gauges</td>
+              <td>Pressure parts, tube sheets, structural and machined blanks</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/coil/">Coil</a></th>
+              <td>Continuous rolled strip, supplied on the coil</td>
+              <td>Feeding presses, roll-forming and slitting to width</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/foil/">Foil</a></th>
+              <td>The thinnest rolled gauge, down to a few hundredths of a millimetre</td>
+              <td>Shielding, gaskets, bellows, heat exchange and electronics work</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <p><a href="/pages/contact/">Contact us</a> for stock availability, pricing, and material test certificates.</p>
+    <section class="py-4" id="long-products">
+      <h2>Bar, Wire and Hollow Sections</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <caption>Long products and sections</caption>
+          <thead>
+            <tr>
+              <th scope="col">Form</th>
+              <th scope="col">What it is</th>
+              <th scope="col">Usually bought for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="/pages/products/round-bar/">Round Bars</a></th>
+              <td>Solid round section, hot rolled, forged or peeled</td>
+              <td>Turned parts, shafts, fasteners and forging stock</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/hex-bar/">Hex Bars</a></th>
+              <td>Solid hexagonal section</td>
+              <td>Nuts, fittings and anything turned from across-flats stock</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/hollow-bar/">Hollow Bars</a></th>
+              <td>Bar with a bored centre, so the hole is not machined out</td>
+              <td>Bushes, sleeves and cylinders, saving both stock and cycle time</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/wire/">Wire</a></th>
+              <td>Drawn round section, supplied on spools or in coil</td>
+              <td>Springs, welding consumables, mesh and fasteners</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="py-4" id="tubular-products">
+      <h2>Tube, Pipe and Fittings</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <caption>Tubular products</caption>
+          <thead>
+            <tr>
+              <th scope="col">Form</th>
+              <th scope="col">What it is</th>
+              <th scope="col">Usually bought for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="/pages/products/tubes/">Tubes</a></th>
+              <td>Sized on outside diameter and wall thickness</td>
+              <td>Heat exchangers, condensers and instrumentation</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/pipes/">Pipes</a></th>
+              <td>Sized on nominal bore and schedule</td>
+              <td>Process piping and pressure systems</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pages/products/fittings/">Fittings</a></th>
+              <td>Elbows, tees, reducers, caps, flanges and stub ends</td>
+              <td>Joining and redirecting a piping run in the same alloy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="py-4" id="specialist-products">
+      <h2>Powder and Battery Products</h2>
+      <p>Two ranges that do not follow the mill-form pattern, each with a hub of its own.</p>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <caption>Specialist ranges</caption>
+          <thead>
+            <tr>
+              <th scope="col">Range</th>
+              <th scope="col">What it covers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="/pages/products/powder/">Metal Powder</a></th>
+              <td>Eleven gas and plasma atomised grades for additive manufacturing, including Inconel 718 and
+                625, Ti-6Al-4V Grade 5 and ELI Grade 23, CP Titanium Grade 2, 316L, 17-4 PH, CoCrMo, H13,
+                maraging steel and AlSi10Mg, with the size fractions each process needs</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="/pure-nickel-strips-&amp;-busbar-manufacturer-supplier-exporter-in-mumbai-india/">Pure Nickel Strips &amp; Busbars</a></th>
+              <td>Nickel strip and busbar for lithium cell packs, in H-type, honeycomb and zigzag patterns cut
+                for 18650, 21700, 26650, 32140 and 32650 cells</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="py-4" id="alloy-families">
+      <h2>Alloy Families</h2>
+      <p>The same twelve families run through every mill form above. If you already know the alloy, start here
+        instead.</p>
+      <ul>
+        <li><a href="/nickel-alloys-supplier-exporter-and-stockist-in-india/">Nickel Alloys</a></li>
+        <li><a href="/titanium/">Titanium &amp; Titanium Alloys</a></li>
+        <li><a href="/stainless/">Special Stainless Steel</a></li>
+        <li><a href="/duplex-steel/">Duplex &amp; Super Duplex Steel</a></li>
+        <li><a href="/cobalt-alloys/">Cobalt Alloys</a></li>
+        <li><a href="/monel/">Monel</a></li>
+        <li><a href="/hastelloy/">Hastelloy</a></li>
+        <li><a href="/inconel/">Inconel</a></li>
+        <li><a href="/incoloy/">Incoloy</a></li>
+        <li><a href="/nimonic/">Nimonic</a></li>
+        <li><a href="/haynes/">Haynes</a></li>
+        <li><a href="/nichrome/">Nichrome</a></li>
+      </ul>
+    </section>
+
+    <section class="py-4" id="cta">
+      <h2>Ask for a Quotation</h2>
+      <p>Tell us the alloy, the form, the size and the quantity, and we will confirm availability, lead time and
+        price. <a href="/pages/contact/">Contact us</a> for stock availability, pricing and material test
+        certificates.</p>
+    </section>
   </main>
 
   <div id="footer-container">{% include footer.html %}</div>
