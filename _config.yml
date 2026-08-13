@@ -1,5 +1,12 @@
 permalink: pretty
 
+# Generates a redirect stub at every URL listed in a page's redirect_from, so a
+# retired duplicate keeps sending visitors and crawlers to the page that kept
+# the links. GitHub Pages whitelists this plugin, but only loads it when it is
+# named here.
+plugins:
+  - jekyll-redirect-from
+
 # Site identity, available to templates and used when generating the sitemap.
 title: Aurico Alloys LLP
 url: https://www.nickelsheets.com
@@ -13,6 +20,10 @@ description: >-
 # by product-page-runtime.js, so they have to be served.
 exclude:
   - README.md
+  # Notes for Claude Code. Markdown without front matter is still rendered into
+  # a page by the optional-front-matter plugin GitHub Pages always enables, so
+  # this has to be excluded or it publishes at /CLAUDE.html.
+  - CLAUDE.md
   - package-lock.json
   - node_modules
   - .vscode
@@ -22,6 +33,8 @@ exclude:
   # Apps Script source for the enquiry endpoint. Lives here so it is versioned
   # alongside the form that posts to it, but it is not part of the site.
   - docs/apps-script
+  # Build tool for CSS/bootstrap.min.css, versioned beside what it produces.
+  - docs/purge-bootstrap.mjs
   # camera originals, superseded by the WebP versions beside them
   - docs/images/source
   # local build toolchain, not site content

@@ -1,6 +1,11 @@
 ---
 permalink: /monel/K-500/sheets/
 title: Monel Alloy K-500 | UNS N05500 | 2.4375 Sheets
+# /monel/k-500/sheets/ was a second, near-identical page for this product. Both
+# were in the sitemap; this one carries the internal links, so it is the one
+# that stayed.
+redirect_from:
+  - /monel/k-500/sheets/
 ---
 
 <!DOCTYPE html>
@@ -16,7 +21,6 @@ title: Monel Alloy K-500 | UNS N05500 | 2.4375 Sheets
     <link rel="icon" type="png" href="/aurico-favicon.png">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/CSS/pages.css">
     <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/header.css">
@@ -75,7 +79,7 @@ title: Monel Alloy K-500 | UNS N05500 | 2.4375 Sheets
         gtag('js', new Date());
         gtag('config', 'G-XZL7EXDTQ0');
     </script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/CSS/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
@@ -521,9 +525,8 @@ src="/docs/media/sheets-banner.webp"
 
   <div id="footer-container">{% include footer.html %}</div>
 
-  <script type="module" src="/javascript/floating-form.js"></script>
   <script src="/javascript/detailed.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="/javascript/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

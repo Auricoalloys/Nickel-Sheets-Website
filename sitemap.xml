@@ -14,13 +14,13 @@ sitemap: false
       <image:loc>https://www.nickelsheets.com/docs/images/Fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hex%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hex-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-coil.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/Pipes.webp</image:loc>
@@ -81,7 +81,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -326,7 +326,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20powder%20in%20industrial%20setting.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-powder-in-industrial-setting.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -386,7 +386,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -394,7 +394,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -442,37 +442,37 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Wire%20metal%20for%20website%20image%20grey%20color.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-wire-metal-for-website-image-grey-color.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-round-bar.webp</image:loc>
@@ -483,7 +483,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-plates.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -543,7 +543,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -551,7 +551,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -599,34 +599,34 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Pipes%20metal%20for%20website%20images.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-pipes-metal-for-website-images.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Wire%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-wire-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-round-bar.webp</image:loc>
@@ -754,7 +754,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -800,7 +800,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -824,7 +824,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-coil-metal-for-website-image.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -832,7 +832,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -864,7 +864,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -896,7 +896,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1089,7 +1089,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-foil-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1097,7 +1097,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-plates.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1113,21 +1113,10 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-sheets.webp</image:loc>
     </image:image>
   </url>
-  <url>
-    <loc>https://www.nickelsheets.com/hastelloy/foil/</loc>
-    <lastmod>2026-08-13</lastmod>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/hastelloy-foil.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
+    <url>
     <loc>https://www.nickelsheets.com/Hastelloy/foil/</loc>
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
@@ -1288,7 +1277,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-coil-metal-for-website-image.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1296,7 +1285,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1328,7 +1317,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1344,7 +1333,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1642,7 +1631,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1650,7 +1639,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1682,7 +1671,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-tube.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1698,7 +1687,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2115,7 +2104,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2123,7 +2112,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2171,7 +2160,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2184,7 +2173,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2192,7 +2181,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2200,7 +2189,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2238,7 +2227,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2246,7 +2235,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2259,7 +2248,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2267,7 +2256,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2275,7 +2264,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2313,7 +2302,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2321,7 +2310,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2334,7 +2323,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2342,7 +2331,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2350,7 +2339,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2388,7 +2377,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2396,7 +2385,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2409,7 +2398,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2417,7 +2406,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2425,7 +2414,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2463,7 +2452,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2471,7 +2460,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2479,7 +2468,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2522,7 +2511,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2530,7 +2519,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2538,7 +2527,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2557,7 +2546,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2584,7 +2573,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2592,7 +2581,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2600,7 +2589,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2643,7 +2632,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2651,7 +2640,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2659,7 +2648,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2697,7 +2686,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2705,7 +2694,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2718,7 +2707,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2726,7 +2715,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2734,7 +2723,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2772,7 +2761,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2780,7 +2769,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2793,7 +2782,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2801,7 +2790,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2809,7 +2798,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2847,7 +2836,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2855,7 +2844,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2868,7 +2857,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2876,7 +2865,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2884,7 +2873,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2903,7 +2892,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2930,7 +2919,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2938,7 +2927,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2951,7 +2940,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2967,7 +2956,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2975,7 +2964,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2983,7 +2972,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3012,7 +3001,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3042,7 +3031,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3216,7 +3205,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-coil-metal-for-website-image.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3224,7 +3213,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3256,7 +3245,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-tube.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3272,7 +3261,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3374,7 +3363,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-plates.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3385,12 +3374,7 @@ sitemap: false
       <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
     </image:image>
   </url>
-  <url>
-    <loc>https://www.nickelsheets.com/monel/k-500/sheets/</loc>
-    <lastmod>2026-08-13</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
+    <url>
     <loc>https://www.nickelsheets.com/monel/K-500/sheets/</loc>
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
@@ -3439,7 +3423,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3491,7 +3475,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-coil-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3499,7 +3483,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3531,7 +3515,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-tube.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3547,7 +3531,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3615,7 +3599,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Foil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-foil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3656,7 +3640,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3664,7 +3648,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3696,7 +3680,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3704,7 +3688,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3712,7 +3696,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3720,7 +3704,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3728,7 +3712,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3736,7 +3720,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3744,7 +3728,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3752,7 +3736,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3760,7 +3744,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3768,7 +3752,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3784,7 +3768,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3792,7 +3776,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3800,7 +3784,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3808,7 +3792,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3816,7 +3800,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3824,7 +3808,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3832,7 +3816,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3840,7 +3824,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3848,7 +3832,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3856,7 +3840,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3864,7 +3848,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3872,7 +3856,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3880,7 +3864,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3896,7 +3880,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3904,7 +3888,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3912,7 +3896,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3920,7 +3904,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3928,7 +3912,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3936,7 +3920,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3944,7 +3928,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3952,7 +3936,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3960,7 +3944,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3968,7 +3952,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3976,7 +3960,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3984,7 +3968,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3992,7 +3976,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4000,7 +3984,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4008,7 +3992,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4016,7 +4000,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4024,7 +4008,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4032,7 +4016,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4040,7 +4024,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4048,7 +4032,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4056,7 +4040,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4064,7 +4048,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4072,7 +4056,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4080,7 +4064,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4088,7 +4072,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4096,7 +4080,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4104,7 +4088,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4112,7 +4096,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4120,7 +4104,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4128,7 +4112,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4144,7 +4128,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4152,7 +4136,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4160,7 +4144,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4168,7 +4152,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4176,7 +4160,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4184,7 +4168,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4192,7 +4176,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4200,7 +4184,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4208,7 +4192,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4216,7 +4200,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4224,7 +4208,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4232,7 +4216,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4240,7 +4224,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4248,7 +4232,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4256,7 +4240,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4264,7 +4248,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4272,7 +4256,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4280,7 +4264,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4288,7 +4272,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4296,7 +4280,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4304,7 +4288,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4312,7 +4296,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4320,7 +4304,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4328,7 +4312,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4336,7 +4320,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4344,7 +4328,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4352,7 +4336,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4360,7 +4344,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4368,7 +4352,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4376,7 +4360,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4384,7 +4368,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4392,7 +4376,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4400,7 +4384,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4408,7 +4392,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4432,7 +4416,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4440,7 +4424,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4448,7 +4432,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4456,7 +4440,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Oil%20and%20gas%20industry.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/oil-and-gas-industry.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4464,7 +4448,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4488,34 +4472,34 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hex%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hex-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Foil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-foil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Tube%20metal%20for%20website%20images.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-tube-metal-for-website-images.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Wires%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-wires-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-pipes.webp</image:loc>
@@ -4711,7 +4695,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-coil-metal-for-website-image.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4719,7 +4703,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -4751,7 +4735,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-tube.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5152,7 +5136,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5160,10 +5144,10 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Global%20Presence%20images.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/global-presence-images.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/office_front.webp</image:loc>
@@ -5190,40 +5174,40 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-coil-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-coil-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-coil-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-coil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-coil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Coil%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-coil-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-coil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-coil-metal.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/coil.webp</image:loc>
@@ -5234,43 +5218,43 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-fittings.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/Fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5278,40 +5262,40 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Foil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-foil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Foil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-foil.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/foil.webp</image:loc>
@@ -5322,40 +5306,40 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hex%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hex-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Hex%20Bars%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-hex-bars.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5363,43 +5347,43 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Hollow%20Bars%20matel%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-hollow-bars-matel-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-hollow-bars.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5407,37 +5391,37 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Pipes%20metal%20for%20website%20images.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-pipes-metal-for-website-images.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-pipes.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/Pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-pipes.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-pipes.webp</image:loc>
@@ -5451,40 +5435,40 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-plates.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
@@ -5495,7 +5479,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20powder%20in%20industrial%20setting.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-powder-in-industrial-setting.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5547,40 +5531,40 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/sheet.webp</image:loc>
@@ -5591,40 +5575,40 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-tubes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-tubes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-tubes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Tube%20metal%20for%20website%20images.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-tube-metal-for-website-images.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-tubes.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/Tubes.webp</image:loc>
@@ -5635,40 +5619,40 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Wire%20metal%20for%20website%20image%20grey%20color.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-wire-metal-for-website-image-grey-color.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Duplex%20Steel%20Wire%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/duplex-steel-wire-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Hastelloy%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-wire.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Haynes%20Alloy%20Wire%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-wire-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Incoloy%20Wire%20metal%20for%20website%20images.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-wire-metal-for-website-images.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Inconel%20Wire%20in%20grey%20color.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/inconel-wire-in-grey-color.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Monel%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-wire.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nichrome%20Wire%20metal%20for%20website%20image%20grey.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nichrome-wire-metal-for-website-image-grey.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Wires%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-wires-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nimonic%20Wire.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nimonic-wire.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Wire%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-wire-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Wire%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-wire-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/Wire.webp</image:loc>
@@ -5679,7 +5663,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Quality%20Commitment.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/quality-commitment.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5769,7 +5753,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Alloy%20Coil.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6104,7 +6088,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Copper%20Busbar.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/copper-busbar.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/aluminium-busbar.webp</image:loc>
@@ -6136,7 +6120,7 @@ sitemap: false
       <image:loc>https://www.nickelsheets.com/docs/images/Copper_busbar_banner.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Nickel%20Strip.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-strip.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nickel-h-type-busbar-18650-26650.webp</image:loc>
@@ -6197,7 +6181,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-coil-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6205,7 +6189,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6253,34 +6237,34 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-coil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Hex%20Bars%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-hex-bars-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Pipes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-pipes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Tube.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-tube.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Wire%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-wire-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/plates.webp</image:loc>
@@ -6294,7 +6278,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6302,7 +6286,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6384,7 +6368,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6403,7 +6387,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Cobalt%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6449,7 +6433,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/chemical%20manufacturing%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/chemical-manufacturing.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6457,7 +6441,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-coil-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6465,7 +6449,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6542,31 +6526,31 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-coil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Fittings.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-fittings.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Foil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-foil-metal.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Hex%20Bars%20.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-hex-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Hollow%20Bars.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-hollow-bars.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-plates.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Sheets.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-sheets.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Tubes.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-tubes.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Wire%20metal%20for%20website%20image.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-wire-metal-for-website-image.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/sheet.webp</image:loc>
@@ -6599,7 +6583,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Coil%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-coil-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6693,7 +6677,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-plates.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6828,7 +6812,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-plates.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -6987,7 +6971,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-plates.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -7149,7 +7133,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Titanium%20&amp;%20Titanium%20Alloy%20Plates.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-and-titanium-alloy-plates.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -7157,7 +7141,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -7165,7 +7149,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -7173,7 +7157,7 @@ sitemap: false
     <lastmod>2026-08-13</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/Special%20Stainless%20Steel%20Plates%20metal.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/special-stainless-steel-plates-metal.webp</image:loc>
     </image:image>
   </url>
   <url>
