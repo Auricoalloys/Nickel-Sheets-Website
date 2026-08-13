@@ -50,6 +50,38 @@
       color: var(--secondary-color);
   }
 
+  /* Mill sources. Reads as a statement rather than fine print - it is the
+     answer to the question most buyers arrive with - so it is set brighter and
+     larger than the trademark notice directly beneath it. */
+  .mill-sources {
+      text-align: center;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mill-sources h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+  }
+
+  .mill-sources p {
+      max-width: 78ch;
+      margin: 0 auto;
+      color: #d5d9dc;
+      font-size: 0.9rem;
+      line-height: 1.6;
+  }
+
+  .mill-sources a {
+      color: #f0b166;
+      text-decoration: underline;
+  }
+
+  .mill-sources a:hover,
+  .mill-sources a:focus-visible {
+      color: #fec163;
+  }
+
   /* Trademark attribution. Sits above the copyright line, which carries the
      divider, so the two read as one block rather than two separate footers. */
   .trademarks {
