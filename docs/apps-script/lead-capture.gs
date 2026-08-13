@@ -11,7 +11,23 @@
  * here. Nothing is dropped.
  *
  * ---------------------------------------------------------------------------
- * SETUP
+ * UPDATING THE EXISTING DEPLOYMENT   (this is the usual case)
+ * ---------------------------------------------------------------------------
+ * The website already points at a deployment. Updating it in place keeps the
+ * same /exec URL, so nothing on the site has to change.
+ *
+ * 1. Open the leads Google Sheet -> Extensions -> Apps Script.
+ * 2. Select all the old code and replace it with this file.
+ * 3. Save.
+ * 4. Deploy -> Manage deployments -> click the active deployment ->
+ *    pencil/edit icon -> Version: "New version" -> Deploy.
+ *
+ * Do NOT use "New deployment" for an update: that mints a different /exec URL
+ * and the site keeps talking to the old code. And editing without deploying a
+ * new version changes nothing either - the previous version keeps serving.
+ *
+ * ---------------------------------------------------------------------------
+ * FIRST-TIME SETUP
  * ---------------------------------------------------------------------------
  * 1. Open the Google Sheet that should hold the leads.
  * 2. Extensions -> Apps Script. Delete whatever is there, paste this in.
@@ -19,10 +35,21 @@
  *      Execute as:      Me
  *      Who has access:  Anyone            <- required, or the browser gets a 401
  * 4. Copy the /exec URL into LEAD_ENDPOINTS in javascript/lead-config.js.
- * 5. Optional, for the email alert:
- *      Project Settings -> Script Properties -> add NOTIFY_EMAIL = you@domain
  *
- * Re-deploy as a NEW VERSION after any edit, or the old code keeps serving.
+ * ---------------------------------------------------------------------------
+ * OPTIONAL - EMAIL ALERTS
+ * ---------------------------------------------------------------------------
+ * Project Settings -> Script Properties -> add NOTIFY_EMAIL = you@domain
+ *
+ * ---------------------------------------------------------------------------
+ * WHICH TAB THE LEADS LAND IN
+ * ---------------------------------------------------------------------------
+ * SHEET_NAME below is the tab this writes to, and it is created if missing.
+ * Column headings are matched to the payload keys exactly and case-sensitively,
+ * so pointing this at an existing tab whose headings read "Name" or "Mobile
+ * Number" will not reuse those columns - it will add "name" and "phone"
+ * alongside them. Letting it start a clean tab avoids the whole problem, and
+ * leaves the historic leads untouched in the old one.
  *
  * ---------------------------------------------------------------------------
  * WHY THE RESPONSE SHAPE MATTERS
