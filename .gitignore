@@ -1,5 +1,10 @@
 # Local Jekyll build toolchain and output. GitHub Pages builds the site itself,
 # so none of this belongs in the repository.
+# Camera originals for the proof photographs. The published versions are the
+# re-encoded WebP files beside them; these are kept locally only, so the repo
+# does not carry several megabytes of phone JPEGs that nothing links to.
+docs/images/source/
+
 vendor/
 _site/
 .jekyll-cache/

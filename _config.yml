@@ -22,6 +22,8 @@ exclude:
   # Apps Script source for the enquiry endpoint. Lives here so it is versioned
   # alongside the form that posts to it, but it is not part of the site.
   - docs/apps-script
+  # camera originals, superseded by the WebP versions beside them
+  - docs/images/source
   # local build toolchain, not site content
   - Gemfile
   - Gemfile.lock

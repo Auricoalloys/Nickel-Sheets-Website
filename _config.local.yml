@@ -22,6 +22,8 @@ exclude:
   - "**/desktop.ini"
   - docs/product-page-migration.md
   - docs/apps-script
+  # camera originals, superseded by the WebP versions beside them
+  - docs/images/source
   - Gemfile
   - Gemfile.lock
   - vendor
