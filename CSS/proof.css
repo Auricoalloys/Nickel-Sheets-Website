@@ -1,0 +1,191 @@
+/*
+  Styles for the material-verification evidence on the quality page: mill
+  marking photographs, PMI readings and export packing.
+
+  The photographs are the point of the section, so they are shown large enough
+  to read the stamped markings rather than shrunk to decorative thumbnails.
+*/
+
+.verification {
+  padding: 3.5rem 0;
+}
+
+.verification h2 {
+  font-weight: 700;
+  color: #154360;
+}
+
+.verification h3 {
+  font-weight: 600;
+  color: #1a5276;
+  font-size: 1.35rem;
+  margin-top: 2.5rem;
+  margin-bottom: .75rem;
+}
+
+.verification__lead {
+  max-width: 62ch;
+  color: #5a6570;
+}
+
+/* Evidence grid ---------------------------------------------------------- */
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evidence {
+  margin: 0;
+  background: #fff;
+  border: 1px solid #e3e6e8;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.evidence img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: #f4f6f7;
+}
+
+.evidence figcaption {
+  padding: .85rem 1rem;
+  font-size: .875rem;
+  line-height: 1.45;
+  color: #5a6570;
+  border-top: 1px solid #eef1f2;
+}
+
+.evidence figcaption strong {
+  display: block;
+  color: #2c3e50;
+  margin-bottom: .15rem;
+}
+
+/* A tall shot of a stamped edge loses its content when cropped to a
+   landscape box, so those are shown whole. */
+.evidence--tall img {
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+}
+
+/* PMI readings ----------------------------------------------------------- */
+
+.pmi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+  font-size: .9rem;
+}
+
+.pmi-table caption {
+  caption-side: top;
+  text-align: left;
+  padding-bottom: .6rem;
+  color: #5a6570;
+  font-size: .875rem;
+}
+
+.pmi-table th,
+.pmi-table td {
+  padding: .6rem .75rem;
+  border-bottom: 1px solid #e3e6e8;
+  text-align: left;
+}
+
+.pmi-table thead th {
+  background: #154360;
+  color: #fff;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+.pmi-table tbody th {
+  font-weight: 600;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.pmi-table td {
+  font-variant-numeric: tabular-nums;
+  color: #37474f;
+}
+
+.pmi-table tbody tr:nth-child(even) {
+  background: #f8fafb;
+}
+
+.pmi-note {
+  margin-top: 1rem;
+  padding: .9rem 1.1rem;
+  background: #f4f6f7;
+  border-left: 3px solid #1a5276;
+  border-radius: 0 4px 4px 0;
+  font-size: .875rem;
+  color: #5a6570;
+}
+
+/* Case study ------------------------------------------------------------- */
+
+.case-study {
+  background: #154360;
+  color: #eaf1f6;
+  border-radius: 10px;
+  padding: 2rem 2.25rem;
+  margin-top: 3rem;
+}
+
+.case-study h3 {
+  color: #fff;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.case-study p {
+  max-width: 68ch;
+  margin-bottom: 1.25rem;
+}
+
+.case-study__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.case-study__facts div {
+  border-left: 2px solid rgba(255, 255, 255, .25);
+  padding-left: .9rem;
+}
+
+.case-study__facts dt {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #9dbdd4;
+  font-weight: 600;
+}
+
+.case-study__facts dd {
+  margin: .2rem 0 0;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+@media (max-width: 576px) {
+  .evidence img { height: 200px; }
+  .case-study { padding: 1.5rem; }
+}
