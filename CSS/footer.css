@@ -64,8 +64,15 @@
       font-size: 0.78rem;
       line-height: 1.6;
       max-width: 980px;
-      margin: 0 auto;
+      margin: 0 auto 10px;
       text-align: center;
+  }
+
+  /* The disclaimer is the operative sentence, so it does not fade into the
+     list of owners above it. */
+  .trademarks p:last-child {
+      color: #ccc;
+      margin-bottom: 0;
   }
 
   .copyright {

@@ -334,6 +334,13 @@ export class FloatingForm {
 
       .floating-form-textarea { resize: vertical; min-height: 100px; }
 
+      .floating-form-hint {
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+        color: #6b7280;
+      }
+
       .floating-form-checkbox-wrapper { margin: 15px 0; }
 
       .floating-form-checkbox-label {
@@ -431,6 +438,10 @@ export class FloatingForm {
           <input type="text" id="${this.id}-name" name="name" class="floating-form-input" autocomplete="name" required>
         </div>
         <div class="floating-form-group">
+          <label class="floating-form-label" for="${this.id}-company">Company*</label>
+          <input type="text" id="${this.id}-company" name="company" class="floating-form-input" autocomplete="organization" required>
+        </div>
+        <div class="floating-form-group">
           <label class="floating-form-label" for="${this.id}-phone">Mobile Number*</label>
           <input type="tel" id="${this.id}-phone" name="phone" class="floating-form-input" autocomplete="tel" required>
         </div>
@@ -439,8 +450,15 @@ export class FloatingForm {
           <input type="email" id="${this.id}-email" name="email" class="floating-form-input" autocomplete="email" required>
         </div>
         <div class="floating-form-group">
+          <label class="floating-form-label" for="${this.id}-quantity">Quantity</label>
+          <input type="text" id="${this.id}-quantity" name="quantity" class="floating-form-input"
+            placeholder="e.g. 500 kg, 20 sheets, 2 MT">
+          <small class="floating-form-hint">Approximate is fine &mdash; it helps us quote accurately.</small>
+        </div>
+        <div class="floating-form-group">
           <label class="floating-form-label" for="${this.id}-inquiry">Inquiry*</label>
-          <textarea id="${this.id}-inquiry" name="inquiry" rows="4" class="floating-form-textarea" required></textarea>
+          <textarea id="${this.id}-inquiry" name="inquiry" rows="4" class="floating-form-textarea" required
+            placeholder="Grade, form and dimensions - e.g. Inconel 625 sheet, 3mm x 1000 x 2000"></textarea>
         </div>
         <div class="floating-form-checkbox-wrapper">
           <label class="floating-form-checkbox-label" for="${this.id}-privacy">
@@ -568,13 +586,17 @@ export class FloatingForm {
     const body = [
       "Enquiry from nickelsheets.com",
       `Name: ${data.name}`,
+      `Company: ${data.company}`,
       `Country: ${data.country}`,
       `Email: ${data.email}`,
       `Phone: ${data.phone}`,
+      data.quantity ? `Quantity: ${data.quantity}` : null,
       `Page: ${data.page_url}`,
       "",
       data.inquiry,
-    ].join("\n");
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     const whatsapp = `https://api.whatsapp.com/send?phone=${FALLBACK_CONTACT.whatsapp}&text=${encodeURIComponent(body)}`;
     const mail = `mailto:${FALLBACK_CONTACT.email}?subject=${encodeURIComponent("Enquiry from nickelsheets.com")}&body=${encodeURIComponent(body)}`;
@@ -611,8 +633,13 @@ export class FloatingForm {
     const payload = {
       country: value("country"),
       name: value("name"),
+      // company and quantity map onto the CRM's contact.company and
+      // interest.quantity. Both arrive empty until the Sheet gains matching
+      // columns - the Apps Script drops keys it has no column for.
+      company: value("company"),
       phone: value("phone"),
       email: value("email"),
+      quantity: value("quantity"),
       inquiry: value("inquiry"),
       privacy: fields.get("privacy") ? "Accepted" : "Not Accepted",
       timestamp: new Date().toISOString(),
