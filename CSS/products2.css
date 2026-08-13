@@ -105,6 +105,8 @@ ul {
   flex: 1;
 }
 
+.product-card h2,
+
 .product-card h3 {
   font-size: 24px;
   font-weight: 600;

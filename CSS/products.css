@@ -288,6 +288,7 @@ footer .footer-links p a:hover {
 }
 
 /* Title */
+.product-card h2,
 .product-card h3 {
   margin: 0 0 10px;
 }

@@ -1,0 +1,100 @@
+/* Table styling for pages that do not load pages.css.
+   Extracted from pages.css so those pages match the rest of the site without
+   inheriting its bare element rules (img, ul, p, table, td), which were written
+   for a different page structure and would break the layout here. */
+
+.spec-table-section {
+    padding: 10px 5px;
+  }
+
+.spec-table-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow-x: auto;
+    border-radius: 10px;
+  }
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+
+.spec-table th, .spec-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+.spec-table th {
+    background-color: #154360;
+    color: #fff;
+    font-weight: 600;
+    width: 30%;
+  }
+
+.spec-table tr:nth-child(even) td {
+    background-color: #f9f9f9;
+  }
+
+.spec-table tr:hover td {
+    background-color: #eaf2f8;
+    transition: background-color 0.3s ease;
+  }
+
+.grade-table-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+.grade-table-section h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #154360;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+.grade-table-wrapper {
+    max-width: 1100px;
+    margin: auto;
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+.grade-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+.grade-table thead th {
+    background-color: #154360;
+    color: #ffffff;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+  }
+
+.grade-table tbody td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+  }
+
+.grade-table tbody tr:nth-child(even) td {
+    background-color: #f1f5f9;
+  }
+
+.grade-table tbody tr:hover td {
+    background-color: #e8f4fc;
+    transition: background-color 0.3s ease;
+  }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
