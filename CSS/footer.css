@@ -50,6 +50,24 @@
       color: var(--secondary-color);
   }
 
+  /* Trademark attribution. Sits above the copyright line, which carries the
+     divider, so the two read as one block rather than two separate footers. */
+  .trademarks {
+      text-align: center;
+      padding-top: 24px;
+  }
+
+  .trademarks p {
+      /* #bbb rather than a dimmer grey: the notice has to stay legible against
+         the dark footer, and #aaa only just clears the 4.5:1 contrast floor. */
+      color: #bbb;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+  }
+
   .copyright {
       text-align: center;
       padding-top: 20px;
