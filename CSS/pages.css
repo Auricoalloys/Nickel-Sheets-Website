@@ -23,8 +23,19 @@
   }
 
 
+  /* The dark background was set without a text colour, so anything in a <th>
+     inherited the dark body colour and rendered navy on navy - invisible.
+     Row headers are the visible case: 1,402 of them across the site. */
   th {
     background-color: #154360;
+    color: #fff;
+  }
+
+  th a,
+  th a:hover,
+  th a:focus {
+    color: #fff;
+    text-decoration: underline;
   }
 
   .page-layout {
