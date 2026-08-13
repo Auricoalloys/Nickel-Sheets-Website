@@ -21,6 +21,7 @@ exclude:
   - desktop.ini
   - "**/desktop.ini"
   - docs/product-page-migration.md
+  - docs/apps-script
   - Gemfile
   - Gemfile.lock
   - vendor

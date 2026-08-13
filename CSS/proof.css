@@ -80,6 +80,46 @@
   object-fit: contain;
 }
 
+/* Verifiable registrations ------------------------------------------------ */
+
+.credentials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credentials li {
+  background: #f8fafb;
+  border: 1px solid #e3e6e8;
+  border-left: 3px solid #1a5276;
+  border-radius: 0 6px 6px 0;
+  padding: .9rem 1.1rem;
+}
+
+.credentials strong {
+  display: block;
+  color: #154360;
+  font-size: .95rem;
+}
+
+.credentials span {
+  display: block;
+  margin-top: .2rem;
+  font-size: .9rem;
+  color: #37474f;
+  font-variant-numeric: tabular-nums;
+}
+
+.credentials a {
+  display: inline-block;
+  margin-top: .45rem;
+  font-size: .8rem;
+  color: #1a5276;
+}
+
 /* PMI readings ----------------------------------------------------------- */
 
 .pmi-table {

@@ -19,6 +19,9 @@ exclude:
   - desktop.ini
   - "**/desktop.ini"
   - docs/product-page-migration.md
+  # Apps Script source for the enquiry endpoint. Lives here so it is versioned
+  # alongside the form that posts to it, but it is not part of the site.
+  - docs/apps-script
   # local build toolchain, not site content
   - Gemfile
   - Gemfile.lock
