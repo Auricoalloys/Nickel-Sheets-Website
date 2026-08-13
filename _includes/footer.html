@@ -76,3 +76,18 @@
     </div>
   </div>
 </footer>
+
+<!--
+  The enquiry form loads here rather than page by page, because 67 pages were
+  missing it entirely - every Inconel, Hastelloy, Incoloy and Nimonic grade, all
+  twelve Titanium grade hubs and /pages/products/, which between them are the
+  highest-intent pages on the site. Pages that already carry their own tag are
+  unaffected: module scripts are deduplicated by resolved URL, so this executes
+  once either way.
+
+  This tag is inert in the copy of the footer fetched at runtime by
+  product-page-runtime.js, since that is injected with innerHTML and innerHTML
+  does not execute scripts. The one page served that way,
+  /pure-nickel-strip/product.html, loads the module itself.
+-->
+<script type="module" src="/javascript/floating-form.js"></script>
