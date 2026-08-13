@@ -1,13 +1,17 @@
 # Local-build overlay. GitHub Pages reads only _config.yml, so nothing here
 # affects production.
 #
-# Thirteen NiCr pages use permalinks containing a colon, e.g.
-# /NiCr/80:20/plates/. Those are valid URLs and build correctly on the Linux
-# builders GitHub Pages uses, but a colon is illegal in a Windows filename, so
-# a local build cannot write them. Excluded here purely so the site can be
-# built and verified on Windows.
+# This file used to exclude thirteen NiCr pages whose permalinks contained a
+# colon (/NiCr/80:20/plates/). Those built on the Linux builders GitHub Pages
+# uses but not on Windows, where a colon is illegal in a filename. The
+# permalinks now use hyphens, so the whole site builds on Windows from
+# _config.yml alone and this overlay is no longer needed for that.
 #
-# Usage:
+# It is kept only because _config.local.yml must exclude itself from the output
+# when it is used. If you have no local-only overrides to add, build with:
+#   bundle exec jekyll build
+#
+# Usage with this overlay:
 #   bundle exec jekyll build --config _config.yml,_config.local.yml
 exclude:
   - README.md
@@ -21,16 +25,3 @@ exclude:
   - Gemfile.lock
   - vendor
   - _config.local.yml
-  - detailed_product_page/NiCr/20-25/plates.html
-  - detailed_product_page/NiCr/20-25/sheets.html
-  - detailed_product_page/NiCr/30-20/plates.html
-  - detailed_product_page/NiCr/30-20/sheets.html
-  - detailed_product_page/NiCr/40-20/plates.html
-  - detailed_product_page/NiCr/40-20/sheets.html
-  - detailed_product_page/NiCr/60-15/plates.html
-  - detailed_product_page/NiCr/60-15/sheets.html
-  - detailed_product_page/NiCr/70-30/plates.html
-  - detailed_product_page/NiCr/70-30/sheets.html
-  - detailed_product_page/NiCr/80-20/foil.html
-  - detailed_product_page/NiCr/80-20/plates.html
-  - detailed_product_page/NiCr/80-20/sheets.html
