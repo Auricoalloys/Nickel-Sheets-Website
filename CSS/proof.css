@@ -80,6 +80,44 @@
   object-fit: contain;
 }
 
+/* ISO certificate -------------------------------------------------------- */
+
+.certificate {
+  margin: 0;
+  border: 1px solid #e3e6e8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.certificate img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.certificate figcaption {
+  display: grid;
+  gap: .3rem;
+  padding: 1rem 1.1rem;
+  border-top: 1px solid #eef1f2;
+  font-size: .85rem;
+  color: #5a6570;
+}
+
+.certificate figcaption strong {
+  color: #2c3e50;
+  margin-right: .35rem;
+}
+
+.certificate__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 /* Verifiable registrations ------------------------------------------------ */
 
 .credentials {
