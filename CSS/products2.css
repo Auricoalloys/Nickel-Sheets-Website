@@ -39,6 +39,8 @@ ul {
   }
 }
 
+/* May be an <h1>; clear the default heading margin so the caption keeps its
+   position over the banner. */
 .banner-title {
   position: absolute;
   bottom: 20px;
@@ -51,6 +53,7 @@ ul {
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
+  margin: 0;
 }
 
 /* ========== Product Grid ========== */
