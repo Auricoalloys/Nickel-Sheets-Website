@@ -33,8 +33,9 @@ exclude:
   # Apps Script source for the enquiry endpoint. Lives here so it is versioned
   # alongside the form that posts to it, but it is not part of the site.
   - docs/apps-script
-  # Build tool for CSS/bootstrap.min.css, versioned beside what it produces.
+  # Build tools, versioned beside what they produce.
   - docs/purge-bootstrap.mjs
+  - docs/build-sitemap.mjs
   # camera originals, superseded by the WebP versions beside them
   - docs/images/source
   # local build toolchain, not site content
