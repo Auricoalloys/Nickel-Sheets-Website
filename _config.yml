@@ -19,6 +19,8 @@ description: >-
 # header.html, footer.html and product_detailed_page.html are fetched at runtime
 # by product-page-runtime.js, so they have to be served.
 exclude:
+  # Audit tooling. Runs in CI, never part of the published site.
+  - tools
   - README.md
   # Notes for Claude Code. Markdown without front matter is still rendered into
   # a page by the optional-front-matter plugin GitHub Pages always enables, so

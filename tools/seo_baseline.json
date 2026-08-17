@@ -1,0 +1,21 @@
+{
+ "counts": {
+  "duplicate_permalinks": 0,
+  "case_variant_urls": 0,
+  "missing_title": 0,
+  "missing_description": 0,
+  "missing_canonical": 0,
+  "truncated_description": 0,
+  "empty_description": 0,
+  "duplicate_tags_same_page": 0,
+  "no_h1": 1,
+  "multiple_h1": 0,
+  "title_too_long": 0,
+  "canonical_to_nowhere": 0,
+  "canonical_loops": 0,
+  "img_missing_alt": 0,
+  "alt_alloy_mismatch": 0,
+  "orphan_pages": 7,
+  "broken_internal_links": 0
+ }
+}

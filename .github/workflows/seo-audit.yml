@@ -1,0 +1,97 @@
+name: SEO audit
+
+# Runs the checks in tools/seo_audit.py against the repository.
+#
+# It reports; it never edits or publishes. Every check corresponds to a bug that
+# has actually occurred on this site, so a count above the baseline means
+# something regressed.
+#
+# On a pull request it fails the check, so a regression is caught before it
+# reaches the live site. On the daily schedule it opens an issue instead.
+
+on:
+  schedule:
+    - cron: "30 2 * * *"      # 08:00 IST
+  pull_request:
+    paths:
+      - "**.html"
+      - "_includes/**"
+      - "tools/seo_audit.py"
+  push:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "_includes/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run audit
+        id: audit
+        run: |
+          python tools/seo_audit.py | tee audit.txt
+          echo "---"
+          # --fail-on-new exits 1 only when a count exceeds the baseline
+          python tools/seo_audit.py --fail-on-new
+        continue-on-error: true
+
+      - name: Full findings
+        if: steps.audit.outcome == 'failure'
+        run: python tools/seo_audit.py --json > audit.json && cat audit.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-audit
+          path: |
+            audit.txt
+            audit.json
+          if-no-files-found: ignore
+
+      # A pull request should simply fail, so the regression never merges.
+      - name: Fail the PR on regression
+        if: steps.audit.outcome == 'failure' && github.event_name == 'pull_request'
+        run: |
+          echo "SEO regression - see the report above."
+          exit 1
+
+      # The scheduled run has no PR to annotate, so it raises an issue.
+      - name: Open an issue on regression
+        if: steps.audit.outcome == 'failure' && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('audit.txt', 'utf8');
+            const title = 'SEO audit: regression detected';
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'seo-audit'
+            });
+            const body = 'The daily SEO audit found counts above the baseline.\n\n' +
+                         '```\n' + report + '```\n\n' +
+                         'Baseline: `tools/seo_baseline.json`. ' +
+                         'If a change is intentional, update the baseline in the same PR.';
+            if (open.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open[0].number, body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['seo-audit']
+              });
+            }
