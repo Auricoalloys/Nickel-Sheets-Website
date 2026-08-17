@@ -133,6 +133,36 @@ def audit(pages):
         p for p, d in real.items()
         if any(not re.search(r"\balt\s*=", t, re.I) for t in d["imgs"]))
 
+    # Alt text that describes nothing. "Flat Banner Image" was on 31 pages.
+    GENERIC_ALT = re.compile(r"^\s*(image|photo|picture|banner|img|flat banner|logo)\b", re.I)
+    generic, dupe_alt = [], []
+    for p, d in real.items():
+        alts = []
+        for t in d["imgs"]:
+            m = re.search(r'alt="([^"]*)"', t)
+            if not m:
+                continue
+            a = m.group(1).strip()
+            if a and GENERIC_ALT.match(a):
+                generic.append({"file": p, "alt": a[:60]})
+            if a:
+                alts.append(a)
+        # the same alt repeated across different images on one page tells a
+        # screen reader and a crawler nothing about either
+        for a, n in collections.Counter(alts).items():
+            if n > 2:
+                dupe_alt.append({"file": p, "alt": a[:50], "count": n})
+    findings["generic_alt"] = generic
+    findings["duplicate_alt_on_page"] = dupe_alt
+
+    # Unbalanced anchors. pure-nickel-strips.html had five <a> opened inside an
+    # <h2> and never closed, which browsers paper over but parsers do not.
+    findings["unclosed_anchors"] = sorted(
+        {"file": p, "open": len(re.findall(r"<a[\s>]", d["raw"], re.I)),
+         "close": d["raw"].lower().count("</a>")}.__repr__()
+        for p, d in real.items()
+        if len(re.findall(r"<a[\s>]", d["raw"], re.I)) != d["raw"].lower().count("</a>"))
+
     # image alt naming a different alloy/grade than the page's own H1
     mismatch = []
     for p, d in real.items():

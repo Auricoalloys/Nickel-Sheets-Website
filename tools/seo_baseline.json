@@ -14,6 +14,9 @@
   "canonical_to_nowhere": 0,
   "canonical_loops": 0,
   "img_missing_alt": 0,
+  "generic_alt": 0,
+  "duplicate_alt_on_page": 0,
+  "unclosed_anchors": 0,
   "alt_alloy_mismatch": 0,
   "orphan_pages": 7,
   "broken_internal_links": 0
