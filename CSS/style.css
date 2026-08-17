@@ -13,26 +13,104 @@
     }
 }
 
-/* Global Styles */
+/* Global Styles
+ *
+ * Single source of truth for the design tokens. --primary-color was previously
+ * declared here as #1a5276 and again in header.css as #154360, so the brand
+ * navy depended on stylesheet order. #154360 is what the live site resolves to,
+ * so that is the value kept; the duplicate in header.css should be deleted.
+ */
 :root {
-    --primary-color: #1a5276;
+    --primary-color: #154360;
+    --primary-dark: #0f3247;
+    /* Brand orange, kept for accents, rules and icons where it sits on a light
+       surface. White text on it is only 2.85:1, so it must not be used as a
+       button fill with white text - see --secondary-cta. */
     --secondary-color: #e67e22;
+    /* Darkened until white text clears 4.5:1 (measured 4.58:1). This is the
+       fill for solid calls to action. */
+    --secondary-cta: #b45f14;
+    --secondary-cta-dark: #964f10;
     --dark-color: #2c3e50;
     --light-color: #f4f6f7;
     --text-color: #333;
-    --grey-color:#6c6d72;
+    --text-muted: #5b6770;
+    --grey-color: #6c6d72;
+    --border-color: #e3e8ea;
+
+    /* One type stack for everything. The old rule set 'Segoe UI' on * , which
+       only Windows has - so headings and body text resolved to two different
+       typefaces on macOS, iOS and Android. */
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "Noto Sans", sans-serif;
+
+    /* Fluid modular scale, ~1.25 ratio. Replaces the ad-hoc 54.4/32/20px. */
+    --step-0: clamp(1rem, 0.96rem + 0.20vw, 1.125rem);
+    --step-1: clamp(1.25rem, 1.18rem + 0.35vw, 1.5rem);
+    --step-2: clamp(1.5rem, 1.36rem + 0.70vw, 2rem);
+    --step-3: clamp(1.875rem, 1.63rem + 1.20vw, 2.75rem);
+    --step-4: clamp(2.25rem, 1.80rem + 2.25vw, 3.5rem);
+
+    /* Vertical rhythm. Sections previously alternated 48px and 80px padding
+       with no rule behind which got which. */
+    --section-y: clamp(3rem, 2rem + 4vw, 5rem);
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
+    --shadow-sm: 0 1px 2px rgba(16, 32, 44, 0.06), 0 2px 8px rgba(16, 32, 44, 0.06);
+    --shadow-md: 0 4px 12px rgba(16, 32, 44, 0.10);
+    --shadow-lg: 0 12px 32px rgba(16, 32, 44, 0.14);
+
+    --transition: 0.25s ease;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
     line-height: 1.6;
     color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Headings inherit the body stack. Weights are monotonic: an h3 must never be
+   heavier than the h2 above it, which is what the old 500/700 pairing did. */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    line-height: 1.2;
+    color: var(--primary-color);
+    text-wrap: balance;
+}
+
+h1 { font-size: var(--step-4); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: var(--step-3); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-2); font-weight: 600; }
+h4 { font-size: var(--step-1); font-weight: 600; }
+
+p { max-width: 68ch; }
+
+/* Keyboard focus was invisible everywhere; this is the only visible focus
+   affordance on the site. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 body a {
@@ -55,71 +133,97 @@ img {
     padding: 0 20px;
 }
 
+/* One definition each. .btn and .btn-primary were previously declared three
+   times across this file with conflicting backgrounds and hover colours, so
+   which one applied depended on source order. */
 .btn {
-    display: inline-block;
-    background: var(--secondary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* 44px floor: 37 of the 154 tap targets on the homepage were under the
+       44px minimum on a 375px viewport. */
+    min-height: 44px;
+    background: var(--secondary-cta);
     color: #fff;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 5px;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    line-height: 1.2;
+    text-align: center;
+    transition: background-color var(--transition), transform var(--transition),
+        box-shadow var(--transition);
 }
 
 .btn:hover {
-    color: var(--secondary-color);
+    background: var(--secondary-cta-dark);
+    color: #fff;
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-primary {
     background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background: #154360;
+    /* Was orange-on-navy, which sits at roughly 3.5:1 and fails AA for body
+       text. Darkening the navy and keeping white text stays well above 4.5:1. */
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
 }
 
 /* Features Section */
 .features {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
     background: var(--light-color);
 }
 
-.section-title-h1 {
-    text-align: center;
-    margin-bottom: 50px;
-    position: relative;
-    color: var(--primary-color)
-}
-
-.section-title-h1:after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 3px;
-    background: var(--secondary-color);
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
+.section-title-h1,
 .section-title-h2 {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
     position: relative;
-    color: var(--light-color)
 }
 
+.section-title-h1:after,
 .section-title-h2:after {
     content: '';
     position: absolute;
-    width: 50px;
+    width: 56px;
     height: 3px;
     background: var(--secondary-color);
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* Centred intro copy is the one place the 68ch measure must not left-align it. */
+.section-title-h1 > p,
+.section-title-h2 > p {
+    max-width: 60ch;
+    margin-inline: auto;
+    color: var(--text-muted);
+}
+
+/* .section-title-h2 sits in .products-preview. That section used to run a
+   #ccc-#888 grey gradient with near-white heading text, which measures 3.27:1
+   at the dark end - below AA. Navy on that same gradient is no better (2.96:1),
+   so the background itself is the problem; .products-preview is now a light
+   surface, where navy measures 9.24:1. */
+.section-title-h2,
+.section-title-h2 h2 {
+    color: var(--primary-color);
+}
+
+.section-title-h2 > p {
+    color: var(--dark-color);
 }
 
 .features-grid {
@@ -128,35 +232,50 @@ img {
     gap: 30px;
 }
 
+/* The reveal used to start at opacity:0 and wait for script.js to add
+   .visible. That makes four cards of homepage copy invisible until a script
+   runs and an IntersectionObserver fires - if either fails, the section is
+   blank. The entrance is now a pure CSS animation, so the content is visible
+   with or without JavaScript. .visible is kept harmless for the existing JS. */
 .feature-card {
-    background: var(--light-color);
-    padding: 30px;
-    border-radius: 5px;
+    background: #fff;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.feature-card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.feature-card.visible {
-    opacity: 1;
-    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .feature-card {
+        animation: card-rise 0.5s ease both;
+    }
+
+    .features-grid > :nth-child(2) { animation-delay: 0.08s; }
+    .features-grid > :nth-child(3) { animation-delay: 0.16s; }
+    .features-grid > :nth-child(4) { animation-delay: 0.24s; }
+}
+
+@keyframes card-rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
 }
 
 .feature-icon {
-    font-size: 2.5rem;
     color: var(--secondary-color);
-    margin-bottom: 20px;
+    margin-bottom: var(--space-sm);
+}
+
+.feature-icon .icon {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
 }
 
 .feature-card h3 {
@@ -167,8 +286,8 @@ img {
 /* Products Preview */
 
 .products-preview {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #cccccc 0%, #888888 100%);
+    padding: var(--section-y) 0;
+    background: #eef1f3;
 }
 
 .product-overlay .product-title.white {
@@ -218,7 +337,7 @@ img {
 /* product track */
 
 .products-preview-1 {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
     background: linear-gradient(to bottom, #e0e0e0, rgba(255, 255, 255, 0.05));
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -267,38 +386,6 @@ img {
 }
 
 /* Carousal Slider */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
-    color: #fff;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
-    color: var(--secondary-color);
-    transform: translateY(-2px);
-}
-
-.btn-primary {
-    background: var(--primary-color);
-}
-
-.btn-primary:hover {
-    background: #154360;
-}
-
 .apple-slider .slide-content {
     height: 450px;
     background-size: cover;
@@ -479,43 +566,21 @@ h2 {
     min-height: 500px;
 }
 
-.feature-card {
-    transition: transform 0.3s, box-shadow 0.3s;
-    height: 100%;
-    border: none;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-primary:hover {
-    background-color: #1a252f;
-    color: var(--secondary-color);
-}
+/* The duplicate .feature-card, .feature-icon and .btn-primary blocks that used
+   to sit here have been folded into their definitions above. The .feature-icon
+   copy referenced an accent-color custom property that is not defined anywhere
+   in the site, so the icons fell back to the inherited text colour instead of
+   the intended accent. */
 
 .btn-outline-primary {
-    /* color: var(--primary-color); */
+    color: var(--primary-color);
     border-color: var(--primary-color);
+    min-height: 44px;
 }
 
 .btn-outline-primary:hover {
     background-color: var(--primary-color);
-    color: var(--secondary-color);
-    color: white;
+    border-color: var(--primary-color);
+    /* Was declared twice, orange then white; white is the one that applied. */
+    color: #fff;
 }

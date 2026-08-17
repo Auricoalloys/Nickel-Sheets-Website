@@ -31,9 +31,14 @@
     color: #fff;
   }
 
-  th a,
-  th a:hover,
-  th a:focus {
+  /* Qualified with body so this outranks the `body a { color: var(--primary-color) }`
+     rule in products.css. Both were specificity (0,0,2) and products.css loads
+     after pages.css, so the navy link colour was winning and every row-header
+     link rendered navy on the navy th - invisible. */
+  body th a,
+  body th a:hover,
+  body th a:focus,
+  body th a:visited {
     color: #fff;
     text-decoration: underline;
   }
