@@ -41,15 +41,17 @@ jobs:
       - name: Run audit
         id: audit
         run: |
-          python tools/seo_audit.py | tee audit.txt
+          # --live adds the apex domain checks: they need network access, so
+          # they run here rather than on every local invocation.
+          python tools/seo_audit.py --live | tee audit.txt
           echo "---"
           # --fail-on-new exits 1 only when a count exceeds the baseline
-          python tools/seo_audit.py --fail-on-new
+          python tools/seo_audit.py --live --fail-on-new
         continue-on-error: true
 
       - name: Full findings
         if: steps.audit.outcome == 'failure'
-        run: python tools/seo_audit.py --json > audit.json && cat audit.json
+        run: python tools/seo_audit.py --live --json > audit.json && cat audit.json
 
       - uses: actions/upload-artifact@v4
         if: always()

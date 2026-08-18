@@ -227,9 +227,83 @@ def audit(pages):
     return findings
 
 
+
+# --------------------------------------------------------------------------
+# Live checks. Off by default so the file-based audit stays fast and offline;
+# the scheduled run passes --live.
+#
+# The apex is here because it is the only failure that stops a visitor before
+# they reach any page, and nothing else watches it. It has broken twice: once
+# when a Vercel A record held the domain with no certificate for it, and again
+# when that record came back after being removed.
+# --------------------------------------------------------------------------
+GITHUB_PAGES_IPS = {"185.199.108.153", "185.199.109.153",
+                    "185.199.110.153", "185.199.111.153"}
+
+
+def live_checks(site="nickelsheets.com"):
+    import socket, ssl, urllib.request, urllib.error
+    out = {}
+
+    # every A record the apex resolves to
+    try:
+        ips = {ai[4][0] for ai in socket.getaddrinfo(site, 80, socket.AF_INET)}
+    except OSError as e:
+        ips = set()
+        out["apex_dns_error"] = [str(e)]
+    foreign = sorted(ips - GITHUB_PAGES_IPS)
+    missing = sorted(GITHUB_PAGES_IPS - ips)
+    out["apex_foreign_a_records"] = [{"ip": i} for i in foreign]
+    out["apex_missing_a_records"] = [{"ip": i} for i in missing]
+
+    # the certificate presented on the apex must name the apex
+    def cert_names(host):
+        try:
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            with socket.create_connection((host, 443), timeout=15) as sock:
+                with ctx.wrap_socket(sock, server_hostname=host) as ss:
+                    c = ss.getpeercert()
+                    if not c:
+                        der = ss.getpeercert(True)
+                        return ["<opaque>"] if der else []
+                    return [v for k, v in c.get("subjectAltName", ()) if k == "DNS"]
+        except Exception as e:
+            return ["<error: %s>" % e]
+
+    names = cert_names(site)
+    ok = any(n == site or (n.startswith("*.") and site.endswith(n[1:])) for n in names)
+    out["apex_cert_wrong_host"] = [] if ok else [{"host": site, "cert_names": names[:4]}]
+
+    # the apex must redirect to the canonical www host
+    def head(url):
+        req = urllib.request.Request(url, method="HEAD")
+        try:
+            class NoRedirect(urllib.request.HTTPRedirectHandler):
+                def redirect_request(self, *a, **k):
+                    return None
+            op = urllib.request.build_opener(NoRedirect)
+            r = op.open(req, timeout=15)
+            return r.status, r.headers.get("Location")
+        except urllib.error.HTTPError as e:
+            return e.code, e.headers.get("Location")
+        except Exception as e:
+            return 0, str(e)
+
+    code, loc = head("https://%s/" % site)
+    out["apex_https_not_redirecting"] = ([] if code in (301, 308) and loc and "www." in loc
+                                         else [{"status": code, "location": loc}])
+    code, _ = head("https://www.%s/" % site)
+    out["www_not_200"] = [] if code == 200 else [{"status": code}]
+    return out
+
+
 def main():
     pages = collect()
     f = audit(pages)
+    if "--live" in sys.argv:
+        f.update(live_checks())
     counts = {k: len(v) for k, v in f.items()}
 
     if "--json" in sys.argv:
