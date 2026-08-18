@@ -16,12 +16,19 @@ bundle install
 ```
 
 ```bash
+bash docs/build-local.sh
+```
+
+Use that rather than `bundle exec jekyll build` directly: it marks `_site` case-sensitive first, so
+the local build matches what GitHub Pages serves. See the case note under Architecture for why that
+matters. For a live-reloading preview:
+
+```bash
 bundle exec jekyll serve
 ```
 
-```bash
-bundle exec jekyll build
-```
+`serve` does not get the case-sensitivity treatment, so treat anything it shows about the two
+case-variant URLs with suspicion.
 
 `.bundle/config` pins `BUNDLE_PATH` to `vendor/bundle`, which is gitignored. The `github-pages` gem
 is used so a local build reproduces production rather than approximating it.
@@ -77,14 +84,24 @@ those alone — they are indexed.
 Never put a colon in a permalink. Colons build on the Linux runners GitHub Pages uses but are
 illegal in Windows filenames, so the local build breaks. This already bit the NiCr pages once.
 
-**A local Windows build cannot faithfully represent this site.** Several permalinks differ only by
-case — `/Hastelloy/foil/` and `/hastelloy/foil/`, `/inconel/X-750/` and `/inconel/x-750/`,
-`/monel/K-500/sheets/`. GitHub Pages builds on Linux, where those are distinct URLs; Windows collapses
-each pair into one directory and whichever page Jekyll writes last silently wins. So a page can look
-missing, or wrong, in local `_site` while being perfectly correct in production.
+**Build locally with `bash docs/build-local.sh`, not plain `jekyll build`.**
 
-Two consequences. When something looks broken locally, check the declared `permalink:` in the source
-before believing it. And never conclude a URL 404s from a local build — check the live site.
+Two URLs on this site differ only by case: `/Hastelloy/foil/` is a real page and `/hastelloy/foil/` is
+a redirect stub aimed at it, and `/monel/K-500/sheets/` has the same shape. GitHub Pages builds on
+Linux, where those are distinct paths. Windows is case-insensitive by default, so it collapses each
+pair into one directory and whichever file Jekyll writes last silently wins — the local `_site` then
+disagrees with production, and a link checker reading it reports hundreds of 404s that do not exist.
+
+`docs/build-local.sh` marks `_site` case-sensitive before building, which Windows 10 1803+ supports
+per-directory, and subdirectories inherit it. The flag can only be set on an *empty* directory, which
+is why the script recreates `_site` rather than reusing it — and why `rm -rf _site && bundle exec
+jekyll build` silently loses the protection. The script prints which mode you got, and warns loudly if
+it could not enable it (it needs the WSL optional component present). If you see that warning, do not
+conclude a page is missing or a link 404s from that build — check the source `permalink:` or the live
+site.
+
+Note that uppercase in a URL is not itself a problem: 142 URLs contain uppercase (`/NiCr/…`,
+`/stainless/904L/`) and none of them collide. Only two URLs differing *only* by case cause this.
 
 The same case-sensitivity applies to filenames. `titanium/Grade-2/plates.HTML` once built to
 `plates/index.HTML`, which no server serves for a directory request, so the page 404ed in production
