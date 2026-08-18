@@ -15,10 +15,11 @@
 
 /* Global Styles
  *
- * Single source of truth for the design tokens. --primary-color was previously
- * declared here as #1a5276 and again in header.css as #154360, so the brand
- * navy depended on stylesheet order. #154360 is what the live site resolves to,
- * so that is the value kept; the duplicate in header.css should be deleted.
+ * The design tokens live in header.css, which is the only stylesheet every
+ * page loads - this file reaches just four pages, so a token declared only
+ * here would never reach the rest of the site. The copy below is kept because
+ * it is identical to the one in header.css and harmless; keep the two in step,
+ * and add anything new to header.css.
  */
 :root {
     --primary-color: #154360;
@@ -496,8 +497,8 @@ img {
 }
 
 .company-overview .btn-primary:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    background-color: var(--secondary-cta);
+    border-color: var(--secondary-cta);
 }
 
 /* Contact Page */

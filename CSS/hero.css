@@ -94,15 +94,15 @@
 }
 
 .btn-hero-primary {
-  background: var(--secondary-color, #e67e22);
+  background: var(--secondary-cta, #b45f14);
   color: #fff;
-  border: 2px solid var(--secondary-color, #e67e22);
+  border: 2px solid var(--secondary-cta, #b45f14);
 }
 
 .btn-hero-primary:hover,
 .btn-hero-primary:focus {
-  background: #cf6f18;
-  border-color: #cf6f18;
+  background: var(--secondary-cta-dark, #964f10);
+  border-color: var(--secondary-cta-dark, #964f10);
   color: #fff;
   transform: translateY(-2px);
 }
