@@ -1,9 +1,13 @@
 /* Hero Section Styles */
 .hero-section {
-  height: 75vh;
-  min-height: 520px;
+  /* min-height, not height: the content is taller than 75vh on a phone, and a
+     fixed height with overflow-hidden clipped the first line of the headline
+     and the second button. This keeps the tall look on a desktop viewport and
+     lets the section grow anywhere it has to. */
+  min-height: max(75vh, 520px);
   display: flex;
   align-items: center;
+  padding: 2rem 0;
 }
 
 .video-container {
@@ -38,6 +42,11 @@
 }
 
 .hero-content h1 {
+  /* style.css colours every heading --primary-color, and that declaration beats
+     the white this element inherits from .text-white on its parent - inherited
+     values lose to any direct one. The headline was rendering dark navy on the
+     blue overlay at roughly 1.5:1. */
+  color: #fff;
   font-size: clamp(1.9rem, 4.4vw, 3.4rem);
   font-weight: 700;
   line-height: 1.15;
