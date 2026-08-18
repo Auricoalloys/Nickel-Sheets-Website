@@ -16,6 +16,21 @@
 import { LEAD_ENDPOINTS, FALLBACK_CONTACT, EVENTS } from "./lead-config.js";
 
 const ATTRIBUTION_KEY = "aurico_attribution";
+// A CTA can hand the form the enquiry it was raised from, so a visitor who
+// clicked "Request a sample" on the Inconel 718 powder page does not have to
+// retype which powder they meant. Read once, escaped, and only ever used as the
+// textarea default - never as markup.
+function prefillInquiry() {
+  try {
+    const v = new URLSearchParams(window.location.search).get("enquiry");
+    if (!v) return "";
+    return v.slice(0, 300)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  } catch {
+    return "";
+  }
+}
+
 const ATTRIBUTION_FIELDS = [
   "utm_source",
   "utm_medium",
@@ -458,7 +473,7 @@ export class FloatingForm {
         <div class="floating-form-group">
           <label class="floating-form-label" for="${this.id}-inquiry">Inquiry*</label>
           <textarea id="${this.id}-inquiry" name="inquiry" rows="4" class="floating-form-textarea" required
-            placeholder="Grade, form and dimensions - e.g. Inconel 625 sheet, 3mm x 1000 x 2000"></textarea>
+            placeholder="Grade, form and dimensions - e.g. Inconel 625 sheet, 3mm x 1000 x 2000">${prefillInquiry()}</textarea>
         </div>
         <div class="floating-form-checkbox-wrapper">
           <label class="floating-form-checkbox-label" for="${this.id}-privacy">

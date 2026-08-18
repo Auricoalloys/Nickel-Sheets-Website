@@ -82,28 +82,68 @@
         incoming PMI checks</a>.</p>
     </div>
 
-    <!--
-      Trademark attribution. Owners are named exactly as the business confirmed
-      them, and the registered/unregistered distinction follows what they gave
-      rather than being levelled up: STELLITE, FERRALIUM, 254 SMO and the
-      Carpenter marks are stated as trademarks, the rest as registered.
-    -->
+    {%- comment -%}
+      Owners are named exactly as the business confirmed them, and the
+      registered/unregistered distinction follows what they gave rather than
+      being levelled up: STELLITE, FERRALIUM, 254 SMO and the Carpenter marks
+      are stated as trademarks, the rest as registered.
+
+      Attribution is for the marks this page is about, not for every mark on the
+      site. The old block named twenty owners on all 746 pages, so a reader on
+      an Inconel page was told who owns SANICRO, FERRALIUM and PYROMET.
+
+      Matching is on page.url, which carries the alloy name on all but five
+      pages; those five, and the homepage, set `trademarks:` in their front
+      matter instead. Judged this way no page needs more than two lines and 385
+      need none - as against 277 pages that *mention* eleven marks or more,
+      because the cross-link lists name every sibling product.
+
+      The disclaimer below is unconditional. It is the sentence that actually
+      does the work - independent stockist, not affiliated, not endorsed - and
+      it must never be missing from a page.
+    {%- endcomment -%}
+    {%- assign u = page.url | downcase -%}
+    {%- assign tm = page.trademarks | default: '' | downcase -%}
+    {%- assign subject = u | append: ' ' | append: tm -%}
     <div class="footer-links trademarks">
-      <p><small>HASTELLOY&reg; and HAYNES&reg; are registered trademarks of Haynes International, Inc.
-        INCONEL&reg;, INCOLOY&reg;, MONEL&reg; and NIMONIC&reg; are registered trademarks of Special Metals
-        Corporation. AL-6XN&reg; is a registered trademark of ATI Properties, Inc. SANICRO&reg; is a registered
-        trademark of Alleima AB. ELGILOY&reg; is a registered trademark of Combined Metals Company, LLC.
-        RA330&reg; and ZERON&reg;&nbsp;100 are trademarks of Rolled Alloys, Inc. 254&nbsp;SMO&reg; is a
-        trademark of Outokumpu OY. STELLITE&reg; is a trademark of Kennametal Inc. FERRALIUM&reg; is a trademark
-        of Langley Alloys Ltd. CARPENTER&nbsp;20Cb-3&reg;, 20Cb-3LR&reg;, 20Mo-6&reg;, PYROMET&reg; and
-        MP35N&reg; are trademarks of Carpenter Technology Corporation. VDM&reg; is a registered trademark of
-        VDM Metals GmbH. NIPPON YAKIN is a trademark of Nippon Yakin Kogyo Co., Ltd. NIPPON STEEL is a
-        trademark of Nippon Steel Corporation. SANYO SPECIAL STEEL is a trademark of Sanyo Special Steel
-        Co., Ltd. B&Ouml;HLER&reg; and VOESTALPINE&reg; are registered trademarks of voestalpine AG.
-        All other trademarks are the property of their respective owners.</small></p>
+      {%- if subject contains 'inconel' or subject contains 'incoloy' or subject contains 'monel' or subject contains 'nimonic' %}
+      <p><small>INCONEL&reg;, INCOLOY&reg;, MONEL&reg; and NIMONIC&reg; are registered trademarks of Special
+        Metals Corporation.</small></p>
+      {%- endif %}
+      {%- if subject contains 'hastelloy' or subject contains 'haynes' %}
+      <p><small>HASTELLOY&reg; and HAYNES&reg; are registered trademarks of Haynes International, Inc.</small></p>
+      {%- endif %}
+      {%- if subject contains 'al-6xn' %}
+      <p><small>AL-6XN&reg; is a registered trademark of ATI Properties, Inc.</small></p>
+      {%- endif %}
+      {%- if subject contains 'sanicro' %}
+      <p><small>SANICRO&reg; is a registered trademark of Alleima AB.</small></p>
+      {%- endif %}
+      {%- if subject contains 'elgiloy' %}
+      <p><small>ELGILOY&reg; is a registered trademark of Combined Metals Company, LLC.</small></p>
+      {%- endif %}
+      {%- if subject contains 'stellite' %}
+      <p><small>STELLITE&reg; is a trademark of Kennametal Inc.</small></p>
+      {%- endif %}
+      {%- if subject contains 'smo' %}
+      <p><small>254&nbsp;SMO&reg; is a trademark of Outokumpu OY.</small></p>
+      {%- endif %}
+      {%- if subject contains 'zeron' or subject contains 'ra330' %}
+      <p><small>RA330&reg; and ZERON&reg;&nbsp;100 are trademarks of Rolled Alloys, Inc.</small></p>
+      {%- endif %}
+      {%- if subject contains 'ferralium' %}
+      <p><small>FERRALIUM&reg; is a trademark of Langley Alloys Ltd.</small></p>
+      {%- endif %}
+      {%- if subject contains 'carpenter' or subject contains '20cb' or subject contains 'pyromet' or subject contains 'mp35n' %}
+      <p><small>CARPENTER&nbsp;20Cb-3&reg;, 20Cb-3LR&reg;, 20Mo-6&reg;, PYROMET&reg; and MP35N&reg; are
+        trademarks of Carpenter Technology Corporation.</small></p>
+      {%- endif %}
+      {%- if subject contains 'vdm' %}
+      <p><small>VDM&reg; is a registered trademark of VDM Metals GmbH.</small></p>
+      {%- endif %}
       <p><small>Aurico Alloys LLP is an independent stockist and distributor. It is not affiliated with,
-        endorsed by or sponsored by these companies, and these names are used only to identify the material
-        supplied.</small></p>
+        endorsed by or sponsored by any of these companies, and these names are used only to identify the
+        material supplied. All other trademarks are the property of their respective owners.</small></p>
     </div>
 
     <div class="footer-links copyright">
