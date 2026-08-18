@@ -72,11 +72,44 @@ redirect_from:
         gtag('config', 'G-XZL7EXDTQ0');
     </script>
     <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hastelloy",
+      "item": "https://www.nickelsheets.com/hastelloy/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Hastelloy® C2000",
+      "item": "https://www.nickelsheets.com/hastelloy/C2000/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main class="container my-5">
+  <main id="main" class="container my-5">
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/hastelloy/">Hastelloy</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Hastelloy® C2000</li>
+      </ol>
+    </nav>
     <h1>Hastelloy® C2000</h1>
     <p>Aurico Alloys LLP Hastelloy® C2000 plates (UNS N06200, ASTM B575) for sulfuric/hydrochloric acid reactors, FGD systems, pharma mixers. Superior to C-276 in oxidizing/reducing media.</p>
 

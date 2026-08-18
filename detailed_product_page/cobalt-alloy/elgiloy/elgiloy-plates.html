@@ -76,11 +76,37 @@ title: Elgiloy Plates
     </script>
     <meta name="description" content="Elgiloy Plates from Aurico Alloys LLP, ex-stock in Mumbai. Cut to size, mill test certificates supplied, exported worldwide.">
   <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cobalt Alloys",
+      "item": "https://www.nickelsheets.com/cobalt-alloys/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Elgiloy Plates",
+      "item": "https://www.nickelsheets.com/elgiloy/plates/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
     <div id="header__container">{% include header.html %}</div>
 
-    <main>
+    <main id="main">
         <div id="detailed_page"><div class="flat-banner" id="flat-banner"><figure>
     <img
 src="/docs/media/plates-banner.webp"
@@ -91,6 +117,13 @@ src="/docs/media/plates-banner.webp"
   </figure>
 
 </div>
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/cobalt-alloys/">Cobalt Alloys</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Elgiloy Plates</li>
+      </ol>
+    </nav>
 
 <div class="container-fluid my-4 content-container" >
   <div class="row gx-4">
@@ -238,7 +271,7 @@ src="/docs/media/plates-banner.webp"
         </div></aside>
     </nav>
 
-    <main class="col-12 col-md-9">
+    <div class="col-12 col-md-9">
       <div class="main-content">
         <div class="title" id="title">    <h1>Elgiloy Plates | UNS R30003 High-Strength, Sour-Gas & Seawater Alloy for Chemical, Oil & Gas, Marine, Pharma & Power</h1></div>
 
@@ -567,7 +600,7 @@ src="/docs/media/plates-banner.webp"
 
         <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 </div>

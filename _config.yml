@@ -38,6 +38,7 @@ exclude:
   # Build tools, versioned beside what they produce.
   - docs/purge-bootstrap.mjs
   - docs/build-sitemap.mjs
+  - docs/build-search-index.mjs
   - docs/build-local.sh
   # camera originals, superseded by the WebP versions beside them
   - docs/images/source

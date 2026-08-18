@@ -77,11 +77,37 @@ redirect_from:
         gtag('config', 'G-XZL7EXDTQ0');
     </script>
     <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Nimonic Hex Bars",
+      "item": "https://www.nickelsheets.com/nimonic-hex-bars-supplier-exporter-mumbai-india/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main>
+  <main id="main">
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nimonic Hex Bars</li>
+      </ol>
+    </nav>
     <div id="detailed_page"><div class="flat-banner" id="flat-banner">  <figure>
     <img
 src="/docs/media/hex-bar-flat-banner.webp"
@@ -300,7 +326,7 @@ src="/docs/media/hex-bar-flat-banner.webp"
     </div></aside>
     </nav>
 
-    <main class="col-12 col-md-9">
+    <div class="col-12 col-md-9">
       <div class="main-content">
         <div class="title" id="title"><h1>Nimonic Hex Bars: Engineered for Extreme High-Temperature Performance</h1>
 </div>
@@ -539,7 +565,7 @@ src="/docs/media/hex-bar-flat-banner.webp"
 
         <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 </div>

@@ -70,11 +70,37 @@ title: Titanium Grade 5 foil
   <link rel="stylesheet" href="/CSS/header.css">
   <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/tables.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Titanium",
+      "item": "https://www.nickelsheets.com/titanium/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Titanium Grade 5 Foil",
+      "item": "https://www.nickelsheets.com/titanium/grade-5/foil/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main>
+  <main id="main">
     <div id="detailed_page"><div class="flat-banner" id="flat-banner"><figure>
     <img
 src="/docs/media/Foil-New-Banner.webp"
@@ -85,6 +111,13 @@ src="/docs/media/Foil-New-Banner.webp"
   </figure>
 
 </div>
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/titanium/">Titanium</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Titanium Grade 5 Foil</li>
+      </ol>
+    </nav>
 
 <div class="container-fluid my-4 content-container" >
   <div class="row gx-4">
@@ -230,7 +263,7 @@ src="/docs/media/Foil-New-Banner.webp"
         </div></aside>
     </nav>
 
-    <main class="col-12 col-md-9">
+    <div class="col-12 col-md-9">
       <div class="main-content">
         <div class="title" id="title">    <p>
       In the heat of a next-gen jet engine test, turbine blades fatigued prematurely under cyclic loads, threatening program delays for a major aerospace OEM. Switching to <strong>Titanium Grade 5 Foil UNS R56400 ASTM B265 Ti-6Al-4V</strong> from Aurico Alloys LLP, with its superior 900-1000 MPa tensile strength and heat-treatability, resolved the issue, enabling fatigue resistance up to 10^7 cycles .
@@ -503,7 +536,7 @@ src="/docs/media/Foil-New-Banner.webp"
 
         <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 </div>

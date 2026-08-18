@@ -77,11 +77,37 @@ keywords: Inconel, Nickel Alloy, Round-Bar, Corrosion Resistance, High Temperatu
         gtag('config', 'G-XZL7EXDTQ0');
     </script>
     <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Inconel",
+      "item": "https://www.nickelsheets.com/inconel/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Premium Inconel Round Bars",
+      "item": "https://www.nickelsheets.com/inconel/round-bars/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main>
+  <main id="main">
     <div id="detailed_page"><div class="flat-banner" id="flat-banner"><figure>
     <img
 src="/docs/images/titanium-round-bar.webp"
@@ -91,6 +117,13 @@ src="/docs/images/titanium-round-bar.webp"
     </h1>
   </figure>
 </div>
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/inconel/">Inconel</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Premium Inconel Round Bars</li>
+      </ol>
+    </nav>
 
 <div class="container-fluid my-4 content-container" >
   <div class="row gx-4">
@@ -298,7 +331,7 @@ li{
 ...</aside>
     </nav>
 
-    <main class="col-12 col-md-9">
+    <div class="col-12 col-md-9">
       <div class="main-content">
         <div class="title" id="title"><p>
       On an offshore rig battered by corrosive salt spray and heat, even a single unscheduled shutdown can cost millions. That risk changed for a petrochemical operator who shifted to Inconel round bars gaining uptime where cheaper steels continually failed. Today, industries from chemical processing to power and marine rely on Aurico Alloys LLP Inconel Round Bars for critical components, ensuring reliability, compliance, and peace of mind across plants and supply chains worldwide.
@@ -583,7 +616,7 @@ li{
 
         <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 </div>

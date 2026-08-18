@@ -76,11 +76,37 @@ title: NiCr 40-20 Round Bars
         gtag('config', 'G-XZL7EXDTQ0');
     </script>
     <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Nichrome",
+      "item": "https://www.nickelsheets.com/nichrome/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "NiCr 40",
+      "item": "https://www.nickelsheets.com/NiCr/40-20/round-bar/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main>
+  <main id="main">
     <div id="detailed_page"><div class="flat-banner" id="flat-banner"><figure>
     <img
 src="/docs/media/Haynes-2.webp"
@@ -90,6 +116,13 @@ src="/docs/media/Haynes-2.webp"
     </h1>
   </figure>
 </div>
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/nichrome/">Nichrome</a></li>
+        <li class="breadcrumb-item active" aria-current="page">NiCr 40</li>
+      </ol>
+    </nav>
 
 <div class="container-fluid my-4 content-container" >
   <div class="row gx-4">
@@ -296,7 +329,7 @@ li{
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collaps...</aside>
     </nav>
 
-    <main class="col-12 col-md-9">
+    <div class="col-12 col-md-9">
       <div class="main-content">
         <div class="title" id="title"><p>
       When a leading marine shipping company faced recurring failures in saltwater piping due to corrosion and mechanical wear, they turned to <strong>NiCr 40:20 Round Bars</strong> to ensure longer life and safer operations. Engineered for severe chemical and marine conditions, these bars are the trusted materials for engineers, fabricators, and procurement heads in chemical, oil & gas, marine, pharma, and power sectors aiming for higher efficiency and reduced downtime.
@@ -562,7 +595,7 @@ li{
 
         <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 </div>

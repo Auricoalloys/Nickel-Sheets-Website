@@ -42,12 +42,45 @@ title: Nickel Strip Product
   <!-- Template route: renders only with ?product=<slug>, so it has no
        standalone content to index. -->
   <meta name="robots" content="noindex, follow">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pure Nickel Strips",
+      "item": "https://www.nickelsheets.com/pure-nickel-strips/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Nickel Strip Product",
+      "item": "https://www.nickelsheets.com/pure-nickel-strip/product/"
+    }
+  ]
+}
+  </script>
 </head>
 
 <body>
   <div id="header__container"></div>
 
-  <main>
+  <main id="main">
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pure-nickel-strips/">Pure Nickel Strips</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nickel Strip Product</li>
+      </ol>
+    </nav>
     <div id="detailed_page"></div>
   </main>
 

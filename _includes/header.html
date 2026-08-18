@@ -23,7 +23,13 @@
   <div class="container">
     <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="/docs/aurico-logo1.svg" alt="Aurico Alloys LLP" height="48" width="160" class="me-2">
+      <!--
+        docs/aurico-logo1.svg is 211 KB: it is four embedded PNGs wrapped in SVG
+        markup, not vector art, and it was loading on every page. This is the
+        same image rasterised at 3x the box below, which is 6 KB. The .svg is
+        kept in the repo as the source it was made from, but is no longer served.
+      -->
+      <img src="/docs/images/aurico-logo-header.webp" alt="Aurico Alloys LLP" height="48" width="160" class="me-2">
     </a>
 
     <!-- Mobile Toggle -->
@@ -194,7 +200,67 @@
         <li class="nav-item"><a class="nav-link" href="/pages/quality/">Quality</a></li>
         <li class="nav-item"><a class="nav-link" href="/pages/contact/">Contact</a></li>
         <li class="nav-item"><a class="nav-link nav-cta" href="/pages/contact/">Get a Quote</a></li>
+
+        <!--
+          Site search. ~750 pages had no way to search them: finding
+          "Hastelloy C276 tube" meant walking the Materials dropdown three
+          levels deep and knowing which family it sits under. The index is
+          fetched on first interaction, not on page load, so a visitor who
+          never searches never pays for it. Behaviour lives in
+          javascript/site-search.js, loaded from the footer include.
+        -->
+        <li class="nav-item site-search" role="search">
+          <label class="visually-hidden-label" for="site-search-input">Search products</label>
+          <input type="search" id="site-search-input" class="site-search__input"
+            placeholder="Search alloys, grades, UNS&hellip;" autocomplete="off"
+            role="combobox" aria-expanded="false" aria-autocomplete="list"
+            aria-controls="site-search-results">
+          <ul id="site-search-results" class="site-search__results" role="listbox"
+            aria-label="Search results" hidden></ul>
+          <p class="site-search__status visually-hidden-label" role="status" aria-live="polite"></p>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+
+{%- comment -%}
+  The full Organization entity, rendered into every page because this include is.
+  It used to exist only on the homepage: 474 pages carried a partial copy with a
+  postal address but no telephone and no sameAs, and organic traffic lands on
+  deep product pages, so search and AI engines almost never saw the whole entity.
+  Same @id as the homepage graph, so the two are one node rather than two.
+  Skipped on the homepage, which already declares it, and on the standalone
+  fragment at /html/header.html, which is injected into a page that has it.
+{%- endcomment -%}
+{%- unless page.url == "/" or page.url == "/html/header.html" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.nickelsheets.com/#organization",
+  "name": "Aurico Alloys LLP",
+  "url": "https://www.nickelsheets.com",
+  "logo": "https://www.nickelsheets.com/docs/images/aurico-logo.webp",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "112, 1st Floor, Aman Grih, Carpenter 1st Street, C.P.Tank",
+    "addressLocality": "Mumbai",
+    "addressRegion": "Maharashtra",
+    "postalCode": "400004",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-7977886611",
+    "email": "info@auricoalloys.com",
+    "contactType": "sales"
+  },
+  "sameAs": [
+    "https://www.facebook.com/people/Aurico-Alloys-LLP/61563803710108/",
+    "https://www.linkedin.com/company/aurico-alloys-llp/",
+    "https://www.instagram.com/auricoalloys/"
+  ]
+}
+</script>
+{%- endunless -%}
