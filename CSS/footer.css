@@ -17,20 +17,6 @@
       margin-bottom: 20px;
   }
 
-  /* style.css sets h1-h6 to --primary-color, a dark navy, and that direct
-     declaration beats the white these headings would otherwise inherit from
-     `footer`. On the pages that load style.css, "Quick Links", "Materials" and
-     "Contact Us" rendered navy on --dark-color - about 1.05:1, invisible.
-     Declared here because this is the stylesheet that owns the dark surface. */
-  footer h1,
-  footer h2,
-  footer h3,
-  footer h4,
-  footer h5,
-  footer h6 {
-      color: #fff;
-  }
-
   .footer-links h3 {
       margin-bottom: 20px;
       font-size: 1.2rem;

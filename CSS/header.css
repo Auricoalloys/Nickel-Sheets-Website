@@ -32,6 +32,21 @@
      Android while the homepage used system-ui. */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, "Noto Sans", sans-serif;
+
+  /* Headings read this instead of --primary-color directly, so a dark panel can
+     override it for everything inside. Navy headings on a navy panel measured
+     1.05:1 in the footer and the same on the quality page's case study. */
+  --heading-color: var(--primary-color);
+}
+
+/* The footer is dark on every page, so its override lives here with the token.
+   Every other dark surface sets --heading-color: currentColor beside its own
+   background rule - see hero.css, proof.css, pages.css and style.css. Keeping
+   the override next to the background is the point: a class like .header is
+   only dark in the stylesheet that paints it, and claiming it globally would
+   restyle pages that use the same name for something light. */
+footer {
+  --heading-color: currentColor;
 }
 
 /* Inline SVG icons, in place of the Font Awesome webfont that used to be

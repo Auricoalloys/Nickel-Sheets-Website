@@ -219,6 +219,7 @@
 .case-study {
   background: #154360;
   color: #eaf1f6;
+  --heading-color: currentColor;
   border-radius: 10px;
   padding: 2rem 2.25rem;
   margin-top: 3rem;
