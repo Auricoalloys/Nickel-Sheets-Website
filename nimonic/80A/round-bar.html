@@ -75,11 +75,37 @@ title: Nimonic 75 Round Bars
         gtag('config', 'G-XZL7EXDTQ0');
     </script>
     <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Nimonic",
+      "item": "https://www.nickelsheets.com/nimonic/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Nimonic 80A Round Bars",
+      "item": "https://www.nickelsheets.com/nimonic/80A/round-bar/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main>
+  <main id="main">
     <div id="detailed_page"><div class="flat-banner" id="flat-banner"><figure>
     <img
 src="/docs/media/Haynes-2.webp"
@@ -89,6 +115,13 @@ src="/docs/media/Haynes-2.webp"
     </h1>
   </figure>
 </div>
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/nimonic/">Nimonic</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nimonic 80A Round Bars</li>
+      </ol>
+    </nav>
 
 <div class="container-fluid my-4 content-container" >
   <div class="row gx-4">
@@ -295,7 +328,7 @@ li{
     </h3></aside>
     </nav>
 
-    <main class="col-12 col-md-9">
+    <div class="col-12 col-md-9">
       <div class="main-content">
         <div class="title" id="title"><p> In a high-pressure turbine overhaul for a chemical plant, repeated failures of traditional steel bars in the face of searing heat and corrosive gases put critical operations at risk. The stakes changed with the adoption of <strong>Nimonic 80A Round Bars</strong>, celebrated for resilience under thermal extremes and aggressive chemicals. Now, procurement heads, engineers, and fabricators in chemical, oil & gas, marine, pharma, and power sectors specify Nimonic 80A to unlock plant reliability, minimize downtime, and guarantee regulatory compliance through every maintenance cycle. </p> 
 </div>
@@ -566,7 +599,7 @@ li{
 
         <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 </div>

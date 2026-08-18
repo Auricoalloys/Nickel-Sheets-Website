@@ -76,11 +76,37 @@ title: Haynes 25 Round bars
         gtag('config', 'G-XZL7EXDTQ0');
     </script>
     <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Haynes",
+      "item": "https://www.nickelsheets.com/haynes/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Haynes 25 Round Bars",
+      "item": "https://www.nickelsheets.com/haynes/25/round-bar/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div id="header__container">{% include header.html %}</div>
 
-  <main>
+  <main id="main">
     <div id="detailed_page"><div class="flat-banner" id="flat-banner"><figure>
     <img
 src="/docs/media/Haynes-2.webp"
@@ -90,6 +116,13 @@ src="/docs/media/Haynes-2.webp"
     </h1>
   </figure>
 </div>
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/haynes/">Haynes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Haynes 25 Round Bars</li>
+      </ol>
+    </nav>
 
 <div class="container-fluid my-4 content-container" >
   <div class="row gx-4">
@@ -296,7 +329,7 @@ li{
     </h3></aside>
     </nav>
 
-    <main class="col-12 col-md-9">
+    <div class="col-12 col-md-9">
       <div class="main-content">
         <div class="title" id="title"> <p>
       Faced with extreme corrosion challenges on a chemical processing plant’s vapor handling system, engineers found a superior solution with <strong>Haynes 25 Round Bars</strong>. This cobalt-nickel superalloy balances extraordinary high-temperature strength with unmatched corrosion resistance across chemical, marine, oil & gas, pharma, and power generation sectors. The alloy’s proven track record of prolonging asset life while reducing maintenance cycles puts it ahead of traditional stainless and nickel alloys.
@@ -578,7 +611,7 @@ li{
 
         <button id="scrollUpBtn" title="Go to Introduction">&#8679;</button>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 </div>

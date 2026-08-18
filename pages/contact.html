@@ -52,7 +52,27 @@ title: Contact Aurico Alloys LLP for inquiries or a quote
   }
 }
     </script>
-  </head>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nickelsheets.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Contact Aurico Alloys LLP",
+      "item": "https://www.nickelsheets.com/pages/contact/"
+    }
+  ]
+}
+  </script>
+</head>
 <body>
    <div id="header__container">{% include header.html %}</div>
      
@@ -69,7 +89,13 @@ title: Contact Aurico Alloys LLP for inquiries or a quote
     </header>
 
     <!-- Main Content -->
-    <main class="contact-container">
+    <main id="main" class="contact-container">
+    <nav class="container my-3" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Contact Aurico Alloys LLP</li>
+      </ol>
+    </nav>
       <h1 class="page-title">Contact Aurico Alloys LLP</h1>
         <div class="row g-4">
             <!-- Enquiry form. The page copy has always told visitors to "fill out
