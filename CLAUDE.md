@@ -100,6 +100,18 @@ it could not enable it (it needs the WSL optional component present). If you see
 conclude a page is missing or a link 404s from that build — check the source `permalink:` or the live
 site.
 
+The script also handles the other Windows limit: **colons**. Several pages carry `redirect_from`
+entries for the old NiCr URLs (`/NiCr/20:25/plates/`), which Search Console reports as 404s.
+`jekyll-redirect-from` writes a directory per redirect URL, and Windows cannot create a directory
+with a colon in its name — so a plain `bundle exec jekyll build` dies outright here, exit 1, after
+about 830 files. Those redirects are correct and must stay: the Linux runner that publishes the site
+builds them fine. When it detects the limitation the script builds from a throwaway copy with just
+those entries stripped, leaves the working tree alone, and says how many it skipped.
+
+The colon check probes with **Ruby**, not the shell — Git Bash will cheerfully `mkdir` a path with a
+colon in it while Ruby, which is what Jekyll actually writes with, fails with `ENOTDIR`. Probing with
+the shell silently reports success and the build then dies anyway.
+
 Note that uppercase in a URL is not itself a problem: 142 URLs contain uppercase (`/NiCr/…`,
 `/stainless/904L/`) and none of them collide. Only two URLs differing *only* by case cause this.
 
