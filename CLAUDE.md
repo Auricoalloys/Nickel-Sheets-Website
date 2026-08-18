@@ -115,6 +115,18 @@ the shell silently reports success and the build then dies anyway.
 Note that uppercase in a URL is not itself a problem: 142 URLs contain uppercase (`/NiCr/…`,
 `/stainless/904L/`) and none of them collide. Only two URLs differing *only* by case cause this.
 
+**Never run `git add --renormalize .` in this repo.** Some directories under
+`detailed_product_page/nickel-alloy/` are recorded in the index in lowercase (`incoloy/`, `invar/`,
+`monel/`, `nichrome/`, `nimonic/`) while the directory on this Windows checkout is actually named
+with a capital (`Incoloy/`). `core.ignorecase` is true, so git normally matches the two and reports a
+clean tree. `--renormalize` walks the real on-disk names instead, fails to find them in the index, and
+stages six files as new.
+
+Committing those would have put six extra files at the capitalised paths into the index, each
+declaring a permalink its lowercase twin already owns — six permalink conflicts the moment Linux
+built it, since there the two paths are different directories. It looks like recovered work. It is
+not: normalise the line endings and the content is byte-identical to what is already committed.
+
 The same case-sensitivity applies to filenames. `titanium/Grade-2/plates.HTML` once built to
 `plates/index.HTML`, which no server serves for a directory request, so the page 404ed in production
 while working locally. Uppercase extensions are also invisible to `grep --include="*.html"`, so the
