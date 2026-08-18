@@ -16,7 +16,7 @@
   h1,
   h2 {
     font-size: 1.8rem;
-    color: var(--primary-color);
+    color: var(--heading-color);
   }
 
 
@@ -274,6 +274,7 @@
     margin: 20px;
     border-radius: 8px;
     background-color: #154360;
+    --heading-color: currentColor;
     transition: box-shadow var(--transition-speed);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
@@ -761,9 +762,55 @@
   }
 
   body a {
-    text-decoration: none;
     color: var(--primary-color);
   }
+
+/* Links carry an underline again. Colour alone could not do the job: the link
+   navy against body text measures 1.21:1, well under the 3:1 WCAG 1.4.1 asks
+   for before colour is the only thing distinguishing a link. That left 2,135
+   in-sentence links and 25,000 table links looking exactly like plain text. */
+p a,
+li a,
+td a,
+dd a,
+figcaption a,
+.ss-content a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 0.07em;
+}
+
+p a:hover,
+li a:hover,
+td a:hover,
+dd a:hover,
+figcaption a:hover,
+.ss-content a:hover {
+  text-decoration-thickness: 0.14em;
+  color: var(--secondary-cta);
+}
+
+/* Chrome that already reads as interactive from shape or position: a button, a
+   nav item, a breadcrumb, a sidebar list of sibling products, a search result,
+   the footer columns. Underlining these adds noise, not information. Listed
+   after the block above so equal-specificity selectors like `footer a` win. */
+.btn,
+.navbar a,
+.nav-link,
+.dropdown-item,
+.breadcrumb a,
+.link-list a,
+.site-search__results a,
+.card a,
+.pagination a,
+.contact-item,
+.social-links a,
+footer a,
+footer li a,
+footer p a {
+  text-decoration: none;
+}
+
 
   ul {
     list-style: none;

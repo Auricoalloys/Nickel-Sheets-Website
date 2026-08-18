@@ -91,7 +91,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
     line-height: 1.2;
-    color: var(--primary-color);
+    color: var(--heading-color);
     text-wrap: balance;
 }
 
@@ -115,9 +115,55 @@ select:focus-visible {
 }
 
 body a {
-    text-decoration: none;
     color: var(--primary-color);
 }
+
+/* Links carry an underline again. Colour alone could not do the job: the link
+   navy against body text measures 1.21:1, well under the 3:1 WCAG 1.4.1 asks
+   for before colour is the only thing distinguishing a link. That left 2,135
+   in-sentence links and 25,000 table links looking exactly like plain text. */
+p a,
+li a,
+td a,
+dd a,
+figcaption a,
+.ss-content a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 0.07em;
+}
+
+p a:hover,
+li a:hover,
+td a:hover,
+dd a:hover,
+figcaption a:hover,
+.ss-content a:hover {
+  text-decoration-thickness: 0.14em;
+  color: var(--secondary-cta);
+}
+
+/* Chrome that already reads as interactive from shape or position: a button, a
+   nav item, a breadcrumb, a sidebar list of sibling products, a search result,
+   the footer columns. Underlining these adds noise, not information. Listed
+   after the block above so equal-specificity selectors like `footer a` win. */
+.btn,
+.navbar a,
+.nav-link,
+.dropdown-item,
+.breadcrumb a,
+.link-list a,
+.site-search__results a,
+.card a,
+.pagination a,
+.contact-item,
+.social-links a,
+footer a,
+footer li a,
+footer p a {
+  text-decoration: none;
+}
+
 
 ul {
     list-style: none;
@@ -511,6 +557,10 @@ img {
 .header {
     background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
     color: white;
+    /* Both headings in here - the h1 banner title and the display-4 - were
+       rendering navy on this gradient, 1.05:1 to 1.25:1. This is the quality
+       and contact page banner. */
+    --heading-color: currentColor;
     padding: 5rem 0;
     margin-bottom: 3rem;
 }
