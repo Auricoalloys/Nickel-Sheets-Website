@@ -258,16 +258,24 @@ def live_checks(site="nickelsheets.com"):
 
     # the certificate presented on the apex must name the apex
     def cert_names(host):
+        # verify_mode has to be CERT_REQUIRED. Under CERT_NONE, Python never
+        # parses the peer certificate and getpeercert() returns {}, so this
+        # fell through to the DER branch and answered "<opaque>" for every
+        # host. "<opaque>" matches no hostname, so the check reported a wrong
+        # certificate unconditionally - including against the live apex, whose
+        # SAN does list nickelsheets.com. It failed every pull request that
+        # ran it, for a fault that was never there.
+        #
+        # check_hostname stays off on purpose: a certificate that genuinely
+        # does not name the apex must still finish the handshake so its real
+        # names can be reported, rather than raising and hiding them.
         try:
             ctx = ssl.create_default_context()
             ctx.check_hostname = False
-            ctx.verify_mode = ssl.CERT_NONE
+            ctx.verify_mode = ssl.CERT_REQUIRED
             with socket.create_connection((host, 443), timeout=15) as sock:
                 with ctx.wrap_socket(sock, server_hostname=host) as ss:
-                    c = ss.getpeercert()
-                    if not c:
-                        der = ss.getpeercert(True)
-                        return ["<opaque>"] if der else []
+                    c = ss.getpeercert() or {}
                     return [v for k, v in c.get("subjectAltName", ()) if k == "DNS"]
         except Exception as e:
             return ["<error: %s>" % e]
