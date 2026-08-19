@@ -40,8 +40,15 @@ const CHECK = process.argv.includes('--check');
 // Commits that changed markup sitewide without changing what any page says.
 // A page whose only recent commit is one of these keeps its earlier, truthful
 // date. Add to this list when you land another sweep of the same kind.
+//
+// Entries are matched as a PREFIX of the full 40-char SHA, so any length works.
+// They used to be compared against `git log %h`, which abbreviates to whatever
+// length keeps SHAs unique repo-wide - that grew from 7 to 8 and back, and the
+// 8-char entry below silently stopped matching, which is exactly the kind of
+// quiet failure this list exists to prevent.
 const BOILERPLATE = new Set([
   '1e5afe80', // vendored Bootstrap, inlined the Font Awesome icons, dropped preconnect
+  '2fe7b8e',  // put one (R) on the first mention of the mark a page is about
 ]);
 
 const read = f => fs.readFileSync(f, 'utf8');
@@ -60,14 +67,15 @@ const isDisallowed = u => disallowed.some(d => u.startsWith(d));
 // ---- last meaningful commit date per file ----------------------------------
 // One pass over history rather than a git call per file.
 function lastModifiedMap() {
-  const log = execSync('git log --no-merges --date=short --format="@@@%h %ad" --name-only',
+  const log = execSync('git log --no-merges --date=short --format="@@@%H %ad" --name-only',
     { cwd: ROOT, encoding: 'utf8', maxBuffer: 1 << 28 });
   const map = new Map();
   let date = null, skip = false;
   for (const line of log.split('\n')) {
     if (line.startsWith('@@@')) {
       const [sha, d] = line.slice(3).split(' ');
-      date = d; skip = BOILERPLATE.has(sha);
+      date = d;
+      skip = [...BOILERPLATE].some(b => sha.startsWith(b));
       continue;
     }
     const f = line.trim();
@@ -99,6 +107,25 @@ for (const rel of files) {
   if (!pm) { skipped.push([rel, 'no permalink - would publish at its source path']); continue; }
   const url = pm[1].replace(/^["']|["']$/g, '');
   if (isDisallowed(url)) { skipped.push([rel, 'disallowed in robots.txt']); continue; }
+
+  // A page whose canonical points somewhere else is asking Google not to index
+  // this URL. Listing it here says the opposite, and Search Console reports the
+  // pair as "Alternate page with proper canonical tag" - a crawl spent to be
+  // told what the sitemap should not have claimed. The canonical wins.
+  //
+  // Consolidations are deliberate here (a retired duplicate that still holds
+  // links, an old flat URL kept alive), so the fix is to stop advertising them,
+  // not to rewrite the canonical.
+  const cm = s.match(/<link\s[^>]*\brel=["']canonical["'][^>]*>/i);
+  const canon = cm && (cm[0].match(/\bhref\s*=\s*["']([^"']+)["']/i) || [])[1];
+  if (canon) {
+    const trim = u => u.replace(/\/+$/, '');
+    const target = trim(canon.replace(/&amp;/g, '&').replace(/^https?:\/\/[^/]+/, ''));
+    if (target !== trim(url)) {
+      skipped.push([rel, `canonical -> ${target || '/'}`]);
+      continue;
+    }
+  }
 
   // page-specific images, in document order, deduped
   const imgs = [...new Set(
