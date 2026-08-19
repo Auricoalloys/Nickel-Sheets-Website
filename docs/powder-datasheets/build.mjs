@@ -411,7 +411,12 @@ for (const g of GRADES) {
   const html = page(g);
   const old = existsSync(file) ? readFileSync(file, 'utf8') : null;
 
-  if (old === html) continue;
+  // Compare with line endings normalised. .gitattributes pins these files to LF
+  // so this should never differ, but core.autocrlf is true on the machine this
+  // repo is maintained from, and without both belts a clone that checks out CRLF
+  // reports all sixteen sheets as drifted forever — a --check that always fails
+  // is a --check nobody reads.
+  if (old !== null && old.replace(/\r\n/g, '\n') === html.replace(/\r\n/g, '\n')) continue;
   drift++;
   if (CHECK) console.log(`  drift: ${g.slug}.html`);
   else writeFileSync(file, html, 'utf8');
