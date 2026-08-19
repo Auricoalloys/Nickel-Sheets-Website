@@ -1704,6 +1704,13 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/incoloy/825/wire/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/incoloy-wire-metal-for-website-images.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/incoloy/890/</loc>
     <lastmod>2026-08-19</lastmod>
   </url>
@@ -2977,6 +2984,13 @@ sitemap: false
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/monel/400/wire/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/monel-wire.webp</image:loc>
     </image:image>
   </url>
   <url>
