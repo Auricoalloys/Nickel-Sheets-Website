@@ -5216,6 +5216,42 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/pure-nickel-strip/18650-H-type/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-h-type-busbar-18650-26650.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-h-type-busbar-21700.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/pure-nickel-strip/18650-honeycomb/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/Fuse-Type-Nickel-Strip-18650-2.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/pure-nickel-strip/18650-zigzag/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/Fuse-Type-Nickel-Strip-18650-2-1.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-photos.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/18650/</loc>
     <lastmod>2026-08-19</lastmod>
     <image:image>
@@ -5425,29 +5461,6 @@ sitemap: false
     <lastmod>2026-08-19</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/pure-nickel-strip/honeycomb/</loc>
-    <lastmod>2026-08-19</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/Fuse-Type-Nickel-Strip-18650-2.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/pure-nickel-strip/zigzag/</loc>
-    <lastmod>2026-08-19</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/Fuse-Type-Nickel-Strip-18650-2-1.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/busbar-photos.webp</image:loc>
     </image:image>
   </url>
   <url>
