@@ -25,9 +25,77 @@ const OUT = join(HERE, 'sheets');
 const CHECK = process.argv.includes('--check');
 const MATRIX = process.argv.includes('--matrix');
 
-// Which cuts a grade is sold in is per-grade; a grade that has not been set yet
-// falls back to the brochure's list so the sheet is never silently empty.
-const cutsFor = (g) => g.cuts || DEFAULT_CUTS;
+// Which cuts a grade is sold in comes from cuts.csv, which is the one input here
+// that cannot be derived from a standard — it lives in the stock records. The CSV
+// is the source of truth so the answer is filled in once, in Excel, and read
+// straight through: no retyping into data.mjs, which is where transcription
+// errors come from.
+//
+// Cut columns are written with plain hyphens in the CSV, because a spreadsheet
+// round-trip is no place to rely on an en-dash surviving. They map to the
+// en-dash keys of CUT_SPECS on the way in.
+const CSV = join(HERE, 'cuts.csv');
+
+// Written out rather than done with a regex: the grid is mostly empty cells, and
+// the usual one-liner splits silently mis-align on runs of consecutive commas —
+// which put the marks in the wrong columns and would have shipped a grade
+// claiming a cut sitting next to the one it was given.
+function splitCsv(line) {
+  const out = [];
+  let cur = '', quoted = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (quoted) {
+      if (ch === '"') {
+        if (line[i + 1] === '"') { cur += '"'; i++; } else quoted = false;
+      } else cur += ch;
+    } else if (ch === '"') quoted = true;
+    else if (ch === ',') { out.push(cur); cur = ''; }
+    else cur += ch;
+  }
+  out.push(cur);
+  return out;
+}
+
+function loadCuts() {
+  if (!existsSync(CSV)) return {};
+  const lines = readFileSync(CSV, 'utf8')
+    .replace(/^﻿/, '')
+    .split(/\r?\n/)
+    .filter((l) => l.trim() && !l.startsWith('#'));
+  if (!lines.length) return {};
+
+  const key = (s) => s.trim().replace(/-/g, '–');
+  const head = splitCsv(lines[0]).map((c) => c.trim());
+  const cols = head.slice(2).map(key);
+
+  for (const c of cols) {
+    if (!CUT_SPECS[c]) {
+      console.error(`  cuts.csv: column "${c.replace(/–/g, '-')}" is not a known cut.`);
+      console.error(`  Known: ${Object.keys(CUT_SPECS).map((k) => k.replace(/–/g, '-')).join(', ')}`);
+      console.error(`  Add it to CUT_SPECS in data.mjs with its typical D10/D50/D90 and flow.`);
+      process.exit(1);
+    }
+  }
+
+  const out = {};
+  for (const line of lines.slice(1)) {
+    const cells = splitCsv(line);
+    const slug = cells[0].trim();
+    if (!slug) continue;
+    const marks = cells.slice(2);
+    const picked = cols.filter((c, i) => /^(y|yes|x|✓|1)$/i.test((marks[i] || '').trim()));
+    if (picked.length) out[slug] = picked;
+  }
+  return out;
+}
+
+const FROM_CSV = loadCuts();
+
+// data.mjs can still override, but the CSV is the normal place. A grade in
+// neither falls back to DEFAULT_CUTS so a sheet is never silently empty.
+const cutsFor = (g) => g.cuts || FROM_CSV[g.slug] || DEFAULT_CUTS;
+const cutsSource = (g) => (g.cuts ? 'data.mjs' : FROM_CSV[g.slug] ? 'cuts.csv' : 'default');
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -307,11 +375,16 @@ if (MATRIX) {
   for (const g of GRADES) {
     const set = new Set(cutsFor(g));
     const marks = keys.map((k) => (set.has(k) ? '  ✓     ' : '  ·     ')).join('');
-    console.log(`${g.name.padEnd(w)}  ${marks}${g.cuts ? '' : '  (default)'}`);
+    const src = cutsSource(g);
+    console.log(`${g.name.padEnd(w)}  ${marks}${src === 'default' ? '  ← PLACEHOLDER' : ''}`);
   }
+  const pending = GRADES.filter((g) => cutsSource(g) === 'default').length;
   console.log(`\n✓ offered   · not offered`);
-  console.log(`${GRADES.filter((g) => g.cuts).length} of ${GRADES.length} grades have a confirmed list; the rest fall back to DEFAULT_CUTS.`);
-  console.log(`Set a grade's real list by adding  cuts: ['15–53', '45–105']  to it in data.mjs.\n`);
+  console.log(
+    pending
+      ? `${GRADES.length - pending} of ${GRADES.length} grades confirmed. ${pending} still on the placeholder default — fill those rows in cuts.csv.`
+      : `All ${GRADES.length} grades confirmed from cuts.csv.`
+  );
   process.exit(0);
 }
 

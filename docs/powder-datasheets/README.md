@@ -58,14 +58,24 @@ The distribution a cut yields is nearly grade-independent — a 15–53 µm cut 
 SS316L land within a micron or two — so `CUT_SPECS` defines D10/D50/D90 and flow once per cut.
 
 **Which** cuts a grade is offered in is a different question, and it is not uniform. It is also
-the one thing here that cannot be derived from a standard: it lives in your stock records.
+the one thing here that cannot be derived from a standard: it lives in the stock records.
+
+That answer goes in **`cuts.csv`** — open it in Excel, put `Y` where a grade is offered in a
+cut, save as CSV, regenerate. The build reads it straight through, so the answer is given once
+and never retyped into `data.mjs`, which is where transcription errors come from.
 
 ```bash
 node docs/powder-datasheets/build.mjs --matrix
 ```
 
-prints the current grade × cut grid, marks which grades still fall back to `DEFAULT_CUTS`, and
-is meant to be read down a column and corrected.
+prints the grade × cut grid and marks every grade still on the placeholder with
+`← PLACEHOLDER`. The marks in `cuts.csv` ship **deliberately blank**: a grade with no marks
+falls back to `DEFAULT_CUTS` and reports as unconfirmed, which is honest. Prefilling it would
+have dressed a guess as a stock record.
+
+Cut columns in the CSV use plain hyphens (`15-53`); they map to the en-dash keys of
+`CUT_SPECS` on the way in, because a spreadsheet round-trip is no place to depend on an
+en-dash surviving. A column heading that is not a known cut stops the build and says so.
 
 `DEFAULT_CUTS` is the flyer's five. The brochure lists eight — it adds 15–45, 20–63 and 53–105 —
 and the two documents disagree with each other. The brochure also contains three typos: titanium
