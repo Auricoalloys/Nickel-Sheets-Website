@@ -42,12 +42,43 @@ Everything lives in `data.mjs`. Nothing in `sheets/` is hand-editable — it is 
 every run.
 
 - **A specification limit changed** → edit that grade's `chemistry.rows`, re-run.
-- **A new size cut** → add it to `CUTS`. It appears on all sixteen sheets at once.
+- **Which cuts a grade is sold in** → add `cuts: ['15–53', '45–105']` to that grade. Without
+  it the grade falls back to `DEFAULT_CUTS`. See below.
+- **A cut that does not exist yet** → add it to `CUT_SPECS` with its typical D10/D50/D90 and
+  flow, then name it in whichever grades offer it.
 - **A new grade** → append to `GRADES` and add its code to `ORDER_CODES`. The build refuses
   to run if a grade has no order code, because a sheet without one is not orderable.
 - **Contact details, packaging, storage, safety** → `COMPANY`, `HANDLING`, `SAFETY_*`.
 - **Any content change** → bump `REVISION`. The date is what a reader checks the sheet's age
   against, and a revision that does not move is worse than no revision at all.
+
+## Size cuts are per grade
+
+The distribution a cut yields is nearly grade-independent — a 15–53 µm cut of In625 and of
+SS316L land within a micron or two — so `CUT_SPECS` defines D10/D50/D90 and flow once per cut.
+
+**Which** cuts a grade is offered in is a different question, and it is not uniform. It is also
+the one thing here that cannot be derived from a standard: it lives in your stock records.
+
+```bash
+node docs/powder-datasheets/build.mjs --matrix
+```
+
+prints the current grade × cut grid, marks which grades still fall back to `DEFAULT_CUTS`, and
+is meant to be read down a column and corrected.
+
+`DEFAULT_CUTS` is the flyer's five. The brochure lists eight — it adds 15–45, 20–63 and 53–105 —
+and the two documents disagree with each other. The brochure also contains three typos: titanium
+reads `23–63` and repeats `53–150` where every other family reads `53–105`, and nickel reads
+`15–63`. The smaller list is the deliberate default, because listing a cut that turns out not to
+exist costs more than omitting one that does, and the sheet already says other cuts can be
+classified to order.
+
+Cuts are written with an **en-dash** (`15–53`), not a hyphen. They look nearly identical and a
+hyphen would silently render an empty row, so the build rejects an unrecognised cut rather than
+producing one.
+
+## Other notes
 
 Apparent and tap density are derived from each alloy's solid density rather than typed per
 grade, so the two can never contradict each other. Order codes replace the `SMN/54/...` stock

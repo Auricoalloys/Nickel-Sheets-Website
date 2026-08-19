@@ -25,58 +25,66 @@ export const COMPANY = {
 // the date is what a reader checks the sheet's age against.
 export const REVISION = { rev: '1.0', date: '2026-08-19' };
 
-// Particle size cuts are a classification result, so the distribution a cut
-// yields is close to grade-independent — a 15-53 um cut of In625 and of SS316L
-// land within a micron or two of each other. Defining them once here means a
-// correction lands on all 16 sheets at once.
+// A particle size cut is a classification result, so the distribution it yields
+// is close to grade-independent — a 15-53 um cut of In625 and of SS316L land
+// within a micron or two of each other. That is why the distributions live here,
+// keyed by cut, and are written once.
 //
-// The typical ranges below were checked against the four lots where real
-// measured data exists (SS316L 15-53, CP-Ti 45-105, Ti64 20-53, SS316L 50-150)
-// and each of those falls inside the band quoted.
-export const CUTS = [
-  {
-    range: '5–25 µm',
-    d10: '6–9',
-    d50: '12–16',
-    d90: '22–26',
-    flow: 'Carney funnel†',
+// WHICH cuts a grade is offered in is a different question entirely, and it is
+// not uniform: availability varies by grade and by what the mills actually run.
+// So each grade names its own list in `cuts` below, and DEFAULT_CUTS is only the
+// starting point for a grade that has not been set yet.
+//
+// The typical ranges were checked against the four lots where real measured data
+// exists (SS316L 15-53, CP-Ti 45-105, Ti64 20-53, SS316L 50-150); each falls
+// inside the band quoted.
+export const CUT_SPECS = {
+  '5–25': {
+    d10: '6–9', d50: '12–16', d90: '22–26', flow: 'Carney funnel†',
     processes: 'Metal Injection Moulding (MIM), Binder Jetting',
   },
-  {
-    range: '15–53 µm',
-    d10: '16–22',
-    d50: '28–36',
-    d90: '46–54',
-    flow: '14–18 s / 50 g',
+  '15–45': {
+    d10: '16–21', d50: '26–33', d90: '40–46', flow: '14–17 s / 50 g',
     processes: 'Laser Powder Bed Fusion (L-PBF / SLM / DMLS)',
   },
-  {
-    range: '45–105 µm',
-    d10: '47–55',
-    d50: '68–78',
-    d90: '100–110',
-    flow: '20–26 s / 50 g',
+  '15–53': {
+    d10: '16–22', d50: '28–36', d90: '46–54', flow: '14–18 s / 50 g',
+    processes: 'Laser Powder Bed Fusion (L-PBF / SLM / DMLS)',
+  },
+  '20–63': {
+    d10: '22–28', d50: '34–42', d90: '55–64', flow: '15–19 s / 50 g',
+    processes: 'Laser Powder Bed Fusion, Electron Beam Melting (EBM)',
+  },
+  '45–105': {
+    d10: '47–55', d50: '68–78', d90: '100–110', flow: '20–26 s / 50 g',
     processes: 'Electron Beam Melting (EBM), Directed Energy Deposition (DED)',
   },
-  {
-    range: '45–150 µm',
-    d10: '48–60',
-    d50: '80–95',
-    d90: '140–150',
-    flow: '22–28 s / 50 g',
+  '53–105': {
+    d10: '55–62', d50: '72–82', d90: '100–110', flow: '20–26 s / 50 g',
+    processes: 'Electron Beam Melting (EBM), Directed Energy Deposition (DED)',
+  },
+  '45–150': {
+    d10: '48–60', d50: '80–95', d90: '140–150', flow: '22–28 s / 50 g',
     processes: 'DED, Laser Cladding, Hot Isostatic Pressing (HIP)',
   },
-  {
-    range: '53–150 µm',
-    d10: '58–66',
-    d50: '88–98',
-    d90: '140–150',
-    flow: '22–28 s / 50 g',
+  '53–150': {
+    d10: '58–66', d50: '88–98', d90: '140–150', flow: '22–28 s / 50 g',
     processes: 'DED, Thermal Spray, Hot Isostatic Pressing (HIP)',
   },
-];
+};
+
+// The five the flyer lists, which is the claim already being made to customers.
+// The brochure lists eight — it adds 15-45, 20-63 and 53-105 — but the two
+// documents disagree and neither matches what is actually stocked per grade.
+//
+// Defaulting to the smaller list is deliberate: listing a cut that turns out not
+// to exist costs more than omitting one that does, and the footnote already says
+// other cuts can be classified to order. The other three are defined in
+// CUT_SPECS above and only need naming in a grade's `cuts` to appear.
+export const DEFAULT_CUTS = ['5–25', '15–53', '45–105', '45–150', '53–150'];
 
 export const CUT_FOOTNOTES = [
+  'Cuts listed are those normally supplied in this grade. Availability varies by grade and by mill run — confirm the cut required at enquiry, and other cuts can be classified to order.',
   'Particle size distribution determined by laser diffraction per ASTM B822. Values are typical for the stated cut and are indicative only — the measured distribution for the lot supplied is stated on its Certificate of Analysis.',
   '† Cuts finer than approximately 15 µm do not reliably flow through the 2.5 mm orifice of a Hall funnel (ASTM B213); a Carney funnel (ASTM B964) is used instead and the two results are not comparable.',
   'Apparent density per ASTM B212, tap density per ASTM B527. Both fall with decreasing particle size, so the finer cuts of a grade sit toward the lower end of the quoted band.',

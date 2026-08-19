@@ -16,13 +16,18 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  GRADES, CUTS, CUT_FOOTNOTES, PACKING, COMPANY, REVISION,
+  GRADES, CUT_SPECS, DEFAULT_CUTS, CUT_FOOTNOTES, PACKING, COMPANY, REVISION,
   HANDLING, SAFETY_GENERAL, SAFETY_REACTIVE, ORDER_CODES,
 } from './data.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, 'sheets');
 const CHECK = process.argv.includes('--check');
+const MATRIX = process.argv.includes('--matrix');
+
+// Which cuts a grade is sold in is per-grade; a grade that has not been set yet
+// falls back to the brochure's list so the sheet is never silently empty.
+const cutsFor = (g) => g.cuts || DEFAULT_CUTS;
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -153,10 +158,11 @@ function cutsTable(g) {
   <th class="num">D10 µm</th><th class="num">D50 µm</th><th class="num">D90 µm</th>
   <th class="num">Hall flow</th><th>Suitable process</th>
 </tr></thead>
-<tbody>${CUTS.map((c) => {
-    const nums = c.range.match(/\d+/g).join('-');
+<tbody>${cutsFor(g).map((key) => {
+    const c = CUT_SPECS[key];
+    const nums = key.match(/\d+/g).join('-');
     return `<tr>
-  <td><b>${esc(c.range)}</b></td>
+  <td><b>${esc(key)} µm</b></td>
   <td>AAL-${esc(code)}-${nums}</td>
   <td class="num">${esc(c.d10)}</td><td class="num">${esc(c.d50)}</td><td class="num">${esc(c.d90)}</td>
   <td class="num">${esc(c.flow)}</td>
@@ -177,7 +183,7 @@ function page(g) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(g.name)} Powder — Technical Data Sheet | ${esc(COMPANY.name)}</title>
-<meta name="description" content="${esc(g.name)} metal powder for additive manufacturing, specified to ${esc(g.chemistry.basis)}. Available 5–25, 15–53, 45–105, 45–150 and 53–150 µm.">
+<meta name="description" content="${esc(g.name)} metal powder for additive manufacturing, specified to ${esc(g.chemistry.basis)}. Available in ${esc(cutsFor(g).join(', '))} µm cuts.">
 <style>${CSS}</style>
 </head>
 <body>
@@ -290,6 +296,25 @@ function page(g) {
 `;
 }
 
+// ------------------------------------------------------- grade x cut matrix
+// Which cuts each grade is offered in is the one thing here that cannot be
+// derived — it lives in the stock records, not in any standard. This prints the
+// current state as a grid so it can be read down a column and corrected.
+if (MATRIX) {
+  const keys = Object.keys(CUT_SPECS);
+  const w = Math.max(...GRADES.map((g) => g.name.length));
+  console.log('\n' + ' '.repeat(w + 2) + keys.map((k) => k.padEnd(8)).join(''));
+  for (const g of GRADES) {
+    const set = new Set(cutsFor(g));
+    const marks = keys.map((k) => (set.has(k) ? '  ✓     ' : '  ·     ')).join('');
+    console.log(`${g.name.padEnd(w)}  ${marks}${g.cuts ? '' : '  (default)'}`);
+  }
+  console.log(`\n✓ offered   · not offered`);
+  console.log(`${GRADES.filter((g) => g.cuts).length} of ${GRADES.length} grades have a confirmed list; the rest fall back to DEFAULT_CUTS.`);
+  console.log(`Set a grade's real list by adding  cuts: ['15–53', '45–105']  to it in data.mjs.\n`);
+  process.exit(0);
+}
+
 // ---------------------------------------------------------------- write
 if (!CHECK) mkdirSync(OUT, { recursive: true });
 
@@ -298,6 +323,16 @@ for (const g of GRADES) {
   if (!ORDER_CODES[g.slug]) {
     console.error(`  MISSING order code for "${g.slug}" — add it to ORDER_CODES in data.mjs`);
     process.exit(1);
+  }
+  // A cut named on a grade but absent from CUT_SPECS would render an empty row
+  // rather than fail, so catch it here instead.
+  for (const k of cutsFor(g)) {
+    if (!CUT_SPECS[k]) {
+      console.error(`  UNKNOWN cut "${k}" on "${g.slug}" — add it to CUT_SPECS in data.mjs.`);
+      console.error(`  Known cuts: ${Object.keys(CUT_SPECS).join(', ')}`);
+      console.error(`  Note the en-dash: cuts are written 15–53, not 15-53.`);
+      process.exit(1);
+    }
   }
   const file = join(OUT, `${g.slug}.html`);
   const html = page(g);
