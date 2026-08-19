@@ -1,0 +1,80 @@
+# Published price ranges. One row per page; the page shows the figure and its
+# schema repeats it, both written by docs/build-prices.mjs.
+#
+# A page listed here gets a visible Price row and a valid AggregateOffer.
+# A page NOT listed here has its offers block removed - an offers block with no
+# price is invalid markup that earns nothing, so deleting a row cleans the page
+# up on the next run. That is how you retire a price: delete the row, re-run.
+#
+# INR drives the schema. USD is shown on the page as indicative only: two
+# currencies in the markup means two prices that drift apart when the rate
+# moves, and Google picks between them unpredictably. Update both columns
+# together each month.
+#
+# priceValidUntil is derived from the date below, plus 45 days, so a monthly
+# update that slips expires quietly instead of asserting a stale figure.
+#
+# After editing: node docs/build-prices.mjs   then commit the changed pages.
+
+# updated: 2026-08-19
+
+url,low_inr,high_inr,low_usd,high_usd,unit
+/hastelloy/C22/plates/,3500,5000,41,59,kg
+/hastelloy/C22/round-bar/,3500,5000,41,59,kg
+/hastelloy/C22/sheets/,3500,5000,41,59,kg
+/hastelloy/C276/plates/,3500,5000,41,59,kg
+/hastelloy/C276/round-bar/,3500,5000,41,59,kg
+/hastelloy/C276/sheets/,3500,5000,41,59,kg
+/haynes-214-230-242-282-HR-120-25-188-foil/,5000,15000,60,175,kg
+/haynes-alloy-coil-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
+/haynes-alloy-fittings-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
+/haynes-alloy-hex-bars-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
+/haynes-alloy-hollow-bars-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
+/haynes-alloy-pipes-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
+/haynes-alloy-tube-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
+/haynes-alloy-wire-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
+/haynes/188/plates/,5000,15000,60,175,kg
+/haynes/188/round-bar/,5000,15000,60,175,kg
+/haynes/188/sheets/,5000,15000,60,175,kg
+/haynes/214/plates/,5000,15000,60,175,kg
+/haynes/214/round-bar/,5000,15000,60,175,kg
+/haynes/214/sheets/,5000,15000,60,175,kg
+/haynes/230/plates/,5000,15000,60,175,kg
+/haynes/230/round-bar/,5000,15000,60,175,kg
+/haynes/230/sheets/,5000,15000,60,175,kg
+/haynes/242/plates/,5000,15000,60,175,kg
+/haynes/242/round-bar/,5000,15000,60,175,kg
+/haynes/242/sheets/,5000,15000,60,175,kg
+/haynes/25/plates/,5000,15000,60,175,kg
+/haynes/25/round-bar/,5000,15000,60,175,kg
+/haynes/25/sheets/,5000,15000,60,175,kg
+/haynes/282/plates/,5000,15000,60,175,kg
+/haynes/282/round-bar/,5000,15000,60,175,kg
+/haynes/282/sheets/,5000,15000,60,175,kg
+/haynes/foil/,5000,15000,60,175,kg
+/haynes/HR-120/plates/,5000,15000,60,175,kg
+/haynes/HR-120/round-bar/,5000,15000,60,175,kg
+/haynes/HR-120/sheets/,5000,15000,60,175,kg
+/haynes/plates/,5000,15000,60,175,kg
+/haynes/round-bar/,5000,15000,60,175,kg
+/haynes/sheets/,5000,15000,60,175,kg
+/incoloy/800/plates/,1500,2000,18,24,kg
+/incoloy/800/round-bar/,1500,2000,18,24,kg
+/incoloy/800/sheets/,1500,2000,18,24,kg
+/incoloy/825/plates/,1600,2000,19,24,kg
+/incoloy/825/round-bar/,1600,2000,19,24,kg
+/incoloy/825/sheets/,1600,2000,19,24,kg
+/inconel/600/plates/,2500,4000,29,47,kg
+/inconel/600/round-bar/,2500,4000,29,47,kg
+/inconel/600/sheets/,2500,4000,29,47,kg
+/inconel/600/wire/,2500,4000,29,47,kg
+/inconel/625-LCF/coil/,5500,8000,65,94,kg
+/inconel/625-LCF/sheets/,5500,8000,65,94,kg
+/inconel/625/plates/,2500,5000,29,59,kg
+/inconel/625/round-bar/,2500,5000,29,59,kg
+/inconel/625/sheets/,2500,5000,29,59,kg
+/inconel/625/wire/,2500,5000,29,59,kg
+/inconel/718/round-bar/,3000,5000,35,59,kg
+/monel/400/plates/,2500,4000,29,47,kg
+/monel/400/round-bar/,2500,4000,29,47,kg
+/monel/400/sheets/,2500,4000,29,47,kg
