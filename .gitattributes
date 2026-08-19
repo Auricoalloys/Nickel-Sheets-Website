@@ -7,3 +7,11 @@
 # machine this repo is maintained from, and a CRLF shebang makes bash fail with
 # "bad interpreter: /usr/bin/env bash^M".
 *.sh text eol=lf
+
+# Generated powder data sheets, their generator and the cut grid. build.mjs
+# writes LF and compares byte-for-byte to decide whether a sheet is current, so
+# a CRLF working tree makes --check report all sixteen as drifted on every fresh
+# clone. Same reason as the shell scripts above.
+docs/powder-datasheets/**/*.html text eol=lf
+docs/powder-datasheets/*.mjs text eol=lf
+docs/powder-datasheets/*.csv text eol=lf
