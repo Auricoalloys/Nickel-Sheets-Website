@@ -51,10 +51,10 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /haynes/282/plates/,5000,15000,60,175,kg
 /haynes/282/round-bar/,5000,15000,60,175,kg
 /haynes/282/sheets/,5000,15000,60,175,kg
-/haynes/foil/,5000,15000,60,175,kg
 /haynes/HR-120/plates/,5000,15000,60,175,kg
 /haynes/HR-120/round-bar/,5000,15000,60,175,kg
 /haynes/HR-120/sheets/,5000,15000,60,175,kg
+/haynes/foil/,5000,15000,60,175,kg
 /haynes/plates/,5000,15000,60,175,kg
 /haynes/round-bar/,5000,15000,60,175,kg
 /haynes/sheets/,5000,15000,60,175,kg
@@ -64,6 +64,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /incoloy/825/plates/,1600,2000,19,24,kg
 /incoloy/825/round-bar/,1600,2000,19,24,kg
 /incoloy/825/sheets/,1600,2000,19,24,kg
+/incoloy/825/wire/,1600,2000,19,24,kg
 /inconel/600/plates/,2500,4000,29,47,kg
 /inconel/600/round-bar/,2500,4000,29,47,kg
 /inconel/600/sheets/,2500,4000,29,47,kg
@@ -78,3 +79,4 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /monel/400/plates/,2500,4000,29,47,kg
 /monel/400/round-bar/,2500,4000,29,47,kg
 /monel/400/sheets/,2500,4000,29,47,kg
+/monel/400/wire/,2500,4000,29,47,kg
