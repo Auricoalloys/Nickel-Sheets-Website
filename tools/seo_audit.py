@@ -18,7 +18,15 @@ import os, re, sys, json, html, collections, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASELINE = os.path.join(ROOT, "tools", "seo_baseline.json")
-SKIP_DIRS = {".git", ".vscode", ".claude", "node_modules", "_site", "vendor", "tools"}
+SKIP_DIRS = {".git", ".vscode", ".claude", "node_modules", "_site", "vendor", "tools",
+             # Powder data sheets. Generated print documents, excluded from the
+             # Jekyll build and served at no URL, so a canonical tag would point
+             # nowhere and title length is a print concern rather than an SEO one.
+             # Without this they read as 16 pages missing every piece of metadata.
+             # If they are ever published - the exclusion in _config.yml is the
+             # only thing stopping that - take this entry out again, because from
+             # that moment they are real pages and every check here applies.
+             "powder-datasheets"}
 
 # Fragments injected into other pages; they are not pages and have no metadata.
 FRAGMENTS = {"_includes/header.html", "_includes/footer.html",

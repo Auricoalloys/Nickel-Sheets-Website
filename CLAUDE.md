@@ -41,18 +41,19 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Four generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Five generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
-node docs/build-sitemap.mjs       # after adding/removing/renaming/editing a page
-node docs/build-search-index.mjs  # after adding/removing/renaming/retitling a page
-node docs/build-prices.mjs        # after editing prices.csv
-node docs/purge-bootstrap.mjs     # after using a Bootstrap component the site did not use before
+node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
+node docs/build-search-index.mjs       # after adding/removing/renaming/retitling a page
+node docs/build-prices.mjs             # after editing prices.csv
+node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
+node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
-`build-sitemap`, `build-search-index` and `build-prices` all take `--check`, which reports drift and
-exits non-zero without writing. CI runs the price check on every pull request, because a price the
-HTML no longer matches is worse than no price at all.
+`build-sitemap`, `build-search-index`, `build-prices` and `powder-datasheets/build` all take
+`--check`, which reports drift and exits non-zero without writing. CI runs the price check on every
+pull request, because a price the HTML no longer matches is worse than no price at all.
 
 Both live in `docs/` and are excluded from the build in `_config.yml`. Only the purge script needs
 npm (`purgecss@7`); the sitemap script is plain Node.
@@ -210,6 +211,26 @@ trusts it, the same way it treats `<lastmod>` — and loses trust the same way.
 INR drives the schema. USD appears on the page as indicative only: two currencies in the markup means
 two prices that drift apart when the rate moves, and Google picks between them unpredictably. Update
 both columns together.
+
+### Powder data sheets are generated, and are not Certificates of Analysis
+
+`docs/powder-datasheets/` holds sixteen metal powder grade data sheets generated from
+`data.mjs`. Output is standalone HTML in `sheets/`, printed to PDF from a browser. The folder is
+excluded in `_config.yml`, so nothing publishes until that line is removed deliberately.
+
+The distinction the folder enforces: **a data sheet states specification limits for a grade, a
+Certificate of Analysis states measured values for one lot.** A data sheet promises a range, so
+every conforming lot satisfies it and it never goes stale. A lot report handed out as a data sheet
+is a representation about material that may already be gone — which is what the five PDFs this
+replaces were doing, still quoting February 2024 lots in 2026.
+
+Because each of those was hand-maintained they drifted: the CP-Ti oxygen limit reads `0.015 %` on
+one and `0.15 %` on another for the same material, and the 15–53 µm plasma-atomised and 45–105 µm
+gas-atomised CP-Ti sheets carry byte-identical chemistry, which two atomisation routes cannot
+produce. Same failure mode as the prices before `prices.csv`. Edit `data.mjs`, never `sheets/`, and
+bump `REVISION` on any content change.
+
+Never put a Certificate of Analysis in this folder. It is a shipment document, not a web page.
 
 ### sitemap.xml is generated — do not edit it by hand
 

@@ -40,6 +40,11 @@ exclude:
   - docs/build-sitemap.mjs
   - docs/build-search-index.mjs
   - docs/build-prices.mjs
+  # Powder technical data sheets and their generator. Standalone HTML meant to be
+  # printed to PDF, not served: they carry no front matter, so the sitemap
+  # generator already skips them, but Jekyll would still copy them into _site
+  # and publish them at a URL nothing links to.
+  - docs/powder-datasheets
   - docs/build-local.sh
   # camera originals, superseded by the WebP versions beside them
   - docs/images/source

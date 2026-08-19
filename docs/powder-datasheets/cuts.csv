@@ -1,0 +1,36 @@
+# Which particle size cuts each grade is actually supplied in.
+#
+# Put Y in a cut column if that grade is offered in it. Leave it blank if not.
+# Open in Excel, fill it in, save as CSV, then regenerate:
+#
+#     node docs/powder-datasheets/build.mjs
+#
+# To see what is still outstanding:
+#
+#     node docs/powder-datasheets/build.mjs --matrix
+#
+# The marks are DELIBERATELY BLANK. A grade with no marks falls back to a
+# placeholder list of five cuts and is reported as unconfirmed, which is
+# honest. Prefilling it would have made a guess look like a stock record.
+#
+# The slug column is the key and must match data.mjs - do not edit it. The
+# grade column is only there to read by. A cut column heading must match a cut
+# in CUT_SPECS, or the build stops and tells you. To offer a cut that is not a
+# column yet, add it to CUT_SPECS with its typical D10/D50/D90 and flow first.
+slug,grade,5-25,15-45,15-53,20-63,45-105,53-105,45-150,53-150
+ss316l,"Stainless Steel 316L",,,,,,,,
+ss304l,"Stainless Steel 304L",,,,,,,,
+17-4ph,"17-4 PH Stainless Steel",,,,,,,,
+h13,"H13 Tool Steel",,,,,,,,
+maraging-ms1,"Maraging Steel MS1",,,,,,,,
+cx,"Stainless Steel CX",,,,,,,,
+inconel-625,"Inconel 625",,,,,,,,
+inconel-718,"Inconel 718",,,,,,,,
+hastelloy-x,"Nickel Alloy HX",,,,,,,,
+hastelloy-c22,"Nickel Alloy C-22",,,,,,,,
+ti6al4v,"Ti-6Al-4V",,,,,,,,
+cp-titanium-grade-2,"Commercially Pure Titanium Grade 2",,,,,,,,
+cocrmo,"Cobalt Chrome CoCrMo",,,,,,,,
+alsi10mg,"AlSi10Mg",,,,,,,,
+al6061,"Aluminium 6061",,,,,,,,
+al7075,"Aluminium 7075",,,,,,,,
