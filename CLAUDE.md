@@ -41,12 +41,18 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Two generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Four generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
-node docs/build-sitemap.mjs      # after adding/removing/renaming/editing a page
-node docs/purge-bootstrap.mjs    # after using a Bootstrap component the site did not use before
+node docs/build-sitemap.mjs       # after adding/removing/renaming/editing a page
+node docs/build-search-index.mjs  # after adding/removing/renaming/retitling a page
+node docs/build-prices.mjs        # after editing prices.csv
+node docs/purge-bootstrap.mjs     # after using a Bootstrap component the site did not use before
 ```
+
+`build-sitemap`, `build-search-index` and `build-prices` all take `--check`, which reports drift and
+exits non-zero without writing. CI runs the price check on every pull request, because a price the
+HTML no longer matches is worse than no price at all.
 
 Both live in `docs/` and are excluded from the build in `_config.yml`. Only the purge script needs
 npm (`purgecss@7`); the sitemap script is plain Node.
@@ -183,6 +189,27 @@ The repo backs a public GitHub Pages site: everything under `javascript/` is ser
 Supabase anon key and the Apps Script `/exec` URL are public by design. The CRM bearer token is not,
 and must never be committed anywhere in this repo — the CRM webhook cannot be called from a browser
 at all (401 on preflight, no CORS headers) and needs a server-side hop that does not exist yet.
+
+### Prices come from prices.csv — do not edit them in the pages
+
+`prices.csv` is the single source of truth for every published price. `docs/build-prices.mjs` writes
+both the visible `Price` row and the `AggregateOffer` in the JSON-LD from the same row, so the figure
+a reader sees and the figure Google reads cannot drift apart. Marking up a price that is not visible
+on the page breaches Google's structured data policy, which is why the two are written together and
+never separately.
+
+**A page absent from the CSV has its `offers` block removed.** That is deliberate. `offers` without a
+`price` is invalid markup: it earns no rich result and reports as an error in Search Console, and 477
+pages were in exactly that state. To retire a price, delete its row and re-run — the markup cleans
+itself up.
+
+`priceValidUntil` is derived from the `# updated:` line plus 45 days, so a monthly update that slips
+expires quietly instead of going on asserting a stale figure. Google uses a price only while it
+trusts it, the same way it treats `<lastmod>` — and loses trust the same way.
+
+INR drives the schema. USD appears on the page as indicative only: two currencies in the markup means
+two prices that drift apart when the rate moves, and Google picks between them unpredictably. Update
+both columns together.
 
 ### sitemap.xml is generated — do not edit it by hand
 

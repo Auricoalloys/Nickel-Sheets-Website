@@ -17,11 +17,14 @@ on:
       - "**.html"
       - "_includes/**"
       - "tools/seo_audit.py"
+      - "prices.csv"
+      - "docs/build-prices.mjs"
   push:
     branches: [main]
     paths:
       - "**.html"
       - "_includes/**"
+      - "prices.csv"
   workflow_dispatch:
 
 permissions:
@@ -34,9 +37,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      # A published price the HTML no longer matches is worse than no price:
+      # Google uses the field only while it stays accurate. This fails the build
+      # if prices.csv was edited without re-running the generator.
+      - name: Prices match prices.csv
+        run: node docs/build-prices.mjs --check
 
       - name: Run audit
         id: audit
