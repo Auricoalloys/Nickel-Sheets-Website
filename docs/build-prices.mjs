@@ -35,6 +35,7 @@ const CHECK = process.argv.includes('--check');
 // weeks then expires quietly, rather than going on asserting a figure from six
 // months ago - which is the failure that makes Google stop believing the field.
 const VALID_DAYS = 45;
+const SITE = 'https://www.nickelsheets.com';
 
 const SKIP = new Set(['.git', '.vscode', '.claude', 'node_modules', '_site', 'vendor', 'tools', '.bundle', '.github', 'docs']);
 function walk(d, out = []) {
@@ -111,21 +112,48 @@ for (const fp of walk(ROOT)) {
   if (row) {
     const cell = priceCell(row);
 
-    // the visible figure
-    if (/<th>Price<\/th><td>/.test(s)) {
-      s = s.replace(/<th>Price<\/th><td>[\s\S]*?<\/td>/, `<th>Price</th><td>${cell}</td>`);
+    // The visible figure. Two table shapes carry it: the product pages use
+    // class="spec-table", the powder pages a caption ending "key specification".
+    let shown = false;
+    if (/<th[^>]*>Price<\/th><td>/.test(s)) {
+      s = s.replace(/<th([^>]*)>Price<\/th><td>[\s\S]*?<\/td>/, `<th$1>Price</th><td>${cell}</td>`);
+      shown = true;
     } else {
-      const start = s.indexOf('spec-table');
+      let start = s.indexOf('spec-table');
+      if (start < 0) {
+        const cap = s.match(/<caption>[^<]*key specification<\/caption>/i);
+        if (cap) start = s.indexOf(cap[0]);
+      }
       const end = start > -1 ? s.indexOf('</tbody>', start) : -1;
-      if (end > -1) s = s.slice(0, end) + `<tr><th>Price</th><td>${cell}</td></tr>\n` + s.slice(end);
-      else noAnchor.push(rel);
+      if (end > -1) {
+        s = s.slice(0, end) + `<tr><th scope="row">Price</th><td>${cell}</td></tr>\n` + s.slice(end);
+        shown = true;
+      }
     }
 
-    // the schema, from the same row
+    // The schema only when the reader can see the figure. Marking up a price
+    // that is not on the page is the policy breach this whole pipeline exists
+    // to avoid, so a page with nowhere to show it gets no markup either - and
+    // says so, rather than failing quietly.
+    if (!shown) { noAnchor.push(rel); continue; }
+
     s = s.replace(/"@type":\s*"Offer",\n(\s*)/g,
       `"@type": "AggregateOffer",\n$1"lowPrice": "${row.lowInr}",\n$1"highPrice": "${row.highInr}",\n$1"priceValidUntil": "${validUntil}",\n$1`);
     s = s.replace(/("@type":\s*"AggregateOffer",\n)(\s*)(?:"lowPrice":[^\n]*\n\s*"highPrice":[^\n]*\n\s*"priceValidUntil":[^\n]*\n\s*)?/g,
       `$1$2"lowPrice": "${row.lowInr}",\n$2"highPrice": "${row.highInr}",\n$2"priceValidUntil": "${validUntil}",\n$2`);
+
+    // A page priced for the first time - or priced again after a spell with no
+    // row - has no offers block to convert, because a page without a row has
+    // its offers removed. Put one into the Product node so the schema can come
+    // back rather than the figure showing with no markup behind it.
+    if (/"@type":\s*"Product"/.test(s) && !/"offers"/.test(s)) {
+      s = s.replace(/(\n(\s*)"manufacturer":\s*\{(?:[^{}]|\{[^{}]*\})*\})/,
+        `$1,\n$2"offers": {\n$2  "@type": "AggregateOffer",\n$2  "lowPrice": "${row.lowInr}",\n` +
+        `$2  "highPrice": "${row.highInr}",\n$2  "priceValidUntil": "${validUntil}",\n` +
+        `$2  "url": "${SITE}${url}",\n$2  "availability": "https://schema.org/InStock",\n` +
+        `$2  "priceCurrency": "INR",\n$2  "seller": {\n$2    "@type": "Organization",\n` +
+        `$2    "name": "Aurico Alloys LLP"\n$2  }\n$2}`);
+    }
     priced++;
   } else {
     // no row: an offers block with no price is invalid, so remove it entirely
@@ -134,7 +162,7 @@ for (const fp of walk(ROOT)) {
       s = s.replace(/,?\n\s*"offers":\s*\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/g, '');
       stripped++;
     }
-    if (/<th>Price<\/th><td>/.test(s)) s = s.replace(/\s*<tr><th>Price<\/th><td>[\s\S]*?<\/td><\/tr>/g, '');
+    if (/<th[^>]*>Price<\/th><td>/.test(s)) s = s.replace(/\s*<tr><th[^>]*>Price<\/th><td>[\s\S]*?<\/td><\/tr>/g, '');
   }
 
   if (s !== before) {
@@ -158,6 +186,6 @@ console.log(`  priced pages          : ${priced}`);
 console.log(`  offers removed        : ${stripped}`);
 console.log(`  priceValidUntil       : ${validUntil}  (${VALID_DAYS} days after the update)`);
 if (noAnchor.length) {
-  console.log(`  no spec table to hold the price (${noAnchor.length}) - schema written, figure not:`);
+  console.log(`  nowhere on the page to show the price (${noAnchor.length}) - skipped, no markup written:`);
   noAnchor.forEach(x => console.log('     ' + x));
 }
