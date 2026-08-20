@@ -43,6 +43,7 @@ const CHECK = process.argv.includes('--check');
 const BOILERPLATE = new Set([
   '1e5afe80', // vendored Bootstrap, inlined the Font Awesome icons, dropped preconnect
   '414fee25', // renamed the "Monel K 400" link label to Monel 400 across the sidebars
+  'd6c99d9f', // wrapped fifteen pages in <main id="main"> so the skip link has a target
 ]);
 
 const read = f => fs.readFileSync(f, 'utf8');
