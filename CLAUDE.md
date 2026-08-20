@@ -351,9 +351,8 @@ step is how the dates silently inflate and the signal rots again.
 
 `floating-form.js` (every page, via footer) and `detailed.js` (~650 pages — TOC toggles, smooth
 anchor scroll, scroll-up button) are the live ones. `script.js` (mobile nav, language switcher,
-homepage marquee) is loaded only by `index.html`. `google-auth.js` is referenced by no page.
-`detailed_database_page.js` was the same and has been deleted; it also pulled Supabase from unpkg,
-which this site otherwise avoids. `javascript/translations/translations.js` is empty and no `<lang>.json`
+homepage marquee) is loaded only by `index.html`. `google-auth.js` and `detailed_database_page.js` were referenced by no page and have both been
+deleted; the latter also pulled Supabase from unpkg, which this site otherwise avoids. `javascript/translations/translations.js` is empty and no `<lang>.json`
 files exist, so the language switcher's fetch always no-ops — it fails silently by design.
 
 ### CSS
