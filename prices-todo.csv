@@ -22,7 +22,7 @@
 # published already expired.
 #
 # generated: 2026-08-20 by docs/build-price-worklist.mjs
-# pending: 451 page(s)
+# pending: 405 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -243,7 +243,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /incoloy/945/  (1)  |  incoloy priced on 13 page(s) at INR 1,500-12,000 per kg
 /incoloy/945/round-bar/,,,,,kg
 
-# /inconel-...  (11)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel-...  (11)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel-600-601-617-foil-supplier-exporter-in-mumbai-india/,,,,,kg
 /inconel-602-CA-X-750-foil-supplier-exporters/,,,,,kg
 /inconel-625-625-LCF-foil-supplier-trader-stockist-exporter/,,,,,kg
@@ -256,18 +256,18 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel-tube-supplier-exporter-mumbai-india/,,,,,kg
 /inconel-wire-supplier-exporter-mumbai-india/,,,,,kg
 
-# /inconel/  (3)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/  (3)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/foil/,,,,,kg
 /inconel/plates/,,,,,kg
 /inconel/sheets/,,,,,kg
 
-# /inconel/600/  (4)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/600/  (4)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/600/coil/,,,,,kg
 /inconel/600/fittings/,,,,,kg
 /inconel/600/pipe/,,,,,kg
 /inconel/600/tube/,,,,,kg
 
-# /inconel/601/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/601/  (8)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/601/coil/,,,,,kg
 /inconel/601/fittings/,,,,,kg
 /inconel/601/pipe/,,,,,kg
@@ -277,7 +277,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/601/tube/,,,,,kg
 /inconel/601/wire/,,,,,kg
 
-# /inconel/602-CA/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/602-CA/  (8)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/602-CA/coil/,,,,,kg
 /inconel/602-CA/fittings/,,,,,kg
 /inconel/602-CA/pipe/,,,,,kg
@@ -287,7 +287,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/602-CA/tube/,,,,,kg
 /inconel/602-CA/wire/,,,,,kg
 
-# /inconel/617/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/617/  (8)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/617/coil/,,,,,kg
 /inconel/617/fittings/,,,,,kg
 /inconel/617/pipe/,,,,,kg
@@ -297,26 +297,26 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/617/tube/,,,,,kg
 /inconel/617/wire/,,,,,kg
 
-# /inconel/625-LCF/  (2)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/625-LCF/  (2)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/625-LCF/plates/,,,,,kg
 /inconel/625-LCF/round-bar/,,,,,kg
 
-# /inconel/625/  (5)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/625/  (5)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/625/coil/,,,,,kg
 /inconel/625/fittings/,,,,,kg
 /inconel/625/pipe/,,,,,kg
 /inconel/625/powder/,,,,,kg
 /inconel/625/tube/,,,,,kg
 
-# /inconel/625LCF/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/625LCF/  (1)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/625LCF/,,,,,kg
 
-# /inconel/660/  (3)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/660/  (3)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/660/plates/,,,,,kg
 /inconel/660/round-bar/,,,,,kg
 /inconel/660/sheets/,,,,,kg
 
-# /inconel/686/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/686/  (8)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/686/coil/,,,,,kg
 /inconel/686/fittings/,,,,,kg
 /inconel/686/pipe/,,,,,kg
@@ -326,7 +326,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/686/tube/,,,,,kg
 /inconel/686/wire/,,,,,kg
 
-# /inconel/690/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/690/  (8)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/690/coil/,,,,,kg
 /inconel/690/fittings/,,,,,kg
 /inconel/690/pipe/,,,,,kg
@@ -336,7 +336,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/690/tube/,,,,,kg
 /inconel/690/wire/,,,,,kg
 
-# /inconel/693/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/693/  (8)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/693/coil/,,,,,kg
 /inconel/693/fittings/,,,,,kg
 /inconel/693/pipe/,,,,,kg
@@ -346,41 +346,21 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/693/tube/,,,,,kg
 /inconel/693/wire/,,,,,kg
 
-# /inconel/718/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/718/coil/,4000,7500,,,kg
+# /inconel/718/  (1)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/718/fittings/,,,,,kg
-/inconel/718/pipe/,6000,12000,,,kg
-/inconel/718/plates/,5000,8500,,,kg
-/inconel/718/powder/,5500,7000,,,kg
-/inconel/718/sheets/,5000,8500,,,kg
-/inconel/718/tube/,6000,12000,,,kg
-/inconel/718/wire/,3500,6500,,,kg
 
-# /inconel/725/  (3)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/725/  (1)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/725/fittings/,,,,,kg
-/inconel/725/round-bar/,4500,8000,,,kg
-/inconel/725/wire/,4500,8000,,,kg
 
-# /inconel/740H/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/740H/  (1)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/740H/,,,,,kg
 
-# /inconel/751/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/751/  (1)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/751/,,,,,kg
 
-# /inconel/783/  (2)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
+# /inconel/783/  (2)  |  inconel priced on 25 page(s) at INR 2,500-12,000 per kg
 /inconel/783/billets/,,,,,kg
 /inconel/783/round-bar/,,,,,kg
-
-# /inconel/round-bars/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/round-bars/,2500,11000,,,kg
-
-# /inconel/x-750/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/x-750/plates/,3500,7500,,,kg
-
-# /inconel/X-750/  (3)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/X-750/coil/,3500,7500,,,kg
-/inconel/X-750/round-bar/,3000,5500,,,kg
-/inconel/X-750/sheets/,3500,7500,,,kg
 
 # /invar-...  (1)
 /invar/,,,,,kg
@@ -400,7 +380,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /kovar/round-bar/,,,,,kg
 /kovar/sheets/,,,,,kg
 
-# /monel-...  (7)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
+# /monel-...  (7)  |  monel priced on 10 page(s) at INR 2,500-6,500 per kg
 /monel-coil-supplier-exporter-mumbai-india/,,,,,kg
 /monel-fittings-supplier-exporter-mumbai-india/,,,,,kg
 /monel-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
@@ -409,22 +389,13 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /monel-tube-supplier-exporter-mumbai-india/,,,,,kg
 /monel-wire-supplier-exporter-mumbai-india/,,,,,kg
 
-# /monel/  (4)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
+# /monel/  (1)  |  monel priced on 10 page(s) at INR 2,500-6,500 per kg
 /monel/foil/,,,,,kg
-/monel/plates/,2800,4000,,,kg
-/monel/round-bar/,2500,3800,,,kg
-/monel/sheets/,2800,5000,,,kg
 
-# /monel/400/  (1)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
-/monel/400/,2500,5000,,,kg
-
-# /monel/405/  (1)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
-/monel/405/round-bar/,3500,5500,,,kg
-
-# /monel/k-400/  (1)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
+# /monel/k-400/  (1)  |  monel priced on 10 page(s) at INR 2,500-6,500 per kg
 /monel/k-400/sheets/,,,,,kg
 
-# /monel/K-500/  (4)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
+# /monel/K-500/  (4)  |  monel priced on 10 page(s) at INR 2,500-6,500 per kg
 /monel/K-500/foil/,,,,,kg
 /monel/K-500/plates/,,,,,kg
 /monel/K-500/round-bar/,,,,,kg
@@ -569,94 +540,80 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /pure-nickel/200-201/  (1)
 /pure-nickel/200-201/foil/,,,,,kg
 
-# /pure-nickel-strip/18650-H-type/  (1)
-/pure-nickel-strip/18650-H-type/,,,,,kg
-
-# /pure-nickel-strip/18650-honeycomb/  (1)
-/pure-nickel-strip/18650-honeycomb/,,,,,kg
-
-# /pure-nickel-strip/18650-zigzag/  (1)
-/pure-nickel-strip/18650-zigzag/,,,,,kg
-
-# /pure-nickel-strip/18650/  (1)
+# /pure-nickel-strip/18650/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/18650/,,,,,kg
 
-# /pure-nickel-strip/1P/  (1)
+# /pure-nickel-strip/1P/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/1P/,,,,,kg
 
-# /pure-nickel-strip/21700-H-type/  (1)
+# /pure-nickel-strip/21700-H-type/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/21700-H-type/,,,,,kg
 
-# /pure-nickel-strip/21700-honeycomb/  (1)
+# /pure-nickel-strip/21700-honeycomb/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/21700-honeycomb/,,,,,kg
 
-# /pure-nickel-strip/21700-zigzag/  (1)
+# /pure-nickel-strip/21700-zigzag/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/21700-zigzag/,,,,,kg
 
-# /pure-nickel-strip/21700/  (1)
+# /pure-nickel-strip/21700/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/21700/,,,,,kg
 
-# /pure-nickel-strip/26650-H-type/  (1)
+# /pure-nickel-strip/26650-H-type/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/26650-H-type/,,,,,kg
 
-# /pure-nickel-strip/26650-honeycomb/  (1)
+# /pure-nickel-strip/26650-honeycomb/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/26650-honeycomb/,,,,,kg
 
-# /pure-nickel-strip/26650-zigzag/  (1)
+# /pure-nickel-strip/26650-zigzag/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/26650-zigzag/,,,,,kg
 
-# /pure-nickel-strip/26650/  (1)
+# /pure-nickel-strip/26650/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/26650/,,,,,kg
 
-# /pure-nickel-strip/2P/  (1)
+# /pure-nickel-strip/2P/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/2P/,,,,,kg
 
-# /pure-nickel-strip/32140-H-type/  (1)
+# /pure-nickel-strip/32140-H-type/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/32140-H-type/,,,,,kg
 
-# /pure-nickel-strip/32140-honeycomb/  (1)
+# /pure-nickel-strip/32140-honeycomb/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/32140-honeycomb/,,,,,kg
 
-# /pure-nickel-strip/32140-zigzag/  (1)
+# /pure-nickel-strip/32140-zigzag/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/32140-zigzag/,,,,,kg
 
-# /pure-nickel-strip/32650-honeycomb/  (1)
+# /pure-nickel-strip/32650-honeycomb/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/32650-honeycomb/,,,,,kg
 
-# /pure-nickel-strip/32650-zigzag/  (1)
+# /pure-nickel-strip/32650-zigzag/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/32650-zigzag/,,,,,kg
 
-# /pure-nickel-strip/32650/  (1)
+# /pure-nickel-strip/32650/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/32650/,,,,,kg
 
-# /pure-nickel-strip/3P/  (1)
+# /pure-nickel-strip/3P/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/3P/,,,,,kg
 
-# /pure-nickel-strip/4680/  (1)
+# /pure-nickel-strip/4680/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/4680/,,,,,kg
 
-# /pure-nickel-strip/4P/  (1)
+# /pure-nickel-strip/4P/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/4P/,,,,,kg
 
-# /pure-nickel-strip/5P/  (1)
+# /pure-nickel-strip/5P/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/5P/,,,,,kg
 
-# /pure-nickel-strip/6P/  (1)
+# /pure-nickel-strip/6P/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
 /pure-nickel-strip/6P/,,,,,kg
 
-# /pure-nickel-strip/H-type/  (1)
-/pure-nickel-strip/H-type/,2700,3500,,,kg
+# /pure-nickel-strip/H-type/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
+/pure-nickel-strip/H-type/,,,,,kg
 
-# /pure-nickel-strip/honeycomb/  (1)
-/pure-nickel-strip/honeycomb/,4000,6000,,,kg
+# /pure-nickel-strip/honeycomb/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
+/pure-nickel-strip/honeycomb/,,,,,kg
 
-# /pure-nickel-strip/zigzag/  (1)
-/pure-nickel-strip/zigzag/,4000,6000,,,kg
-
-# /SMO-254/  (3)
-/SMO-254/plates/,1000,1750,,,kg
-/SMO-254/round-bar/,1500,2500,,,kg
-/SMO-254/sheets/,1000,1750,,,kg
+# /pure-nickel-strip/zigzag/  (1)  |  pure-nickel-strip priced on 3 page(s) at INR 2,700-6,000 per kg
+/pure-nickel-strip/zigzag/,,,,,kg
 
 # /special-...  (7)
 /special-stainless-steel-coil-supplier-exporter-mumbai-india/,,,,,kg
@@ -667,42 +624,12 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /special-stainless-steel-tube-supplier-exporter-mumbai-india/,,,,,kg
 /special-stainless-steel-wire-supplier-exporter-mumbai-india/,,,,,kg
 
-# /stainless/17-4-ph/  (1)
-/stainless/17-4-ph/powder/,2500,4000,,,kg
-
-# /stainless/316l/  (1)
-/stainless/316l/powder/,1200,2500,,,kg
-
-# /stainless/904L/  (1)
-/stainless/904L/,1000,1950,,,kg
-
-# /stainless/AL-6XN/  (1)
-/stainless/AL-6XN/,1500,2500,,,kg
-
-# /stainless/alloy-20/  (1)
-/stainless/alloy-20/,1500,3000,,,kg
-
-# /stainless/alloy-28/  (1)
-/stainless/alloy-28/,1500,3500,,,kg
-
-# /stainless/alloy-31/  (1)
-/stainless/alloy-31/,3000,6000,,,kg
-
-# /stainless/alloy-926/  (1)
-/stainless/alloy-926/,1500,3000,,,kg
-
-# /stainless/AM-350/  (1)
-/stainless/AM-350/,3000,6500,,,kg
-
-# /stainless/SMO-254/  (1)
-/stainless/SMO-254/,1500,2500,,,kg
-
 # /stellite/  (3)  |  stellite priced on 1 page(s) at INR 8,500-12,000 per kg
 /stellite/plates/,,,,,kg
 /stellite/round-bar/,,,,,kg
 /stellite/sheets/,,,,,kg
 
-# /titanium-...  (9)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium-...  (9)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium-alloy-coil-supplier-exporter-mumbai-india/,,,,,kg
 /titanium-alloy-fittings-supplier-exporter-mumbai-india/,,,,,kg
 /titanium-alloy-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
@@ -713,97 +640,80 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /titanium-grade-16-foil-supplier-mumbai/,,,,,kg
 /titanium-grade-23-foil-supplier-exporter-in-mumbai-india/,,,,,kg
 
-# /titanium/grade-1-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-1-plates/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-1-plates/,,,,,kg
 
-# /titanium/grade-1/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-1/  (4)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-1/coil/,,,,,kg
 /titanium/grade-1/foil/,,,,,kg
 /titanium/grade-1/pipe/,,,,,kg
 /titanium/grade-1/sheets/,,,,,kg
 
-# /titanium/grade-11-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-11-plates/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-11-plates/,,,,,kg
 
-# /titanium/grade-11/  (2)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-11/  (2)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-11/round-bar/,,,,,kg
 /titanium/grade-11/sheets/,,,,,kg
 
-# /titanium/grade-12/  (3)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-12/  (3)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-12/plates/,,,,,kg
 /titanium/grade-12/round-bar/,,,,,kg
 /titanium/grade-12/sheets/,,,,,kg
 
-# /titanium/grade-16/  (3)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-16/  (3)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-16/plates/,,,,,kg
 /titanium/grade-16/round-bar/,,,,,kg
 /titanium/grade-16/sheets/,,,,,kg
 
-# /titanium/grade-2-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-2-plates/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-2-plates/,,,,,kg
 
-# /titanium/grade-2/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-2/  (4)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-2/foil/,,,,,kg
 /titanium/grade-2/plates/,,,,,kg
 /titanium/grade-2/round-bar/,,,,,kg
 /titanium/grade-2/sheets/,,,,,kg
 
-# /titanium/grade-23/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-23/  (4)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-23/plates/,,,,,kg
 /titanium/grade-23/powder/,,,,,kg
 /titanium/grade-23/round-bar/,,,,,kg
 /titanium/grade-23/sheets/,,,,,kg
 
-# /titanium/grade-3-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-3-plates/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-3-plates/,,,,,kg
 
-# /titanium/grade-3/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-3/  (4)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-3/foil/,,,,,kg
 /titanium/grade-3/plates/,,,,,kg
 /titanium/grade-3/round-bar/,,,,,kg
 /titanium/grade-3/sheet/,,,,,kg
 
-# /titanium/grade-4-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-4-plates/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-4-plates/,,,,,kg
 
-# /titanium/grade-4/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-4/  (4)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-4/foil/,,,,,kg
 /titanium/grade-4/plates/,,,,,kg
 /titanium/grade-4/round-bar/,,,,,kg
 /titanium/grade-4/sheets/,,,,,kg
 
-# /titanium/grade-5-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-5-plates/,2500,7500,,,kg
-
-# /titanium/grade-5/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-5/foil/,7000,250000,,,kg
-/titanium/grade-5/powder/,12000,21000,,,kg
-/titanium/grade-5/round-bar/,1700,6000,,,kg
-/titanium/grade-5/sheets/,3000,6500,,,kg
-
-# /titanium/grade-6-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-6-plates/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-6-plates/,,,,,kg
 
-# /titanium/grade-6/  (2)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-6/  (2)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-6/foil/,,,,,kg
 /titanium/grade-6/round-bar/,,,,,kg
 
-# /titanium/grade-7-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-7-plates/,10000,25000,,,kg
+# /titanium/grade-7-plates/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
+/titanium/grade-7-plates/,,,,,kg
 
-# /titanium/grade-7/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-7/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-7/foil/,,,,,kg
-/titanium/grade-7/plates/,10000,25000,,,kg
-/titanium/grade-7/round-bar/,10000,25000,,,kg
-/titanium/grade-7/sheets/,10000,25000,,,kg
 
-# /titanium/grade-9-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-9-plates/,5000,20000,,,kg
-
-# /titanium/grade-9/  (3)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
+# /titanium/grade-9/  (1)  |  titanium priced on 14 page(s) at INR 1,300-25,000 per kg
 /titanium/grade-9/foil/,,,,,kg
-/titanium/grade-9/round-bar/,5000,20000,,,kg
-/titanium/grade-9/sheets/,5000,20000,,,kg
 
 # /tool-steel/h13/  (1)
 /tool-steel/h13/powder/,,,,,kg

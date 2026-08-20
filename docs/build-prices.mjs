@@ -84,11 +84,16 @@ const validUntil = (() => {
 
 const inr = n => Number(n).toLocaleString('en-IN');
 
+// The punctuation before "quoted" has to follow whether the USD clause is
+// there. It ends in a semicolon, so it carries the join itself; without it the
+// sentence used to run "per kg. quoted against", starting in lower case. That
+// stayed invisible while every row carried USD, and appeared on 46 pages the
+// day rows without it were first published.
 function priceCell(r) {
   const usd = r.lowUsd && r.highUsd
-    ? ` Indicative USD ${r.lowUsd} &ndash; ${r.highUsd} per ${r.unit};`
-    : '';
-  return `INR ${inr(r.lowInr)} &ndash; ${inr(r.highInr)} per ${r.unit}.${usd}` +
+    ? `. Indicative USD ${r.lowUsd} &ndash; ${r.highUsd} per ${r.unit};`
+    : ',';
+  return `INR ${inr(r.lowInr)} &ndash; ${inr(r.highInr)} per ${r.unit}${usd}` +
     ` quoted against grade, form, size and quantity.`;
 }
 
