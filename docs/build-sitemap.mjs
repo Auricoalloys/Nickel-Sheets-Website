@@ -48,6 +48,8 @@ const BOILERPLATE = new Set([
               // safe direction - see the note below the set)
   '3ea150c3', // repointed canonical, og:url and sidebar hrefs; no page's wording changed
   'd6c99d9f', // wrapped fifteen pages in <main id="main"> so the skip link has a target
+  '4e849c3a', // balanced the section tags on 91 pages; every edit was proved to leave the
+              // DOM byte-identical, so no page's wording or rendering changed
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
