@@ -42,6 +42,7 @@ const CHECK = process.argv.includes('--check');
 // date. Add to this list when you land another sweep of the same kind.
 const BOILERPLATE = new Set([
   '1e5afe80', // vendored Bootstrap, inlined the Font Awesome icons, dropped preconnect
+  '414fee25', // renamed the "Monel K 400" link label to Monel 400 across the sidebars
 ]);
 
 const read = f => fs.readFileSync(f, 'utf8');
