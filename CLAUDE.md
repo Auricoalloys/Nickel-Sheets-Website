@@ -6,8 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The Aurico Alloys LLP marketing site (www.nickelsheets.com) — a Jekyll site of ~750 hand-written
 HTML pages for a nickel/titanium/duplex/cobalt alloy stockist. GitHub Pages builds and deploys it
-straight from `main`; there is no CI workflow, no bundler, and no test suite. Pushing to `main`
-publishes.
+straight from `main`; there is no bundler and no unit tests. Pushing to `main` publishes.
+
+There is one CI workflow, `.github/workflows/seo-audit.yml`, and it only reports — it never edits or
+publishes. See **The SEO audit** below.
 
 ## Commands
 
@@ -60,6 +62,32 @@ certified to something it is not.
 
 Both live in `docs/` and are excluded from the build in `_config.yml`. Only the purge script needs
 npm (`purgecss@7`); the sitemap script is plain Node.
+
+### The SEO audit
+
+`tools/seo_audit.py` checks the source tree for the mistakes this site has actually made — pages
+with no `<h1>`, canonicals pointing nowhere, orphans nothing links to, duplicate permalinks,
+case-variant URLs, truncated descriptions, missing alt text, broken internal links:
+
+```bash
+python tools/seo_audit.py                  # report
+python tools/seo_audit.py --fail-on-new    # exit 1 only if worse than the baseline
+python tools/seo_audit.py --live           # adds the apex/www DNS and certificate checks
+```
+
+It is **counts against a baseline**, not pass/fail: `tools/seo_baseline.json` records what was
+already broken when each check was added, and a count at or below its baseline passes. So fixing a
+class of bug does not tighten the guard by itself — **after clearing findings, re-run with
+`--update-baseline` and commit**, or the same number of them can silently come back.
+
+CI runs it on every pull request touching HTML, `_includes/`, `prices.csv` or `docs/specs.csv`,
+fails the PR on a regression, and on the daily 08:00 IST schedule opens an issue instead.
+
+Two things it cannot see, both learned the hard way. It reads the **source tree**, so a `href="#main"`
+that only resolves because the shared header supplies the id looks fine to it and is dead in the
+built page — check anchors in `_site`, not in the sources. And `python` may not exist on a Windows
+checkout even when `python3` resolves, because that is the Microsoft Store alias stub; if it will not
+run locally, read the CI log.
 
 ## Architecture
 
@@ -292,7 +320,8 @@ meaningfully editing a page:
 node docs/build-sitemap.mjs
 ```
 
-`--check` reports drift and exits non-zero without writing, for whenever this repo gets CI.
+`--check` reports drift and exits non-zero without writing. CI does not run this one — it runs only
+the price and specification checks — so run it yourself before committing page changes.
 
 Dates come from git history, so a generation cannot know about the commit it is about to be part of:
 after committing page edits, the pages in that commit are one commit behind. Run the generator again
