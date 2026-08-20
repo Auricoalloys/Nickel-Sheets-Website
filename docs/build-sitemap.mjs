@@ -42,7 +42,18 @@ const CHECK = process.argv.includes('--check');
 // date. Add to this list when you land another sweep of the same kind.
 const BOILERPLATE = new Set([
   '1e5afe80', // vendored Bootstrap, inlined the Font Awesome icons, dropped preconnect
+  '414fee25', // renamed the "Monel K 400" link label to Monel 400 across the sidebars
+  '392fd193', // corrected "Nickle" to Nickel in the similar-products sidebar (146 of its 176
+              // files changed nothing else; the 30 that did are understated, which is the
+              // safe direction - see the note below the set)
+  '3ea150c3', // repointed canonical, og:url and sidebar hrefs; no page's wording changed
+  'd6c99d9f', // wrapped fifteen pages in <main id="main"> so the skip link has a target
 ]);
+
+// A commit here is skipped for every page it touched, so a sweep that also carried a handful of
+// genuine edits understates those pages' dates rather than overstating the rest. That is the
+// trade to make: Google drops the field when dates are inflated, not when they lag. Where the
+// genuine edits matter, land them as their own commit instead of folding them into a sweep.
 
 const read = f => fs.readFileSync(f, 'utf8');
 const xmlEscape = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')

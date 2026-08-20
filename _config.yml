@@ -26,6 +26,9 @@ exclude:
   # a page by the optional-front-matter plugin GitHub Pages always enables, so
   # this has to be excluded or it publishes at /CLAUDE.html.
   - CLAUDE.md
+  # github-pages already excludes README.md by default; stated here so it stays
+  # excluded if that default ever changes.
+  - README.md
   - package-lock.json
   - node_modules
   - .vscode
@@ -40,6 +43,8 @@ exclude:
   - docs/build-sitemap.mjs
   - docs/build-search-index.mjs
   - docs/build-prices.mjs
+  - docs/build-specs.mjs
+  - docs/specs.csv
   # Powder technical data sheets and their generator. Standalone HTML meant to be
   # printed to PDF, not served: they carry no front matter, so the sitemap
   # generator already skips them, but Jekyll would still copy them into _site

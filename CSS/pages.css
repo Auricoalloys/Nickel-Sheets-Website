@@ -275,7 +275,7 @@
     border-radius: 8px;
     background-color: #154360;
     --heading-color: currentColor;
-    transition: box-shadow var(--transition-speed);
+    transition: box-shadow 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
     display: inline-block;

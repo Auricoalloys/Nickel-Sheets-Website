@@ -19,12 +19,15 @@ on:
       - "tools/seo_audit.py"
       - "prices.csv"
       - "docs/build-prices.mjs"
+      - "docs/specs.csv"
+      - "docs/build-specs.mjs"
   push:
     branches: [main]
     paths:
       - "**.html"
       - "_includes/**"
       - "prices.csv"
+      - "docs/specs.csv"
   workflow_dispatch:
 
 permissions:
@@ -50,6 +53,13 @@ jobs:
       # if prices.csv was edited without re-running the generator.
       - name: Prices match prices.csv
         run: node docs/build-prices.mjs --check
+
+      # A specification is written for a product form, and citing one for the
+      # wrong form tells a buyer the material is certified to something it is
+      # not. The hub tables are generated, so this fails the build if specs.csv
+      # was edited without re-running the generator.
+      - name: Spec tables match docs/specs.csv
+        run: node docs/build-specs.mjs --check
 
       - name: Run audit
         id: audit

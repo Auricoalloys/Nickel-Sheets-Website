@@ -1,6 +1,10 @@
 ---
 permalink: /pure-nickel-strip/product/
 title: Nickel Strip Product
+# Template route, not a page: it renders only with a product slug in the query string, so nothing
+# links to it, and it ships without a level-one heading because that heading is injected from the
+# Supabase title column at runtime. Disallowed in robots.txt for the same reason. An orphan or
+# missing-heading report flagging this URL is a false positive - do not "fix" it with static markup.
 ---
 
 <!DOCTYPE html>

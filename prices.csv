@@ -19,12 +19,16 @@
 # updated: 2026-08-19
 
 url,low_inr,high_inr,low_usd,high_usd,unit
+/hastelloy-C22-foil-supplier-exporter/,4500,6500,53,76,kg
+/hastelloy/C2000/plates/,2600,4200,31,49,kg
 /hastelloy/C22/plates/,3500,5000,41,59,kg
 /hastelloy/C22/round-bar/,3500,5000,41,59,kg
 /hastelloy/C22/sheets/,3500,5000,41,59,kg
+/Hastelloy/C276/foil/,4500,6500,53,76,kg
 /hastelloy/C276/plates/,3500,5000,41,59,kg
 /hastelloy/C276/round-bar/,3500,5000,41,59,kg
 /hastelloy/C276/sheets/,3500,5000,41,59,kg
+/hastelloy/X/plates/,1800,3200,21,38,kg
 /haynes-214-230-242-282-HR-120-25-188-foil/,5000,15000,60,175,kg
 /haynes-alloy-coil-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
 /haynes-alloy-fittings-supplier-exporter-mumbai-india/,5000,15000,60,175,kg
@@ -61,10 +65,15 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /incoloy/800/plates/,1500,2000,18,24,kg
 /incoloy/800/round-bar/,1500,2000,18,24,kg
 /incoloy/800/sheets/,1500,2000,18,24,kg
+/incoloy/800H/plates/,1500,2000,18,24,kg
+/incoloy/800HT/plates/,1500,2000,18,24,kg
 /incoloy/825/plates/,1600,2000,19,24,kg
 /incoloy/825/round-bar/,1600,2000,19,24,kg
 /incoloy/825/sheets/,1600,2000,19,24,kg
 /incoloy/825/wire/,1600,2000,19,24,kg
+/incoloy/890/plates/,3500,4500,41,53,kg
+/incoloy/903/plates/,4500,6800,53,80,kg
+/incoloy/909/plates/,8500,12000,100,141,kg
 /inconel/600/plates/,2500,4000,29,47,kg
 /inconel/600/round-bar/,2500,4000,29,47,kg
 /inconel/600/sheets/,2500,4000,29,47,kg
@@ -76,7 +85,19 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/625/sheets/,2500,5000,29,59,kg
 /inconel/625/wire/,2500,5000,29,59,kg
 /inconel/718/round-bar/,3000,5000,35,59,kg
+/monel/400/foil/,4500,6500,53,76,kg
 /monel/400/plates/,2500,4000,29,47,kg
 /monel/400/round-bar/,2500,4000,29,47,kg
 /monel/400/sheets/,2500,4000,29,47,kg
 /monel/400/wire/,2500,4000,29,47,kg
+/nimonic/75/plates/,4200,7500,49,88,kg
+/nimonic/80A/plates/,2360,7000,28,82,kg
+/nimonic/81/plates/,1200,1600,14,19,kg
+/nimonic/86/plates/,1200,2999,14,35,kg
+/nimonic/90/plates/,6500,10000,76,118,kg
+/nimonic/105/plates/,1200,3000,14,35,kg
+/nimonic/115/plates/,1200,1400,14,16,kg
+/nimonic/263/plates/,1200,7500,14,88,kg
+/nimonic/901/plates/,1200,5000,14,59,kg
+/stellite/foil/,8500,12000,100,141,kg
+/titanium/grade-1/round-bar/,1300,4300,15,51,kg

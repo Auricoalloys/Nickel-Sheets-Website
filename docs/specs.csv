@@ -1,0 +1,108 @@
+# Product specifications by grade and form. One row per grade; the columns are
+# the product forms. docs/build-specs.mjs writes these into the grade x spec
+# table on every family hub (/inconel-wire-.../, /hollow-bars/..., etc.) and on
+# every grade hub (/inconel/625/).
+#
+# Why a file rather than editing hubs by hand: the same standard appears on a
+# product page, a form hub and a grade hub. Three copies with nothing keeping
+# them in step is how /inconel/625/wire/ ended up citing B443, a plate spec.
+# One row here is the single source of truth for one grade.
+#
+# THE RULE THIS TABLE ENFORCES: a specification is written for a product form.
+# B443 covers plate, sheet and strip; B446 covers rod, bar and wire; B444 covers
+# pipe and tube. They are not interchangeable, and a hub must never print a
+# flat-product spec in the wire column.
+#
+# Sources are the mill technical bulletins - Special Metals for INCONEL,
+# INCOLOY, MONEL and NIMONIC; Haynes International for HAYNES. Where a mill
+# publishes no standard for a grade, the cell reads "mill" and the hub prints
+# "mill specification". Where a grade is not made in that form, the cell is "-"
+# and the hub prints an em dash. Do not fill a cell from a distributor listing:
+# that is where AMS 5542 (an X-750 sheet spec) came to be cited for Haynes 214
+# round bar.
+#
+# After editing: node docs/build-specs.mjs   then commit the changed hubs.
+# node docs/build-specs.mjs --check reports drift and exits non-zero.
+
+family,grade,uns,flat,bar,wire,pipe_tube,fitting
+inconel,600,N06600,ASTM B168,ASTM B166 / AMS 5665,ASTM B166,ASTM B167,ASTM B366
+inconel,601,N06601,ASTM B168,ASTM B166 / AMS 5715,ASTM B166,ASTM B167,ASTM B366
+inconel,602 CA,N06025,ASTM B168,ASTM B166,ASTM B166 / ISO 9724,-,ASTM B366
+inconel,617,N06617,ASTM B168 / AMS 5888 / 5889,ASTM B166 / AMS 5887,ASTM B166 / ISO 9724,ASTM B546,ASTM B366
+inconel,625,N06625,ASTM B443 / AMS 5599,ASTM B446 / AMS 5666,ASTM B446,ASTM B444,ASTM B366
+inconel,625 LCF,N06625,ASTM B443,ASTM B446,ASTM B446,ASTM B444,ASTM B366
+inconel,660 (A286),S66286,AMS 5525 / 5858,ASTM A638 / AMS 5731 / 5732,-,-,-
+inconel,686,N06686,ASTM B575 / B906,ASTM B574,ASTM B574,ASTM B619 / B622 / B626,ASTM B366
+inconel,690,N06690,ASTM B168 / B906,ASTM B166 / B564,ASTM B166,ASTM B163 / B167 / B829,ASTM B366
+inconel,693,N06693,ASTM B168 / B906,ASTM B166,ASTM B166,ASTM B167,ASTM B366
+inconel,718,N07718,ASTM B670 / B906 / AMS 5596 / 5597,ASTM B637 / AMS 5662 / 5663,ASTM B637 / AMS 5962,AMS 5589 / 5590,ASTM B366
+inconel,725,N07725,-,ASTM B805,ASTM B805,-,-
+inconel,751,N07751,-,mill,-,-,-
+inconel,783,R30783,-,AMS 5940 / ASTM B637,-,-,-
+inconel,X-750,N07750,AMS 5542 / 5598,ASTM B637 / AMS 5667-5671 / 5747,AMS 5698 / 5699,-,-
+incoloy,330,N08330,ASTM B536,ASTM B511,-,ASTM B535,ASTM B366
+incoloy,800,N08800,ASTM B409 / B906,ASTM B408,ISO 9724 / BS 3075NA15,ASTM B163 / B407 / B829,ASTM B366
+incoloy,800H,N08810,ASTM B409 / B906,ASTM B408,ISO 9724 / BS 3075NA15,ASTM B163 / B407 / B829,ASTM B366
+incoloy,800HT,N08811,ASTM B409 / B906,ASTM B408,ISO 9724 / BS 3075NA15,ASTM B163 / B407 / B829,ASTM B366
+incoloy,825,N08825,ASTM B424 / B906,ASTM B425 / B564,ASTM B425,ASTM B163 / B423 / B829,ASTM B366
+incoloy,890,N08890,ASTM B409 / B906,ASTM B408,-,ASTM B407,-
+incoloy,903,N19903,mill,mill,-,-,-
+incoloy,909,N19909,AMS 5893,AMS 5892 / 5884,-,-,-
+incoloy,925,N09925,-,NACE MR-01-75 / ASME CC 2218 / HA46,-,-,-
+incoloy,945,N09945,-,NACE MR0175 / ISO 15156-3 / HA 119,-,-,-
+hastelloy,B-2,N10665,ASTM B333,ASTM B335,ASTM B335,ASTM B619 / B622,ASTM B366
+hastelloy,C-4,N06455,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622,ASTM B366
+hastelloy,C-22,N06022,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622,ASTM B366
+hastelloy,C-276,N10276,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622 / B626,ASTM B366
+hastelloy,C-2000,N06200,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622,ASTM B366
+hastelloy,G-30,N06030,ASTM B582,ASTM B581,ASTM B581,ASTM B619 / B622,ASTM B366
+hastelloy,N,N10003,-,ASTM B573,-,-,-
+hastelloy,X,N06002,ASTM B435,ASTM B572,-,ASTM B619 / B622,ASTM B366
+monel,400,N04400,ASTM B127,ASTM B164,ASTM B164,ASTM B163 / B165,ASTM B366
+monel,405,N04405,-,ASTM B164,ASTM B164,-,-
+monel,K-500,N05500,QQ-N-286,ASTM B865,ASTM B865,-,-
+nimonic,75,N06075,BS HR 203 / DIN 17750 / ISO 6208,BS HR 5 / HR 504 / DIN 17752,BS HR 5 / ISO 9723-25,BS HR 403 / DIN 17751,-
+nimonic,80A,N07080,BS HR 201 / AECMA PrEn 2191,ASTM B637 / BS 3076 / HR 1,ASTM B637 / BS 3076,BS HR 401,-
+nimonic,81,-,mill,mill,mill,mill,-
+nimonic,86,-,mill,mill,mill,-,-
+nimonic,90,N07090,BS HR 202 / AECMA PrEN 2298,AMS 5829 / BS HR 2 / HR 501-503,AMS 5829 / BS HR 2,BS HR 402,-
+nimonic,105,-,BS HR 3,BS HR 3 / AECMA PrEn 2179-2181,-,-,-
+nimonic,115,-,-,BS HR 4 / AECMA PrEn 2196 / 2197,-,-,-
+nimonic,263,N07263,AMS 5872 / BS HR 206 / DIN 17750,BS HR 10 / DIN 17752,DIN 17753,BS HR 404 / DIN 17751,-
+nimonic,901,N09901,-,AMS 5660 / 5661 / ISO 9723,AMS 5660 / 5661,-,-
+haynes,188,R30188,AMS 5608,AMS 5772,-,-,-
+haynes,214,N07214,mill,mill,-,-,-
+haynes,230,N06230,ASTM B435,ASTM B572,-,ASTM B619 / B622,ASTM B366
+haynes,242,N10242,mill,mill,-,-,-
+haynes,282,N07208,AMS 5951,ASTM B637 / AMS 5915,-,-,-
+titanium,Grade 1,R50250,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+titanium,Grade 2,R50400,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+titanium,Grade 5,R56400,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+titanium,Grade 7,R52400,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+titanium,Grade 9,R56320,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+titanium,Grade 11,R52250,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+titanium,Grade 12,R53400,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+titanium,Grade 23,R56407,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+nickel-alloy,Nickel 200,N02200,ASTM B162,ASTM B160,ASTM B160,ASTM B161 / B163,ASTM B366
+nickel-alloy,Nickel 201,N02201,ASTM B162,ASTM B160,ASTM B160,ASTM B161 / B163,ASTM B366
+nickel-alloy,Monel 400,N04400,ASTM B127,ASTM B164,ASTM B164,ASTM B163 / B165,ASTM B366
+nickel-alloy,Inconel 600,N06600,ASTM B168,ASTM B166,ASTM B166,ASTM B167,ASTM B366
+nickel-alloy,Inconel 625,N06625,ASTM B443,ASTM B446,ASTM B446,ASTM B444,ASTM B366
+nickel-alloy,Incoloy 825,N08825,ASTM B424,ASTM B425,ASTM B425,ASTM B423,ASTM B366
+nickel-alloy,Hastelloy C-276,N10276,ASTM B575,ASTM B574,ASTM B574,ASTM B622,ASTM B366
+duplex-steel,2205,S32205,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
+duplex-steel,2507,S32750,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
+duplex-steel,Zeron 100,S32760,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
+special-stainless-steel,904L,N08904,ASTM B625,ASTM B649,ASTM B649,ASTM B673 / B677,ASTM B366
+special-stainless-steel,254 SMO,S31254,ASTM A240,ASTM A479,ASTM A479,ASTM A312,ASTM A403
+special-stainless-steel,AL-6XN,N08367,ASTM B688,ASTM B691,ASTM B691,ASTM B675 / B676,ASTM B366
+special-stainless-steel,Alloy 20,N08020,ASTM B463,ASTM B473,ASTM B473,ASTM B464 / B468,ASTM B366
+special-stainless-steel,Alloy 28,N08028,ASTM B709,ASTM B649,ASTM B649,-,-
+special-stainless-steel,Alloy 31,N08031,ASTM B625,ASTM B649,ASTM B649,-,-
+special-stainless-steel,Alloy 926,N08926,ASTM B625,ASTM B649,ASTM B649,-,-
+cobalt-alloy,Haynes 25 (L-605),R30605,AMS 5537,AMS 5759,-,-,-
+cobalt-alloy,Haynes 188,R30188,AMS 5608,AMS 5772,-,-,-
+cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5833,-,ASTM F1058 / AMS 5833,-,-
+nichrome,80/20,-,ASTM B344 / B267,ASTM B344,ASTM B344 / B267,-,-
+nichrome,70/30,-,ASTM B344,ASTM B344,ASTM B344,-,-
+nichrome,60/15,-,ASTM B344,ASTM B344,ASTM B344,-,-
