@@ -43,19 +43,21 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Six generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Seven generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
 node docs/build-search-index.mjs       # after adding/removing/renaming/retitling a page
 node docs/build-prices.mjs             # after editing prices.csv
+node docs/build-price-worklist.mjs     # after adding/removing a page, or to queue up pricing work
 node docs/build-specs.mjs              # after editing docs/specs.csv
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
-`build-sitemap`, `build-search-index`, `build-prices`, `build-specs` and `powder-datasheets/build` all take
-`--check`, which reports drift and exits non-zero without writing. CI runs the price and
+`build-sitemap`, `build-search-index`, `build-prices`, `build-price-worklist`, `build-specs` and
+`powder-datasheets/build` all take `--check`, which reports drift and exits non-zero without
+writing. CI runs the price and
 specification checks on every pull request, because a price the HTML no longer matches is worse than
 no price at all, and a specification cited for the wrong product form tells a buyer the material is
 certified to something it is not.
@@ -242,6 +244,43 @@ trusts it, the same way it treats `<lastmod>` — and loses trust the same way.
 INR drives the schema. USD appears on the page as indicative only: two currencies in the markup means
 two prices that drift apart when the rate moves, and Google picks between them unpredictably. Update
 both columns together.
+
+#### prices-todo.csv is the queue in front of it
+
+Pricing a page used to start with the tedious half: find the permalink, copy it into `prices.csv`,
+*then* decide the number. `docs/build-price-worklist.mjs` writes the url column for you.
+
+```bash
+node docs/build-price-worklist.mjs          # refresh the queue
+node docs/build-price-worklist.mjs --adopt  # move filled rows into prices.csv
+node docs/build-price-worklist.mjs --check  # reports drift, writes nothing, exits non-zero
+```
+
+It lists every page that is **both** unpriced and off the schema — a `Product` node in its JSON-LD
+but no `offers` block, which is exactly what `build-prices.mjs` leaves behind for a page with no
+row. So each row is a page currently eligible for no rich result. Fill in `low_inr` and `high_inr`
+(USD optional), run `--adopt`, then run `build-prices.mjs`.
+
+**It is a queue, not a source of truth.** Nothing reads it at build time and it is excluded from
+the build; `prices.csv` still sets every published price. `--adopt` appends rather than inserting
+in sorted position, matching how rows have always been added, and it never touches the
+`# updated:` line — bumping that would extend `priceValidUntil` on 80-odd pages nobody re-checked,
+which is the trust-erosion failure that field already taught this repo once. It warns instead when
+the date is close to expiry.
+
+Three things it refuses rather than guesses at:
+
+- A page with **nowhere to print the figure** — no spec table, no `Price` row — is listed as a
+  comment, not a fillable row. `build-prices.mjs` writes no schema for those, and a marked-up
+  price the reader cannot see is the policy breach the pipeline exists to avoid.
+- A cell that is not a plain number. `2400-3900` typed into one cell strips to `24003900` and
+  would adopt without complaint, so anything but digits (with an optional INR, Rs, rupee or dollar
+  prefix and thousands separators) is named and skipped.
+- A row with **seven columns**, which means an unquoted comma inside a number. `2,400` splits into
+  two fields and shifts every value right, so `2,400`–`3,900` would adopt as INR 2–400/kg. Quoted
+  `"2,400"` — what a spreadsheet writes — parses correctly; the bare form is refused and the line
+  is handed back verbatim on the next refresh instead of being rewritten into the row it parsed
+  as.
 
 ### Specifications come from docs/specs.csv — do not edit hub tables by hand
 
