@@ -347,19 +347,19 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/693/wire/,,,,,kg
 
 # /inconel/718/  (8)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/718/coil/,,,,,kg
+/inconel/718/coil/,4000,7500,,,kg
 /inconel/718/fittings/,,,,,kg
-/inconel/718/pipe/,,,,,kg
-/inconel/718/plates/,,,,,kg
-/inconel/718/powder/,,,,,kg
-/inconel/718/sheets/,,,,,kg
-/inconel/718/tube/,,,,,kg
-/inconel/718/wire/,,,,,kg
+/inconel/718/pipe/,6000,12000,,,kg
+/inconel/718/plates/,5000,8500,,,kg
+/inconel/718/powder/,5500,7000,,,kg
+/inconel/718/sheets/,5000,8500,,,kg
+/inconel/718/tube/,6000,12000,,,kg
+/inconel/718/wire/,3500,6500,,,kg
 
 # /inconel/725/  (3)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
 /inconel/725/fittings/,,,,,kg
-/inconel/725/round-bar/,,,,,kg
-/inconel/725/wire/,,,,,kg
+/inconel/725/round-bar/,4500,8000,,,kg
+/inconel/725/wire/,4500,8000,,,kg
 
 # /inconel/740H/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
 /inconel/740H/,,,,,kg
@@ -372,15 +372,15 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/783/round-bar/,,,,,kg
 
 # /inconel/round-bars/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/round-bars/,,,,,kg
+/inconel/round-bars/,2500,11000,,,kg
 
 # /inconel/x-750/  (1)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/x-750/plates/,,,,,kg
+/inconel/x-750/plates/,3500,7500,,,kg
 
 # /inconel/X-750/  (3)  |  inconel priced on 11 page(s) at INR 2,500-8,000 per kg
-/inconel/X-750/coil/,,,,,kg
-/inconel/X-750/round-bar/,,,,,kg
-/inconel/X-750/sheets/,,,,,kg
+/inconel/X-750/coil/,3500,7500,,,kg
+/inconel/X-750/round-bar/,3000,5500,,,kg
+/inconel/X-750/sheets/,3500,7500,,,kg
 
 # /invar-...  (1)
 /invar/,,,,,kg
@@ -411,15 +411,15 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 
 # /monel/  (4)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
 /monel/foil/,,,,,kg
-/monel/plates/,,,,,kg
-/monel/round-bar/,,,,,kg
-/monel/sheets/,,,,,kg
+/monel/plates/,2800,4000,,,kg
+/monel/round-bar/,2500,3800,,,kg
+/monel/sheets/,2800,5000,,,kg
 
 # /monel/400/  (1)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
-/monel/400/,,,,,kg
+/monel/400/,2500,5000,,,kg
 
 # /monel/405/  (1)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
-/monel/405/round-bar/,,,,,kg
+/monel/405/round-bar/,3500,5500,,,kg
 
 # /monel/k-400/  (1)  |  monel priced on 5 page(s) at INR 2,500-6,500 per kg
 /monel/k-400/sheets/,,,,,kg
@@ -645,18 +645,18 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /pure-nickel-strip/6P/,,,,,kg
 
 # /pure-nickel-strip/H-type/  (1)
-/pure-nickel-strip/H-type/,,,,,kg
+/pure-nickel-strip/H-type/,2700,3500,,,kg
 
 # /pure-nickel-strip/honeycomb/  (1)
-/pure-nickel-strip/honeycomb/,,,,,kg
+/pure-nickel-strip/honeycomb/,4000,6000,,,kg
 
 # /pure-nickel-strip/zigzag/  (1)
-/pure-nickel-strip/zigzag/,,,,,kg
+/pure-nickel-strip/zigzag/,4000,6000,,,kg
 
 # /SMO-254/  (3)
-/SMO-254/plates/,,,,,kg
-/SMO-254/round-bar/,,,,,kg
-/SMO-254/sheets/,,,,,kg
+/SMO-254/plates/,1000,1750,,,kg
+/SMO-254/round-bar/,1500,2500,,,kg
+/SMO-254/sheets/,1000,1750,,,kg
 
 # /special-...  (7)
 /special-stainless-steel-coil-supplier-exporter-mumbai-india/,,,,,kg
@@ -668,34 +668,34 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /special-stainless-steel-wire-supplier-exporter-mumbai-india/,,,,,kg
 
 # /stainless/17-4-ph/  (1)
-/stainless/17-4-ph/powder/,,,,,kg
+/stainless/17-4-ph/powder/,2500,4000,,,kg
 
 # /stainless/316l/  (1)
-/stainless/316l/powder/,,,,,kg
+/stainless/316l/powder/,1200,2500,,,kg
 
 # /stainless/904L/  (1)
-/stainless/904L/,,,,,kg
+/stainless/904L/,1000,1950,,,kg
 
 # /stainless/AL-6XN/  (1)
-/stainless/AL-6XN/,,,,,kg
+/stainless/AL-6XN/,1500,2500,,,kg
 
 # /stainless/alloy-20/  (1)
-/stainless/alloy-20/,,,,,kg
+/stainless/alloy-20/,1500,3000,,,kg
 
 # /stainless/alloy-28/  (1)
-/stainless/alloy-28/,,,,,kg
+/stainless/alloy-28/,1500,3500,,,kg
 
 # /stainless/alloy-31/  (1)
-/stainless/alloy-31/,,,,,kg
+/stainless/alloy-31/,3000,6000,,,kg
 
 # /stainless/alloy-926/  (1)
-/stainless/alloy-926/,,,,,kg
+/stainless/alloy-926/,1500,3000,,,kg
 
 # /stainless/AM-350/  (1)
-/stainless/AM-350/,,,,,kg
+/stainless/AM-350/,3000,6500,,,kg
 
 # /stainless/SMO-254/  (1)
-/stainless/SMO-254/,,,,,kg
+/stainless/SMO-254/,1500,2500,,,kg
 
 # /stellite/  (3)  |  stellite priced on 1 page(s) at INR 8,500-12,000 per kg
 /stellite/plates/,,,,,kg
@@ -773,13 +773,13 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /titanium/grade-4/sheets/,,,,,kg
 
 # /titanium/grade-5-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-5-plates/,,,,,kg
+/titanium/grade-5-plates/,2500,7500,,,kg
 
 # /titanium/grade-5/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-5/foil/,,,,,kg
-/titanium/grade-5/powder/,,,,,kg
-/titanium/grade-5/round-bar/,,,,,kg
-/titanium/grade-5/sheets/,,,,,kg
+/titanium/grade-5/foil/,7000,250000,,,kg
+/titanium/grade-5/powder/,12000,21000,,,kg
+/titanium/grade-5/round-bar/,1700,6000,,,kg
+/titanium/grade-5/sheets/,3000,6500,,,kg
 
 # /titanium/grade-6-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
 /titanium/grade-6-plates/,,,,,kg
@@ -789,21 +789,21 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /titanium/grade-6/round-bar/,,,,,kg
 
 # /titanium/grade-7-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-7-plates/,,,,,kg
+/titanium/grade-7-plates/,10000,25000,,,kg
 
 # /titanium/grade-7/  (4)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
 /titanium/grade-7/foil/,,,,,kg
-/titanium/grade-7/plates/,,,,,kg
-/titanium/grade-7/round-bar/,,,,,kg
-/titanium/grade-7/sheets/,,,,,kg
+/titanium/grade-7/plates/,10000,25000,,,kg
+/titanium/grade-7/round-bar/,10000,25000,,,kg
+/titanium/grade-7/sheets/,10000,25000,,,kg
 
 # /titanium/grade-9-plates/  (1)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
-/titanium/grade-9-plates/,,,,,kg
+/titanium/grade-9-plates/,5000,20000,,,kg
 
 # /titanium/grade-9/  (3)  |  titanium priced on 3 page(s) at INR 1,300-12,500 per kg
 /titanium/grade-9/foil/,,,,,kg
-/titanium/grade-9/round-bar/,,,,,kg
-/titanium/grade-9/sheets/,,,,,kg
+/titanium/grade-9/round-bar/,5000,20000,,,kg
+/titanium/grade-9/sheets/,5000,20000,,,kg
 
 # /tool-steel/h13/  (1)
 /tool-steel/h13/powder/,,,,,kg
