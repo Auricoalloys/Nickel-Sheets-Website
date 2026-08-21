@@ -139,8 +139,9 @@ for (const raw of pricesRaw.split(/\r?\n/)) {
 }
 
 // ---- what could be priced ---------------------------------------------------
-const candidates = [];      // Product node, and somewhere to show the figure
+const candidates = [];      // Product node, somewhere to show the figure, own canonical
 const unshowable = [];      // Product node, nowhere to show it
+const twins = [];           // Product node, but canonical points at another page
 for (const fp of walk(ROOT)) {
   const rel = path.relative(ROOT, fp).split(path.sep).join('/');
   const s = fs.readFileSync(fp, 'utf8').replace(/\r\n/g, '\n');
@@ -158,6 +159,15 @@ for (const fp of walk(ROOT)) {
   const showable = /<th[^>]*>Price<\/th><td>/.test(s)
     || s.includes('spec-table')
     || /<caption>[^<]*key specification<\/caption>/i.test(s);
+  // A page whose canonical names a different URL is a deprecated twin: it tells
+  // Google the other page is the real one, so an offers block here is markup on
+  // the URL that will not be indexed, and the price does not reach the page that
+  // is. Two batches ran aground on this - twelve rows priced on twins whose
+  // canonical target sat unpriced beside them - so the queue no longer offers
+  // them and names the page to price instead.
+  const canon = (s.match(/rel="canonical"\s+href="([^"]*)"/) || [, ''])[1].replace(/^https?:\/\/[^/]+/, '');
+  if (canon && norm(canon) !== url) { twins.push({ url, rel, canon: norm(canon) }); continue; }
+
   (showable ? candidates : unshowable).push({ url, rel });
 }
 const candidateUrls = new Set(candidates.map(c => c.url));
@@ -208,7 +218,18 @@ function ready(u, t) {
   if (ulo !== null && (ulo <= 0 || uhi <= 0)) return bad('price must be above zero');
   if (ulo !== null && ulo > uhi) return bad(`low_usd ${ulo} is above high_usd ${uhi}`);
 
-  if (!candidateUrls.has(u)) return bad('no page with that permalink can show a price - typo, or the page moved');
+  // Say which kind of "cannot adopt this" it is. A row can end up here because
+  // the price is already published, because the page is a canonical twin, or
+  // because there is nowhere to print the figure - and "no such page" sent the
+  // last investigation down the wrong path for all three.
+  if (!candidateUrls.has(u)) {
+    const p = priced.get(u);
+    if (p) return bad(`already published at INR ${inr(p.lowInr)}-${inr(p.highInr)} per ${p.unit} - change a published price in prices.csv, not here`);
+    const t = twins.find(x => x.url === u);
+    if (t) return bad(`canonical points at ${t.canon} - price that page instead`);
+    if (unshowable.some(x => x.url === u)) return bad('no spec table or Price row on the page to print the figure on');
+    return bad('no page has that permalink - typo, or the page moved');
+  }
   return { lowInr: lo, highInr: hi, lowUsd: ulo, highUsd: uhi, unit: t.unit || 'kg' };
 }
 
@@ -222,7 +243,11 @@ filled.sort((a, b) => a.url.localeCompare(b.url));
 // Rows the tree no longer backs: the page was renamed, unpublished, or lost its
 // Product node. Reported rather than dropped in silence - an empty row vanishing
 // is invisible, but a typed one vanishing is lost work.
-const orphaned = [...typed.keys()].filter(u => !candidateUrls.has(u) && !priced.has(u));
+// Twins and pages with nowhere to print a figure are excluded on purpose and say
+// so in the refusal list above; counting them here as well reported them twice,
+// the second time under a heading that blamed a missing page.
+const excluded = new Set([...twins.map(t => t.url), ...unshowable.map(x => x.url)]);
+const orphaned = [...typed.keys()].filter(u => !candidateUrls.has(u) && !priced.has(u) && !excluded.has(u));
 
 // ---- adopt ------------------------------------------------------------------
 // Appended, never inserted in sorted position: prices.csv is roughly alphabetical
@@ -319,6 +344,23 @@ if (unshowable.length) {
   out.push('# this script, and it appears above as a fillable row.');
   for (const c of unshowable.sort((a, b) => a.url.localeCompare(b.url))) {
     out.push(`# ${c.url}   (${c.rel})`);
+  }
+}
+
+if (twins.length) {
+  out.push('');
+  out.push('# ---------------------------------------------------------------------------');
+  out.push('# Deprecated twins: their canonical names a different URL, so Google indexes');
+  out.push('# the other page and an offers block here reaches nobody. Price the canonical');
+  out.push('# instead - it is a fillable row above unless it is already in prices.csv.');
+  const unpriced = twins.filter(t => !priced.has(t.canon) && !pending.includes(t.canon));
+  for (const t of twins.sort((a, b) => a.url.localeCompare(b.url))) {
+    out.push(`# ${t.url}   ->   ${t.canon}`);
+  }
+  if (unpriced.length) {
+    out.push('#');
+    out.push(`# ${unpriced.length} of those canonical targets are neither priced nor in the queue:`);
+    for (const t of unpriced) out.push(`#   ${t.canon}`);
   }
 }
 out.push('');

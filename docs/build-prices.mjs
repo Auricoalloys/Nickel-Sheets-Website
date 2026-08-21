@@ -97,8 +97,17 @@ function priceCell(r) {
     ` quoted against grade, form, size and quantity.`;
 }
 
+// Take the price off a page entirely: the offers block and the visible row.
+// Used both when a page has no row at all and when it has one it cannot show,
+// because either way what must not remain is an offer the reader cannot see.
+function stripOffers(s) {
+  return s
+    .replace(/,?\n\s*"offers":\s*\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/g, '')
+    .replace(/\s*<tr><th[^>]*>Price<\/th><td>[\s\S]*?<\/td><\/tr>/g, '');
+}
+
 // ---- apply ------------------------------------------------------------------
-let priced = 0, stripped = 0, drift = [], noAnchor = [];
+let priced = 0, stripped = 0, drift = [], noAnchor = [], noSchemaAnchor = [];
 
 for (const fp of walk(ROOT)) {
   const rel = path.relative(ROOT, fp).split(path.sep).join('/');
@@ -119,9 +128,21 @@ for (const fp of walk(ROOT)) {
 
     // The visible figure. Two table shapes carry it: the product pages use
     // class="spec-table", the powder pages a caption ending "key specification".
+    // docs/build-specs.mjs owns everything between its markers and rewrites the
+    // block wholesale, so a Price row placed in there survives only until the
+    // next specs run and then disappears without a word. On the duplex hubs the
+    // generated table is the only thing matching "spec-table", so the first
+    // </tbody> after it is inside the block - which is exactly where four price
+    // rows landed. Treat that as no anchor rather than as a place to write.
+    const gs = s.indexOf('<!-- specs:start'), ge = s.indexOf('<!-- specs:end');
+    const generated = i => gs > -1 && ge > gs && i > gs && i < ge;
+
     let shown = false;
-    if (/<th[^>]*>Price<\/th><td>/.test(s)) {
-      s = s.replace(/<th([^>]*)>Price<\/th><td>[\s\S]*?<\/td>/, `<th$1>Price</th><td>${cell}</td>`);
+    const existing = s.search(/<th[^>]*>Price<\/th><td>/);
+    if (existing > -1 && !generated(existing)) {
+      // Function replacement: the cell is data, and a bare $ in it would other-
+      // wise be read as a backreference. See the same trap in build-price-worklist.
+      s = s.replace(/<th([^>]*)>Price<\/th><td>[\s\S]*?<\/td>/, (_, attrs) => `<th${attrs}>Price</th><td>${cell}</td>`);
       shown = true;
     } else {
       let start = s.indexOf('spec-table');
@@ -129,7 +150,8 @@ for (const fp of walk(ROOT)) {
         const cap = s.match(/<caption>[^<]*key specification<\/caption>/i);
         if (cap) start = s.indexOf(cap[0]);
       }
-      const end = start > -1 ? s.indexOf('</tbody>', start) : -1;
+      let end = start > -1 ? s.indexOf('</tbody>', start) : -1;
+      if (generated(end)) end = -1;
       if (end > -1) {
         s = s.slice(0, end) + `<tr><th scope="row">Price</th><td>${cell}</td></tr>\n` + s.slice(end);
         shown = true;
@@ -140,7 +162,16 @@ for (const fp of walk(ROOT)) {
     // that is not on the page is the policy breach this whole pipeline exists
     // to avoid, so a page with nowhere to show it gets no markup either - and
     // says so, rather than failing quietly.
-    if (!shown) { noAnchor.push(rel); continue; }
+    //
+    // It has to REMOVE the markup, not merely decline to write it. This used to
+    // `continue` straight to the next file, so a page that once had an anchor
+    // and lost one kept its offers block and quietly became the invalid state
+    // this guard exists to prevent - which is what the four duplex hubs did the
+    // moment their price row moved inside the generated specs block.
+    if (!shown) {
+      noAnchor.push(rel);
+      s = stripOffers(s);
+    } else {
 
     s = s.replace(/"@type":\s*"Offer",\n(\s*)/g,
       `"@type": "AggregateOffer",\n$1"lowPrice": "${row.lowInr}",\n$1"highPrice": "${row.highInr}",\n$1"priceValidUntil": "${validUntil}",\n$1`);
@@ -151,23 +182,33 @@ for (const fp of walk(ROOT)) {
     // row - has no offers block to convert, because a page without a row has
     // its offers removed. Put one into the Product node so the schema can come
     // back rather than the figure showing with no markup behind it.
+    //
+    // The insertion needs a sibling key to hang off. "manufacturer" was the only
+    // one it looked for, and nine pages - the nickel-strip busbars, 625LCF, the
+    // 200/201 foil - carry "brand" instead, so they took the visible price and
+    // no markup: priced on the page, invisible to the rich result the pricing is
+    // for. Try each known sibling in turn.
     if (/"@type":\s*"Product"/.test(s) && !/"offers"/.test(s)) {
-      s = s.replace(/(\n(\s*)"manufacturer":\s*\{(?:[^{}]|\{[^{}]*\})*\})/,
-        `$1,\n$2"offers": {\n$2  "@type": "AggregateOffer",\n$2  "lowPrice": "${row.lowInr}",\n` +
-        `$2  "highPrice": "${row.highInr}",\n$2  "priceValidUntil": "${validUntil}",\n` +
-        `$2  "url": "${SITE}${url}",\n$2  "availability": "https://schema.org/InStock",\n` +
-        `$2  "priceCurrency": "INR",\n$2  "seller": {\n$2    "@type": "Organization",\n` +
-        `$2    "name": "Aurico Alloys LLP"\n$2  }\n$2}`);
+      const offers = (indent) =>
+        `,\n${indent}"offers": {\n${indent}  "@type": "AggregateOffer",\n${indent}  "lowPrice": "${row.lowInr}",\n` +
+        `${indent}  "highPrice": "${row.highInr}",\n${indent}  "priceValidUntil": "${validUntil}",\n` +
+        `${indent}  "url": "${SITE}${url}",\n${indent}  "availability": "https://schema.org/InStock",\n` +
+        `${indent}  "priceCurrency": "INR",\n${indent}  "seller": {\n${indent}    "@type": "Organization",\n` +
+        `${indent}    "name": "Aurico Alloys LLP"\n${indent}  }\n${indent}}`;
+      for (const key of ['manufacturer', 'brand']) {
+        const re = new RegExp(`(\\n(\\s*)"${key}":\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\})`);
+        if (!re.test(s)) continue;
+        s = s.replace(re, (whole, _block, indent) => whole + offers(indent));
+        break;
+      }
+      if (!/"offers"/.test(s)) noSchemaAnchor.push(rel);
     }
     priced++;
+    }
   } else {
     // no row: an offers block with no price is invalid, so remove it entirely
-    const had = /"offers":\s*\{/.test(s);
-    if (had) {
-      s = s.replace(/,?\n\s*"offers":\s*\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/g, '');
-      stripped++;
-    }
-    if (/<th[^>]*>Price<\/th><td>/.test(s)) s = s.replace(/\s*<tr><th[^>]*>Price<\/th><td>[\s\S]*?<\/td><\/tr>/g, '');
+    if (/"offers":\s*\{/.test(s)) stripped++;
+    s = stripOffers(s);
   }
 
   if (s !== before) {
@@ -193,4 +234,11 @@ console.log(`  priceValidUntil       : ${validUntil}  (${VALID_DAYS} days after 
 if (noAnchor.length) {
   console.log(`  nowhere on the page to show the price (${noAnchor.length}) - skipped, no markup written:`);
   noAnchor.forEach(x => console.log('     ' + x));
+}
+// The reverse failure: the figure is on the page but no sibling key in the
+// Product node to hang offers off, so it earns no rich result. Harmless to a
+// reader and invisible without this line, which is how nine of them went unnoticed.
+if (noSchemaAnchor.length) {
+  console.log(`  price shown but no schema anchor (${noSchemaAnchor.length}) - Product node has no manufacturer or brand:`);
+  noSchemaAnchor.forEach(x => console.log('     ' + x));
 }
