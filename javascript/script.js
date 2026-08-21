@@ -19,60 +19,15 @@ document.addEventListener('DOMContentLoaded', function () {
     handleResize();
   }
 
-  // Language Switcher
-  const languageSelector = document.querySelector('.language-selector');
-  const languageDropdown = document.querySelector('.language-dropdown');
-
-  if (languageSelector && languageDropdown) {
-    languageSelector.addEventListener('click', function (e) {
-      e.preventDefault();
-      languageDropdown.style.display =
-        languageDropdown.style.display === 'block' ? 'none' : 'block';
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!languageSelector.contains(e.target)) {
-        languageDropdown.style.display = 'none';
-      }
-    });
-
-    document.querySelectorAll('.language-dropdown a').forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const selectedLang = this.getAttribute('href').split('=')[1];
-        window.location.search = `?lang=${selectedLang}`;
-      });
-    });
-
-    loadTranslations(
-      new URLSearchParams(window.location.search).get('lang') ||
-      localStorage.getItem('selectedLanguage') ||
-      'en'
-    );
-  }
-
-  // Translations live at a fixed root path; a relative URL would resolve
-  // against the current pretty URL and 404 on every nested page.
-  function loadTranslations(lang) {
-    fetch(`/javascript/translations/${lang}.json`)
-      .then(response => (response.ok ? response.json() : null))
-      .then(data => {
-        if (!data) return;
-
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-          const key = element.getAttribute('data-i18n');
-          if (data[key]) element.textContent = data[key];
-        });
-
-        const langSelector = document.querySelector('.language-selector a');
-        if (langSelector) {
-          langSelector.innerHTML = `<i class="fas fa-globe"></i> ${lang.toUpperCase()}`;
-        }
-
-        localStorage.setItem('selectedLanguage', lang);
-      })
-      .catch(() => { /* translations are optional */ });
-  }
+  // The language switcher lived here. It is gone because there was never a
+  // translation behind it: no page carries .language-selector markup or a
+  // data-i18n attribute, translations.js is empty and no <lang>.json file was
+  // ever written, so every fetch 404ed and no text changed. What it did do was
+  // rewrite window.location.search to ?lang=xx, which put /index.html?lang=en,
+  // ?lang=es and ?lang=hi into Google's index as three duplicates of the
+  // English homepage. Search Console reported all three as "Crawled - currently
+  // not indexed". Restore this only alongside real translated content and
+  // hreflang tags; a switcher with nothing behind it only mints duplicate URLs.
 
   // Product marquee - only present on the homepage
   const slider = document.querySelector('.product-track');

@@ -42,14 +42,16 @@ const CHECK = process.argv.includes('--check');
 // date. Add to this list when you land another sweep of the same kind.
 const BOILERPLATE = new Set([
   '1e5afe80', // vendored Bootstrap, inlined the Font Awesome icons, dropped preconnect
-  '414fee25', // renamed the "Monel K 400" link label to Monel 400 across the sidebars
-  '392fd193', // corrected "Nickle" to Nickel in the similar-products sidebar (146 of its 176
-              // files changed nothing else; the 30 that did are understated, which is the
-              // safe direction - see the note below the set)
-  '3ea150c3', // repointed canonical, og:url and sidebar hrefs; no page's wording changed
-  'd6c99d9f', // wrapped fifteen pages in <main id="main"> so the skip link has a target
-  '4e849c3a', // balanced the section tags on 91 pages; every edit was proved to leave the
-              // DOM byte-identical, so no page's wording or rendering changed
+  '96b3fc03', // rendered header and footer at build time via Jekyll includes
+  '08abb624', // fixed duplicate element ids, repaired unreachable accordion panels
+  '77da77ce', // Tier 1 and Tier 3 UI defect fixes
+  '77ae0b2e', // Tier 2: layout stability and page weight
+  'e3cbc752', // image width/height and alt attributes for discoverability
+  '9e877c37', // gave the product pages the <h1> they were missing
+  'c380188e', // spelling sweep: "Exporter" and "stockist"
+  'c710232f', // breadcrumb, skip link and meta description on every page
+  '2fe7b8e8', // marked each trademark once, sitewide
+  'e32e8a32', // stripped the JSON-LD offers blocks that carried no price
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
