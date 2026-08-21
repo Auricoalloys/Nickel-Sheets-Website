@@ -42,6 +42,16 @@ const CHECK = process.argv.includes('--check');
 // date. Add to this list when you land another sweep of the same kind.
 const BOILERPLATE = new Set([
   '1e5afe80', // vendored Bootstrap, inlined the Font Awesome icons, dropped preconnect
+  '96b3fc03', // rendered header and footer at build time via Jekyll includes
+  '08abb624', // fixed duplicate element ids, repaired unreachable accordion panels
+  '77da77ce', // Tier 1 and Tier 3 UI defect fixes
+  '77ae0b2e', // Tier 2: layout stability and page weight
+  'e3cbc752', // image width/height and alt attributes for discoverability
+  '9e877c37', // gave the product pages the <h1> they were missing
+  'c380188e', // spelling sweep: "Exporter" and "stockist"
+  'c710232f', // breadcrumb, skip link and meta description on every page
+  '2fe7b8e8', // marked each trademark once, sitewide
+  'e32e8a32', // stripped the JSON-LD offers blocks that carried no price
 ]);
 
 const read = f => fs.readFileSync(f, 'utf8');
