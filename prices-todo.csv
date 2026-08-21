@@ -1,0 +1,479 @@
+# Pages that could carry a price and do not have one yet.
+#
+# Every row here is a page with a Product node in its JSON-LD but no offers
+# block, because docs/build-prices.mjs strips offers from any page absent from
+# prices.csv. So each row is a page currently eligible for no rich result.
+#
+# THIS FILE IS A QUEUE, NOT A SOURCE OF TRUTH. Nothing reads it at build time.
+# prices.csv is still the only file that sets a published price.
+#
+# To price a page, fill in low_inr and high_inr on its row - and low_usd and
+# high_usd, which the page shows as indicative only and are optional - then:
+#
+#   node docs/build-price-worklist.mjs --adopt   moves filled rows to prices.csv
+#   node docs/build-prices.mjs                   writes them into the pages
+#
+# Adopted rows leave this file on the next refresh; rows left empty stay. Do not
+# edit the url column: it is regenerated from the source tree, and a URL that
+# matches no page is refused rather than adopted.
+#
+# Update the "# updated:" date in prices.csv when you finish a pricing pass.
+# priceValidUntil is derived from it, so a price adopted into a stale file is
+# published already expired.
+#
+# generated: 2026-08-21 by docs/build-price-worklist.mjs
+# pending: 260 page(s)
+
+url,low_inr,high_inr,low_usd,high_usd,unit
+
+# /904l-...  (1)
+/904L-SMO-254-foil-supplier-stockist-exporter-in-mumbai-india/,,,,,kg
+
+# /904L/  (3)
+/904L/plates/,,,,,kg
+/904L/round-bar/,,,,,kg
+/904L/sheets/,,,,,kg
+
+# /al-...  (1)
+/AL-6XN-Foil-and-AM-350-foil-supplier-exporter-in-mumbai-india/,,,,,kg
+
+# /AL-6XN/  (3)
+/AL-6XN/plates/,,,,,kg
+/AL-6XN/round-bar/,,,,,kg
+/AL-6XN/sheets/,,,,,kg
+
+# /alloy-...  (4)
+/alloy-20-28-31-foil-supplier-stockist-in-mumbai-india/,,,,,kg
+/alloy-20-round-bar/,,,,,kg
+/alloy-28-round-bar/,,,,,kg
+/alloy-31-round-bar/,,,,,kg
+
+# /alloy-20/  (2)
+/alloy-20/plates/,,,,,kg
+/alloy-20/sheets/,,,,,kg
+
+# /alloy-28/  (2)
+/alloy-28/plates/,,,,,kg
+/alloy-28/sheets/,,,,,kg
+
+# /alloy-31/  (2)
+/alloy-31/plates/,,,,,kg
+/alloy-31/sheets/,,,,,kg
+
+# /alloy-59/  (4)
+/alloy-59/foil/,,,,,kg
+/alloy-59/plates/,,,,,kg
+/alloy-59/round-bar/,,,,,kg
+/alloy-59/sheets/,,,,,kg
+
+# /aluminum-...  (2)
+/Aluminum-Busbar-for-Prismatic-Cells/,,,,,kg
+/Aluminum-busbar/,,,,,kg
+
+# /AM-350/  (2)
+/AM-350/plates/,,,,,kg
+/AM-350/round-bar/,,,,,kg
+
+# /cobalt-...  (7)
+/cobalt-alloy-coil-supplier-exporter-mumbai-india/,,,,,kg
+/cobalt-alloy-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/cobalt-alloy-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/cobalt-alloy-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/cobalt-alloy-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/cobalt-alloy-tube-supplier-exporter-mumbai-india/,,,,,kg
+/cobalt-alloy-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /copper-...  (4)
+/Copper-Aluminum-Sandwich-Busbar/,,,,,kg
+/Copper-Busbar-for-Lithium-Ion-Battery/,,,,,kg
+/Copper-Busbar-for-Prismatic-Cells/,,,,,kg
+/copper-busbar/,,,,,kg
+
+# /duplex-...  (1)  |  duplex priced on 7 page(s) at INR 500-2,000 per kg
+/duplex-steel-fittings-supplier-exporter-mumbai-india/,,,,,kg
+
+# /duplex-steel/32760/  (1)  |  duplex-steel priced on 11 page(s) at INR 400-2,000 per kg
+/duplex-steel/32760/foil/,,,,,kg
+
+# /hastelloy-...  (10)  |  hastelloy priced on 16 page(s) at INR 1,800-15,000 per kg
+/hastelloy-B2-B3-foil-supplier-exporter-in-mumbai-india/,,,,,kg
+/hastelloy-coil-supplier-exporter-mumbai-india/,,,,,kg
+/hastelloy-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/hastelloy-G30-N-Foil-supplier-exporter-in-mumbai-india/,,,,,kg
+/hastelloy-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/hastelloy-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/hastelloy-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/hastelloy-tube-supplier-exporter-mumbai-india/,,,,,kg
+/hastelloy-wire-supplier-exporter-mumbai-india/,,,,,kg
+/hastelloy-X-C2000-foil-supplier-exporter-in-mumbai-india/,,,,,kg
+
+# /hastelloy/B2/  (3)  |  hastelloy priced on 16 page(s) at INR 1,800-15,000 per kg
+/hastelloy/B2/plates/,,,,,kg
+/hastelloy/B2/round-bar/,,,,,kg
+/hastelloy/B2/sheets/,,,,,kg
+
+# /hastelloy/B3/  (3)  |  hastelloy priced on 16 page(s) at INR 1,800-15,000 per kg
+/hastelloy/B3/plates/,,,,,kg
+/hastelloy/B3/round-bar/,,,,,kg
+/hastelloy/B3/sheets/,,,,,kg
+
+# /hastelloy/C2000/  (2)  |  hastelloy priced on 16 page(s) at INR 1,800-15,000 per kg
+/hastelloy/C2000/round-bar/,,,,,kg
+/hastelloy/C2000/sheets/,,,,,kg
+
+# /hastelloy/C4/  (4)  |  hastelloy priced on 16 page(s) at INR 1,800-15,000 per kg
+/hastelloy/C4/foil/,,,,,kg
+/hastelloy/C4/plates/,,,,,kg
+/hastelloy/C4/round-bar/,,,,,kg
+/hastelloy/C4/sheets/,,,,,kg
+
+# /hastelloy/G30/  (3)  |  hastelloy priced on 16 page(s) at INR 1,800-15,000 per kg
+/hastelloy/G30/plates/,,,,,kg
+/hastelloy/G30/round-bar/,,,,,kg
+/hastelloy/G30/sheets/,,,,,kg
+
+# /hastelloy/N/  (3)  |  hastelloy priced on 16 page(s) at INR 1,800-15,000 per kg
+/hastelloy/N/plates/,,,,,kg
+/hastelloy/N/round-bar/,,,,,kg
+/hastelloy/N/sheets/,,,,,kg
+
+# /incoloy-...  (10)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy-330-800-foil-supplier-trader-stockist-exporter-in-mumbai-india/,,,,,kg
+/incoloy-800H-800HT-foil-supplier-stockist-trader-exporter-in-mumbai-india/,,,,,kg
+/incoloy-825-890-903-909-foil-supplier-exporter/,,,,,kg
+/incoloy-coil-supplier-exporter-mumbai-india/,,,,,kg
+/incoloy-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/incoloy-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/incoloy-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/incoloy-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/incoloy-tube-supplier-exporter-mumbai-india/,,,,,kg
+/incoloy-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /incoloy/  (1)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy/foil/,,,,,kg
+
+# /incoloy/890/  (2)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy/890/round-bar/,,,,,kg
+/incoloy/890/sheets/,,,,,kg
+
+# /incoloy/903/  (2)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy/903/round-bar/,,,,,kg
+/incoloy/903/sheets/,,,,,kg
+
+# /incoloy/909/  (2)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy/909/round-bar/,,,,,kg
+/incoloy/909/sheets/,,,,,kg
+
+# /incoloy/925/  (1)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy/925/round-bar/,,,,,kg
+
+# /incoloy/945/  (1)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy/945/round-bar/,,,,,kg
+
+# /inconel-...  (11)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel-600-601-617-foil-supplier-exporter-in-mumbai-india/,,,,,kg
+/inconel-602-CA-X-750-foil-supplier-exporters/,,,,,kg
+/inconel-625-625-LCF-foil-supplier-trader-stockist-exporter/,,,,,kg
+/inconel-660-686-690-693-718-foil-supplier-exporter-in-mumbai-india/,,,,,kg
+/inconel-coil-supplier-exporter-mumbai-india/,,,,,kg
+/inconel-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/inconel-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/inconel-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/inconel-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/inconel-tube-supplier-exporter-mumbai-india/,,,,,kg
+/inconel-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /inconel/600/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/600/fittings/,,,,,kg
+
+# /inconel/601/  (2)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/601/fittings/,,,,,kg
+/inconel/601/pipe/,,,,,kg
+
+# /inconel/602-CA/  (6)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/602-CA/coil/,,,,,kg
+/inconel/602-CA/fittings/,,,,,kg
+/inconel/602-CA/pipe/,,,,,kg
+/inconel/602-CA/round-bar/,,,,,kg
+/inconel/602-CA/tube/,,,,,kg
+/inconel/602-CA/wire/,,,,,kg
+
+# /inconel/617/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/617/fittings/,,,,,kg
+
+# /inconel/625-LCF/  (2)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/625-LCF/plates/,,,,,kg
+/inconel/625-LCF/round-bar/,,,,,kg
+
+# /inconel/625/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/625/fittings/,,,,,kg
+
+# /inconel/660/  (3)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/660/plates/,,,,,kg
+/inconel/660/round-bar/,,,,,kg
+/inconel/660/sheets/,,,,,kg
+
+# /inconel/686/  (8)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/686/coil/,,,,,kg
+/inconel/686/fittings/,,,,,kg
+/inconel/686/pipe/,,,,,kg
+/inconel/686/plates/,,,,,kg
+/inconel/686/round-bar/,,,,,kg
+/inconel/686/sheets/,,,,,kg
+/inconel/686/tube/,,,,,kg
+/inconel/686/wire/,,,,,kg
+
+# /inconel/690/  (8)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/690/coil/,,,,,kg
+/inconel/690/fittings/,,,,,kg
+/inconel/690/pipe/,,,,,kg
+/inconel/690/plates/,,,,,kg
+/inconel/690/round-bar/,,,,,kg
+/inconel/690/sheets/,,,,,kg
+/inconel/690/tube/,,,,,kg
+/inconel/690/wire/,,,,,kg
+
+# /inconel/693/  (8)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/693/coil/,,,,,kg
+/inconel/693/fittings/,,,,,kg
+/inconel/693/pipe/,,,,,kg
+/inconel/693/plates/,,,,,kg
+/inconel/693/round-bar/,,,,,kg
+/inconel/693/sheets/,,,,,kg
+/inconel/693/tube/,,,,,kg
+/inconel/693/wire/,,,,,kg
+
+# /inconel/718/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/718/fittings/,,,,,kg
+
+# /inconel/725/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/725/fittings/,,,,,kg
+
+# /inconel/740H/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/740H/,,,,,kg
+
+# /inconel/751/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/751/,,,,,kg
+
+# /inconel/783/  (2)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+/inconel/783/billets/,,,,,kg
+/inconel/783/round-bar/,,,,,kg
+
+# /invar-...  (1)
+/invar/,,,,,kg
+
+# /invar/  (4)
+/invar/foil/,,,,,kg
+/invar/plates/,,,,,kg
+/invar/round-bar/,,,,,kg
+/invar/sheets/,,,,,kg
+
+# /kovar-...  (1)
+/kovar/,,,,,kg
+
+# /kovar/  (4)
+/kovar/foil/,,,,,kg
+/kovar/plates/,,,,,kg
+/kovar/round-bar/,,,,,kg
+/kovar/sheets/,,,,,kg
+
+# /monel-...  (7)  |  monel priced on 15 page(s) at INR 2,500-7,500 per kg
+/monel-coil-supplier-exporter-mumbai-india/,,,,,kg
+/monel-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/monel-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/monel-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/monel-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/monel-tube-supplier-exporter-mumbai-india/,,,,,kg
+/monel-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /mu-metal/  (4)
+/mu-metal/foil/,,,,,kg
+/mu-metal/plates/,,,,,kg
+/mu-metal/round-bar/,,,,,kg
+/mu-metal/sheets/,,,,,kg
+
+# /nichrome-...  (7)
+/nichrome-coil-supplier-exporter-mumbai-india/,,,,,kg
+/nichrome-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/nichrome-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/nichrome-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/nichrome-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/nichrome-tube-supplier-exporter-mumbai-india/,,,,,kg
+/nichrome-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /nichrome/  (4)
+/nichrome/foil/,,,,,kg
+/nichrome/pipes/,,,,,kg
+/nichrome/plates/,,,,,kg
+/nichrome/sheets/,,,,,kg
+
+# /nichrome/round-bars/  (1)
+/nichrome/round-bars/,,,,,kg
+
+# /nickel-...  (10)
+/nickel-200-201/,,,,,kg
+/nickel-alloy-coil-supplier-exporter-in-mumbai-india/,,,,,kg
+/nickel-alloy-fittings-supplier-exporter-in-mumbai-india/,,,,,kg
+/nickel-alloy-hex-bars-supplier-exporter-in-mumbai-india/,,,,,kg
+/nickel-alloy-hollow-bars-supplier-trader-in-mumbai-india/,,,,,kg
+/nickel-alloy-pipes-supplier-exporter-in-mumbai-india/,,,,,kg
+/nickel-alloy-tube-supplier-exporter-in-mumbai-india/,,,,,kg
+/nickel-alloy-wire-supplier-exporter-in-mumbai-india/,,,,,kg
+/Nickel-Copper-Sandwich-Busbar/,,,,,kg
+/nickel-strip-for-18650-battery-pack/,,,,,kg
+
+# /nicr-...  (1)
+/NiCr-80-20-70-30-60-15-40-20-30-20-20-25-foil-supplier-stockist-exporter-in-mumbai-india/,,,,,kg
+
+# /NiCr/20-25/  (3)
+/NiCr/20-25/plates/,,,,,kg
+/NiCr/20-25/round-bar/,,,,,kg
+/NiCr/20-25/sheets/,,,,,kg
+
+# /NiCr/30-20/  (3)
+/NiCr/30-20/plates/,,,,,kg
+/NiCr/30-20/round-bar/,,,,,kg
+/NiCr/30-20/sheets/,,,,,kg
+
+# /NiCr/40-20/  (3)
+/NiCr/40-20/plates/,,,,,kg
+/NiCr/40-20/round-bar/,,,,,kg
+/NiCr/40-20/sheets/,,,,,kg
+
+# /NiCr/60-15/  (3)
+/NiCr/60-15/plates/,,,,,kg
+/NiCr/60-15/round-bar/,,,,,kg
+/NiCr/60-15/sheets/,,,,,kg
+
+# /NiCr/70-30/  (3)
+/NiCr/70-30/plates/,,,,,kg
+/NiCr/70-30/round-bar/,,,,,kg
+/NiCr/70-30/sheets/,,,,,kg
+
+# /NiCr/80-20/  (3)
+/NiCr/80-20/plates/,,,,,kg
+/NiCr/80-20/round-bar/,,,,,kg
+/NiCr/80-20/sheets/,,,,,kg
+
+# /nimonic-...  (10)  |  nimonic priced on 23 page(s) at INR 1,200-12,500 per kg
+/nimonic-105-115-foil-supplier-exporter-in-mumbai-india/,,,,,kg
+/nimonic-75-80A-81-90-foil-supplier-exporter/,,,,,kg
+/nimonic-86-263-901-foil-supplier-exporter/,,,,,kg
+/nimonic-coil-supplier-exporter-mumbai-india/,,,,,kg
+/nimonic-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/nimonic-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/nimonic-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/nimonic-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/nimonic-tube-supplier-exporter-mumbai-india/,,,,,kg
+/nimonic-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /nimonic/  (1)  |  nimonic priced on 23 page(s) at INR 1,200-12,500 per kg
+/nimonic/foil/,,,,,kg
+
+# /nimonic/105/  (2)  |  nimonic priced on 23 page(s) at INR 1,200-12,500 per kg
+/nimonic/105/round-bar/,,,,,kg
+/nimonic/105/sheets/,,,,,kg
+
+# /nimonic/115/  (2)  |  nimonic priced on 23 page(s) at INR 1,200-12,500 per kg
+/nimonic/115/round-bar/,,,,,kg
+/nimonic/115/sheets/,,,,,kg
+
+# /nimonic/901/  (2)  |  nimonic priced on 23 page(s) at INR 1,200-12,500 per kg
+/nimonic/901/round-bar/,,,,,kg
+/nimonic/901/sheets/,,,,,kg
+
+# /nimonic/round-bars/  (1)  |  nimonic priced on 23 page(s) at INR 1,200-12,500 per kg
+/nimonic/round-bars/,,,,,kg
+
+# /special-...  (7)
+/special-stainless-steel-coil-supplier-exporter-mumbai-india/,,,,,kg
+/special-stainless-steel-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/special-stainless-steel-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/special-stainless-steel-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/special-stainless-steel-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/special-stainless-steel-tube-supplier-exporter-mumbai-india/,,,,,kg
+/special-stainless-steel-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /stellite/  (3)  |  stellite priced on 1 page(s) at INR 8,500-12,000 per kg
+/stellite/plates/,,,,,kg
+/stellite/round-bar/,,,,,kg
+/stellite/sheets/,,,,,kg
+
+# /titanium-...  (9)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium-alloy-coil-supplier-exporter-mumbai-india/,,,,,kg
+/titanium-alloy-fittings-supplier-exporter-mumbai-india/,,,,,kg
+/titanium-alloy-hex-bars-supplier-exporter-mumbai-india/,,,,,kg
+/titanium-alloy-hollow-bars-supplier-exporter-mumbai-india/,,,,,kg
+/titanium-alloy-pipes-supplier-exporter-mumbai-india/,,,,,kg
+/titanium-alloy-tube-supplier-exporter-mumbai-india/,,,,,kg
+/titanium-alloy-wire-supplier-exporter-mumbai-india/,,,,,kg
+/titanium-grade-16-foil-supplier-mumbai/,,,,,kg
+/titanium-grade-23-foil-supplier-exporter-in-mumbai-india/,,,,,kg
+
+# /titanium/grade-1-plates/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-1-plates/,,,,,kg
+
+# /titanium/grade-1/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-1/pipe/,,,,,kg
+
+# /titanium/grade-11-plates/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-11-plates/,,,,,kg
+
+# /titanium/grade-11/  (2)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-11/round-bar/,,,,,kg
+/titanium/grade-11/sheets/,,,,,kg
+
+# /titanium/grade-12/  (3)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-12/plates/,,,,,kg
+/titanium/grade-12/round-bar/,,,,,kg
+/titanium/grade-12/sheets/,,,,,kg
+
+# /titanium/grade-16/  (3)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-16/plates/,,,,,kg
+/titanium/grade-16/round-bar/,,,,,kg
+/titanium/grade-16/sheets/,,,,,kg
+
+# /titanium/grade-6-plates/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-6-plates/,,,,,kg
+
+# /titanium/grade-6/  (2)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-6/foil/,,,,,kg
+/titanium/grade-6/round-bar/,,,,,kg
+
+# /titanium/grade-7/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-7/foil/,,,,,kg
+
+# /titanium/grade-9/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/grade-9/foil/,,,,,kg
+
+# /tool-steel/h13/  (1)
+/tool-steel/h13/powder/,,,,,kg
+
+# /tool-steel/maraging/  (1)
+/tool-steel/maraging/powder/,,,,,kg
+
+# ---------------------------------------------------------------------------
+# Product pages with nowhere to print the figure: no spec table, no Price row.
+# Left as comments on purpose. build-prices.mjs writes no schema for these, and
+# a price in the markup that the reader cannot see on the page breaches
+# Google's structured data policy. Give the page a spec table first, re-run
+# this script, and it appears above as a fillable row.
+# /inconel/powder/   (inconel/powder.html)
+# /pages/products/powder/   (pages/products/powder.html)
+# /stainless/powder/   (stainless/powder.html)
+# /titanium/powder/   (titanium/powder.html)
+# /tool-steel/powder/   (tool-steel/powder.html)
+
+# ---------------------------------------------------------------------------
+# Deprecated twins: their canonical names a different URL, so Google indexes
+# the other page and an offers block here reaches nobody. Price the canonical
+# instead - it is a fillable row above unless it is already in prices.csv.
+# /Hastelloy/round-bars-1/   ->   /hastelloy/round-bar/
+# /monel/k-400/sheets/   ->   /monel/400/sheets/
+# /pure-nickel-strip/H-type/   ->   /pure-nickel-strip/18650-H-type/
+# /pure-nickel-strip/honeycomb/   ->   /pure-nickel-strip/18650-honeycomb/
+# /pure-nickel-strip/zigzag/   ->   /pure-nickel-strip/18650-zigzag/
+# /titanium/grade-2-plates/   ->   /titanium/grade-2/plates/
+# /titanium/grade-3-plates/   ->   /titanium/grade-3/plates/
+# /titanium/grade-4-plates/   ->   /titanium/grade-4/plates/
+# /titanium/grade-7-plates/   ->   /titanium/grade-7/plates/

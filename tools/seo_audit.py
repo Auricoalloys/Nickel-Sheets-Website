@@ -55,6 +55,8 @@ def collect():
                          (re.match(r"\s*-\s*(/\S*)\s*$", l) for l in block.splitlines()) if m]
             t = re.search(r"<title[^>]*>(.*?)</title>", raw, re.S | re.I)
             d = re.search(r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']', raw, re.S | re.I)
+            og = re.search(r'<meta\s+property=["\']og:description["\']\s+content=["\'](.*?)["\']', raw, re.S | re.I)
+            tw = re.search(r'<meta\s+name=["\']twitter:description["\']\s+content=["\'](.*?)["\']', raw, re.S | re.I)
             c = re.search(r'rel=["\']canonical["\']\s+href=["\']([^"\']+)["\']', raw, re.I)
             # published: false never reaches the built site, so it must not be
             # counted as a duplicate of the page that actually serves the URL.
@@ -63,7 +65,15 @@ def collect():
             pages[p] = {
                 "raw": raw, "fm": block, "permalink": permalink, "redirects": redirects,
                 "title": html.unescape(re.sub(r"\s+", " ", t.group(1)).strip()) if t else None,
-                "desc": re.sub(r"\s+", " ", d.group(1)).strip() if d else None,
+                # unescaped, like the title above: "&amp;" is five characters in
+                # the source and one in the rendered snippet, so measuring the
+                # raw attribute would call a page over-length that is not - and
+                # escaping a bare & correctly would then look like a regression.
+                "desc": html.unescape(re.sub(r"\s+", " ", d.group(1)).strip()) if d else None,
+                # the raw forms, to compare the three copies of the same sentence
+                "desc_raw": re.sub(r"\s+", " ", d.group(1)).strip() if d else None,
+                "og_desc": re.sub(r"\s+", " ", og.group(1)).strip() if og else None,
+                "tw_desc": re.sub(r"\s+", " ", tw.group(1)).strip() if tw else None,
                 "canonical": c.group(1) if c else None,
                 "n_title": len(re.findall(r"<title[^>]*>", raw, re.I)),
                 "n_desc": len(re.findall(r'<meta\s+name=["\']description["\']', raw, re.I)),
@@ -113,6 +123,23 @@ def audit(pages):
     findings["title_too_long"] = sorted(
         {"file": p, "len": len(d["title"]), "title": d["title"]}.__repr__()
         for p, d in real.items() if d["title"] and len(d["title"]) > 70)
+
+    # Length was untracked, and 268 descriptions had grown to a median of 210
+    # characters and a maximum of 259 - the tail of each one cut off in the
+    # result and wasted. truncated_description does not catch this: it only
+    # matches text that literally ends in "...", which none of them did.
+    findings["description_too_long"] = sorted(
+        {"file": p, "len": len(d["desc"]), "desc": d["desc"]}.__repr__()
+        for p, d in real.items() if d["desc"] and len(d["desc"]) > 160)
+
+    # The same sentence is written three times per page. They drifted apart on
+    # 182 pages, always the same way - a bare & in one and &amp; in the others -
+    # and on three the social copies held a paragraph of body prose cut off
+    # mid-word. Whatever the meta says, the other two have to say.
+    findings["social_description_drift"] = sorted(
+        p for p, d in real.items()
+        if d["desc_raw"] and ((d["og_desc"] is not None and d["og_desc"] != d["desc_raw"])
+                              or (d["tw_desc"] is not None and d["tw_desc"] != d["desc_raw"])))
 
     # canonical must resolve to something the site actually serves
     all_urls = set(served) | {r.rstrip("/") or "/" for d in pages.values() for r in d["redirects"]}

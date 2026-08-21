@@ -54,6 +54,11 @@ const BOILERPLATE = new Set([
   'e32e8a32', // stripped the JSON-LD offers blocks that carried no price
 ]);
 
+// A commit here is skipped for every page it touched, so a sweep that also carried a handful of
+// genuine edits understates those pages' dates rather than overstating the rest. That is the
+// trade to make: Google drops the field when dates are inflated, not when they lag. Where the
+// genuine edits matter, land them as their own commit instead of folding them into a sweep.
+
 const read = f => fs.readFileSync(f, 'utf8');
 const xmlEscape = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
