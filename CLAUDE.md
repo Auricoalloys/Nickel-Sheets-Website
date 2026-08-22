@@ -134,6 +134,37 @@ an `AggregateOffer`, so grepping for `"price"` reports every correctly priced pa
 older pages use flat SEO permalinks instead (e.g. `/inconel-600-601-617-foil-supplier-...`); leave
 those alone — they are indexed.
 
+#### A grade hub is an overview, not a copy of one of its forms
+
+The grade tier exists to introduce the grade and route to every form it is stocked in. Eleven of
+them were instead near-copies of a single child page — `/kovar/` was 100% identical to
+`/kovar/foil/`, `/stainless/904L/` 96% identical to `/904L/sheets/`, `/monel/400/` 92% identical to
+`/monel/400/round-bar/`. Both pages then declared themselves canonical, so Google had two pages
+claiming to be the original and no signal to choose between them, which is the
+*Duplicate without user-selected canonical* state in Search Console.
+
+The giveaway is the heading. A hub whose `<h1>` reads "904L **Sheets** Supplier in India" is a form
+page sitting at a grade URL. `/kovar/` had gone one step further and carried
+"**Invar** Foil Supplier" — the wrong alloy entirely, copied from the Invar page.
+
+Copy `inconel/625.html`. A hub carries a breadcrumb, an `<h1>` naming the **grade**, a paragraph on
+what the grade is for, an `<h2>Available Forms</h2>` list linking every form page, and the generated
+specs block if the grade has a row in `docs/specs.csv`. Chemistry, mechanical properties and size
+ranges belong on the form pages — repeating them is what made these hubs duplicates.
+
+Which schema depends on whether the hub is priced, and both endings from the `Product` rule above
+are in use:
+
+- **Priced hub** (a row in `prices.csv`) keeps `Product` + `AggregateOffer` and a visible `Price`
+  row inside a `spec-table-section`. `build-prices.mjs` needs that row to exist — strip the table
+  and the next run has nowhere to print the figure and removes the offers, leaving a bare `Product`.
+- **Unpriced hub** drops the `Product` node entirely for `CollectionPage` + `hasPart`, one entry per
+  form. That is how `/kovar/` and `/invar/` are built.
+
+Do not put a form-specific standard in a hub's spec table. `alloy-31.html` and `AM-350.html` had a
+row headed "Main Plate Standards" — accurate for plates, wrong as the grade's specification. State
+the UNS/Werkstoff identifiers and point at the form pages for the rest.
+
 Never put a colon in a permalink. Colons build on the Linux runners GitHub Pages uses but are
 illegal in Windows filenames, so the local build breaks. This already bit the NiCr pages once.
 
