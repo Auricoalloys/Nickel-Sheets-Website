@@ -51,7 +51,7 @@ node docs/build-search-index.mjs       # after adding/removing/renaming/retitlin
 node docs/build-prices.mjs             # after editing prices.csv
 node docs/build-price-worklist.mjs     # after adding/removing a page, or to queue up pricing work
 node docs/build-specs.mjs              # after editing docs/specs.csv
-node docs/build-grades.mjs             # after editing docs/grades.csv or docs/chemistry.csv
+node docs/build-grades.mjs             # after editing grades.csv, chemistry.csv or properties.csv
 node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
@@ -464,13 +464,31 @@ dash. Several "typo cells" reported in the first pass were artifacts of exactly 
 real. **Compare cell by cell, and normalise numbers before calling two pages different** — otherwise
 `8.80 g/cm³` and `8.8` count as a conflict.
 
-Two files, joined to `docs/specs.csv` on `(family, grade)` — all three must use identical keys:
+Three files, joined to `docs/specs.csv` on `(family, grade)` — all four must use identical keys:
 
 - **`docs/grades.csv`** — one row per grade: `uns`, `wnr`, `en_name`, `density_g_cm3`, `melting_c`,
   plus `source` and `checked`.
 - **`docs/chemistry.csv`** — long format, one row per element limit, plus an optional `note` for a
   qualifier the bulletin itself prints (`if determined` against cobalt in the INCONEL 625 sheet).
   Rows print in file order, so keep each grade's rows in the order its bulletin prints them.
+- **`docs/properties.csv`** — long format, one row per physical property: `property`, `value`,
+  `unit`, `condition`, `note`. Appended to the identity table after density and melting range.
+
+`properties.csv` is long format for a reason a wide table cannot solve: the values are **sparse and
+conditional**. Thermal conductivity and expansion coefficient are published for Inconel 751 and
+almost nothing else, INCONEL 718 has one density annealed and another annealed-and-aged, and X-750
+publishes Curie temperature, permeability, emissivity and linear contraction at two or three
+conditions each. A column can hold one number per grade; it cannot say "this value, under these
+conditions", so it would have to pick one and drop the rest silently.
+
+**The unit is a column so that no figure is ever a conversion.** The mills print most constants in
+both imperial and SI, but not all — X-750's Curie temperature is published in °F only, and 718's
+annealed-and-aged density in lb/in³ only. Record the bulletin's number in the bulletin's unit;
+prefer SI where it gives both. `density_g_cm3` and `melting_c` stay in `grades.csv` because every
+grade has them and `grades.json` feeds them to a weight calculator as bare numbers.
+
+None of the three CSVs may contain a comma inside a field — `readCsv` splits on it, and a stray
+comma shifts every value right.
 
 ```bash
 node docs/build-grades.mjs          # write the tables into the pages

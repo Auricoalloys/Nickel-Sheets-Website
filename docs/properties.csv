@@ -1,0 +1,109 @@
+# Physical properties beyond density and melting range, one row per property per
+# grade. Joined to docs/grades.csv on (family, grade) - the two files must use
+# identical keys, and the publication gate lives in grades.csv: a grade whose
+# row there is still `pending` publishes nothing from here either.
+#
+# docs/build-grades.mjs appends these rows to the grade's identity table, in the
+# order they appear here. Keep each grade's rows in the order its bulletin
+# prints them, the way docs/chemistry.csv does.
+#
+# WHY A SEPARATE LONG-FORMAT FILE rather than more columns on grades.csv:
+#
+#   1. The data is sparse. Thermal conductivity and expansion coefficient are
+#      published for Inconel 751 and almost nothing else; Poisson's ratio for
+#      two grades in twelve. Columns would be mostly empty.
+#
+#   2. It is conditional, which no single column can hold. INCONEL 718 has two
+#      densities - annealed and annealed-and-aged - and X-750 publishes Curie
+#      temperature, permeability, emissivity and linear contraction at two or
+#      three conditions each. A wide table cannot express "this value, under
+#      these conditions" at all; it can only pick one and silently drop the
+#      rest.
+#
+# WHY THE UNIT IS A COLUMN: so no figure here is ever a conversion. The mills
+# print most constants in both imperial and SI, but not all - X-750's Curie
+# temperature is published in °F only, and 718's annealed-and-aged density in
+# lb/in³ only. Recording the bulletin's own number in the bulletin's own unit
+# keeps every cell traceable to a printed figure. Prefer SI where the bulletin
+# gives both.
+#
+# `condition` is the state or test condition the bulletin attaches to the value
+# (a temperature, a field strength, a heat treatment). `note` is any further
+# qualifier the bulletin itself prints. Neither may contain a comma - the reader
+# in build-grades.mjs splits on it.
+#
+# density_g_cm3 and melting_c stay in grades.csv: every grade has both, and
+# docs/grades.json feeds them to a weight calculator as bare numbers.
+family,grade,property,value,unit,condition,note
+
+# --- INCONEL 600 --- Special Metals bulletin
+inconel,600,Specific heat,444,J/kg·°C,,
+inconel,600,Electrical resistivity,1.03,µΩ·m,,
+inconel,600,Curie temperature,-124,°C,,
+inconel,600,Magnetic permeability,1.010,,at 200 oersted / 15.9 kA/m,
+
+# --- INCONEL 601 ---
+inconel,601,Specific heat,448,J/kg·°C,21 °C,
+inconel,601,Magnetic permeability,1.003,,200 oersted at 24 °C,
+inconel,601,Magnetic permeability,1.004,,200 oersted at -78 °C,
+inconel,601,Magnetic permeability,1.016,,200 oersted at -196 °C,
+inconel,601,Curie temperature,< -196,°C,,
+
+# --- INCONEL 617 ---
+inconel,617,Specific heat,419,J/kg·°C,26 °C,
+inconel,617,Electrical resistivity,1.22,µΩ·m,26 °C,
+
+# --- INCONEL 686 ---
+inconel,686,Electrical resistivity,1.237,µΩ·m,,
+inconel,686,Magnetic permeability,1.0001,,at 200 oersted / 15.9 kA/m,
+
+# --- INCONEL 690 ---
+inconel,690,Specific heat,450,J/kg·°C,,
+inconel,690,Electrical resistivity,1.148,µΩ·m,,
+inconel,690,Magnetic permeability,1.001,,at 200 oersted / 15.9 kA/m,
+inconel,690,Young's modulus,211,GPa,,
+inconel,690,Poisson's ratio,0.289,,,
+
+# --- INCONEL 693 ---
+inconel,693,Electrical resistivity,1.168,µΩ·m,,
+
+# --- INCONEL 718 ---
+inconel,718,Density,0.297,lb/in³,annealed and aged,bulletin publishes no SI value for this condition
+inconel,718,Specific heat,435,J/kg·°C,21 °C,
+inconel,718,Curie temperature,< -196,°C,annealed,
+inconel,718,Curie temperature,-112,°C,annealed and aged,
+inconel,718,Magnetic permeability,1.0013,,200 oersted at 21 °C - annealed,
+inconel,718,Magnetic permeability,1.0011,,200 oersted at 21 °C - annealed and aged,
+
+# --- INCONEL 725 ---
+inconel,725,Magnetic permeability,< 1.001,,at 200 oersted / 15.9 kA/m,
+inconel,725,Young's modulus,204,GPa,21 °C,
+inconel,725,Shear modulus,78,GPa,21 °C,
+inconel,725,Poisson's ratio,0.31,,21 °C,
+
+# --- INCONEL 740H ---
+inconel,740H,Electrical resistivity,1.168,µΩ·m,,
+
+# --- INCONEL X-750 ---
+inconel,X-750,Curie temperature,-225,°F,as hot-rolled,bulletin publishes no SI value
+inconel,X-750,Curie temperature,-193,°F,triple-heat-treated,bulletin publishes no SI value
+inconel,X-750,Magnetic permeability,1.0020,,200 oersted at 21 °C - as hot-rolled,
+inconel,X-750,Magnetic permeability,1.0035,,200 oersted at 21 °C - triple-heat-treated,
+inconel,X-750,Emissivity,0.895,,oxidised surface at 316 °C / 600 °F,
+inconel,X-750,Emissivity,0.925,,oxidised surface at 1093 °C / 2000 °F,
+inconel,X-750,Linear contraction on precipitation treatment,0.00044,in/in,704 °C / 1300 °F for 20 h - hot-rolled,
+inconel,X-750,Linear contraction on precipitation treatment,0.00052,in/in,704 °C / 1300 °F for 20 h - 20% cold-rolled,
+inconel,X-750,Linear contraction on precipitation treatment,0.00026,in/in,704 °C / 1300 °F for 20 h - annealed,
+
+# --- INCONEL 751 ---
+inconel,751,Specific heat,431,J/kg·°C,,
+inconel,751,Curie temperature,-125,°C,,
+inconel,751,Magnetic permeability,1.0035,,at 200 oersted / 15.9 kA/m,
+inconel,751,Coefficient of expansion,12.6,µm/m·°C,21-93 °C,
+inconel,751,Thermal conductivity,12.0,W/m·°C,,
+inconel,751,Electrical resistivity,1.22,µΩ·m,,
+inconel,751,Young's modulus,214,GPa,,
+inconel,751,Modulus of rigidity,76,GPa,,
+
+# --- INCONEL 783 ---
+inconel,783,Specific heat,455,J/kg·°C,25 °C,

@@ -57,21 +57,26 @@
 # node docs/build-grades.mjs --check reports drift and contradictions, exits 1.
 
 family,grade,uns,wnr,en_name,density_g_cm3,melting_c,source,checked
-inconel,600,N06600,2.4816,NiCr15Fe,8.47,1354-1413,pending,
-inconel,601,N06601,2.4851,NiCr23Fe,8.11,1360-1411,pending,
+inconel,600,N06600,2.4816,,8.47,1354-1413,Special Metals INCONEL alloy 600 bulletin,2026-08
+inconel,601,N06601,2.4851,,8.11,1360-1411,Special Metals INCONEL alloy 601 bulletin,2026-08
 inconel,602 CA,N06025,2.4633,NiCr25FeAlY,7.90,1340-1400,pending,
-inconel,617,N06617,2.4663,NiCr23Co12Mo,8.36,1332-1380,pending,
+# The Special Metals bulletin heads this grade "W.Nr. 2.4663a". The plain 2.4663
+# is what the pages, the trade and the buyers use, so that is what is recorded
+# here; the suffixed form is noted rather than published. If the 'a' turns out to
+# denote a distinct variant rather than a revision marker, this needs revisiting.
+inconel,617,N06617,2.4663,,8.36,1332-1380,Special Metals INCONEL alloy 617 bulletin,2026-08
 inconel,625,N06625,2.4856,,8.44,1290-1350,Special Metals INCONEL alloy 625 bulletin,2026-08
 inconel,625 LCF,N06626,2.4856,NiCr22Mo9Nb,8.44,1290-1350,pending,
 inconel,660 (A286),S66286,1.4980,X6NiCrTiMoVB25-15-2,7.94,1370-1400,pending,
-inconel,686,N06686,2.4606,NiCr21Mo16W,8.73,1338-1380,pending,
-inconel,690,N06690,2.4642,NiCr29Fe,8.19,1343-1377,pending,
-inconel,693,N06693,2.4649,-,7.90,1343-1387,pending,
-inconel,718,N07718,2.4668,NiCr19Fe19Nb5Mo3,8.19,1260-1336,pending,
-inconel,725,N07725,2.4667,-,8.31,1271-1343,pending,
-inconel,751,N07751,2.4694,-,8.24,1393-1427,pending,
-inconel,783,R30783,-,-,7.81,1341-1360,pending,
-inconel,X-750,N07750,2.4669,NiCr15Fe7TiAl,8.28,1393-1427,pending,
+inconel,686,N06686,2.4606,,8.73,1338-1380,Special Metals INCONEL alloy 686 bulletin,2026-08
+inconel,690,N06690,2.4642,,8.19,1343-1377,Special Metals INCONEL alloy 690 bulletin,2026-08
+inconel,693,N06693,,,7.77,1317-1367,Special Metals INCONEL alloy 693 bulletin,2026-08
+inconel,718,N07718,2.4668,,8.19,1260-1336,Special Metals INCONEL alloy 718 bulletin,2026-08
+inconel,725,N07725,,,8.31,1271-1343,Special Metals INCONEL alloy 725 bulletin,2026-08
+inconel,740H,N07740,,,8.05,1288-1362,Special Metals INCONEL alloy 740H bulletin,2026-08
+inconel,751,N07751,,,8.22,1390-1430,Special Metals INCONEL alloy 751 bulletin,2026-08
+inconel,783,R30783,,,7.81,1336-1407,Special Metals INCONEL alloy 783 bulletin,2026-08
+inconel,X-750,N07750,2.4669,,8.28,1393-1427,Special Metals INCONEL alloy X-750 bulletin,2026-08
 incoloy,330,N08330,1.4864,X12NiCrSi35-16,8.08,1371-1427,pending,
 incoloy,800,N08800,1.4876,X10NiCrAlTi32-21,7.94,1357-1385,pending,
 incoloy,800H,N08810,1.4958,X5NiCrAlTi31-20,7.94,1357-1385,pending,

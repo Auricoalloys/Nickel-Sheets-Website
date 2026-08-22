@@ -4,6 +4,51 @@
   "grades": [
     {
       "family": "inconel",
+      "grade": "600",
+      "name": "Inconel 600",
+      "uns": "N06600",
+      "uns_all": [
+        "N06600"
+      ],
+      "wnr": "2.4816",
+      "en_name": null,
+      "density_g_cm3": 8.47,
+      "melting_c": "1354-1413",
+      "source": "Special Metals INCONEL alloy 600 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "601",
+      "name": "Inconel 601",
+      "uns": "N06601",
+      "uns_all": [
+        "N06601"
+      ],
+      "wnr": "2.4851",
+      "en_name": null,
+      "density_g_cm3": 8.11,
+      "melting_c": "1360-1411",
+      "source": "Special Metals INCONEL alloy 601 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "617",
+      "name": "Inconel 617",
+      "uns": "N06617",
+      "uns_all": [
+        "N06617"
+      ],
+      "wnr": "2.4663",
+      "en_name": null,
+      "density_g_cm3": 8.36,
+      "melting_c": "1332-1380",
+      "source": "Special Metals INCONEL alloy 617 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
       "grade": "625",
       "name": "Inconel 625",
       "uns": "N06625",
@@ -15,6 +60,141 @@
       "density_g_cm3": 8.44,
       "melting_c": "1290-1350",
       "source": "Special Metals INCONEL alloy 625 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "686",
+      "name": "Inconel 686",
+      "uns": "N06686",
+      "uns_all": [
+        "N06686"
+      ],
+      "wnr": "2.4606",
+      "en_name": null,
+      "density_g_cm3": 8.73,
+      "melting_c": "1338-1380",
+      "source": "Special Metals INCONEL alloy 686 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "690",
+      "name": "Inconel 690",
+      "uns": "N06690",
+      "uns_all": [
+        "N06690"
+      ],
+      "wnr": "2.4642",
+      "en_name": null,
+      "density_g_cm3": 8.19,
+      "melting_c": "1343-1377",
+      "source": "Special Metals INCONEL alloy 690 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "693",
+      "name": "Inconel 693",
+      "uns": "N06693",
+      "uns_all": [
+        "N06693"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.77,
+      "melting_c": "1317-1367",
+      "source": "Special Metals INCONEL alloy 693 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "718",
+      "name": "Inconel 718",
+      "uns": "N07718",
+      "uns_all": [
+        "N07718"
+      ],
+      "wnr": "2.4668",
+      "en_name": null,
+      "density_g_cm3": 8.19,
+      "melting_c": "1260-1336",
+      "source": "Special Metals INCONEL alloy 718 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "725",
+      "name": "Inconel 725",
+      "uns": "N07725",
+      "uns_all": [
+        "N07725"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.31,
+      "melting_c": "1271-1343",
+      "source": "Special Metals INCONEL alloy 725 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "740H",
+      "name": "Inconel 740H",
+      "uns": "N07740",
+      "uns_all": [
+        "N07740"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.05,
+      "melting_c": "1288-1362",
+      "source": "Special Metals INCONEL alloy 740H bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "751",
+      "name": "Inconel 751",
+      "uns": "N07751",
+      "uns_all": [
+        "N07751"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.22,
+      "melting_c": "1390-1430",
+      "source": "Special Metals INCONEL alloy 751 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "783",
+      "name": "Inconel 783",
+      "uns": "R30783",
+      "uns_all": [
+        "R30783"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.81,
+      "melting_c": "1336-1407",
+      "source": "Special Metals INCONEL alloy 783 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
+      "grade": "X-750",
+      "name": "Inconel X-750",
+      "uns": "N07750",
+      "uns_all": [
+        "N07750"
+      ],
+      "wnr": "2.4669",
+      "en_name": null,
+      "density_g_cm3": 8.28,
+      "melting_c": "1393-1427",
+      "source": "Special Metals INCONEL alloy X-750 bulletin",
       "checked": "2026-08"
     }
   ]

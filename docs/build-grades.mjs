@@ -39,6 +39,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const GRADES_CSV = path.join(ROOT, 'docs', 'grades.csv');
 const CHEM_CSV = path.join(ROOT, 'docs', 'chemistry.csv');
+const PROPS_CSV = path.join(ROOT, 'docs', 'properties.csv');
 const SPECS_CSV = path.join(ROOT, 'docs', 'specs.csv');
 const JSON_OUT = path.join(ROOT, 'docs', 'grades.json');
 
@@ -132,6 +133,8 @@ function readCsv(file, expected) {
 const grades = readCsv(GRADES_CSV,
   ['family', 'grade', 'uns', 'wnr', 'en_name', 'density_g_cm3', 'melting_c', 'source', 'checked']);
 const chem = readCsv(CHEM_CSV, ['family', 'grade', 'element', 'min', 'max', 'note']);
+const props = readCsv(PROPS_CSV,
+  ['family', 'grade', 'property', 'value', 'unit', 'condition', 'note']);
 const specs = readCsv(SPECS_CSV,
   ['family', 'grade', 'uns', 'flat', 'bar', 'wire', 'pipe_tube', 'fitting']);
 
@@ -145,6 +148,17 @@ for (const r of chem) {
   const k = key(r.family, r.grade);
   if (!chemOf.has(k)) chemOf.set(k, []);
   chemOf.get(k).push(r);
+}
+
+// Physical properties beyond density and melting range. Long format for the
+// same reason chemistry is: the set differs per grade, and a value can be
+// conditional - INCONEL 718 has one density annealed and another aged, which no
+// single column could hold.
+const propsOf = new Map();
+for (const r of props) {
+  const k = key(r.family, r.grade);
+  if (!propsOf.has(k)) propsOf.set(k, []);
+  propsOf.get(k).push(r);
 }
 
 // ---- integrity checks on the data itself ------------------------------------
@@ -234,6 +248,19 @@ function identityTable(r, form) {
     ['Melting range', r.melting_c, v => `${esc(v)} &deg;C`],
   ].filter(([, v]) => v !== '' && v != null).map(([k, v, f]) => [k, f(v)]);
 
+  // The rest of the mill's physical constants, in the order the bulletin prints
+  // them. The unit travels with the value rather than being implied by the row
+  // label, because the bulletins do not publish every constant in SI - X-750's
+  // Curie temperature is given in °F only - and converting one here would put a
+  // figure on the page that the mill never printed.
+  for (const p of propsOf.get(key(r.family, r.grade)) || []) {
+    if (!p.value) continue;
+    const label = p.condition ? `${p.property} (${p.condition})` : p.property;
+    const value = p.unit ? `${esc(p.value)} ${esc(p.unit)}` : esc(p.value);
+    const note = p.note ? ` <span class="small text-muted">(${esc(p.note)})</span>` : '';
+    rows.push([label, value + note]);
+  }
+
   // The standard for the form this page actually sells, never for another one.
   if (form) {
     const s = specs.find(x => x.family === r.family && x.grade === r.grade);
@@ -247,7 +274,9 @@ function identityTable(r, form) {
     '<div class="table-responsive">',
     '<table class="table table-bordered grade-table">',
     `<caption class="visually-hidden">Equivalent designations and physical constants for ${esc(fullName(r))}</caption>`,
-    '<thead><tr><th scope="col">Designation</th><th scope="col">Value</th></tr></thead>',
+    // "Property", not "Designation": the table has always mixed identifiers with
+    // physical constants, and now carries a dozen more of the latter.
+    '<thead><tr><th scope="col">Property</th><th scope="col">Value</th></tr></thead>',
     '<tbody>',
     ...rows.map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${v}</td></tr>`),
     '</tbody>',
