@@ -53,6 +53,7 @@ const BOILERPLATE = new Set([
   '2fe7b8e8', // marked each trademark once, sitewide
   'e32e8a32', // stripped the JSON-LD offers blocks that carried no price
   '41263991', // widened priceValidUntil to 100 days; no figure a reader sees moved
+  '7f9ce97c', // parked the Product node on 258 unpriced pages; markup only, no copy changed
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
