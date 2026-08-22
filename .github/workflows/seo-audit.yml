@@ -7,16 +7,29 @@ name: SEO audit
 # something regressed.
 #
 # On a pull request it fails the check, so a regression is caught before it
-# reaches the live site. On the daily schedule it opens an issue instead.
+# reaches the live site. On a push to main it does both: the change is already
+# published, so it raises an issue to act on and fails the run so the commit
+# carries the mark. On the daily schedule it raises an issue only.
 
 on:
   schedule:
     - cron: "30 2 * * *"      # 08:00 IST
+  # The two path lists are identical on purpose, and GitHub Actions does not
+  # support YAML anchors, so they are spelled out twice. They used to differ and
+  # push was the shorter one: a commit straight to main touching only the audit,
+  # its baseline or a generator ran no check at all. This repo does commit
+  # straight to main, so that was the likelier path, not the rarer one.
+  #
+  # The workflow file is in the list so that a change to the guard exercises the
+  # guard.
   pull_request:
     paths:
       - "**.html"
       - "_includes/**"
+      - ".github/workflows/seo-audit.yml"
       - "tools/seo_audit.py"
+      - "tools/seo_baseline.json"
+      - "robots.txt"
       - "prices.csv"
       - "docs/build-prices.mjs"
       - "docs/specs.csv"
@@ -29,10 +42,17 @@ on:
     paths:
       - "**.html"
       - "_includes/**"
+      - ".github/workflows/seo-audit.yml"
+      - "tools/seo_audit.py"
+      - "tools/seo_baseline.json"
+      - "robots.txt"
       - "prices.csv"
+      - "docs/build-prices.mjs"
       - "docs/specs.csv"
+      - "docs/build-specs.mjs"
       - "docs/grades.csv"
       - "docs/chemistry.csv"
+      - "docs/build-grades.mjs"
   workflow_dispatch:
 
 permissions:
@@ -102,16 +122,18 @@ jobs:
             audit.json
           if-no-files-found: ignore
 
-      # A pull request should simply fail, so the regression never merges.
-      - name: Fail the PR on regression
-        if: steps.audit.outcome == 'failure' && github.event_name == 'pull_request'
-        run: |
-          echo "SEO regression - see the report above."
-          exit 1
-
-      # The scheduled run has no PR to annotate, so it raises an issue.
+      # The scheduled run has no PR to annotate, so it raises an issue - and so
+      # does a push, because a regression that reaches main is already live:
+      # GitHub Pages deploys from main and does not gate on this workflow. A red
+      # tick on a commit is easy to miss, and this repo does commit straight to
+      # main, which is the path most likely to carry a regression.
+      #
+      # This step deliberately comes before the failing one. A step that exits 1
+      # ends the job, so the other order would collect the findings and then
+      # never file them - which is exactly the bug being fixed here: the push
+      # verdict used to be computed, uploaded and discarded.
       - name: Open an issue on regression
-        if: steps.audit.outcome == 'failure' && github.event_name == 'schedule'
+        if: steps.audit.outcome == 'failure' && (github.event_name == 'schedule' || github.event_name == 'push')
         uses: actions/github-script@v7
         with:
           script: |
@@ -124,8 +146,9 @@ jobs:
             });
             const body = 'The daily SEO audit found counts above the baseline.\n\n' +
                          '```\n' + report + '```\n\n' +
-                         'Baseline: `tools/seo_baseline.json`. ' +
-                         'If a change is intentional, update the baseline in the same PR.';
+                         'Baseline: `tools/seo_baseline.json`, and every count in it is 0. ' +
+                         'If a finding is deliberate, teach the check to recognise it - ' +
+                         'raising the number hides the next real one.';
             if (open.length) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner, repo: context.repo.repo,
@@ -137,3 +160,12 @@ jobs:
                 title, body, labels: ['seo-audit']
               });
             }
+
+      # A pull request fails so the regression never merges; a push fails so the
+      # commit itself carries the mark. The schedule is exempt: it has just
+      # raised an issue, and a red cron run every morning is noise nobody reads.
+      - name: Fail on regression
+        if: steps.audit.outcome == 'failure' && github.event_name != 'schedule'
+        run: |
+          echo "SEO regression - see the report above."
+          exit 1
