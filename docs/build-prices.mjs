@@ -31,10 +31,23 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CSV = path.join(ROOT, 'prices.csv');
 const CHECK = process.argv.includes('--check');
 
-// How long a published price stays claimable. A monthly update that slips a few
-// weeks then expires quietly, rather than going on asserting a figure from six
-// months ago - which is the failure that makes Google stop believing the field.
-const VALID_DAYS = 45;
+// How long a published price stays claimable. A quarterly update that slips a
+// few weeks then expires quietly, rather than going on asserting a figure from
+// six months ago - which is the failure that makes Google stop believing the
+// field. Sized to the cadence deliberately: leave it shorter than the gap
+// between passes and every price spends the tail of each quarter expired, which
+// drops it from the rich result; stretch it well past the gap and a pass nobody
+// ran keeps asserting a figure nobody checked.
+//
+// The published ranges are what make a quarter honest - the median row spans 2x
+// low to high, so ordinary movement stays inside the figure already on the page.
+// The ~37 rows tighter than 1.5x are the ones to widen or re-quote first; they
+// have the least room to absorb a move. Lengthening this past a quarter without
+// widening those is how a wrong price gets published.
+//
+// Kept in step with docs/build-price-worklist.mjs, which mints priceValidUntil
+// for adopted rows from the same constant.
+const VALID_DAYS = 100;
 const SITE = 'https://www.nickelsheets.com';
 
 const SKIP = new Set(['.git', '.vscode', '.claude', 'node_modules', '_site', 'vendor', 'tools', '.bundle', '.github', 'docs']);

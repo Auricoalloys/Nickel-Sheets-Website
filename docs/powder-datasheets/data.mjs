@@ -23,7 +23,7 @@ export const COMPANY = {
 
 // Revision stamps every sheet. Bump REV when the specification content changes;
 // the date is what a reader checks the sheet's age against.
-export const REVISION = { rev: '1.0', date: '2026-08-19' };
+export const REVISION = { rev: '1.1', date: '2026-08-21' };
 
 // A particle size cut is a classification result, so the distribution it yields
 // is close to grade-independent — a 15-53 um cut of In625 and of SS316L land
@@ -42,6 +42,18 @@ export const CUT_SPECS = {
   '5–25': {
     d10: '6–9', d50: '12–16', d90: '22–26', flow: 'Carney funnel†',
     processes: 'Metal Injection Moulding (MIM), Binder Jetting',
+  },
+  // Not a general-purpose cut. Some L-PBF machine manuals call for 10–30 µm to
+  // get their best result on particular grades — dental CoCrMo is one — which is
+  // why this is marked on a single grade rather than offered across the file.
+  //
+  // The distribution below is interpolated between 5–25 and 15–45, not measured:
+  // it is the one row here with no lot data behind it. Replace it the first time
+  // a 10–30 run is classified. Footnote 2 already tells the reader these are
+  // typical and that the lot's real distribution is on its CoA.
+  '10–30': {
+    d10: '11–14', d50: '17–22', d90: '27–32', flow: 'Carney funnel†',
+    processes: 'Laser Powder Bed Fusion — fine-layer dental and fine-feature work',
   },
   '15–45': {
     d10: '16–21', d50: '26–33', d90: '40–46', flow: '14–17 s / 50 g',
@@ -296,6 +308,66 @@ export const GRADES = [
         { p: 'Yield strength (R<sub>p0.2</sub>)', v: '1 050–1 250 MPa' },
         { p: 'Elongation at break', v: '8–14 %' },
         { p: 'Hardness', v: '38–44 HRC' },
+        { p: 'Modulus of elasticity', v: '190–200 GPa' },
+      ],
+    },
+  },
+  {
+    slug: '15-5ph',
+    name: '15-5 PH Stainless Steel',
+    subtitle: 'Martensitic Precipitation-Hardening Stainless Steel Powder',
+    family: 'Stainless steel',
+    aka: ['15-5PH', 'XM-12', '1.4545'],
+    uns: 'S15500',
+    standards: [
+      cite('ASTM F3301', 'Additive Manufacturing — post-processing of metal PBF parts'),
+      cite('ASTM A564 Type XM-12', 'Wrought chemistry reference, UNS S15500'),
+      cite('AMS 5659', 'Corrosion-resistant steel bars and forgings, 15Cr–5Ni–4Cu–Nb'),
+    ],
+    intro:
+      'A ferrite-free variant of 17-4 PH, hardened by the same low-temperature copper precipitation treatment. Chromium is pulled down and nickel raised relative to 17-4 PH specifically to suppress delta ferrite, which is what costs 17-4 PH transverse toughness; the result is a steel with the same strength range but markedly better properties across the short direction. Normally double vacuum melted for that reason.',
+    advantages: [
+      'Essentially free of delta ferrite, so transverse toughness matches longitudinal',
+      'High strength and hardness after a single low-temperature ageing treatment',
+      'Minimal dimensional change on ageing',
+      'Good corrosion resistance, better than the 400-series martensitics',
+      'Properties tunable across a wide range by heat-treat condition',
+    ],
+    applications: [
+      'Aerospace structural fittings and rotating components',
+      'Oil and gas valve, pump and downhole components',
+      'Injection-mould tooling and inserts',
+      'High-strength shafts, gears and couplings',
+    ],
+    chemistry: {
+      basis: 'ASTM A564 Type XM-12 / UNS S15500',
+      columnHeads: ['Composition, wt %'],
+      rows: [
+        { el: 'Cr', name: 'Chromium', values: ['14.00–15.50'] },
+        { el: 'Ni', name: 'Nickel', values: ['3.50–5.50'] },
+        { el: 'Cu', name: 'Copper', values: ['2.50–4.50'] },
+        { el: 'Nb+Ta', name: 'Niobium + Tantalum', values: ['0.15–0.45'] },
+        { el: 'Mn', name: 'Manganese', values: ['≤ 1.00'] },
+        { el: 'Si', name: 'Silicon', values: ['≤ 1.00'] },
+        { el: 'C', name: 'Carbon', values: ['≤ 0.07'] },
+        { el: 'P', name: 'Phosphorus', values: ['≤ 0.040'] },
+        { el: 'S', name: 'Sulphur', values: ['≤ 0.030'] },
+        { el: 'Fe', name: 'Iron', values: ['Balance'] },
+      ],
+      supplementary: [
+        { el: 'O', name: 'Oxygen', values: ['≤ 0.10 typical'] },
+        { el: 'N', name: 'Nitrogen', values: ['≤ 0.10 typical'] },
+      ],
+      note: 'The chromium and nickel bands are what separate this alloy from 17-4 PH — lower chromium, higher nickel, chosen to keep delta ferrite out of the structure. The two are not interchangeable on a drawing that calls one out by UNS number.',
+    },
+    physical: { density: 7.80, melting: '1 404–1 440 °C', magnetic: 'Magnetic (martensitic)' },
+    mechanical: {
+      condition: 'L-PBF, solution treated and aged to H900',
+      rows: [
+        { p: 'Ultimate tensile strength', v: '1 250–1 400 MPa' },
+        { p: 'Yield strength (R<sub>p0.2</sub>)', v: '1 100–1 300 MPa' },
+        { p: 'Elongation at break', v: '10–16 %' },
+        { p: 'Hardness', v: '40–45 HRC' },
         { p: 'Modulus of elasticity', v: '190–200 GPa' },
       ],
     },
@@ -904,6 +976,30 @@ export const GRADES = [
       ],
     },
   },
+  // CoCrMoW - dental Co-Cr-W-Mo, ISO 22674 - IS NOT WRITTEN YET, ON PURPOSE.
+  //
+  // An entry was drafted here from figures published by BEGO for their own
+  // branded alloy. We do not supply BEGO material; we supply Saveer Matrix Nano.
+  // Publishing another manufacturer's density, strength, modulus and thermal
+  // expansion as ours asserts that what we ship performs identically, which is a
+  // representation nobody has checked. Same class of error as the lot reports
+  // this folder replaced - a claim about material we do not hold - so the whole
+  // entry was pulled rather than partly corrected.
+  //
+  // To add it, take EVERY field from Saveer Matrix Nano's own data sheet:
+  // chemistry, density, solidus/liquidus, ISO 22674 Type, Rp0.2, Rm, modulus,
+  // elongation, hardness, and thermal expansion if it is a metal-ceramic alloy.
+  // Carry no number over from a competitor.
+  //
+  // Chemistry as received, SOURCE UNCONFIRMED - it arrived separately from the
+  // BEGO page and may or may not be Saveer's. Verify before use:
+  //   Co balance, Cr 24.50-28.50, Mo 4.50-6.50, W 4.00-6.00,
+  //   Si <= 1.00, Mn <= 1.00, Fe <= 0.50
+  //
+  // This is NOT a variant of the CoCrMo entry above. F75 runs 27-30 % Cr and
+  // caps W at 0.20 % as a residual; this runs lower Cr with W at 4-6 % as a
+  // deliberate addition, and is qualified to ISO 22674 for dental restorations,
+  // not ISO 5832-4 for implants. No ASTM F-number belongs on it.
 
   // --------------------------------------------------------- aluminium alloys
   {
@@ -1085,7 +1181,7 @@ export const GRADES = [
 // Aurico-branded page, which is the supplying mill's internal code — it names
 // the source to every customer who reads a data sheet. These replace it.
 export const ORDER_CODES = {
-  ss316l: 'SS316L', ss304l: 'SS304L', '17-4ph': '17-4PH', h13: 'H13',
+  ss316l: 'SS316L', ss304l: 'SS304L', '17-4ph': '17-4PH', '15-5ph': '15-5PH', h13: 'H13',
   'maraging-ms1': 'MS1', cx: 'CX', 'inconel-625': 'IN625', 'inconel-718': 'IN718',
   'hastelloy-x': 'HX', 'hastelloy-c22': 'C22', ti6al4v: 'TI64',
   'cp-titanium-grade-2': 'CPTI2', cocrmo: 'COCRMO', alsi10mg: 'ALSI10MG',

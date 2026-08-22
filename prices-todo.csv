@@ -21,8 +21,8 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-08-21 by docs/build-price-worklist.mjs
-# pending: 260 page(s)
+# generated: 2026-08-22 by docs/build-price-worklist.mjs
+# pending: 258 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -259,17 +259,11 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/783/billets/,,,,,kg
 /inconel/783/round-bar/,,,,,kg
 
-# /invar-...  (1)
-/invar/,,,,,kg
-
 # /invar/  (4)
 /invar/foil/,,,,,kg
 /invar/plates/,,,,,kg
 /invar/round-bar/,,,,,kg
 /invar/sheets/,,,,,kg
-
-# /kovar-...  (1)
-/kovar/,,,,,kg
 
 # /kovar/  (4)
 /kovar/foil/,,,,,kg
@@ -463,17 +457,3 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /stainless/powder/   (stainless/powder.html)
 # /titanium/powder/   (titanium/powder.html)
 # /tool-steel/powder/   (tool-steel/powder.html)
-
-# ---------------------------------------------------------------------------
-# Deprecated twins: their canonical names a different URL, so Google indexes
-# the other page and an offers block here reaches nobody. Price the canonical
-# instead - it is a fillable row above unless it is already in prices.csv.
-# /Hastelloy/round-bars-1/   ->   /hastelloy/round-bar/
-# /monel/k-400/sheets/   ->   /monel/400/sheets/
-# /pure-nickel-strip/H-type/   ->   /pure-nickel-strip/18650-H-type/
-# /pure-nickel-strip/honeycomb/   ->   /pure-nickel-strip/18650-honeycomb/
-# /pure-nickel-strip/zigzag/   ->   /pure-nickel-strip/18650-zigzag/
-# /titanium/grade-2-plates/   ->   /titanium/grade-2/plates/
-# /titanium/grade-3-plates/   ->   /titanium/grade-3/plates/
-# /titanium/grade-4-plates/   ->   /titanium/grade-4/plates/
-# /titanium/grade-7-plates/   ->   /titanium/grade-7/plates/

@@ -1,6 +1,6 @@
 # Powder technical data sheets
 
-Sixteen grade data sheets, generated from one source file.
+Seventeen grade data sheets, generated from one source file.
 
 ```bash
 node docs/powder-datasheets/build.mjs

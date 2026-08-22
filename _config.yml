@@ -45,6 +45,7 @@ exclude:
   - docs/build-prices.mjs
   - docs/build-specs.mjs
   - docs/specs.csv
+  - docs/build-cuts.mjs
   - docs/build-price-worklist.mjs
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
