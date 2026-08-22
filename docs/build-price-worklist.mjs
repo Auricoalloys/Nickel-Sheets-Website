@@ -36,10 +36,11 @@ const CHECK = process.argv.includes('--check');
 // workflow would publish a price nobody reviewed.
 const ADOPT = process.argv.includes('--adopt') && !CHECK;
 
-// Kept in step with docs/build-prices.mjs. A price adopted from here is only
-// claimable for this long after prices.csv's "# updated:" line, so adopting into
-// a stale file mints a price that is already expired - warned about at the end.
-const VALID_DAYS = 45;
+// Kept in step with docs/build-prices.mjs - see the note there on why a quarter.
+// A price adopted from here is only claimable for this long after prices.csv's
+// "# updated:" line, so adopting into a stale file mints a price that is already
+// expired - warned about at the end.
+const VALID_DAYS = 100;
 
 const SKIP = new Set(['.git', '.vscode', '.claude', 'node_modules', '_site', 'vendor', 'tools', '.bundle', '.github', 'docs']);
 function walk(d, out = []) {
@@ -410,6 +411,9 @@ if (updated) {
   expires.setUTCDate(expires.getUTCDate() + VALID_DAYS);
   const when = expires.toISOString().slice(0, 10);
   const days = Math.round((expires - new Date(today + 'T00:00:00Z')) / 86400000);
+  // Three weeks' notice, not ten days: on a quarterly cadence the warning has to
+  // arrive with enough time left to actually run a pricing pass, or it only ever
+  // tells you the prices have already lapsed.
   if (days <= 0) console.log(`  WARNING: prices.csv is dated ${updated}, so every price expired on ${when}. Update that line before adopting.`);
-  else if (days <= 10) console.log(`  note: prices.csv is dated ${updated}; prices expire ${when} (${days} day(s) left).`);
+  else if (days <= 21) console.log(`  note: prices.csv is dated ${updated}; prices expire ${when} (${days} day(s) left) - time to start the next pass.`);
 }
