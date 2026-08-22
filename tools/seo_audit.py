@@ -11,8 +11,10 @@ fixed has come back.
     python tools/seo_audit.py --fail-on-new   # exit 1 if worse than the baseline
 
 Baseline lives in tools/seo_baseline.json. Counts at or below baseline pass, so
-the known-acceptable items (include fragments with no <title>, deliberate
-canonical consolidations) do not produce daily noise.
+the known-acceptable items (include fragments with no <title>) do not produce
+daily noise. Deliberate canonical consolidations used to be parked there too;
+they are now excluded by the checks themselves, because a count cannot tell one
+of them from a real finding that replaced it.
 """
 import os, re, sys, json, html, collections, subprocess
 
@@ -32,6 +34,26 @@ SKIP_DIRS = {".git", ".vscode", ".claude", "node_modules", "_site", "vendor", "t
 FRAGMENTS = {"_includes/header.html", "_includes/footer.html",
              "html/header.html", "html/footer.html",
              "html/product_detailed_page.html"}
+
+
+# robots.txt is the site's own statement of which routes it withholds.
+# docs/build-sitemap.mjs already reads it for the same reason - a route must
+# never be both blocked and advertised - so the two agree on what "not
+# advertised" means instead of each keeping its own list.
+def _disallowed_prefixes():
+    fp = os.path.join(ROOT, "robots.txt")
+    if not os.path.exists(fp):
+        return []
+    lines = open(fp, encoding="utf-8", errors="replace").read().splitlines()
+    return [m.group(1) for m in
+            (re.match(r"\s*Disallow:\s*(\S+)", l, re.I) for l in lines) if m]
+
+
+DISALLOWED = _disallowed_prefixes()
+
+
+def is_disallowed(url):
+    return any(url.startswith(d) for d in DISALLOWED)
 
 
 def collect():
@@ -80,6 +102,9 @@ def collect():
                 "n_canon": len(re.findall(r'rel=["\']canonical["\']', raw, re.I)),
                 "n_h1": len(re.findall(r"<h1[\s>]", raw, re.I)),
                 "imgs": re.findall(r"<img\b[^>]*>", raw, re.I),
+                # the two ways a page declares it is not advertised
+                "sitemap_false": bool(re.search(r"^sitemap\s*:\s*false", block, re.M)),
+                "robots_blocked": bool(permalink) and is_disallowed(permalink),
             }
     return pages
 
@@ -117,7 +142,14 @@ def audit(pages):
         p for p, d in real.items()
         if d["n_title"] > 1 or d["n_desc"] > 1 or d["n_canon"] > 1)
 
-    findings["no_h1"] = sorted(p for p, d in real.items() if d["n_h1"] == 0)
+    # A route blocked in robots.txt has no standalone content to head: the one
+    # such page renders its heading from Supabase at runtime, and says in its
+    # own front matter not to "fix" it with static markup. Only robots-blocked
+    # pages are exempt, not every unadvertised one - the canonical twins below
+    # are pages a visitor still lands on from Google's existing index, so they
+    # keep being checked.
+    findings["no_h1"] = sorted(
+        p for p, d in real.items() if d["n_h1"] == 0 and not d["robots_blocked"])
     findings["multiple_h1"] = sorted(p for p, d in real.items() if d["n_h1"] > 1)
 
     findings["title_too_long"] = sorted(
@@ -240,9 +272,25 @@ def audit(pages):
             key = h_.rstrip("/") or "/"
             if key in served and p not in served[key]:
                 linked.add(key)
+    # A URL the site deliberately withholds is not an orphan. Ten sat here for
+    # months: nine legacy flat permalinks that carry sitemap: false and a
+    # canonical pointing at the modern URL, plus the blocked template route.
+    # Neither ending the report wanted is right for them - linking one would
+    # send internal links to a page that disclaims itself, and retiring one
+    # would 404 a URL Google still has indexed. They are the consolidation
+    # working, so the check should not call them defects.
+    #
+    # They were absorbed by the baseline instead, which counts rather than
+    # names: retiring one twin while gaining a genuine orphan left the total at
+    # ten and the regression silent. Excluding them lets the baseline sit at 0,
+    # where any orphan at all fails.
+    unadvertised = {(d["permalink"].rstrip("/") or "/")
+                    for d in pages.values()
+                    if d["permalink"] and (d["sitemap_false"] or d["robots_blocked"])}
     findings["orphan_pages"] = sorted(
         u for u, files in served.items()
-        if u not in linked and not any(f in FRAGMENTS for f in files))
+        if u not in linked and u not in unadvertised
+        and not any(f in FRAGMENTS for f in files))
 
     # links pointing at a URL nothing serves
     broken = collections.Counter()

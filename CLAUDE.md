@@ -85,6 +85,21 @@ already broken when each check was added, and a count at or below its baseline p
 class of bug does not tighten the guard by itself — **after clearing findings, re-run with
 `--update-baseline` and commit**, or the same number of them can silently come back.
 
+**Every count in the baseline is now 0**, so any finding at all is a regression. Keeping it there
+means never parking a false positive in the baseline again: a count cannot tell a known-acceptable
+item from a real finding that replaced it, which is how ten "orphans" sat for months while a
+genuine one could have arrived unnoticed. When a check fires on something deliberate, teach the
+check, don't raise the number.
+
+Two classes are excluded by the checks themselves rather than by the baseline. A URL carrying
+`sitemap: false` or disallowed in `robots.txt` is **not an orphan** — the site withholds it on
+purpose, so requiring an inbound link is incoherent, and adding one would point internal links at a
+page that disclaims itself. And a robots-disallowed route is **not a missing-`<h1>`**: the one such
+page, `/pure-nickel-strip/product/`, renders its heading from Supabase at runtime and says in its
+own front matter not to "fix" it with static markup. Only robots-blocked pages get the `<h1>`
+exemption — the `sitemap: false` twins are pages a visitor still lands on from Google's index, so
+they stay checked.
+
 CI runs it on every pull request touching HTML, `_includes/`, `prices.csv` or `docs/specs.csv`,
 fails the PR on a regression, and on the daily 08:00 IST schedule opens an issue instead.
 
