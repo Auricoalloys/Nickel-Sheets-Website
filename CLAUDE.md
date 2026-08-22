@@ -510,10 +510,12 @@ usually a legitimate mention of a sibling grade in a cross-link list. A page who
 names more than one grade of its family (the combined foil pages) is skipped rather than judged
 against one of them.
 
-CI runs `--check`, which fails on drift and on the two files disagreeing with `specs.csv` about what
-a grade *is*. It does **not** yet fail on lint findings: 31 pages carry an identifier that needs
+CI runs `--check`, which fails on drift and on the files disagreeing with `specs.csv` about what
+a grade *is*. It does **not** yet fail on lint findings: 20 pages carry an identifier that needs
 checking against a bulletin first, and failing now would block every unrelated PR. **Add `--strict`
-to the CI step once that backlog is cleared**, or the guard never closes.
+to the CI step once that backlog is cleared**, or the guard never closes. The remaining 20 are the
+Nimonic 86/115 and Nichrome UNS numbers the CSV does not publish, the Nimonic 75/80A/901 Werkstoff
+disagreements, and the Incoloy 800H hub carrying 800HT's number.
 
 Three details worth keeping:
 

@@ -36,6 +36,7 @@ on:
       - "docs/build-specs.mjs"
       - "docs/grades.csv"
       - "docs/chemistry.csv"
+      - "docs/properties.csv"
       - "docs/build-grades.mjs"
   push:
     branches: [main]
@@ -52,6 +53,7 @@ on:
       - "docs/build-specs.mjs"
       - "docs/grades.csv"
       - "docs/chemistry.csv"
+      - "docs/properties.csv"
       - "docs/build-grades.mjs"
   workflow_dispatch:
 
@@ -88,10 +90,11 @@ jobs:
 
       # A UNS number is the strongest claim a page makes - it tells a buyer
       # exactly which material they are being offered. This fails the build when
-      # grades.csv or chemistry.csv was edited without re-running the generator,
-      # and when the two files disagree with specs.csv about what a grade is.
+      # grades.csv, chemistry.csv or properties.csv was edited without re-running
+      # the generator, and when those files disagree with specs.csv about what a
+      # grade is.
       #
-      # Contradictions found by the lint are reported but do not fail yet: 31
+      # Contradictions found by the lint are reported but do not fail yet: 20
       # pages carry an identifier that needs checking against a mill bulletin
       # before it can be corrected, and failing now would block every unrelated
       # PR. Add --strict once that backlog is cleared, and this guard closes.
