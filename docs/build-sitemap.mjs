@@ -52,6 +52,7 @@ const BOILERPLATE = new Set([
   'c710232f', // breadcrumb, skip link and meta description on every page
   '2fe7b8e8', // marked each trademark once, sitewide
   'e32e8a32', // stripped the JSON-LD offers blocks that carried no price
+  '41263991', // widened priceValidUntil to 100 days; no figure a reader sees moved
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
