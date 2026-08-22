@@ -47,6 +47,17 @@ exclude:
   - docs/specs.csv
   - docs/build-cuts.mjs
   - docs/build-price-worklist.mjs
+  # The grade database and its generator. These were added without exclusions
+  # and were being copied into _site and served: the generator's own source, the
+  # three CSVs behind it, and grades.json - which the notes describe as not
+  # published "until that exclusion is lifted deliberately". It never was.
+  # docs/ is not excluded wholesale; every file here is listed one by one, which
+  # is how the whole set was missed.
+  - docs/build-grades.mjs
+  - docs/grades.csv
+  - docs/chemistry.csv
+  - docs/properties.csv
+  - docs/grades.json
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
   - prices-todo.csv

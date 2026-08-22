@@ -505,8 +505,14 @@ Three details worth keeping:
   from the table; `-` means "the mill publishes no such designation" and prints a dash. Never write
   `-` to mean "I could not find it".
 - `density_g_cm3` is a **bare number** on purpose. `build-grades.mjs` emits `docs/grades.json` from
-  it so a weight calculator can consume it directly; a range or a `≈` breaks that. `docs/` is
-  excluded from the build, so nothing publishes until that exclusion is lifted deliberately.
+  it so a weight calculator can consume it directly; a range or a `≈` breaks that.
+
+**`docs/` is not excluded wholesale — `_config.yml` names every file individually**, because the
+folder also holds the images, videos and certificates the site links to. A new working file added
+under `docs/` therefore **publishes by default**, at a URL nothing links to. That is how
+`build-grades.mjs`, `grades.csv`, `chemistry.csv` and `grades.json` came to be served: they were
+added without `exclude:` entries, right beside a `docs/specs.csv` line that had one. Add the
+exclusion in the same commit that adds the file, and check `_site/docs/` after a local build.
 
 Form pages get the specification **for the form they sell**, read from `specs.csv` via the URL's
 form segment. `build-specs.mjs` only ever wrote to hubs, so until now nothing generated the standard
