@@ -43,7 +43,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Seven generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Eight generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -51,13 +51,14 @@ node docs/build-search-index.mjs       # after adding/removing/renaming/retitlin
 node docs/build-prices.mjs             # after editing prices.csv
 node docs/build-price-worklist.mjs     # after adding/removing a page, or to queue up pricing work
 node docs/build-specs.mjs              # after editing docs/specs.csv
+node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
-`build-sitemap`, `build-search-index`, `build-prices`, `build-price-worklist`, `build-specs` and
-`powder-datasheets/build` all take `--check`, which reports drift and exits non-zero without
-writing. CI runs the price and
+`build-sitemap`, `build-search-index`, `build-prices`, `build-price-worklist`, `build-specs`,
+`build-cuts` and `powder-datasheets/build` all take `--check`, which reports drift and exits
+non-zero without writing. CI runs the price and
 specification checks on every pull request, because a price the HTML no longer matches is worse than
 no price at all, and a specification cited for the wrong product form tells a buyer the material is
 certified to something it is not.
@@ -110,11 +111,23 @@ The banner heading is the page's `<h1>`: `<h1 id="banner-title" class="banner-ti
 all. Copy the `<h1>` form. `.banner-title` carries `margin: 0` in all three stylesheets that define
 it precisely because it is now a heading — do not remove that.
 
-The JSON-LD on ~547 product pages contains an `offers` block with **no `price`**, which is invalid:
-Google requires `price` or `priceSpecification` whenever `offers` is present, so none of those pages
-are eligible for product rich results. Do not "fix" it by inventing a price — marking up a price that
-is not visible on the page violates Google's structured data policy and risks a manual action. Either
-remove `offers`, or publish a real price on the page and mark up what is shown.
+A `Product` node needs **one of `offers`, `review` or `aggregateRating`**, and an `offers` block
+needs a price. Google reports a node missing either as an *invalid item*, ineligible for rich
+results, so there are two ways to fail and only one of them is obvious.
+
+The site has been through both. ~547 pages once carried `offers` with no `price`; the `prices.csv`
+pipeline stripped those, and Search Console promptly raised the other error on what was left —
+because **stripping `offers` leaves a bare `Product` node, which is equally invalid**. Removing
+`offers` is a way out of one error and into the other, not a resting state.
+
+So a page with a `Product` node has exactly two honest endings: **publish a real price** on the page
+and mark up what is shown, or **remove the `Product` node** if it never will be priced. Never invent
+a price — marking up a figure the reader cannot see violates Google's structured data policy and
+risks a manual action — and never reach for `review` or `aggregateRating`, which would mean
+fabricating reviews, a worse breach than the invalid item it papers over.
+
+Count that state with a JSON-LD **parse**, not a regex. Priced pages use `lowPrice`/`highPrice` on
+an `AggregateOffer`, so grepping for `"price"` reports every correctly priced page as broken.
 
 `permalink: pretty` is set globally. URLs follow alloy → grade → form:
 `/inconel/` (family hub), `/inconel/600/` (grade), `/inconel/600/coil/` (form factor). A minority of
@@ -237,9 +250,33 @@ never separately.
 pages were in exactly that state. To retire a price, delete its row and re-run — the markup cleans
 itself up.
 
-`priceValidUntil` is derived from the `# updated:` line plus 45 days, so a monthly update that slips
-expires quietly instead of going on asserting a stale figure. Google uses a price only while it
-trusts it, the same way it treats `<lastmod>` — and loses trust the same way.
+What the strip does **not** do is make the page valid. It leaves a bare `Product` node, which Google
+reports under *"Either offers, review, or aggregateRating should be specified"* — see the rule under
+Architecture. The strip is the right default, because an unpriced page must not assert a price; but
+every page it touches is still an invalid item until it is either priced or has its `Product` node
+taken out. Treat the unpriced count in `prices-todo.csv` as a backlog of invalid items, not as a
+settled state.
+
+**Prices are re-quoted quarterly.** `priceValidUntil` is derived from the `# updated:` line plus
+`VALID_DAYS`, which is 100 — a little over a quarter, so a pass that slips a few weeks still has a
+valid price on the page, and a pass that never happens expires quietly instead of going on asserting
+a stale figure. Google uses a price only while it trusts it, the same way it treats `<lastmod>` — and
+loses trust the same way.
+
+The window and the cadence have to move together, and `VALID_DAYS` lives in **two** files that must
+agree: `docs/build-prices.mjs` and `docs/build-price-worklist.mjs`. Set it shorter than the gap
+between passes and every price spends the tail of each cycle expired, which drops it from the rich
+result — the 268 rich results this site has are only worth having while the date is in the future.
+Set it much longer and a pass nobody ran keeps asserting a figure nobody checked.
+
+What makes a quarter honest is the width of the ranges: the median row spans 2× low to high, so
+ordinary movement stays inside the figure already published. Roughly 37 rows are tighter than 1.5×
+— `/nimonic/115/plates/` is 1.17×, the Incoloy 825 rows are 1.25× — and those are the ones to widen
+or re-quote first. Stretching the window without widening them is how a wrong price gets published,
+and a wrong price is worse than no price.
+
+Re-quoting a single row off-cycle is fine and always has been: change it, bump `# updated:`, re-run.
+What cannot be ad-hoc is the window, because the expiry is derived from that one date.
 
 INR drives the schema. USD appears on the page as indicative only: two currencies in the markup means
 two prices that drift apart when the rate moves, and Google picks between them unpredictably. Update
@@ -330,9 +367,44 @@ than committing them. The task lives in
 `~/.claude/scheduled-tasks/nickelsheets-spec-review/SKILL.md`; `README.md` has the summary and the
 bulletin URLs.
 
+### Particle size cuts come from cuts.csv — do not type them onto powder pages
+
+Which cuts a grade is sold in is **not uniform** — that is the whole reason
+`docs/powder-datasheets/cuts.csv` exists. But every family and grade powder page had the same five
+cuts typed into it by hand, taken from `DEFAULT_CUTS`, which is the flyer's placeholder list rather
+than a stock record. So fifteen pages recited one answer whether or not it was true:
+
+- `/aluminium/alsi10mg/powder/` carried `20-63 µm` in its `<title>` and the five default cuts in its
+  body — which do not include 20–63. The page contradicted itself.
+- `/cobalt-alloys/cocrmo/powder/` recited 5–25 µm, which CoCrMo is not sold in. Its fine cut is 10–30.
+
+`docs/build-cuts.mjs` writes the list onto all fourteen family and grade powder pages from the CSV:
+
+```bash
+node docs/build-cuts.mjs          # after editing docs/powder-datasheets/cuts.csv
+node docs/build-cuts.mjs --check  # reports drift, writes nothing, exits non-zero
+```
+
+**It uses no marker comments**, unlike `build-specs.mjs`. The list appears up to seven times per page
+— JSON-LD `description`, `additionalProperty`, FAQ answer text, meta description, lead paragraph,
+spec table row, accordion body — and three of those sit inside JSON string literals where an HTML
+comment would be invalid. So it recognises a cut list **by its shape**: two or more `<n>-<n> µm`
+joined by `, ` or ` &middot; `. Requiring two is what keeps it off a single mention — `45-105 µm (EBM
+and DED) is the most commonly ordered` is a different claim, and so is the `20-63 µm` in the
+AlSi10Mg `<title>`. It preserves whichever separator the surrounding copy used.
+
+A family hub gets the **union** of its grades' cuts. The page → slug map is stated explicitly at the
+top of the script rather than derived from the path, because the mapping is not regular:
+`/tool-steel/maraging/` is backed by slug `maraging-ms1`, and Grade 5 and Grade 23 are two pages
+sharing one data sheet.
+
+**`/pages/products/powder/` is deliberately not generated.** Its grades table gives each grade its
+own cell with a per-process gloss rather than a flat list, so it is hand-maintained — but it makes
+the same claims. Change a row in `cuts.csv` and check that page too.
+
 ### Powder data sheets are generated, and are not Certificates of Analysis
 
-`docs/powder-datasheets/` holds sixteen metal powder grade data sheets generated from
+`docs/powder-datasheets/` holds seventeen metal powder grade data sheets generated from
 `data.mjs`. Output is standalone HTML in `sheets/`, printed to PDF from a browser. The folder is
 excluded in `_config.yml`, so nothing publishes until that line is removed deliberately.
 
