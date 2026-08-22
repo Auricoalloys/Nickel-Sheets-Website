@@ -1,0 +1,21 @@
+{
+  "generated_by": "docs/build-grades.mjs",
+  "note": "Specification data for internal tooling. Density in g/cm3. Only rows verified against a mill bulletin are included.",
+  "grades": [
+    {
+      "family": "inconel",
+      "grade": "625",
+      "name": "Inconel 625",
+      "uns": "N06625",
+      "uns_all": [
+        "N06625"
+      ],
+      "wnr": "2.4856",
+      "en_name": null,
+      "density_g_cm3": 8.44,
+      "melting_c": "1290-1350",
+      "source": "Special Metals INCONEL alloy 625 bulletin",
+      "checked": "2026-08"
+    }
+  ]
+}

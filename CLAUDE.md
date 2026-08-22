@@ -51,17 +51,19 @@ node docs/build-search-index.mjs       # after adding/removing/renaming/retitlin
 node docs/build-prices.mjs             # after editing prices.csv
 node docs/build-price-worklist.mjs     # after adding/removing a page, or to queue up pricing work
 node docs/build-specs.mjs              # after editing docs/specs.csv
+node docs/build-grades.mjs             # after editing docs/grades.csv or docs/chemistry.csv
 node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
 `build-sitemap`, `build-search-index`, `build-prices`, `build-price-worklist`, `build-specs`,
-`build-cuts` and `powder-datasheets/build` all take `--check`, which reports drift and exits
-non-zero without writing. CI runs the price and
-specification checks on every pull request, because a price the HTML no longer matches is worse than
-no price at all, and a specification cited for the wrong product form tells a buyer the material is
-certified to something it is not.
+`build-grades`, `build-cuts` and `powder-datasheets/build` all take `--check`, which reports drift
+and exits non-zero without writing. CI runs the price, specification and
+grade-data checks on every pull request, because a price the HTML no longer matches is worse than
+no price at all, a specification cited for the wrong product form tells a buyer the material is
+certified to something it is not, and a wrong UNS number tells them it is a different material
+altogether.
 
 Both live in `docs/` and are excluded from the build in `_config.yml`. Only the purge script needs
 npm (`purgecss@7`); the sitemap script is plain Node.
@@ -418,6 +420,85 @@ bulletin, rotating so the whole file is covered roughly every four months, and p
 than committing them. The task lives in
 `~/.claude/scheduled-tasks/nickelsheets-spec-review/SKILL.md`; `README.md` has the summary and the
 bulletin URLs.
+
+### Grade identity and chemistry come from grades.csv — do not type them onto pages
+
+A UNS number is the strongest claim a page makes: it tells a buyer exactly which material they are
+being offered. An audit of all 778 published pages on 2026-08-22 found the site contradicting
+itself at scale — **4 grades publishing conflicting UNS numbers, 24 conflicting Werkstoff numbers,
+51 grades whose sibling pages disagreed on chemistry and 61 density/melting disagreements**. The
+same failure as the prices and the specs before their CSVs existed: one figure typed onto a form
+page, a form hub and a grade hub, with nothing keeping the three in step.
+
+The errors cluster in one place. **The round-bar pages are a separately-written batch** and carry
+most of them: `incoloy/800/round-bar` cited 2.4952, which is Nimonic 80A's number; `hastelloy/C2000/round-bar`
+cited 2.4605, which is alloy 59's.
+
+Three verified examples of the kind of disagreement this fixes, each confirmed by reading the pages:
+
+- `inconel/600` nickel reads `72.0 – 80.0` on sheets, `72.0`–`76.0` on round bar and `≈72.0 min` on
+  plates. The mill says **72.0 min** — both upper bounds were invented.
+- `monel/K-500` density is `8.8` on sheets and `8.44` on round bar. 8.80 is **Monel 400's** density,
+  carried over with the template; K-500 is 8.44.
+- `NiCr 20/25` density is `7.8` on plates and `8.9` on round bar — a 14% disagreement about the same
+  material, which is a weight-calculation error as much as a documentation one.
+
+A caution learned while writing that audit: when a scanner strips HTML tags, two adjacent `<td>`
+cells concatenate, so `<td>19.0</td><td>23.0</td>` reads as `19.023.0` and looks like a dropped
+dash. Several "typo cells" reported in the first pass were artifacts of exactly that and were not
+real. **Compare cell by cell, and normalise numbers before calling two pages different** — otherwise
+`8.80 g/cm³` and `8.8` count as a conflict.
+
+Two files, joined to `docs/specs.csv` on `(family, grade)` — all three must use identical keys:
+
+- **`docs/grades.csv`** — one row per grade: `uns`, `wnr`, `en_name`, `density_g_cm3`, `melting_c`,
+  plus `source` and `checked`.
+- **`docs/chemistry.csv`** — long format, one row per element limit, plus an optional `note` for a
+  qualifier the bulletin itself prints (`if determined` against cobalt in the INCONEL 625 sheet).
+  Rows print in file order, so keep each grade's rows in the order its bulletin prints them.
+
+```bash
+node docs/build-grades.mjs          # write the tables into the pages
+node docs/build-grades.mjs --check  # drift + cross-file disagreement, exits non-zero
+node docs/build-grades.mjs --lint   # only the contradiction report
+```
+
+**The publication gate is what makes this safe to adopt gradually.** The writer only touches a grade
+whose row carries a `checked` date *and* a `source` that is not `pending`. Every other grade keeps
+its hand-written tables. So the CSV can be filled in one sitting and adopted family by family, and
+seeding it changes no page until a human has verified the row. Rows currently seeded as `pending`
+are a starting point for verification, **not** verified data — do not clear `pending` without
+reading the bulletin.
+
+**The lint runs on every page regardless of verification state**, and that is the half that paid off
+first: reporting a wrong UNS does not require the replacement to be ready. It checks only the
+*identity zone* — title, meta description, og/twitter, JSON-LD `name` — because a UNS in the body is
+usually a legitimate mention of a sibling grade in a cross-link list. A page whose identity zone
+names more than one grade of its family (the combined foil pages) is skipped rather than judged
+against one of them.
+
+CI runs `--check`, which fails on drift and on the two files disagreeing with `specs.csv` about what
+a grade *is*. It does **not** yet fail on lint findings: 31 pages carry an identifier that needs
+checking against a bulletin first, and failing now would block every unrelated PR. **Add `--strict`
+to the CI step once that backlog is cleared**, or the guard never closes.
+
+Three details worth keeping:
+
+- A grade may carry **more than one UNS** where the mills publish more than one — duplex 2205 is
+  `S32205 / S31803`, the modern higher-nitrogen version and the original. Most current first.
+- An **empty cell and `-` are different claims.** Empty means "not verified yet" and drops its row
+  from the table; `-` means "the mill publishes no such designation" and prints a dash. Never write
+  `-` to mean "I could not find it".
+- `density_g_cm3` is a **bare number** on purpose. `build-grades.mjs` emits `docs/grades.json` from
+  it so a weight calculator can consume it directly; a range or a `≈` breaks that. `docs/` is
+  excluded from the build, so nothing publishes until that exclusion is lifted deliberately.
+
+Form pages get the specification **for the form they sell**, read from `specs.csv` via the URL's
+form segment. `build-specs.mjs` only ever wrote to hubs, so until now nothing generated the standard
+on the ~300 form pages — which is how `/inconel/625/wire/` came to cite B443, a plate spec, in seven
+places.
+
+Reviewed **quarterly, like prices** — see the review task below.
 
 ### Particle size cuts come from cuts.csv — do not type them onto powder pages
 

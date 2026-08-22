@@ -21,6 +21,9 @@ on:
       - "docs/build-prices.mjs"
       - "docs/specs.csv"
       - "docs/build-specs.mjs"
+      - "docs/grades.csv"
+      - "docs/chemistry.csv"
+      - "docs/build-grades.mjs"
   push:
     branches: [main]
     paths:
@@ -28,6 +31,8 @@ on:
       - "_includes/**"
       - "prices.csv"
       - "docs/specs.csv"
+      - "docs/grades.csv"
+      - "docs/chemistry.csv"
   workflow_dispatch:
 
 permissions:
@@ -60,6 +65,18 @@ jobs:
       # was edited without re-running the generator.
       - name: Spec tables match docs/specs.csv
         run: node docs/build-specs.mjs --check
+
+      # A UNS number is the strongest claim a page makes - it tells a buyer
+      # exactly which material they are being offered. This fails the build when
+      # grades.csv or chemistry.csv was edited without re-running the generator,
+      # and when the two files disagree with specs.csv about what a grade is.
+      #
+      # Contradictions found by the lint are reported but do not fail yet: 31
+      # pages carry an identifier that needs checking against a mill bulletin
+      # before it can be corrected, and failing now would block every unrelated
+      # PR. Add --strict once that backlog is cleared, and this guard closes.
+      - name: Grade data matches docs/grades.csv
+        run: node docs/build-grades.mjs --check
 
       - name: Run audit
         id: audit

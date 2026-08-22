@@ -1,0 +1,223 @@
+# Chemical composition limits, one row per element per grade. Joined to
+# docs/grades.csv and docs/specs.csv on (family, grade) - all three files must
+# use identical keys.
+#
+# docs/build-grades.mjs writes the Chemical Composition table onto every page
+# from these rows, in the order the rows appear here. Put the alloying elements
+# first and the tramp/residual limits last, the way a mill bulletin does.
+#
+# WHY LONG FORMAT rather than a column per element: no two grades share an
+# element list, so a wide table would be mostly empty cells, and a single
+# changed limit would show up in a diff as one changed line instead of one
+# changed row of forty. It also stays editable in Excel without horizontal
+# scrolling past dozens of blank columns.
+#
+# WHY THIS FILE EXISTS: dozens of grades had sibling pages disagreeing with each
+# other on chemistry. inconel/600/sheets said nickel 72.0-80.0, round-bar said
+# 72.0-76.0, plates said "~72.0 min" - the mill says 72.0 min and both ranges
+# were invented. Three pages, three different answers about the same material.
+#
+# FILL A CELL ONLY FROM A MILL TECHNICAL BULLETIN, never from a distributor
+# listing and never from this site's own pages. See docs/grades.csv for the
+# full rule and the publication gate: chemistry is written onto a page only
+# when that grade's row in grades.csv carries a `checked` date, so seeding a
+# grade here changes nothing until a human has verified it.
+#
+# COLUMNS
+#   family, grade   join key, must match docs/grades.csv exactly
+#   element         element symbol (Ni, Cr, Nb+Ta). The display name is
+#                   derived, so "Nb+Ta" prints as "Niobium + Tantalum (Nb+Ta)".
+#   min             lower limit, or empty where the mill states a maximum only
+#   max             upper limit, "bal" for balance/remainder
+#   note            a qualifier the bulletin prints against that element, e.g.
+#                   "if determined" on cobalt in the INCONEL 625 bulletin.
+#                   Leave empty unless the bulletin actually carries one.
+#
+# A "0.015 max" limit is min empty, max 0.015. A "72.0 min" limit is min 72.0,
+# max empty. Do not write "-" in a numeric cell; leave it empty.
+#
+# Rows are printed in the order they appear here, so keep each grade's rows in
+# the order its bulletin prints them - a buyer comparing the page against the
+# mill's own table should not have to hunt.
+#
+# After editing: node docs/build-grades.mjs   then commit the changed pages.
+
+family,grade,element,min,max,note
+inconel,600,Ni,72.0,
+inconel,600,Cr,14.0,17.0
+inconel,600,Fe,6.0,10.0
+inconel,600,C,,0.15
+inconel,600,Mn,,1.0
+inconel,600,S,,0.015
+inconel,600,Si,,0.50
+inconel,600,Cu,,0.50
+inconel,601,Ni,58.0,63.0
+inconel,601,Cr,21.0,25.0
+inconel,601,Al,1.0,1.7
+inconel,601,Fe,,bal
+inconel,601,C,,0.10
+inconel,601,Mn,,1.0
+inconel,601,S,,0.015
+inconel,601,Si,,0.50
+inconel,601,Cu,,1.0
+inconel,625,Ni,58.0,,
+inconel,625,Cr,20.0,23.0,
+inconel,625,Fe,,5.0,
+inconel,625,Mo,8.0,10.0,
+inconel,625,Nb+Ta,3.15,4.15,
+inconel,625,C,,0.10,
+inconel,625,Mn,,0.50,
+inconel,625,Si,,0.50,
+inconel,625,P,,0.015,
+inconel,625,S,,0.015,
+inconel,625,Al,,0.40,
+inconel,625,Ti,,0.40,
+inconel,625,Co,,1.0,if determined
+inconel,718,Ni,50.0,55.0
+inconel,718,Cr,17.0,21.0
+inconel,718,Fe,,bal
+inconel,718,Nb+Ta,4.75,5.50
+inconel,718,Mo,2.80,3.30
+inconel,718,Ti,0.65,1.15
+inconel,718,Al,0.20,0.80
+inconel,718,Co,,1.0
+inconel,718,Cu,,0.30
+inconel,718,C,,0.08
+inconel,718,Mn,,0.35
+inconel,718,Si,,0.35
+inconel,718,P,,0.015
+inconel,718,S,,0.015
+inconel,718,B,,0.006
+inconel,X-750,Ni,70.0,
+inconel,X-750,Cr,14.0,17.0
+inconel,X-750,Fe,5.0,9.0
+inconel,X-750,Ti,2.25,2.75
+inconel,X-750,Nb+Ta,0.70,1.20
+inconel,X-750,Al,0.40,1.00
+inconel,X-750,Co,,1.0
+inconel,X-750,Cu,,0.50
+inconel,X-750,C,,0.08
+inconel,X-750,Mn,,1.0
+inconel,X-750,Si,,0.50
+inconel,X-750,S,,0.010
+incoloy,800,Ni,30.0,35.0
+incoloy,800,Cr,19.0,23.0
+incoloy,800,Fe,39.5,
+incoloy,800,Al,0.15,0.60
+incoloy,800,Ti,0.15,0.60
+incoloy,800,C,,0.10
+incoloy,800,Mn,,1.5
+incoloy,800,Si,,1.0
+incoloy,800,Cu,,0.75
+incoloy,800,S,,0.015
+incoloy,800H,Ni,30.0,35.0
+incoloy,800H,Cr,19.0,23.0
+incoloy,800H,Fe,39.5,
+incoloy,800H,C,0.05,0.10
+incoloy,800H,Al,0.15,0.60
+incoloy,800H,Ti,0.15,0.60
+incoloy,800H,Mn,,1.5
+incoloy,800H,Si,,1.0
+incoloy,800H,Cu,,0.75
+incoloy,800H,S,,0.015
+incoloy,825,Ni,38.0,46.0
+incoloy,825,Cr,19.5,23.5
+incoloy,825,Fe,22.0,
+incoloy,825,Mo,2.5,3.5
+incoloy,825,Cu,1.5,3.0
+incoloy,825,Ti,0.6,1.2
+incoloy,825,Al,,0.2
+incoloy,825,C,,0.05
+incoloy,825,Mn,,1.0
+incoloy,825,Si,,0.5
+incoloy,825,S,,0.03
+monel,400,Ni,63.0,
+monel,400,Cu,28.0,34.0
+monel,400,Fe,,2.5
+monel,400,Mn,,2.0
+monel,400,C,,0.3
+monel,400,Si,,0.5
+monel,400,S,,0.024
+monel,K-500,Ni,63.0,
+monel,K-500,Cu,27.0,33.0
+monel,K-500,Al,2.30,3.15
+monel,K-500,Ti,0.35,0.85
+monel,K-500,Fe,,2.0
+monel,K-500,Mn,,1.5
+monel,K-500,C,,0.25
+monel,K-500,Si,,0.5
+monel,K-500,S,,0.010
+hastelloy,C-276,Ni,,bal
+hastelloy,C-276,Cr,14.5,16.5
+hastelloy,C-276,Mo,15.0,17.0
+hastelloy,C-276,Fe,4.0,7.0
+hastelloy,C-276,W,3.0,4.5
+hastelloy,C-276,Co,,2.5
+hastelloy,C-276,Mn,,1.0
+hastelloy,C-276,V,,0.35
+hastelloy,C-276,C,,0.01
+hastelloy,C-276,Si,,0.08
+hastelloy,C-276,P,,0.04
+hastelloy,C-276,S,,0.03
+hastelloy,C-22,Ni,,bal
+hastelloy,C-22,Cr,20.0,22.5
+hastelloy,C-22,Mo,12.5,14.5
+hastelloy,C-22,Fe,2.0,6.0
+hastelloy,C-22,W,2.5,3.5
+hastelloy,C-22,Co,,2.5
+hastelloy,C-22,Mn,,0.50
+hastelloy,C-22,V,,0.35
+hastelloy,C-22,C,,0.015
+hastelloy,C-22,Si,,0.08
+hastelloy,C-22,P,,0.02
+hastelloy,C-22,S,,0.02
+hastelloy,X,Ni,,bal
+hastelloy,X,Cr,20.5,23.0
+hastelloy,X,Fe,17.0,20.0
+hastelloy,X,Mo,8.0,10.0
+hastelloy,X,Co,0.5,2.5
+hastelloy,X,W,0.2,1.0
+hastelloy,X,C,0.05,0.15
+hastelloy,X,Mn,,1.0
+hastelloy,X,Si,,1.0
+nimonic,75,Ni,,bal
+nimonic,75,Cr,18.0,21.0
+nimonic,75,Ti,0.2,0.6
+nimonic,75,C,0.08,0.15
+nimonic,75,Fe,,5.0
+nimonic,75,Mn,,1.0
+nimonic,75,Si,,1.0
+nimonic,75,Cu,,0.5
+nimonic,80A,Ni,,bal
+nimonic,80A,Cr,18.0,21.0
+nimonic,80A,Ti,1.8,2.7
+nimonic,80A,Al,1.0,1.8
+nimonic,80A,Co,,2.0
+nimonic,80A,Fe,,3.0
+nimonic,80A,C,,0.10
+nimonic,80A,Mn,,1.0
+nimonic,80A,Si,,1.0
+nimonic,80A,Cu,,0.2
+nimonic,90,Ni,,bal
+nimonic,90,Cr,18.0,21.0
+nimonic,90,Co,15.0,21.0
+nimonic,90,Ti,1.8,3.0
+nimonic,90,Al,1.0,2.0
+nimonic,90,Fe,,1.5
+nimonic,90,C,,0.13
+nimonic,90,Mn,,1.0
+nimonic,90,Si,,1.0
+titanium,Grade 2,Ti,,bal
+titanium,Grade 2,Fe,,0.30
+titanium,Grade 2,O,,0.25
+titanium,Grade 2,C,,0.08
+titanium,Grade 2,N,,0.03
+titanium,Grade 2,H,,0.015
+titanium,Grade 5,Ti,,bal
+titanium,Grade 5,Al,5.50,6.75
+titanium,Grade 5,V,3.50,4.50
+titanium,Grade 5,Fe,,0.40
+titanium,Grade 5,O,,0.20
+titanium,Grade 5,C,,0.08
+titanium,Grade 5,N,,0.05
+titanium,Grade 5,H,,0.015
