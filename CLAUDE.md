@@ -121,13 +121,31 @@ because **stripping `offers` leaves a bare `Product` node, which is equally inva
 `offers` is a way out of one error and into the other, not a resting state.
 
 So a page with a `Product` node has exactly two honest endings: **publish a real price** on the page
-and mark up what is shown, or **remove the `Product` node** if it never will be priced. Never invent
+and mark up what is shown, or **publish no `Product` node at all** until it is priced. Never invent
 a price — marking up a figure the reader cannot see violates Google's structured data policy and
 risks a manual action — and never reach for `review` or `aggregateRating`, which would mean
 fabricating reviews, a worse breach than the invalid item it papers over.
 
-Count that state with a JSON-LD **parse**, not a regex. Priced pages use `lowPrice`/`highPrice` on
-an `AggregateOffer`, so grepping for `"price"` reports every correctly priced page as broken.
+`build-prices.mjs` now takes the second ending automatically. A page with no row in `prices.csv`
+has its `offers` stripped **and its `Product` node parked** — wrapped in an HTML comment between
+`product-unpriced:start` and `product-unpriced:end`, so Google never sees it. Add a row and the next
+run unwraps the node and writes the offer into it.
+
+Parked, not deleted, because these pages are a **backlog and not a verdict**: `prices-todo.csv`
+exists to list pages that are going to be priced. Deleting would throw away the `name`, `sku`,
+`material` and `image` no row in `prices.csv` could put back, and would silently break the two
+things that make the backlog work — `build-prices.mjs` hangs a new `offers` block off the
+`manufacturer`/`brand` key **inside** the `Product` node, so with the node gone a newly priced page
+takes the visible figure and no markup (and says nothing, because that warning lives inside the
+branch a missing node skips); and `build-price-worklist.mjs` selects pages by matching
+`"@type": "Product"` in the raw page, so the queue would empty out on the run that fixed it.
+
+Both of those depend on the parked node staying **findable as text**. Do not switch either script to
+a JSON-LD parse for that particular test.
+
+Count the invalid-item state with a JSON-LD **parse**, not a regex — and strip HTML comments first,
+or the parked nodes read as still-broken. Priced pages use `lowPrice`/`highPrice` on an
+`AggregateOffer`, so grepping for `"price"` reports every correctly priced page as broken.
 
 `permalink: pretty` is set globally. URLs follow alloy → grade → form:
 `/inconel/` (family hub), `/inconel/600/` (grade), `/inconel/600/coil/` (form factor). A minority of
@@ -281,12 +299,15 @@ never separately.
 pages were in exactly that state. To retire a price, delete its row and re-run — the markup cleans
 itself up.
 
-What the strip does **not** do is make the page valid. It leaves a bare `Product` node, which Google
-reports under *"Either offers, review, or aggregateRating should be specified"* — see the rule under
-Architecture. The strip is the right default, because an unpriced page must not assert a price; but
-every page it touches is still an invalid item until it is either priced or has its `Product` node
-taken out. Treat the unpriced count in `prices-todo.csv` as a backlog of invalid items, not as a
-settled state.
+The strip alone does **not** make the page valid — it leaves a bare `Product` node, which Google
+reports under *"Either offers, review, or aggregateRating should be specified"*. So the same run also
+**parks** that node in an HTML comment; see the rule under Architecture for why it is parked rather
+than deleted, and what depends on it staying findable as text. Between them the two steps leave an
+unpriced page asserting no price and publishing no invalid item.
+
+Treat the count in `prices-todo.csv` as a **pricing backlog**, not as a list of broken pages. Those
+258 pages are valid as they stand — they keep their `BreadcrumbList`, and 67 keep their `FAQPage`.
+What they do not have is a product rich result, and only a real price earns that.
 
 **Prices are re-quoted quarterly.** `priceValidUntil` is derived from the `# updated:` line plus
 `VALID_DAYS`, which is 100 — a little over a quarter, so a pass that slips a few weeks still has a

@@ -119,8 +119,54 @@ function stripOffers(s) {
     .replace(/\s*<tr><th[^>]*>Price<\/th><td>[\s\S]*?<\/td><\/tr>/g, '');
 }
 
+// Stripping the offers does not make the page valid, it renames the error.
+// What is left is a bare Product node, which Google reports under "Either
+// offers, review, or aggregateRating should be specified" - the same invalid
+// item, a different message. So an unpriced page must publish no Product node
+// at all.
+//
+// The node is PARKED rather than deleted. These pages are a pricing backlog and
+// not pages that will never carry a price - prices-todo.csv exists to list them
+// - so the removal has to survive a price arriving later. Deleting would throw
+// away the name, sku, material and image that no row in prices.csv could put
+// back. Wrapped in a comment the node is invisible to Google and one
+// substitution away from returning.
+//
+// The wrapper is an HTML comment, so the node must not contain "--", the one
+// sequence a comment cannot hold. No bare Product block on this site does;
+// parkProduct re-checks per block rather than trusting that, and leaves the
+// node alone if it ever stops being true.
+//
+// It stays findable as text on purpose: build-price-worklist.mjs decides what
+// belongs in the queue by matching "@type": "Product" in the raw page, and a
+// parked node still matches, so parking a page does not drop it off the
+// backlog that remembers it still needs a price.
+const PARK_OPEN = '<!-- product-unpriced:start\n' +
+  '     Parked by docs/build-prices.mjs: this page has no row in prices.csv, and\n' +
+  '     a Product node with no offers is an invalid item in Search Console. The\n' +
+  '     node is kept here so that adding a price row brings it back, markup and\n' +
+  '     visible figure together. Add the price in prices.csv, not here.\n';
+const PARK_CLOSE = '\nproduct-unpriced:end -->';
+const PARKED = /<!-- product-unpriced:start\n(?:[^\n]*\n)*?(<script type="application\/ld\+json">[\s\S]*?<\/script>)\nproduct-unpriced:end -->/g;
+
+function parkProduct(s) {
+  return s.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (whole, body) => {
+    let node;
+    try { node = JSON.parse(body); } catch { return whole; }
+    // Only a lone Product node. An array or @graph would need the offers test
+    // applied per member, and nothing on this site publishes one that way.
+    if (Array.isArray(node) || node['@graph']) return whole;
+    if (node['@type'] !== 'Product') return whole;
+    if (node.offers || node.review || node.aggregateRating) return whole;
+    if (whole.includes('--')) return whole;
+    return PARK_OPEN + whole + PARK_CLOSE;
+  });
+}
+
+const unparkProduct = s => s.replace(PARKED, (_, node) => node);
+
 // ---- apply ------------------------------------------------------------------
-let priced = 0, stripped = 0, drift = [], noAnchor = [], noSchemaAnchor = [];
+let priced = 0, stripped = 0, parkedPages = 0, drift = [], noAnchor = [], noSchemaAnchor = [];
 
 for (const fp of walk(ROOT)) {
   const rel = path.relative(ROOT, fp).split(path.sep).join('/');
@@ -134,6 +180,19 @@ for (const fp of walk(ROOT)) {
   const crlf = raw.includes('\r\n');
   let s = raw.replace(/\r\n/g, '\n');
   const before = s;
+
+  // Unpark before anything reads the page, so the rest of this loop always sees
+  // a live document and never has to ask which of the two states it is in. A
+  // page that stays unpriced is parked again at the end, byte for byte, so the
+  // round trip shows up as no change rather than as drift.
+  //
+  // This is also what makes a page priced after a spell without a row work: the
+  // offers insertion below looks for a Product node, and a parked one is inside
+  // a comment. Leave it parked and the page takes the visible figure with no
+  // markup behind it - and says nothing, because the warning for that sits
+  // inside the branch a missing Product node skips.
+  s = unparkProduct(s);
+
   const row = rows.get(url);
 
   if (row) {
@@ -184,6 +243,7 @@ for (const fp of walk(ROOT)) {
     if (!shown) {
       noAnchor.push(rel);
       s = stripOffers(s);
+      s = parkProduct(s);
     } else {
 
     s = s.replace(/"@type":\s*"Offer",\n(\s*)/g,
@@ -222,7 +282,11 @@ for (const fp of walk(ROOT)) {
     // no row: an offers block with no price is invalid, so remove it entirely
     if (/"offers":\s*\{/.test(s)) stripped++;
     s = stripOffers(s);
+    // ...and what that leaves behind is invalid too, so it does not stay either
+    s = parkProduct(s);
   }
+  if (PARKED.test(s)) parkedPages++;
+  PARKED.lastIndex = 0;   // /g regex: .test carries lastIndex between calls
 
   if (s !== before) {
     if (CHECK) drift.push(rel);
@@ -243,6 +307,7 @@ if (CHECK) {
 console.log(`prices written from prices.csv (updated ${updated})`);
 console.log(`  priced pages          : ${priced}`);
 console.log(`  offers removed        : ${stripped}`);
+console.log(`  Product nodes parked  : ${parkedPages}  (unpriced; restored when a row is added)`);
 console.log(`  priceValidUntil       : ${validUntil}  (${VALID_DAYS} days after the update)`);
 if (noAnchor.length) {
   console.log(`  nowhere on the page to show the price (${noAnchor.length}) - skipped, no markup written:`);

@@ -154,6 +154,13 @@ for (const fp of walk(ROOT)) {
   // Only a Product node can carry offers, so only a Product page can be "off the
   // schema" in the sense that matters here. Country landing pages and family
   // hubs have spec tables but no Product node, and are deliberately left out.
+  //
+  // Deliberately a text match on the raw page rather than a JSON-LD parse. An
+  // unpriced page has its Product node parked inside an HTML comment by
+  // build-prices.mjs, because a Product with no offers is an invalid item - and
+  // a parse would not see it, so every page in this queue would drop out of the
+  // queue the moment it was parked. That is the whole backlog disappearing on
+  // the run that fixes the markup. Keep this matching parked nodes too.
   if (!/"@type":\s*"Product"/.test(s)) continue;
 
   // The same three anchors docs/build-prices.mjs looks for, in the same order.
