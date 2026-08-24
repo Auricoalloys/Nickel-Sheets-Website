@@ -372,16 +372,37 @@ function identityZone(raw) {
 // one of them.
 function gradesNamedIn(zone, family) {
   const z = zone.toLowerCase();
-  const hits = new Set();
+  // Where each grade name is mentioned, not merely whether - the spans are what
+  // the de-duplication below needs.
+  const spans = new Map();
   for (const r of grades.filter(x => x.family === family)) {
     const g = r.grade.replace(/\([^)]*\)/g, '').trim();
     if (!g || g === '-') continue;
     const pat = g.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/[\s-]+/g, '[\\s\\u00ae.-]*');
-    if (new RegExp(`(?:^|[^a-z0-9])${pat}(?![a-z0-9])`, 'i').test(z)) hits.add(r.grade);
+    const re = new RegExp(`(?:^|[^a-z0-9])(${pat})(?![a-z0-9])`, 'ig');
+    const at = [...z.matchAll(re)].map(m => {
+      const s = m.index + m[0].length - m[1].length;
+      return [s, s + m[1].length];
+    });
+    if (at.length) spans.set(r.grade, at);
   }
-  // "625 LCF" also matches "625"; keep only the most specific.
-  for (const a of [...hits]) for (const b of [...hits]) if (a !== b && norm(b).startsWith(norm(a))) hits.delete(a);
-  return hits;
+  // "625 LCF" also matches "625", so the shorter name is dropped - but ONLY
+  // where every one of its mentions sits inside a longer one. Dropping it
+  // unconditionally collapsed /incoloy/800H/, which names both grades and
+  // prints a UNS for each ("800H (UNS N08810) and 800HT (N08811)"), down to
+  // 800HT alone - so the lint judged N08811 against 800H and reported a page
+  // that was right. The mill itself says 800HT "can be certified to either or
+  // both UNS numbers", so a page carrying the pair is correct, not a fault.
+  for (const [a, aSpans] of [...spans]) {
+    for (const [b, bSpans] of spans) {
+      if (a === b || !norm(b).startsWith(norm(a))) continue;
+      if (aSpans.every(([s, e]) => bSpans.some(([bs, be]) => s >= bs && e <= be))) {
+        spans.delete(a);
+        break;
+      }
+    }
+  }
+  return new Set(spans.keys());
 }
 
 const findings = [];

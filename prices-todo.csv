@@ -21,7 +21,7 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-08-22 by docs/build-price-worklist.mjs
+# generated: 2026-08-24 by docs/build-price-worklist.mjs
 # pending: 258 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit

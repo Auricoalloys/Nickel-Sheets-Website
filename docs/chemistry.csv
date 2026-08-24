@@ -195,12 +195,41 @@ inconel,X-750,C,,0.08
 inconel,X-750,Mn,,1.0
 inconel,X-750,Si,,0.50
 inconel,X-750,S,,0.010
+# RA330 (N08330), from the Rolled Alloys sheet. Rows in that sheet's own column
+# order. Fe is the balance, and the sheet states no minimum for Mn, Cu, P or S.
+incoloy,DS,Cr,18.0,20.0
+incoloy,DS,Ni,34.0,37.0
+incoloy,DS,Mn,,2.0
+incoloy,DS,Si,1.0,1.5
+incoloy,DS,Cu,,1.0
+incoloy,DS,P,,0.03
+incoloy,DS,S,,0.03
+incoloy,DS,C,0.04,0.08
+incoloy,DS,Fe,,bal
+# INCOLOY 800, 800H and 800HT share one "General Requirements" table in the
+# Special Metals bulletin, which is why the three blocks below run in the same
+# order. What separates the grades is the carbon/aluminium/titanium band: 800H
+# and 800HT are the creep-resisting versions, and 800HT tightens Al, Ti and
+# Al+Ti further still. Getting Al+Ti wrong is what makes an 800HT order arrive
+# as 800H, so the combined limit is published as its own row the way the mill
+# prints it, not left for the reader to add up.
+#
+# WHERE THE RESIDUALS COME FROM: the bulletin's Table 1 stops at "ASTM grain
+# size" and states no Mn, Si, Cu, P or S limit for any of the three - checked
+# against the full text of incoloy-alloy-800h-800ht.pdf, not an excerpt. Those
+# five rows therefore come from the product standards (ASTM B409 / B408 and
+# EN 10095), NOT from the mill. Re-verify them against the standard, not the
+# bulletin, or a quarterly pass will keep looking for rows that were never
+# there. Phosphorus is an EN 10095 limit with no ASTM B409 counterpart, which
+# is why only 800HT carries it so far - 800 and 800H need the same row read off
+# EN 10095 before it can be added to them.
 incoloy,800,Ni,30.0,35.0
 incoloy,800,Cr,19.0,23.0
 incoloy,800,Fe,39.5,
+incoloy,800,C,,0.10
 incoloy,800,Al,0.15,0.60
 incoloy,800,Ti,0.15,0.60
-incoloy,800,C,,0.10
+incoloy,800,Al+Ti,0.30,1.20
 incoloy,800,Mn,,1.5
 incoloy,800,Si,,1.0
 incoloy,800,Cu,,0.75
@@ -211,21 +240,60 @@ incoloy,800H,Fe,39.5,
 incoloy,800H,C,0.05,0.10
 incoloy,800H,Al,0.15,0.60
 incoloy,800H,Ti,0.15,0.60
+incoloy,800H,Al+Ti,0.30,1.20
 incoloy,800H,Mn,,1.5
 incoloy,800H,Si,,1.0
 incoloy,800H,Cu,,0.75
 incoloy,800H,S,,0.015
+incoloy,800HT,Ni,30.0,35.0
+incoloy,800HT,Cr,19.0,23.0
+incoloy,800HT,Fe,39.5,
+incoloy,800HT,C,0.06,0.10
+incoloy,800HT,Al,0.25,0.60
+incoloy,800HT,Ti,0.25,0.60
+incoloy,800HT,Al+Ti,0.85,1.20
+incoloy,800HT,Mn,,1.5
+incoloy,800HT,Si,,1.0
+incoloy,800HT,Cu,,0.75
+incoloy,800HT,P,,0.045
+incoloy,800HT,S,,0.015
 incoloy,825,Ni,38.0,46.0
-incoloy,825,Cr,19.5,23.5
 incoloy,825,Fe,22.0,
+incoloy,825,Cr,19.5,23.5
 incoloy,825,Mo,2.5,3.5
 incoloy,825,Cu,1.5,3.0
 incoloy,825,Ti,0.6,1.2
-incoloy,825,Al,,0.2
 incoloy,825,C,,0.05
 incoloy,825,Mn,,1.0
-incoloy,825,Si,,0.5
 incoloy,825,S,,0.03
+incoloy,825,Si,,0.5
+incoloy,825,Al,,0.2
+incoloy,903,Ni,36.0,40.0
+incoloy,903,Co,13.0,17.0
+incoloy,903,Al,0.30,1.15
+incoloy,903,Ti,1.00,1.85
+incoloy,903,Nb,2.40,3.50
+incoloy,903,Fe,,bal
+incoloy,909,Ni,35.0,40.0
+incoloy,909,Co,12.0,16.0
+incoloy,909,Nb,4.3,5.2
+incoloy,909,Ti,1.3,1.8
+incoloy,909,Fe,,bal
+incoloy,909,Si,0.25,0.50
+incoloy,909,Al,,0.15
+incoloy,909,C,,0.06
+incoloy,925,Ni,42.0,46.0
+incoloy,925,Cr,19.5,22.5
+incoloy,925,Fe,22,
+incoloy,925,Mo,2.5,3.5
+incoloy,925,Cu,1.5,3.0
+incoloy,925,Ti,1.9,2.4
+incoloy,925,Al,0.1,0.5
+incoloy,925,Mn,,1.0
+incoloy,925,Si,,0.5
+incoloy,925,Nb,,0.5
+incoloy,925,C,,0.03
+incoloy,925,S,,0.03
 monel,400,Ni,63.0,
 monel,400,Cu,28.0,34.0
 monel,400,Fe,,2.5

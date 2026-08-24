@@ -1448,7 +1448,6 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-330-800-foil-supplier-trader-stockist-exporter-in-mumbai-india/</loc>
-    <lastmod>2026-08-21</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
@@ -1521,40 +1520,6 @@ sitemap: false
     <lastmod>2026-08-20</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/incoloy-sheets.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/incoloy/330/</loc>
-    <lastmod>2026-08-20</lastmod>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/incoloy/330/plates/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/incoloy/330/round-bar/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/Haynes-2.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/Incoloy-800H-round-bars.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/incoloy/330/sheets/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1825,6 +1790,36 @@ sitemap: false
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Incoloy-800H-round-bars.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/incoloy/DS/</loc>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/incoloy/DS/plates/</loc>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/incoloy/DS/round-bar/</loc>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/Haynes-2.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/Incoloy-800H-round-bars.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/incoloy/DS/sheets/</loc>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2672,14 +2667,14 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/783/billets/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/Round-Bars.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/783/round-bar/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/Round-Bars.webp</image:loc>
     </image:image>

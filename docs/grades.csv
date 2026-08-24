@@ -77,15 +77,55 @@ inconel,740H,N07740,,,8.05,1288-1362,Special Metals INCONEL alloy 740H bulletin,
 inconel,751,N07751,,,8.22,1390-1430,Special Metals INCONEL alloy 751 bulletin,2026-08
 inconel,783,R30783,,,7.81,1336-1407,Special Metals INCONEL alloy 783 bulletin,2026-08
 inconel,X-750,N07750,2.4669,,8.28,1393-1427,Special Metals INCONEL alloy X-750 bulletin,2026-08
-incoloy,330,N08330,1.4864,X12NiCrSi35-16,8.08,1371-1427,pending,
+# THIS ROW IS ALLOY 330 (RA330), not INCOLOY alloy DS, despite the key. The key
+# has to be "DS" to match the /incoloy/DS/ URL segment - that is how
+# build-grades.mjs resolves a page to a row - but the page at that URL covers
+# BOTH grades, and this row holds the one its ASTM specs describe.
+#
+# The two are close cousins, not the same material, and the mill sheets disagree
+# on every column:
+#              Alloy 330 / RA330      INCOLOY alloy DS
+#   W. Nr.     1.4886                 1.4862
+#   Spec       ASTM B536/B511/B535    B.S. 3073 NA17
+#   Cr %       18.0-20.0              17.0-19.0
+#   Si %       1.0-1.5                1.9-2.6
+#   Mn %       2.0 max                0.8-1.5
+#   C %        0.04-0.08              0.10 max
+#   density    7.94                   7.86
+#   melting C  1343-1393              1330-1400
+# Registers do list Incoloy DS against N08330 too, but that silicon band sits
+# above the ASTM grade's, so the equivalence is a marketing one. There is no
+# row for DS itself yet: build-grades.mjs maps one grade per page and cannot
+# write two identity tables onto a combined page, so DS's figures live in the
+# hand-written comparison table on the hub. Do not "fix" this by giving DS a
+# second row carrying N08330 - --check would then see two rows sharing a UNS
+# and disagreeing on wnr and density, which is exactly the contradiction it
+# exists to catch.
+#
+# "Incoloy 330", which these pages used to be named for, is a trade misnomer
+# welding the Incoloy brand onto the generic 330 number. It names neither grade.
+#
+# 1.4864 (X12NiCrSi35-16) is a third grade in the same family at Cr 15-17, and
+# was cited on the foil and plates pages for N08330 until 2026-08-24.
+# en_name is left EMPTY, not "-": the RA sheet prints "W. Nr./EN: 1.4886, 10095",
+# naming the number and the standard but no symbolic designation, so it is
+# unverified rather than absent. The seeded 8.08 / 1371-1427 were both wrong -
+# the sheet says 0.287 lb/in3 and 2450-2540 F.
+incoloy,DS,N08330,1.4886,,7.94,1343-1393,pending,
 incoloy,800,N08800,1.4876,X10NiCrAlTi32-21,7.94,1357-1385,pending,
 incoloy,800H,N08810,1.4958,X5NiCrAlTi31-20,7.94,1357-1385,pending,
 incoloy,800HT,N08811,1.4959,X8NiCrAlTi32-21,7.94,1357-1385,pending,
 incoloy,825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,pending,
-incoloy,890,N08890,-,-,,,pending,
-incoloy,903,N19903,-,-,8.14,1320-1400,pending,
-incoloy,909,N19909,-,-,8.30,1395-1430,pending,
-incoloy,925,N09925,2.4852,-,8.08,1315-1370,pending,
+incoloy,890,N08890,-,-,7.94,1309-1383,pending,
+incoloy,903,N19903,-,-,8.25,1318-1393,pending,
+incoloy,909,N19909,-,-,8.19,1395-1430,pending,
+# 2.4852 is alloy 925's own number, not a carry-over: 601 is 2.4851, one digit
+# away, and the two are easy to transpose. Special Metals does not print it -
+# the bulletin heads this grade "(UNS N09925)" where it heads 825
+# "(UNS N08825/W.Nr. 2.4858)" - because 2.4852 is an SEL (Stahl-Eisen-Liste)
+# number. So this row's identifiers come from the German register and the mill
+# bulletin between them, and neither one alone confirms the pair.
+incoloy,925,N09925,2.4852,NiCr20FeMo3TiCuAl,8.08,1311-1366,pending,
 incoloy,945,N09945,-,-,8.20,1320-1370,pending,
 hastelloy,B-2,N10665,2.4617,NiMo28,9.22,1330-1380,pending,
 hastelloy,B-3,N10675,2.4600,NiMo28Fe,9.22,1370-1418,pending,

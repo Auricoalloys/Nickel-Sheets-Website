@@ -101,7 +101,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /nimonic/901/plates/,1200,5000,14,59,kg
 /stellite/foil/,8500,12000,100,141,kg
 /titanium/grade-1/round-bar/,1300,4300,15,51,kg
-/incoloy/330/plates/,2000,3000,24,35,kg
+/incoloy/DS/plates/,2000,3000,24,35,kg
 /nimonic/80A/sheets/,5000,8500,59,100,kg
 /titanium/grade-11/foil/,7500,12500,88,147,kg
 /titanium-grade-12-foil-supplier-trader-stockist-exporter-in-mumbai-india/,4000,8000,47,94,kg
@@ -186,8 +186,8 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /hastelloy/sheets/,1800,7500,21,88,kg
 /hastelloy/X/round-bar/,3500,7500,41,88,kg
 /hastelloy/X/sheets/,3500,7500,41,88,kg
-/incoloy/330/round-bar/,2000,3500,24,41,kg
-/incoloy/330/sheets/,2000,3000,24,35,kg
+/incoloy/DS/round-bar/,2000,3500,24,41,kg
+/incoloy/DS/sheets/,2000,3000,24,35,kg
 /incoloy/800H/round-bar/,1500,2500,18,29,kg
 /incoloy/800H/sheets/,1500,2500,18,29,kg
 /incoloy/800HT/round-bar/,1500,2500,18,29,kg
