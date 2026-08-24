@@ -56,6 +56,7 @@ const BOILERPLATE = new Set([
   '7f9ce97c', // parked the Product node on 258 unpriced pages; markup only, no copy changed
   'e20a13f4', // retired nine duplicate URLs; the targets gained only a redirect_from line
   'd506331b', // redirected five reported 404s; the targets gained only a redirect_from line
+  'f2a2c4f4', // repointed cross-links at the renamed 330 pages; label and href only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of

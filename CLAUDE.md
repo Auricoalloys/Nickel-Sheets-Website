@@ -632,6 +632,28 @@ Dating pages from those commits would claim content updates that never happened.
 So: **after any sitewide sweep, add its commit SHA to `BOILERPLATE` and regenerate.** Skipping that
 step is how the dates silently inflate and the signal rots again.
 
+#### Split the commit so a SHA can be boilerplate or not, never both
+
+`BOILERPLATE` keys on a **whole commit**, so a commit that mixes a sitewide sweep with real content
+edits cannot be classified. List it and the genuine edits lose their date; leave it out and every
+swept page claims an update it did not have. Either way the signal rots.
+
+**Before every commit, sort the changed files into the two kinds, and commit them separately when
+both are present.** The test is what a reader sees on *that* page: a page whose own subject matter
+changed is content; a page that only had a neighbour's link label or href rewritten is boilerplate.
+Then add the sweep commit's SHA to `BOILERPLATE`, regenerate, and commit `sitemap.xml` on its own.
+
+Worked example — the N08330 rename (2026-08-24) touched 49 files as one change:
+
+- `f2a2c4f4` — 26 pages whose only edit was `/incoloy/330/` → `/incoloy/DS/` and the label
+  "Incoloy 330" → "Alloy 330" in a cross-link list. Boilerplate: Kovar round bars and Haynes 188
+  sheets say nothing new about Kovar or Haynes 188.
+- `f2c28422` — the renamed pages themselves, the corrected grade data, and the seven `incoloy` form
+  hubs, whose generated spec tables now print a different grade name. Content, all of it.
+
+The mechanical way to sort them is to diff each file and ask whether *every* changed line is
+explained by the sweep. Anything else in the diff makes it content.
+
 ### JavaScript inventory
 
 `floating-form.js` (every page, via footer) and `detailed.js` (~650 pages — TOC toggles, smooth

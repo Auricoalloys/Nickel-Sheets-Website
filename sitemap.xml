@@ -1021,7 +1021,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/hastelloy/G30/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/hastelloy/G30/plates/</loc>
@@ -1448,6 +1448,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-330-800-foil-supplier-trader-stockist-exporter-in-mumbai-india/</loc>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
@@ -1468,42 +1469,42 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-coil-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/incoloy-coil.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-fittings-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/incoloy-fittings.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-hex-bars-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/hex-bar-flat-banner.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-hollow-bars-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Hollow-Bars-Banner.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-pipes-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Hollow-Bars-Banner.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-tube-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/incoloy-tube.webp</image:loc>
     </image:image>
@@ -1517,7 +1518,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/incoloy-sheets.webp</image:loc>
     </image:image>
@@ -1558,7 +1559,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/800H/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-24</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/800H/plates/</loc>
@@ -1794,9 +1795,11 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/DS/</loc>
+    <lastmod>2026-08-24</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/DS/plates/</loc>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1806,6 +1809,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/DS/round-bar/</loc>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Haynes-2.webp</image:loc>
     </image:image>
@@ -1815,6 +1819,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/DS/sheets/</loc>
+    <lastmod>2026-08-24</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
     </image:image>
