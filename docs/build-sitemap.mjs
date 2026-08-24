@@ -55,6 +55,7 @@ const BOILERPLATE = new Set([
   '41263991', // widened priceValidUntil to 100 days; no figure a reader sees moved
   '7f9ce97c', // parked the Product node on 258 unpriced pages; markup only, no copy changed
   'e20a13f4', // retired nine duplicate URLs; the targets gained only a redirect_from line
+  'd506331b', // redirected five reported 404s; the targets gained only a redirect_from line
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
