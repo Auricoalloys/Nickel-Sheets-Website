@@ -58,6 +58,7 @@ const BOILERPLATE = new Set([
   'd506331b', // redirected five reported 404s; the targets gained only a redirect_from line
   'f2a2c4f4', // repointed cross-links at the renamed 330 pages; label and href only
   'd855b240', // reworded the generated identity caption; 3 more got a sidebar label
+  '90457f3e', // relabelled one DS cross-link on the sheets index; label text only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
