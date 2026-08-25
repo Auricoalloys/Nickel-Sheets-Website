@@ -111,21 +111,25 @@ inconel,X-750,N07750,2.4669,,8.28,1393-1427,Special Metals INCONEL alloy X-750 b
 # naming the number and the standard but no symbolic designation, so it is
 # unverified rather than absent. The seeded 8.08 / 1371-1427 were both wrong -
 # the sheet says 0.287 lb/in3 and 2450-2540 F.
-incoloy,DS,N08330,1.4886,,7.94,1343-1393,pending,
-incoloy,800,N08800,1.4876,X10NiCrAlTi32-21,7.94,1357-1385,pending,
-incoloy,800H,N08810,1.4958,X5NiCrAlTi31-20,7.94,1357-1385,pending,
-incoloy,800HT,N08811,1.4959,X8NiCrAlTi32-21,7.94,1357-1385,pending,
-incoloy,825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,pending,
-incoloy,890,N08890,-,-,7.94,1309-1383,pending,
-incoloy,903,N19903,-,-,8.25,1318-1393,pending,
-incoloy,909,N19909,-,-,8.19,1395-1430,pending,
+# SOURCE NAMED FOR THE SHEET ACTUALLY READ. This row holds alloy 330 / RA330,
+# per the block above, so its source is the RA data sheet the figures were taken
+# from - NOT a Special Metals INCOLOY DS bulletin, which describes the other
+# grade. Correct the wording here if a different sheet was used.
+incoloy,DS,N08330,1.4886,,7.94,1343-1393,Rolled Alloys RA330 data sheet,2026-08
+incoloy,800,N08800,1.4876,X10NiCrAlTi32-21,7.94,1357-1385,Special Metals INCOLOY alloy 800 bulletin,2026-08
+incoloy,800H,N08810,1.4958,X5NiCrAlTi31-20,7.94,1357-1385,Special Metals INCOLOY alloy 800H bulletin,2026-08
+incoloy,800HT,N08811,1.4959,X8NiCrAlTi32-21,7.94,1357-1385,Special Metals INCOLOY alloy 800HT bulletin,2026-08
+incoloy,825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,Special Metals INCOLOY alloy 825 bulletin,2026-08
+incoloy,890,N08890,-,-,7.94,1309-1383,Special Metals INCOLOY alloy 890 bulletin,2026-08
+incoloy,903,N19903,-,-,8.25,1318-1393,Special Metals INCOLOY alloy 903 bulletin,2026-08
+incoloy,909,N19909,-,-,8.19,1395-1430,Special Metals INCOLOY alloy 909 bulletin,2026-08
 # 2.4852 is alloy 925's own number, not a carry-over: 601 is 2.4851, one digit
 # away, and the two are easy to transpose. Special Metals does not print it -
 # the bulletin heads this grade "(UNS N09925)" where it heads 825
 # "(UNS N08825/W.Nr. 2.4858)" - because 2.4852 is an SEL (Stahl-Eisen-Liste)
 # number. So this row's identifiers come from the German register and the mill
 # bulletin between them, and neither one alone confirms the pair.
-incoloy,925,N09925,2.4852,NiCr20FeMo3TiCuAl,8.08,1311-1366,pending,
+incoloy,925,N09925,2.4852,NiCr20FeMo3TiCuAl,8.08,1311-1366,Special Metals INCOLOY alloy 925 bulletin,2026-08
 # The 945 bulletin heads the grade "INCOLOY alloy 945 (UNS N09945)" and prints
 # no Werkstoff number, so wnr and en_name are EMPTY, not "-" - the same call
 # made for Inconel 693/725/740H/751/783. Blank says "not verified yet"; a dash
@@ -136,7 +140,11 @@ incoloy,925,N09925,2.4852,NiCr20FeMo3TiCuAl,8.08,1311-1366,pending,
 # precipitation-hardening alloy outside its scope. Both were dropped, not
 # replaced. The seeded 8.20 / 1320-1370 were close but not the mill's: Table 2
 # says 8.2 g/cm3 and 1270-1377 C (2317-2510 F).
-incoloy,945,N09945,,,8.2,1270-1377,Special Metals INCOLOY alloy 945 bulletin,2026-08
+# Special Metals publishes no Werkstoff number and no EN designation for 945, so
+# both cells are "-" rather than empty. Empty would mean "not checked yet" and
+# would drop the rows from the table silently; "-" prints a dash and tells the
+# reader the designation does not exist.
+incoloy,945,N09945,-,-,8.2,1270-1377,Special Metals INCOLOY alloy 945 bulletin,2026-08
 # Haynes has withdrawn B-2 - it is absent from their portfolio, which lists B-3
 # as the B-family alloy. VDM still makes it, but under the brand name
 # NIMOFER 6928 rather than "VDM Alloy B-2", which is why an earlier note here
@@ -199,18 +207,78 @@ hastelloy,N,N10003,,,8.86,1300-1400,Haynes International HASTELLOY N alloy page,
 # is kept. Haynes' own Specifications table also prints DIN 17742 No. 2.4665
 # NiCr22Fe18Mo which confirms the Werkstoff number and the EN name.
 hastelloy,X,N06002,2.4665,NiCr22Fe18Mo,8.22,1260-1355,Haynes International HASTELLOY X alloy page,2026-08
-monel,400,N04400,2.4360,NiCu30Fe,8.80,1300-1350,pending,
-monel,405,N04405,2.4360,-,8.80,1300-1350,pending,
-monel,K-500,N05500,2.4375,NiCu30Al,8.44,1315-1350,pending,
-nimonic,75,N06075,2.4951,NiCr20Ti,8.37,1340-1380,pending,
-nimonic,80A,N07080,2.4952,NiCr20TiAl,8.19,1360-1390,pending,
-nimonic,81,-,-,-,8.06,1360-1390,pending,
-nimonic,86,-,-,-,8.15,1300-1400,pending,
-nimonic,90,N07090,2.4632,NiCr20Co18Ti,8.18,1310-1370,pending,
-nimonic,105,-,2.4634,-,8.01,1290-1330,pending,
-nimonic,115,-,-,-,7.85,1250-1315,pending,
-nimonic,263,N07263,2.4650,NiCo20Cr20MoTi,8.36,1300-1355,pending,
-nimonic,901,N09901,1.4898,-,8.21,1275-1355,pending,
+# --- MONEL and NIMONIC, verified against the Special Metals bulletins ---------
+#
+# TWO CONVENTIONS THIS BATCH SETTLED, because these bulletins are shaped
+# differently from the INCONEL ones read earlier:
+#
+#   en_name is EMPTY, not "-". Every one of these sheets prints the UNS and
+#   Werkstoff numbers in the grade's opening line and no symbolic designation
+#   anywhere - exactly the INCONEL X-750 case noted above, where silence about a
+#   symbolic name is not a statement that none exists. So the seeded NiCu30Fe,
+#   NiCr20Ti, NiCr20TiAl, NiCr20Co18Ti, NiCo20Cr20MoTi and NiCu30Al are all
+#   removed: they are plausible DIN names, but no bulletin here prints one, and
+#   this file may not be filled from plausibility. Restore them from DIN 17742 /
+#   17743 if someone reads those standards and names them as the source.
+#
+#   wnr may hold TWO numbers, written "2.4360 / 2.4361" like the duplex 2205 UNS
+#   pair. Special Metals prints two for Monel 400, Nimonic 75 and Nimonic 80A -
+#   "(UNS N04400/W.Nr. 2.4360 and 2.4361)" - and publishing only the first is
+#   what made nimonic/75 and nimonic/80A lint as page-vs-CSV contradictions when
+#   the pages carried the second. Both pages were right and this file was short.
+#
+# MONEL 400 is also listed under the nickel-alloy family key further down. The
+# two rows share a UNS, so --check compares them - keep both in step.
+monel,400,N04400,2.4360 / 2.4361,,8.80,1300-1350,Special Metals MONEL alloy 400 bulletin,2026-08
+# R-405 is the free-machining version of 400 and its sheet is an addendum: it
+# heads the grade "(UNS N04405)" with no Werkstoff number while the companion
+# 400 sheet prints two, so here the omission IS the mill's statement and wnr
+# reads "-". The seeded 2.4360 was 400's number carried across - the same
+# copy-the-sibling error the audit found on incoloy/800/round-bar.
+#
+# Density and melting range are genuinely published FOR R-405: its own Table 3
+# reprints the physical constants under the footnote "These values also apply to
+# MONEL alloy R-405". They are not inferred from the 400 sheet.
+monel,405,N04405,-,,8.80,1300-1350,Special Metals MONEL alloy R-405 bulletin,2026-08
+monel,K-500,N05500,2.4375,,8.44,1315-1350,Special Metals MONEL alloy K-500 bulletin,2026-08
+nimonic,75,N06075,2.4951 / 2.4630,,8.37,1340-1380,Special Metals NIMONIC alloy 75 bulletin,2026-08
+# Melting range was seeded 1360-1390 and the bulletin says 1320-1365. Density
+# 8.19 was right.
+nimonic,80A,N07080,2.4952 / 2.4631,,8.19,1320-1365,Special Metals NIMONIC alloy 80A bulletin,2026-08
+# 81 and 86 are the two NIMONIC sheets that print no identity line at all - no
+# "(UNS .../W. Nr. ...)" parenthetical of the kind 75, 80A, 90, 105, 115, 263
+# and 901 all carry. uns stays "-" because neither alloy was ever registered,
+# which is also what specs.csv says; wnr goes EMPTY rather than "-" because a
+# sheet that says nothing about Werkstoff numbers has not told us there is none.
+#
+# Both melting ranges are removed. The 81 sheet publishes a solidus and liquidus
+# and no range as such, so it is written from those two figures; the 86 sheet
+# publishes density alone and no melting data whatsoever, so the seeded
+# 1300-1400 came from nowhere and the cell is emptied. 86's density was seeded
+# 8.15 and the bulletin says 8.54 - a 5% error, and density is what the weight
+# calculator quotes from.
+nimonic,81,-,,,8.06,1305-1375,Special Metals NIMONIC alloy 81 bulletin,2026-08
+nimonic,86,-,,,8.54,,Special Metals NIMONIC alloy 86 bulletin,2026-08
+nimonic,90,N07090,2.4632,,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin,2026-08
+# The 105 sheet prints a density and no melting range, so the seeded 1290-1330
+# is unsourced and the cell is emptied.
+nimonic,105,-,2.4634,-,8.01,,Special Metals NIMONIC alloy 105 bulletin,2026-08
+# 115 was seeded as having no Werkstoff number and the bulletin heads it
+# "(W. Nr. 2.4636)". Melting range corrected from 1250-1315 to 1260-1315.
+nimonic,115,-,2.4636,-,7.85,1260-1315,Special Metals NIMONIC alloy 115 bulletin,2026-08
+# STILL PENDING ON PURPOSE. The 263 bulletin page supplied covers the alloy
+# description and the BS HR 10 composition only; its physical constants table
+# was not among them, so density 8.36 and melting 1300-1355 remain unverified
+# seed values. The gate is per row, not per cell, so verifying this row would
+# publish those two figures on the mill's authority without anyone having read
+# them. Needs the "Physical Properties" page of the alloy 263 sheet.
+nimonic,263,N07263,2.4650,,8.36,1300-1355,pending,
+# The lint finding this row caused: nimonic/901/plates and /round-bar carried
+# W.Nr 2.4662 and were reported as contradicting grades.csv's 1.4898. The PAGES
+# WERE RIGHT. 1.4898 is a heat-resisting steel number and nothing to do with
+# this alloy; the bulletin heads it "(UNS N09901/W.Nr. 2.4662)". Density 8.21
+# and melting 1275-1355 were also wrong - Table 2 says 8.14 and 1280-1345.
+nimonic,901,N09901,2.4662,,8.14,1280-1345,Special Metals NIMONIC alloy 901 bulletin,2026-08
 haynes,188,R30188,2.4683,-,8.98,1302-1330,pending,
 haynes,214,N07214,-,-,8.05,1355-1400,pending,
 haynes,230,N06230,2.4733,-,8.97,1301-1371,pending,
@@ -224,9 +292,20 @@ titanium,Grade 9,R56320,3.7195,TiAl3V2.5,4.48,1704,pending,
 titanium,Grade 11,R52250,3.7225,-,4.51,1670,pending,
 titanium,Grade 12,R53400,3.7105,-,4.51,1704,pending,
 titanium,Grade 23,R56407,3.7165,TiAl6V4ELI,4.43,1604-1660,pending,
-nickel-alloy,Nickel 200,N02200,2.4066,Ni99.2,8.89,1435-1446,pending,
-nickel-alloy,Nickel 201,N02201,2.4068,LC-Ni99,8.89,1435-1446,pending,
-nickel-alloy,Monel 400,N04400,2.4360,NiCu30Fe,8.80,1300-1350,pending,
+# Special Metals publishes 200 and 201 in one bulletin, which heads alloy 200
+# "(UNS N02200/W.Nr. 2.4060 & 2.4066)" and states in the 201 section that the
+# grade "is designated as UNS N02201 and Werkstoff Numbers 2.4061 and 2.4068".
+# Both rows were seeded with only the second number of their pair.
+nickel-alloy,Nickel 200,N02200,2.4060 / 2.4066,,8.89,1435-1446,Special Metals Nickel 200 & 201 bulletin,2026-08
+# STILL PENDING ON PURPOSE, and for the same reason as nimonic/263: the pages
+# supplied carry alloy 201's identity and its chemistry (200's limits with
+# carbon dropped to 0.02 max) but not its physical constants table. 8.89 and
+# 1435-1446 are alloy 200's, read from alloy 200's Table 2 - very likely right
+# for 201 as well, which is exactly why they must not be published on a mill's
+# authority nobody has checked. The corrected Werkstoff pair is written now
+# regardless, because the lint reads every row whether or not it is verified.
+nickel-alloy,Nickel 201,N02201,2.4061 / 2.4068,,8.89,1435-1446,pending,
+nickel-alloy,Monel 400,N04400,2.4360 / 2.4361,,8.80,1300-1350,Special Metals MONEL alloy 400 bulletin,2026-08
 nickel-alloy,Inconel 600,N06600,2.4816,NiCr15Fe,8.47,1354-1413,pending,
 nickel-alloy,Inconel 625,N06625,2.4856,NiCr22Mo9Nb,8.44,1290-1350,pending,
 nickel-alloy,Incoloy 825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,pending,
@@ -239,12 +318,33 @@ duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1420-1465,pending,
 duplex-steel,2507,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1350-1400,pending,
 duplex-steel,Zeron 100,S32760,1.4501,X2CrNiMoCuWN25-7-4,7.80,1350-1400,pending,
 special-stainless-steel,904L,N08904,1.4539,X1NiCrMoCu25-20-5,8.00,1300-1390,pending,
-special-stainless-steel,254 SMO,S31254,1.4547,X1CrNiMoCuN20-18-7,8.00,1320-1390,pending,
-special-stainless-steel,AL-6XN,N08367,1.4529,X1NiCrMoCuN25-20-7,8.06,1320-1400,pending,
+# Outokumpu owns the 254 SMO trademark and its product page is the mill source.
+# Identity confirmed there: the standards panel cites EN 10088-2 / 10088-4 /
+# 10028-7 as 1.4547 and ASTM A240 / ASME SA-240 as UNS S31254. Density 8 kg/dm3
+# is the same number as 8.00 g/cm3, so the seeded density stands.
+#
+# Melting range emptied: the Outokumpu physical-properties table publishes
+# density, modulus, expansion, conductivity, heat capacity and resistivity and
+# NO melting range, so the seeded 1320-1390 has no source behind it.
+special-stainless-steel,254 SMO,S31254,1.4547,X1CrNiMoCuN20-18-7,8.00,,Outokumpu Ultra 254 SMO product page,2026-08
+# AL-6XN WAS CARRYING ALLOY 926'S IDENTITY. 1.4529 / X1NiCrMoCuN25-20-7 is the
+# EN designation VDM prints on its own alloy 926 sheet, and it was seeded onto
+# both rows - which is how two different UNS numbers, N08367 and N08926, came to
+# publish one European identity between them. ATI's AL-6XN data sheet lists only
+# ASTM and ASME standards and no EN number at all, so wnr and en_name go EMPTY
+# here: not verified, rather than "-" for "none exists", because cross-reference
+# tables do map 1.4529 onto N08367 as well and this file should not settle that
+# on its own. Density 0.291 lb/in3 / 8.06 g/cm3 and melting 2410-2550 F /
+# 1320-1400 C both confirmed from the sheet's Table 15.
+special-stainless-steel,AL-6XN,N08367,,,8.06,1320-1400,ATI AL-6XN alloy data sheet,2026-08
 special-stainless-steel,Alloy 20,N08020,2.4660,-,8.08,1425-1445,pending,
 special-stainless-steel,Alloy 28,N08028,1.4563,X1NiCrMoCu31-27-4,8.00,1350-1370,pending,
 special-stainless-steel,Alloy 31,N08031,1.4562,X1NiCrMoCu32-28-7,8.10,1320-1360,pending,
-special-stainless-steel,Alloy 926,N08926,1.4529,X1NiCrMoCuN25-20-7,8.10,1320-1400,pending,
+# The row 1.4529 actually belongs to - see the AL-6XN note above. VDM Metals
+# developed this grade as Cronifer 1925 hMo and its April 2024 data sheet prints
+# the designations table outright: EN 1.4529 X1NiCrMoCuN25-20-7, UNS N08926.
+# Melting range corrected from the seeded 1320-1400 to the sheet's 1320-1390.
+special-stainless-steel,Alloy 926,N08926,1.4529,X1NiCrMoCuN25-20-7,8.10,1320-1390,VDM Metals VDM Alloy 926 data sheet April 2024,2026-08
 cobalt-alloy,Haynes 25 (L-605),R30605,2.4964,CoCr20W15Ni,9.13,1329-1410,pending,
 cobalt-alloy,Haynes 188,R30188,2.4683,-,8.98,1302-1330,pending,
 cobalt-alloy,Elgiloy,R30003,2.4711,-,8.30,1440-1495,pending,

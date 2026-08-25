@@ -36,6 +36,14 @@
 # A "0.015 max" limit is min empty, max 0.015. A "72.0 min" limit is min 72.0,
 # max empty. Do not write "-" in a numeric cell; leave it empty.
 #
+# A NOMINAL FIGURE IS NOT A LIMIT and must never go in a min or max column -
+# doing so asserts an acceptance criterion the mill never published. Some sheets
+# print only a nominal composition: Special Metals for INCOLOY 890, Haynes for
+# several grades. Record those with min and max BOTH empty and the figure in
+# `note`, written as "42.5 nominal". The generator prints such a row across both
+# columns so it reads as one value rather than a range, and --check rejects a
+# row that has no min, no max and no note.
+#
 # Rows are printed in the order they appear here, so keep each grade's rows in
 # the order its bulletin prints them - a buyer comparing the page against the
 # mill's own table should not have to hunt.
@@ -316,22 +324,69 @@ incoloy,945,Si,,0.5
 incoloy,945,S,,0.03
 incoloy,945,P,,0.03
 incoloy,945,C,0.005,0.04
+# INCOLOY alloy 890 (UNS N08890), Special Metals bulletin. THIS IS A NOMINAL
+# COMPOSITION, not a limiting one: only titanium, manganese, phosphorus, sulfur
+# and copper are printed as "max", and iron as the balance. The other eight
+# figures are nominal, so they carry the value in `note` with min and max left
+# empty - a nominal figure must never be written into a min/max column, the same
+# rule applied to the Haynes-sourced grades below.
+#
+# This replaces three pages that contradicted each other outright: plates said
+# chromium 27.0-31.0, round bar said nickel 38.0-42.0 with iron 16.5-22.0, and
+# sheets said nickel "≈ 43". Only the sheets page was near the bulletin.
+#
+# Rows print in bulletin order.
+incoloy,890,Ni,,,42.5 nominal
+incoloy,890,Cr,,,25 nominal
+incoloy,890,Fe,,bal,
+incoloy,890,Al,,,0.1 nominal
+incoloy,890,Nb,,,0.4 nominal
+incoloy,890,Ti,,1,
+incoloy,890,C,,,0.1 nominal
+incoloy,890,Mn,,1,
+incoloy,890,Si,,,1.8 nominal
+incoloy,890,P,,0.03,
+incoloy,890,S,,0.015,
+incoloy,890,Cu,,0.75,
+incoloy,890,Mo,,,1.5 nominal
+incoloy,890,Ta,,,0.2 nominal
+# MONEL alloys, Special Metals bulletins, Table 1 "Limiting Chemical
+# Composition" in each. The three tables print their elements in one order and
+# these blocks now follow it, so a buyer can read the page against the mill's
+# sheet line by line. The figures themselves were already right; only 400 and
+# K-500's row order changed, and both publish for the first time with this pass.
+#
+# The nickel limit is "Nickel (plus Cobalt) 63.0 min" on all three sheets. It is
+# recorded against Ni because cobalt is not separately limited and the file has
+# no combined key for the pair - see the note on Al+Ti and Ni+Mo elsewhere.
 monel,400,Ni,63.0,
-monel,400,Cu,28.0,34.0
-monel,400,Fe,,2.5
-monel,400,Mn,,2.0
 monel,400,C,,0.3
-monel,400,Si,,0.5
+monel,400,Mn,,2.0
+monel,400,Fe,,2.5
 monel,400,S,,0.024
+monel,400,Si,,0.5
+monel,400,Cu,28.0,34.0
+# R-405 is 400 with the sulfur band opened up for machinability - 0.025-0.060
+# against 400's 0.024 max, and it is a RANGE with a real minimum, not a ceiling,
+# because the sulfur is deliberately added. Every other limit is identical to
+# alloy 400's. This is the whole difference between the two grades, and the site
+# had no chemistry for R-405 at all before now.
+monel,405,Ni,63.0,
+monel,405,C,,0.3
+monel,405,Mn,,2.0
+monel,405,Fe,,2.5
+monel,405,S,0.025,0.060
+monel,405,Si,,0.5
+monel,405,Cu,28.0,34.0
 monel,K-500,Ni,63.0,
+monel,K-500,C,,0.25
+monel,K-500,Mn,,1.5
+monel,K-500,Fe,,2.0
+monel,K-500,S,,0.01
+monel,K-500,Si,,0.5
 monel,K-500,Cu,27.0,33.0
 monel,K-500,Al,2.30,3.15
 monel,K-500,Ti,0.35,0.85
-monel,K-500,Fe,,2.0
-monel,K-500,Mn,,1.5
-monel,K-500,C,,0.25
-monel,K-500,Si,,0.5
-monel,K-500,S,,0.010
 # HASTELLOY B-2 = UNS N10665, ASTM B333 Table 1. A nickel-molybdenum alloy with
 # no chromium worth the name: Cr is a 1.0 max residual here, not an alloying
 # addition, which is what separates the B family from every C-grade below and is
@@ -593,25 +648,152 @@ nimonic,75,Fe,,5.0
 nimonic,75,Mn,,1.0
 nimonic,75,Si,,1.0
 nimonic,75,Cu,,0.5
-nimonic,80A,Ni,,bal
+# NIMONIC alloy 80A, Special Metals bulletin Table 1, "as in British Standard
+# HR1, 201, 401 and 601". Reordered to the bulletin's own order and extended:
+# the seeded block stopped at copper and omitted boron, zirconium, lead and
+# sulfur, which are four real acceptance limits. Lead at 0.0025 max in
+# particular is the kind of trace limit an aerospace buyer checks for.
+nimonic,80A,C,,0.10
 nimonic,80A,Cr,18.0,21.0
+nimonic,80A,Si,,1.0
+nimonic,80A,Cu,,0.2
+nimonic,80A,Fe,,3.0
+nimonic,80A,Mn,,1.0
 nimonic,80A,Ti,1.8,2.7
 nimonic,80A,Al,1.0,1.8
 nimonic,80A,Co,,2.0
-nimonic,80A,Fe,,3.0
-nimonic,80A,C,,0.10
-nimonic,80A,Mn,,1.0
-nimonic,80A,Si,,1.0
-nimonic,80A,Cu,,0.2
-nimonic,90,Ni,,bal
-nimonic,90,Cr,18.0,21.0
-nimonic,90,Co,15.0,21.0
-nimonic,90,Ti,1.8,3.0
-nimonic,90,Al,1.0,2.0
-nimonic,90,Fe,,1.5
+nimonic,80A,B,,0.008
+nimonic,80A,Zr,,0.15
+nimonic,80A,Pb,,0.0025
+nimonic,80A,S,,0.015
+nimonic,80A,Ni,,bal
+# NIMONIC alloy 90, Special Metals bulletin "Composition, %".
+#
+# TITANIUM WAS WRONG: seeded 1.8-3.0, the bulletin says 2.0-3.0. A low limit set
+# 0.2% under the mill's is the sort of error that passes every eye because it
+# looks like a range - it was found only by reading the printed table cell
+# against the file. Copper, boron, sulfur, lead and zirconium were missing
+# outright. Reordered to the bulletin's order.
 nimonic,90,C,,0.13
-nimonic,90,Mn,,1.0
 nimonic,90,Si,,1.0
+nimonic,90,Cu,,0.2
+nimonic,90,Fe,,1.5
+nimonic,90,Mn,,1.0
+nimonic,90,Cr,18.0,21.0
+nimonic,90,Ti,2.0,3.0
+nimonic,90,Al,1.0,2.0
+nimonic,90,Co,15.0,21.0
+nimonic,90,B,,0.02
+nimonic,90,S,,0.015
+nimonic,90,Pb,,0.0020
+nimonic,90,Zr,,0.15
+nimonic,90,Ni,,bal
+# NIMONIC alloy 81, Special Metals bulletin. THE SHEET SAYS BOTH THINGS: the
+# section is headed "Nominal Composition" and subtitled "% max. unless stated".
+# Recorded as nominal, which is the reading that asserts less. Chromium 30.0
+# written into a max column would tell a buyer the alloy may legitimately
+# contain no chromium at all, and titanium and aluminium are the additions the
+# grade is hardened with - none of the three reads as a ceiling. If the subtitle
+# is later taken as binding, the trace elements convert to maxima easily enough;
+# the nominal form does not have to be undone first.
+nimonic,81,C,,,0.05 nominal
+nimonic,81,Si,,,0.50 nominal
+nimonic,81,Cu,,,0.20 nominal
+nimonic,81,Fe,,,1.0 nominal
+nimonic,81,Mn,,,0.50 nominal
+nimonic,81,Cr,,,30.0 nominal
+nimonic,81,Ti,,,1.8 nominal
+nimonic,81,Al,,,0.9 nominal
+nimonic,81,Co,,,2.0 nominal
+nimonic,81,Mo,,,0.30 nominal
+nimonic,81,B,,,0.003 nominal
+nimonic,81,Zr,,,0.06 nominal
+nimonic,81,S,,,0.015 nominal
+nimonic,81,Ni,,bal,
+# NIMONIC alloy 86, Special Metals bulletin Table 1 "Chemical Composition, %".
+# THE TABLE PRINTS NO LIMITS - five bare figures and nickel as the balance, with
+# no "max" against any of them and no ranges - so these are nominal and are
+# recorded as nominal. Chromium 25.0 and molybdenum 10.0 written into a max
+# column would tell a buyer the alloy may contain no chromium at all.
+nimonic,86,C,,,0.05 nominal
+nimonic,86,Cr,,,25.0 nominal
+nimonic,86,Mo,,,10.0 nominal
+nimonic,86,Mg,,,0.015 nominal
+nimonic,86,Ce,,,0.03 nominal
+nimonic,86,Ni,,bal,
+# NIMONIC alloy 105, Special Metals bulletin: "The composition stated in BS HR 3
+# is as follows". A named standard, so these are limits, not nominal figures.
+nimonic,105,C,,0.17
+nimonic,105,Si,,1.0
+nimonic,105,Cu,,0.2
+nimonic,105,Fe,,1.0
+nimonic,105,Mn,,1.0
+nimonic,105,Cr,14.0,15.7
+nimonic,105,Ti,0.9,1.5
+nimonic,105,Al,4.5,4.9
+nimonic,105,Co,18.0,22.0
+nimonic,105,Mo,4.5,5.5
+nimonic,105,Pb,,0.0015
+nimonic,105,S,,0.010
+nimonic,105,B,0.003,0.010
+nimonic,105,Zr,,0.15
+nimonic,105,Ni,,bal
+# NIMONIC alloy 115, Special Metals bulletin Table 1. Headed "Nominal
+# Composition" but every figure is a range or a max, so unlike alloy 86 above
+# there is nothing nominal to record - they are written as the limits they are.
+nimonic,115,C,0.12,0.2
+nimonic,115,Si,,1.0
+nimonic,115,Cu,,0.2
+nimonic,115,Fe,,1.0
+nimonic,115,Mn,,1.0
+nimonic,115,Cr,14.0,16.0
+nimonic,115,Ti,3.5,4.5
+nimonic,115,Al,4.5,5.5
+nimonic,115,Co,13.0,15.5
+nimonic,115,Mo,3.0,5.0
+nimonic,115,B,0.01,0.025
+nimonic,115,Zr,,0.15
+nimonic,115,Pb,,0.0015
+nimonic,115,S,,0.015
+nimonic,115,Ni,,bal
+# NIMONIC alloy 263, Special Metals bulletin: "The composition in BS HR 10 is as
+# follows". Al+Ti 2.4-2.8 is a combined limit the standard sets on top of the
+# individual aluminium and titanium limits, the same shape as the Ni+Mo band
+# ASTM B333 sets for N10675 - it is a real acceptance criterion and is kept.
+nimonic,263,C,0.04,0.08
+nimonic,263,Si,,0.40
+nimonic,263,Mn,,0.60
+nimonic,263,S,,0.007
+nimonic,263,Ag,,0.0005
+nimonic,263,Al,,0.60
+nimonic,263,B,,0.005
+nimonic,263,Bi,,0.0001
+nimonic,263,Co,19.0,21.0
+nimonic,263,Cr,19.0,21.0
+nimonic,263,Cu,,0.20
+nimonic,263,Fe,,0.7
+nimonic,263,Mo,5.6,6.1
+nimonic,263,Pb,,0.0020
+nimonic,263,Ti,1.9,2.4
+nimonic,263,Al+Ti,2.4,2.8
+nimonic,263,Ni,,bal
+# NIMONIC alloy 901, Special Metals bulletin Table 1, headed "Nominal Chemical
+# Composition, % (NOT FOR SPECIFICATION PURPOSES)". A mixed table: nickel,
+# chromium, molybdenum and titanium are bare nominal figures and are recorded as
+# nominal; the rest carry "max" and are recorded as maxima. Iron is the balance,
+# which makes 901 the Ni-Fe-Cr alloy of this family rather than a nickel base.
+nimonic,901,Ni,,,42.5 nominal
+nimonic,901,Cr,,,12.5 nominal
+nimonic,901,Mo,,,5.75 nominal
+nimonic,901,Ti,,,2.9 nominal
+nimonic,901,Co,,1.0,
+nimonic,901,Cu,,0.5,
+nimonic,901,Mn,,0.5,
+nimonic,901,Si,,0.4,
+nimonic,901,Al,,0.35,
+nimonic,901,C,,0.1,
+nimonic,901,S,,0.03,
+nimonic,901,Fe,,bal,
 titanium,Grade 2,Ti,,bal
 titanium,Grade 2,Fe,,0.30
 titanium,Grade 2,O,,0.25
@@ -626,3 +808,63 @@ titanium,Grade 5,O,,0.20
 titanium,Grade 5,C,,0.08
 titanium,Grade 5,N,,0.05
 titanium,Grade 5,H,,0.015
+# --- nickel-alloy: commercially pure nickel ----------------------------------
+# Special Metals publishes Nickel 200 and Nickel 201 in one bulletin. Table 1 is
+# alloy 200's limiting composition; alloy 201 is the low-carbon version and the
+# only limit that moves is carbon, 0.15 max down to 0.02 max.
+#
+# As on the MONEL sheets, the first limit reads "Nickel (plus cobalt) 99.0 min"
+# and is recorded against Ni.
+nickel-alloy,Nickel 200,Ni,99.0,
+nickel-alloy,Nickel 200,Cu,,0.25
+nickel-alloy,Nickel 200,Fe,,0.40
+nickel-alloy,Nickel 200,Mn,,0.35
+nickel-alloy,Nickel 200,C,,0.15
+nickel-alloy,Nickel 200,Si,,0.35
+nickel-alloy,Nickel 200,S,,0.01
+# Alloy 201's grades.csv row is still `pending`, so nothing here publishes yet -
+# see the note there. The carbon limit is the stated difference from 200; the
+# other six are 200's, and the alloy 201 composition table itself has not been
+# read. Verify against it before clearing that row.
+nickel-alloy,Nickel 201,Ni,99.0,
+nickel-alloy,Nickel 201,Cu,,0.25
+nickel-alloy,Nickel 201,Fe,,0.40
+nickel-alloy,Nickel 201,Mn,,0.35
+nickel-alloy,Nickel 201,C,,0.02
+nickel-alloy,Nickel 201,Si,,0.35
+nickel-alloy,Nickel 201,S,,0.01
+# --- special-stainless-steel: the 6% molybdenum super-austenitics -------------
+# VDM Alloy 926, VDM Metals data sheet April 2024, Table 2. VDM prints no iron
+# row - iron is the balance of the alloy but the sheet does not say so in the
+# table, and this file does not add what the mill left out.
+special-stainless-steel,Alloy 926,C,,0.02
+special-stainless-steel,Alloy 926,S,,0.010
+special-stainless-steel,Alloy 926,N,0.15,0.25
+special-stainless-steel,Alloy 926,Cr,20.0,21.0
+special-stainless-steel,Alloy 926,Ni,24.0,26.0
+special-stainless-steel,Alloy 926,Mn,,1.0
+special-stainless-steel,Alloy 926,Si,,0.5
+special-stainless-steel,Alloy 926,Mo,6.0,7.0
+special-stainless-steel,Alloy 926,Cu,0.5,1.5
+special-stainless-steel,Alloy 926,P,,0.03
+# AL-6XN, ATI data sheet Table 1. THE SHEET PRINTS THREE COLUMNS and only the
+# third is a specification: "Typical AL-6XN Alloy" and "Typical AL-6XN Plus
+# Alloy" are analyses of material actually made, and "UNS N08367" is the limits.
+# These rows are the UNS column. Taking the typical column instead would have
+# published a lot report as a specification - the same mistake the powder data
+# sheets exist to prevent - and would have quietly narrowed chromium from
+# 20.00-22.00 to a single 20.5.
+#
+# PREN 45.2/52.6 is in the same table and is not an element; it is a computed
+# corrosion index and has no row here.
+special-stainless-steel,AL-6XN,C,,0.03
+special-stainless-steel,AL-6XN,Mn,,2.00
+special-stainless-steel,AL-6XN,P,,0.040
+special-stainless-steel,AL-6XN,S,,0.030
+special-stainless-steel,AL-6XN,Si,,1.00
+special-stainless-steel,AL-6XN,Cr,20.00,22.00
+special-stainless-steel,AL-6XN,Ni,23.50,25.50
+special-stainless-steel,AL-6XN,Mo,6.00,7.00
+special-stainless-steel,AL-6XN,N,0.18,0.25
+special-stainless-steel,AL-6XN,Cu,,0.75
+special-stainless-steel,AL-6XN,Fe,,bal

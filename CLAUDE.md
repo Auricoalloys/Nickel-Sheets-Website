@@ -511,19 +511,44 @@ names more than one grade of its family (the combined foil pages) is skipped rat
 against one of them.
 
 CI runs `--check`, which fails on drift and on the files disagreeing with `specs.csv` about what
-a grade *is*. It does **not** yet fail on lint findings: 20 pages carry an identifier that needs
-checking against a bulletin first, and failing now would block every unrelated PR. **Add `--strict`
-to the CI step once that backlog is cleared**, or the guard never closes. The remaining 20 are the
-Nimonic 86/115 and Nichrome UNS numbers the CSV does not publish, the Nimonic 75/80A/901 Werkstoff
-disagreements, and the Incoloy 800H hub carrying 800HT's number.
+a grade *is*. It does **not** yet fail on lint findings, because failing on a backlog would block
+every unrelated PR. **Add `--strict` to the CI step once that backlog is cleared**, or the guard
+never closes.
 
-Three details worth keeping:
+The backlog was 20 findings and is now **7, all of them Nichrome** — the 60/15, 70/30 and 80/20
+pages carrying UNS numbers the CSV does not publish, plus one Werkstoff disagreement. Nichrome is
+not a Special Metals or Haynes grade, so clearing it needs a source none of the bulletins already
+read can supply. The Nimonic 75/80A/901 Werkstoff findings, the Nimonic 86/115 UNS numbers and the
+Incoloy 800H hub were all cleared on 2026-08-25. **`--strict` is one family away.**
+
+Careful with what "cleared" means for the Nimonic pages: the numbers were removed because Special
+Metals publishes none, not because none exist. `N07081`, `N07105` and `N06081` still sit on ~14
+other pages inside a cloned "Nimonic 81" comparison row whose *standard* column was re-typed from
+whatever page it was pasted onto — AMS 5599 on the Haynes 242 page, AMS 5951 on Haynes 282, AMS
+5872 on Nimonic 263. Fixing the UNS cell alone would leave a fabricated standard behind, so that
+row needs deleting or rebuilding from `specs.csv`, not patching.
+
+Details worth keeping:
 
 - A grade may carry **more than one UNS** where the mills publish more than one — duplex 2205 is
   `S32205 / S31803`, the modern higher-nitrogen version and the original. Most current first.
+- **`wnr` takes a list on the same terms**, and the lint splits it the same way. Special Metals
+  prints two Werkstoff numbers for Monel 400 (`2.4360 / 2.4361`), Nimonic 75, Nimonic 80A, Nickel
+  200 and Nickel 201, and a page may cite either. Recording only the first is what made those pages
+  lint as contradictions — a check punishing the CSV for getting more complete.
 - An **empty cell and `-` are different claims.** Empty means "not verified yet" and drops its row
   from the table; `-` means "the mill publishes no such designation" and prints a dash. Never write
-  `-` to mean "I could not find it".
+  `-` to mean "I could not find it". Which one a silent bulletin earns depends on whether it is
+  silent *selectively*: MONEL R-405's sheet heads the grade `(UNS N04405)` while its companion 400
+  sheet prints two Werkstoff numbers, so that omission is a statement and reads `-`. The NIMONIC
+  sheets print no symbolic EN designation for any grade, so `en_name` there is empty.
+- **A nominal figure is not a limit** and never goes in `min` or `max`. Some sheets publish only a
+  nominal composition — NIMONIC 86 and 81, INCOLOY 890 — and NIMONIC 901's table is headed
+  "Nominal Chemical Composition, % (not for specification purposes)" with four bare figures and
+  seven maxima. Leave min and max empty and put the figure in `note` as `42.5 nominal`; `--check`
+  rejects a row with none of the three. The caption follows the table: all-nominal tables are
+  introduced as nominal, mixed ones say which figures are limits, and only a table of real limits
+  is called "specification limits". `bal` counts as neither.
 - `density_g_cm3` is a **bare number** on purpose. `build-grades.mjs` emits `docs/grades.json` from
   it so a weight calculator can consume it directly; a range or a `≈` breaks that.
 

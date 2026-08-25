@@ -220,6 +220,11 @@ for (const c of chem) {
     if (v && v !== 'bal' && !/^\d+(\.\d+)?$/.test(v))
       dataErrors.push(`${c.family}/${c.grade} ${c.element} ${f} must be a number, "bal" or empty, got "${v}"`);
   }
+  // A row with no min and no max is only meaningful as a NOMINAL value, which
+  // must say so in `note`. Otherwise it is an element someone started typing and
+  // left blank, and it would print an empty line on the page.
+  if (!c.min && !c.max && !c.note)
+    dataErrors.push(`${c.family}/${c.grade} ${c.element} has no min, no max and no note - a nominal figure belongs in note, e.g. "42.5 nominal"`);
 }
 
 const verified = r => !!(r.checked && r.source && r.source !== 'pending');
@@ -299,13 +304,58 @@ function chemTable(r, rows) {
     const hi = max === 'bal' ? 'Balance' : (max ? esc(max) : '&mdash;');
     return [lo, hi];
   };
+  // How the caption may describe the table depends on what is in it. A row with
+  // no min and no max is a nominal figure, and calling it a limit in the caption
+  // is the exact claim the nominal handling below exists to avoid making - the
+  // NIMONIC 86 table is nominal end to end, so "Chemical composition limits for
+  // Nimonic 86" over five cells each reading "nominal" had the page contradict
+  // itself in the one place a screen reader hears first.
+  //
+  // "Balance" counts as neither. It is what is left after everything else and
+  // is never an acceptance limit, so a table of nominal figures plus a balance
+  // row - which is exactly the shape of the NIMONIC 86 and 901 tables - is
+  // still a nominal table and must not be introduced as a set of limits.
+  const nominal = rows.filter(c => !c.min && !c.max && c.note).length;
+  const limits = rows.filter(c => (c.min && c.min !== 'bal') || (c.max && c.max !== 'bal')).length;
+  const allNominal = nominal > 0 && limits === 0;
+  const someNominal = nominal > 0 && limits > 0;
+  //
+  // A MIXED TABLE MAY NOT BE CALLED LIMITS EITHER. NIMONIC 901 is the case that
+  // forced this: Special Metals heads its table "Nominal Chemical Composition,
+  // % (not for specification purposes)" and then prints four bare figures and
+  // seven carrying "max". The maxima are real enough to record as maxima, but a
+  // caption reading "These are specification limits for the grade" over a table
+  // the mill has expressly disclaimed for specification is the site putting
+  // words in the mill's mouth. So the three shapes get three captions.
+  const heading = allNominal
+    ? `Nominal chemical composition for ${esc(fullName(r))}`
+    : someNominal
+      ? `Chemical composition for ${esc(fullName(r))}`
+      : `Chemical composition limits for ${esc(fullName(r))}`;
+  const provenance = `${esc(r.source)}, checked ${esc(r.checked)}.`;
+  const lead = allNominal
+    ? `Nominal composition per ${provenance} The source publishes nominal figures for this grade rather than acceptance limits, and they are not measured values for a lot;`
+    : someNominal
+      ? `Composition per ${provenance} Figures given as a range or a maximum are limits and those marked <em>nominal</em> are not; none of them are measured values for a lot;`
+      : `Composition limits per ${provenance} These are specification limits for the grade, not measured values for a lot;`;
   return [
     '<div class="table-responsive">',
     '<table class="table table-bordered">',
-    `<caption class="visually-hidden">Chemical composition limits for ${esc(fullName(r))}</caption>`,
+    `<caption class="visually-hidden">${heading}</caption>`,
     '<thead><tr><th scope="col">Element</th><th scope="col">Min (%)</th><th scope="col">Max (%)</th></tr></thead>',
     '<tbody>',
     ...rows.map(c => {
+      const nm0 = ELEMENT_NAMES[c.element];
+      // A mill that publishes only a NOMINAL composition gives a single figure
+      // that is neither a minimum nor a maximum - Special Metals does this for
+      // INCOLOY 890, Haynes for several grades. Writing it into a min or max
+      // column would assert a limit the mill never stated, so such a row leaves
+      // both empty and carries the figure in `note`, printed across both
+      // columns and labelled.
+      if (!c.min && !c.max && c.note) {
+        return `<tr><th scope="row">${nm0 ? `${esc(nm0)} (${esc(c.element)})` : esc(c.element)}</th>` +
+          `<td colspan="2"><span class="text-muted">${esc(c.note)}</span></td></tr>`;
+      }
       const [lo, hi] = cell(c.min, c.max);
       const nm = ELEMENT_NAMES[c.element];
       // The bulletin's own qualifier, e.g. "if determined" against cobalt in
@@ -317,7 +367,7 @@ function chemTable(r, rows) {
     '</tbody>',
     '</table>',
     '</div>',
-    `<p class="small text-muted">Composition limits per ${esc(r.source)}, checked ${esc(r.checked)}. These are specification limits for the grade, not measured values for a lot; the mill test certificate supplied with your order states the actual analysis.</p>`,
+    `<p class="small text-muted">${lead} the mill test certificate supplied with your order states the actual analysis.</p>`,
   ].join('\n');
 }
 
@@ -442,7 +492,15 @@ for (const fp of walk(ROOT)) {
     const seenU = new Set([...zone.matchAll(UNS_RE)].map(m => m[1].toUpperCase()));
     const seenW = new Set([...zone.matchAll(WNR_RE)].map(m => m[1]));
     const wantU = unsList(row.uns);
-    const wantW = row.wnr || '';
+    // wnr is a slash-separated list for the same reason uns is, and is split
+    // with the same helper. Special Metals prints TWO Werkstoff numbers for
+    // several grades - "(UNS N04400/W.Nr. 2.4360 and 2.4361)" for Monel 400,
+    // and likewise for Nimonic 75, Nimonic 80A, Nickel 200 and Nickel 201 - and
+    // a page is free to cite either one. Comparing the cell as a single string
+    // reported every such page as a contradiction the moment the second number
+    // was added here, which is a check punishing this file for getting more
+    // complete. The uppercasing unsList does is harmless on digits and dots.
+    const wantW = unsList(row.wnr);
     for (const u of seenU) {
       if (wantU.length && !wantU.includes(u))
         findings.push({ rel, kind: 'UNS', found: u, expected: row.uns, grade: fullName(row) });
@@ -450,7 +508,7 @@ for (const fp of walk(ROOT)) {
         findings.push({ rel, kind: 'UNS', found: u, expected: '(none published)', grade: fullName(row) });
     }
     for (const w of seenW) {
-      if (wantW && wantW !== '-' && w !== wantW)
+      if (wantW.length && !wantW.includes(w))
         findings.push({ rel, kind: 'W.Nr', found: w, expected: row.wnr, grade: fullName(row) });
     }
   }

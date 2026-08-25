@@ -199,6 +199,141 @@
     },
     {
       "family": "incoloy",
+      "grade": "DS",
+      "name": "Incoloy DS",
+      "uns": "N08330",
+      "uns_all": [
+        "N08330"
+      ],
+      "wnr": "1.4886",
+      "en_name": null,
+      "density_g_cm3": 7.94,
+      "melting_c": "1343-1393",
+      "source": "Rolled Alloys RA330 data sheet",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "800",
+      "name": "Incoloy 800",
+      "uns": "N08800",
+      "uns_all": [
+        "N08800"
+      ],
+      "wnr": "1.4876",
+      "en_name": "X10NiCrAlTi32-21",
+      "density_g_cm3": 7.94,
+      "melting_c": "1357-1385",
+      "source": "Special Metals INCOLOY alloy 800 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "800H",
+      "name": "Incoloy 800H",
+      "uns": "N08810",
+      "uns_all": [
+        "N08810"
+      ],
+      "wnr": "1.4958",
+      "en_name": "X5NiCrAlTi31-20",
+      "density_g_cm3": 7.94,
+      "melting_c": "1357-1385",
+      "source": "Special Metals INCOLOY alloy 800H bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "800HT",
+      "name": "Incoloy 800HT",
+      "uns": "N08811",
+      "uns_all": [
+        "N08811"
+      ],
+      "wnr": "1.4959",
+      "en_name": "X8NiCrAlTi32-21",
+      "density_g_cm3": 7.94,
+      "melting_c": "1357-1385",
+      "source": "Special Metals INCOLOY alloy 800HT bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "825",
+      "name": "Incoloy 825",
+      "uns": "N08825",
+      "uns_all": [
+        "N08825"
+      ],
+      "wnr": "2.4858",
+      "en_name": "NiCr21Mo",
+      "density_g_cm3": 8.14,
+      "melting_c": "1370-1400",
+      "source": "Special Metals INCOLOY alloy 825 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "890",
+      "name": "Incoloy 890",
+      "uns": "N08890",
+      "uns_all": [
+        "N08890"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.94,
+      "melting_c": "1309-1383",
+      "source": "Special Metals INCOLOY alloy 890 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "903",
+      "name": "Incoloy 903",
+      "uns": "N19903",
+      "uns_all": [
+        "N19903"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.25,
+      "melting_c": "1318-1393",
+      "source": "Special Metals INCOLOY alloy 903 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "909",
+      "name": "Incoloy 909",
+      "uns": "N19909",
+      "uns_all": [
+        "N19909"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.19,
+      "melting_c": "1395-1430",
+      "source": "Special Metals INCOLOY alloy 909 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "925",
+      "name": "Incoloy 925",
+      "uns": "N09925",
+      "uns_all": [
+        "N09925"
+      ],
+      "wnr": "2.4852",
+      "en_name": "NiCr20FeMo3TiCuAl",
+      "density_g_cm3": 8.08,
+      "melting_c": "1311-1366",
+      "source": "Special Metals INCOLOY alloy 925 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
       "grade": "945",
       "name": "Incoloy 945",
       "uns": "N09945",
@@ -348,6 +483,193 @@
       "checked": "2026-08"
     },
     {
+      "family": "monel",
+      "grade": "400",
+      "name": "Monel 400",
+      "uns": "N04400",
+      "uns_all": [
+        "N04400"
+      ],
+      "wnr": "2.4360 / 2.4361",
+      "en_name": null,
+      "density_g_cm3": 8.8,
+      "melting_c": "1300-1350",
+      "source": "Special Metals MONEL alloy 400 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "monel",
+      "grade": "405",
+      "name": "Monel 405",
+      "uns": "N04405",
+      "uns_all": [
+        "N04405"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.8,
+      "melting_c": "1300-1350",
+      "source": "Special Metals MONEL alloy R-405 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "monel",
+      "grade": "K-500",
+      "name": "Monel K-500",
+      "uns": "N05500",
+      "uns_all": [
+        "N05500"
+      ],
+      "wnr": "2.4375",
+      "en_name": null,
+      "density_g_cm3": 8.44,
+      "melting_c": "1315-1350",
+      "source": "Special Metals MONEL alloy K-500 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "75",
+      "name": "Nimonic 75",
+      "uns": "N06075",
+      "uns_all": [
+        "N06075"
+      ],
+      "wnr": "2.4951 / 2.4630",
+      "en_name": null,
+      "density_g_cm3": 8.37,
+      "melting_c": "1340-1380",
+      "source": "Special Metals NIMONIC alloy 75 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "80A",
+      "name": "Nimonic 80A",
+      "uns": "N07080",
+      "uns_all": [
+        "N07080"
+      ],
+      "wnr": "2.4952 / 2.4631",
+      "en_name": null,
+      "density_g_cm3": 8.19,
+      "melting_c": "1320-1365",
+      "source": "Special Metals NIMONIC alloy 80A bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "81",
+      "name": "Nimonic 81",
+      "uns": null,
+      "uns_all": [],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.06,
+      "melting_c": "1305-1375",
+      "source": "Special Metals NIMONIC alloy 81 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "86",
+      "name": "Nimonic 86",
+      "uns": null,
+      "uns_all": [],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.54,
+      "melting_c": null,
+      "source": "Special Metals NIMONIC alloy 86 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "90",
+      "name": "Nimonic 90",
+      "uns": "N07090",
+      "uns_all": [
+        "N07090"
+      ],
+      "wnr": "2.4632",
+      "en_name": null,
+      "density_g_cm3": 8.18,
+      "melting_c": "1310-1370",
+      "source": "Special Metals NIMONIC alloy 90 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "105",
+      "name": "Nimonic 105",
+      "uns": null,
+      "uns_all": [],
+      "wnr": "2.4634",
+      "en_name": null,
+      "density_g_cm3": 8.01,
+      "melting_c": null,
+      "source": "Special Metals NIMONIC alloy 105 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "115",
+      "name": "Nimonic 115",
+      "uns": null,
+      "uns_all": [],
+      "wnr": "2.4636",
+      "en_name": null,
+      "density_g_cm3": 7.85,
+      "melting_c": "1260-1315",
+      "source": "Special Metals NIMONIC alloy 115 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
+      "grade": "901",
+      "name": "Nimonic 901",
+      "uns": "N09901",
+      "uns_all": [
+        "N09901"
+      ],
+      "wnr": "2.4662",
+      "en_name": null,
+      "density_g_cm3": 8.14,
+      "melting_c": "1280-1345",
+      "source": "Special Metals NIMONIC alloy 901 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
+      "grade": "Nickel 200",
+      "name": "Nickel 200",
+      "uns": "N02200",
+      "uns_all": [
+        "N02200"
+      ],
+      "wnr": "2.4060 / 2.4066",
+      "en_name": null,
+      "density_g_cm3": 8.89,
+      "melting_c": "1435-1446",
+      "source": "Special Metals Nickel 200 & 201 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
+      "grade": "Monel 400",
+      "name": "Monel 400",
+      "uns": "N04400",
+      "uns_all": [
+        "N04400"
+      ],
+      "wnr": "2.4360 / 2.4361",
+      "en_name": null,
+      "density_g_cm3": 8.8,
+      "melting_c": "1300-1350",
+      "source": "Special Metals MONEL alloy 400 bulletin",
+      "checked": "2026-08"
+    },
+    {
       "family": "nickel-alloy",
       "grade": "Hastelloy C-276",
       "name": "Hastelloy C-276",
@@ -360,6 +682,51 @@
       "density_g_cm3": 8.89,
       "melting_c": "1323-1371",
       "source": "Haynes International HASTELLOY C-276 alloy brochure",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "254 SMO",
+      "name": "254 SMO",
+      "uns": "S31254",
+      "uns_all": [
+        "S31254"
+      ],
+      "wnr": "1.4547",
+      "en_name": "X1CrNiMoCuN20-18-7",
+      "density_g_cm3": 8,
+      "melting_c": null,
+      "source": "Outokumpu Ultra 254 SMO product page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "AL-6XN",
+      "name": "AL-6XN",
+      "uns": "N08367",
+      "uns_all": [
+        "N08367"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.06,
+      "melting_c": "1320-1400",
+      "source": "ATI AL-6XN alloy data sheet",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "Alloy 926",
+      "name": "Alloy 926",
+      "uns": "N08926",
+      "uns_all": [
+        "N08926"
+      ],
+      "wnr": "1.4529",
+      "en_name": "X1NiCrMoCuN25-20-7",
+      "density_g_cm3": 8.1,
+      "melting_c": "1320-1390",
+      "source": "VDM Metals VDM Alloy 926 data sheet April 2024",
       "checked": "2026-08"
     }
   ]

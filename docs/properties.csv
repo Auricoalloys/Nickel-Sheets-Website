@@ -226,3 +226,98 @@ hastelloy,X,Coefficient of expansion,13.9,µm/m·°C,26-100 °C,
 hastelloy,X,Dynamic modulus of elasticity,205,GPa,,
 hastelloy,X,Poisson's ratio,0.320,,,
 hastelloy,X,Magnetic permeability,1.002,,at 200 oersted / 15.9 kA/m,
+
+# --- NIMONIC --- Special Metals bulletins
+#
+# These sheets qualify almost every constant with "at 20 °C", so the condition
+# column carries it rather than being left implied. Alloys 81, 86 and 105
+# publish density and melting data only and have no rows here at all.
+#
+# RESISTIVITY UNITS ARE THE BULLETINS' OWN and they are not consistent with each
+# other: alloy 75 is printed in µΩ·m, alloys 115 and 901 in µΩ·cm. That is the
+# same split Haynes has between N/X and the rest, and the same rule applies -
+# record the printed number in the printed unit, never a converted one.
+nimonic,75,Specific heat,461,J/kg·°C,20 °C,
+nimonic,75,Thermal conductivity,11.7,W/m·°C,20 °C,
+nimonic,75,Electrical resistivity,1.09,µΩ·m,20 °C,
+# 80A's sheet publishes no specific heat or conductivity - its Table 2 gives
+# density, melting range and the magnetic constants, and nothing else.
+nimonic,80A,Mass susceptibility,5.85 × 10⁻⁶,,at 1000 gauss,
+nimonic,80A,Volume susceptibility,4.78 × 10⁻⁶,,at 1000 gauss,
+nimonic,80A,Magnetic permeability,1.000601,,for 200-2000 oersted,
+# Alloy 90's specific heat is the 20 °C row of its Table 1 - the table runs to
+# 600 °C and only the room-temperature figure is taken here.
+nimonic,90,Specific heat,446,J/kg·°C,20 °C,
+nimonic,115,Specific heat,444,J/kg·°C,20 °C,
+nimonic,115,Thermal conductivity,10.6,W/m·°C,20 °C,
+nimonic,115,Electrical resistivity,139,µΩ·cm,20 °C,
+nimonic,115,Coefficient of expansion,12.0,µm/m·°C,20-100 °C,
+nimonic,901,Specific heat,431,J/kg·°C,20 °C,
+nimonic,901,Electrical resistivity,112,µΩ·cm,20 °C,
+nimonic,901,Coefficient of expansion,13.5,µm/m·°C,20-100 °C,
+
+# --- MONEL --- Special Metals bulletins
+#
+# The modulus is printed as "Modulus of Elasticity, 10³ ksi" with the multiplier
+# in the column heading, so the value carries it here - writing 26000 ksi would
+# be this file restating the mill rather than quoting it. Special Metals gives
+# no SI modulus for these three.
+monel,400,Modulus of elasticity,26.0 × 10³,ksi,tension,
+monel,400,Modulus of elasticity,26.0 × 10³,ksi,compression,
+monel,400,Modulus of elasticity,9.5 × 10³,ksi,torsion,
+monel,400,Poisson's ratio,0.32,,,
+# The Curie temperature of alloy 400 lies IN the ambient range - the bulletin
+# says so in as many words and warns that some heats are magnetic at room
+# temperature and others are not. It is a range because composition moves it.
+monel,400,Curie temperature,21-49,°C,,
+# R-405's own sheet reprints alloy 400's constants under the footnote "These
+# values also apply to MONEL alloy R-405", so these are published for R-405 and
+# are not this file copying the sibling grade.
+monel,405,Modulus of elasticity,26.0 × 10³,ksi,tension,
+monel,405,Modulus of elasticity,26.0 × 10³,ksi,compression,
+monel,405,Modulus of elasticity,9.5 × 10³,ksi,torsion,
+monel,405,Poisson's ratio,0.32,,,
+monel,405,Curie temperature,21-49,°C,,
+# K-500's table prints tension and torsion only - no compression row - and
+# qualifies Poisson's ratio as aged material at room temperature.
+monel,K-500,Modulus of elasticity,26.0 × 10³,ksi,tension,
+monel,K-500,Modulus of elasticity,9.5 × 10³,ksi,torsion,
+monel,K-500,Poisson's ratio,0.32,,aged material at room temperature,
+
+# --- nickel-alloy --- Special Metals Nickel 200 & 201 bulletin
+#
+# Commercially pure nickel is ferromagnetic and its Curie temperature is a
+# headline property rather than a footnote - 360 °C, against Monel 400's 21-49
+# and the INCONEL grades' sub-zero figures. Alloy 201's row in grades.csv is
+# still pending, so it has no rows here.
+nickel-alloy,Nickel 200,Specific heat,456,J/kg·°C,,
+nickel-alloy,Nickel 200,Curie temperature,360,°C,,
+
+# --- special-stainless-steel --- the 6% molybdenum super-austenitics
+#
+# AL-6XN, ATI data sheet Table 15, room temperature. The sheet prints imperial
+# and SI side by side; SI is taken throughout, per the rule at the top of this
+# file. Its expansion coefficient is headed "10⁻⁶/°C", which is the same unit as
+# the µm/m·°C every other row here uses - the number is unchanged.
+special-stainless-steel,AL-6XN,Modulus of elasticity,195,GPa,,
+special-stainless-steel,AL-6XN,Shear modulus,74,GPa,,
+special-stainless-steel,AL-6XN,Poisson's ratio,0.31,,,
+special-stainless-steel,AL-6XN,Thermal conductivity,14.1,W/m·K,20-100 °C,
+special-stainless-steel,AL-6XN,Coefficient of expansion,14.2,µm/m·°C,20-100 °C,
+special-stainless-steel,AL-6XN,Specific heat,500,J/kg·K,,
+special-stainless-steel,AL-6XN,Electrical resistivity,89.0,µΩ·cm,,
+# One row rather than two: the sheet lists fully annealed plate and 65%
+# cold-worked plate separately and both read 1.0028.
+special-stainless-steel,AL-6XN,Magnetic permeability,1.0028,,at 200 H - annealed and 65% cold-worked plate,
+special-stainless-steel,AL-6XN,Scaling temperature,1030,°C,,
+# 254 SMO, Outokumpu Ultra 254 SMO product page. Its physical-properties table
+# gives resistivity in µΩm - 0.85 - where ATI gives AL-6XN's in µΩ·cm. Two very
+# similar alloys with their constants printed in units a hundred apart is
+# exactly the trap the unit column exists for.
+special-stainless-steel,254 SMO,Modulus of elasticity,195,GPa,,
+special-stainless-steel,254 SMO,Coefficient of expansion,16.5,µm/m·°C,,
+special-stainless-steel,254 SMO,Thermal conductivity,14,W/m·°C,,
+special-stainless-steel,254 SMO,Specific heat,500,J/kg·°C,,
+special-stainless-steel,254 SMO,Electrical resistivity,0.85,µΩ·m,,
+# VDM's alloy 926 sheet publishes density, melting range and this one constant.
+special-stainless-steel,Alloy 926,Magnetic permeability,1.001,,relative - at 20 °C,
