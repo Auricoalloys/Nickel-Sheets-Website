@@ -230,7 +230,23 @@ def audit(pages):
         for p, d in real.items()
         if len(re.findall(r"<a[\s>]", d["raw"], re.I)) != d["raw"].lower().count("</a>"))
 
-    # image alt naming a different alloy/grade than the page's own H1
+    # image alt naming a different alloy/grade than the page's own H1.
+    #
+    # Grades match numerically, brand families by name. The family list holds
+    # brands only: "alloy", "nickel", "stainless" and "steel" are legitimately
+    # broader than a brand, so an alt reading "Nickel Alloy Coil" on an Inconel
+    # page is correct and must not be flagged. Naming a *different* brand
+    # cannot be a broader description, so that one is always an error - it is
+    # how a Kovar page came to caption its banner "Invar Foil Supplier" and a
+    # Monel 400 page to carry alt text for Super Duplex 32750.
+    BRANDS = ("inconel", "incoloy", "monel", "hastelloy", "haynes", "nimonic",
+              "nichrome", "kovar", "invar", "duplex", "titanium", "alsi10mg",
+              "cocrmo", "maraging")
+
+    def _brands(s):
+        t = re.sub(r"&reg;|&trade;|®|™", " ", s.lower())
+        return {w for w in BRANDS if w in t}
+
     mismatch = []
     for p, d in real.items():
         m = re.search(r'<div class="flat-banner".*?</div>', d["raw"], re.S)
@@ -243,9 +259,21 @@ def audit(pages):
         h1 = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", h.group(1))).strip()
         ga = set(re.findall(r"\b\d{3,4}[A-Z]?\b|\bGrade \d+\b", a.group(1)))
         gh = set(re.findall(r"\b\d{3,4}[A-Z]?\b|\bGrade \d+\b", h1))
-        if ga and gh and not (ga & gh):
+        ba, bh = _brands(a.group(1)), _brands(h1)
+        if (ga and gh and not (ga & gh)) or (ba and bh and not (ba & bh)):
             mismatch.append({"file": p, "alt": a.group(1)[:60], "h1": h1[:60]})
     findings["alt_alloy_mismatch"] = mismatch
+
+    # The banner heading is the page's <h1>. A <figcaption> there is the
+    # pre-migration form, and it is invisible rather than merely wrong: it
+    # renders identically, so nothing looks broken, but the check above needs
+    # an <h1> inside the banner and quietly skips the page without counting it.
+    # 412 pages sat in that state, which is why alt_alloy_mismatch read 0 while
+    # seeing 37% of the pages it was written for - and why this is a finding in
+    # its own right rather than something the count above could ever reveal.
+    findings["banner_figcaption"] = sorted(
+        p for p, d in real.items()
+        if re.search(r"<figcaption[^>]*banner-title", d["raw"], re.I))
 
     # orphans: nothing links to them
     shared = ""
