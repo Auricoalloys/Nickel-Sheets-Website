@@ -15,3 +15,13 @@
 docs/powder-datasheets/**/*.html text eol=lf
 docs/powder-datasheets/*.mjs text eol=lf
 docs/powder-datasheets/*.csv text eol=lf
+
+# docs/grades.json has the same problem and went years without the same rule.
+# build-grades.mjs writes it with LF and its --check does `cur !== jsonPayload()`,
+# a strict string compare, so a CRLF working tree reports it stale even when the
+# content is identical. That fired the moment this repo was checked out onto a
+# branch - `git status` clean, `--check` claiming drift, and regenerating just
+# flipped the file back and forth. The pages do not need a rule because
+# build-grades.mjs detects and restores their line endings when it writes them;
+# grades.json is the one output it writes unconditionally as LF.
+docs/grades.json text eol=lf
