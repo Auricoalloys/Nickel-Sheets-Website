@@ -126,16 +126,79 @@ incoloy,909,N19909,-,-,8.19,1395-1430,pending,
 # number. So this row's identifiers come from the German register and the mill
 # bulletin between them, and neither one alone confirms the pair.
 incoloy,925,N09925,2.4852,NiCr20FeMo3TiCuAl,8.08,1311-1366,pending,
-incoloy,945,N09945,-,-,8.20,1320-1370,pending,
-hastelloy,B-2,N10665,2.4617,NiMo28,9.22,1330-1380,pending,
-hastelloy,B-3,N10675,2.4600,NiMo28Fe,9.22,1370-1418,pending,
-hastelloy,C-4,N06455,2.4610,NiMo16Cr16Ti,8.64,1350-1385,pending,
-hastelloy,C-22,N06022,2.4602,NiCr21Mo14W,8.69,1357-1399,pending,
-hastelloy,C-276,N10276,2.4819,NiMo16Cr15W,8.89,1325-1370,pending,
-hastelloy,C-2000,N06200,2.4675,NiCr23Mo16Cu,8.50,1328-1358,pending,
-hastelloy,G-30,N06030,2.4603,NiCr30FeMo,8.22,1332-1371,pending,
-hastelloy,N,N10003,2.4110,-,8.86,1300-1400,pending,
-hastelloy,X,N06002,2.4665,NiCr22Fe18Mo,8.22,1260-1355,pending,
+# The 945 bulletin heads the grade "INCOLOY alloy 945 (UNS N09945)" and prints
+# no Werkstoff number, so wnr and en_name are EMPTY, not "-" - the same call
+# made for Inconel 693/725/740H/751/783. Blank says "not verified yet"; a dash
+# would claim the mill states there is none, and only a register can settle
+# that. /incoloy/945/round-bar/ carried "DIN 2.4962, EN 10095" until
+# 2026-08-24: no other page on this site cites 2.4962, so it is not a sibling
+# carry-over, and EN 10095 covers heat-resisting grades - 945 is an oil-country
+# precipitation-hardening alloy outside its scope. Both were dropped, not
+# replaced. The seeded 8.20 / 1320-1370 were close but not the mill's: Table 2
+# says 8.2 g/cm3 and 1270-1377 C (2317-2510 F).
+incoloy,945,N09945,,,8.2,1270-1377,Special Metals INCOLOY alloy 945 bulletin,2026-08
+# Haynes has withdrawn B-2 - it is absent from their portfolio, which lists B-3
+# as the B-family alloy. VDM still makes it, but under the brand name
+# NIMOFER 6928 rather than "VDM Alloy B-2", which is why an earlier note here
+# claimed VDM had no B-2 sheet: the search was for the wrong name, not for a
+# missing document. VDM's designations block gives 2.4617 / NiMo28 / N10665
+# together, so the seeded Werkstoff number and EN name were right all along.
+# Chemistry and density come from ASTM B333.
+#
+# THE SEEDED 9.22 WAS RIGHT AND AN EARLIER NOTE HERE WAS WRONG TO SUSPECT IT.
+# It reads identically to B-3's density and that looked like the sibling
+# carry-over this file exists to catch - but B333 section 7.1 lists 0.333 lb/in3
+# (9.22) for N10665, N10675 AND N10629 alike. The three really do share a
+# density; identical is not the same as copied.
+#
+# MELTING RANGE STAYS EMPTY. ASTM publishes none and the VDM designations block
+# does not carry one; the seeded 1330-1380 is still unsourced. Empty drops that
+# row rather than asserting a figure under a citation that does not contain it.
+hastelloy,B-2,N10665,2.4617,NiMo28,9.22,,VDM NIMOFER 6928 (Alloy B-2) and ASTM B333,2026-08
+# EN name was NiMo28Fe. Haynes' own Specifications table prints "DIN 17744 No.
+# 2.4600 NiMo29Cr", and NiMo29Cr is what B-3 is: B333 gives it Mo 27.0-32.0 with
+# a specified Cr 1.0-3.0, so chromium is an alloying element here and iron is
+# only 1.0-3.0. NiMo28Fe describes a different material. The Werkstoff number
+# 2.4600 was already right.
+hastelloy,B-3,N10675,2.4600,NiMo29Cr,9.22,1370-1418,Haynes International HASTELLOY B-3 alloy page,2026-08
+# Haynes publishes no melting range for C-4 so the cell is EMPTY - the seeded
+# 1350-1385 had no source behind it. VDM's Alloy C-4 sheet says 1335-1380 °C but
+# also 8.6 g/cm3 against Haynes' 8.64; taking one figure from each mill would be
+# cherry-picking, so the density is Haynes' and the range waits for Haynes.
+hastelloy,C-4,N06455,2.4610,NiMo16Cr16Ti,8.64,,Haynes International HASTELLOY C-4 alloy page,2026-08
+hastelloy,C-22,N06022,2.4602,NiCr21Mo14W,8.69,1357-1399,Haynes International HASTELLOY C-22 alloy page,2026-08
+# HASTELLOY is Haynes International's trademark, so identity and the physical
+# constants are theirs. VDM Metals makes the same alloy as VDM Alloy C-276 /
+# Nicrofer 5716 hMoW, and Table 1a of its Material Data Sheet 4115 rev. 02
+# (March 2022) independently confirms 2.4819 - NiMo16Cr15W and UNS N10276.
+# Where the two mills differ, Haynes' figure is recorded because the pages are
+# branded HASTELLOY: density 8.89 against VDM's 8.9, and melting 1323-1371
+# (2415-2500 F) against VDM's 1325-1370, which is what this row was seeded
+# with. The difference is a rounding of the same measurement, not a dispute.
+# ASTM B575 section 8.1 lists 8.87 for weight calculations, from the same
+# 0.321 lb/in3 Haynes prints - a third rounding of one figure, not a fourth
+# opinion. B575's numbers for C-22, C-4 and C-2000 match Haynes exactly.
+hastelloy,C-276,N10276,2.4819,NiMo16Cr15W,8.89,1323-1371,Haynes International HASTELLOY C-276 alloy brochure,2026-08
+hastelloy,C-2000,N06200,2.4675,NiCr23Mo16Cu,8.50,1328-1358,Haynes International HASTELLOY C-2000 alloy page,2026-08
+# Haynes publishes no melting range for G-30 either - same call as C-4 above, the
+# cell is empty rather than carrying the unsourced 1332-1371 it was seeded with.
+hastelloy,G-30,N06030,2.4603,NiCr30FeMo,8.22,,Haynes International HASTELLOY G-30 alloy page,2026-08
+# Alone in this family, the Haynes Specifications table prints "DIN -" for N: no
+# standard, no Werkstoff number, no EN name. So the seeded 2.4110 is not carried
+# by the source this row cites, and wnr goes EMPTY rather than being published
+# under it. Empty, not "-", for the reason the Incoloy 945 row gives: a dash
+# would claim the mill states no number exists, and only the German register can
+# settle that. 2.4110 is widely quoted for this alloy and may well be right -
+# it needs a register entry, not a repetition.
+hastelloy,N,N10003,,,8.86,1300-1400,Haynes International HASTELLOY N alloy page,2026-08
+# The best-corroborated row in this family: two mills making the same UNS number
+# independently agree. Special Metals' INCONEL alloy HX sheet gives N06002,
+# W.Nr. 2.4665 and melting 1260-1355 C (2300-2470 F) - identical to Haynes on
+# every figure. Density is 8.2 there against Haynes' 8.22 and both print
+# 0.297 lb/in3, so it is one measurement rounded twice; the more precise figure
+# is kept. Haynes' own Specifications table also prints DIN 17742 No. 2.4665
+# NiCr22Fe18Mo which confirms the Werkstoff number and the EN name.
+hastelloy,X,N06002,2.4665,NiCr22Fe18Mo,8.22,1260-1355,Haynes International HASTELLOY X alloy page,2026-08
 monel,400,N04400,2.4360,NiCu30Fe,8.80,1300-1350,pending,
 monel,405,N04405,2.4360,-,8.80,1300-1350,pending,
 monel,K-500,N05500,2.4375,NiCu30Al,8.44,1315-1350,pending,
@@ -167,7 +230,11 @@ nickel-alloy,Monel 400,N04400,2.4360,NiCu30Fe,8.80,1300-1350,pending,
 nickel-alloy,Inconel 600,N06600,2.4816,NiCr15Fe,8.47,1354-1413,pending,
 nickel-alloy,Inconel 625,N06625,2.4856,NiCr22Mo9Nb,8.44,1290-1350,pending,
 nickel-alloy,Incoloy 825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,pending,
-nickel-alloy,Hastelloy C-276,N10276,2.4819,NiMo16Cr15W,8.89,1325-1370,pending,
+# The same material as hastelloy/C-276 above, listed again under the form-hub
+# family key. No page resolves to this row today, but --check only compares
+# wnr, en_name and density across rows sharing a UNS - it would not have caught
+# the melting range drifting apart, so both rows are moved together.
+nickel-alloy,Hastelloy C-276,N10276,2.4819,NiMo16Cr15W,8.89,1323-1371,Haynes International HASTELLOY C-276 alloy brochure,2026-08
 duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1420-1465,pending,
 duplex-steel,2507,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1350-1400,pending,
 duplex-steel,Zeron 100,S32760,1.4501,X2CrNiMoCuWN25-7-4,7.80,1350-1400,pending,

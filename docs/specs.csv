@@ -56,8 +56,42 @@ hastelloy,C-22,N06022,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622,ASTM B366
 hastelloy,C-276,N10276,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622 / B626,ASTM B366
 hastelloy,C-2000,N06200,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622,ASTM B366
 hastelloy,G-30,N06030,ASTM B582,ASTM B581,ASTM B581,ASTM B619 / B622,ASTM B366
-hastelloy,N,N10003,-,ASTM B573,-,-,-
-hastelloy,X,N06002,ASTM B435,ASTM B572,-,ASTM B619 / B622,ASTM B366
+# Checked 2026-08-25 against the Specifications table on the Haynes HASTELLOY N
+# alloy page. Two cells were "-", which claims the grade is NOT MADE in that
+# form - and flat was the damaging one, because /hastelloy/N/sheets/ and
+# /hastelloy/N/plates/ both exist and were printing no specification at all
+# while the CSV said the material did not come that way. Haynes lists
+# Sheet Plate & Strip as AMS 5607 / SB 434 / B 434, and Fittings as B 366.
+#
+# pipe_tube stays "-" and that one is right: Haynes prints "-" against both
+# Seamless Pipe & Tube and Welded Pipe & Tube. wire stays "-" too - the only
+# wire entry is Bare Welding Rods & Wire (SFA 5.14 / ERNiMo-2), a welding
+# consumable rather than a wire product, the same call made on the X row.
+# Haynes also lists forgings as AMS 5771, which is the bar spec already here,
+# and Mil-N-24390B under Others. Its DIN row is "-", which is the source for
+# leaving this grade's Werkstoff number blank in docs/grades.csv.
+hastelloy,N,N10003,ASTM B434 / AMS 5607,ASTM B573 / AMS 5771,-,-,ASTM B366
+# Checked 2026-08-25 against the ATI HX technical data sheet's Specifications
+# table (ATI makes N06002 as ATI HX) and cross-checked against the Specifications
+# table on the Haynes HASTELLOY X page. They agree on every form.
+#
+# ASTM B626 WAS MISSING from pipe_tube. ATI lists seamless tube as B622 and
+# WELDED tube as B626; only the seamless spec was here, so a welded X tube had no
+# standard printed for it. The inconel/686 row already carries B619 / B622 / B626
+# for the same three product forms.
+#
+# AMS 5536 (sheet strip plate) and AMS 5754 (bar forgings rings) are added the
+# way the inconel rows carry theirs. Both were already cited by hand on the X
+# pages - 5536 twenty times, 5754 twice - and ATI confirms both, so those hand
+# written mentions were right and are now generated from here instead.
+#
+# wire stays "-". ATI and Haynes both list only weld wire (AMS 5798 / SFA-5.14)
+# and covered electrodes (AMS 5799 / SFA-5.11) for X, which are welding
+# consumables and not a wire product. AMS 5587 / 5588 cover seamless and welded
+# tube and are left out of pipe_tube to keep that cell to the three ASTMs a
+# stockist actually certifies to. ATI also lists A567 castings and B924 finned
+# tubes - neither is a form this site sells.
+hastelloy,X,N06002,ASTM B435 / AMS 5536,ASTM B572 / AMS 5754,-,ASTM B619 / B622 / B626,ASTM B366
 monel,400,N04400,ASTM B127,ASTM B164,ASTM B164,ASTM B163 / B165,ASTM B366
 monel,405,N04405,-,ASTM B164,ASTM B164,-,-
 monel,K-500,N05500,QQ-N-286,ASTM B865,ASTM B865,-,-

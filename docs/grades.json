@@ -196,6 +196,171 @@
       "melting_c": "1393-1427",
       "source": "Special Metals INCONEL alloy X-750 bulletin",
       "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "945",
+      "name": "Incoloy 945",
+      "uns": "N09945",
+      "uns_all": [
+        "N09945"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.2,
+      "melting_c": "1270-1377",
+      "source": "Special Metals INCOLOY alloy 945 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "B-2",
+      "name": "Hastelloy B-2",
+      "uns": "N10665",
+      "uns_all": [
+        "N10665"
+      ],
+      "wnr": "2.4617",
+      "en_name": "NiMo28",
+      "density_g_cm3": 9.22,
+      "melting_c": null,
+      "source": "VDM NIMOFER 6928 (Alloy B-2) and ASTM B333",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "B-3",
+      "name": "Hastelloy B-3",
+      "uns": "N10675",
+      "uns_all": [
+        "N10675"
+      ],
+      "wnr": "2.4600",
+      "en_name": "NiMo29Cr",
+      "density_g_cm3": 9.22,
+      "melting_c": "1370-1418",
+      "source": "Haynes International HASTELLOY B-3 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "C-4",
+      "name": "Hastelloy C-4",
+      "uns": "N06455",
+      "uns_all": [
+        "N06455"
+      ],
+      "wnr": "2.4610",
+      "en_name": "NiMo16Cr16Ti",
+      "density_g_cm3": 8.64,
+      "melting_c": null,
+      "source": "Haynes International HASTELLOY C-4 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "C-22",
+      "name": "Hastelloy C-22",
+      "uns": "N06022",
+      "uns_all": [
+        "N06022"
+      ],
+      "wnr": "2.4602",
+      "en_name": "NiCr21Mo14W",
+      "density_g_cm3": 8.69,
+      "melting_c": "1357-1399",
+      "source": "Haynes International HASTELLOY C-22 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "C-276",
+      "name": "Hastelloy C-276",
+      "uns": "N10276",
+      "uns_all": [
+        "N10276"
+      ],
+      "wnr": "2.4819",
+      "en_name": "NiMo16Cr15W",
+      "density_g_cm3": 8.89,
+      "melting_c": "1323-1371",
+      "source": "Haynes International HASTELLOY C-276 alloy brochure",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "C-2000",
+      "name": "Hastelloy C-2000",
+      "uns": "N06200",
+      "uns_all": [
+        "N06200"
+      ],
+      "wnr": "2.4675",
+      "en_name": "NiCr23Mo16Cu",
+      "density_g_cm3": 8.5,
+      "melting_c": "1328-1358",
+      "source": "Haynes International HASTELLOY C-2000 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "G-30",
+      "name": "Hastelloy G-30",
+      "uns": "N06030",
+      "uns_all": [
+        "N06030"
+      ],
+      "wnr": "2.4603",
+      "en_name": "NiCr30FeMo",
+      "density_g_cm3": 8.22,
+      "melting_c": null,
+      "source": "Haynes International HASTELLOY G-30 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "N",
+      "name": "Hastelloy N",
+      "uns": "N10003",
+      "uns_all": [
+        "N10003"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.86,
+      "melting_c": "1300-1400",
+      "source": "Haynes International HASTELLOY N alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "hastelloy",
+      "grade": "X",
+      "name": "Hastelloy X",
+      "uns": "N06002",
+      "uns_all": [
+        "N06002"
+      ],
+      "wnr": "2.4665",
+      "en_name": "NiCr22Fe18Mo",
+      "density_g_cm3": 8.22,
+      "melting_c": "1260-1355",
+      "source": "Haynes International HASTELLOY X alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
+      "grade": "Hastelloy C-276",
+      "name": "Hastelloy C-276",
+      "uns": "N10276",
+      "uns_all": [
+        "N10276"
+      ],
+      "wnr": "2.4819",
+      "en_name": "NiMo16Cr15W",
+      "density_g_cm3": 8.89,
+      "melting_c": "1323-1371",
+      "source": "Haynes International HASTELLOY C-276 alloy brochure",
+      "checked": "2026-08"
     }
   ]
 }

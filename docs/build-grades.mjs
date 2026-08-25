@@ -107,6 +107,10 @@ const ELEMENT_NAMES = {
   Ti: 'Titanium', Al: 'Aluminium', Co: 'Cobalt', W: 'Tungsten', V: 'Vanadium',
   B: 'Boron', N: 'Nitrogen', O: 'Oxygen', H: 'Hydrogen', Nb: 'Niobium',
   Ta: 'Tantalum', 'Nb+Ta': 'Niobium + Tantalum', 'Al+Ti': 'Aluminium + Titanium',
+  // ASTM B333 specifies nickel plus molybdenum as a combined 94.0-98.0 band for
+  // N10675 on top of the individual limits, so it is a real acceptance
+  // criterion and needs a display name like the other combined keys.
+  'Ni+Mo': 'Nickel + Molybdenum',
   Zr: 'Zirconium', Mg: 'Magnesium', Y: 'Yttrium', Ce: 'Cerium', La: 'Lanthanum',
   Pb: 'Lead', Bi: 'Bismuth', Se: 'Selenium', Sn: 'Tin', Zn: 'Zinc', Ag: 'Silver',
   Be: 'Beryllium', Ca: 'Calcium', Hf: 'Hafnium', Re: 'Rhenium', Pd: 'Palladium',
@@ -282,7 +286,10 @@ function identityTable(r, form) {
     '</tbody>',
     '</table>',
     '</div>',
-    `<p class="small text-muted">Identifiers and physical constants for ${esc(fullName(r))} as published by the mill (${esc(r.source)}, checked ${esc(r.checked)}). A dash means the mill publishes no such designation for this grade.</p>`,
+    // "the source cited", not "the mill": most rows come from a mill bulletin,
+    // but Hastelloy B-2 is sourced to ASTM B333 because no mill publishes the
+    // grade any more, and a caption claiming a mill published it would be false.
+    `<p class="small text-muted">Identifiers and physical constants for ${esc(fullName(r))} as published in the source cited (${esc(r.source)}, checked ${esc(r.checked)}). A dash means that source publishes no such designation for this grade.</p>`,
   ].join('\n');
 }
 

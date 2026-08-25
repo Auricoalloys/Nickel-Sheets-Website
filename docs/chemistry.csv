@@ -294,6 +294,28 @@ incoloy,925,Si,,0.5
 incoloy,925,Nb,,0.5
 incoloy,925,C,,0.03
 incoloy,925,S,,0.03
+# INCOLOY alloy 945, Table 1 of the Special Metals bulletin - "Limiting
+# Chemical Composition" - in the order the mill prints it, so iron sits third
+# between chromium and molybdenum rather than last.
+#
+# The hand-written table these rows replace had NO NIOBIUM ROW, and Nb 2.5-4.5
+# is what age-hardens this grade: material accepted against that table need not
+# have been 945 at all. Nickel read 40.0-46.0 against the mill's 45.0-55.0,
+# molybdenum 1.5-3.0 against 3.0-4.0, titanium 0.35-0.90 against 0.5-2.5, and
+# it carried a cobalt band the bulletin does not publish for this alloy.
+incoloy,945,Ni,45.0,55.0
+incoloy,945,Cr,19.5,23.0
+incoloy,945,Fe,,bal
+incoloy,945,Mo,3.0,4.0
+incoloy,945,Nb,2.5,4.5
+incoloy,945,Cu,1.5,3.0
+incoloy,945,Ti,0.5,2.5
+incoloy,945,Al,0.01,0.7
+incoloy,945,Mn,,1.0
+incoloy,945,Si,,0.5
+incoloy,945,S,,0.03
+incoloy,945,P,,0.03
+incoloy,945,C,0.005,0.04
 monel,400,Ni,63.0,
 monel,400,Cu,28.0,34.0
 monel,400,Fe,,2.5
@@ -310,6 +332,85 @@ monel,K-500,Mn,,1.5
 monel,K-500,C,,0.25
 monel,K-500,Si,,0.5
 monel,K-500,S,,0.010
+# HASTELLOY B-2 = UNS N10665, ASTM B333 Table 1. A nickel-molybdenum alloy with
+# no chromium worth the name: Cr is a 1.0 max residual here, not an alloying
+# addition, which is what separates the B family from every C-grade below and is
+# why B-2 is used in reducing acid and attacked in oxidising service.
+# B333 specifies nothing for V, Al, Nb, Cu, Ta, Ti, W or Zr for this alloy - the
+# standard's note B says an ellipsis means the element "need neither be analyzed
+# for nor reported", so those rows are absent rather than dashed.
+hastelloy,B-2,Ni,,bal
+hastelloy,B-2,Mo,26.0,30.0
+hastelloy,B-2,Fe,,2.0
+hastelloy,B-2,Cr,,1.0
+hastelloy,B-2,Co,,1.00
+hastelloy,B-2,Mn,,1.0
+hastelloy,B-2,C,,0.02
+hastelloy,B-2,Si,,0.10
+hastelloy,B-2,P,,0.04
+hastelloy,B-2,S,,0.03
+# HASTELLOY B-3 = UNS N10675, ASTM B333 Table 1, and the most heavily specified
+# grade in this file - nineteen rows where B-2 has ten. That is the point of B-3:
+# it is B-2 with the tramp elements pinned down to stop the intermetallic
+# embrittlement B-2 suffers on slow cooling.
+#
+# NICKEL IS 65.0 MIN HERE, NOT "BALANCE" - B333 states a minimum for this alloy
+# where it writes "remainder" for N10665, and it additionally requires
+# nickel plus molybdenum 94.0-98.0. Both are real acceptance criteria and both
+# are published.
+hastelloy,B-3,Ni,65.0,
+hastelloy,B-3,Mo,27.0,32.0
+hastelloy,B-3,Fe,1.0,3.0
+hastelloy,B-3,Cr,1.0,3.0
+hastelloy,B-3,Ni+Mo,94.0,98.0
+hastelloy,B-3,Co,,3.0
+hastelloy,B-3,Mn,,3.0
+hastelloy,B-3,W,,3.0
+hastelloy,B-3,Al,,0.50
+hastelloy,B-3,Cu,,0.20
+hastelloy,B-3,Nb,,0.20
+hastelloy,B-3,Ta,,0.20
+hastelloy,B-3,Ti,,0.20
+hastelloy,B-3,V,,0.20
+hastelloy,B-3,Zr,,0.10
+hastelloy,B-3,C,,0.01
+hastelloy,B-3,Si,,0.10
+hastelloy,B-3,P,,0.030
+hastelloy,B-3,S,,0.010
+# HASTELLOY C-276 = UNS N10276, ASTM B575 Table 1. All twelve rows checked
+# against the standard's own table and all twelve are correct, carbon included
+# at 0.010.
+#
+# These rows were seeded long before the grade was verified and turned out to
+# need no correction - opening the gate in grades.csv on 2026-08-25 is what
+# published them. Only the carbon maximum changed, 0.01 to 0.010, to print the
+# precision the standard itself prints.
+#
+# The limits are ASTM B575's, not a mill's, and that is deliberate. Haynes
+# International publishes only a single nominal "Weight %" column for this alloy
+# (Cr 16, Mo 16, W 4, residuals as maxima), so the HASTELLOY brochure cannot
+# source a min/max table at all. B575 is also the standard docs/specs.csv already
+# certifies every C-276 flat page to, so the chemistry table and the
+# specification row on the same page now agree.
+#
+# VDM Metals makes the same alloy to tighter house limits - Table 2 of Material
+# Data Sheet 4115 gives Cr 15-16.5, Ni 51-63, V 0.3 max, P 0.02 max and S 0.01
+# max. Those are NOT recorded here. VDM's band sits inside B575's, so VDM
+# material always conforms to what is published below, but the reverse does not
+# hold: printing VDM's numbers would have the page reject conforming B575 stock
+# the company actually sells.
+#
+# What the four pages published instead, all four disagreeing with each other:
+# sheets and plates gave nickel 57.0-61.0 as a limit range when it is the
+# balance, and both OMITTED TUNGSTEN ENTIRELY - the W in NiMo16Cr15W and a
+# defining element of the grade, so material accepted against those tables need
+# not have been C-276 at all. Round bar had W 2.5-3.5, the wrong band. Sheets and
+# plates carried carbon 0.02 max, double the 0.010 that makes this the
+# low-carbon grade in the first place. Sheets also had chromium 15.0-17.0 (the
+# molybdenum band copied one row up), iron 5.0-7.0, manganese 0.5 max and a
+# copper limit B575 does not specify for N10276. Round bar's nickel minimum read
+# "50.99", a lot analysis figure typed into a specification table. None of the
+# four listed vanadium.
 hastelloy,C-276,Ni,,bal
 hastelloy,C-276,Cr,14.5,16.5
 hastelloy,C-276,Mo,15.0,17.0
@@ -318,10 +419,20 @@ hastelloy,C-276,W,3.0,4.5
 hastelloy,C-276,Co,,2.5
 hastelloy,C-276,Mn,,1.0
 hastelloy,C-276,V,,0.35
-hastelloy,C-276,C,,0.01
+hastelloy,C-276,C,,0.010
 hastelloy,C-276,Si,,0.08
 hastelloy,C-276,P,,0.04
 hastelloy,C-276,S,,0.03
+# HASTELLOY C-22 = UNS N06022, ASTM B575 Table 1. All twelve rows verified
+# against the standard's own table and all twelve were already correct.
+#
+# PHOSPHORUS IS 0.02. It was briefly changed to 0.025 here on the strength of a
+# text extraction from the VDM Alloy 22 data sheet, and that was wrong: 0.025 is
+# the N06200 column of the same B575 row, and the columns had shifted by one in
+# the extraction. Reading a multi-column limits table out of a PDF's text layer
+# is not reliable - the standard's table is. If a future VDM sheet really does
+# print 0.025 it is a house limit or a newer edition, and needs the edition
+# checked before it displaces this.
 hastelloy,C-22,Ni,,bal
 hastelloy,C-22,Cr,20.0,22.5
 hastelloy,C-22,Mo,12.5,14.5
@@ -334,15 +445,146 @@ hastelloy,C-22,C,,0.015
 hastelloy,C-22,Si,,0.08
 hastelloy,C-22,P,,0.02
 hastelloy,C-22,S,,0.02
+# HASTELLOY C-4 = UNS N06455, ASTM B575 Table 1. B575 specifies no tungsten and
+# no vanadium limit for this alloy - those rows are absent rather than zero or
+# dashed, because the standard makes no claim about them. Titanium at 0.7 max is
+# the stabilising addition that distinguishes C-4 from C-276 and it is the only
+# grade in the table that carries one.
+#
+# These are the UNS limits, NOT VDM's. The VDM Alloy C-4 sheet heads its table
+# "Typical chemical composition" and prints a tighter house band - Cr 14.50-17.50
+# against B575's 14.0-18.0, C 0.009 against 0.015, Si 0.050 against 0.08. VDM
+# material conforms to B575; B575 material need not meet VDM's house limits.
+hastelloy,C-4,Ni,,bal
+hastelloy,C-4,Cr,14.0,18.0
+hastelloy,C-4,Mo,14.0,17.0
+hastelloy,C-4,Fe,,3.0
+hastelloy,C-4,Co,,2.0
+hastelloy,C-4,Mn,,1.0
+hastelloy,C-4,Ti,,0.7
+hastelloy,C-4,C,,0.015
+hastelloy,C-4,Si,,0.08
+hastelloy,C-4,P,,0.04
+hastelloy,C-4,S,,0.03
+# HASTELLOY C-2000 = UNS N06200, ASTM B575 Table 1. The copper band 1.3-1.9 is
+# what makes this the Ni-Cr-Mo-COPPER alloy of the table and is a specified
+# range rather than a residual limit, so it sits with the alloying elements.
+# B575 specifies no tungsten and no vanadium for this alloy either.
+hastelloy,C-2000,Ni,,bal
+hastelloy,C-2000,Cr,22.0,24.0
+hastelloy,C-2000,Mo,15.0,17.0
+hastelloy,C-2000,Cu,1.3,1.9
+hastelloy,C-2000,Fe,,3.0
+hastelloy,C-2000,Co,,2.0
+hastelloy,C-2000,Mn,,0.50
+hastelloy,C-2000,Al,,0.50
+hastelloy,C-2000,C,,0.010
+hastelloy,C-2000,Si,,0.08
+hastelloy,C-2000,P,,0.025
+hastelloy,C-2000,S,,0.010
+# HASTELLOY G-30 = UNS N06030, ASTM B582 Table 1. Note B582's footnote A: every
+# value in that table is a MAXIMUM unless a range or a minimum is shown, so
+# manganese 1.5, cobalt 5.0, carbon 0.03, silicon 0.8, phosphorus 0.04 and
+# sulfur 0.02 are all maxima even though the cell prints a bare number.
+#
+# Every one of the eleven Haynes nominal values falls inside these limits -
+# Cr 30 in 28.0-31.5, Fe 15 in 13.0-17.0, Mo 5.5 in 4.0-6.0, W 2.5 in 1.5-4.0,
+# Cu 2 in 1.0-2.4, Nb 0.8 in 0.30-1.50 - which is the cross-check that says the
+# standard and the mill are describing the same material.
+#
+# B582 spells the element Columbium; its footnote D says Columbium and Niobium
+# are interchangeable names for it, so Nb is used here as everywhere else.
+hastelloy,G-30,Ni,,bal
+hastelloy,G-30,Cr,28.0,31.5
+hastelloy,G-30,Fe,13.0,17.0
+hastelloy,G-30,Mo,4.0,6.0
+hastelloy,G-30,W,1.5,4.0
+hastelloy,G-30,Cu,1.0,2.4
+hastelloy,G-30,Nb,0.30,1.50
+hastelloy,G-30,Co,,5.0
+hastelloy,G-30,Mn,,1.5
+hastelloy,G-30,C,,0.03
+hastelloy,G-30,Si,,0.8
+hastelloy,G-30,P,,0.04
+hastelloy,G-30,S,,0.02
+# HASTELLOY N = UNS N10003. The two mills' figures COMBINED, plus carbon.
+#
+# HOW THE TWO WERE MERGED, so the next reviewer can redo it: where VDM and
+# Haynes differ, the WIDER bound is published, so material conforming to either
+# mill conforms to what this page states. That is the safe direction for a
+# stockist - a narrower table would reject conforming stock. It cost two cells:
+# iron is VDM's 5 max rather than Haynes' 4 max, and manganese VDM's 1 max
+# rather than Haynes' 0.8 max. Everywhere else the two agree exactly: silicon,
+# vanadium and tungsten 0.5 max, copper 0.35 max, cobalt 0.2 max, and Haynes'
+# nominal chromium 7 and molybdenum 16 sit inside VDM's 6-8 and 15-18.
+#
+# CARBON 0.08 MAX is supplied separately and is the figure this grade is bought
+# and sold against. Neither source could give it: VDM's block omits carbon
+# entirely and Haynes prints 0.06 as a NOMINAL value, not a limit - and a
+# nominal figure must never be written into a min/max column, which is why it
+# was left blank rather than guessed at before.
+#
+# ALUMINIUM IS 0.5 MAX FOR ALUMINIUM ALONE, which is VDM's form. Haynes states
+# the same 0.5 as a COMBINED Al+Ti maximum, so Haynes material is additionally
+# constrained on titanium. The wider of the two is published, consistent with
+# the rule above, but that means TITANIUM IS UNCONSTRAINED HERE while Haynes
+# constrains it - worth knowing if a certificate is being checked against this.
+#
+# STILL NOT A SPECIFICATION TABLE. VDM heads its block "Typical chemical
+# composition" and Haynes' column is nominal; neither is an acceptance
+# criterion, and phosphorus and sulfur are absent from both. ASTM B434 Table 1
+# (plate, sheet and strip - the form two of the three N pages sell, and the ASTM
+# equivalent of the AMS 5607 now on the specs row) or B573 for rod and bar would
+# give real UNS limits. This block should be replaced when either is read.
+hastelloy,N,Ni,,bal
+hastelloy,N,Mo,15,18
+hastelloy,N,Cr,6,8
+hastelloy,N,Fe,,5
+hastelloy,N,W,,0.5
+hastelloy,N,V,,0.5
+hastelloy,N,Al,,0.5
+hastelloy,N,Cu,,0.35
+hastelloy,N,Co,,0.2
+hastelloy,N,C,,0.08
+hastelloy,N,Mn,,1
+hastelloy,N,Si,,1
+# HASTELLOY X = UNS N06002, AMS 5536 Table 1 - the aerospace sheet, strip and
+# plate specification, which is the most complete published composition for this
+# alloy that could be read: fifteen elements against the eleven the Special
+# Metals INCONEL alloy HX data sheet lists.
+#
+# THE TWO SOURCES AGREE EXACTLY ON ALL ELEVEN ELEMENTS THEY SHARE - carbon,
+# manganese, silicon, phosphorus, sulfur, chromium, cobalt, molybdenum,
+# tungsten, iron and nickel, every limit identical. That agreement between two
+# independently published specifications is what makes the four AMS adds
+# (aluminium, titanium, BORON and copper) trustworthy rather than an outlier.
+#
+# BORON IS 0.010 MAX AND IS NOW PUBLISHED. It was flagged here as the open
+# question and it deserved to be: boron is deliberate in this alloy and no
+# composition table on this site had ever carried it. The Haynes nominal column
+# prints 0.008 max, a tighter house figure than the specification limit; the
+# specification's 0.010 is what is published, the same call made for C-276 where
+# VDM's house limits are tighter than B575's.
+#
+# Haynes' nominal column also lists niobium 0.5 max, which AMS 5536 does not
+# specify at all and which is therefore NOT published here. ASTM B435 is the
+# ASTM equivalent of this spec and has not been read; if it differs on the four
+# elements Special Metals omits, this block is where to look first.
 hastelloy,X,Ni,,bal
 hastelloy,X,Cr,20.5,23.0
 hastelloy,X,Fe,17.0,20.0
 hastelloy,X,Mo,8.0,10.0
 hastelloy,X,Co,0.5,2.5
 hastelloy,X,W,0.2,1.0
+hastelloy,X,Al,,0.50
+hastelloy,X,Ti,,0.15
+hastelloy,X,Cu,,0.50
 hastelloy,X,C,0.05,0.15
+hastelloy,X,B,,0.010
 hastelloy,X,Mn,,1.0
 hastelloy,X,Si,,1.0
+hastelloy,X,P,,0.040
+hastelloy,X,S,,0.030
 nimonic,75,Ni,,bal
 nimonic,75,Cr,18.0,21.0
 nimonic,75,Ti,0.2,0.6

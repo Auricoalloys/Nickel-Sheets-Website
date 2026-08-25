@@ -107,3 +107,122 @@ inconel,751,Modulus of rigidity,76,GPa,,
 
 # --- INCONEL 783 ---
 inconel,783,Specific heat,455,J/kg·°C,25 °C,
+
+# --- INCOLOY 945 --- Table 2 of the Special Metals bulletin, which prints each
+# constant in both systems. The SI figure is recorded, as the header says to.
+incoloy,945,Electrical resistivity,1.10,µΩ·m,,
+incoloy,945,Magnetic permeability,1.003,,at 200 oersted / 15.9 kA/m,
+incoloy,945,Young's modulus,200.8,GPa,,
+
+# --- HASTELLOY C-276 --- the Haynes International brochure's Physical
+# Properties table, in the order it prints them, metric column. Density and the
+# melting range are the same table's first and last rows and live in grades.csv.
+#
+# Haynes tabulates resistivity, conductivity, expansion and modulus at six or
+# seven temperatures each. Only the lowest is recorded, the way INCONEL 751 is -
+# the identity table on the page is for identification, not a design curve.
+# "RT" is the brochure's own room-temperature row and is left as a blank
+# condition; the two that are not RT carry the interval Haynes states.
+#
+# The modulus is Haynes' DYNAMIC modulus, kept under that name rather than
+# folded into the "Young's modulus" other grades use, because it is a different
+# measurement and 205 GPa is not interchangeable with a static value.
+hastelloy,C-276,Electrical resistivity,1.23,µΩ·m,,
+hastelloy,C-276,Thermal conductivity,10.5,W/m·°C,50 °C,
+hastelloy,C-276,Coefficient of expansion,11.2,µm/m·°C,24-100 °C,
+hastelloy,C-276,Magnetic permeability,1.0002,,at 200 oersted / 15.9 kA/m,
+hastelloy,C-276,Specific heat,427,J/kg·°C,,
+hastelloy,C-276,Dynamic modulus of elasticity,205,GPa,,
+hastelloy,C-276,Poisson's ratio,0.31,,,
+
+# --- The rest of the HASTELLOY family --- all from the Physical Properties table
+# on each grade's own page at haynesintl.com, read 2026-08-25. Haynes is the
+# HASTELLOY trademark holder, so these are the mill's figures for the branded
+# alloy. Same convention as C-276 above: the lowest published temperature only,
+# metric column, the bulletin's own unit with no conversion.
+#
+# TWO TRAPS IN THAT TABLE, both hit while reading it:
+#
+#   1. The property label uses rowspan, and on some pages it renders against the
+#      LAST row of the previous property rather than the first row of its own.
+#      G-30 reads "Thermal Conductivity | 500°C | 1.24 µohm.m" - a resistivity
+#      value under a conductivity label. Check that the UNIT matches the label
+#      before believing any row. G-30's figures below are the shifted-back ones.
+#   2. Not every grade publishes every constant. G-30 and N publish no specific
+#      heat and no melting range; C-4 publishes no melting range. Those are
+#      absent here rather than filled from a neighbouring grade.
+#
+# Haynes prints resistivity in µΩ·cm for N and X but µΩ·m for the others. The
+# bulletin's unit is recorded either way, as the header says - 120.5 µΩ·cm and
+# 1.205 µΩ·m are the same number and the unit column keeps it unambiguous.
+
+# --- HASTELLOY B-3 ---
+hastelloy,B-3,Electrical resistivity,1.37,µΩ·m,,
+hastelloy,B-3,Thermal conductivity,11.2,W/m·°C,,
+hastelloy,B-3,Coefficient of expansion,10.6,µm/m·°C,25-100 °C,
+hastelloy,B-3,Specific heat,373,J/kg·°C,,
+hastelloy,B-3,Dynamic modulus of elasticity,216,GPa,,
+
+# --- HASTELLOY C-4 ---
+hastelloy,C-4,Electrical resistivity,1.25,µΩ·m,,
+hastelloy,C-4,Thermal conductivity,10.1,W/m·°C,,
+hastelloy,C-4,Coefficient of expansion,10.9,µm/m·°C,24-100 °C,
+hastelloy,C-4,Specific heat,406,J/kg·°C,0 °C,
+hastelloy,C-4,Dynamic modulus of elasticity,212,GPa,,
+
+# --- HASTELLOY C-22 ---
+hastelloy,C-22,Electrical resistivity,1.14,µΩ·m,,
+hastelloy,C-22,Thermal conductivity,10.1,W/m·°C,50 °C,
+hastelloy,C-22,Thermal diffusivity,0.027,cm²/s,,
+hastelloy,C-22,Coefficient of expansion,12.4,µm/m·°C,24-100 °C,
+hastelloy,C-22,Specific heat,414,J/kg·°C,50 °C,
+hastelloy,C-22,Dynamic modulus of elasticity,206,GPa,,
+
+# --- HASTELLOY C-2000 ---
+hastelloy,C-2000,Electrical resistivity,1.28,µΩ·m,,
+hastelloy,C-2000,Thermal conductivity,9.1,W/m·°C,,
+hastelloy,C-2000,Coefficient of expansion,12.4,µm/m·°C,25-100 °C,
+hastelloy,C-2000,Thermal diffusivity,0.025,cm²/s,,
+hastelloy,C-2000,Specific heat,428,J/kg·°C,,
+hastelloy,C-2000,Dynamic modulus of elasticity,207,GPa,,
+
+# --- HASTELLOY G-30 --- no specific heat and no melting range published.
+hastelloy,G-30,Electrical resistivity,1.16,µΩ·m,,
+hastelloy,G-30,Thermal conductivity,10,W/m·°C,,
+hastelloy,G-30,Coefficient of expansion,12.8,µm/m·°C,30-100 °C,
+hastelloy,G-30,Dynamic modulus of elasticity,202,GPa,,
+
+# --- HASTELLOY N --- no specific heat published. Haynes' lowest published
+# conductivity is 200 °C and its lowest expansion interval 20-200 °C; there is
+# no room-temperature row to prefer.
+hastelloy,N,Thermal conductivity,13.1,W/m·°C,200 °C,
+hastelloy,N,Coefficient of expansion,12.3,µm/m·°C,20-200 °C,
+hastelloy,N,Electrical resistivity,120.5,µΩ·cm,20 °C,
+hastelloy,N,Dynamic modulus of elasticity,219,GPa,20 °C,
+
+# --- HASTELLOY X --- Haynes figures like the rest of the family, with two
+# exceptions settled against the Special Metals INCONEL alloy HX sheet, which
+# covers the same UNS N06002 / W.Nr. 2.4665.
+#
+# POISSON'S RATIO IS SPECIAL METALS'. Haynes publishes this constant only at
+# -108 °F / -78 °C, where it reads 0.328 - a cryogenic figure, and the only one
+# they give. Special Metals publishes 0.320 at room temperature, which is the
+# number an engineer sizing a part actually wants and matches how every other
+# row in this file reads. The cryogenic value is dropped rather than printed
+# alongside it, because two Poisson's ratios from two mills at two temperatures
+# on one product page is noise.
+#
+# SPECIFIC HEAT IS HAYNES' AND THE TWO MILLS DISAGREE. Haynes says 0.116
+# Btu/lb·°F = 486 J/kg·°C at RT; Special Metals says 0.110 Btu/lb·°F = 461
+# J/kg·°C at 20 °C. That is a real ~5% gap between two mills' measurements of
+# the same alloy and not a rounding or a unit artifact. Haynes' figure is kept
+# because these pages are branded HASTELLOY X and every other physical constant
+# in this family is Haynes'. Worth revisiting if the site ever sources X from
+# Special Metals.
+hastelloy,X,Electrical resistivity,114.83,µΩ·cm,24 °C,
+hastelloy,X,Thermal conductivity,9.2,W/m·°C,25 °C,
+hastelloy,X,Specific heat,486,J/kg·°C,,
+hastelloy,X,Coefficient of expansion,13.9,µm/m·°C,26-100 °C,
+hastelloy,X,Dynamic modulus of elasticity,205,GPa,,
+hastelloy,X,Poisson's ratio,0.320,,,
+hastelloy,X,Magnetic permeability,1.002,,at 200 oersted / 15.9 kA/m,
