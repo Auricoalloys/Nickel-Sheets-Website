@@ -255,6 +255,11 @@ nimonic,115,Coefficient of expansion,12.0,µm/m·°C,20-100 °C,
 nimonic,901,Specific heat,431,J/kg·°C,20 °C,
 nimonic,901,Electrical resistivity,112,µΩ·cm,20 °C,
 nimonic,901,Coefficient of expansion,13.5,µm/m·°C,20-100 °C,
+# Alloy 263's Physical Properties page gives density and melting range - both in
+# grades.csv - and this one further constant. It carries no temperature against
+# it, unlike the 75, 115 and 901 sheets, so the condition column stays empty
+# rather than borrowing the "at 20 °C" those three print.
+nimonic,263,Specific heat,461,J/kg·°C,,
 
 # --- MONEL --- Special Metals bulletins
 #
@@ -288,10 +293,16 @@ monel,K-500,Poisson's ratio,0.32,,aged material at room temperature,
 #
 # Commercially pure nickel is ferromagnetic and its Curie temperature is a
 # headline property rather than a footnote - 360 °C, against Monel 400's 21-49
-# and the INCONEL grades' sub-zero figures. Alloy 201's row in grades.csv is
-# still pending, so it has no rows here.
+# and the INCONEL grades' sub-zero figures.
+#
+# Alloy 201 repeats both figures because it is alloy 200 with the carbon
+# restricted and nothing else changed - see the note on its grades.csv row for
+# who confirmed that, since the bulletin prints the constants once and does not
+# say in so many words that they cover both grades.
 nickel-alloy,Nickel 200,Specific heat,456,J/kg·°C,,
 nickel-alloy,Nickel 200,Curie temperature,360,°C,,
+nickel-alloy,Nickel 201,Specific heat,456,J/kg·°C,,
+nickel-alloy,Nickel 201,Curie temperature,360,°C,,
 
 # --- special-stainless-steel --- the 6% molybdenum super-austenitics
 #

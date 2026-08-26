@@ -626,6 +626,21 @@
     },
     {
       "family": "nimonic",
+      "grade": "263",
+      "name": "Nimonic 263",
+      "uns": "N07263",
+      "uns_all": [
+        "N07263"
+      ],
+      "wnr": "2.4650",
+      "en_name": null,
+      "density_g_cm3": 8.36,
+      "melting_c": "1300-1355",
+      "source": "Special Metals NIMONIC alloy 263 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nimonic",
       "grade": "901",
       "name": "Nimonic 901",
       "uns": "N09901",
@@ -640,6 +655,186 @@
       "checked": "2026-08"
     },
     {
+      "family": "titanium",
+      "grade": "Grade 1",
+      "name": "Titanium Grade 1",
+      "uns": "R50250",
+      "uns_all": [
+        "R50250"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 2",
+      "name": "Titanium Grade 2",
+      "uns": "R50400",
+      "uns_all": [
+        "R50400"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 3",
+      "name": "Titanium Grade 3",
+      "uns": "R50550",
+      "uns_all": [
+        "R50550"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 4",
+      "name": "Titanium Grade 4",
+      "uns": "R50700",
+      "uns_all": [
+        "R50700"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 5",
+      "name": "Titanium Grade 5",
+      "uns": "R56400",
+      "uns_all": [
+        "R56400"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 6",
+      "name": "Titanium Grade 6",
+      "uns": "R54520",
+      "uns_all": [
+        "R54520"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 7",
+      "name": "Titanium Grade 7",
+      "uns": "R52400",
+      "uns_all": [
+        "R52400"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 9",
+      "name": "Titanium Grade 9",
+      "uns": "R56320",
+      "uns_all": [
+        "R56320"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 11",
+      "name": "Titanium Grade 11",
+      "uns": "R52250",
+      "uns_all": [
+        "R52250"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 12",
+      "name": "Titanium Grade 12",
+      "uns": "R53400",
+      "uns_all": [
+        "R53400"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 16",
+      "name": "Titanium Grade 16",
+      "uns": "R52402",
+      "uns_all": [
+        "R52402"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "titanium",
+      "grade": "Grade 23",
+      "name": "Titanium Grade 23",
+      "uns": "R56407",
+      "uns_all": [
+        "R56407"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
+      "checked": "2026-08"
+    },
+    {
       "family": "nickel-alloy",
       "grade": "Nickel 200",
       "name": "Nickel 200",
@@ -648,6 +843,21 @@
         "N02200"
       ],
       "wnr": "2.4060 / 2.4066",
+      "en_name": null,
+      "density_g_cm3": 8.89,
+      "melting_c": "1435-1446",
+      "source": "Special Metals Nickel 200 & 201 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
+      "grade": "Nickel 201",
+      "name": "Nickel 201",
+      "uns": "N02201",
+      "uns_all": [
+        "N02201"
+      ],
+      "wnr": "2.4061 / 2.4068",
       "en_name": null,
       "density_g_cm3": 8.89,
       "melting_c": "1435-1446",

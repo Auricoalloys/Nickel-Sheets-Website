@@ -484,7 +484,7 @@ const findings = [];
 let scanned = 0, mapped = 0;
 
 // ---- apply ------------------------------------------------------------------
-let wrote = 0;
+let wrote = 0, powderPages = 0;
 const drift = [], noSection = [], unverifiedPages = new Map(), noChem = new Set();
 
 // Replace each marked block in one page, or on the first run swap the
@@ -502,8 +502,18 @@ function writeBlocks(fp, raw, rel, blocks) {
     const re = new RegExp(b.start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?' + b.end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
     if (re.test(s)) { s = s.replace(re, () => block); continue; }
 
+    // A page with NO such section at all used to `continue` silently, which is
+    // the one gap in this script's otherwise-complete reporting: "nowhere to put
+    // the table" was only ever raised for a section that existed and lacked a
+    // <table>. So a verified grade whose page has no section simply never
+    // appeared anywhere - not as written, not as skipped - and /titanium/grade-1/,
+    // a GRADE HUB, sat unwritten and unmentioned through a whole family's
+    // migration. Silence is the one thing a check may not do.
     const at = s.indexOf(b.section);
-    if (at < 0) continue;
+    if (at < 0) {
+      noSection.push(`${rel}  (no <section id="${b.section.match(/id="([^"]+)"/)[1]}"> on the page)`);
+      continue;
+    }
     const secEnd = s.indexOf('</section>', at);
     if (secEnd < 0) { noSection.push(`${rel}  (unterminated ${b.section.match(/id="([^"]+)"/)[1]})`); continue; }
     const chunk = s.slice(at, secEnd);
@@ -630,17 +640,39 @@ for (const fp of walk(ROOT)) {
     continue;
   }
 
-  const formSeg = url.split('/').filter(Boolean)[2];
+  const segs = url.split('/').filter(Boolean);
+  const formSeg = segs[2];
   const form = formSeg ? (FORM_OF_SEGMENT[formSeg.toLowerCase()] || null) : null;
+
+  // WHICH TABLES BELONG ON THIS PAGE. Not every page should carry both, and a
+  // check that reports a page for correctly lacking a section is a false
+  // positive - the thing the SEO baseline note warns against, one file over.
+  // So the rule is taught here rather than tolerated in the skip list.
+  //
+  // A POWDER PAGE GETS NEITHER. Its chemistry is not the wrought bulletin's:
+  // SB-265 is a strip/sheet/plate specification and the Special Metals sheets
+  // are wrought, while powder is a different production route with its own
+  // oxygen limits and its own standards. Writing a wrought composition onto a
+  // powder page is the wrong-form error docs/specs.csv exists to prevent.
+  if (/(^|\/)powder(\/|$)/.test(url)) { powderPages++; continue; }
+
+  // A GRADE HUB GETS IDENTIFIERS ONLY. Chemistry, mechanical properties and
+  // size ranges belong on the form pages; repeating them on the hub is what
+  // made eleven hubs near-duplicates of their own children and cost them their
+  // canonical in Search Console. A hub states the UNS/Werkstoff and points at
+  // the forms.
+  const isHub = segs.length === 2;
 
   const blocks = [
     { section: ID_SECTION, start: ID_START, end: ID_END, html: identityTable(row, form) },
   ];
-  const cr = chemOf.get(key(row.family, row.grade));
-  if (cr && cr.length) {
-    blocks.push({ section: CHEM_SECTION, start: CHEM_START, end: CHEM_END, html: chemTable(row, cr) });
-  } else {
-    noChem.add(`${row.family}/${row.grade}`);
+  if (!isHub) {
+    const cr = chemOf.get(key(row.family, row.grade));
+    if (cr && cr.length) {
+      blocks.push({ section: CHEM_SECTION, start: CHEM_START, end: CHEM_END, html: chemTable(row, cr) });
+    } else {
+      noChem.add(`${row.family}/${row.grade}`);
+    }
   }
 
   if (writeBlocks(fp, raw, rel, blocks)) wrote++;

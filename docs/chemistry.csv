@@ -794,20 +794,111 @@ nimonic,901,Al,,0.35,
 nimonic,901,C,,0.1,
 nimonic,901,S,,0.03,
 nimonic,901,Fe,,bal,
-titanium,Grade 2,Ti,,bal
-titanium,Grade 2,Fe,,0.30
-titanium,Grade 2,O,,0.25
+# --- TITANIUM --- ASME SB-265 / ASTM B265 Table 1 "Chemical Requirements",
+# read 2026-08-26. Titanium is not a proprietary alloy family: no mill defines
+# these grades, the standard does, so the standard IS the source here - the same
+# reasoning that sources HASTELLOY B-2 to ASTM B333 above.
+#
+# Rows follow the standard's own column order - C, O, N, H, Fe, then the
+# alloying additions, then the residual caps and titanium by difference - rather
+# than the alloying-first convention at the top of this file. For titanium the
+# interstitials ARE the specification: Grades 1, 2, 3 and 4 are the same metal
+# and differ ONLY in their oxygen and iron caps. Printing those last would bury
+# the thing that separates the grades.
+#
+# THE TABLE IS SET ROTATED IN THE PDF, so each grade extracts as one run with no
+# separator between cells: Grade 1 is "10.080.180.030.0150.20---...---0.10.4".
+# Both "1" + "0.08" and "10" + ".08" fit, and "5.5-6.75" + "3.5-4.5" also reads
+# as "5.5-6.7" + "53.5-4.5". These figures were NOT split by eye - every split
+# yielding exactly 19 cells was enumerated and the row accepted only where
+# precisely one survived, given that a range must increase and no number carries
+# a leading zero. Grade 2 and Grade 5 were already seeded here and the parse
+# reproduced both exactly, which is the check that the method works.
+#
+# CARBON IS 0.08 max FOR EVERY GRADE HERE, not 0.10. The 0.10 in the same PDF
+# belongs to the permissible-variations-in-product-analysis table, which lists
+# ANALYSIS TOLERANCES and not composition limits. Reading across from that table
+# is the mistake this note exists to stop.
+titanium,Grade 1,C,,0.08
+titanium,Grade 1,O,,0.18
+titanium,Grade 1,N,,0.03
+titanium,Grade 1,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 1,Fe,,0.20
+titanium,Grade 1,Other elements (each),,0.1
+titanium,Grade 1,Other elements (total),,0.4
+titanium,Grade 1,Ti,,bal,determined by difference
 titanium,Grade 2,C,,0.08
+titanium,Grade 2,O,,0.25
 titanium,Grade 2,N,,0.03
-titanium,Grade 2,H,,0.015
-titanium,Grade 5,Ti,,bal
-titanium,Grade 5,Al,5.50,6.75
-titanium,Grade 5,V,3.50,4.50
-titanium,Grade 5,Fe,,0.40
-titanium,Grade 5,O,,0.20
+titanium,Grade 2,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 2,Fe,,0.30
+titanium,Grade 2,Other elements (each),,0.1
+titanium,Grade 2,Other elements (total),,0.4
+titanium,Grade 2,Ti,,bal,determined by difference
 titanium,Grade 5,C,,0.08
+titanium,Grade 5,O,,0.20
 titanium,Grade 5,N,,0.05
-titanium,Grade 5,H,,0.015
+titanium,Grade 5,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 5,Fe,,0.40
+titanium,Grade 5,Al,5.5,6.75
+titanium,Grade 5,V,3.5,4.5
+titanium,Grade 5,Other elements (each),,0.1
+titanium,Grade 5,Other elements (total),,0.4
+titanium,Grade 5,Ti,,bal,determined by difference
+titanium,Grade 7,C,,0.08
+titanium,Grade 7,O,,0.25
+titanium,Grade 7,N,,0.03
+titanium,Grade 7,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 7,Fe,,0.30
+titanium,Grade 7,Pd,0.12,0.25
+titanium,Grade 7,Other elements (each),,0.1
+titanium,Grade 7,Other elements (total),,0.4
+titanium,Grade 7,Ti,,bal,determined by difference
+titanium,Grade 9,C,,0.08
+titanium,Grade 9,O,,0.15
+titanium,Grade 9,N,,0.03
+titanium,Grade 9,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 9,Fe,,0.25
+titanium,Grade 9,Al,2.5,3.5
+titanium,Grade 9,V,2.0,3.0
+titanium,Grade 9,Other elements (each),,0.1
+titanium,Grade 9,Other elements (total),,0.4
+titanium,Grade 9,Ti,,bal,determined by difference
+titanium,Grade 11,C,,0.08
+titanium,Grade 11,O,,0.18
+titanium,Grade 11,N,,0.03
+titanium,Grade 11,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 11,Fe,,0.20
+titanium,Grade 11,Pd,0.12,0.25
+titanium,Grade 11,Other elements (each),,0.1
+titanium,Grade 11,Other elements (total),,0.4
+titanium,Grade 11,Ti,,bal,determined by difference
+# Grade 12's nickel band is printed BEFORE molybdenum in the standard's column
+# order and is kept that way here. Ti-0.3Mo-0.8Ni is the usual trade name and
+# reverses them.
+titanium,Grade 12,C,,0.08
+titanium,Grade 12,O,,0.25
+titanium,Grade 12,N,,0.03
+titanium,Grade 12,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 12,Fe,,0.30
+titanium,Grade 12,Ni,0.6,0.9
+titanium,Grade 12,Mo,0.2,0.4
+titanium,Grade 12,Other elements (each),,0.1
+titanium,Grade 12,Other elements (total),,0.4
+titanium,Grade 12,Ti,,bal,determined by difference
+# Grade 23 is Grade 5 at extra-low interstitial: oxygen 0.13 against 0.20,
+# nitrogen 0.03 against 0.05, HYDROGEN 0.0125 against 0.015 and a narrower
+# aluminium band. Those four cells are the whole difference between them.
+titanium,Grade 23,C,,0.08
+titanium,Grade 23,O,,0.13
+titanium,Grade 23,N,,0.03
+titanium,Grade 23,H,,0.0125,product analysis - ingot analysis for all other elements
+titanium,Grade 23,Fe,,0.25
+titanium,Grade 23,Al,5.5,6.5
+titanium,Grade 23,V,3.5,4.5
+titanium,Grade 23,Other elements (each),,0.1
+titanium,Grade 23,Other elements (total),,0.4
+titanium,Grade 23,Ti,,bal,determined by difference
 # --- nickel-alloy: commercially pure nickel ----------------------------------
 # Special Metals publishes Nickel 200 and Nickel 201 in one bulletin. Table 1 is
 # alloy 200's limiting composition; alloy 201 is the low-carbon version and the
@@ -822,10 +913,11 @@ nickel-alloy,Nickel 200,Mn,,0.35
 nickel-alloy,Nickel 200,C,,0.15
 nickel-alloy,Nickel 200,Si,,0.35
 nickel-alloy,Nickel 200,S,,0.01
-# Alloy 201's grades.csv row is still `pending`, so nothing here publishes yet -
-# see the note there. The carbon limit is the stated difference from 200; the
-# other six are 200's, and the alloy 201 composition table itself has not been
-# read. Verify against it before clearing that row.
+# Carbon at 0.02 max is the ONLY difference from alloy 200 - the other six
+# limits are identical, which is the whole distinction between the two grades
+# and is why the bulletin covers them together. Confirmed by the site owner on
+# 2026-08-26 rather than read off a separate alloy 201 table, the same basis as
+# the physical constants on its grades.csv row.
 nickel-alloy,Nickel 201,Ni,99.0,
 nickel-alloy,Nickel 201,Cu,,0.25
 nickel-alloy,Nickel 201,Fe,,0.40
@@ -927,3 +1019,51 @@ nichrome,60/15,Mn,,1.0
 nichrome,60/15,Si,1.0,1.75
 nichrome,60/15,Al,,0.3
 nichrome,60/15,Other,,0.04
+
+# Grades 3, 4, 6 and 16 - the four that had published pages but no row in
+# grades.csv, so nothing checked what they claimed. Same source and same column
+# order as the block above.
+#
+# Grades 1 to 4 are the SAME METAL, commercially pure titanium, separated only
+# by their oxygen and iron caps: O 0.18/0.25/0.35/0.40 and Fe 0.20/0.30/0.30/
+# 0.50. Nothing else in the row differs. That is why the interstitials are
+# printed first here.
+titanium,Grade 3,C,,0.08
+titanium,Grade 3,O,,0.35
+titanium,Grade 3,N,,0.05
+titanium,Grade 3,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 3,Fe,,0.30
+titanium,Grade 3,Other elements (each),,0.1
+titanium,Grade 3,Other elements (total),,0.4
+titanium,Grade 3,Ti,,bal,determined by difference
+titanium,Grade 4,C,,0.08
+titanium,Grade 4,O,,0.40
+titanium,Grade 4,N,,0.05
+titanium,Grade 4,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 4,Fe,,0.50
+titanium,Grade 4,Other elements (each),,0.1
+titanium,Grade 4,Other elements (total),,0.4
+titanium,Grade 4,Ti,,bal,determined by difference
+# Grade 6 is the only titanium grade here carrying tin. Table 8 prints tin far
+# to the right of aluminium with ten dashed columns between them.
+titanium,Grade 6,C,,0.08
+titanium,Grade 6,O,,0.20
+titanium,Grade 6,N,,0.03
+titanium,Grade 6,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 6,Fe,,0.50
+titanium,Grade 6,Al,4.0,6.0
+titanium,Grade 6,Sn,2.0,3.0
+titanium,Grade 6,Other elements (each),,0.1
+titanium,Grade 6,Other elements (total),,0.4
+titanium,Grade 6,Ti,,bal,determined by difference
+# Grade 16 is Grade 2 plus a low palladium addition - identical interstitials
+# and iron - and Grade 7 is the same idea at the higher 0.12-0.25 % band.
+titanium,Grade 16,C,,0.08
+titanium,Grade 16,O,,0.25
+titanium,Grade 16,N,,0.03
+titanium,Grade 16,H,,0.015,product analysis - ingot analysis for all other elements
+titanium,Grade 16,Fe,,0.30
+titanium,Grade 16,Pd,0.04,0.08
+titanium,Grade 16,Other elements (each),,0.1
+titanium,Grade 16,Other elements (total),,0.4
+titanium,Grade 16,Ti,,bal,determined by difference

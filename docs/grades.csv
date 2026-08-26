@@ -266,13 +266,12 @@ nimonic,105,-,2.4634,-,8.01,,Special Metals NIMONIC alloy 105 bulletin,2026-08
 # 115 was seeded as having no Werkstoff number and the bulletin heads it
 # "(W. Nr. 2.4636)". Melting range corrected from 1250-1315 to 1260-1315.
 nimonic,115,-,2.4636,-,7.85,1260-1315,Special Metals NIMONIC alloy 115 bulletin,2026-08
-# STILL PENDING ON PURPOSE. The 263 bulletin page supplied covers the alloy
-# description and the BS HR 10 composition only; its physical constants table
-# was not among them, so density 8.36 and melting 1300-1355 remain unverified
-# seed values. The gate is per row, not per cell, so verifying this row would
-# publish those two figures on the mill's authority without anyone having read
-# them. Needs the "Physical Properties" page of the alloy 263 sheet.
-nimonic,263,N07263,2.4650,,8.36,1300-1355,pending,
+# The seeded density and melting range were both right, confirmed against the
+# alloy 263 Physical Properties page: 8.36 g/cm3 (0.302 lb/in3), and a liquidus
+# of 1355 C with a solidus of 1300 C, which is where the 1300-1355 range comes
+# from. Worth recording that they were checked rather than assumed - being right
+# and being verified are different states, and only the second one publishes.
+nimonic,263,N07263,2.4650,,8.36,1300-1355,Special Metals NIMONIC alloy 263 bulletin,2026-08
 # The lint finding this row caused: nimonic/901/plates and /round-bar carried
 # W.Nr 2.4662 and were reported as contradicting grades.csv's 1.4898. The PAGES
 # WERE RIGHT. 1.4898 is a heat-resisting steel number and nothing to do with
@@ -284,27 +283,61 @@ haynes,214,N07214,-,-,8.05,1355-1400,pending,
 haynes,230,N06230,2.4733,-,8.97,1301-1371,pending,
 haynes,242,N10242,-,-,9.05,1320-1353,pending,
 haynes,282,N07208,-,-,8.27,1300-1373,pending,
-titanium,Grade 1,R50250,3.7025,-,4.51,1670,pending,
-titanium,Grade 2,R50400,3.7035,-,4.51,1665,pending,
-titanium,Grade 5,R56400,3.7165,TiAl6V4,4.43,1604-1660,pending,
-titanium,Grade 7,R52400,3.7235,-,4.51,1665,pending,
-titanium,Grade 9,R56320,3.7195,TiAl3V2.5,4.48,1704,pending,
-titanium,Grade 11,R52250,3.7225,-,4.51,1670,pending,
-titanium,Grade 12,R53400,3.7105,-,4.51,1704,pending,
-titanium,Grade 23,R56407,3.7165,TiAl6V4ELI,4.43,1604-1660,pending,
+# --- TITANIUM --- ASME BPVC Section II Part B, SB-265 Table 8 "Chemical
+# Requirements", 2023 edition, read 2026-08-26. Titanium is not a proprietary
+# family: no mill defines these grades, the standard does, so the standard is
+# the source - the same reasoning that sources HASTELLOY B-2 to ASTM B333.
+#
+# WHAT THIS SOURCE DOES AND DOES NOT PUBLISH. Table 8 gives the UNS number and
+# the composition limits. It gives NO Werkstoff number, NO EN symbolic name, NO
+# density and NO melting point. Those four cells are therefore EMPTY, not "-":
+# the standard is silent on them, which is "not verified yet", whereas "-" would
+# claim the source publishes no such designation. The identity table drops an
+# empty row rather than printing a dash the caption would then attribute to
+# ASME. Density and melting are coming from manufacturer data sheets and will be
+# filled then - together with the Werkstoff numbers, which need the same source.
+#
+# WHAT WAS REMOVED AND WHY. These rows previously carried seeded W.Nr (3.7025,
+# 3.7035, ...), EN names (TiAl6V4) and density/melting (4.51/1670, ...). All of
+# it was `pending` seed data - a starting point for verification, never verified
+# figures - and none of it comes from SB-265. Publishing it under an ASME
+# citation would put words in the standard's mouth. It is not lost: git has it,
+# and the pages' own hand-written tables still carry their versions until a
+# sourced figure replaces them.
+#
+# GRADES 3, 4, 6 AND 16 ARE NEW HERE and were the reason four published pages
+# had no row at all - /titanium/grade-3/, grade-4/, grade-6-plates and grade-16/
+# have existed all along while grades.csv knew nothing about them, so nothing
+# checked what they claimed. Table 8 covers all four.
+#
+# 2/2H, 7/7H, 16/16H and 26/26H share one row each in Table 8; the H suffix is
+# the same chemistry with a higher guaranteed minimum strength, so the grade
+# key here stays the plain number.
+titanium,Grade 1,R50250,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 2,R50400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 3,R50550,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 4,R50700,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 5,R56400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 6,R54520,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 7,R52400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 9,R56320,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 11,R52250,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 12,R53400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 16,R52402,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 23,R56407,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
 # Special Metals publishes 200 and 201 in one bulletin, which heads alloy 200
 # "(UNS N02200/W.Nr. 2.4060 & 2.4066)" and states in the 201 section that the
 # grade "is designated as UNS N02201 and Werkstoff Numbers 2.4061 and 2.4068".
 # Both rows were seeded with only the second number of their pair.
 nickel-alloy,Nickel 200,N02200,2.4060 / 2.4066,,8.89,1435-1446,Special Metals Nickel 200 & 201 bulletin,2026-08
-# STILL PENDING ON PURPOSE, and for the same reason as nimonic/263: the pages
-# supplied carry alloy 201's identity and its chemistry (200's limits with
-# carbon dropped to 0.02 max) but not its physical constants table. 8.89 and
-# 1435-1446 are alloy 200's, read from alloy 200's Table 2 - very likely right
-# for 201 as well, which is exactly why they must not be published on a mill's
-# authority nobody has checked. The corrected Werkstoff pair is written now
-# regardless, because the lint reads every row whether or not it is verified.
-nickel-alloy,Nickel 201,N02201,2.4061 / 2.4068,,8.89,1435-1446,pending,
+# 200 and 201 ARE THE SAME ALLOY WITH DIFFERENT CARBON, so they share their
+# physical constants and this row's 8.89 / 1435-1446 are alloy 200's Table 2
+# figures used deliberately rather than copied by accident. That is a claim the
+# bulletin does not make in one sentence anywhere - it prints the constants once
+# under 200 - so it was confirmed by the site owner on 2026-08-26 before this
+# row was published. Not the same thing as reading a 201 physical constants
+# table, and recorded here so nobody has to guess which it was.
+nickel-alloy,Nickel 201,N02201,2.4061 / 2.4068,,8.89,1435-1446,Special Metals Nickel 200 & 201 bulletin,2026-08
 nickel-alloy,Monel 400,N04400,2.4360 / 2.4361,,8.80,1300-1350,Special Metals MONEL alloy 400 bulletin,2026-08
 nickel-alloy,Inconel 600,N06600,2.4816,NiCr15Fe,8.47,1354-1413,pending,
 nickel-alloy,Inconel 625,N06625,2.4856,NiCr22Mo9Nb,8.44,1290-1350,pending,

@@ -610,6 +610,32 @@ form segment. `build-specs.mjs` only ever wrote to hubs, so until now nothing ge
 on the ~300 form pages — which is how `/inconel/625/wire/` came to cite B443, a plate spec, in seven
 places.
 
+#### Which tables a page gets, and why silence was the bug
+
+Not every page carries both tables, and the rule is **taught to the generator** rather than left to
+whoever edits a page:
+
+- **Form page** (`/inconel/600/coil/`) — identity table *and* chemistry table.
+- **Grade hub** (`/hastelloy/C276/`) — **identity only**. Chemistry belongs on the form pages; see
+  the hub rule above for what repeating it cost eleven hubs.
+- **Powder page** (`/titanium/grade-5/powder/`) — **neither**. SB-265 is a strip/sheet/plate
+  specification and the Special Metals bulletins are wrought; powder is a different production
+  route with its own oxygen limits and its own standards. Writing a wrought composition onto a
+  powder page is the wrong-form error `docs/specs.csv` exists to prevent, one column over.
+
+A page opts in by carrying the section with any `<table>` inside it — an empty `<table></table>` is
+enough, and the next run replaces it.
+
+**The bug this fixed was silence.** `build-grades.mjs` reported a page whose section existed but
+held no table, and said *nothing at all* about a page with no section — it just `continue`d. So a
+verified grade whose page lacked the section appeared nowhere: not written, not skipped, not
+counted. **112 pages were in that state**, including grade hubs like `/titanium/grade-1/` and every
+Nimonic hub, straight through a whole family's migration. Now a missing section is reported like
+any other, which is what dropped the skip list from 65 entries to 0.
+
+The lesson generalises: a check may report a finding or exclude it deliberately, but it may never
+be quiet about a case it does not handle. A count of zero has to mean zero.
+
 #### Combined pages: one form, every grade in the family
 
 A page like `/nichrome/sheets/` sells the whole family in one form, so a buyer can compare grades
