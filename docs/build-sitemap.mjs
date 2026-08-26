@@ -60,6 +60,7 @@ const BOILERPLATE = new Set([
   'd855b240', // reworded the generated identity caption; 3 more got a sidebar label
   '90457f3e', // relabelled one DS cross-link on the sheets index; label text only
   'e6dec1f0', // banner caption became the <h1>, body heading became the <h2>; same words, same place
+  'ecd86713', // and back: the body heading is the <h1>, the caption the <h2>. Same words again
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
