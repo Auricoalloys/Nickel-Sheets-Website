@@ -868,3 +868,62 @@ special-stainless-steel,AL-6XN,Mo,6.00,7.00
 special-stainless-steel,AL-6XN,N,0.18,0.25
 special-stainless-steel,AL-6XN,Cu,,0.75
 special-stainless-steel,AL-6XN,Fe,,bal
+
+# --- NICHROME --- VDM Metals Basic Information sheets HT 80 / HT 70 / HT 60,
+# read 2026-08-25. See docs/grades.csv for why VDM is the source for a family
+# neither Special Metals nor Haynes publishes.
+#
+# THE HT 80 AND HT 70 TABLES ARE HEADED "acc. to ASTM B 344", so those two are
+# the standard's limits as the mill reprints them - which is the same B344 that
+# docs/specs.csv already cites for all three grades. The HT 60 table carries no
+# such heading and is VDM's own.
+#
+# COLUMN ORDER DIFFERS BETWEEN THE SHEETS and it matters: HT 80 and HT 70 print
+# Fe, Cr, Ni, ... while HT 60 prints Ni, Cr, Fe, ... The rows below follow each
+# sheet's own order, per the header at the top of this file.
+#
+# THE MIN ROWS PRINT FEWER FIGURES THAN THERE ARE COLUMNS, so reading the sheet
+# as flattened text cannot say which columns they skipped - HT 70's min row is
+# "29 ... Bal. ... 1 ... 0,01" against ten headings. Every cell here was placed
+# by the x-coordinate of the figure against the x-coordinate of its heading, not
+# by counting. That is the same trap the G-30 rowspan note in docs/properties.csv
+# records, in a different disguise.
+#
+# WHERE THE SHEET PRINTS "-" IN BOTH COLUMNS the mill states no limit for that
+# element, so there is no row here at all: Cu, Mo and Al on HT 80, Mo on HT 70,
+# Cu and Mo on HT 60. An empty row would be rejected by --check anyway.
+#
+# "Others" IS THE SHEETS' OWN HEADING and is not an element, so it has no
+# display name. HT 70 gives it a MINIMUM of 0.01 as well as a maximum, which is
+# unusual enough to look like a misread - it is not; HT 80's equivalent cell is
+# a bare 0.01 max in the same column.
+
+# HT 80 - Fe, Cr, Ni, C, Mn, Si, Others (Cu, Mo, Al printed as "-")
+nichrome,80/20,Fe,,1
+nichrome,80/20,Cr,19,21
+nichrome,80/20,Ni,,bal
+nichrome,80/20,C,,0.15
+nichrome,80/20,Mn,,1.0
+nichrome,80/20,Si,0.75,1.75
+nichrome,80/20,Others,,0.01
+
+# HT 70 - Fe, Cr, Ni, C, Mn, Si, Cu, Al, Others (Mo printed as "-")
+nichrome,70/30,Fe,,1
+nichrome,70/30,Cr,29,31
+nichrome,70/30,Ni,,bal
+nichrome,70/30,C,,0.07
+nichrome,70/30,Mn,,1.0
+nichrome,70/30,Si,1,1.5
+nichrome,70/30,Cu,,0.5
+nichrome,70/30,Al,,0.2
+nichrome,70/30,Others,0.01,0.04
+
+# HT 60 - Ni, Cr, Fe, C, Mn, Si, Al, Other (Cu and Mo printed as "-")
+nichrome,60/15,Ni,57.0,
+nichrome,60/15,Cr,14.0,17.0
+nichrome,60/15,Fe,,bal
+nichrome,60/15,C,,0.10
+nichrome,60/15,Mn,,1.0
+nichrome,60/15,Si,1.0,1.75
+nichrome,60/15,Al,,0.3
+nichrome,60/15,Other,,0.04

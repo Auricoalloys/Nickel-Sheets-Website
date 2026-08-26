@@ -137,6 +137,13 @@ special-stainless-steel,Alloy 926,N08926,ASTM B625,ASTM B649,ASTM B649,-,-
 cobalt-alloy,Haynes 25 (L-605),R30605,AMS 5537,AMS 5759,-,-,-
 cobalt-alloy,Haynes 188,R30188,AMS 5608,AMS 5772,-,-,-
 cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5833,-,ASTM F1058 / AMS 5833,-,-
-nichrome,80/20,-,ASTM B344 / B267,ASTM B344,ASTM B344 / B267,-,-
-nichrome,70/30,-,ASTM B344,ASTM B344,ASTM B344,-,-
-nichrome,60/15,-,ASTM B344,ASTM B344,ASTM B344,-,-
+# NICHROME - VDM Metals Basic Information sheets HT 80 / HT 70 / HT 60, 03/2020.
+# Each sheet's "Designations and standards" block names ASTM B 344 and nothing
+# else in ASTM, so B267 was dropped from 80/20 on 2026-08-26: no mill bulletin
+# read for this family publishes it, and an unsourced standard on a product page
+# tells a buyer the material is certified to something nobody has checked.
+# The UNS column read "-" until the same pass, which claims no designation is
+# published - see docs/grades.csv for why that is the one thing "-" must not mean.
+nichrome,80/20,N06023,ASTM B344,ASTM B344,ASTM B344,-,-
+nichrome,70/30,N06003,ASTM B344,ASTM B344,ASTM B344,-,-
+nichrome,60/15,N06024,ASTM B344,ASTM B344,ASTM B344,-,-

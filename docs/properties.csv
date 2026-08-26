@@ -321,3 +321,58 @@ special-stainless-steel,254 SMO,Specific heat,500,J/kg·°C,,
 special-stainless-steel,254 SMO,Electrical resistivity,0.85,µΩ·m,,
 # VDM's alloy 926 sheet publishes density, melting range and this one constant.
 special-stainless-steel,Alloy 926,Magnetic permeability,1.001,,relative - at 20 °C,
+
+# --- NICHROME --- VDM Metals Basic Information sheets HT 80 / HT 70 / HT 60,
+# read 2026-08-25. Room-temperature figures only, the way the HASTELLOY rows
+# above are taken - the identity table is for identification, not a design
+# curve. Each sheet tabulates resistivity at seven temperatures to 1200 °C and
+# creep strength at six; none of that is here.
+#
+# RESISTIVITY IS PUBLISHED TWICE ON HT 80 AND HT 70, in adjacent columns headed
+# DIN 17470 and ASTM B 344, and the two disagree - 112 against 108 for 80/20.
+# That is not a rounding: the two standards specify different nominal
+# resistivities for the same alloy. Both are recorded with the standard in the
+# condition, because dropping either would make this file pick a winner between
+# two standards the mill prints side by side. HT 60 has a single column.
+#
+# THE EXPANSION COEFFICIENT IS NOT PUBLISHED AT 20 °C on HT 80 and HT 70 - that
+# cell is a dash and the first figure is at 200 °C, so that is the condition
+# recorded. HT 60 heads its row "from 20 °C to" and gives 100 °C as its first
+# interval, which is why 60/15 alone carries a range.
+#
+# UNITS: VDM prints the expansion coefficient as 10⁻⁶/K, which is the same unit
+# as the µm/m·°C the rest of this file uses and the same number - the AL-6XN
+# note above records the identical equivalence. The modulus is left in the
+# sheet's own kN/mm² rather than converted to the GPa other grades use; the two
+# are numerically identical, and the unit column exists so no cell here has to
+# be a conversion.
+#
+# MAXIMUM OPERATING TEMPERATURE is a service limit rather than a constant, kept
+# for the same reason AL-6XN's scaling temperature is: for a resistance heating
+# alloy it is the property a buyer selects on. HT 80 and HT 60 publish two, one
+# for each duty, and the difference between them is large enough that printing
+# only the higher would misdescribe the alloy in resistor service.
+nichrome,80/20,Electrical resistivity,112,µΩ·cm,20 °C - per DIN 17470,
+nichrome,80/20,Electrical resistivity,108,µΩ·cm,20 °C - per ASTM B 344,
+nichrome,80/20,Thermal conductivity,14.6,W/m·K,,
+nichrome,80/20,Specific heat,420,J/kg·K,20 °C,
+nichrome,80/20,Coefficient of expansion,14.0,µm/m·°C,200 °C,
+nichrome,80/20,Modulus of elasticity,200,kN/mm²,,
+nichrome,80/20,Maximum operating temperature in air,1200,°C,as heating element,
+nichrome,80/20,Maximum operating temperature in air,600,°C,as resistance alloy,
+
+nichrome,70/30,Electrical resistivity,119,µΩ·cm,20 °C - per DIN 17470,
+nichrome,70/30,Electrical resistivity,116,µΩ·cm,20 °C - per ASTM B 344,
+nichrome,70/30,Thermal conductivity,13.8,W/m·K,,
+nichrome,70/30,Specific heat,420,J/kg·K,20 °C,
+nichrome,70/30,Coefficient of expansion,13.5,µm/m·°C,200 °C,
+nichrome,70/30,Modulus of elasticity,200,kN/mm²,,
+nichrome,70/30,Maximum operating temperature in air,1250,°C,,sheet prints this as approximate
+
+nichrome,60/15,Electrical resistivity,113,µΩ·cm,20 °C,
+nichrome,60/15,Thermal conductivity,13.4,W/m·K,,
+nichrome,60/15,Specific heat,460,J/kg·K,,
+nichrome,60/15,Coefficient of expansion,13.5,µm/m·°C,20-100 °C,
+nichrome,60/15,Modulus of elasticity,200,kN/mm²,,
+nichrome,60/15,Maximum working temperature,1200,°C,as heating element,sheet prints this as approximate
+nichrome,60/15,Maximum working temperature,600,°C,as resistance material,sheet prints this as approximate

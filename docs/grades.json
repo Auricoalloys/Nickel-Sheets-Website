@@ -728,6 +728,51 @@
       "melting_c": "1320-1390",
       "source": "VDM Metals VDM Alloy 926 data sheet April 2024",
       "checked": "2026-08"
+    },
+    {
+      "family": "nichrome",
+      "grade": "80/20",
+      "name": "Nichrome 80/20",
+      "uns": "N06023",
+      "uns_all": [
+        "N06023"
+      ],
+      "wnr": "2.4869",
+      "en_name": "NiCr 80 20",
+      "density_g_cm3": 8.3,
+      "melting_c": "1400",
+      "source": "VDM Metals VDM Alloy HT 80 Basic Information sheet 03/2020",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nichrome",
+      "grade": "70/30",
+      "name": "Nichrome 70/30",
+      "uns": "N06003",
+      "uns_all": [
+        "N06003"
+      ],
+      "wnr": "2.4658",
+      "en_name": "NiCr 70 30",
+      "density_g_cm3": 8.1,
+      "melting_c": "1400",
+      "source": "VDM Metals VDM Alloy HT 70 Basic Information sheet 03/2020",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nichrome",
+      "grade": "60/15",
+      "name": "Nichrome 60/15",
+      "uns": "N06024",
+      "uns_all": [
+        "N06024"
+      ],
+      "wnr": "2.4867",
+      "en_name": "NiCr 6015",
+      "density_g_cm3": 8.2,
+      "melting_c": "1390",
+      "source": "VDM Metals VDM Alloy HT 60 Basic Information sheet 03/2020",
+      "checked": "2026-08"
     }
   ]
 }

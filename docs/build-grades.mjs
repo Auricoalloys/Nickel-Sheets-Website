@@ -101,6 +101,24 @@ const FORM_LABEL = {
   pipe_tube: 'Pipe and tube', fitting: 'Fittings',
 };
 
+// COMBINED PAGES sell a whole family in one form and must show every grade, so
+// a buyer can compare them without opening three tabs. gradeForUrl cannot reach
+// them - /nichrome/sheets/ has "sheets" where a grade segment would be - so
+// without this map they are neither written nor linted, which is how
+// /nichrome/sheets/ came to publish UNS N06020 (not an assigned number at all)
+// over a composition matching none of the three grades it claimed to cover.
+//
+// The map is explicit rather than derived from the path, for the same reason
+// build-cuts.mjs states its page -> slug map explicitly: the mapping is not
+// regular and guessing it is how a page gets the wrong grade's data.
+//
+// Order is the order the tables print. Most-used grade first.
+const COMBINED = {
+  '/nichrome/sheets/': [
+    ['nichrome', '80/20'], ['nichrome', '70/30'], ['nichrome', '60/15'],
+  ],
+};
+
 const ELEMENT_NAMES = {
   Ni: 'Nickel', Cr: 'Chromium', Mo: 'Molybdenum', Fe: 'Iron', C: 'Carbon',
   Mn: 'Manganese', Si: 'Silicon', Cu: 'Copper', P: 'Phosphorus', S: 'Sulfur',
@@ -469,6 +487,45 @@ let scanned = 0, mapped = 0;
 let wrote = 0;
 const drift = [], noSection = [], unverifiedPages = new Map(), noChem = new Set();
 
+// Replace each marked block in one page, or on the first run swap the
+// hand-written table inside the known section. Shared by the single-grade path
+// and the COMBINED one so both treat a page with no table the same way:
+// reported, never guessed at - the rule build-prices.mjs and build-specs.mjs
+// follow. Returns true only when a file was actually written.
+function writeBlocks(fp, raw, rel, blocks) {
+  const crlf = raw.includes('\r\n');
+  let s = raw.replace(/\r\n/g, '\n');
+  const before = s;
+
+  for (const b of blocks) {
+    const block = `${b.start}\n${b.html}\n${b.end}`;
+    const re = new RegExp(b.start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?' + b.end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    if (re.test(s)) { s = s.replace(re, () => block); continue; }
+
+    const at = s.indexOf(b.section);
+    if (at < 0) continue;
+    const secEnd = s.indexOf('</section>', at);
+    if (secEnd < 0) { noSection.push(`${rel}  (unterminated ${b.section.match(/id="([^"]+)"/)[1]})`); continue; }
+    const chunk = s.slice(at, secEnd);
+    const tStart = chunk.indexOf('<table');
+    const tEnd = chunk.indexOf('</table>');
+    if (tStart < 0 || tEnd < 0) { noSection.push(`${rel}  (no table in ${b.section.match(/id="([^"]+)"/)[1]})`); continue; }
+    // Widen to the wrapping .table-responsive div when there is one.
+    let from = at + tStart, to = at + tEnd + '</table>'.length;
+    const wrapAt = chunk.lastIndexOf('<div class="table-responsive">', tStart);
+    if (wrapAt > -1) {
+      const closeAt = chunk.indexOf('</div>', tEnd);
+      if (closeAt > -1) { from = at + wrapAt; to = at + closeAt + '</div>'.length; }
+    }
+    s = s.slice(0, from) + block + s.slice(to);
+  }
+
+  if (s === before) return false;
+  if (CHECK) { drift.push(rel); return false; }
+  fs.writeFileSync(fp, crlf ? s.replace(/\n/g, '\r\n') : s);
+  return true;
+}
+
 for (const fp of walk(ROOT)) {
   const rel = path.relative(ROOT, fp).split(path.sep).join('/');
   const raw = fs.readFileSync(fp, 'utf8');
@@ -479,6 +536,59 @@ for (const fp of walk(ROOT)) {
   if (!url.startsWith('/')) url = '/' + url;
   if (!url.endsWith('/')) url += '/';
   scanned++;
+
+  // --- combined pages: every grade of the family, in one form ---
+  const combo = COMBINED[url];
+  if (combo) {
+    mapped++;
+    const rows = combo.map(([f, g]) => grades.find(r => r.family === f && r.grade === g))
+      .filter(Boolean);
+    if (rows.length !== combo.length) {
+      noSection.push(`${rel}  (COMBINED names a grade absent from grades.csv)`);
+      continue;
+    }
+    // Lint against the UNION of the grades on the page. A combined page may
+    // legitimately print all three UNS numbers, but nothing outside the set -
+    // that is what catches a number belonging to no grade here at all.
+    const zone = identityZone(raw);
+    const wantU = rows.flatMap(r => unsList(r.uns));
+    const wantW = rows.flatMap(r => unsList(r.wnr));
+    for (const u of new Set([...zone.matchAll(UNS_RE)].map(m => m[1].toUpperCase()))) {
+      if (!wantU.includes(u))
+        findings.push({ rel, kind: 'UNS', found: u, expected: wantU.join(' / ') || '(none published)',
+          grade: rows.map(fullName).join(' + ') });
+    }
+    for (const w of new Set([...zone.matchAll(WNR_RE)].map(m => m[1]))) {
+      if (wantW.length && !wantW.includes(w))
+        findings.push({ rel, kind: 'W.Nr', found: w, expected: wantW.join(' / '),
+          grade: rows.map(fullName).join(' + ') });
+    }
+
+    // Every grade must be verified before any of them is written. Publishing
+    // two mill-checked tables beside one hand-written one would read as three
+    // equally sourced tables, which is the claim the gate exists to prevent.
+    const unver = rows.filter(r => !verified(r));
+    if (unver.length) {
+      for (const r of unver) {
+        const k = `${r.family}/${r.grade}`;
+        unverifiedPages.set(k, (unverifiedPages.get(k) || 0) + 1);
+      }
+      continue;
+    }
+
+    const seg = url.split('/').filter(Boolean).pop();
+    const form = FORM_OF_SEGMENT[String(seg).toLowerCase()] || null;
+    const stack = (fn) => rows.map(r =>
+      `<h3 class="h5 mt-4">${esc(fullName(r))}</h3>\n${fn(r)}`).join('\n');
+
+    if (writeBlocks(fp, raw, rel, [
+      { section: ID_SECTION, start: ID_START, end: ID_END,
+        html: stack(r => identityTable(r, form)) },
+      { section: CHEM_SECTION, start: CHEM_START, end: CHEM_END,
+        html: stack(r => chemTable(r, chemOf.get(key(r.family, r.grade)) || [])) },
+    ])) wrote++;
+    continue;
+  }
 
   const row = gradeForUrl(url);
   if (!row) continue;
@@ -520,10 +630,6 @@ for (const fp of walk(ROOT)) {
     continue;
   }
 
-  const crlf = raw.includes('\r\n');
-  let s = raw.replace(/\r\n/g, '\n');
-  const before = s;
-
   const formSeg = url.split('/').filter(Boolean)[2];
   const form = formSeg ? (FORM_OF_SEGMENT[formSeg.toLowerCase()] || null) : null;
 
@@ -537,36 +643,7 @@ for (const fp of walk(ROOT)) {
     noChem.add(`${row.family}/${row.grade}`);
   }
 
-  for (const b of blocks) {
-    const block = `${b.start}\n${b.html}\n${b.end}`;
-    const re = new RegExp(b.start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?' + b.end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-    if (re.test(s)) { s = s.replace(re, block); continue; }
-
-    // First run: swap the hand-written table inside the known section. A page
-    // with the section but no table is reported, never guessed at - same rule
-    // as build-prices.mjs and build-specs.mjs.
-    const at = s.indexOf(b.section);
-    if (at < 0) continue;
-    const secEnd = s.indexOf('</section>', at);
-    if (secEnd < 0) { noSection.push(`${rel}  (unterminated ${b.section.match(/id="([^"]+)"/)[1]})`); continue; }
-    const chunk = s.slice(at, secEnd);
-    const tStart = chunk.indexOf('<table');
-    const tEnd = chunk.indexOf('</table>');
-    if (tStart < 0 || tEnd < 0) { noSection.push(`${rel}  (no table in ${b.section.match(/id="([^"]+)"/)[1]})`); continue; }
-    // Widen to the wrapping .table-responsive div when there is one.
-    let from = at + tStart, to = at + tEnd + '</table>'.length;
-    const wrapAt = chunk.lastIndexOf('<div class="table-responsive">', tStart);
-    if (wrapAt > -1) {
-      const closeAt = chunk.indexOf('</div>', tEnd);
-      if (closeAt > -1) { from = at + wrapAt; to = at + closeAt + '</div>'.length; }
-    }
-    s = s.slice(0, from) + block + s.slice(to);
-  }
-
-  if (s !== before) {
-    if (CHECK) drift.push(rel);
-    else { fs.writeFileSync(fp, crlf ? s.replace(/\n/g, '\r\n') : s); wrote++; }
-  }
+  if (writeBlocks(fp, raw, rel, blocks)) wrote++;
 }
 
 // ---- grades.json for the weight calculator ----------------------------------

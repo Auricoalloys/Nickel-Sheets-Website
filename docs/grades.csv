@@ -348,6 +348,33 @@ special-stainless-steel,Alloy 926,N08926,1.4529,X1NiCrMoCuN25-20-7,8.10,1320-139
 cobalt-alloy,Haynes 25 (L-605),R30605,2.4964,CoCr20W15Ni,9.13,1329-1410,pending,
 cobalt-alloy,Haynes 188,R30188,2.4683,-,8.98,1302-1330,pending,
 cobalt-alloy,Elgiloy,R30003,2.4711,-,8.30,1440-1495,pending,
-nichrome,80/20,-,2.4869,NiCr8020,8.40,1400,pending,
-nichrome,70/30,-,2.4658,NiCr7030,8.10,1380,pending,
-nichrome,60/15,-,1.4867,NiCr6015,8.25,1390,pending,
+# --- NICHROME --- VDM Metals' three Basic Information sheets, read 2026-08-25.
+#
+# WHY VDM AND NOT A BULLETIN ALREADY IN THIS FILE: Nichrome is not a Special
+# Metals or a Haynes grade, so neither mill publishes it and the seven lint
+# findings on these pages sat unclearable for want of a source. VDM Metals
+# publishes all three as VDM Alloy HT 80 / HT 70 / HT 60. The site does not
+# stock VDM material - these sheets are the reference the figures were verified
+# against, which is exactly what the `source` column records.
+#
+# THE UNS NUMBERS WERE WRONG ON FIVE PAGES AND ON THIS FILE, in the same way
+# twice: a distributor listing circulates N0600x where the mill prints N0602x.
+# vlzps.ru gives NiCr 60/15 as N06004; VDM's own sheet gives N06024. The site
+# had N06004 on two 60/15 pages, N06060 on the third, and N06003 - which is
+# 70/30's number - on two 80/20 pages. Nothing here may be filled from a
+# distributor; see the AMS 5542 note at the head of docs/specs.csv.
+#
+# 70/30 WAS THE ONE PAGE THE LINT WAS WRONG ABOUT. /NiCr/70-30/plates/ cited
+# N06003 and was reported as contradicting this file, because the cell read "-"
+# and "-" claims the source publishes no such designation. It does: N06003 is
+# exactly right for 70/30. That is what "-" must never be used to mean.
+#
+# The Werkstoff number for 60/15 read 1.4867 here and 2.4867 on the round-bar
+# page, so the lint reported the page. The page was right - 1.4xxx is a steel
+# prefix and this is a nickel alloy.
+#
+# VDM prints 70/30's melting point as "approx. 1,400 °C"; the seeded 1380 had no
+# source. 80/20's density is 8.3 and not the seeded 8.40, and 60/15's is 8.2.
+nichrome,80/20,N06023,2.4869,NiCr 80 20,8.3,1400,VDM Metals VDM Alloy HT 80 Basic Information sheet 03/2020,2026-08
+nichrome,70/30,N06003,2.4658,NiCr 70 30,8.1,1400,VDM Metals VDM Alloy HT 70 Basic Information sheet 03/2020,2026-08
+nichrome,60/15,N06024,2.4867,NiCr 6015,8.2,1390,VDM Metals VDM Alloy HT 60 Basic Information sheet 03/2020,2026-08
