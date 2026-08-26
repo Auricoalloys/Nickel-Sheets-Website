@@ -231,10 +231,11 @@ src="/docs/media/plates-banner.webp"
           <th>Main Plate Standards</th>
           <td>ASTM B333 / ASME SB333 for plate and sheet, with typical requirements for tensile strength, yield strength and elongation matching B‑type Ni‑Mo alloys; associated product standards (for tubing, fittings) include ASTM B619, B622, B626 and B366 when specifying full systems.</td>
         </tr>
-        <tr>
-          <th>Density & Melting Point</th>
-          <td>Density ≈9.22 g/cm³ at 20 °C with melting point in the nickel‑base alloy range above 1300 °C, as given in physical‑properties tables.</td>
-        </tr>
+        <!-- grade-constants-removed by hand: density and melting range print from
+             docs/grades.csv in the Equivalent Grades table above, as 9.22 g/cm3 and
+             1370-1418 C. This row said "above 1300 C", which is the whole nickel-base
+             family rather than this grade, so it was both a duplicate and the vaguer
+             of the two answers the page gave. -->
         <tr>
           <th>Service Temperature Window</th>
           <td>Designed for use in reducing environments up to about 1000–1070 °C with improved thermal stability; like other B‑type alloys, exposure in the 500–900 °C range must be controlled to avoid formation of deleterious Ni‑Mo phases, with B3’s stability markedly better than B2.</td>
@@ -311,10 +312,9 @@ src="/docs/media/plates-banner.webp"
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Density</td>
-          <td>≈9.22 g/cm³ at 20 °C</td>
-        </tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr>
           <td>Ultimate Tensile Strength</td>
           <td>≥750 MPa minimum for plate; data for 6.4 mm solution‑treated plate show ≈735 MPa at 650 °C, illustrating high‑temperature strength retention.</td>

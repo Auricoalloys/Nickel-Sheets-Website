@@ -234,8 +234,12 @@ src="/docs/media/plates-banner.webp"
           <td>ASTM B333 / ASME SB333 Hastelloy B2 plates for sheet and plate; DIN 17750 for plates; other product standards such as ASTM B622, B626 and B366 for tubing and fittings used alongside plate in systems</td>
         </tr>
         <tr>
-          <th>Density</th>
-          <td>≈9.2 g/cm³ with melting point around 1370 °C (≈2500 °F)</td>
+          <!-- The density half of this row was removed: it prints from docs/grades.csv
+               in the Equivalent Grades table above, as 9.22 rather than the 9.2 typed
+               here. The melting point stays, because grades.csv has no melting_c for
+               B-2 and this is the page's only copy of it. -->
+          <th>Melting Point</th>
+          <td>Around 1370 °C (≈2500 °F)</td>
         </tr>
         <tr>
           <th>Service Temperature Window</th>
@@ -298,10 +302,9 @@ src="/docs/media/plates-banner.webp"
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Density</td>
-          <td>≈9.2 g/cm³</td>
-        </tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr>
           <td>Ultimate Tensile Strength</td>
           <td>≥750–760 MPa (≈110 ksi) minimum for plate per DIN/ASTM data</td>

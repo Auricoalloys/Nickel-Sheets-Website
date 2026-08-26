@@ -663,11 +663,41 @@ The map is explicit rather than derived from the path, for the reason `build-cut
 own page → slug map explicitly: the mapping is not regular, and guessing it puts the wrong grade's
 data on a page.
 
+#### A generated constant gets one home per page
+
 **Do not repeat a generated constant in a hand-written table on the same page.** `/nichrome/sheets/`
 also carried density and melting point in its `#mechanical-properties` table, so once the identity
-tables were generated the page gave two different answers — 8.4 g/cm³ against 8.3/8.1/8.2. Those
-rows were removed rather than corrected — `#mechanical-properties` is a second, ungenerated home for
-density and melting point on ~22 other pages, and `--check` cannot see it.
+tables were generated the page gave two different answers — 8.4 g/cm³ against 8.3/8.1/8.2.
+
+That was not one page's problem. Measured on 2026-08-26: of the **273 pages carrying a generated
+identity table, 146 also stated density or melting by hand and 63 of those disagreed with it** —
+`monel/K-500/sheets` printing 8.8, which is Monel 400's density, one table under the generated 8.44;
+`NiCr/70-30/round-bar` disagreeing with itself by 10% on density and 200 °C on melting.
+
+`build-grades.mjs` now **deletes those rows as it writes**, leaving a comment where each one was, and
+`--check` fails on a re-added one because the strip makes the page differ from the source — the same
+drift path that catches a stale table. The rows are deleted rather than corrected: correcting leaves
+two copies to drift apart again.
+
+Four rules the strip enforces, each of which was a way to get it wrong:
+
+- **The sweep is the whole page, not `#mechanical-properties`.** Scoping it to that section is the
+  obvious move and it misses nine rows sitting in the Specification Overview tables instead, three of
+  them wrong — `detailed_product_page/NiCr/70-30/sheets` said 8.55 g/cm³ against the generated 8.1.
+- **An empty CSV cell means the page holds the only copy.** Every titanium grade has an empty
+  `density_g_cm3` (ASME SB-265 publishes neither constant), so a strip that ignored the gate would
+  delete the only density figure on every titanium page. 48 rows on 33 pages are kept for this
+  reason, and they are a lead for `grades.csv`, not a fault.
+- **A row with more than two cells is not a duplicate.** `incoloy/DS/DS.html` sets Alloy 330 against
+  INCOLOY DS with a column each, so its density row is a comparison between two grades.
+- **A row naming the other constant makes two claims.** `hastelloy/B2/plates` read "9.2 g/cm³ with
+  melting point around 1370 °C" and `grades.csv` has no `melting_c` for B-2, so cutting the row would
+  have deleted the page's only melting figure.
+
+What it will not cut, it **reports** — 18 findings, 16 of them pages restating a constant in prose
+rather than in a row. Prose is a real second home and a real backlog; it is named rather than passed
+over, because a check may exclude a case by rule but may never be silent about one it does not
+handle.
 
 Reviewed **quarterly, like prices** — see the review task below.
 

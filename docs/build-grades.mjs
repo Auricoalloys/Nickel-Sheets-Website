@@ -57,6 +57,38 @@ const CHEM_END = '<!-- grade-chem:end -->';
 const ID_SECTION = '<section class="grade-table-section" id="equivalent-grades">';
 const CHEM_SECTION = '<section class="grade-table-section py-5 bg-light" id="chemical">';
 
+// ---- the second home for density and melting --------------------------------
+// This script does not own <section id="mechanical-properties">, and on most
+// form pages that section carries its OWN hand-typed Density and Melting Point
+// rows. So opening the gate on a grade put the mill's figures in the identity
+// table and left the old invented ones a few sections below, on the same page.
+// Measured on 2026-08-26: of the 273 pages carrying a generated identity table,
+// 113 also stated density or melting by hand and 63 of those disagreed with it -
+// monel/K-500/sheets printing 8.8, which is Monel 400's density, one table under
+// the generated 8.44. --check could not see any of it, because it compares only
+// generated blocks, so CI stayed green while the page contradicted itself.
+//
+// A generated constant gets ONE home per page. The rows are therefore deleted
+// rather than corrected: correcting them leaves two copies to drift again.
+const CONSTANT_NOTE = 'grade-constants-removed';
+
+// Deliberately tight. Only a row whose label is the bare constant, optionally
+// with the unit the identity table itself publishes, is safe to delete - the
+// generated table carries exactly one density and one melting range for the
+// grade, so it can only stand in for a row making exactly that claim.
+// Everything else is REPORTED instead of cut, because each of these says
+// something the identity table does not:
+//   "HAYNES 188 Density", "Nimonic 90 Density"  - names a grade, possibly not
+//                                                 the page's own
+//   "Density (2205 / 2507)"                     - two grades in one row
+//   "Density (kg/m³)"                           - a unit the table never prints
+//   "Density / Specific Gravity"                - a second property in the row
+const DENSITY_LABEL = /^densit(?:y|ies)\s*(?:\(\s*g\s*\/\s*cm\s*(?:3|³)\s*\)|g\s*\/\s*cm\s*(?:3|³))?\s*:?$/i;
+// The unit may be parenthesised or bare, the way the density label may: the
+// incoloy/DS comparison heads its row "Melting range &deg;C" with no brackets,
+// and refusing that as an unrecognised label hid the real reason it is spared.
+const MELTING_LABEL = /^melting\s*(?:point|range|temp|temperature)?\s*(?:\(\s*°?\s*c\s*\)|°\s*c)?\s*:?$/i;
+
 // A page URL names its family, which is not always the CSV's family key:
 // /stainless/904L/ is a special-stainless-steel grade. Longest key first so
 // "nickel-alloy" is not swallowed by "nickel".
@@ -484,23 +516,157 @@ const findings = [];
 let scanned = 0, mapped = 0;
 
 // ---- apply ------------------------------------------------------------------
-let wrote = 0, powderPages = 0;
+let wrote = 0, powderPages = 0, stripped = 0, onlyCopy = 0;
 const drift = [], noSection = [], unverifiedPages = new Map(), noChem = new Set();
+const dupConstants = [];
+
+// Which constants the identity table on this page actually publishes. An empty
+// CSV cell DROPS its row - "not verified yet" is a different claim from "the
+// mill publishes none" - so a constant the table does not carry has no second
+// home to delete, only a first one. This is not hypothetical: all 12 verified
+// titanium grades have an empty density_g_cm3 and 18 grades an empty melting_c,
+// so a strip that ignored this would delete the only density figure on every
+// titanium page. Every grade on a combined page must publish it, for the same
+// reason - one hand-written row cannot stand in for three different densities.
+const publishedConstants = rows => ({
+  density: rows.length > 0 && rows.every(r => r.density_g_cm3 !== '' && r.density_g_cm3 != null),
+  melting: rows.length > 0 && rows.every(r => r.melting_c !== '' && r.melting_c != null),
+});
+
+// Delete the hand-written Density / Melting rows on a page whose identity table
+// now publishes them. Returns the new source; pushes anything it will not touch
+// onto dupConstants so it is reported rather than passed over - a check may
+// exclude a case by rule, but it may never be silent about one it does not
+// handle.
+//
+// THE SWEEP IS THE WHOLE PAGE, not <section id="mechanical-properties">. Scoping
+// it to that section is the obvious move and it misses nine rows sitting in the
+// Specification Overview tables instead, three of them wrong the same way the
+// mechanical ones were: detailed_product_page/NiCr/70-30/sheets states 8.55
+// g/cm3 against the generated 8.1, and the 60-15 and 80-20 sheets pages disagree
+// too. Every table outside the generated blocks is therefore fair game, and the
+// GUARDS below decide what is safe to cut - not the section id.
+function stripDuplicatedConstants(s, rel, has) {
+  if (!has.density && !has.melting) return s;
+
+  const spans = [];
+  for (let i = 0;;) {
+    const a = s.indexOf(ID_START, i); if (a < 0) break;
+    const b = s.indexOf(ID_END, a); if (b < 0) break;
+    spans.push([a, b + ID_END.length]); i = b + 1;
+  }
+  // Entities are decoded before the label is matched, or "Density g/cm&sup3;" is
+  // refused as an unrecognised label when the real reason it must be left alone
+  // is that its row has a column per grade. The report has to name the actual
+  // reason, or the next person fixes the wrong thing.
+  const flat = c => (c ?? '').replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/gi, ' ').replace(/&sup3;/gi, '3').replace(/&deg;/gi, '°')
+    .replace(/&amp;/gi, '&').replace(/\s+/g, ' ').trim();
+
+  const cuts = [];
+  for (const tm of s.matchAll(/<table\b[\s\S]*?<\/table>/gi)) {
+    const ts = tm.index, te = ts + tm[0].length;
+    if (spans.some(([a, b]) => ts < b && te > a)) continue;     // a generated table
+
+    // <thead> rows are headings, not claims. Counting them as data rows would
+    // hide the "nothing but constants" case below, where cutting empties the
+    // table and deletes the section's reason to exist rather than a duplicate.
+    const heads = [...tm[0].matchAll(/<thead[\s\S]*?<\/thead>/gi)]
+      .map(h => [h.index, h.index + h[0].length]);
+    const here = [];
+    let dataRows = 0;
+    for (const m of tm[0].matchAll(/([^\S\n]*)<tr[^>]*>([\s\S]*?)<\/tr>\n?/gi)) {
+      if (heads.some(([a, b]) => m.index >= a && m.index < b)) continue;
+      const cells = [...m[2].matchAll(/<(t[dh])[^>]*>([\s\S]*?)<\/\1>/gi)];
+      if (!cells.length) continue;
+      dataRows++;
+      const label = flat(cells[0][2]);
+      const kind = DENSITY_LABEL.test(label) ? 'density'
+        : MELTING_LABEL.test(label) ? 'melting' : null;
+      if (!kind) {
+        if (/(densit|melting)/i.test(label))
+          dupConstants.push(`${rel}  ("${label}" - not a label this script recognises)`);
+        continue;
+      }
+      // The CSV cell for this constant is empty, so the identity table prints no
+      // such row: this hand-written one is the page's ONLY copy and stays. Not a
+      // fault - a lead, since filling the cell from the bulletin would settle it.
+      if (!has[kind]) { onlyCopy++; continue; }
+      // A row with more than two cells carries something the identity table does
+      // not - a condition column, or a second grade. incoloy/DS/DS.html sets
+      // Alloy 330 against INCOLOY DS with a column each, so its density row is a
+      // comparison between two grades, not this page's own constant stated twice.
+      if (cells.length !== 2) {
+        dupConstants.push(`${rel}  ("${label}" row has ${cells.length} cells - left alone)`);
+        continue;
+      }
+      // The cell names the OTHER constant, so the row makes two claims and only
+      // one of them is generated. hastelloy/B2/plates reads "9.2 g/cm3 with
+      // melting point around 1370 C" in its Specification Overview, and
+      // grades.csv publishes no melting_c for B-2 - so cutting that row would
+      // delete the page's only melting figure. Same mistake as cutting a
+      // constant the CSV does not publish, one column over.
+      const other = kind === 'density' ? /melting|liquidus|solidus/i : /densit/i;
+      if (other.test(flat(cells[1][2]))) {
+        dupConstants.push(`${rel}  ("${label}" row states the other constant too - left alone)`);
+        continue;
+      }
+      here.push({ from: ts + m.index, to: ts + m.index + m[0].length, indent: m[1] });
+    }
+
+    // Emptying the table is not de-duplication; it is deleting the section's
+    // reason to exist. Report and leave it.
+    if (here.length && here.length >= dataRows) {
+      dupConstants.push(`${rel}  (a table holds nothing but the generated constants - left alone)`);
+      continue;
+    }
+    if (here.length) { here[0].note = true; cuts.push(...here); }
+  }
+
+  // Prose is never edited by this script, but it makes the same duplicate claim,
+  // so it is named rather than passed over silently.
+  const prose = s.replace(/<table[\s\S]*?<\/table>/gi, ' ').replace(/<[^>]+>/g, ' ');
+  if (/\bdensit|\bmelting\s*(?:point|range)/i.test(prose))
+    dupConstants.push(`${rel}  (states a constant in prose - edit by hand)`);
+
+  if (!cuts.length) return s;
+
+  // Splice from the end so the earlier offsets stay valid. The note takes the
+  // place of the first row removed from each table, so it inherits that row's
+  // indentation and leaves no blank line behind; guarded on the marker already
+  // being present so a re-run cannot stack a second copy.
+  const already = s.includes(CONSTANT_NOTE);
+  for (const c of cuts.sort((a, b) => b.from - a.from)) {
+    const note = (c.note && !already)
+      ? `${c.indent}<!-- ${CONSTANT_NOTE} by docs/build-grades.mjs: density and melting range print\n` +
+        `${c.indent}     from docs/grades.csv in the Equivalent Grades table above; a second\n` +
+        `${c.indent}     hand-written copy here is what let 63 pages state two densities. -->\n`
+      : '';
+    s = s.slice(0, c.from) + note + s.slice(c.to);
+  }
+  stripped += cuts.length;
+  return s;
+}
 
 // Replace each marked block in one page, or on the first run swap the
 // hand-written table inside the known section. Shared by the single-grade path
 // and the COMBINED one so both treat a page with no table the same way:
 // reported, never guessed at - the rule build-prices.mjs and build-specs.mjs
 // follow. Returns true only when a file was actually written.
-function writeBlocks(fp, raw, rel, blocks) {
+function writeBlocks(fp, raw, rel, blocks, constants) {
   const crlf = raw.includes('\r\n');
   let s = raw.replace(/\r\n/g, '\n');
   const before = s;
+  // Only strip the hand-written constants once the identity table is actually
+  // on the page. A page reported under noSection has nowhere to put it, so its
+  // #mechanical-properties rows are the ONLY density the reader gets - cutting
+  // them there would not de-duplicate a figure, it would delete it.
+  let idPlaced = false;
 
   for (const b of blocks) {
     const block = `${b.start}\n${b.html}\n${b.end}`;
     const re = new RegExp(b.start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?' + b.end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-    if (re.test(s)) { s = s.replace(re, () => block); continue; }
+    if (re.test(s)) { s = s.replace(re, () => block); if (b.start === ID_START) idPlaced = true; continue; }
 
     // A page with NO such section at all used to `continue` silently, which is
     // the one gap in this script's otherwise-complete reporting: "nowhere to put
@@ -528,7 +694,10 @@ function writeBlocks(fp, raw, rel, blocks) {
       if (closeAt > -1) { from = at + wrapAt; to = at + closeAt + '</div>'.length; }
     }
     s = s.slice(0, from) + block + s.slice(to);
+    if (b.start === ID_START) idPlaced = true;
   }
+
+  if (idPlaced && constants) s = stripDuplicatedConstants(s, rel, constants);
 
   if (s === before) return false;
   if (CHECK) { drift.push(rel); return false; }
@@ -596,7 +765,7 @@ for (const fp of walk(ROOT)) {
         html: stack(r => identityTable(r, form)) },
       { section: CHEM_SECTION, start: CHEM_START, end: CHEM_END,
         html: stack(r => chemTable(r, chemOf.get(key(r.family, r.grade)) || [])) },
-    ])) wrote++;
+    ], publishedConstants(rows))) wrote++;
     continue;
   }
 
@@ -675,7 +844,7 @@ for (const fp of walk(ROOT)) {
     }
   }
 
-  if (writeBlocks(fp, raw, rel, blocks)) wrote++;
+  if (writeBlocks(fp, raw, rel, blocks, publishedConstants([row]))) wrote++;
 }
 
 // ---- grades.json for the weight calculator ----------------------------------
@@ -748,6 +917,10 @@ if (CHECK) {
   if (findings.length && STRICT) bad = true;
   if (bad) process.exit(1);
   if (dataNotes.length) console.log(`  ${dataNotes.length} grade(s) with no specs.csv row - run with no flags to list them`);
+  // Reported, never fatal. These need a human to decide what the row was for,
+  // and failing the build on a backlog would block every unrelated pull request
+  // - the reason --strict waited for the identifier backlog to reach zero.
+  if (dupConstants.length) console.log(`  ${dupConstants.length} page(s) state a constant twice in a form this script will not cut - run with no flags to list them`);
   console.log(`grade tables are current (${grades.length} grades, ${nVerified} verified, ${chem.length} chemistry rows)`);
   process.exit(0);
 }
@@ -766,6 +939,14 @@ console.log(`  verified, so published: ${nVerified}`);
 console.log(`  chemistry rows        : ${chem.length}`);
 console.log(`  pages mapped to a grade: ${mapped} of ${scanned}`);
 console.log(`  pages updated         : ${wrote}`);
+console.log(`  duplicate constants cut: ${stripped} hand-written row(s)`);
+if (onlyCopy) {
+  console.log(`  kept ${onlyCopy} hand-written constant(s) the CSV does not publish - the page holds the only copy`);
+}
+if (dupConstants.length) {
+  console.log(`  constants stated twice that this script will NOT cut (${dupConstants.length}) - fix by hand:`);
+  dupConstants.forEach(x => console.log('     ' + x));
+}
 if (unverifiedPages.size) {
   const total = [...unverifiedPages.values()].reduce((a, b) => a + b, 0);
   console.log(`  waiting on verification: ${unverifiedPages.size} grades across ${total} pages (keeping their hand-written tables)`);

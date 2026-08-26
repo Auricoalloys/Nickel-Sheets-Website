@@ -247,8 +247,11 @@ src="/docs/media/plates-banner.webp"
           <td>ASTM B168 / ASME SB168 for plate, sheet and strip; related AMS specifications (e.g. AMS 5540) for aerospace and high-spec applications.</td>
         </tr>
         <tr>
-          <th>Density & Service Temperature</th>
-          <td>Density about 0.306 lb/in³ (≈8.47 g/cm³); recommended service range from cryogenic temperatures up to about 2000 °F (1093 °C) depending on environment and design code.</td>
+          <!-- The density half of this row was removed: it prints from docs/grades.csv
+               in the Equivalent Grades table above. The service range stays, because
+               grades.csv publishes no such figure and this is the page's only copy. -->
+          <th>Service Temperature</th>
+          <td>Recommended service range from cryogenic temperatures up to about 2000 °F (1093 °C) depending on environment and design code.</td>
         </tr>
         <tr>
           <th>Corrosion Focus</th>
@@ -317,10 +320,9 @@ src="/docs/media/plates-banner.webp"
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Density</td>
-          <td>≈8.47 g/cm³ (0.306 lb/in³)</td>
-        </tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr>
           <td>Ultimate Tensile Strength (RT)</td>
           <td>≈655–730 MPa (≈95–106 ksi) for annealed plate and sheet.</td>

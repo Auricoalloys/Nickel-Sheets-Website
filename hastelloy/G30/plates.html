@@ -238,10 +238,10 @@ src="/docs/media/plates-banner.webp"
           <th>Main Plate Standards</th>
           <td>ASTM B582 / ASME SB582 for plate and sheet; G-30 is also covered by various product standards for tubing, fittings and welding consumables used alongside plates in P₂O₅ and nitric systems.</td>
         </tr>
-        <tr>
-          <th>Density & Physical Data</th>
-          <td>Density about 0.297 lb/in³ (≈8.22 g/cm³), with typical mechanical data for solution-annealed plate used in design tables.</td>
-        </tr>
+        <!-- grade-constants-removed by hand: density prints from docs/grades.csv in the
+             Equivalent Grades table above. The rest of this row promised "typical
+             mechanical data ... used in design tables" without giving any, so nothing
+             was lost with it. -->
         <tr>
           <th>Corrosion Focus</th>
           <td>Optimised for commercial “wet process” phosphoric acid, nitric acid and complex mixed acids (e.g. HNO₃/HCl, HNO₃/HF) with significantly better performance than austenitic stainless steels and many Ni-Fe alloys.</td>
@@ -312,10 +312,9 @@ src="/docs/media/plates-banner.webp"
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Density</td>
-          <td>≈0.297 lb/in³ (≈8.22 g/cm³)</td>
-        </tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr>
           <td>Ultimate Tensile Strength</td>
           <td>≈678–710 MPa at 20 °C, with minimum design value about 690 MPa in some data sheets.</td>
