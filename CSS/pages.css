@@ -138,8 +138,9 @@
     }
   }
 
-  /* This is an <h1> on the product pages, so the browser's default heading
-     margin has to be cleared or the banner caption sits off its mark. */
+  /* This is a heading - <h2> where the page has its own content heading, <h1>
+     where the banner is the only one - so the browser's default heading margin
+     has to be cleared or the banner caption sits off its mark. */
   .banner-title {
     position: absolute;
     bottom: 85px;

@@ -39,8 +39,8 @@ ul {
   }
 }
 
-/* May be an <h1>; clear the default heading margin so the caption keeps its
-   position over the banner. */
+/* Always a heading, <h1> or <h2>; clear the default heading margin so the
+   caption keeps its position over the banner. */
 .banner-title {
   position: absolute;
   bottom: 20px;

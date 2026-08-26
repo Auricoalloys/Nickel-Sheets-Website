@@ -123,10 +123,28 @@ Each page's `<head>` carries its own canonical URL, Open Graph and Twitter tags,
 `Product`/`Organization` block. These are per-page literals, not generated; changing site-wide
 metadata means editing pages, not one template.
 
-The banner heading is the page's `<h1>`: `<h1 id="banner-title" class="banner-title">` inside the
-`<figure>` in `.flat-banner`. It used to be a `<figcaption>`, which left 205 pages with no `<h1>` at
-all. Copy the `<h1>` form. `.banner-title` carries `margin: 0` in all three stylesheets that define
-it precisely because it is now a heading — do not remove that.
+The banner caption is a heading, inside the `<figure>` in `.flat-banner`, and **which level it takes
+depends on whether the page has its own content heading**:
+
+- The page has a main heading in the body (usually `<div class="title" id="title">`) — that heading
+  is the `<h1>` and the banner caption is `<h2 id="banner-title" class="banner-title">`. This is the
+  common case, 377 pages. The body heading is the page's real subject line and generally the richer
+  text ("Inconel Coil Supplier, Stockist and Exporter" against the banner's "Inconel® Coil"), so it
+  gets the `<h1>`.
+- The banner is the only heading the page has — it takes `<h1 id="banner-title">`. 231 pages, mostly
+  the newer template that has no `div.title` at all.
+
+Either way there is exactly **one `<h1>` per page**, and the banner caption is never a
+`<figcaption>`: that is the pre-migration form, it is a caption element rather than a heading, and it
+drops the caption out of the outline. It once left 205 pages with no `<h1>` at all, and 412 more
+carried it until 2026-08-25. `tools/seo_audit.py` guards it as `banner_figcaption`.
+
+`.banner-title` carries `margin: 0` in all three stylesheets that define it precisely because it is a
+heading either way — do not remove that.
+
+Anything reading the banner caption must match **`h1`, `h2` or `figcaption`**, never one of them.
+`alt_alloy_mismatch` looked for `<h1>` alone and so evaluated 37% of the pages it was written for
+without ever reporting that it had skipped the rest.
 
 A `Product` node needs **one of `offers`, `review` or `aggregateRating`**, and an `offers` block
 needs a price. Google reports a node missing either as an *invalid item*, ineligible for rich
@@ -515,11 +533,31 @@ a grade *is*. It does **not** yet fail on lint findings, because failing on a ba
 every unrelated PR. **Add `--strict` to the CI step once that backlog is cleared**, or the guard
 never closes.
 
-The backlog was 20 findings and is now **7, all of them Nichrome** — the 60/15, 70/30 and 80/20
-pages carrying UNS numbers the CSV does not publish, plus one Werkstoff disagreement. Nichrome is
-not a Special Metals or Haynes grade, so clearing it needs a source none of the bulletins already
-read can supply. The Nimonic 75/80A/901 Werkstoff findings, the Nimonic 86/115 UNS numbers and the
-Incoloy 800H hub were all cleared on 2026-08-25. **`--strict` is one family away.**
+**The backlog is now 0** — the last seven were Nichrome, cleared on 2026-08-26, and `--strict`
+can go on the CI step now. Nichrome is not a Special Metals or Haynes grade, which is why it sat
+unclearable: no bulletin already read publishes it. **VDM Metals does**, as VDM Alloy HT 80 /
+HT 70 / HT 60, and those three Basic Information sheets now source the whole family.
+
+That family is also the case study for **why a distributor is never a source**. Two of the three
+UNS numbers on the site were wrong, and wrong the same way: the trade circulates `N0600x` where
+the mill prints `N0602x`. 80/20 is **N06023** and not N06003, 60/15 is **N06024** and not N06004
+or N06060. 70/30 genuinely is **N06003** — so the two 80/20 pages carrying N06003 were publishing
+70/30's identity.
+
+Two of the seven findings were the lint being wrong about a page that was right, both caused by
+this file rather than by the page. `/NiCr/70-30/plates/` cited N06003 and was reported, because
+`grades.csv` read `-` — and `-` claims the mill publishes no such designation, which is exactly
+what it must never be used to mean. The 60/15 round bar's `2.4867` was reported against a CSV
+reading `1.4867`, a steel prefix on a nickel alloy. **When the lint fires, check the CSV cell
+before you touch the page.**
+
+The Nimonic 75/80A/901 Werkstoff findings, the Nimonic 86/115 UNS numbers and the Incoloy 800H hub
+were cleared on 2026-08-25.
+
+The form hubs are outside the lint's reach and carried the same errors — `gradeForUrl` needs a
+`/family/grade/` URL and `/wire/nichrome/` has no grade segment, so 59 wrong UNS numbers across
+eleven hub pages were invisible to it. After changing a grade's identity, grep the whole tree for
+the old number; do not trust a clean lint to mean the site is clean.
 
 Careful with what "cleared" means for the Nimonic pages: the numbers were removed because Special
 Metals publishes none, not because none exist. `N07081`, `N07105` and `N06081` still sit on ~14
@@ -563,6 +601,39 @@ Form pages get the specification **for the form they sell**, read from `specs.cs
 form segment. `build-specs.mjs` only ever wrote to hubs, so until now nothing generated the standard
 on the ~300 form pages — which is how `/inconel/625/wire/` came to cite B443, a plate spec, in seven
 places.
+
+#### Combined pages: one form, every grade in the family
+
+A page like `/nichrome/sheets/` sells the whole family in one form, so a buyer can compare grades
+without opening three tabs. `gradeForUrl` cannot reach these — the segment where a grade would be
+says `sheets` — so they were **neither written nor linted**. That blind spot is how
+`/nichrome/sheets/` came to publish `UNS N06020`, which is not an assigned UNS number at all, over
+a composition matching none of the three grades it claimed to cover, plus AMS 5603 and ISO 15156
+(a sour-service standard, on a heating alloy).
+
+The `COMBINED` map at the top of `build-grades.mjs` names them: URL → the grades it covers, in the
+order the tables should print. The writer emits one identity table and one chemistry table **per
+grade**, each under an `<h3>` and each keeping its own provenance caption, by calling the same
+`identityTable()`/`chemTable()` the single-grade path uses. So a combined page is not a new table
+format to maintain — it is the same tables, stacked.
+
+Two rules the map enforces:
+
+- **The lint checks the union.** A combined page may print all three UNS numbers, but nothing
+  outside the set — which is exactly what catches a number belonging to no grade on the page.
+- **Every grade must be verified before any is written.** Publishing two mill-checked tables beside
+  one hand-written one would read as three equally sourced tables, which is the claim the
+  `checked`/`pending` gate exists to prevent.
+
+The map is explicit rather than derived from the path, for the reason `build-cuts.mjs` states its
+own page → slug map explicitly: the mapping is not regular, and guessing it puts the wrong grade's
+data on a page.
+
+**Do not repeat a generated constant in a hand-written table on the same page.** `/nichrome/sheets/`
+also carried density and melting point in its `#mechanical-properties` table, so once the identity
+tables were generated the page gave two different answers — 8.4 g/cm³ against 8.3/8.1/8.2. Those
+rows were removed rather than corrected — `#mechanical-properties` is a second, ungenerated home for
+density and melting point on ~22 other pages, and `--check` cannot see it.
 
 Reviewed **quarterly, like prices** — see the review task below.
 

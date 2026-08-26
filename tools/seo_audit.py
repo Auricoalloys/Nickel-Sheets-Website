@@ -253,10 +253,16 @@ def audit(pages):
         if not m:
             continue
         a = re.search(r'alt="([^"]*)"', m.group(0))
-        h = re.search(r"<h1[^>]*>(.*?)</h1>", m.group(0), re.S)
+        # Match the banner caption whatever element carries it. Looking for an
+        # <h1> specifically is what made this check silently narrow: it saw 37%
+        # of its population while the rest used <figcaption>, and it would go
+        # blind again now the caption is an <h2> and the body heading is the
+        # <h1>. What is being compared is the caption against the image beside
+        # it, and that holds whichever tag the caption happens to use.
+        h = re.search(r"<(h1|h2|figcaption)[^>]*>(.*?)</\1>", m.group(0), re.S)
         if not (a and h):
             continue
-        h1 = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", h.group(1))).strip()
+        h1 = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", h.group(2))).strip()
         ga = set(re.findall(r"\b\d{3,4}[A-Z]?\b|\bGrade \d+\b", a.group(1)))
         gh = set(re.findall(r"\b\d{3,4}[A-Z]?\b|\bGrade \d+\b", h1))
         ba, bh = _brands(a.group(1)), _brands(h1)
@@ -264,13 +270,16 @@ def audit(pages):
             mismatch.append({"file": p, "alt": a.group(1)[:60], "h1": h1[:60]})
     findings["alt_alloy_mismatch"] = mismatch
 
-    # The banner heading is the page's <h1>. A <figcaption> there is the
-    # pre-migration form, and it is invisible rather than merely wrong: it
-    # renders identically, so nothing looks broken, but the check above needs
-    # an <h1> inside the banner and quietly skips the page without counting it.
-    # 412 pages sat in that state, which is why alt_alloy_mismatch read 0 while
-    # seeing 37% of the pages it was written for - and why this is a finding in
-    # its own right rather than something the count above could ever reveal.
+    # The banner caption is a heading, so it is marked up as one - <h2> where
+    # the page has its own content heading, <h1> where the banner is the only
+    # heading it has. A <figcaption> is the pre-migration form and is wrong
+    # either way: it is a caption element, not a heading, so the caption drops
+    # out of the document outline entirely.
+    #
+    # It is kept as a finding of its own because it is invisible rather than
+    # merely wrong - it renders identically, so nothing looks broken. 412 pages
+    # sat in that state. The check above no longer depends on the tag, so this
+    # no longer hides pages from it, but the outline defect stands on its own.
     findings["banner_figcaption"] = sorted(
         p for p, d in real.items()
         if re.search(r"<figcaption[^>]*banner-title", d["raw"], re.I))
