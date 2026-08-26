@@ -134,17 +134,24 @@ depends on whether the page has its own content heading**:
 - The banner is the only heading the page has — it takes `<h1 id="banner-title">`. 231 pages, mostly
   the newer template that has no `div.title` at all.
 
-Either way there is exactly **one `<h1>` per page**, and the banner caption is never a
-`<figcaption>`: that is the pre-migration form, it is a caption element rather than a heading, and it
-drops the caption out of the outline. It once left 205 pages with no `<h1>` at all, and 412 more
-carried it until 2026-08-25. `tools/seo_audit.py` guards it as `banner_figcaption`.
+Either way there is exactly **one `<h1>` per page**, and the caption is **always a heading element**
+— never a `<figcaption>`, never a `<div>`. Both render the same and neither is a heading, so the
+largest text on the page drops out of the outline while nothing looks broken. 412 pages carried the
+`<figcaption>` form until 2026-08-25 and five carried `<div class="banner-title">` until 2026-08-26;
+one of those five had no wrapper at all, just loose text after the `<img>`, so it never picked up
+`.banner-title` and rendered as body text. `tools/seo_audit.py` guards this as
+`banner_caption_not_heading`, which asks whether the caption is a heading rather than naming the one
+wrong element it happens to know about — the narrower `banner_figcaption` it replaced was blind to
+the `<div>` form.
 
 `.banner-title` carries `margin: 0` in all three stylesheets that define it precisely because it is a
 heading either way — do not remove that.
 
-Anything reading the banner caption must match **`h1`, `h2` or `figcaption`**, never one of them.
-`alt_alloy_mismatch` looked for `<h1>` alone and so evaluated 37% of the pages it was written for
-without ever reporting that it had skipped the rest.
+Anything reading the banner caption must match **`h1` or `h2`** (and `figcaption` if it also reads
+history), never one of them alone. `alt_alloy_mismatch` looked for `<h1>` by itself and so evaluated
+37% of its pages while reporting a clean 0; when the `<h1>` moved to the body heading the same bug
+would have put it at 42%, still reporting 0. **Measure a check's coverage by running its own regex
+over the tree — a count of 0 cannot tell you what it never looked at.**
 
 A `Product` node needs **one of `offers`, `review` or `aggregateRating`**, and an `offers` block
 needs a price. Google reports a node missing either as an *invalid item*, ineligible for rich
@@ -528,10 +535,11 @@ usually a legitimate mention of a sibling grade in a cross-link list. A page who
 names more than one grade of its family (the combined foil pages) is skipped rather than judged
 against one of them.
 
-CI runs `--check`, which fails on drift and on the files disagreeing with `specs.csv` about what
-a grade *is*. It does **not** yet fail on lint findings, because failing on a backlog would block
-every unrelated PR. **Add `--strict` to the CI step once that backlog is cleared**, or the guard
-never closes.
+CI runs `--check --strict`, which fails on drift, on the files disagreeing with `specs.csv` about
+what a grade *is*, **and on lint findings**. The `--strict` half was added on 2026-08-26, the day
+the backlog reached 0; until then a finding was reported but tolerated, because failing on a
+backlog would have blocked every unrelated PR. The guard is now closed: a new contradiction fails
+the PR that introduces it.
 
 **The backlog is now 0** — the last seven were Nichrome, cleared on 2026-08-26, and `--strict`
 can go on the CI step now. Nichrome is not a Special Metals or Haynes grade, which is why it sat

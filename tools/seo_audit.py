@@ -270,19 +270,27 @@ def audit(pages):
             mismatch.append({"file": p, "alt": a.group(1)[:60], "h1": h1[:60]})
     findings["alt_alloy_mismatch"] = mismatch
 
-    # The banner caption is a heading, so it is marked up as one - <h2> where
-    # the page has its own content heading, <h1> where the banner is the only
-    # heading it has. A <figcaption> is the pre-migration form and is wrong
-    # either way: it is a caption element, not a heading, so the caption drops
-    # out of the document outline entirely.
+    # The banner caption is a heading, so it must be marked up as one - <h2>
+    # where the page has its own content heading, <h1> where the banner is the
+    # only heading it has. Anything else drops the caption out of the document
+    # outline: it is the largest text on the page and reads as a heading, but
+    # nothing parsing the page can tell.
     #
-    # It is kept as a finding of its own because it is invisible rather than
-    # merely wrong - it renders identically, so nothing looks broken. 412 pages
-    # sat in that state. The check above no longer depends on the tag, so this
-    # no longer hides pages from it, but the outline defect stands on its own.
-    findings["banner_figcaption"] = sorted(
+    # This started as a figcaption-only check, which was too narrow twice over.
+    # 412 pages carried <figcaption>, and five more carried <div
+    # class="banner-title"> - caught only because the coverage of the check
+    # above was measured rather than inferred from its count of 0. One of those
+    # five had no wrapper at all, just loose text after the <img>, so it never
+    # even picked up .banner-title's positioning.
+    #
+    # So it now asks the question that actually matters - is the caption a
+    # heading - rather than naming the one wrong element it happened to know
+    # about. All 668 are h1 or h2 as of 2026-08-26.
+    HEADING = {"h1", "h2", "h3", "h4", "h5", "h6"}
+    findings["banner_caption_not_heading"] = sorted(
         p for p, d in real.items()
-        if re.search(r"<figcaption[^>]*banner-title", d["raw"], re.I))
+        if any(t.lower() not in HEADING
+               for t in re.findall(r"<(\w+)[^>]*\bbanner-title\b", d["raw"], re.I)))
 
     # orphans: nothing links to them
     shared = ""
