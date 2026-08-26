@@ -94,12 +94,23 @@ jobs:
       # the generator, and when those files disagree with specs.csv about what a
       # grade is.
       #
-      # Contradictions found by the lint are reported but do not fail yet: 20
-      # pages carry an identifier that needs checking against a mill bulletin
-      # before it can be corrected, and failing now would block every unrelated
-      # PR. Add --strict once that backlog is cleared, and this guard closes.
+      # --strict also fails on the LINT: a page whose title, meta description,
+      # og/twitter tags or JSON-LD name cites a UNS or Werkstoff number that
+      # contradicts grades.csv. That was reported-but-tolerated while a backlog
+      # existed - 31 findings on the day the lint was written, 20 when this step
+      # was added, and failing then would have blocked every unrelated PR.
+      #
+      # The backlog reached 0 on 2026-08-26 when the Nichrome family was sourced
+      # to VDM Metals, so the guard is closed. A new contradiction now fails the
+      # PR that introduces it, which is the whole point: this check exists
+      # because 4 grades were publishing conflicting UNS numbers and nothing
+      # stopped the fifth.
+      #
+      # If this step fails, do NOT reach for the page first. Two of the last
+      # seven findings were the CSV being wrong about a page that was right -
+      # a "-" in the uns column claims the mill publishes no such designation.
       - name: Grade data matches docs/grades.csv
-        run: node docs/build-grades.mjs --check
+        run: node docs/build-grades.mjs --check --strict
 
       - name: Run audit
         id: audit
