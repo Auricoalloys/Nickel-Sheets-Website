@@ -214,7 +214,13 @@ src="/docs/media/plates-banner.webp"
       <tbody>
         <tr><th>Supplier & Manufacturer</th><td>Aurico Alloys LLP - Haynes 25 plate suppliers in Mumbai</td></tr>
         <tr><th>Grade</th><td>Haynes 25 (UNS R30605, L-605)</td></tr>
-        <tr><th>Standards</th><td>AMS 5537 (sheet/plate), AMS 5759 (bar/forgings), NACE MR0175/ISO 15156 </td></tr>
+        <!-- This row also listed AMS 5759 (bar/forgings), which is the bar specification and does
+             not certify plate - the wrong-form error docs/specs.csv exists to prevent. The sour
+             service standard is split into its own row because it is a materials-selection
+             standard for the alloy, not a product specification for this form: Haynes
+             International's own specification table gives it under "Others", not against a form. -->
+        <tr><th>Standards</th><td>AMS 5537 (sheet, plate and strip)</td></tr>
+        <tr><th>Sour service</th><td>NACE MR0175 / ISO 15156, listed for HAYNES&reg; 25 alloy by Haynes International</td></tr>
         <tr><th>Thickness Range</th><td>0.008" – 5.00" (0.2mm – 127mm) </td></tr>
         <tr><th>Width/Length</th><td>Up to 48" width, 2500–12500mm length </td></tr>
         <tr><th>Finish</th><td>Hot rolled, cold rolled, annealed, custom cut-to-size</td></tr>
