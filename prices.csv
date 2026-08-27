@@ -204,8 +204,8 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/601/sheets/,2800,4500,33,53,kg
 /inconel/601/tube/,3000,6500,35,76,kg
 /inconel/601/wire/,2500,5000,29,59,kg
-/inconel/602-CA/plates/,4500,10000,53,118,kg
-/inconel/602-CA/sheets/,4500,10000,53,118,kg
+/nickel-alloy/602-CA/plates/,4500,10000,53,118,kg
+/nickel-alloy/602-CA/sheets/,4500,10000,53,118,kg
 /inconel/617/coil/,4000,9500,47,112,kg
 /inconel/617/pipe/,6000,15000,71,176,kg
 /inconel/617/plates/,4000,9500,47,112,kg

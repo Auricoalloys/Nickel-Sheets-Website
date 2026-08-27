@@ -59,15 +59,42 @@
 family,grade,uns,wnr,en_name,density_g_cm3,melting_c,source,checked
 inconel,600,N06600,2.4816,,8.47,1354-1413,Special Metals INCONEL alloy 600 bulletin,2026-08
 inconel,601,N06601,2.4851,,8.11,1360-1411,Special Metals INCONEL alloy 601 bulletin,2026-08
-inconel,602 CA,N06025,2.4633,NiCr25FeAlY,7.90,1340-1400,pending,
+# 602 CA MOVED TO THE nickel-alloy FAMILY on 2026-08-26 - see the row down in
+# that block. It is not an INCONEL grade: Special Metals does not make it and
+# publishes no bulletin for it. VDM Metals does, as VDM Alloy 602 CA / Nicrofer
+# 6025 HT, and the pages moved out of the inconel path into the nickel-alloy one
+# with the grade renamed "Alloy 602 CA" in the same pass. (The old path is not
+# spelled out here on purpose: a sitewide old-to-new URL sweep rewrites prose
+# too, and this comment was mangled into "moved from X to X" the first time.)
 # The Special Metals bulletin heads this grade "W.Nr. 2.4663a". The plain 2.4663
 # is what the pages, the trade and the buyers use, so that is what is recorded
 # here; the suffixed form is noted rather than published. If the 'a' turns out to
 # denote a distinct variant rather than a revision marker, this needs revisiting.
 inconel,617,N06617,2.4663,,8.36,1332-1380,Special Metals INCONEL alloy 617 bulletin,2026-08
 inconel,625,N06625,2.4856,,8.44,1290-1350,Special Metals INCONEL alloy 625 bulletin,2026-08
-inconel,625 LCF,N06626,2.4856,NiCr22Mo9Nb,8.44,1290-1350,pending,
-inconel,660 (A286),S66286,1.4980,X6NiCrTiMoVB25-15-2,7.94,1370-1400,pending,
+# NO SPECIAL METALS BULLETIN EXISTS FOR THIS GRADE. The source is ATI's data
+# sheet for ATI 625HP - the same UNS N06626 restricted-composition vacuum-melted
+# alloy 625 variant under ATI's trademark rather than Special Metals' "625LCF",
+# developed for the same bellows service. It heads the grade "(UNS N06626)" and
+# prints density and melting range in its own physical constants table.
+#
+# WERKSTOFF AND EN NAME ARE CLEARED, NOT DASHED. The seeded 2.4856 /
+# NiCr22Mo9Nb are alloy 625's - N06625, a different UNS - and the pages publish
+# them on every 625 LCF page as though they were this grade's. The ATI sheet
+# prints no Werkstoff number for any grade, so its silence is not the selective
+# kind that earns a "-"; it is simply not a source for that field. Blank until a
+# source that does publish Werkstoff numbers is read.
+#
+# Melting range was seeded 1290-1350, which is alloy 625's. ATI prints
+# 2350-2460 °F (1280-1350 °C) for N06626. Density 8.44 the two do share, and
+# ATI prints it independently as 0.305 lb/in³.
+inconel,625 LCF,N06626,,,8.44,1280-1350,ATI 625HP alloy data sheet - UNS N06626 - version 1 (2012),2026-08
+# 660 (A286) MOVED TO THE incoloy FAMILY on 2026-08-26 - see the row in that
+# block. Like 602 CA before it, this was never an INCONEL grade. It is an
+# iron-based precipitation-hardened superalloy, not a nickel-chromium one, and
+# "660" is a specification designation rather than a Special Metals alloy name -
+# ATI's sheet puts it plainly: "This alloy is designated Grade or Type 660 in
+# several specifications." The pages moved to /incoloy/660/ in the same pass.
 inconel,686,N06686,2.4606,,8.73,1338-1380,Special Metals INCONEL alloy 686 bulletin,2026-08
 inconel,690,N06690,2.4642,,8.19,1343-1377,Special Metals INCONEL alloy 690 bulletin,2026-08
 inconel,693,N06693,,,7.77,1317-1367,Special Metals INCONEL alloy 693 bulletin,2026-08
@@ -120,6 +147,19 @@ incoloy,800,N08800,1.4876,X10NiCrAlTi32-21,7.94,1357-1385,Special Metals INCOLOY
 incoloy,800H,N08810,1.4958,X5NiCrAlTi31-20,7.94,1357-1385,Special Metals INCOLOY alloy 800H bulletin,2026-08
 incoloy,800HT,N08811,1.4959,X8NiCrAlTi32-21,7.94,1357-1385,Special Metals INCOLOY alloy 800HT bulletin,2026-08
 incoloy,825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,Special Metals INCOLOY alloy 825 bulletin,2026-08
+# A-286, read from the ATI A286 technical data sheet. Density 0.287 lb/in3
+# (7.94 g/cm3) confirms the seed; the melting range did not - it was seeded
+# 1370-1400 and ATI prints 2500-2600 F, which is 1371-1427 C.
+#
+# WERKSTOFF AND EN NAME ARE CLEARED, NOT DASHED, and this one is worth being
+# precise about: 1.4980 / X6NiCrTiMoVB25-15-2 are very probably right for this
+# alloy. They are cleared anyway because the ATI sheet prints no Werkstoff
+# number for anything, so it cannot be the source for them, and `source` names
+# exactly one document. Keeping a plausible number under a citation that does
+# not contain it is how a "source of truth" launders guesses - the failure this
+# whole file was built to stop. Empty means unverified, so the row simply does
+# not print until someone reads a sheet that does publish them.
+incoloy,660 (A286),S66286,,,7.94,1371-1427,ATI A286 technical data sheet,2026-08
 incoloy,890,N08890,-,-,7.94,1309-1383,Special Metals INCOLOY alloy 890 bulletin,2026-08
 incoloy,903,N19903,-,-,8.25,1318-1393,Special Metals INCOLOY alloy 903 bulletin,2026-08
 incoloy,909,N19909,-,-,8.19,1395-1430,Special Metals INCOLOY alloy 909 bulletin,2026-08
@@ -278,11 +318,83 @@ nimonic,263,N07263,2.4650,,8.36,1300-1355,Special Metals NIMONIC alloy 263 bulle
 # this alloy; the bulletin heads it "(UNS N09901/W.Nr. 2.4662)". Density 8.21
 # and melting 1275-1355 were also wrong - Table 2 says 8.14 and 1280-1345.
 nimonic,901,N09901,2.4662,,8.14,1280-1345,Special Metals NIMONIC alloy 901 bulletin,2026-08
-haynes,188,R30188,2.4683,-,8.98,1302-1330,pending,
-haynes,214,N07214,-,-,8.05,1355-1400,pending,
-haynes,230,N06230,2.4733,-,8.97,1301-1371,pending,
-haynes,242,N10242,-,-,9.05,1320-1353,pending,
-haynes,282,N07208,-,-,8.27,1300-1373,pending,
+# --- HAYNES --- Haynes International alloy pages, read 2026-08-27. Haynes is the
+# HAYNES trademark holder and the only mill source for these grades. Three things
+# about reading them, each of which changed a cell here:
+#
+# The Specifications table carries the UNS in its own header - "HAYNES 188 alloy
+# (R30188)" - and a DIN row. Only 230 has one: "17744 No. 2.4733 NiCr22W14Mo",
+# which is where that row's wnr AND en_name come from. Every other grade's DIN
+# row reads a dash, so their wnr is left EMPTY, following hastelloy/N above:
+# publishing the widely-quoted 2.4683 for 188 or 2.4964 for 25 under a Haynes
+# citation would put a number in the mill's mouth that its bulletin does not
+# contain. Those seeded numbers were exactly that and have been cleared.
+#
+# 214 has no Specifications table at all and no density anywhere on its page, so
+# its wnr, en_name AND density are empty - not dashed. The pages keep their own
+# 8.05 for now, which is a lead for this file, not a fault. Melting is published.
+#
+# Four of the seven melting ranges the seed carried were wrong, not slightly:
+# 188 read 1302-1330 against the bulletin's 1315-1410, and 242 read 1320-1353
+# against 1290-1375. 25's density read 9.13 against 9.07.
+# 25's Werkstoff and EN name come from voestalpine BOHLER's L605 sheet, whose
+# Material designation block prints "2.4964 SEL", "CoCr20W15Ni EN" and "R30605
+# UNS" together - the UNS agreeing with Haynes is what ties the two documents to
+# the same material. Haynes' own DIN row is a dash, so these two cells would
+# otherwise stay empty; they are identity, which is specification-independent.
+#
+# THE EN NAME KEEPS ITS TRAILING "i" although BOHLER's Engineering-segment PDF
+# (l605-engineering_en_gb, read 2026-08-27) prints "CoCr20W15N" - one text run,
+# no kerning split, so it is what that file really contains. It is a dropped
+# character and not a second designation: without the "i" the last symbol reads
+# as nitrogen, which this alloy does not specify at all, while the same PDF's
+# own description calls it a "cobalt, chromium, tungsten, nickel alloy" - the
+# four elements the name enumerates. Recorded rather than silently normalised,
+# because the next person to open that PDF will see the short form and wonder.
+#
+# BOHLER'S COMPOSITION IS NOW USED FOR THE CHEMISTRY TABLE - reversed on
+# 2026-08-27, and the reasoning that had refused it is worth keeping rather than
+# deleting. That objection was that the BOHLER sheet is scoped to ISO 5832-5 /
+# ASTM F90 while this site sells 25 to AMS 5537 and AMS 5759 for high-temperature
+# service, so F90 limits under pages citing AMS 5537 would be the
+# wrong-specification error one column over. What it missed is that the error it
+# was avoiding is a SILENT one: it is wrong to let F90 limits read as AMS 5537's,
+# which is a fact about the caption, not about the numbers. Naming the standard
+# in `source` below fixes that directly, and the page now says which document
+# gave which half.
+#
+# What refusing cost was worse than what it avoided. Falling back to Haynes'
+# nominal column left three sibling pages that had been contradicting each other
+# - Cr 19-21 against 19-22, W 14-16 against 14-17, C 0.05-0.15 against 0.07-0.11
+# - agreeing at last on figures no buyer can hold a heat to, with the P and S
+# limits dropped for want of anywhere to put them. A nominal column is honest
+# about its own weakness and still answers the wrong question.
+#
+# THE FORM SCOPE IS FINE and is what makes this different from the B443-on-wire
+# error the phrase "one column over" borrows from. F90 is a WROUGHT specification
+# covering bar rod and wire and the BOHLER sheet says "the properties specified
+# apply specifically to wrought bar, rod, wire" - the same wrought product this
+# site sells. It is a different standard for the same alloy in the same forms,
+# not a standard written for a form the page does not sell.
+#
+# STILL NOT CLAIMED: that these are AMS 5537's limits. Nobody has read AMS 5537
+# here. If its text or a mill certificate turns up and its limits differ, this
+# table changes and the source line changes with it. See chemistry.csv.
+haynes,25,R30605,2.4964,CoCr20W15Ni,9.07,1330-1410,Haynes International HAYNES 25 alloy page (identity and physical constants) and voestalpine BOHLER L605 datasheet to ASTM F90 / ISO 5832-5 (composition limits),2026-08
+haynes,188,R30188,,,8.98,1315-1410,Haynes International HAYNES 188 alloy page,2026-08
+haynes,214,N07214,,,,1355-1400,Haynes International HAYNES 214 alloy page,2026-08
+# 230 is the one grade in this family with real composition LIMITS rather than a
+# nominal column, because ATI publishes a Limiting Composition table for the same
+# UNS and names the standard it belongs to. Its identity agrees with Haynes twice
+# over - "DIN 17744 W.-Nr. 2.4733 and NiCr22W14Mo" and density 8.97 - which is
+# what makes the two documents safe to cite together. Melting is Haynes only.
+haynes,230,N06230,2.4733,NiCr22W14Mo,8.97,1301-1371,Haynes International HAYNES 230 alloy page and ATI 6230 datasheet (2022),2026-08
+haynes,242,N10242,,,9.05,1290-1375,Haynes International HAYNES 242 alloy page,2026-08
+# 282 publishes two densities, solution-annealed 8.27 and age-hardened 8.29, the
+# same shape as INCONEL 718. The annealed figure stays here because grades.json
+# feeds a weight calculator one bare number; the aged one is in properties.csv
+# with its condition, which is the column that exists for exactly this.
+haynes,282,N07208,,,8.27,1300-1375,Haynes International HAYNES 282 alloy page,2026-08
 # --- TITANIUM --- ASME BPVC Section II Part B, SB-265 Table 8 "Chemical
 # Requirements", 2023 edition, read 2026-08-26. Titanium is not a proprietary
 # family: no mill defines these grades, the standard does, so the standard is
@@ -339,9 +451,36 @@ nickel-alloy,Nickel 200,N02200,2.4060 / 2.4066,,8.89,1435-1446,Special Metals Ni
 # table, and recorded here so nobody has to guess which it was.
 nickel-alloy,Nickel 201,N02201,2.4061 / 2.4068,,8.89,1435-1446,Special Metals Nickel 200 & 201 bulletin,2026-08
 nickel-alloy,Monel 400,N04400,2.4360 / 2.4361,,8.80,1300-1350,Special Metals MONEL alloy 400 bulletin,2026-08
-nickel-alloy,Inconel 600,N06600,2.4816,NiCr15Fe,8.47,1354-1413,pending,
-nickel-alloy,Inconel 625,N06625,2.4856,NiCr22Mo9Nb,8.44,1290-1350,pending,
-nickel-alloy,Incoloy 825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,pending,
+# THESE THREE ARE THE SAME MATERIALS AS inconel/600, inconel/625 and
+# incoloy/825 above, listed again under the form-hub family key - the same
+# arrangement as the Hastelloy C-276 row below. No page resolves to any of them
+# for identity; what needs them is docs/specs.csv, whose matching nickel-alloy
+# rows fill the grade x spec tables on the seven generic nickel-alloy form hubs
+# (/nickel-alloy-wire-.../, /nickel-alloy-coil-.../ and so on). Delete these and
+# build-grades.mjs fails with "specs.csv has X but grades.csv does not", because
+# the two files must list the same keys.
+#
+# They were cleared of `pending` on 2026-08-26 rather than deleted. Every figure
+# is transcribed from the verified twin, which was itself read from the bulletin
+# now cited here - so the citation is true of every cell in the row, which is
+# the test that matters. The shared-UNS check above is what keeps them honest
+# from here: a twin that drifts on wnr, en_name or density fails the build.
+#
+# en_name WAS CLEARED ON THE TWO INCONEL ROWS to match their twins. They were
+# seeded NiCr15Fe and NiCr22Mo9Nb; the verified inconel/600 and inconel/625 rows
+# leave that cell empty, and empty means "not verified yet". Publishing a
+# designation the cited bulletin was never checked for, under that bulletin's
+# name, is the one thing the source column must never be made to do.
+nickel-alloy,Inconel 600,N06600,2.4816,,8.47,1354-1413,Special Metals INCONEL alloy 600 bulletin,2026-08
+nickel-alloy,Inconel 625,N06625,2.4856,,8.44,1290-1350,Special Metals INCONEL alloy 625 bulletin,2026-08
+nickel-alloy,Incoloy 825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,Special Metals INCOLOY alloy 825 bulletin,2026-08
+# Read from the VDM Alloy 602 CA / Nicrofer 6025 HT data sheet of March 2022.
+# Table 1a heads the grade "2.4633 - NiCr25FeAlY" against standard D and
+# "N06025" against UNS, so both identifiers are the mill's own. Density was
+# seeded 7.90 and the sheet prints 7.93 g/cm3 at 25 C; melting range 1340-1400 C
+# confirms the seed. The grade key stays "602 CA" rather than "Alloy 602 CA"
+# because gradeForUrl resolves it from the /nickel-alloy/602-CA/ URL segment.
+nickel-alloy,602 CA,N06025,2.4633,NiCr25FeAlY,7.93,1340-1400,VDM Alloy 602 CA data sheet (March 2022),2026-08
 # The same material as hastelloy/C-276 above, listed again under the form-hub
 # family key. No page resolves to this row today, but --check only compares
 # wnr, en_name and density across rows sharing a UNS - it would not have caught
@@ -371,15 +510,61 @@ special-stainless-steel,254 SMO,S31254,1.4547,X1CrNiMoCuN20-18-7,8.00,,Outokumpu
 # 1320-1400 C both confirmed from the sheet's Table 15.
 special-stainless-steel,AL-6XN,N08367,,,8.06,1320-1400,ATI AL-6XN alloy data sheet,2026-08
 special-stainless-steel,Alloy 20,N08020,2.4660,-,8.08,1425-1445,pending,
-special-stainless-steel,Alloy 28,N08028,1.4563,X1NiCrMoCu31-27-4,8.00,1350-1370,pending,
-special-stainless-steel,Alloy 31,N08031,1.4562,X1NiCrMoCu32-28-7,8.10,1320-1360,pending,
+# ALLOY 28 IS SANICRO 28. Alleima owns that trademark and its seamless tube and
+# pipe datasheet is the mill source, read 2026-08-26. The Standards panel prints
+# every identifier on this row: UNS N08028, EN Number 1.4563, W.Nr. 1.4563 and
+# EN Name "X 1 NiCrMoCu 31-27-4" - spaced there, closed up here to match the
+# rest of this file, which is a formatting convention and not a different claim.
+# Density 8.0 g/cm3 / 0.29 lb/in3 confirms the seed, and Industeel prints the
+# same 8.0 kg/dm3 independently on its UR 28 sheet for the same UNS number.
+#
+# MELTING RANGE EMPTIED, for the same reason as 254 SMO above. The datasheet's
+# Physical properties section publishes density, magnetic permeability, thermal
+# conductivity, specific heat, resistivity, thermal expansion and modulus - and
+# no melting range. The seeded 1350-1370 has nothing behind it. Empty also
+# leaves the pages' own melting figures alone, which is what the constant-strip
+# gate does with an empty cell, rather than replacing them with a guess.
+special-stainless-steel,Alloy 28,N08028,1.4563,X1NiCrMoCu31-27-4,8.00,,Alleima Sanicro 28 datasheet (seamless tube and pipe),2026-08
+# VDM Alloy 31 / Nicrofer 3127 hMo data sheet of August 2024. Its Table 1 heads
+# the grade "1.4562 - X1NiCrMoCu32-28-7" against standard D and "N08031" against
+# UNS, so both seeded identifiers are the mill's own.
+#
+# BOTH PHYSICAL CONSTANTS WERE WRONG. Density was seeded 8.10 against the
+# sheet's 8.05 g/cm3 (0.29 lb/in3) at 20 C, and the melting range 1320-1360
+# against its 1330-1370 C (2426-2498 F). Neither is a rounding difference.
+special-stainless-steel,Alloy 31,N08031,1.4562,X1NiCrMoCu32-28-7,8.05,1330-1370,VDM Alloy 31 data sheet (August 2024),2026-08
 # The row 1.4529 actually belongs to - see the AL-6XN note above. VDM Metals
 # developed this grade as Cronifer 1925 hMo and its April 2024 data sheet prints
 # the designations table outright: EN 1.4529 X1NiCrMoCuN25-20-7, UNS N08926.
 # Melting range corrected from the seeded 1320-1400 to the sheet's 1320-1390.
 special-stainless-steel,Alloy 926,N08926,1.4529,X1NiCrMoCuN25-20-7,8.10,1320-1390,VDM Metals VDM Alloy 926 data sheet April 2024,2026-08
-cobalt-alloy,Haynes 25 (L-605),R30605,2.4964,CoCr20W15Ni,9.13,1329-1410,pending,
-cobalt-alloy,Haynes 188,R30188,2.4683,-,8.98,1302-1330,pending,
+# SANICRO 35 - Alleima owns the mark and its seamless tube and pipe datasheet is
+# the source. Outokumpu makes the plate and sheet under licence from Alleima and
+# says so on its own product page; that page is the source for the flat-product
+# standard in docs/specs.csv and for nothing on this row.
+#
+# WERKSTOFF AND EN NAME READ "-", NOT EMPTY, and the difference matters. Alleima
+# prints EN Number / EN Name / W.Nr. / DIN / SS / AFNOR in the Standards panel of
+# its Sanicro 28 datasheet and prints NONE of them for Sanicro 35 - the same
+# publisher, the same panel, one grade filled in and the other not. That is
+# selective silence, which is what "-" is for: the mill publishes no such
+# designation. It is a young grade and no EN number has been assigned to it.
+#
+# MELTING RANGE EMPTY for the same reason as Sanicro 28 and 254 SMO: the
+# Physical properties section gives density, conductivity, specific heat,
+# expansion, resistivity and modulus, and no melting range.
+special-stainless-steel,Sanicro 35,N08935,-,-,8.10,,Alleima Sanicro 35 datasheet (seamless tube and pipe),2026-08
+# These two duplicate the haynes/25 and haynes/188 rows above under a second
+# family key, the same shape as the nickel-alloy duplicates: no page resolves to
+# them for identity, but docs/specs.csv keys rows to them, so deleting either is
+# a hard error at build-grades.mjs:231. They are cleared here by transcribing the
+# verified twin, and every figure traces to the bulletin named in `source`. The
+# duplicate-UNS guard requires wnr, en_name and density to match the twin exactly.
+cobalt-alloy,Haynes 25 (L-605),R30605,2.4964,CoCr20W15Ni,9.07,1330-1410,Haynes International HAYNES 25 alloy page and voestalpine BOHLER L605 datasheet,2026-08
+cobalt-alloy,Haynes 188,R30188,,,8.98,1315-1410,Haynes International HAYNES 188 alloy page,2026-08
+# Elgiloy is NOT a Haynes alloy - Elgiloy Specialty Metals holds it - so the
+# Haynes bulletins that cleared the two rows above say nothing about it and it
+# stays pending rather than borrowing their citation.
 cobalt-alloy,Elgiloy,R30003,2.4711,-,8.30,1440-1495,pending,
 # --- NICHROME --- VDM Metals' three Basic Information sheets, read 2026-08-25.
 #

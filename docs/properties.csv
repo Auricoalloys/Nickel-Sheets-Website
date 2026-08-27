@@ -53,6 +53,12 @@ inconel,601,Curie temperature,< -196,°C,,
 inconel,617,Specific heat,419,J/kg·°C,26 °C,
 inconel,617,Electrical resistivity,1.22,µΩ·m,26 °C,
 
+# --- INCONEL 625LCF --- ATI 625HP data sheet, physical constants table
+# ATI prints specific heat in both units (0.098 Btu/lb·°F) so the SI figure is
+# taken. Permeability it gives at one condition only.
+inconel,625 LCF,Specific heat,410,J/kg·K,,
+inconel,625 LCF,Magnetic permeability,1.0006,,200 oersted at 75 °F,
+
 # --- INCONEL 686 ---
 inconel,686,Electrical resistivity,1.237,µΩ·m,,
 inconel,686,Magnetic permeability,1.0001,,at 200 oersted / 15.9 kA/m,
@@ -304,6 +310,12 @@ nickel-alloy,Nickel 200,Curie temperature,360,°C,,
 nickel-alloy,Nickel 201,Specific heat,456,J/kg·°C,,
 nickel-alloy,Nickel 201,Curie temperature,360,°C,,
 
+# --- Alloy 602 CA --- VDM Alloy 602 CA data sheet March 2022
+# The physical properties table gives density and melting range - both in
+# grades.csv - and one more constant. VDM prints it as "1.01 (Maximum)" rather
+# than a measured figure so the qualifier goes in the note.
+nickel-alloy,602 CA,Relative magnetic permeability,1.01,,20 °C,maximum
+
 # --- special-stainless-steel --- the 6% molybdenum super-austenitics
 #
 # AL-6XN, ATI data sheet Table 15, room temperature. The sheet prints imperial
@@ -332,6 +344,45 @@ special-stainless-steel,254 SMO,Specific heat,500,J/kg·°C,,
 special-stainless-steel,254 SMO,Electrical resistivity,0.85,µΩ·m,,
 # VDM's alloy 926 sheet publishes density, melting range and this one constant.
 special-stainless-steel,Alloy 926,Magnetic permeability,1.001,,relative - at 20 °C,
+# VDM Alloy 31, data sheet August 2024, Table 3 - "typical physical properties
+# at room temperature and elevated temperatures". Haynes convention: the lowest
+# published temperature only, since the identity table is for identification and
+# not a design curve. VDM tabulates each constant from 20 to 600 °C.
+#
+# THE EXPANSION ROW IS THE 100 °C ONE ON PURPOSE. VDM's 20 °C cell for
+# coefficient of expansion is blank - a mean coefficient needs an interval, and
+# the row against 20 °C has none - so 14.3 at 100 °C is its first real figure.
+# The other three are genuinely 20 °C values.
+special-stainless-steel,Alloy 31,Modulus of elasticity,198,GPa,20 °C,
+special-stainless-steel,Alloy 31,Thermal conductivity,11.7,W/m·K,20 °C,
+special-stainless-steel,Alloy 31,Electrical resistivity,104,µΩ·cm,20 °C,
+special-stainless-steel,Alloy 31,Coefficient of expansion,14.3,µm/m·°C,100 °C,
+special-stainless-steel,Alloy 31,Magnetic permeability,1.001,,relative - at 20 °C,
+# Alloy 28 (Sanicro 28), Alleima datasheet, Physical properties. Same rule: the
+# 20 °C row of each table, in Alleima's own unit and with no conversion. Its
+# resistivity is printed in µΩm - 0.99 - where VDM gives Alloy 31's in µΩ·cm as
+# 104. The two numbers are the same order of magnitude apart as 254 SMO and
+# AL-6XN above, and for the same reason.
+#
+# The expansion figure is a mean over 30-100 °C, which is how Alleima heads the
+# table; the modulus is printed as 195 x10³ MPa and recorded as the identical
+# 195 GPa, the unit the rest of this file uses for a modulus.
+special-stainless-steel,Alloy 28,Modulus of elasticity,195,GPa,20 °C,
+special-stainless-steel,Alloy 28,Thermal conductivity,10,W/m·°C,20 °C,
+special-stainless-steel,Alloy 28,Electrical resistivity,0.99,µΩ·m,20 °C,
+special-stainless-steel,Alloy 28,Specific heat,460,J/kg·°C,20 °C,
+special-stainless-steel,Alloy 28,Coefficient of expansion,15,µm/m·°C,30-100 °C,
+special-stainless-steel,Alloy 28,Magnetic permeability,1.003,,relative,datasheet prints this as an approximate value
+# Sanicro 35, Alleima datasheet, Physical properties, 20 °C row of each table.
+# Its expansion table sets the grade against carbon steel and ASTM 316L across
+# four intervals; 14.0 is the Sanicro 35 row at 30-100 °C, not a neighbouring
+# material's. The datasheet publishes no magnetic permeability for this grade,
+# so unlike Sanicro 28 there is no row for it.
+special-stainless-steel,Sanicro 35,Modulus of elasticity,190,GPa,20 °C,
+special-stainless-steel,Sanicro 35,Thermal conductivity,10.0,W/m·°C,20 °C,
+special-stainless-steel,Sanicro 35,Electrical resistivity,1.0,µΩ·m,20 °C,
+special-stainless-steel,Sanicro 35,Specific heat,450,J/kg·°C,20 °C,
+special-stainless-steel,Sanicro 35,Coefficient of expansion,14.0,µm/m·°C,30-100 °C,
 
 # --- NICHROME --- VDM Metals Basic Information sheets HT 80 / HT 70 / HT 60,
 # read 2026-08-25. Room-temperature figures only, the way the HASTELLOY rows
@@ -387,3 +438,9 @@ nichrome,60/15,Coefficient of expansion,13.5,µm/m·°C,20-100 °C,
 nichrome,60/15,Modulus of elasticity,200,kN/mm²,,
 nichrome,60/15,Maximum working temperature,1200,°C,as heating element,sheet prints this as approximate
 nichrome,60/15,Maximum working temperature,600,°C,as resistance material,sheet prints this as approximate
+# --- HAYNES --- Haynes International alloy pages, read 2026-08-27.
+# 282 is the INCONEL 718 case again: the bulletin publishes one density solution
+# annealed and another age-hardened. grades.csv holds the annealed figure because
+# grades.json feeds a weight calculator one bare number; the aged one belongs
+# here, where `condition` can say which state it applies to.
+haynes,282,Density,8.29,g/cm3,Age-hardened,

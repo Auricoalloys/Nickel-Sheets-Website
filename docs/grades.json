@@ -64,6 +64,21 @@
     },
     {
       "family": "inconel",
+      "grade": "625 LCF",
+      "name": "Inconel 625 LCF",
+      "uns": "N06626",
+      "uns_all": [
+        "N06626"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.44,
+      "melting_c": "1280-1350",
+      "source": "ATI 625HP alloy data sheet - UNS N06626 - version 1 (2012)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "inconel",
       "grade": "686",
       "name": "Inconel 686",
       "uns": "N06686",
@@ -270,6 +285,21 @@
       "density_g_cm3": 8.14,
       "melting_c": "1370-1400",
       "source": "Special Metals INCOLOY alloy 825 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "incoloy",
+      "grade": "660 (A286)",
+      "name": "Incoloy 660 (A286)",
+      "uns": "S66286",
+      "uns_all": [
+        "S66286"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.94,
+      "melting_c": "1371-1427",
+      "source": "ATI A286 technical data sheet",
       "checked": "2026-08"
     },
     {
@@ -655,6 +685,96 @@
       "checked": "2026-08"
     },
     {
+      "family": "haynes",
+      "grade": "25",
+      "name": "Haynes 25",
+      "uns": "R30605",
+      "uns_all": [
+        "R30605"
+      ],
+      "wnr": "2.4964",
+      "en_name": "CoCr20W15Ni",
+      "density_g_cm3": 9.07,
+      "melting_c": "1330-1410",
+      "source": "Haynes International HAYNES 25 alloy page (identity and physical constants) and voestalpine BOHLER L605 datasheet to ASTM F90 / ISO 5832-5 (composition limits)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "haynes",
+      "grade": "188",
+      "name": "Haynes 188",
+      "uns": "R30188",
+      "uns_all": [
+        "R30188"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.98,
+      "melting_c": "1315-1410",
+      "source": "Haynes International HAYNES 188 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "haynes",
+      "grade": "214",
+      "name": "Haynes 214",
+      "uns": "N07214",
+      "uns_all": [
+        "N07214"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": "1355-1400",
+      "source": "Haynes International HAYNES 214 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "haynes",
+      "grade": "230",
+      "name": "Haynes 230",
+      "uns": "N06230",
+      "uns_all": [
+        "N06230"
+      ],
+      "wnr": "2.4733",
+      "en_name": "NiCr22W14Mo",
+      "density_g_cm3": 8.97,
+      "melting_c": "1301-1371",
+      "source": "Haynes International HAYNES 230 alloy page and ATI 6230 datasheet (2022)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "haynes",
+      "grade": "242",
+      "name": "Haynes 242",
+      "uns": "N10242",
+      "uns_all": [
+        "N10242"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 9.05,
+      "melting_c": "1290-1375",
+      "source": "Haynes International HAYNES 242 alloy page",
+      "checked": "2026-08"
+    },
+    {
+      "family": "haynes",
+      "grade": "282",
+      "name": "Haynes 282",
+      "uns": "N07208",
+      "uns_all": [
+        "N07208"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.27,
+      "melting_c": "1300-1375",
+      "source": "Haynes International HAYNES 282 alloy page",
+      "checked": "2026-08"
+    },
+    {
       "family": "titanium",
       "grade": "Grade 1",
       "name": "Titanium Grade 1",
@@ -881,6 +1001,66 @@
     },
     {
       "family": "nickel-alloy",
+      "grade": "Inconel 600",
+      "name": "Inconel 600",
+      "uns": "N06600",
+      "uns_all": [
+        "N06600"
+      ],
+      "wnr": "2.4816",
+      "en_name": null,
+      "density_g_cm3": 8.47,
+      "melting_c": "1354-1413",
+      "source": "Special Metals INCONEL alloy 600 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
+      "grade": "Inconel 625",
+      "name": "Inconel 625",
+      "uns": "N06625",
+      "uns_all": [
+        "N06625"
+      ],
+      "wnr": "2.4856",
+      "en_name": null,
+      "density_g_cm3": 8.44,
+      "melting_c": "1290-1350",
+      "source": "Special Metals INCONEL alloy 625 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
+      "grade": "Incoloy 825",
+      "name": "Incoloy 825",
+      "uns": "N08825",
+      "uns_all": [
+        "N08825"
+      ],
+      "wnr": "2.4858",
+      "en_name": "NiCr21Mo",
+      "density_g_cm3": 8.14,
+      "melting_c": "1370-1400",
+      "source": "Special Metals INCOLOY alloy 825 bulletin",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
+      "grade": "602 CA",
+      "name": "602 CA",
+      "uns": "N06025",
+      "uns_all": [
+        "N06025"
+      ],
+      "wnr": "2.4633",
+      "en_name": "NiCr25FeAlY",
+      "density_g_cm3": 7.93,
+      "melting_c": "1340-1400",
+      "source": "VDM Alloy 602 CA data sheet (March 2022)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
       "grade": "Hastelloy C-276",
       "name": "Hastelloy C-276",
       "uns": "N10276",
@@ -926,6 +1106,36 @@
     },
     {
       "family": "special-stainless-steel",
+      "grade": "Alloy 28",
+      "name": "Alloy 28",
+      "uns": "N08028",
+      "uns_all": [
+        "N08028"
+      ],
+      "wnr": "1.4563",
+      "en_name": "X1NiCrMoCu31-27-4",
+      "density_g_cm3": 8,
+      "melting_c": null,
+      "source": "Alleima Sanicro 28 datasheet (seamless tube and pipe)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "Alloy 31",
+      "name": "Alloy 31",
+      "uns": "N08031",
+      "uns_all": [
+        "N08031"
+      ],
+      "wnr": "1.4562",
+      "en_name": "X1NiCrMoCu32-28-7",
+      "density_g_cm3": 8.05,
+      "melting_c": "1330-1370",
+      "source": "VDM Alloy 31 data sheet (August 2024)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
       "grade": "Alloy 926",
       "name": "Alloy 926",
       "uns": "N08926",
@@ -937,6 +1147,51 @@
       "density_g_cm3": 8.1,
       "melting_c": "1320-1390",
       "source": "VDM Metals VDM Alloy 926 data sheet April 2024",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "Sanicro 35",
+      "name": "Sanicro 35",
+      "uns": "N08935",
+      "uns_all": [
+        "N08935"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.1,
+      "melting_c": null,
+      "source": "Alleima Sanicro 35 datasheet (seamless tube and pipe)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "cobalt-alloy",
+      "grade": "Haynes 25 (L-605)",
+      "name": "Haynes 25 (L-605)",
+      "uns": "R30605",
+      "uns_all": [
+        "R30605"
+      ],
+      "wnr": "2.4964",
+      "en_name": "CoCr20W15Ni",
+      "density_g_cm3": 9.07,
+      "melting_c": "1330-1410",
+      "source": "Haynes International HAYNES 25 alloy page and voestalpine BOHLER L605 datasheet",
+      "checked": "2026-08"
+    },
+    {
+      "family": "cobalt-alloy",
+      "grade": "Haynes 188",
+      "name": "Haynes 188",
+      "uns": "R30188",
+      "uns_all": [
+        "R30188"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.98,
+      "melting_c": "1315-1410",
+      "source": "Haynes International HAYNES 188 alloy page",
       "checked": "2026-08"
     },
     {

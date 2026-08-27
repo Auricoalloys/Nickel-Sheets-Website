@@ -16,8 +16,9 @@ mechanical properties and the stocked size envelope for that grade and form.
 
 ## Alloy families
 
-- [Inconel](https://www.nickelsheets.com/inconel/): nickel-chromium superalloys — 600, 601, 602 CA, 617, 625, 625 LCF, 660, 686, 690, 693, 718, 725, 740H, 751, 783, X-750
-- [Incoloy](https://www.nickelsheets.com/incoloy/): nickel-iron-chromium alloys — 330, 800, 800H, 800HT, 825, 890, 903, 909, 925, 945
+- [Inconel](https://www.nickelsheets.com/inconel/): nickel-chromium superalloys — 600, 601, 617, 625, 625 LCF, 686, 690, 693, 718, 725, 740H, 751, 783, X-750
+- [Alloy 602 CA](https://www.nickelsheets.com/nickel-alloy/602-CA/): UNS N06025 / 2.4633, a VDM Metals grade (VDM Alloy 602 CA / Nicrofer 6025 HT). Often searched as "Inconel 602 CA", but Special Metals does not make it
+- [Incoloy](https://www.nickelsheets.com/incoloy/): nickel-iron-chromium alloys — 330, 660 (A-286, UNS S66286), 800, 800H, 800HT, 825, 890, 903, 909, 925, 945
 - [Monel](https://www.nickelsheets.com/monel/): nickel-copper alloys — 400, 405, K-500
 - [Hastelloy](https://www.nickelsheets.com/hastelloy/): nickel-molybdenum/chromium alloys — B2, B3, C22, C276, C2000, C4, G30, N, X
 - [Haynes](https://www.nickelsheets.com/haynes/): high-temperature alloys — 214, 230, 242, 282, HR-120, 25, 188

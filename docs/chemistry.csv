@@ -94,6 +94,37 @@ inconel,625,S,,0.015,
 inconel,625,Al,,0.40,
 inconel,625,Ti,,0.40,
 inconel,625,Co,,1.0,if determined
+# INCONEL 625LCF / ATI 625HP (UNS N06626), from the ATI data sheet's table
+# headed COMPOSITION LIMITS, in the order it prints them.
+#
+# RECORDED AS LIMITS DESPITE ATI'S DISCLAIMER. The sheet's page footer reads
+# "Data are typical ... should not be construed as maximum or minimum values for
+# specification", which is the boilerplate on every page of every ATI sheet -
+# while this table is headed COMPOSITION LIMITS and every cell is a maximum or a
+# range, which is not a shape a typical value can take. Contrast NIMONIC 901
+# below, where the disclaimer is inside the table heading itself and the figures
+# are bare: those are recorded as nominal and the caption says so.
+#
+# Nickel is the only row in the file carrying both a min and a balance, because
+# ATI prints "Balance (58.0 min)" and both halves are real claims.
+#
+# The limits are tighter than alloy 625's above, which is the point of the
+# grade: carbon 0.03 against 0.10, silicon 0.15 against 0.50, and nitrogen and
+# iron limited where 625 leaves nitrogen unstated.
+inconel,625 LCF,C,,0.03,
+inconel,625 LCF,Mn,,0.50,
+inconel,625 LCF,P,,0.015,
+inconel,625 LCF,S,,0.015,
+inconel,625 LCF,Si,,0.15,
+inconel,625 LCF,Cr,20.0,23.0,
+inconel,625 LCF,Ni,58.0,bal,
+inconel,625 LCF,Mo,8.0,10.0,
+inconel,625 LCF,Nb+Ta,3.15,4.15,
+inconel,625 LCF,Ti,,0.40,
+inconel,625 LCF,Al,,0.40,
+inconel,625 LCF,Co,,1.0,
+inconel,625 LCF,Fe,,5.0,
+inconel,625 LCF,N,,0.02,
 inconel,686,Cr,19.0,23.0
 inconel,686,Mo,15.0,17.0
 inconel,686,W,3.0,4.4
@@ -324,6 +355,31 @@ incoloy,945,Si,,0.5
 incoloy,945,S,,0.03
 incoloy,945,P,,0.03
 incoloy,945,C,0.005,0.04
+# A-286 (UNS S66286), from the "Chemical Composition of ATI A286 Alloy" table on
+# the ATI technical data sheet, in the order it prints the columns. The table
+# has explicit "wt. %, min." and "wt. %, max." rows, so every figure here is a
+# limit and the caption may say so.
+#
+# Iron is the balance and is printed as "Bal." in the min row with a dash in the
+# max row - the reverse of how most sheets in this file print it. It is recorded
+# the same way as every other balance, in the max column, because "bal" is not a
+# limit in either direction and the table renders it as "Balance" regardless.
+#
+# Boron and vanadium are what separate A-286 from an austenitic stainless: both
+# carry a real min and max, not a trace maximum.
+incoloy,660 (A286),C,,0.08,
+incoloy,660 (A286),Mn,1.0,2.0,
+incoloy,660 (A286),Si,,1.0,
+incoloy,660 (A286),S,,0.015,
+incoloy,660 (A286),P,,0.025,
+incoloy,660 (A286),Cr,13.5,16.0,
+incoloy,660 (A286),Ni,24.0,27.0,
+incoloy,660 (A286),Fe,,bal,
+incoloy,660 (A286),Mo,1.0,1.5,
+incoloy,660 (A286),Ti,1.90,2.35,
+incoloy,660 (A286),Al,,0.35,
+incoloy,660 (A286),B,0.003,0.010,
+incoloy,660 (A286),V,0.10,0.50,
 # INCOLOY alloy 890 (UNS N08890), Special Metals bulletin. THIS IS A NOMINAL
 # COMPOSITION, not a limiting one: only titanium, manganese, phosphorus, sulfur
 # and copper are printed as "max", and iron as the balance. The other eight
@@ -925,6 +981,34 @@ nickel-alloy,Nickel 201,Mn,,0.35
 nickel-alloy,Nickel 201,C,,0.02
 nickel-alloy,Nickel 201,Si,,0.35
 nickel-alloy,Nickel 201,S,,0.01
+# --- Alloy 602 CA ------------------------------------------------------------
+# VDM Alloy 602 CA / Nicrofer 6025 HT data sheet March 2022, Table 2, in the
+# order it prints the columns. The table is captioned "Chemical composition (%)
+# according to DIN EN 10302", so these are that standard's limits and not a
+# nominal analysis.
+#
+# VDM's own footnote against manganese says the analysis "may differ slightly in
+# some elements in other specifications ... according to UNS for example, the
+# value for Manganese is max 0.15 wt.-%". That is the mill printing a second
+# limit for the same element under a different standard, so it is recorded in
+# the note rather than dropped or silently averaged with the 0.5.
+#
+# Yttrium and zirconium are what make this a "CA" grade - the micro-additions
+# that hold the oxide scale on at 1200 C. They are real limits with a min and a
+# max, not trace maxima.
+nickel-alloy,602 CA,Ni,,bal,
+nickel-alloy,602 CA,Cr,24,26,
+nickel-alloy,602 CA,Fe,8,11,
+nickel-alloy,602 CA,C,0.15,0.25,
+nickel-alloy,602 CA,Mn,,0.5,UNS N06025 gives 0.15 max
+nickel-alloy,602 CA,Si,,0.5,
+nickel-alloy,602 CA,Cu,,0.1,
+nickel-alloy,602 CA,Al,1.8,2.4,
+nickel-alloy,602 CA,Ti,0.1,0.2,
+nickel-alloy,602 CA,Y,0.05,0.12,
+nickel-alloy,602 CA,Zr,0.01,0.1,
+nickel-alloy,602 CA,P,,0.02,
+nickel-alloy,602 CA,S,,0.01,
 # --- special-stainless-steel: the 6% molybdenum super-austenitics -------------
 # VDM Alloy 926, VDM Metals data sheet April 2024, Table 2. VDM prints no iron
 # row - iron is the balance of the alloy but the sheet does not say so in the
@@ -960,6 +1044,69 @@ special-stainless-steel,AL-6XN,Mo,6.00,7.00
 special-stainless-steel,AL-6XN,N,0.18,0.25
 special-stainless-steel,AL-6XN,Cu,,0.75
 special-stainless-steel,AL-6XN,Fe,,bal
+
+# VDM Alloy 31, VDM Metals data sheet August 2024, Table 2 - which is headed
+# "Chemical composition (%) according to UNS N08031", so these are the UNS
+# limits as the mill reprints them and not a typical analysis. Rows in the
+# order the sheet prints them. Iron reads "balance" spanning min and max there,
+# recorded as bal in the max column the way AL-6XN's is above.
+special-stainless-steel,Alloy 31,Ni,30.0,32.0
+special-stainless-steel,Alloy 31,Cr,26.0,28.0
+special-stainless-steel,Alloy 31,Fe,,bal
+special-stainless-steel,Alloy 31,S,,0.010
+special-stainless-steel,Alloy 31,Si,,0.3
+special-stainless-steel,Alloy 31,Mn,,2.0
+special-stainless-steel,Alloy 31,P,,0.020
+special-stainless-steel,Alloy 31,Mo,6.0,7.0
+special-stainless-steel,Alloy 31,Cu,1.0,1.4
+special-stainless-steel,Alloy 31,N,0.15,0.25
+special-stainless-steel,Alloy 31,C,,0.015
+
+# Alloy 28 (Sanicro 28) is not a 6-Mo grade and sits here because it is the same
+# family key, not the same class. Alleima datasheet, table "Chemical composition
+# (nominal) %", rows in the order it prints them.
+#
+# A MIXED TABLE, and the two halves are different claims. The five figures
+# Alleima writes with a <= are acceptance limits and go in max. The four bare
+# ones - Cr 27, Ni 31, Mo 3.5, Cu 1.0 - are nominal, so they carry no min and no
+# max and say "nominal" in the note; a nominal figure is not a limit. That shape
+# is what makes build-grades.mjs caption the table as "specification limits
+# except where a figure is marked nominal" rather than calling all of it limits.
+#
+# NO IRON ROW. Iron is the balance of this alloy but Alleima does not print it,
+# and this file does not add what the mill left out - same as VDM Alloy 926.
+special-stainless-steel,Alloy 28,C,,0.020
+special-stainless-steel,Alloy 28,Si,,0.7
+special-stainless-steel,Alloy 28,Mn,,2.0
+special-stainless-steel,Alloy 28,P,,0.020
+special-stainless-steel,Alloy 28,S,,0.010
+special-stainless-steel,Alloy 28,Cr,,,27 nominal
+special-stainless-steel,Alloy 28,Ni,,,31 nominal
+special-stainless-steel,Alloy 28,Mo,,,3.5 nominal
+special-stainless-steel,Alloy 28,Cu,,,1.0 nominal
+special-stainless-steel,Alloy 28,N,,0.1
+
+# Sanicro 35, Alleima datasheet, table "Chemical composition (nominal) %", rows
+# in the order it prints them. Mixed like the Sanicro 28 table above, but the
+# split falls in a different place - MANGANESE AND NITROGEN ARE BARE HERE where
+# Sanicro 28 writes both with a <=, so they are nominal on this grade and limits
+# on that one. Read the symbol per cell; do not carry the shape across from the
+# neighbouring grade.
+#
+# Outokumpu's own Sanicro 35 page prints a "typical chemical composition" -
+# 0.02 C, 27 Cr, 35.5 Ni, 6.4 Mo, 0.27 N - which is an analysis of what it makes
+# under licence, not the grade's specification. Alleima owns the grade, so its
+# figures are the ones recorded. No iron row: neither publisher prints one.
+special-stainless-steel,Sanicro 35,C,,0.030
+special-stainless-steel,Sanicro 35,Si,,0.5
+special-stainless-steel,Sanicro 35,Mn,,,0.8 nominal
+special-stainless-steel,Sanicro 35,P,,0.030
+special-stainless-steel,Sanicro 35,S,,0.020
+special-stainless-steel,Sanicro 35,Cr,,,27 nominal
+special-stainless-steel,Sanicro 35,Ni,,,35 nominal
+special-stainless-steel,Sanicro 35,Mo,,,6.5 nominal
+special-stainless-steel,Sanicro 35,Cu,,,0.2 nominal
+special-stainless-steel,Sanicro 35,N,,,0.3 nominal
 
 # --- NICHROME --- VDM Metals Basic Information sheets HT 80 / HT 70 / HT 60,
 # read 2026-08-25. See docs/grades.csv for why VDM is the source for a family
@@ -1067,3 +1214,125 @@ titanium,Grade 16,Pd,0.04,0.08
 titanium,Grade 16,Other elements (each),,0.1
 titanium,Grade 16,Other elements (total),,0.4
 titanium,Grade 16,Ti,,bal,determined by difference
+# --- HAYNES --- Haynes International alloy pages, read 2026-08-27, in the order
+# each bulletin prints its elements.
+#
+# THESE ARE NOMINAL COMPOSITIONS, NOT LIMITS, and that is why this family sat
+# unclearable while every other one was migrated. Haynes publishes a single
+# "Weight %" column per alloy with no min/max table anywhere on the page or in
+# the brochure, so a bare figure goes in `note` as "22 nominal" with min and max
+# left empty. Only the entries the bulletin itself marks "max." are limits and
+# only those are written into the max column. chemTable() then captions each of
+# these as "Chemical composition for ..." rather than "... limits", and says in
+# the lead which figures are limits and which are not.
+#
+# The balance element carries `bal` in max AND its nominal figure in `note`, so
+# the row reads "- | Balance (51 nominal)". Balance counts as neither a limit nor
+# a nominal figure for the caption logic, which is correct: it is what is left.
+# 25 IS THE SECOND EXCEPTION IN THIS FAMILY, alongside 230 below: these are real
+# LIMITS and they are voestalpine BOHLER's, not Haynes'. Read 2026-08-27 from the
+# BOHLER L605 Engineering-segment datasheet (l605-engineering_en_gb), whose
+# "Chemical composition (wt. %)" table is headed "Related to ASTM F90" and whose
+# Standards block names ISO 5832-5 and ASTM F90. Rows are in that table's own
+# order - C Si Mn P S Cr Ni W Co Fe - not the alloying-first order used above.
+#
+# THE STANDARD IS NAMED IN grades.csv's `source` ON PURPOSE. F90 is a wrought
+# surgical-implant specification and this site sells 25 for high-temperature
+# service to AMS 5537 and AMS 5759, so the limits are published under the
+# standard they actually belong to rather than left to read as though they were
+# AMS 5537's. That is the whole reason the source string says which document
+# gave which half: Haynes the identity and the constants, BOHLER the limits.
+#
+# WHY THE SWITCH FROM HAYNES' NOMINAL COLUMN, which this file carried until
+# 2026-08-27: the three pages had been contradicting each other outright - Cr
+# 19-21 on plates and sheets against 19-22 on round bar, W 14-16 against 14-17,
+# C 0.05-0.15 against 0.07-0.11 against a bare 0.15 max, Si 0.40 against 1.0.
+# Nominal figures end the contradiction but answer a buyer's question with a
+# number they cannot hold a heat to, and they drop the P and S limits entirely.
+# The plates page's hand-written table was already this table, near enough.
+#
+# NO MOLYBDENUM ROW, and no balance figure against cobalt. Haynes' nominal
+# column carried Mo 1 max and "51" for cobalt; the BOHLER table prints neither -
+# it prints Co as REM and does not limit Mo at all. Carrying either across would
+# be two documents merged into one table with nothing on the page saying so.
+haynes,25,C,0.05,0.15
+haynes,25,Si,,0.40
+haynes,25,Mn,1.00,2.00
+haynes,25,P,,0.040
+haynes,25,S,,0.030
+haynes,25,Cr,19.00,21.00
+haynes,25,Ni,9.00,11.00
+haynes,25,W,14.00,16.00
+haynes,25,Co,,bal
+haynes,25,Fe,,3.00
+haynes,188,Co,,bal,39 nominal
+haynes,188,Ni,,,22 nominal
+haynes,188,Cr,,,22 nominal
+haynes,188,W,,,14 nominal
+haynes,188,Fe,,3
+haynes,188,Mn,,1.25
+haynes,188,Si,,,0.35 nominal
+haynes,188,C,,,0.10 nominal
+haynes,188,La,,,0.03 nominal
+haynes,188,B,,0.015
+haynes,214,Ni,,bal,75 nominal
+haynes,214,Cr,,,16 nominal
+haynes,214,Al,,,4.5 nominal
+haynes,214,Fe,,,3 nominal
+haynes,214,Co,,2
+haynes,214,Mn,,0.5
+haynes,214,Mo,,0.5
+haynes,214,Ti,,0.5
+haynes,214,W,,0.5
+haynes,214,Nb,,0.15
+haynes,214,Si,,0.2
+haynes,214,Zr,,0.1
+haynes,214,C,,,0.04 nominal
+haynes,214,B,,0.01
+haynes,214,Y,,,0.01 nominal
+# 230 alone in this family gets real LIMITS, from the ATI 6230 Limiting
+# Composition table, in ATI own element order. ATI text layer is column
+# shifted - the "Element" header extracts alongside a VALUE, one row out - so the
+# pairing below was realigned and then checked against the Haynes nominal column:
+# all fourteen Haynes figures fall inside these limits and four of the maxima
+# (Co 5, Ti 0.10, B 0.015, Fe 3.00) match Haynes exactly. That agreement across
+# two independent documents is the evidence the realignment is right; the shift
+# is the same failure that once put phosphorus in the wrong column here.
+# Nb is absent: Haynes lists it nominally, ATI limiting table does not bound it.
+haynes,230,C,0.05,0.15
+haynes,230,Mn,0.30,1.00
+haynes,230,Si,0.25,0.75
+haynes,230,P,,0.030
+haynes,230,S,,0.015
+haynes,230,Cr,20.00,24.00
+haynes,230,Mo,1.00,3.00
+haynes,230,W,13.00,15.00
+haynes,230,Al,0.20,0.50
+haynes,230,La,0.005,0.05
+haynes,230,Co,,5.00
+haynes,230,Ti,,0.10
+haynes,230,B,,0.015
+haynes,230,Fe,,3.00
+haynes,230,Cu,,0.50
+haynes,230,Ni,,bal
+haynes,242,Ni,,bal
+haynes,242,Mo,,,25 nominal
+haynes,242,Cr,,,8 nominal
+haynes,242,Fe,,2
+haynes,242,Co,,1
+haynes,242,Mn,,0.8
+haynes,242,Si,,0.8
+haynes,242,Al,,0.5
+haynes,242,C,,0.03
+haynes,242,B,,0.006
+haynes,282,Ni,,bal
+haynes,282,Cr,,,20 nominal
+haynes,282,Co,,,10 nominal
+haynes,282,Mo,,,8.5 nominal
+haynes,282,Ti,,,2.1 nominal
+haynes,282,Al,,,1.5 nominal
+haynes,282,Fe,,1.5
+haynes,282,Mn,,0.3
+haynes,282,Si,,0.15
+haynes,282,C,,,0.06 nominal
+haynes,282,B,,,0.005 nominal

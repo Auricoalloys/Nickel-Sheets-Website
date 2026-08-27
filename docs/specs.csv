@@ -21,17 +21,53 @@
 # that is where AMS 5542 (an X-750 sheet spec) came to be cited for Haynes 214
 # round bar.
 #
+# EN 10095 IS NOT IN THIS FILE, AND THAT IS DELIBERATE. On 2026-08-26 it was
+# removed from 48 pages - 62 citations - where it had been typed into
+# hand-written Standards cells as filler. It is "Heat resisting steels and
+# nickel alloys", and it was being recited on Monel, Invar, Nimonic, duplex,
+# cobalt alloys and the whole corrosion-resistant Hastelloy range, none of which
+# it covers. Not one verified mill bulletin behind this file cites it; the
+# closest case, VDM's 602 CA sheet, lists DIN EN 10302 instead.
+#
+# It was removed rather than corrected because no instance had a source. Some of
+# them were probably right - the genuinely heat-resisting grades (600, 601,
+# 602 CA, 800 / 800H / 800HT, Alloy 330, the nichromes, Hastelloy X) are the
+# ones to re-check first. Re-add per grade only from the standard's own material
+# list, never from the fact that it used to be on the page.
+#
+# 800 / 800H / 800HT are the strongest of those candidates, and there is already
+# evidence in the tree: docs/chemistry.csv records that their Mn, Si, Cu, P and
+# S residuals were read off ASTM B409 / B408 and EN 10095 because the Special
+# Metals bulletin states no limit for any of them, and that 800HT's phosphorus
+# limit has no ASTM counterpart at all. So the standard genuinely covers that
+# grade. What was deleted from the pages was the unsourced citation, not the
+# standard's applicability - the two are different claims.
+#
 # After editing: node docs/build-specs.mjs   then commit the changed hubs.
 # node docs/build-specs.mjs --check reports drift and exits non-zero.
 
 family,grade,uns,flat,bar,wire,pipe_tube,fitting
 inconel,600,N06600,ASTM B168,ASTM B166 / AMS 5665,ASTM B166,ASTM B167,ASTM B366
 inconel,601,N06601,ASTM B168,ASTM B166 / AMS 5715,ASTM B166,ASTM B167,ASTM B366
-inconel,602 CA,N06025,ASTM B168,ASTM B166,ASTM B166 / ISO 9724,-,ASTM B366
+# 602 CA moved to the nickel-alloy family on 2026-08-26 - the row is in that
+# block below. Special Metals does not make this alloy; VDM Metals does.
 inconel,617,N06617,ASTM B168 / AMS 5888 / 5889,ASTM B166 / AMS 5887,ASTM B166 / ISO 9724,ASTM B546,ASTM B366
 inconel,625,N06625,ASTM B443 / AMS 5599,ASTM B446 / AMS 5666,ASTM B446,ASTM B444,ASTM B366
-inconel,625 LCF,N06626,ASTM B443,ASTM B446,ASTM B446,ASTM B444,ASTM B366
-inconel,660 (A286),S66286,AMS 5525 / 5858,ASTM A638 / AMS 5731 / 5732,-,-,-
+# N06626 IS NOT COVERED BY ASTM OR ASME. The ATI 625HP data sheet - the only
+# published source for this grade, Special Metals issuing no 625LCF bulletin -
+# says so in as many words: "N06626 is not covered by ASTM or ASME
+# specifications, but can be certified to these as N06625 material." The whole
+# row previously read B443 / B446 / B446 / B444 / B366, which is alloy 625's row
+# copied across, so every 625 LCF page cited five standards none of which name
+# this UNS. AMS 5879 is the specification ATI states covers it.
+#
+# The dashes are the stock answer, not a gap: 625 LCF is made in flat product
+# only. ATI lists sheet and strip as the product forms, and the plate and
+# round-bar pages were retired on 2026-08-26 for the same reason.
+inconel,625 LCF,N06626,AMS 5879,-,-,-,-
+# 660 (A286) moved to the incoloy family on 2026-08-26 - the row is in that
+# block below. It is an iron-based precipitation-hardened superalloy, and "660"
+# is a specification designation rather than an alloy name.
 inconel,686,N06686,ASTM B575 / B906,ASTM B574,ASTM B574,ASTM B619 / B622 / B626,ASTM B366
 inconel,690,N06690,ASTM B168 / B906,ASTM B166 / B564,ASTM B166,ASTM B163 / B167 / B829,ASTM B366
 inconel,693,N06693,ASTM B168 / B906,ASTM B166,ASTM B166,ASTM B167,ASTM B366
@@ -50,6 +86,22 @@ incoloy,903,N19903,mill,mill,-,-,-
 incoloy,909,N19909,AMS 5893,AMS 5892 / 5884,-,-,-
 incoloy,925,N09925,-,NACE MR-01-75 / ASME CC 2218 / HA46,-,-,-
 incoloy,945,N09945,-,NACE MR0175 / ISO 15156-3 / HA 119,-,-,-
+# A-286, from the SPECIFICATIONS - AMS list on the ATI A286 technical data
+# sheet. Each entry there names its own product forms, which is what fills the
+# columns: AMS 5525 and 5858 are "Sheet, Strip, and Plate", and AMS 5731 / 5732
+# / 5734 / 5737 are "Bars, Rings, Forgings and Tubing" - the pairs differ by
+# solution temperature (1800 F against 1650 F) and whether the spec includes
+# the age.
+#
+# TUBING IS IN THOSE AMS TITLES, so the pipe_tube cell is filled rather than
+# dashed. This is the same reading that B637 and B425 needed for wire - the
+# form is in the standard's own scope line, and refusing to read it there is
+# how a correct citation gets flagged as an error.
+#
+# Wire is dashed: no AMS or ASTM entry on the sheet names it. ASTM A453 is on
+# the sheet too and is not recorded, because it is a bolting specification and
+# there is no column for fasteners; noted here so nobody re-adds it to `bar`.
+incoloy,660 (A286),S66286,AMS 5525 / 5858,ASTM A638 / ASME SA-638 / AMS 5731 / 5732 / 5734 / 5737,-,AMS 5731 / 5732 / 5734 / 5737,-
 hastelloy,B-2,N10665,ASTM B333,ASTM B335,ASTM B335,ASTM B619 / B622,ASTM B366
 hastelloy,C-4,N06455,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622,ASTM B366
 hastelloy,C-22,N06022,ASTM B575,ASTM B574,ASTM B574,ASTM B619 / B622,ASTM B366
@@ -104,10 +156,22 @@ nimonic,105,-,BS HR 3,BS HR 3 / AECMA PrEn 2179-2181,-,-,-
 nimonic,115,-,-,BS HR 4 / AECMA PrEn 2196 / 2197,-,-,-
 nimonic,263,N07263,AMS 5872 / BS HR 206 / DIN 17750,BS HR 10 / DIN 17752,DIN 17753,BS HR 404 / DIN 17751,-
 nimonic,901,N09901,-,AMS 5660 / 5661 / ISO 9723,AMS 5660 / 5661,-,-
+# Haynes International alloy pages, Specifications table, re-read 2026-08-27.
+# Each bulletin lists a standard per product form, which is what these columns
+# are, so the form question is settled by the mill rather than by reading an
+# ASTM title. 25 is new here and mirrors the cobalt-alloy/Haynes 25 (L-605) row.
+haynes,25,R30605,AMS 5537,AMS 5759,-,-,-
 haynes,188,R30188,AMS 5608,AMS 5772,-,-,-
+# 214 keeps "mill" because its page carries no Specifications table at all -
+# not a table of dashes, no table - so Haynes cites no ASTM or AMS for it.
 haynes,214,N07214,mill,mill,-,-,-
 haynes,230,N06230,ASTM B435,ASTM B572,-,ASTM B619 / B622,ASTM B366
-haynes,242,N10242,mill,mill,-,-,-
+# 242 read "mill" for flat and bar and that was wrong: its bulletin publishes
+# SB 434/B 434 for sheet, plate and strip and SB 573/B 573 for billet, rod and
+# bar, plus B 622 seamless, B 619/B 626 welded and B 366 fittings. The mill
+# naming the standard against the form is the scope confirmation - B434's title
+# alone would not have told us N10242 is inside it.
+haynes,242,N10242,ASTM B434,ASTM B573,-,ASTM B619 / B622,ASTM B366
 haynes,282,N07208,AMS 5951,ASTM B637 / AMS 5915,-,-,-
 titanium,Grade 1,R50250,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
 titanium,Grade 2,R50400,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
@@ -124,16 +188,74 @@ nickel-alloy,Inconel 600,N06600,ASTM B168,ASTM B166,ASTM B166,ASTM B167,ASTM B36
 nickel-alloy,Inconel 625,N06625,ASTM B443,ASTM B446,ASTM B446,ASTM B444,ASTM B366
 nickel-alloy,Incoloy 825,N08825,ASTM B424,ASTM B425,ASTM B425,ASTM B423,ASTM B366
 nickel-alloy,Hastelloy C-276,N10276,ASTM B575,ASTM B574,ASTM B574,ASTM B622,ASTM B366
+# Alloy 602 CA, read off Table 1b of the VDM Alloy 602 CA data sheet (March
+# 2022), which lists the standards form by form - rod and bar, sheet and plate,
+# strip, wire. Two corrections to what this row used to say under the inconel
+# key: the wire cell cited ISO 9724, which VDM does not list for this alloy at
+# all (its only ISO entry is 286, against rod and bar), and the fitting cell
+# cited ASTM B366, which VDM does not list either.
+#
+# The dashes mean VDM enumerates four product forms and neither tube nor
+# fittings is one of them - a selective silence, not a gap in the reading.
+#
+# The /nickel-alloy/602-CA/pipe/, /tube/ and /fittings/ pages STAY published
+# (decided 2026-08-26). A dash here is not a gap on those pages: the identity
+# table simply omits the specification row rather than printing an empty one,
+# and each of the three carries a note saying the form is fabricated from
+# B168 / SB 168 sheet and plate of the same heat. That is the honest answer -
+# the alternative was citing ASTM B167, a pipe standard that does not name this
+# UNS, which is the wrong-form error this whole file exists to stop.
+nickel-alloy,602 CA,N06025,ASTM B168,ASTM B166,ASTM B166,-,-
 duplex-steel,2205,S32205,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,2507,S32750,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,Zeron 100,S32760,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
+# 904L HAS THE SAME B649 PROBLEM AS ALLOY 28 BELOW and is NOT fixed here, on
+# purpose. ASTM's abstract for B649-21 lists N08925, N08031, N08354, N08926,
+# R20033 and N08936; N08904 is not one of them either. The difference is that
+# Alleima's datasheet told us what Alloy 28's bar standard actually is, and
+# nothing read so far says what 904L's is - its grades.csv row is still pending.
+# Guessing a replacement is how AMS 5542 reached a Haynes 214 bar page. Read a
+# mill bulletin for 904L, then fix bar and wire in the same pass that clears it.
 special-stainless-steel,904L,N08904,ASTM B625,ASTM B649,ASTM B649,ASTM B673 / B677,ASTM B366
 special-stainless-steel,254 SMO,S31254,ASTM A240,ASTM A479,ASTM A479,ASTM A312,ASTM A403
 special-stainless-steel,AL-6XN,N08367,ASTM B688,ASTM B691,ASTM B691,ASTM B675 / B676,ASTM B366
 special-stainless-steel,Alloy 20,N08020,ASTM B463,ASTM B473,ASTM B473,ASTM B464 / B468,ASTM B366
-special-stainless-steel,Alloy 28,N08028,ASTM B709,ASTM B649,ASTM B649,-,-
-special-stainless-steel,Alloy 31,N08031,ASTM B625,ASTM B649,ASTM B649,-,-
+# ALLOY 28 WAS CITING A STANDARD THAT DOES NOT COVER IT. ASTM's own abstract for
+# B649-21 scopes the standard to UNS N08925, N08031, N08354, N08926, R20033 and
+# N08936. N08028 is not among them, so the bar and wire cells were telling a
+# buyer this material is certified to a document it is not in - the wrong-scope
+# error this file exists to stop, one column over from the wrong-form one.
+#
+# Replaced from the Alleima Sanicro 28 datasheet, which lists product standards
+# by form: seamless tube and pipe ASTM B668; plate sheet and strip ASTM B709
+# (confirming the flat cell); bar steel EN 10088-3 and EN 10272; fittings
+# ASTM A403 with composition and mechanicals to B668. THE FIRST EN STANDARDS IN
+# THIS FILE, and they are here because that is what the mill publishes for bar -
+# it names no ASTM bar standard at all. An EN number read off a mill bulletin is
+# a source; EN 10095 was removed from the pages for being neither.
+#
+# Wire reads "mill": Alleima sells the grade in wire and publishes no wire
+# standard for it, which is what that cell means. It is not "-", which would
+# claim the form is not made.
+special-stainless-steel,Alloy 28,N08028,ASTM B709,EN 10088-3 / EN 10272,mill,ASTM B668,ASTM A403
+# ALLOY 31 confirmed against VDM Alloy 31's Table 1, which lists standards per
+# product form: sheet and plate ASTM B625, rod and bar ASTM B581 and B649, wire
+# ASTM B649. Bar gains B581 - VDM prints both, and B649's scope does include
+# N08031, so unlike Alloy 28 above this row was right as far as it went.
+# VDM lists no tube, pipe or fitting standard, so those two cells stand.
+special-stainless-steel,Alloy 31,N08031,ASTM B625,ASTM B581 / B649,ASTM B649,-,-
 special-stainless-steel,Alloy 926,N08926,ASTM B625,ASTM B649,ASTM B649,-,-
+# SANICRO 35 IS SOURCED FROM TWO MILLS, and the row splits along the same line
+# the two of them do. Alleima owns the grade and makes the seamless tube and
+# pipe: its datasheet's product standards read "Seamless tube and pipe: ASTM
+# B163, ASTM B677". Outokumpu makes the plate and sheet under a licence
+# agreement Alleima names, and its product page cites ASTM B625 against UNS
+# N08935 - so the flat cell is Outokumpu's and the tube cell is Alleima's.
+#
+# Bar reads "mill": Alleima sells Sanicro 35 Bar as a product line and publishes
+# no bar standard for it. Wire and fittings read "-" - neither mill lists the
+# grade in those forms at all, which is a different claim from "no standard".
+special-stainless-steel,Sanicro 35,N08935,ASTM B625,mill,-,ASTM B163 / B677,-
 cobalt-alloy,Haynes 25 (L-605),R30605,AMS 5537,AMS 5759,-,-,-
 cobalt-alloy,Haynes 188,R30188,AMS 5608,AMS 5772,-,-,-
 cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5833,-,ASTM F1058 / AMS 5833,-,-

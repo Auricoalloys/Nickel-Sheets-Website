@@ -256,6 +256,16 @@ The colon check probes with **Ruby**, not the shell — Git Bash will cheerfully
 colon in it while Ruby, which is what Jekyll actually writes with, fails with `ENOTDIR`. Probing with
 the shell silently reports success and the build then dies anyway.
 
+The script's first act is `rm -rf _site`, so it fails outright with **`rm: cannot remove '_site':
+Device or resource busy`** whenever something else holds that directory — a `jekyll serve`, or
+another Claude session building at the same time. Do not work around it by deleting the lock or by
+running plain `jekyll build`, which loses the case-sensitivity flag *and* dies on the colons. Build
+somewhere else instead: `tar` the tree to a scratch directory excluding `.git`, `_site`, `vendor`,
+`.jekyll-cache`, `node_modules` and `.claude`, strip the `redirect_from` lines whose URL contains a
+colon from the copy, and run `bundle exec jekyll build --source <copy> --destination <scratch>`.
+That is what the script does anyway, minus the case-sensitivity flag — which costs you nothing
+unless you are checking one of the two case-variant URLs.
+
 Note that uppercase in a URL is not itself a problem: 142 URLs contain uppercase (`/NiCr/…`,
 `/stainless/904L/`) and none of them collide. Only two URLs differing *only* by case cause this.
 
@@ -286,6 +296,24 @@ route fetches it. Same for the footer and the product page shell.
 This is why `_config.yml` excludes a lot but deliberately does **not** exclude `html/`, and why
 `robots.txt` deliberately does **not** block `/html/` — Googlebot has to fetch those fragments or it
 renders the dynamic pages with no navigation. Edit the include, not the wrapper.
+
+#### Trademark attribution keys on the URL, and some pages have to opt in
+
+The footer names the owner of each mark **the page is about**, not every mark on the site — the old
+block attributed twenty owners on all 746 pages, so a reader on an Inconel page was told who owns
+SANICRO and PYROMET. It decides by matching `page.url`, which carries the alloy name on all but a
+handful of pages. Those set `trademarks:` in their front matter instead, and the match runs against
+the URL and that field together.
+
+**A page whose URL uses the generic name of a trademarked grade gets no attribution unless it opts
+in.** The four Alloy 28 pages are the case: they sell Sanicro 28, name it in the title and the
+Specification Overview, and sit at `/stainless/alloy-28/` and `/alloy-28/sheets/` — no "sanicro" in
+the URL, so the SANICRO line never printed. They now carry `trademarks: sanicro`. The test is
+whether the page is *about* the marked grade, not whether it mentions it: `alloy-31.html` names
+Sanicro 28 in one comparison row and correctly stays silent, the same way the cross-link lists do.
+
+Verify it in the **built** page, not the source — the attribution comes from the include, so it
+does not exist until Jekyll runs.
 
 ### Two rendering models coexist
 
@@ -451,6 +479,37 @@ Two things the mills' own groupings settle, which the ASTM title alone gets wron
 **Wire** and Forging Stock" for Incoloy 825. Reading only the standard's title flags those as errors
 when they are correct.
 
+**The right form is not enough — the grade has to be inside the standard's scope.** An ASTM
+specification names the UNS numbers it covers, and a bar standard cited for a grade it does not list
+is exactly as wrong as a plate standard cited for wire. It just does not look wrong, because the
+form matches.
+
+ASTM's own abstract for **B649-21** scopes it to N08925, N08031, N08354, N08926, R20033 and N08936.
+Alloy 28 is **N08028** and Alloy 31 is **N08031** — so the same `ASTM B649` sat in the bar and wire
+cells of both rows, correct on one and out of scope on the other. **904L is N08904 and is not in
+that list either**; its row still cites B649 and is deliberately *not* fixed, with a comment above
+it saying why: no bulletin read so far states what 904L's bar standard actually is, and guessing a
+replacement is how AMS 5542 reached a Haynes 214 bar page. A wrong citation left in place under a
+comment is recoverable; a plausible invented one is not.
+
+The same failure one alloy over: `/alloy-28-round-bar/` cited **ASTM B473** in six places including
+its meta description and JSON-LD. B473 covers N08020, N08024 and N08026 — **Alloy 20's** bar spec,
+copied from the neighbouring page, on a grade that is not in it. Both were fixed on 2026-08-26.
+
+**EN standards belong in a cell when that is what the mill publishes.** Alleima's Sanicro 28
+datasheet lists product standards by form and names *no ASTM bar standard at all*: bar steel is
+EN 10088-3 and EN 10272. Those are the first EN numbers in this file and they are here on the same
+terms as every ASTM number — read off a mill bulletin. That is the distinction the EN 10095 note
+above turns on: what was deleted from the pages was the unsourced citation, not the idea of an EN
+standard.
+
+**A row may be sourced from two mills where two mills make it.** Sanicro 35 splits along the line
+the producers do: Alleima owns the mark and makes seamless tube and pipe, so `pipe_tube` is
+`ASTM B163 / B677` from Alleima's datasheet; Outokumpu rolls the plate and sheet under a licence
+agreement Alleima names, so `flat` is `ASTM B625` from Outokumpu's product page. `bar` reads `mill`
+— Alleima sells Sanicro 35 Bar as a product line and publishes no bar standard for it, which is
+precisely what that cell means and is not the same claim as `-`.
+
 **`--check` is not enough on its own.** It catches drift — `specs.csv` edited without re-running the
 generator — and CI already does that on every pull request. It cannot catch the other failure: mill
 bulletins get revised and ASTM retitles and rescopes standards, so a row is only as good as the day
@@ -588,6 +647,16 @@ Details worth keeping:
   silent *selectively*: MONEL R-405's sheet heads the grade `(UNS N04405)` while its companion 400
   sheet prints two Werkstoff numbers, so that omission is a statement and reads `-`. The NIMONIC
   sheets print no symbolic EN designation for any grade, so `en_name` there is empty.
+  Sanicro 35 is the cleanest case of the selective kind: Alleima's Standards panel prints EN Number,
+  EN Name, W.Nr., DIN, SS and AFNOR for Sanicro 28 and **prints none of them** for Sanicro 35 — same
+  publisher, same panel, one grade filled in and the other not. So `wnr` and `en_name` read `-`.
+  It is a young grade and no EN number has been assigned to it.
+- **A physical constant the source does not publish leaves the cell empty**, which is different from
+  the page being wrong. Neither the Sanicro 28 nor the Sanicro 35 datasheet gives a melting range —
+  both publish density, conductivity, specific heat, resistivity, expansion and modulus and stop
+  there — so `melting_c` is empty on both, exactly as it is on 254 SMO. Empty also means the
+  constant-strip leaves the pages' own melting figures alone rather than replacing them with an
+  unsourced one. The seeded values it displaced (1350-1370 for Alloy 28) had nothing behind them.
 - **A nominal figure is not a limit** and never goes in `min` or `max`. Some sheets publish only a
   nominal composition — NIMONIC 86 and 81, INCOLOY 890 — and NIMONIC 901's table is headed
   "Nominal Chemical Composition, % (not for specification purposes)" with four bare figures and
@@ -595,6 +664,13 @@ Details worth keeping:
   rejects a row with none of the three. The caption follows the table: all-nominal tables are
   introduced as nominal, mixed ones say which figures are limits, and only a table of real limits
   is called "specification limits". `bal` counts as neither.
+- **In a mixed table, read the symbol per cell — the split moves between grades.** Alleima heads
+  both Sanicro tables "Chemical composition (nominal) %" and writes some figures with a `≤` and some
+  bare. On **Sanicro 28** the bare ones are Cr 27, Ni 31, Mo 3.5 and Cu 1.0, with Mn and N carrying
+  `≤`. On **Sanicro 35** manganese and nitrogen are bare too — 0.8 and 0.3 are nominal there and
+  limits on its sibling. Copying the shape across from the neighbouring grade publishes four
+  nominal figures as acceptance limits. Neither table has an iron row, and none was added: iron is
+  the balance of both alloys but the mill does not print it.
 - `density_g_cm3` is a **bare number** on purpose. `build-grades.mjs` emits `docs/grades.json` from
   it so a weight calculator can consume it directly; a range or a `≈` breaks that.
 
@@ -625,6 +701,31 @@ whoever edits a page:
 
 A page opts in by carrying the section with any `<table>` inside it — an empty `<table></table>` is
 enough, and the next run replaces it.
+
+**Which means the generator owns whatever table is in `#equivalent-grades`, and will eat
+hand-written content parked there.** `alloy-31.html` kept a genuine comparison table in that
+section — Alloy 31 against 316L, 904L and Alloy 28, four rows of real differentiation — and the
+first run that reached the page replaced it with the identity table. It was restored as its own
+`<section id="grade-comparison">` next door, which the generator never touches. A comparison,
+an application table or any other hand-written table goes in **its own section**; only the
+generated one belongs in `#equivalent-grades` and `#chemical`.
+
+**Whole families are still out of `gradeForUrl`'s reach, for the same reason the combined pages
+were.** It resolves `/family/grade/…`, so the special-stainless form pages — `/alloy-28/sheets/`,
+`/alloy-28/plates/`, `/alloy-28-round-bar/` and their 904L, AL-6XN, 254 SMO, Alloy 20 and Alloy 926
+equivalents — are never written and never linted, because the first segment is the grade and there
+is no family segment at all. Only the `/stainless/<grade>/` hubs resolve. The cost is visible: the
+three Alloy 28 form pages disagree with each other on sulphur (`≤0.01` on sheets against `≤0.03` on
+plates and round bar) and on whether phosphorus and nitrogen are stated at all — the sibling
+contradiction the CSV exists to end, on pages the writer cannot reach.
+
+Two things to weigh before wiring them up with a URL map. Their hand-written tables carry **ASTM
+B709's acceptance limits**, which for a buyer are worth more than Alleima's nominal figures, so the
+generated table would be a step down in usefulness even as it ends the contradiction — the fix is a
+decision about which source to publish, not a mechanical run. And new pages should simply be built
+at `/stainless/<grade>/<form>/`, which resolves today: that is why the Sanicro 35 pages are at
+`/stainless/sanicro-35/plates/` rather than `/sanicro-35/plates/`, and they pick up their identity
+table, chemistry table and per-form specification row with no map entry at all.
 
 **The bug this fixed was silence.** `build-grades.mjs` reported a page whose section existed but
 held no table, and said *nothing at all* about a page with no section — it just `continue`d. So a
@@ -774,6 +875,18 @@ and commit the result. That second commit touches only `sitemap.xml`, which is n
 dates change and it converges — you never need a third. `--check` tells you when you are in that
 state.
 
+**A brand-new page is invisible to this generator until git knows about it.** Pages are discovered
+with `git ls-files "*.html"`, so an untracked file is not enumerated — no URL, no warning, and
+`--check` still reports "up to date", because the page is missing from both sides of the
+comparison. `build-search-index.mjs` walks the filesystem instead, so the two disagree and only the
+sitemap is wrong. Adding the four Sanicro 35 pages on 2026-08-26 produced exactly that: 739 pages
+in `search-index.json` against 735 URLs in `sitemap.xml`.
+
+So after writing a new page, `git add -N` it **before** running the generator. It then appears with
+no `<lastmod>`, which is correct — the date arrives on the regeneration after the commit, the same
+two-step as above. Sanity-check with `grep -c "<loc>" sitemap.xml` against the page count
+`build-search-index.mjs` prints; they should differ only by the exclusions below.
+
 Pages are excluded when they are `published: false`, marked `sitemap: false`, are a `/html/` runtime
 fragment, or are disallowed in `robots.txt` — the last is read from `robots.txt` itself, so a route
 can never be both blocked and advertised. `<priority>` and `<changefreq>` are deliberately not
@@ -854,3 +967,11 @@ that when adding them.
 
 Images are WebP under `docs/images/`; camera originals live in `docs/images/source/`, which is both
 gitignored and excluded from the build.
+
+**Commercial figures are the business's to state, not ours to infer.** Prices already have a whole
+pipeline built on that; size and stock ranges are the same claim in a less obvious place. Copying
+"14 mm to 300 mm" off the neighbouring grade's page because a new page needs a Size Range row
+publishes a supply commitment nobody made. Where neither mill publishes a range and the business
+has not given one, the row says so — the three Sanicro 35 pages read "quoted against the mill
+programme in force at the time of enquiry", which is true and answerable, and the real ranges
+replace it when someone who knows them supplies them.

@@ -21,8 +21,8 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-08-24 by docs/build-price-worklist.mjs
-# pending: 258 page(s)
+# generated: 2026-08-26 by docs/build-price-worklist.mjs
+# pending: 259 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -152,6 +152,11 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /incoloy/  (1)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
 /incoloy/foil/,,,,,kg
 
+# /incoloy/660/  (3)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
+/incoloy/660/plates/,,,,,kg
+/incoloy/660/round-bar/,,,,,kg
+/incoloy/660/sheets/,,,,,kg
+
 # /incoloy/890/  (2)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
 /incoloy/890/round-bar/,,,,,kg
 /incoloy/890/sheets/,,,,,kg
@@ -170,7 +175,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /incoloy/945/  (1)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
 /incoloy/945/round-bar/,,,,,kg
 
-# /inconel-...  (11)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel-...  (11)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel-600-601-617-foil-supplier-exporter-in-mumbai-india/,,,,,kg
 /inconel-602-CA-X-750-foil-supplier-exporters/,,,,,kg
 /inconel-625-625-LCF-foil-supplier-trader-stockist-exporter/,,,,,kg
@@ -183,37 +188,20 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel-tube-supplier-exporter-mumbai-india/,,,,,kg
 /inconel-wire-supplier-exporter-mumbai-india/,,,,,kg
 
-# /inconel/600/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/600/  (1)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/600/fittings/,,,,,kg
 
-# /inconel/601/  (2)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/601/  (2)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/601/fittings/,,,,,kg
 /inconel/601/pipe/,,,,,kg
 
-# /inconel/602-CA/  (6)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
-/inconel/602-CA/coil/,,,,,kg
-/inconel/602-CA/fittings/,,,,,kg
-/inconel/602-CA/pipe/,,,,,kg
-/inconel/602-CA/round-bar/,,,,,kg
-/inconel/602-CA/tube/,,,,,kg
-/inconel/602-CA/wire/,,,,,kg
-
-# /inconel/617/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/617/  (1)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/617/fittings/,,,,,kg
 
-# /inconel/625-LCF/  (2)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
-/inconel/625-LCF/plates/,,,,,kg
-/inconel/625-LCF/round-bar/,,,,,kg
-
-# /inconel/625/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/625/  (1)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/625/fittings/,,,,,kg
 
-# /inconel/660/  (3)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
-/inconel/660/plates/,,,,,kg
-/inconel/660/round-bar/,,,,,kg
-/inconel/660/sheets/,,,,,kg
-
-# /inconel/686/  (8)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/686/  (8)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/686/coil/,,,,,kg
 /inconel/686/fittings/,,,,,kg
 /inconel/686/pipe/,,,,,kg
@@ -223,7 +211,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/686/tube/,,,,,kg
 /inconel/686/wire/,,,,,kg
 
-# /inconel/690/  (8)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/690/  (8)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/690/coil/,,,,,kg
 /inconel/690/fittings/,,,,,kg
 /inconel/690/pipe/,,,,,kg
@@ -233,7 +221,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/690/tube/,,,,,kg
 /inconel/690/wire/,,,,,kg
 
-# /inconel/693/  (8)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/693/  (8)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/693/coil/,,,,,kg
 /inconel/693/fittings/,,,,,kg
 /inconel/693/pipe/,,,,,kg
@@ -243,19 +231,19 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/693/tube/,,,,,kg
 /inconel/693/wire/,,,,,kg
 
-# /inconel/718/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/718/  (1)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/718/fittings/,,,,,kg
 
-# /inconel/725/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/725/  (1)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/725/fittings/,,,,,kg
 
-# /inconel/740H/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/740H/  (1)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/740H/,,,,,kg
 
-# /inconel/751/  (1)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/751/  (1)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/751/,,,,,kg
 
-# /inconel/783/  (2)  |  inconel priced on 51 page(s) at INR 2,500-15,000 per kg
+# /inconel/783/  (2)  |  inconel priced on 49 page(s) at INR 2,500-15,000 per kg
 /inconel/783/billets/,,,,,kg
 /inconel/783/round-bar/,,,,,kg
 
@@ -315,6 +303,14 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /nickel-alloy-wire-supplier-exporter-in-mumbai-india/,,,,,kg
 /Nickel-Copper-Sandwich-Busbar/,,,,,kg
 /nickel-strip-for-18650-battery-pack/,,,,,kg
+
+# /nickel-alloy/602-CA/  (6)  |  nickel-alloy priced on 2 page(s) at INR 4,500-10,000 per kg
+/nickel-alloy/602-CA/coil/,,,,,kg
+/nickel-alloy/602-CA/fittings/,,,,,kg
+/nickel-alloy/602-CA/pipe/,,,,,kg
+/nickel-alloy/602-CA/round-bar/,,,,,kg
+/nickel-alloy/602-CA/tube/,,,,,kg
+/nickel-alloy/602-CA/wire/,,,,,kg
 
 # /nicr-...  (1)
 /NiCr-80-20-70-30-60-15-40-20-30-20-20-25-foil-supplier-stockist-exporter-in-mumbai-india/,,,,,kg
@@ -387,6 +383,11 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /special-stainless-steel-pipes-supplier-exporter-mumbai-india/,,,,,kg
 /special-stainless-steel-tube-supplier-exporter-mumbai-india/,,,,,kg
 /special-stainless-steel-wire-supplier-exporter-mumbai-india/,,,,,kg
+
+# /stainless/sanicro-35/  (3)  |  stainless priced on 10 page(s) at INR 1,000-6,500 per kg
+/stainless/sanicro-35/plates/,,,,,kg
+/stainless/sanicro-35/round-bar/,,,,,kg
+/stainless/sanicro-35/tube/,,,,,kg
 
 # /stellite/  (3)  |  stellite priced on 1 page(s) at INR 8,500-12,000 per kg
 /stellite/plates/,,,,,kg
