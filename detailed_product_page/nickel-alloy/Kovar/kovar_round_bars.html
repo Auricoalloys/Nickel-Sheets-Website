@@ -426,7 +426,15 @@ li{
       <tbody>
         <tr><th>Supplier & Manufacturer</th><td>Aurico Alloys LLP</td></tr>
         <tr><th>Grade</th><td>Kovar (UNS K94610, ASTM F15, Alloy K)</td></tr>
-        <tr><th>Standards</th><td>ASTM F15 / ASME SF15 / EN 1.3981 / DIN 17745</td></tr>
+        <!-- ASTM F15 is right for bar - its scope is "wire, rod, bar, strip, sheet, and
+             tubing" - and AMS 7727 is added because SAE titles it "Iron-Nickel-Cobalt Alloy,
+             Bars and Forgings", which is this form exactly. 1.3981 was labelled "EN" and is a
+             Werkstoff number.
+             STILL UNVERIFIED, deliberately left in place rather than replaced by a guess:
+             "ASME SF15" - ASME adopts ASTM specs with an S prefix but F-series adoptions are
+             not established here - and DIN 17745. Check both against the standards themselves
+             before this row is quoted to a buyer. -->
+        <tr><th>Standards</th><td>ASTM F15 / AMS 7727 / ASME SF15 / Werkstoff 1.3981 / DIN 17745</td></tr>
         <tr><th>Diameter Range</th><td>3mm – 150mm</td></tr>
         <tr><th>Length</th><td>100mm – 4000mm</td></tr>
         <tr><th>Finish</th><td>Cold drawn, bright annealed, polished, ground</td></tr>
