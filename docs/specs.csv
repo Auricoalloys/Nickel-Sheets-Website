@@ -206,6 +206,27 @@ nickel-alloy,Hastelloy C-276,N10276,ASTM B575,ASTM B574,ASTM B574,ASTM B622,ASTM
 # the alternative was citing ASTM B167, a pipe standard that does not name this
 # UNS, which is the wrong-form error this whole file exists to stop.
 nickel-alloy,602 CA,N06025,ASTM B168,ASTM B166,ASTM B166,-,-
+# Kovar, added 2026-08-27 and read off ASTM F15-04 (Reapproved 2022) itself plus
+# the SAE titles of the AMS 772x series. Until now Kovar had no row in any of the
+# three CSVs, so every figure on its five pages was hand-typed and unguarded -
+# which is how /kovar/sheets/ came to publish UNS K94105, a transposition of
+# K94610, while its own meta description said K94610.
+#
+# THE FLAT CELL IS AMS 7728 AND NOT ASTM F15, WHICH IS THE POINT OF THIS ROW.
+# F15 scopes itself to K94610 "in the forms of wire, rod, bar, strip, sheet, and
+# tubing" - plate appears nowhere in the document, and its tables are Sheet and
+# Strip, Wire and Rod, Cold-Rolled Strip and Cold-Drawn Tubing. This column
+# prints as "Plate, sheet and strip", and AMS 7728 is titled "Iron-Nickel-Cobalt
+# Alloy, Sheet, Strip, and Plate", so it is the one that covers the whole column.
+# The plates page had cited F15 in its title block, meta, og, twitter, JSON-LD
+# and spec table.
+#
+# bar and wire carry F15 alongside the AMS number because F15's own scope names
+# rod, bar and wire; AMS 7727 is "Bars and Forgings" and AMS 7726 is "Wire".
+# pipe_tube is F15 alone - it covers tubing at 15.3 and no AMS number read so far
+# does. fitting is "-": F15 does not reach fittings and no mill lists the grade
+# in that form.
+nickel-alloy,Kovar,K94610,AMS 7728,ASTM F15 / AMS 7727,ASTM F15 / AMS 7726,ASTM F15,-
 duplex-steel,2205,S32205,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,2507,S32750,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,Zeron 100,S32760,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815

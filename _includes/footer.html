@@ -134,6 +134,17 @@
       {%- if subject contains 'ferralium' %}
       <p><small>FERRALIUM&reg; is a trademark of Langley Alloys Ltd.</small></p>
       {%- endif %}
+      {%- comment -%}
+        KOVAR is owned by CRS Holdings, Inc., a Carpenter Technology subsidiary,
+        and gets its own line rather than joining the Carpenter one below: the
+        registrant is the subsidiary, and naming the parent as owner would be a
+        different claim from the one the register supports. The /kovar/ URLs
+        match on their own, so those five pages need no `trademarks:` opt-in.
+      {%- endcomment -%}
+      {%- if subject contains 'kovar' %}
+      <p><small>KOVAR&reg; is a registered trademark of CRS Holdings,&nbsp;Inc., a subsidiary of Carpenter
+        Technology Corporation.</small></p>
+      {%- endif %}
       {%- if subject contains 'carpenter' or subject contains '20cb' or subject contains 'pyromet' or subject contains 'mp35n' %}
       <p><small>CARPENTER&nbsp;20Cb-3&reg;, 20Cb-3LR&reg;, 20Mo-6&reg;, PYROMET&reg; and MP35N&reg; are
         trademarks of Carpenter Technology Corporation.</small></p>

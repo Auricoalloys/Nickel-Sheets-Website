@@ -481,6 +481,23 @@ nickel-alloy,Incoloy 825,N08825,2.4858,NiCr21Mo,8.14,1370-1400,Special Metals IN
 # confirms the seed. The grade key stays "602 CA" rather than "Alloy 602 CA"
 # because gradeForUrl resolves it from the /nickel-alloy/602-CA/ URL segment.
 nickel-alloy,602 CA,N06025,2.4633,NiCr25FeAlY,7.93,1340-1400,VDM Alloy 602 CA data sheet (March 2022),2026-08
+# Kovar, verified 2026-08-27 against ASTM F15-04 (Reapproved 2022). The standard
+# gives the UNS number in its scope and its keywords block and nothing else that
+# belongs in this row, so four of the five data cells are EMPTY rather than "-".
+#
+# wnr is empty and not "-" even though 1.3981 is on three of the Kovar pages and
+# is almost certainly right. F15 has no DIN or EN field at all - it is an ASTM
+# document and simply does not carry one - so its silence is not the deliberate
+# blank a Haynes DIN row or an Alleima standards panel would be. Recording "-"
+# would claim no such designation exists. Empty leaves the pages' own 1.3981
+# alone and leaves the lint quiet about it, which is the honest state until a
+# source that does publish Werkstoff numbers is read.
+#
+# density and melting are empty for the same reason: F15 publishes neither. What
+# it does publish is the coefficient of thermal expansion, in Table 4 - 4.60 to
+# 5.20 um/m.C over 30-400 C and 5.10 to 5.50 over 30-450 C. That is the defining
+# property of a sealing alloy and it belongs in docs/properties.csv, not here.
+nickel-alloy,Kovar,K94610,,,,,ASTM F15-04 (Reapproved 2022),2026-08
 # The same material as hastelloy/C-276 above, listed again under the form-hub
 # family key. No page resolves to this row today, but --check only compares
 # wnr, en_name and density across rows sharing a UNS - it would not have caught

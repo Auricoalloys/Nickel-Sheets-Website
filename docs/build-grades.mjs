@@ -436,9 +436,31 @@ function walk(d, out = []) {
 const norm = s => String(s ?? '').toLowerCase().replace(/\([^)]*\)/g, '').replace(/[^a-z0-9]/g, '');
 const familyOf = url => (FAMILY_KEYS.find(([k]) => url.toLowerCase().includes('/' + k + '/')) || [])[1] || null;
 
+// SINGLE-GRADE FAMILIES put the GRADE in the first URL segment with no family
+// segment at all: /kovar/ is the grade hub and /kovar/sheets/ is a form page.
+// The /family/grade/[form/] shape below reads that as family "kovar", grade
+// "sheets", which matches nothing - so these pages were neither written nor
+// linted, exactly like the combined pages before the COMBINED map existed.
+//
+// That blind spot is how /kovar/sheets/ came to publish UNS K94105 - a
+// transposition of K94610 - in its keywords, its Grade row and its equivalent
+// grades table, while the same page's meta description said K94610. Nothing
+// reported it because nothing was looking.
+//
+// Stated explicitly rather than derived from the path, for the same reason
+// COMBINED is: the mapping is not regular, and guessing it puts one grade's
+// data on another grade's page. Invar and Nitinol have the same URL shape and
+// are NOT here, because neither has a verified row yet - add the row first.
+const SINGLE_GRADE = {
+  kovar: ['nickel-alloy', 'Kovar'],
+};
+const singleGradeOf = url => SINGLE_GRADE[(url.split('/').filter(Boolean)[0] || '').toLowerCase()] || null;
+
 // Resolve /family/grade/[form/] to a CSV row. The grade segment is normalised
 // so "625-LCF" finds "625 LCF" and "Grade-2" finds "Grade 2".
 function gradeForUrl(url) {
+  const single = singleGradeOf(url);
+  if (single) return grades.find(r => r.family === single[0] && r.grade === single[1]) || null;
   const family = familyOf(url);
   if (!family) return null;
   const segs = url.split('/').filter(Boolean);
@@ -825,7 +847,12 @@ for (const fp of walk(ROOT)) {
   }
 
   const segs = url.split('/').filter(Boolean);
-  const formSeg = segs[2];
+  // A single-grade family has no family segment, so its form sits one place
+  // earlier and its hub is one segment long. Reading segs[2] on /kovar/sheets/
+  // finds nothing and would print no per-form specification row at all - the
+  // silent skip the missing-section fix already had to stamp out once.
+  const sgrade = singleGradeOf(url);
+  const formSeg = sgrade ? segs[1] : segs[2];
   const form = formSeg ? (FORM_OF_SEGMENT[formSeg.toLowerCase()] || null) : null;
 
   // WHICH TABLES BELONG ON THIS PAGE. Not every page should carry both, and a
@@ -843,7 +870,7 @@ for (const fp of walk(ROOT)) {
   // made eleven hubs near-duplicates of their own children and cost them their
   // canonical in Search Console. A hub states the UNS/Werkstoff and points at
   // the forms.
-  const isHub = segs.length === 2;
+  const isHub = segs.length === (sgrade ? 1 : 2);
 
   const blocks = [
     { section: ID_SECTION, start: ID_START, end: ID_END, html: identityTable(row, form) },

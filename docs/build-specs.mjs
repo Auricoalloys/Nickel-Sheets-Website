@@ -153,6 +153,15 @@ function walk(d, out = []) {
 }
 const familyOf = url => (FAMILY_KEYS.find(([k]) => url.includes(k)) || [])[1] || null;
 
+// SINGLE-GRADE FAMILIES: the grade is the first URL segment and there is no
+// family segment, so /kovar/ is a grade hub one segment long. The grade-hub
+// branch below requires two segments and therefore never saw it. Kept in step
+// with the identical map in docs/build-grades.mjs - a grade added to one and
+// not the other gets its spec table written with nothing linting the page.
+const SINGLE_GRADE = {
+  kovar: ['nickel-alloy', 'Kovar'],
+};
+
 // ---- apply ------------------------------------------------------------------
 let wrote = 0, drift = [], noAnchor = [], noData = [];
 
@@ -173,15 +182,24 @@ for (const fp of walk(ROOT)) {
     if (family) table = formTable(family, FORM_OF_DIR[dir]);
     if (family && !table) noData.push(`${rel}  (${family} / ${FORM_OF_DIR[dir]})`);
   } else {
-    // grade hub: /family/grade/ with no form segment
-    const m = url.match(/^\/([a-zA-Z0-9-]+)\/([a-zA-Z0-9.-]+)\/$/);
-    if (!m) continue;
-    const family = familyOf('/' + m[1] + '/');
-    if (!family) continue;
-    const g = m[2].toLowerCase().replace(/[^a-z0-9]/g, '');
-    const row = rows.find(r => r.family === family &&
-      r.grade.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/^(inconel|incoloy|monel|nickel|hastelloy)/, '') === g);
-    if (row) table = gradeTable(row);
+    // grade hub: /family/grade/ with no form segment, or /grade/ for a
+    // single-grade family, which has no family segment to carry.
+    const one = url.match(/^\/([a-zA-Z0-9-]+)\/$/);
+    const sg = one && SINGLE_GRADE[one[1].toLowerCase()];
+    if (sg) {
+      const row = rows.find(r => r.family === sg[0] && r.grade === sg[1]);
+      if (row) table = gradeTable(row);
+      else noData.push(`${rel}  (${sg[0]} / ${sg[1]} - no specs.csv row)`);
+    } else {
+      const m = url.match(/^\/([a-zA-Z0-9-]+)\/([a-zA-Z0-9.-]+)\/$/);
+      if (!m) continue;
+      const family = familyOf('/' + m[1] + '/');
+      if (!family) continue;
+      const g = m[2].toLowerCase().replace(/[^a-z0-9]/g, '');
+      const row = rows.find(r => r.family === family &&
+        r.grade.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/^(inconel|incoloy|monel|nickel|hastelloy)/, '') === g);
+      if (row) table = gradeTable(row);
+    }
   }
   if (!table) continue;
 

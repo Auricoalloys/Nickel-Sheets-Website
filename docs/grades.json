@@ -1061,6 +1061,21 @@
     },
     {
       "family": "nickel-alloy",
+      "grade": "Kovar",
+      "name": "Kovar",
+      "uns": "K94610",
+      "uns_all": [
+        "K94610"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": null,
+      "melting_c": null,
+      "source": "ASTM F15-04 (Reapproved 2022)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "nickel-alloy",
       "grade": "Hastelloy C-276",
       "name": "Hastelloy C-276",
       "uns": "N10276",

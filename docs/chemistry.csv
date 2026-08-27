@@ -960,6 +960,36 @@ titanium,Grade 23,Ti,,bal,determined by difference
 # alloy 200's limiting composition; alloy 201 is the low-carbon version and the
 # only limit that moves is carbon, 0.15 max down to 0.02 max.
 #
+# Kovar - ASTM F15-04 (Reapproved 2022) Table 1 "Chemical Requirements".
+#
+# A MIXED TABLE, and the split is printed in the element names themselves: the
+# standard writes "Iron, nominal", "Nickel, nominal" and "Cobalt, nominal" and
+# then "Manganese, max", "Silicon, max" and so on down. So the three majors are
+# nominal figures and go in note with min and max empty, and the ten residuals
+# are real maxima. Footnote A is why the majors cannot be limits: it says they
+# "shall be adjusted by the manufacturer so that the alloy meets the requirements
+# for coefficient of thermal expansion given in Table 4" - the expansion is the
+# acceptance criterion and the composition is whatever delivers it.
+#
+# Footnote B caps aluminium plus magnesium plus zirconium plus titanium at 0.20 %
+# TOTAL, which is tighter than the four individual 0.10 maxima summed. That is a
+# real limit with nowhere of its own to live in this format, so it rides in the
+# note on each of the four rows rather than being dropped.
+#
+# Rows in the order Table 1 prints them.
+nickel-alloy,Kovar,Fe,,,53 nominal - adjusted to meet the Table 4 expansion limits
+nickel-alloy,Kovar,Ni,,,29 nominal - adjusted to meet the Table 4 expansion limits
+nickel-alloy,Kovar,Co,,,17 nominal - adjusted to meet the Table 4 expansion limits
+nickel-alloy,Kovar,Mn,,0.50
+nickel-alloy,Kovar,Si,,0.20
+nickel-alloy,Kovar,C,,0.04
+nickel-alloy,Kovar,Al,,0.10,Al + Mg + Zr + Ti total 0.20 max
+nickel-alloy,Kovar,Mg,,0.10,Al + Mg + Zr + Ti total 0.20 max
+nickel-alloy,Kovar,Zr,,0.10,Al + Mg + Zr + Ti total 0.20 max
+nickel-alloy,Kovar,Ti,,0.10,Al + Mg + Zr + Ti total 0.20 max
+nickel-alloy,Kovar,Cu,,0.20
+nickel-alloy,Kovar,Cr,,0.20
+nickel-alloy,Kovar,Mo,,0.20
 # As on the MONEL sheets, the first limit reads "Nickel (plus cobalt) 99.0 min"
 # and is recorded against Ni.
 nickel-alloy,Nickel 200,Ni,99.0,
