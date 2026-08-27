@@ -504,3 +504,17 @@ special-stainless-steel,904L,Electrical resistivity,0.935,Ω·mm²/m,20°C,
 special-stainless-steel,904L,Magnetic permeability,< 1.05,,at 0.8 kA/m DC or AC at 20°C,
 special-stainless-steel,904L,Young's modulus,200,GPa,20°C,
 special-stainless-steel,904L,Oil and gas conformance,NACE MR0175 / ISO 15156-3 · NACE MR0103 / ISO 17945,,,Aperam 904L Technical Data Sheet
+
+# --- COBALT ALLOY ELGILOY --- Elgiloy Specialty Metals Wire Products datasheet
+# (Wire_Elgiloy_R30003_Jul2026.pdf, REV 2026 07 30). Physical-properties table
+# at 20 °C. Resistivity is printed in µ ohm.cm (= µΩ·cm) in the SI column, the
+# same unit as the Nichrome entries above; 99.6 µΩ·cm = 0.996 µΩ·m. Not converted
+# — the unit column carries the note the cell would otherwise need.
+# Coefficient of expansion is printed as a mean value 20–300 °C; no 20–100 °C
+# figure is given. Modulus of rigidity is listed alongside Young's modulus in the
+# same table, with no separate temperature qualification beyond "At 20°C".
+cobalt-alloy,Elgiloy,Modulus of elasticity,190,GPa,20°C,
+cobalt-alloy,Elgiloy,Modulus of rigidity,77.2,GPa,20°C,
+cobalt-alloy,Elgiloy,Coefficient of expansion,15.2,µm/m·°C,20-300°C,
+cobalt-alloy,Elgiloy,Electrical resistivity,99.6,µΩ·cm,20°C,
+cobalt-alloy,Elgiloy,Thermal conductivity,12.5,W/m·K,20°C,

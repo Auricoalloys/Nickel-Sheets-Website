@@ -285,7 +285,7 @@ cobalt-alloy,Haynes 188,R30188,AMS 5608,AMS 5772,-,-,-
 # exists to stop, and it had been printing on /coil/cobalt-alloy/. Elgiloy Specialty
 # Metals' own Strip Products datasheet gives "Strip and Foil: AMS 5876, ASTM F1058,
 # NACE MR 0175 & MR 0103, ISO 5832-7". AMS 5833 stays in wire, where it belongs.
-cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5876,-,ASTM F1058 / AMS 5833,-,-
+cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5876,-,ASTM F1058 / AMS 5833 / AMS 5834,-,-
 # MP35N and CoCrMo added 2026-08-27. /cobalt-alloy-wire-supplier-exporter-mumbai-india/
 # sells three cobalt alloys as wire and only Elgiloy had a row, so the generated
 # table printed one grade for a page selling three - and the hand-written copy above
