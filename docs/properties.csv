@@ -359,6 +359,7 @@ special-stainless-steel,254 SMO,Coefficient of expansion,16.5,µm/m·°C,,
 special-stainless-steel,254 SMO,Thermal conductivity,14,W/m·°C,,
 special-stainless-steel,254 SMO,Specific heat,500,J/kg·°C,,
 special-stainless-steel,254 SMO,Electrical resistivity,0.85,µΩ·m,,
+special-stainless-steel,254 SMO,Magnetic,no,,,
 # VDM's alloy 926 sheet publishes density, melting range and this one constant.
 special-stainless-steel,Alloy 926,Magnetic permeability,1.001,,relative - at 20 °C,
 # VDM Alloy 31, data sheet August 2024, Table 3 - "typical physical properties
