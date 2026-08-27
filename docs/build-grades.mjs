@@ -773,6 +773,21 @@ for (const fp of walk(ROOT)) {
   if (!row) continue;
   mapped++;
 
+  // A POWDER PAGE IS EXCLUDED FROM THE LINT AS WELL AS FROM THE WRITER, and the
+  // guard sits here rather than further down for that reason. Powder is a
+  // different production route and carries its own designations, so judging its
+  // identity zone against a wrought row is the same wrong-form error the writer
+  // below already refuses to make - one column over.
+  //
+  // /cobalt-alloys/cocrmo/powder/ is the case that proved it. It publishes
+  // "R31537 / R30075", which is exactly right: ASTM F3213 specifies additively
+  // manufactured CoCrMo to the cast R30075 composition, and the page names both
+  // designations with the route each belongs to. grades.csv holds the wrought
+  // R31537, so the moment a CoCrMo row was added the lint reported a page that
+  // was right. Check the CSV cell before touching the page - and when the check
+  // fires on something deliberate, teach the check.
+  if (/(^|\/)powder(\/|$)/.test(url)) { powderPages++; continue; }
+
   // --- lint (runs whether or not the row is verified) ---
   const zone = identityZone(raw);
   const named = gradesNamedIn(zone, row.family);
@@ -818,13 +833,11 @@ for (const fp of walk(ROOT)) {
   // positive - the thing the SEO baseline note warns against, one file over.
   // So the rule is taught here rather than tolerated in the skip list.
   //
-  // A POWDER PAGE GETS NEITHER. Its chemistry is not the wrought bulletin's:
-  // SB-265 is a strip/sheet/plate specification and the Special Metals sheets
-  // are wrought, while powder is a different production route with its own
-  // oxygen limits and its own standards. Writing a wrought composition onto a
-  // powder page is the wrong-form error docs/specs.csv exists to prevent.
-  if (/(^|\/)powder(\/|$)/.test(url)) { powderPages++; continue; }
-
+  // A POWDER PAGE GETS NEITHER - its chemistry is not the wrought bulletin's,
+  // and SB-265 is a strip/sheet/plate specification while the Special Metals
+  // sheets are wrought. That guard now sits above the lint instead of here, so
+  // that it covers both halves; see the comment there.
+  //
   // A GRADE HUB GETS IDENTIFIERS ONLY. Chemistry, mechanical properties and
   // size ranges belong on the form pages; repeating them on the hub is what
   // made eleven hubs near-duplicates of their own children and cost them their
@@ -917,6 +930,10 @@ if (CHECK) {
   if (findings.length && STRICT) bad = true;
   if (bad) process.exit(1);
   if (dataNotes.length) console.log(`  ${dataNotes.length} grade(s) with no specs.csv row - run with no flags to list them`);
+  // Counted since the powder rule was written and never printed until now. An
+  // exclusion nobody can see is indistinguishable from a case the script does
+  // not handle, which is the silence that hid 112 pages once already.
+  if (powderPages) console.log(`  ${powderPages} powder page(s) skipped - a different production route, neither written nor linted`);
   // Reported, never fatal. These need a human to decide what the row was for,
   // and failing the build on a backlog would block every unrelated pull request
   // - the reason --strict waited for the identifier backlog to reach zero.

@@ -259,6 +259,37 @@ special-stainless-steel,Sanicro 35,N08935,ASTM B625,mill,-,ASTM B163 / B677,-
 cobalt-alloy,Haynes 25 (L-605),R30605,AMS 5537,AMS 5759,-,-,-
 cobalt-alloy,Haynes 188,R30188,AMS 5608,AMS 5772,-,-,-
 cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5833,-,ASTM F1058 / AMS 5833,-,-
+# MP35N and CoCrMo added 2026-08-27. /cobalt-alloy-wire-supplier-exporter-mumbai-india/
+# sells three cobalt alloys as wire and only Elgiloy had a row, so the generated
+# table printed one grade for a page selling three - and the hand-written copy above
+# it had merged all three identities into "UNS R30035, ASTM F1058, DIN 2.4979".
+#
+# MP35N, from Carpenter Technology's own datasheet (they hold the mark). Its
+# "Forms manufactured" line reads Bar-Rounds, Billet, Strip, Wire, Wire-Rod, and its
+# applicable specifications are three AMS numbers plus ANSI/ASTM F562. So strip IS
+# made and no flat standard is published for it: that is what "mill" means here, not
+# "-".
+#
+# pipe_tube reads "-" and was briefly "mill", which was wrong in a way worth
+# recording. Third parties do draw MP35N tubing, so "no standard for a form that
+# exists" looked right - but Carpenter's forms line does not include tube, and this
+# file records what the sourced mill publishes. Worse, "mill" put a Pipe and tube
+# table onto /pipes/cobalt-alloy/ and /tube/cobalt-alloy/ which had none before,
+# whose single row would have advertised a form nobody has said we stock. That is
+# the supply commitment nobody made, in the same shape as a copied size range.
+# Fittings are listed by nobody and read "-" on the same terms.
+#
+# ASTM F562's own scope is "bar and wire"; the three AMS numbers are all bar and
+# differ only by condition (5758 solution treated, 5844 work strengthened, 5845
+# work strengthened and aged), so all three belong in the bar cell and none in wire.
+cobalt-alloy,MP35N,R30035,mill,ASTM F562 / AMS 5758 / AMS 5844 / AMS 5845,ASTM F562,-,-
+# CoCrMo, from Alleima's F1537 bar datasheet and CarTech BioDur CCM. Both mills list
+# the same forms - billet, bar and wire - and neither publishes flat, tube or fitting
+# products, so those three read "-". ASTM F1537's scope is "wrought bar, rod, and
+# wire", which covers the bar and wire cells together. ASTM F799 is deliberately NOT
+# in the bar cell: it covers forgings, and this file has no forging column, so
+# putting it beside F1537 would cite a forging standard for bar.
+cobalt-alloy,CoCrMo,R31537,-,ASTM F1537,ASTM F1537,-,-
 # NICHROME - VDM Metals Basic Information sheets HT 80 / HT 70 / HT 60, 03/2020.
 # Each sheet's "Designations and standards" block names ASTM B 344 and nothing
 # else in ASTM, so B267 was dropped from 80/20 on 2026-08-26: no mill bulletin

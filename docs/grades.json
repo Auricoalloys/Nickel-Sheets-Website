@@ -1195,6 +1195,21 @@
       "checked": "2026-08"
     },
     {
+      "family": "cobalt-alloy",
+      "grade": "CoCrMo",
+      "name": "CoCrMo",
+      "uns": "R31537",
+      "uns_all": [
+        "R31537"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.25,
+      "melting_c": null,
+      "source": "Alleima F1537 bar datasheet",
+      "checked": "2026-08"
+    },
+    {
       "family": "nichrome",
       "grade": "80/20",
       "name": "Nichrome 80/20",

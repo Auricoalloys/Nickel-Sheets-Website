@@ -566,6 +566,26 @@ cobalt-alloy,Haynes 188,R30188,,,8.98,1315-1410,Haynes International HAYNES 188 
 # Haynes bulletins that cleared the two rows above say nothing about it and it
 # stays pending rather than borrowing their citation.
 cobalt-alloy,Elgiloy,R30003,2.4711,-,8.30,1440-1495,pending,
+# MP35N and CoCrMo exist here because docs/specs.csv gained rows for them and a
+# specs.csv grade with no grades.csv row is a hard error at build-grades.mjs:231.
+#
+# MP35N stays pending on purpose. Carpenter Technology's datasheet is the right
+# source and its text layer reads cleanly for words but encodes digits through a
+# subsetted font, so every number in it decodes ambiguously - the same trap that
+# put phosphorus at 0.025 when B575 says 0.02. Density and melting range are left
+# empty rather than transcribed from a reading that cannot be trusted, and empty
+# means "not verified yet", so nothing publishes until someone reads the printed
+# sheet. Its identity is not in doubt: the datasheet's associated specification
+# is UNS R30035 and its applicable specifications are three AMS numbers plus
+# ANSI/ASTM F562.
+cobalt-alloy,MP35N,R30035,,,,,pending,
+# CoCrMo is verified: Alleima's F1537 bar datasheet publishes 8.25 g/cm3 and gives
+# no melting range at all, the same selective silence as the Sanicro sheets, so
+# melting_c is empty and the pages keep whatever they state. wnr and en_name are
+# empty and NOT "-" - Alleima's standards list for this grade names only ASTM
+# and ISO numbers, and nothing read so far shows whether that omission is
+# deliberate the way the Sanicro 35 panel's blank W.Nr row was.
+cobalt-alloy,CoCrMo,R31537,,,8.25,,Alleima F1537 bar datasheet,2026-08
 # --- NICHROME --- VDM Metals' three Basic Information sheets, read 2026-08-25.
 #
 # WHY VDM AND NOT A BULLETIN ALREADY IN THIS FILE: Nichrome is not a Special
