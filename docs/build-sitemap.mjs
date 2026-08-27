@@ -62,6 +62,7 @@ const BOILERPLATE = new Set([
   'e6dec1f0', // banner caption became the <h1>, body heading became the <h2>; same words, same place
   'ecd86713', // and back: the body heading is the <h1>, the caption the <h2>. Same words again
   'ac499d12', // last five captions became headings; four render identically, none changed a word
+  '0c9fc678', // repointed cross-links at the renamed 602 CA and 660 pages; label and href only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
