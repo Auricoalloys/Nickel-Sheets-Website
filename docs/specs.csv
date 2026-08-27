@@ -258,7 +258,13 @@ special-stainless-steel,Alloy 926,N08926,ASTM B625,ASTM B649,ASTM B649,-,-
 special-stainless-steel,Sanicro 35,N08935,ASTM B625,mill,-,ASTM B163 / B677,-
 cobalt-alloy,Haynes 25 (L-605),R30605,AMS 5537,AMS 5759,-,-,-
 cobalt-alloy,Haynes 188,R30188,AMS 5608,AMS 5772,-,-,-
-cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5833,-,ASTM F1058 / AMS 5833,-,-
+# Elgiloy's flat cell read AMS 5833 until 2026-08-27. SAE titles that one "Cobalt
+# Alloy Corrosion and Heat-Resistant ROUND WIRE 20Cr-15Ni-40Co-7.0Mo-16Fe", so it
+# was the wire spec sitting in the flat column - the same wrong-form error this file
+# exists to stop, and it had been printing on /coil/cobalt-alloy/. Elgiloy Specialty
+# Metals' own Strip Products datasheet gives "Strip and Foil: AMS 5876, ASTM F1058,
+# NACE MR 0175 & MR 0103, ISO 5832-7". AMS 5833 stays in wire, where it belongs.
+cobalt-alloy,Elgiloy,R30003,ASTM F1058 / AMS 5876,-,ASTM F1058 / AMS 5833,-,-
 # MP35N and CoCrMo added 2026-08-27. /cobalt-alloy-wire-supplier-exporter-mumbai-india/
 # sells three cobalt alloys as wire and only Elgiloy had a row, so the generated
 # table printed one grade for a page selling three - and the hand-written copy above

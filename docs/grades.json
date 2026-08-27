@@ -1196,6 +1196,36 @@
     },
     {
       "family": "cobalt-alloy",
+      "grade": "Elgiloy",
+      "name": "Elgiloy",
+      "uns": "R30003",
+      "uns_all": [
+        "R30003"
+      ],
+      "wnr": "2.4711",
+      "en_name": null,
+      "density_g_cm3": 8.3,
+      "melting_c": null,
+      "source": "Elgiloy Specialty Metals Strip Products datasheet",
+      "checked": "2026-08"
+    },
+    {
+      "family": "cobalt-alloy",
+      "grade": "MP35N",
+      "name": "MP35N",
+      "uns": "R30035",
+      "uns_all": [
+        "R30035"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.43,
+      "melting_c": "1316-1443",
+      "source": "Carpenter Technology MP35N datasheet",
+      "checked": "2026-08"
+    },
+    {
+      "family": "cobalt-alloy",
       "grade": "CoCrMo",
       "name": "CoCrMo",
       "uns": "R31537",

@@ -1255,6 +1255,43 @@ titanium,Grade 16,Ti,,bal,determined by difference
 # column carried Mo 1 max and "51" for cobalt; the BOHLER table prints neither -
 # it prints Co as REM and does not limit Mo at all. Carrying either across would
 # be two documents merged into one table with nothing on the page saying so.
+# Elgiloy - Elgiloy Specialty Metals Strip Products datasheet, read 2026-08-27.
+# Its heading says "Nominal Composition" and the table underneath is nevertheless
+# a limits table: it carries explicit "min" and "max" ROWS, with a figure in one or
+# both for every element. The structure decides, not the caption - the opposite
+# reading would throw away real acceptance limits because of a label. Contrast the
+# Haynes and Carpenter MP35N wire tables, which give a single figure per element
+# and genuinely are nominal. Rows in the order the sheet prints them; iron reads
+# "Remainder", which is bal.
+cobalt-alloy,Elgiloy,C,,0.15
+cobalt-alloy,Elgiloy,Mn,1.5,2.5
+cobalt-alloy,Elgiloy,Si,,1.20
+cobalt-alloy,Elgiloy,P,,0.015
+cobalt-alloy,Elgiloy,S,,0.015
+cobalt-alloy,Elgiloy,Cr,19.0,21.0
+cobalt-alloy,Elgiloy,Ni,14.0,16.0
+cobalt-alloy,Elgiloy,Co,39.0,41.0
+cobalt-alloy,Elgiloy,Mo,6.0,8.0
+cobalt-alloy,Elgiloy,Be,,0.001
+cobalt-alloy,Elgiloy,Fe,,bal
+# MP35N - Carpenter Technology MP35N datasheet, read from the printed sheet
+# 2026-08-27. Its caption reads "Single figures are nominal except where noted"
+# and there is not a single bare figure in the table: every cell is a range, a
+# "Max", or Balance. So the whole table is limits and it can source this file,
+# unlike the Haynes and Elgiloy Specialty Metals tables which are nominal.
+# Rows are in the order the sheet prints them, reading across.
+cobalt-alloy,MP35N,Co,,bal
+cobalt-alloy,MP35N,Ni,33.00,37.00
+cobalt-alloy,MP35N,Cr,19.00,21.00
+cobalt-alloy,MP35N,Mo,9.00,10.50
+cobalt-alloy,MP35N,Fe,,1.00
+cobalt-alloy,MP35N,Ti,,1.00
+cobalt-alloy,MP35N,Mn,,0.15
+cobalt-alloy,MP35N,Si,,0.15
+cobalt-alloy,MP35N,C,,0.025
+cobalt-alloy,MP35N,B,,0.015
+cobalt-alloy,MP35N,P,,0.015
+cobalt-alloy,MP35N,S,,0.010
 haynes,25,C,0.05,0.15
 haynes,25,Si,,0.40
 haynes,25,Mn,1.00,2.00

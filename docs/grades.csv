@@ -562,23 +562,42 @@ special-stainless-steel,Sanicro 35,N08935,-,-,8.10,,Alleima Sanicro 35 datasheet
 # duplicate-UNS guard requires wnr, en_name and density to match the twin exactly.
 cobalt-alloy,Haynes 25 (L-605),R30605,2.4964,CoCr20W15Ni,9.07,1330-1410,Haynes International HAYNES 25 alloy page and voestalpine BOHLER L605 datasheet,2026-08
 cobalt-alloy,Haynes 188,R30188,,,8.98,1315-1410,Haynes International HAYNES 188 alloy page,2026-08
-# Elgiloy is NOT a Haynes alloy - Elgiloy Specialty Metals holds it - so the
-# Haynes bulletins that cleared the two rows above say nothing about it and it
-# stays pending rather than borrowing their citation.
-cobalt-alloy,Elgiloy,R30003,2.4711,-,8.30,1440-1495,pending,
+# Elgiloy is NOT a Haynes alloy - Elgiloy Specialty Metals holds it - so the Haynes
+# bulletins that cleared the two rows above say nothing about it. Cleared 2026-08-27
+# from that mill's own Strip Products datasheet, which heads the grade
+# "UNS R30003 / W.Nr 2.4711" and gives density as 0.30 lb/in3 at 70F and 8.30 g/cm3
+# at 20C. Both seeded values were right; they simply had nothing behind them.
+#
+# melting_c was 1440-1495 and is now EMPTY. That sheet publishes density, moduli,
+# expansion, resistivity and thermal conductivity and stops - no melting range at
+# all, the same selective silence as the Sanicro and Alleima F1537 sheets. The
+# seeded range had no source, and empty leaves whatever a page states alone rather
+# than replacing it with an unsourced figure.
+#
+# en_name stays "-" and is a statement, not a gap: the sheet prints a W.Nr for this
+# grade and no EN designation beside it, so the omission is the mill's.
+cobalt-alloy,Elgiloy,R30003,2.4711,-,8.30,,Elgiloy Specialty Metals Strip Products datasheet,2026-08
 # MP35N and CoCrMo exist here because docs/specs.csv gained rows for them and a
 # specs.csv grade with no grades.csv row is a hard error at build-grades.mjs:231.
 #
-# MP35N stays pending on purpose. Carpenter Technology's datasheet is the right
-# source and its text layer reads cleanly for words but encodes digits through a
-# subsetted font, so every number in it decodes ambiguously - the same trap that
-# put phosphorus at 0.025 when B575 says 0.02. Density and melting range are left
-# empty rather than transcribed from a reading that cannot be trusted, and empty
-# means "not verified yet", so nothing publishes until someone reads the printed
-# sheet. Its identity is not in doubt: the datasheet's associated specification
-# is UNS R30035 and its applicable specifications are three AMS numbers plus
-# ANSI/ASTM F562.
-cobalt-alloy,MP35N,R30035,,,,,pending,
+# MP35N, verified 2026-08-27 against the printed Carpenter Technology datasheet.
+# It was seeded pending for one day because that PDF's text layer reads cleanly
+# for words but subsets its digit glyphs, so the same escape decodes to different
+# digits in different stream objects and no number in it could be trusted. Reading
+# the rendered sheet is what cleared it - do that, do not reconstruct digits.
+#
+# DENSITY: THE SHEET CONTRADICTS ITSELF and 8.43 is a choice, not a transcription.
+# Its Physical properties table gives SPECIFIC GRAVITY 8.43 in both the English
+# and Metric columns, then DENSITY as 0.308 lb/in3 and 8525 kg/m3 - which is
+# 8.53 g/cm3, about 1% higher. The two rows cannot both be right: a specific
+# gravity of 8.43 is 8430 kg/m3. 8.43 is recorded because it is the figure the
+# sheet states twice and the one the trade quotes, and 0.308 lb/in3 looks like a
+# mis-rounding of the 0.3046 that 8.43 converts to. Anyone quoting a weight where
+# 1% matters should confirm it with the mill rather than trust this cell.
+#
+# wnr and en_name are empty rather than "-": the sheet has no DIN or EN field at
+# all, so its silence is not the deliberate blank a Haynes DIN row would be.
+cobalt-alloy,MP35N,R30035,,,8.43,1316-1443,Carpenter Technology MP35N datasheet,2026-08
 # CoCrMo is verified: Alleima's F1537 bar datasheet publishes 8.25 g/cm3 and gives
 # no melting range at all, the same selective silence as the Sanicro sheets, so
 # melting_c is empty and the pages keep whatever they state. wnr and en_name are
