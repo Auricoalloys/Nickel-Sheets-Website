@@ -2736,7 +2736,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/kovar/foil/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
@@ -2746,7 +2746,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/kovar/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -2756,7 +2756,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/kovar/round-bar/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Haynes-2.webp</image:loc>
     </image:image>
@@ -2766,7 +2766,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/kovar/sheets/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
     </image:image>
