@@ -1403,3 +1403,72 @@ haynes,282,Mn,,0.3
 haynes,282,Si,,0.15
 haynes,282,C,,,0.06 nominal
 haynes,282,B,,,0.005 nominal
+# Duplex stainless steel — composition limits from SIJ Acroni SINOXX 4462 datasheet.
+# Section heading is "Typical values [wt. %]" but the table carries explicit Min./Max.
+# columns; values treated as specification limits. Cr/Ni/Mo/N ranges are Acroni's
+# production specifications, narrower than ASTM A240 S32205 (Cr 22.0-23.0, Ni 4.5-6.5).
+# S ≤ 0.0007 is Acroni's internal limit; ASTM S32205 has S ≤ 0.020.
+duplex-steel,2205,C,,0.030
+duplex-steel,2205,Mn,,1.80
+duplex-steel,2205,P,,0.030
+duplex-steel,2205,S,,0.0007
+duplex-steel,2205,Si,,0.50
+duplex-steel,2205,Cr,22.20,22.50
+duplex-steel,2205,Ni,5.1,5.3
+duplex-steel,2205,Mo,3.10,3.30
+duplex-steel,2205,N,0.16,0.18
+duplex-steel,2205,Al,,0.015
+
+# Duplex stainless steel 2507 (S32750) — Aperam DX2507 Technical Data Sheet.
+# Aperam publishes only typical (nominal) values with no Min./Max. columns.
+# Per CLAUDE.md: a nominal figure is not a limit and never goes in min or max.
+# All figures below are nominal; use note column only.
+duplex-steel,32750,C,,,0.025 nominal
+duplex-steel,32750,Cr,,,25.8 nominal
+duplex-steel,32750,Ni,,,7.0 nominal
+duplex-steel,32750,Mo,,,3.8 nominal
+duplex-steel,32750,N,,,0.27 nominal
+duplex-steel,32750,Mn,,,0.8 nominal
+
+# Zeron 100 / S32760 — ASTM A240/A240M-25a Table 1 (Duplex section, footnote L).
+# Footnote L: Cr + 3.3(Mo + ½W) + 16 N ≥ 41 min (not expressible as a cell limit).
+duplex-steel,32760,C,,0.030
+duplex-steel,32760,Mn,,1.00
+duplex-steel,32760,P,,0.030
+duplex-steel,32760,S,,0.010
+duplex-steel,32760,Si,,1.00
+duplex-steel,32760,Cr,24.0,26.0
+duplex-steel,32760,Ni,6.0,8.0
+duplex-steel,32760,Mo,3.0,4.0
+duplex-steel,32760,N,0.20,0.30
+duplex-steel,32760,Cu,0.50,1.00
+duplex-steel,32760,W,0.50,1.00
+
+# 904L / N08904 — ASTM A240/A240M-25a Table 1 (Austenitic section, Type 904L, footnote G)
+# for C, Mn, P, S, Si, Cr, Ni, Mo, Cu limits. Aperam 904L TDS for N: Aperam prints
+# N ≤ 0.01 (with the ≤ symbol) under "Typical values", which is treated as a
+# specification limit because it is bounded rather than bare. ASTM A240 allows
+# N ≤ 0.10 but Aperam's production limit is much tighter.
+special-stainless-steel,904L,C,,0.020
+special-stainless-steel,904L,Mn,,2.00
+special-stainless-steel,904L,P,,0.045
+special-stainless-steel,904L,S,,0.035
+special-stainless-steel,904L,Si,,1.00
+special-stainless-steel,904L,Cr,19.0,23.0
+special-stainless-steel,904L,Ni,23.0,28.0
+special-stainless-steel,904L,Mo,4.00,5.00
+special-stainless-steel,904L,Cu,1.00,2.00
+special-stainless-steel,904L,N,,0.01
+
+# Alloy 20 / N08020 — ASTM A240/A240M-25a Table 1 (Austenitic section).
+# Nb min is formula-based: 8×C min (footnote E: Cb and Nb are the same element).
+special-stainless-steel,Alloy 20,C,,0.07
+special-stainless-steel,Alloy 20,Mn,,2.00
+special-stainless-steel,Alloy 20,P,,0.045
+special-stainless-steel,Alloy 20,S,,0.035
+special-stainless-steel,Alloy 20,Si,,1.00
+special-stainless-steel,Alloy 20,Cr,19.0,21.0
+special-stainless-steel,Alloy 20,Ni,32.0,38.0
+special-stainless-steel,Alloy 20,Mo,2.00,3.00
+special-stainless-steel,Alloy 20,Cu,3.00,4.00
+special-stainless-steel,Alloy 20,Nb,,1.00,8×C min

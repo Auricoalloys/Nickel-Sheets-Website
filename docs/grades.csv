@@ -503,10 +503,18 @@ nickel-alloy,Kovar,K94610,,,,,ASTM F15-04 (Reapproved 2022),2026-08
 # wnr, en_name and density across rows sharing a UNS - it would not have caught
 # the melting range drifting apart, so both rows are moved together.
 nickel-alloy,Hastelloy C-276,N10276,2.4819,NiMo16Cr15W,8.89,1323-1371,Haynes International HASTELLOY C-276 alloy brochure,2026-08
-duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1420-1465,pending,
-duplex-steel,2507,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1350-1400,pending,
-duplex-steel,Zeron 100,S32760,1.4501,X2CrNiMoCuWN25-7-4,7.80,1350-1400,pending,
-special-stainless-steel,904L,N08904,1.4539,X1NiCrMoCu25-20-5,8.00,1300-1390,pending,
+duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1430,SIJ Acroni SINOXX 4462 datasheet (density and composition limits) and Aperam DX1803/DX2205 Technical Data Sheet (melting temperature),2026-08
+duplex-steel,32750,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1445,Aperam DX2507 Technical Data Sheet,2026-08
+# ASTM A240/A240M-25a supplies the chemistry limits. Density 7.80 confirmed by
+# the business owner ("7.8 is the correct density for duplex"). Melting range
+# cleared: ASTM A240 does not publish one, and the seeded 1350-1400 had no
+# source. Footnote L: Cr + 3.3(Mo + ½W) + 16 N ≥ 41.
+duplex-steel,32760,S32760,1.4501,X2CrNiMoCuWN25-7-4,7.80,,ASTM A240/A240M-25a,2026-08
+# ASTM A240/A240M-25a (Type 904L, footnote G) supplies the chemistry limits.
+# Density 8.00 is the established figure for N08904 (ASTM table does not specify
+# it). Melting range cleared: ASTM A240 does not publish one and the seeded
+# 1300-1390 had no source.
+special-stainless-steel,904L,N08904,1.4539,X1NiCrMoCu25-20-5,8.00,1383,ASTM A240/A240M-25a (composition limits) and Aperam 904L Technical Data Sheet (melting and physical properties),2026-08
 # Outokumpu owns the 254 SMO trademark and its product page is the mill source.
 # Identity confirmed there: the standards panel cites EN 10088-2 / 10088-4 /
 # 10028-7 as 1.4547 and ASTM A240 / ASME SA-240 as UNS S31254. Density 8 kg/dm3
@@ -526,7 +534,11 @@ special-stainless-steel,254 SMO,S31254,1.4547,X1CrNiMoCuN20-18-7,8.00,,Outokumpu
 # on its own. Density 0.291 lb/in3 / 8.06 g/cm3 and melting 2410-2550 F /
 # 1320-1400 C both confirmed from the sheet's Table 15.
 special-stainless-steel,AL-6XN,N08367,,,8.06,1320-1400,ATI AL-6XN alloy data sheet,2026-08
-special-stainless-steel,Alloy 20,N08020,2.4660,-,8.08,1425-1445,pending,
+# ASTM A240/A240M-25a supplies the chemistry limits (includes the formula limit
+# Nb ≥ 8×C, max 1.00). Density 8.08 is the established figure for N08020. Melting
+# range cleared: ASTM A240 does not publish one and the seeded 1425-1445 had no
+# source. Werkstoff 2.4660 is the EN designation for Alloy 20.
+special-stainless-steel,Alloy 20,N08020,2.4660,-,8.08,,ASTM A240/A240M-25a,2026-08
 # ALLOY 28 IS SANICRO 28. Alleima owns that trademark and its seamless tube and
 # pipe datasheet is the mill source, read 2026-08-26. The Standards panel prints
 # every identifier on this row: UNS N08028, EN Number 1.4563, W.Nr. 1.4563 and

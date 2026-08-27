@@ -71,8 +71,9 @@ if ruby -e 'require "fileutils"; FileUtils.mkdir_p("_site/probe:1")' 2>/dev/null
 fi
 rm -rf "_site/probe:1"
 
-COLONS=$(grep -rhE '^[[:space:]]*-[[:space:]]*/[^[:space:]]*:' --include='*.html' . \
-  2>/dev/null | grep -v '^\./_site' | wc -l | tr -d ' ')
+COLONS=$(grep -rhE '^[[:space:]]*-[[:space:]]*/[^[:space:]]*:' --include='*.html' \
+  --exclude-dir=.claude --exclude-dir=.git --exclude-dir=_site \
+  . 2>/dev/null | wc -l | tr -d ' ')
 
 if [ "$COLONS" = "0" ]; then
   exec bundle exec jekyll build "$@"          # nothing to work around
@@ -81,7 +82,8 @@ fi
 SRC=$(mktemp -d)
 trap 'rm -rf "$SRC"' EXIT INT TERM
 tar -cf - --exclude=./.git --exclude=./_site --exclude=./vendor \
-          --exclude=./.jekyll-cache --exclude=./node_modules . | tar -xf - -C "$SRC"
+          --exclude=./.jekyll-cache --exclude=./node_modules --exclude=./.claude \
+          . | tar -xf - -C "$SRC"
 
 cat > "$SRC/.strip.js" <<'STRIP'
 // Drops redirect_from entries whose URL contains a colon, and the now-empty

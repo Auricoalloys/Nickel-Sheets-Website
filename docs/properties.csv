@@ -461,3 +461,45 @@ nichrome,60/15,Maximum working temperature,600,°C,as resistance material,sheet 
 # grades.json feeds a weight calculator one bare number; the aged one belongs
 # here, where `condition` can say which state it applies to.
 haynes,282,Density,8.29,g/cm3,Age-hardened,
+# --- DUPLEX STAINLESS STEEL --- Aperam DX1803/DX2205 Technical Data Sheet.
+# The thermal and conformance rows below apply to the DX2205 grade (S32205).
+# DX1803 (S31803) shares these physical constants per the same datasheet.
+# Density conflict: Aperam prints 7.9 kg/dm3 while SIJ Acroni prints 7.8 g/cm3;
+# grades.csv holds 7.80 per the user's confirmation and the Acroni source.
+duplex-steel,2205,Specific heat,460,J/kg·K,20 °C,
+duplex-steel,2205,Thermal conductivity,13.5,W/m·K,20 °C,
+duplex-steel,2205,Coefficient of expansion,14.0,µm/m·K,20–200 °C,
+duplex-steel,2205,Coefficient of expansion,14.5,µm/m·K,20–400 °C,Thermal expansion 25% lower than 316L – comparable with carbon steel
+duplex-steel,2205,Electrical resistivity,0.8,Ω·mm²/m,20 °C,
+duplex-steel,2205,Young's modulus,200,GPa,20 °C,
+duplex-steel,2205,Magnetic,yes,,,
+duplex-steel,2205,Oil and gas conformance,NACE MR0175 / ISO 15156-3 · NACE MR0103 / ISO 17945 · Norsok M-630 MDS D55,,,Aperam DX1803/DX2205 Technical Data Sheet
+
+# --- DUPLEX STAINLESS STEEL 2507 --- Aperam DX2507 Technical Data Sheet.
+# Physical properties for S32750 (super duplex).
+# NACE conformance confirmed by Aperam DX2507 TDS for both MR0175 and MR0103.
+duplex-steel,32750,Specific heat,460,J/kg·K,20 °C,
+duplex-steel,32750,Thermal conductivity,13.5,W/m·K,20 °C,
+duplex-steel,32750,Coefficient of expansion,14.0,µm/m·K,20–200 °C,
+duplex-steel,32750,Coefficient of expansion,14.5,µm/m·K,20–400 °C,
+duplex-steel,32750,Electrical resistivity,0.8,Ω·mm²/m,20 °C,
+duplex-steel,32750,Young's modulus,200,GPa,20 °C,
+duplex-steel,32750,Magnetic,yes,,,
+duplex-steel,32750,Oil and gas conformance,NACE MR0175 / ISO 15156-3 · NACE MR0103 / ISO 17945 · Norsok M-630 MDS D55,,,Aperam DX2507 Technical Data Sheet
+
+# --- SPECIAL STAINLESS STEEL 904L --- Aperam 904L Technical Data Sheet.
+# Density 8.0 kg/dm3 (= 8.00 g/cm3) and melting 1383 °C are from the same table.
+# Electrical resistivity: Aperam prints 9.35×10⁻⁷ Ω·m, converted to 0.935 Ω·mm²/m
+# (the unit used throughout this file; 1 µΩ·m = 1 Ω·mm²/m).
+# Thermal expansion coefficients are mean values from 20°C to each upper limit.
+special-stainless-steel,904L,Specific heat,460,J/kg·K,20°C,
+special-stainless-steel,904L,Thermal conductivity,11.9,W/m·K,20°C,
+special-stainless-steel,904L,Coefficient of expansion,18.4,µm/m·K,20–200°C,
+special-stainless-steel,904L,Coefficient of expansion,18.0,µm/m·K,20–400°C,
+special-stainless-steel,904L,Coefficient of expansion,18.0,µm/m·K,20–600°C,
+special-stainless-steel,904L,Coefficient of expansion,18.2,µm/m·K,20–800°C,
+special-stainless-steel,904L,Coefficient of expansion,18.5,µm/m·K,20–1000°C,
+special-stainless-steel,904L,Electrical resistivity,0.935,Ω·mm²/m,20°C,
+special-stainless-steel,904L,Magnetic permeability,< 1.05,,at 0.8 kA/m DC or AC at 20°C,
+special-stainless-steel,904L,Young's modulus,200,GPa,20°C,
+special-stainless-steel,904L,Oil and gas conformance,NACE MR0175 / ISO 15156-3 · NACE MR0103 / ISO 17945,,,Aperam 904L Technical Data Sheet

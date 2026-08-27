@@ -1090,6 +1090,67 @@
       "checked": "2026-08"
     },
     {
+      "family": "duplex-steel",
+      "grade": "2205",
+      "name": "Duplex 2205",
+      "uns": "S32205",
+      "uns_all": [
+        "S32205",
+        "S31803"
+      ],
+      "wnr": "1.4462",
+      "en_name": "X2CrNiMoN22-5-3",
+      "density_g_cm3": 7.8,
+      "melting_c": "1430",
+      "source": "SIJ Acroni SINOXX 4462 datasheet (density and composition limits) and Aperam DX1803/DX2205 Technical Data Sheet (melting temperature)",
+      "checked": "2026-08"
+    },
+    {
+      "family": "duplex-steel",
+      "grade": "32750",
+      "name": "Duplex 32750",
+      "uns": "S32750",
+      "uns_all": [
+        "S32750"
+      ],
+      "wnr": "1.4410",
+      "en_name": "X2CrNiMoN25-7-4",
+      "density_g_cm3": 7.8,
+      "melting_c": "1445",
+      "source": "Aperam DX2507 Technical Data Sheet",
+      "checked": "2026-08"
+    },
+    {
+      "family": "duplex-steel",
+      "grade": "32760",
+      "name": "Duplex 32760",
+      "uns": "S32760",
+      "uns_all": [
+        "S32760"
+      ],
+      "wnr": "1.4501",
+      "en_name": "X2CrNiMoCuWN25-7-4",
+      "density_g_cm3": 7.8,
+      "melting_c": null,
+      "source": "ASTM A240/A240M-25a",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "904L",
+      "name": "904L",
+      "uns": "N08904",
+      "uns_all": [
+        "N08904"
+      ],
+      "wnr": "1.4539",
+      "en_name": "X1NiCrMoCu25-20-5",
+      "density_g_cm3": 8,
+      "melting_c": "1383",
+      "source": "ASTM A240/A240M-25a (composition limits) and Aperam 904L Technical Data Sheet (melting and physical properties)",
+      "checked": "2026-08"
+    },
+    {
       "family": "special-stainless-steel",
       "grade": "254 SMO",
       "name": "254 SMO",
@@ -1117,6 +1178,21 @@
       "density_g_cm3": 8.06,
       "melting_c": "1320-1400",
       "source": "ATI AL-6XN alloy data sheet",
+      "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "Alloy 20",
+      "name": "Alloy 20",
+      "uns": "N08020",
+      "uns_all": [
+        "N08020"
+      ],
+      "wnr": "2.4660",
+      "en_name": null,
+      "density_g_cm3": 8.08,
+      "melting_c": null,
+      "source": "ASTM A240/A240M-25a",
       "checked": "2026-08"
     },
     {
