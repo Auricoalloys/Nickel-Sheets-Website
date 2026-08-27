@@ -310,6 +310,23 @@ nickel-alloy,Nickel 200,Curie temperature,360,°C,,
 nickel-alloy,Nickel 201,Specific heat,456,J/kg·°C,,
 nickel-alloy,Nickel 201,Curie temperature,360,°C,,
 
+# --- Kovar --- ASTM F15-04 (Reapproved 2022) Table 4
+# THESE ARE ACCEPTANCE LIMITS AND NOT TYPICAL VALUES, which is the opposite of
+# almost every other row in this file and is why the note says so on both. The
+# standard's Section 11.1 reads "The average linear coefficients of thermal
+# expansion shall be within the limits specified in Table 4" - shall, not
+# typically. Table 1's footnote A points the same way from the other end: the
+# iron, nickel and cobalt contents are nominal and "shall be adjusted by the
+# manufacturer so that the alloy meets the requirements for coefficient of
+# thermal expansion given in Table 4". The expansion is what the material is
+# bought and accepted on; the composition is whatever delivers it.
+#
+# F15 also carries typical expansion data in Appendix X1. That is a different
+# claim from Table 4 and is deliberately not recorded here - a typical figure
+# published beside a limit reads as though a buyer could hold the mill to it.
+nickel-alloy,Kovar,Coefficient of expansion,4.60-5.20,µm/m·°C,30-400 °C,Acceptance limit per ASTM F15 Section 11.1 - not a typical value
+nickel-alloy,Kovar,Coefficient of expansion,5.10-5.50,µm/m·°C,30-450 °C,Acceptance limit per ASTM F15 Section 11.1 - not a typical value
+
 # --- Alloy 602 CA --- VDM Alloy 602 CA data sheet March 2022
 # The physical properties table gives density and melting range - both in
 # grades.csv - and one more constant. VDM prints it as "1.01 (Maximum)" rather
