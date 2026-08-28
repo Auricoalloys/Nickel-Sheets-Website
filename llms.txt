@@ -33,7 +33,7 @@ mechanical properties and the stocked size envelope for that grade and form.
 - [Invar](https://www.nickelsheets.com/invar/) and [Kovar](https://www.nickelsheets.com/kovar/): controlled-expansion alloys
 - [Mu-Metal](https://www.nickelsheets.com/mu-metal/): magnetic shielding alloy
 - [Nitinol](https://www.nickelsheets.com/nitinol/): shape-memory nickel-titanium
-- [Waspaloy](https://www.nickelsheets.com/waspalloy/), [Stellite](https://www.nickelsheets.com/stellite/), [Elgiloy](https://www.nickelsheets.com/elgiloy/)
+- [Waspaloy](https://www.nickelsheets.com/waspalloy/), [Stellite](https://www.nickelsheets.com/stellite/), [Elgiloy](https://www.nickelsheets.com/cobalt-alloys/elgiloy/)
 
 ## Product forms
 

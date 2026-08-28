@@ -127,9 +127,9 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /pure-nickel-strip/18650-H-type/,3500,6000,41,71,kg
 /pure-nickel-strip/18650-honeycomb/,4500,6000,53,71,kg
 /pure-nickel-strip/18650-zigzag/,4500,6000,53,71,kg
-/SMO-254/plates/,1000,1750,12,21,kg
-/SMO-254/round-bar/,1500,2500,18,29,kg
-/SMO-254/sheets/,1000,1750,12,21,kg
+/stainless/SMO-254/plates/,1000,1750,12,21,kg
+/stainless/SMO-254/round-bar/,1500,2500,18,29,kg
+/stainless/SMO-254/sheets/,1000,1750,12,21,kg
 /stainless/17-4-ph/powder/,2500,4000,29,47,kg
 /stainless/316l/powder/,1200,2500,14,29,kg
 /stainless/904L/,1000,1950,12,23,kg
@@ -176,10 +176,10 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /duplex-steel/32760/round-bar/,800,1750,9,21,kg
 /duplex-steel/32760/sheets/,1000,1750,12,21,kg
 /duplex-steel/duplex/,450,2000,5,24,kg
-/elgiloy/foil/,25000,45000,294,529,kg
-/elgiloy/plates/,20000,40000,235,471,kg
-/elgiloy/round-bar/,20000,40000,235,471,kg
-/elgiloy/sheets/,20000,40000,235,471,kg
+/cobalt-alloys/elgiloy/foil/,25000,45000,294,529,kg
+/cobalt-alloys/elgiloy/plates/,20000,40000,235,471,kg
+/cobalt-alloys/elgiloy/round-bar/,20000,40000,235,471,kg
+/cobalt-alloys/elgiloy/sheets/,20000,40000,235,471,kg
 /Hastelloy/foil/,4000,15000,47,176,kg
 /hastelloy/plates/,1800,6500,21,76,kg
 /hastelloy/round-bar/,1800,7500,21,88,kg

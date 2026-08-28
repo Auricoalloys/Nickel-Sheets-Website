@@ -21,7 +21,7 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-08-26 by docs/build-price-worklist.mjs
+# generated: 2026-08-28 by docs/build-price-worklist.mjs
 # pending: 259 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
@@ -384,7 +384,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /special-stainless-steel-tube-supplier-exporter-mumbai-india/,,,,,kg
 /special-stainless-steel-wire-supplier-exporter-mumbai-india/,,,,,kg
 
-# /stainless/sanicro-35/  (3)  |  stainless priced on 10 page(s) at INR 1,000-6,500 per kg
+# /stainless/sanicro-35/  (3)  |  stainless priced on 13 page(s) at INR 1,000-6,500 per kg
 /stainless/sanicro-35/plates/,,,,,kg
 /stainless/sanicro-35/round-bar/,,,,,kg
 /stainless/sanicro-35/tube/,,,,,kg
