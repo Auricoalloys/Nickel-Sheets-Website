@@ -58,6 +58,13 @@ const FORM_ORDER = ['flat', 'bar', 'wire', 'pipe_tube', 'fitting'];
 // swallowed by "nickel", and "haynes-alloy" resolves before "haynes".
 const FAMILY_KEYS = [
   ['special-stainless-steel', 'special-stainless-steel'],
+  // The grade hubs live at /stainless/<grade>/, and this key was missing while
+  // docs/build-grades.mjs had it - so every one of the nine stainless hubs
+  // resolved to a grade there, got its identity table, and was silently skipped
+  // here. None of them has ever carried a generated specification table. Listed
+  // after the long key above so a /special-stainless-steel-.../ form hub still
+  // matches that one first, though both resolve to the same family.
+  ['stainless', 'special-stainless-steel'],
   ['nickel-alloy', 'nickel-alloy'],
   ['duplex-steel', 'duplex-steel'],
   ['cobalt-alloy', 'cobalt-alloy'],
@@ -162,6 +169,14 @@ const SINGLE_GRADE = {
   kovar: ['nickel-alloy', 'Kovar'],
 };
 
+// GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.
+// /stainless/SMO-254/ normalises to "smo254" and the CSV grade "254 SMO" to
+// "254smo", so the hub matched no row and got no spec table. Kept in step with
+// the identical map in docs/build-grades.mjs, which carries the full reasoning.
+const GRADE_ALIAS = {
+  'special-stainless-steel': { smo254: '254smo' },
+};
+
 // ---- apply ------------------------------------------------------------------
 let wrote = 0, drift = [], noAnchor = [], noData = [];
 
@@ -195,7 +210,8 @@ for (const fp of walk(ROOT)) {
       if (!m) continue;
       const family = familyOf('/' + m[1] + '/');
       if (!family) continue;
-      const g = m[2].toLowerCase().replace(/[^a-z0-9]/g, '');
+      const seg = m[2].toLowerCase().replace(/[^a-z0-9]/g, '');
+      const g = (GRADE_ALIAS[family] || {})[seg] || seg;
       const row = rows.find(r => r.family === family &&
         r.grade.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/^(inconel|incoloy|monel|nickel|hastelloy)/, '') === g);
       if (row) table = gradeTable(row);
