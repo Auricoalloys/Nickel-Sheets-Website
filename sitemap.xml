@@ -108,7 +108,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/AL-6XN/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -149,7 +149,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-20/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -196,14 +196,14 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-31-round-bar/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-31/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -233,7 +233,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-59/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -270,7 +270,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-926/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -331,7 +331,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/AM-350/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -400,7 +400,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/cobalt-alloy-wire-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Nickel-Alloy-Wire-supplier-banner.webp</image:loc>
     </image:image>
@@ -450,6 +450,47 @@ sitemap: false
     <lastmod>2026-08-22</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/cocrmo-cobalt-alloy-powder.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/elgiloy/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-sheets.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/elgiloy/foil/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/elgiloy/plates/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/elgiloy/round-bar/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/elgiloy/sheets/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -536,7 +577,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/duplex-steel-tube-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Hollow-Bars-Banner.webp</image:loc>
     </image:image>
@@ -597,7 +638,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/duplex-steel/2205/plates/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -624,7 +665,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/duplex-steel/32750/plates/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -658,7 +699,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/duplex-steel/32760/plates/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -675,7 +716,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/duplex-steel/32760/sheets/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
     </image:image>
@@ -688,47 +729,6 @@ sitemap: false
     <lastmod>2026-08-21</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Nickel-Alloy-Wire-supplier-banner.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/elgiloy/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/cobalt-alloy-sheets.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/elgiloy/foil/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/elgiloy/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/elgiloy/round-bar/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/elgiloy/sheets/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -828,7 +828,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/hastelloy/B2/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -859,7 +859,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/hastelloy/B3/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1063,7 +1063,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/hastelloy/N/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1186,7 +1186,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes-alloy-pipes-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Hollow-Bars-Banner.webp</image:loc>
     </image:image>
@@ -1264,7 +1264,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/214/sheets/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1381,7 +1381,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/282/sheets/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1504,7 +1504,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy-pipes-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Hollow-Bars-Banner.webp</image:loc>
     </image:image>
@@ -1726,7 +1726,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/890/sheets/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1760,7 +1760,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/903/sheets/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1791,7 +1791,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/909/sheets/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -2012,7 +2012,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/600/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -2144,7 +2144,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/617/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -2227,7 +2227,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/625/plates/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -2373,7 +2373,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/690/plates/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -3048,7 +3048,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nichrome-pipes-supplier-exporter-mumbai-india/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Hollow-Bars-Banner.webp</image:loc>
     </image:image>
@@ -3086,7 +3086,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nichrome/pipes/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Hollow-Bars-Banner.webp</image:loc>
     </image:image>
@@ -4324,7 +4324,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nimonic/115/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -4443,7 +4443,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nimonic/80A/sheets/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -4477,7 +4477,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nimonic/81/sheets/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -4511,7 +4511,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nimonic/86/sheets/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -4542,7 +4542,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nimonic/90/sheets/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -4576,7 +4576,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nimonic/901/sheets/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -5573,33 +5573,6 @@ sitemap: false
     </image:image>
   </url>
   <url>
-    <loc>https://www.nickelsheets.com/SMO-254/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/SMO-254/round-bar/</loc>
-    <lastmod>2026-08-22</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.nickelsheets.com/SMO-254/sheets/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.nickelsheets.com/special-stainless-steel-coil-supplier-exporter-mumbai-india/</loc>
     <lastmod>2026-08-27</lastmod>
     <image:image>
@@ -5704,27 +5677,27 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/904L/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/AL-6XN/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/alloy-20/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/alloy-28/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/alloy-31/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/alloy-926/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/AM-350/</loc>
@@ -5739,7 +5712,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/sanicro-35/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/sanicro-35/plates/</loc>
@@ -5764,7 +5737,34 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stainless/SMO-254/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/stainless/SMO-254/plates/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/stainless/SMO-254/round-bar/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/stainless/SMO-254/sheets/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stellite/</loc>
@@ -5782,7 +5782,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/stellite/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -5934,7 +5934,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-1-plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -5955,7 +5955,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-1/foil/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
@@ -6090,7 +6090,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-2/foil/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
@@ -6100,7 +6100,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-2/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6131,7 +6131,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-23/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6169,14 +6169,14 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-3/foil/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-3/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6214,7 +6214,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-4/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6241,7 +6241,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-5-plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6255,7 +6255,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-5/foil/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
@@ -6269,7 +6269,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-5/round-bar/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
     </image:image>
@@ -6289,7 +6289,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-6-plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6310,7 +6310,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-6/round-bar/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Haynes-2.webp</image:loc>
     </image:image>
@@ -6331,7 +6331,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-7/plates/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6358,7 +6358,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/titanium/grade-9-plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>

@@ -63,6 +63,7 @@ const BOILERPLATE = new Set([
   'ecd86713', // and back: the body heading is the <h1>, the caption the <h2>. Same words again
   'ac499d12', // last five captions became headings; four render identically, none changed a word
   '0c9fc678', // repointed cross-links at the renamed 602 CA and 660 pages; label and href only
+  'b89f7477', // repointed cross-links at the moved Elgiloy and 254 SMO pages; href only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
