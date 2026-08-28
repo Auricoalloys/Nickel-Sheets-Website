@@ -280,7 +280,12 @@ src="/docs/media/sheets-banner.webp"
       <tr><th>Property</th><th>Typical Value</th></tr>
     </thead>
     <tbody>
-      <tr><td>Density (kg/m³)</td><td>7,810</td></tr>
+      <!-- Density removed by hand: it prints as 7.80 g/cm3 from docs/grades.csv in
+           the Equivalent Grades table above. build-grades.mjs reports this row but
+           will not cut it, because DENSITY_LABEL deliberately does not recognise a
+           unit the generated table never prints - so a kg/m3 row is named for a
+           human rather than silently rewritten. The two copies had already drifted:
+           7,810 kg/m3 here against the sourced 7.80 g/cm3. -->
       <tr><td>Tensile Strength (MPa)</td><td>730 – 930 (106 – 135 ksi)</td></tr>
       <tr><td>Yield Strength (0.2%, MPa)</td><td>≥550 (≥79.8 ksi)</td></tr>
       <tr><td>Elongation (%)</td><td>≥25</td></tr>

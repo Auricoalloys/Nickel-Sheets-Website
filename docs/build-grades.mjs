@@ -456,6 +456,25 @@ const SINGLE_GRADE = {
 };
 const singleGradeOf = url => SINGLE_GRADE[(url.split('/').filter(Boolean)[0] || '').toLowerCase()] || null;
 
+// GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.
+// The trade writes 254 SMO both ways round, and this site's URL has always put
+// the letters first: /stainless/SMO-254/ normalises to "smo254" while the CSV
+// grade "254 SMO" normalises to "254smo", so the hub and its three form pages
+// were neither written nor linted - the same silence SINGLE_GRADE and COMBINED
+// exist to end.
+//
+// Aliased rather than fixed at either end, because both ends are already right:
+// renaming the CSV grade to "SMO 254" would print Outokumpu's mark backwards in
+// every generated table and caption (the footer states it as "254 SMO"), and
+// reordering the URL would move an indexed hub for a normalisation detail.
+//
+// Kept in step with the identical map in docs/build-specs.mjs, for the same
+// reason SINGLE_GRADE is: a grade aliased in one and not the other gets its
+// table written with nothing linting the page.
+const GRADE_ALIAS = {
+  'special-stainless-steel': { smo254: '254smo' },
+};
+
 // Resolve /family/grade/[form/] to a CSV row. The grade segment is normalised
 // so "625-LCF" finds "625 LCF" and "Grade-2" finds "Grade 2".
 function gradeForUrl(url) {
@@ -465,7 +484,8 @@ function gradeForUrl(url) {
   if (!family) return null;
   const segs = url.split('/').filter(Boolean);
   if (segs.length < 2) return null;
-  const cand = norm(segs[1]);
+  const seg = norm(segs[1]);
+  const cand = (GRADE_ALIAS[family] || {})[seg] || seg;
   if (!cand) return null;
   const pool = grades.filter(r => r.family === family);
   // Longest grade name first so "625 LCF" wins over "625".
@@ -569,8 +589,16 @@ const publishedConstants = rows => ({
 // too. Every table outside the generated blocks is therefore fair game, and the
 // GUARDS below decide what is safe to cut - not the section id.
 function stripDuplicatedConstants(s, rel, has) {
-  if (!has.density && !has.melting) return s;
-
+  // NO EARLY RETURN when the grade publishes neither constant. There used to be
+  // one, and it made the `kept N hand-written constant(s)` line below undercount
+  // by tenfold: it printed 5 while an independent sweep found 50 rows on 34
+  // pages, because a grade publishing neither constant never reached the
+  // onlyCopy++ line and all 28 titanium pages were therefore invisible to it.
+  // The rows were always correctly left alone; only the number beside them lied,
+  // which is the same "a count of zero has to mean zero" trap as alt_alloy_mismatch
+  // and the 112-page silence. With both flags false every recognised row falls
+  // into the !has[kind] branch, so the loop counts and cuts nothing - which is
+  // exactly what it should do.
   const spans = [];
   for (let i = 0;;) {
     const a = s.indexOf(ID_START, i); if (a < 0) break;
@@ -586,6 +614,12 @@ function stripDuplicatedConstants(s, rel, has) {
     .replace(/&amp;/gi, '&').replace(/\s+/g, ' ').trim();
 
   const cuts = [];
+  // Which constants a hand-written TWO-CELL row on this page states. Used by the
+  // prose report below to tell a genuine second home from the page's only one:
+  // where the CSV publishes nothing, a figure in prose is a duplicate only if a
+  // row states it too. Comparison rows are excluded on the same grounds as the
+  // cut below - they are about another grade, not a second copy of this one's.
+  const rowKinds = new Set();
   for (const tm of s.matchAll(/<table\b[\s\S]*?<\/table>/gi)) {
     const ts = tm.index, te = ts + tm[0].length;
     if (spans.some(([a, b]) => ts < b && te > a)) continue;     // a generated table
@@ -613,7 +647,7 @@ function stripDuplicatedConstants(s, rel, has) {
       // The CSV cell for this constant is empty, so the identity table prints no
       // such row: this hand-written one is the page's ONLY copy and stays. Not a
       // fault - a lead, since filling the cell from the bulletin would settle it.
-      if (!has[kind]) { onlyCopy++; continue; }
+      if (!has[kind]) { onlyCopy++; if (cells.length === 2) rowKinds.add(kind); continue; }
       // A row with more than two cells carries something the identity table does
       // not - a condition column, or a second grade. incoloy/DS/DS.html sets
       // Alloy 330 against INCOLOY DS with a column each, so its density row is a
@@ -646,10 +680,45 @@ function stripDuplicatedConstants(s, rel, has) {
   }
 
   // Prose is never edited by this script, but it makes the same duplicate claim,
-  // so it is named rather than passed over silently.
-  const prose = s.replace(/<table[\s\S]*?<\/table>/gi, ' ').replace(/<[^>]+>/g, ' ');
-  if (/\bdensit|\bmelting\s*(?:point|range)/i.test(prose))
-    dupConstants.push(`${rel}  (states a constant in prose - edit by hand)`);
+  // so it is named rather than passed over silently. A copy edit, not a deletion:
+  // the figure comes out and the sentence around it stays.
+  //
+  // Two things this has to get right, both learned by watching it report pages
+  // that were clean. MASK THE GENERATED BLOCKS FIRST - their provenance caption
+  // quotes the `source` cell out of grades.csv, and duplex 2205's reads "SIJ
+  // Acroni SINOXX 4462 datasheet (density and composition limits) and Aperam
+  // DX1803/DX2205 Technical Data Sheet (melting temperature)". Stripping only
+  // <table> leaves that caption behind, so the check fired on its own output and
+  // named all four 2205 pages. And REQUIRE A FIGURE, not just the word: "low
+  // density", "Nimonic 80A density" in a keywords list and a section heading are
+  // not second homes for a number, and counting them put the report 20% above
+  // the pages that actually needed editing.
+  const prose = s
+    .replace(/<!-- grade-identity:start[\s\S]*?<!-- grade-identity:end -->/g, ' ')
+    .replace(/<!-- grade-chem:start[\s\S]*?<!-- grade-chem:end -->/g, ' ')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<table[\s\S]*?<\/table>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ').replace(/&sup3;/gi, '³').replace(/&deg;/gi, '°')
+    .replace(/\s+/g, ' ');
+  // The figure has to sit near the word, or "density" in one sentence and an
+  // unrelated 8.44 two sentences later read as a claim nobody made.
+  const NEAR = 150;
+  const stated = kind => {
+    const word = kind === 'density' ? /densit\w*/gi : /melting\s*(?:point|range|temperature)|liquidus|solidus/gi;
+    const num = kind === 'density'
+      ? /\d+(?:\.\d+)?\s*(?:g\s*\/\s*cm|kg\s*\/\s*m|lb\s*\/\s*in)/i
+      : /\d{3,4}\s*(?:°|deg\b)/i;
+    for (const m of prose.matchAll(word))
+      if (num.test(prose.slice(Math.max(0, m.index - 40), m.index + NEAR))) return true;
+    return false;
+  };
+  // Only a constant the page ALSO states in a table is stated twice. Where the
+  // CSV publishes none and no row carries one either, the prose figure is the
+  // page's only copy - reporting it would argue for deleting the last one.
+  for (const kind of ['density', 'melting'])
+    if ((has[kind] || rowKinds.has(kind)) && stated(kind))
+      dupConstants.push(`${rel}  (states ${kind} in prose as well as in a table - edit by hand)`);
 
   if (!cuts.length) return s;
 
