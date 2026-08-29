@@ -1207,7 +1207,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/haynes-alloy-sheets.webp</image:loc>
     </image:image>
@@ -1525,7 +1525,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/incoloy-sheets.webp</image:loc>
     </image:image>
@@ -1980,7 +1980,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/inconel/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/inconel-sheets.webp</image:loc>
     </image:image>
@@ -3069,7 +3069,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nichrome/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nichrome-sheets.webp</image:loc>
     </image:image>
