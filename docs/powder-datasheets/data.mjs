@@ -978,23 +978,39 @@ export const GRADES = [
   },
   // CoCrMoW - dental Co-Cr-W-Mo, ISO 22674 - IS NOT WRITTEN YET, ON PURPOSE.
   //
-  // An entry was drafted here from figures published by BEGO for their own
-  // branded alloy. We do not supply BEGO material; we supply Saveer Matrix Nano.
-  // Publishing another manufacturer's density, strength, modulus and thermal
-  // expansion as ours asserts that what we ship performs identically, which is a
-  // representation nobody has checked. Same class of error as the lot reports
-  // this folder replaced - a claim about material we do not hold - so the whole
-  // entry was pulled rather than partly corrected.
+  // Supplier and competitor names are deliberately not written in this file. It
+  // is committed to a public repository, so a name here is a published name even
+  // though the folder is excluded from the build. Refer to "our supplier" and
+  // "the other manufacturer"; whoever needs the actual names has them elsewhere.
   //
-  // To add it, take EVERY field from Saveer Matrix Nano's own data sheet:
-  // chemistry, density, solidus/liquidus, ISO 22674 Type, Rp0.2, Rm, modulus,
-  // elongation, hardness, and thermal expansion if it is a metal-ceramic alloy.
-  // Carry no number over from a competitor.
+  // An entry was drafted here from figures another manufacturer publishes for
+  // their own branded alloy. We do not supply that material. Publishing someone
+  // else's density, strength, modulus and thermal expansion as ours asserts that
+  // what we ship performs identically, which is a representation nobody has
+  // checked. Same class of error as the lot reports this folder replaced - a
+  // claim about material we do not hold - so the whole entry was pulled rather
+  // than partly corrected.
   //
-  // Chemistry as received, SOURCE UNCONFIRMED - it arrived separately from the
-  // BEGO page and may or may not be Saveer's. Verify before use:
+  // To add it, take EVERY field from our own supplier's data sheet: chemistry,
+  // density, solidus/liquidus, ISO 22674 Type, Rp0.2, Rm, modulus, elongation,
+  // hardness, and thermal expansion if it is a metal-ceramic alloy. Carry no
+  // number over from a competitor.
+  //
+  // Chemistry as received, SOURCE UNCONFIRMED - it arrived separately from that
+  // other manufacturer's page and may or may not be our supplier's:
   //   Co balance, Cr 24.50-28.50, Mo 4.50-6.50, W 4.00-6.00,
   //   Si <= 1.00, Mn <= 1.00, Fe <= 0.50
+  //
+  // DO NOT ADOPT THOSE FIGURES. A supplier Certificate of Analysis read on
+  // 2026-08-29 states the limits as Cr 24.50-28.50, Mo 4.00-6.00, W 4.00-6.00,
+  // Si 1.00, Fe 1.00, Co balance - so Mo and Fe above are both wrong, which is
+  // exactly what "source unconfirmed" was guarding against. That certificate is
+  // still not enough on its own: it heads the table "as per ISO 22674", which is
+  // a performance standard classifying alloys by Rp0.2 and elongation rather
+  // than a composition spec, and it omits the nickel, beryllium and cadmium
+  // declaration ISO 22674 does require - which the supplier's own CoCrW
+  // certificates carry. Written confirmation of the limits plus that
+  // declaration has been requested. Wait for it.
   //
   // This is NOT a variant of the CoCrMo entry above. F75 runs 27-30 % Cr and
   // caps W at 0.20 % as a residual; this runs lower Cr with W at 4-6 % as a
@@ -1177,9 +1193,11 @@ export const GRADES = [
   },
 ];
 
-// Aurico order codes. The existing PDFs all carry "Stock No: SMN/54/..." on an
-// Aurico-branded page, which is the supplying mill's internal code — it names
-// the source to every customer who reads a data sheet. These replace it.
+// Aurico order codes. The existing PDFs all carry a "Stock No:" on an
+// Aurico-branded page which is the supplying mill's internal code — it names
+// the source to every customer who reads a data sheet. These replace it. Do not
+// write the mill's prefix back into this file to explain the point; the repo is
+// public, and the prefix identifies the supplier as surely as the name would.
 export const ORDER_CODES = {
   ss316l: 'SS316L', ss304l: 'SS304L', '17-4ph': '17-4PH', '15-5ph': '15-5PH', h13: 'H13',
   'maraging-ms1': 'MS1', cx: 'CX', 'inconel-625': 'IN625', 'inconel-718': 'IN718',

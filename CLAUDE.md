@@ -384,6 +384,65 @@ carry the deploy procedure — the important part is that updating means "Manage
 New version", not "New deployment", which would mint a different `/exec` URL. Apps Script cannot set
 HTTP status codes, so the site reads `{ok: …}` out of the body; keep that contract.
 
+#### The enquiry field is seeded from the page's own breadcrumb
+
+The textarea opens carrying `Enquiry: <subject>`, so a visitor who wants a price on Inconel 625
+sheets does not start at a blank box. An explicit `?enquiry=` on the URL always wins — that is what
+the powder pages' "Request a sample" CTAs send, and it says what the visitor *clicked*, which is
+more specific than what the page is *about*.
+
+The derived subject is the **last crumb of the page's `BreadcrumbList`**, not the `<title>` and not
+the `<h1>`. Those two carry marketing tails ("| Premium Corrosion & High-Temperature Alloy"), HTML
+entities, and on a couple of pages mojibake (`MonelÂ®`); the breadcrumb is hand-written, one clean
+noun phrase, and present on 740 of 774 pages. 638 pages seed a subject and ~103 routes are
+suppressed by name. The 8 with no breadcrumb to read are **every one of them `published: false`**,
+so on the live site a page either seeds a subject or is suppressed on purpose — there is no third
+case to worry about. If a page ever does turn up seeding nothing, the missing `BreadcrumbList` is
+the bug, not the form.
+
+**The suppression list is the point, not an afterthought.** The ~130 location pages
+(`/nickel-alloy-supplier-in-mumbai/`) end their breadcrumb on a bare place name, so deriving from
+them seeds "Enquiry: Mumbai" — which tells the sales desk nothing and reads to the visitor as a
+bug. `NO_SUBJECT_PREFIXES` also covers `/privacy/`, `/terms/`, `/supply-locations/`,
+`/export-markets/` and the contact page. Home has no breadcrumb and needs no entry.
+
+Title-casing an all-caps crumb is guarded by **letters and spaces only**, deliberately narrower
+than "has no lowercase". The form hubs shout ("SHEETS", "HOLLOW BARS") and are worth softening, but
+a grade designation is upper-case *by nature*: the looser rule turned 904L into "904l", AM 350 into
+"Am 350" and 254 SMO into "254 Smo", publishing grade names this site does not sell. Any digit or
+punctuation in the crumb means it is an identifier — leave it exactly as the page wrote it.
+
+Because a seeded textarea hides its own placeholder, the "add the dimensions you need" guidance
+moved into a visible `.floating-form-hint` under the field. Do not put it back in the placeholder.
+
+#### Country and company are optional, and are being measured
+
+As of **2026-08-29** the form asks for five required fields, not seven: name, phone, email and the
+privacy checkbox stay required, country and company do not. Neither is needed to answer an enquiry —
+`lead-capture.gs` only insists on an email *or* a phone number, and the desk can ask for the rest in
+the reply. Both fields are still sent and still get their Sheet column; an unfilled one arrives
+empty, which `notify()` already renders as `-`.
+
+That change is a **test with an open window**, not a settled preference. `form_start` fires on first
+input and `generate_lead` on a confirmed submission, so the gap between them is the completion rate,
+and that is the number this is meant to move. The monthly review task
+`~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md` reads it, along with `generate_lead` by
+landing page and the Search Console rich-result count.
+
+Two things that review has to keep straight, both easy to get wrong:
+
+- **There is no clean before/after baseline.** Nobody was reading these events before the change, so
+  the first two or three runs cannot prove anything and should say so rather than reporting noise as
+  a result.
+- **GA4 cannot tell you whether the optional fields were used** — the leads Sheet can, directly, by
+  the proportion of rows arriving with `company` or `country` blank. A near-zero blank rate means
+  visitors fill them anyway and the requirement can come back if sales want it.
+
+The prefill and the optional fields shipped together, which does confound them slightly. They are
+mostly separable because a pre-filled textarea fires no `input` event and so does not itself move
+`form_start`. Field **order** was deliberately left alone for the same reason — moving the optional
+fields down the form is the obvious next test, and running it now would make the month unreadable.
+
 `supabase/migrations/` holds the `leads` table. RLS is on with **no** policies, so the public anon
 key gets no access — do not add an anon policy, the table holds customer contact details.
 
