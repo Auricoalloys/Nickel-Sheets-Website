@@ -817,7 +817,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/hastelloy/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/hastelloy-sheets.webp</image:loc>
     </image:image>
@@ -4626,7 +4626,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nitinol/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-sheets.webp</image:loc>
     </image:image>
