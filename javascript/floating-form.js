@@ -16,19 +16,119 @@
 import { LEAD_ENDPOINTS, FALLBACK_CONTACT, EVENTS } from "./lead-config.js";
 
 const ATTRIBUTION_KEY = "aurico_attribution";
+
+// Everything that reaches the textarea default is escaped here, once. The text
+// comes from the query string or from the page's own JSON-LD, and is only ever
+// used as a textarea default - never as markup.
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 // A CTA can hand the form the enquiry it was raised from, so a visitor who
 // clicked "Request a sample" on the Inconel 718 powder page does not have to
-// retype which powder they meant. Read once, escaped, and only ever used as the
-// textarea default - never as markup.
-function prefillInquiry() {
+// retype which powder they meant.
+function ctaEnquiry() {
   try {
-    const v = new URLSearchParams(window.location.search).get("enquiry");
-    if (!v) return "";
-    return v.slice(0, 300)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return (new URLSearchParams(window.location.search).get("enquiry") || "").slice(0, 300);
   } catch {
     return "";
   }
+}
+
+// Routes whose subject is not a thing anyone enquires about. The ~130 location
+// pages are the reason this list exists rather than a blanket "derive from the
+// breadcrumb": theirs ends on a bare place name, so the derived seed would read
+// "Enquiry: Mumbai", which tells the sales desk nothing and reads as a bug to
+// the visitor. Home has no breadcrumb at all and needs no entry.
+const NO_SUBJECT_PREFIXES = [
+  "/nickel-alloy-supplier-in-",
+  "/supply-locations/",
+  "/export-markets/",
+  "/pages/contact/",
+  "/privacy/",
+  "/terms/",
+];
+
+// Pulls the current page's subject out of its BreadcrumbList. The last crumb is
+// already the hand-written name of what the page sells - "Inconel 625 Sheets",
+// "Ti-6Al-4V Grade 5 Powder" - which is why this reads the breadcrumb rather
+// than <title> or <h1>. Those carry marketing tails ("| Premium Corrosion &
+// High-Temperature Alloy"), entity escapes and, on a few pages, mojibake; the
+// breadcrumb carries none of it. 740 of 774 pages have one, and a page without
+// simply gets no seed.
+function breadcrumbSubject() {
+  const blocks = document.querySelectorAll('script[type="application/ld+json"]');
+
+  for (const block of blocks) {
+    let parsed;
+    try {
+      parsed = JSON.parse(block.textContent);
+    } catch {
+      // A page carries several of these - Product, FAQPage, BreadcrumbList -
+      // and one being unreadable must not cost us the others, which is why this
+      // loops rather than reading only the first block. (The parked Product
+      // node on an unpriced page is commented out at the element level, so it
+      // never reaches the DOM to be parsed in the first place.)
+      continue;
+    }
+
+    const candidates = Array.isArray(parsed)
+      ? parsed
+      : Array.isArray(parsed?.["@graph"])
+        ? parsed["@graph"]
+        : [parsed];
+
+    for (const node of candidates) {
+      if (node?.["@type"] !== "BreadcrumbList") continue;
+
+      const items = (node.itemListElement || [])
+        .slice()
+        .sort((a, b) => (a?.position || 0) - (b?.position || 0));
+
+      const last = items[items.length - 1];
+      const name = (last?.name || last?.item?.name || "").toString().trim();
+      if (name) return name;
+    }
+  }
+
+  return "";
+}
+
+// The form-hub breadcrumbs shout - "SHEETS", "COIL", "HOLLOW BARS" - because
+// their headings do. Seeding "Enquiry: SHEETS" is not wrong, just shouty, so
+// those are title-cased.
+//
+// The test is deliberately "letters and spaces only", not "has no lowercase".
+// A grade designation is upper-case by nature and must survive untouched: the
+// looser rule turned 904L into "904l", AM 350 into "Am 350" and 254 SMO into
+// "254 Smo" - publishing a grade name this site does not sell. Any digit or
+// punctuation means it is an identifier, not a shouted noun, so leave it be.
+function tidySubject(name) {
+  const collapsed = name.replace(/\s+/g, " ").trim().slice(0, 120);
+  if (!/^[A-Z][A-Z ]*$/.test(collapsed)) return collapsed;
+  return collapsed.replace(/\S+/g, (word) => word.charAt(0) + word.slice(1).toLowerCase());
+}
+
+// The textarea default. An explicit ?enquiry= CTA always wins over the derived
+// subject - it says what the visitor clicked, which is more specific than what
+// the page is about.
+function prefillInquiry() {
+  const explicit = ctaEnquiry();
+  if (explicit) return escapeHtml(explicit);
+
+  const path = window.location.pathname;
+  if (path === "/" || NO_SUBJECT_PREFIXES.some((prefix) => path.startsWith(prefix))) {
+    return "";
+  }
+
+  const subject = tidySubject(breadcrumbSubject());
+  // "Enquiry: " prefix so the line reads as something the form supplied rather
+  // than as text the visitor left behind, and a trailing newline so the caret
+  // lands under it and they add their sizes instead of editing around the seed.
+  return subject ? `Enquiry: ${escapeHtml(subject)}\n` : "";
 }
 
 const ATTRIBUTION_FIELDS = [
@@ -330,6 +430,12 @@ export class FloatingForm {
         color: #555;
       }
 
+      .floating-form-optional {
+        font-weight: 400;
+        font-size: 12px;
+        color: #6b7280;
+      }
+
       .floating-form-input,
       .floating-form-textarea {
         width: 100%;
@@ -441,20 +547,28 @@ export class FloatingForm {
 
   // The field set is shared by both modes. Names are unchanged from the
   // original form so the existing Sheet columns keep lining up.
+  //
+  // Country and company are deliberately NOT required, as of 2026-08-29. Seven
+  // required fields is a lot to ask of a visitor who wants a price, and neither
+  // of these is needed to answer them: the Apps Script only insists on an email
+  // or a phone number, and the sales desk can ask for the rest in the reply.
+  // Both are still sent, and still get their Sheet column - an unfilled one
+  // simply arrives empty. See the lead review task for what this is being
+  // measured against.
   fieldsMarkup() {
     return `
       <form class="floating-form-form" novalidate>
         <div class="floating-form-group">
-          <label class="floating-form-label" for="${this.id}-country">Country*</label>
-          <input type="text" id="${this.id}-country" name="country" class="floating-form-input" autocomplete="country-name" required>
+          <label class="floating-form-label" for="${this.id}-country">Country <span class="floating-form-optional">(optional)</span></label>
+          <input type="text" id="${this.id}-country" name="country" class="floating-form-input" autocomplete="country-name">
         </div>
         <div class="floating-form-group">
           <label class="floating-form-label" for="${this.id}-name">Name*</label>
           <input type="text" id="${this.id}-name" name="name" class="floating-form-input" autocomplete="name" required>
         </div>
         <div class="floating-form-group">
-          <label class="floating-form-label" for="${this.id}-company">Company*</label>
-          <input type="text" id="${this.id}-company" name="company" class="floating-form-input" autocomplete="organization" required>
+          <label class="floating-form-label" for="${this.id}-company">Company <span class="floating-form-optional">(optional)</span></label>
+          <input type="text" id="${this.id}-company" name="company" class="floating-form-input" autocomplete="organization">
         </div>
         <div class="floating-form-group">
           <label class="floating-form-label" for="${this.id}-phone">Mobile Number*</label>
@@ -474,6 +588,7 @@ export class FloatingForm {
           <label class="floating-form-label" for="${this.id}-inquiry">Inquiry*</label>
           <textarea id="${this.id}-inquiry" name="inquiry" rows="4" class="floating-form-textarea" required
             placeholder="Grade, form and dimensions - e.g. Inconel 625 sheet, 3mm x 1000 x 2000">${prefillInquiry()}</textarea>
+          <small class="floating-form-hint">Add the dimensions you need &mdash; e.g. 3mm &times; 1000 &times; 2000.</small>
         </div>
         <div class="floating-form-checkbox-wrapper">
           <label class="floating-form-checkbox-label" for="${this.id}-privacy">
@@ -598,11 +713,15 @@ export class FloatingForm {
   // Turns a failed submission into a WhatsApp message that already contains
   // everything the visitor typed, so the enquiry survives the outage.
   fallbackMarkup(data) {
+    // Every optional field is conditional, not just quantity: a template
+    // literal is truthy even when the value inside it is empty, so an
+    // unconditional line here would put a bare "Company:" into the WhatsApp
+    // message the moment those two fields stopped being required.
     const body = [
       "Enquiry from nickelsheets.com",
       `Name: ${data.name}`,
-      `Company: ${data.company}`,
-      `Country: ${data.country}`,
+      data.company ? `Company: ${data.company}` : null,
+      data.country ? `Country: ${data.country}` : null,
       `Email: ${data.email}`,
       `Phone: ${data.phone}`,
       data.quantity ? `Quantity: ${data.quantity}` : null,
