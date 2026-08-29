@@ -225,6 +225,44 @@ Do not put a form-specific standard in a hub's spec table. `alloy-31.html` and `
 row headed "Main Plate Standards" — accurate for plates, wrong as the grade's specification. State
 the UNS/Werkstoff identifiers and point at the form pages for the rest.
 
+#### A family hub is the newer template — the `div.details` block underneath it is an older layer
+
+The family tier (`/inconel/`, `/hastelloy/`, `/nichrome/`) sits above the grade hubs and introduces
+the whole family. **Copy a recently-fixed one — `inconel.html` is the cleanest — not an arbitrary
+sibling**, because two layers coexist on these pages and only the top one is good.
+
+The newer layer is a `#family-intro` of real per-family prose plus `#grades`, `#applications`,
+`#quality` and `#cta` sections. Underneath it, older hubs kept a `<div class="details">` block
+holding a **pasted paragraph** that called the family "a family of austenitic nickel-chromium-based
+superalloys … in environments that exceed 1,000°F", a generic Key Properties list (High Temperature
+Strength, Resistance to Scaling and Sulfidation) and a four-item Applications list. It was
+byte-identical across the **seven hubs** that had it, bar the family name, and it did real damage:
+
+- On **Elgiloy** and **Nitinol** it named the wrong material class outright — Elgiloy is a
+  cobalt-chromium-nickel spring alloy, Nitinol a nickel-titanium shape-memory alloy with no chromium
+  — so each page asserted the opposite of the mill-sourced identity table directly below it.
+- On **Hastelloy** it contradicted the page's own `#family-intro`, which correctly called the grades
+  "nickel-molybdenum and nickel-chromium-molybdenum alloys for wet corrosion".
+- On **Inconel, Incoloy, Haynes and Nichrome** the sentence was broadly true but pure filler,
+  duplicating the `#applications` section already present.
+
+So when a `div.details` block duplicates the newer sections, **delete the duplication rather than
+rewrite it** — the generic Applications list is a worse second copy of `#applications`, and the
+argument only needs making once. Keep only a Key Properties list *specific* to the family, drawn from
+the page's own intro and chemistry the repo already holds (Haynes 214 is Al 4.5, which is what makes
+its scale alumina not chromia); a family with no such list gets none rather than an invented one.
+
+Two mechanical traps rode along on all seven:
+
+- **The `<div class="details">` was never closed**, silently swallowing `#grades`, `#applications`,
+  `#quality` and `#cta` into a layout column. Close it before `#grades`, and verify with a
+  tag-balance / DOM-signature check, not by eye — the page still *rendered*. (`div.details` itself is
+  fine: `stellite.html` and `waspalloy.html` use it closed and correctly, with no pasted paragraph.)
+- The keyword `<meta>` and the JSON-LD `description` read "Nickel Alloy Strips … Busbars" regardless
+  of family. Both are per-page literals — rewrite them to the family, like every other hub metadata.
+
+The paragraph is now gone tree-wide (grep is 0), so any reappearance is a regression.
+
 Never put a colon in a permalink. Colons build on the Linux runners GitHub Pages uses but are
 illegal in Windows filenames, so the local build breaks. This already bit the NiCr pages once.
 
