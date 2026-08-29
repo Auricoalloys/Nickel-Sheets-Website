@@ -91,9 +91,10 @@ producing one.
 ## Other notes
 
 Apparent and tap density are derived from each alloy's solid density rather than typed per
-grade, so the two can never contradict each other. Order codes replace the `SMN/54/...` stock
-numbers on the old sheets, which are the supplying mill's internal codes and named the source
-to every customer who read one.
+grade, so the two can never contradict each other. Order codes replace the stock numbers on
+the old sheets, which are the supplying mill's internal codes and named the source to every
+customer who read one. Neither the mill's name nor its stock-number prefix belongs anywhere in
+this repository — it is public, so writing either one publishes it.
 
 ## Why generated rather than hand-written
 
