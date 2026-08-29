@@ -523,7 +523,15 @@ special-stainless-steel,904L,N08904,1.4539,X1NiCrMoCu25-20-5,8.00,1383,ASTM A240
 # Melting range emptied: the Outokumpu physical-properties table publishes
 # density, modulus, expansion, conductivity, heat capacity and resistivity and
 # NO melting range, so the seeded 1320-1390 has no source behind it.
-special-stainless-steel,254 SMO,S31254,1.4547,X1CrNiMoCuN20-18-7,8.00,,Outokumpu Ultra 254 SMO product page,2026-08
+#
+# CHEMISTRY ADDED 2026-08-29 from voestalpine BOHLER A965SA - a second mill, which
+# independently prints the same three identifiers (S31254 / 1.4547 /
+# X1CrNiMoCuN20-18-7) and so cross-confirms the identity above. Its composition
+# table is scoped "Refers to ASTM A479 S31254", so the standard is named in the
+# source below rather than left implied - the caption is built from this one field
+# and serves BOTH tables, so attributing BOHLER's limits to Outokumpu's page would
+# be a false citation. Same shape as the HAYNES 25 row.
+special-stainless-steel,254 SMO,S31254,1.4547,X1CrNiMoCuN20-18-7,8.00,,Outokumpu Ultra 254 SMO product page (identity and physical constants) and voestalpine BOHLER A965SA datasheet to ASTM A479 S31254 (composition limits),2026-08
 # AL-6XN WAS CARRYING ALLOY 926'S IDENTITY. 1.4529 / X1NiCrMoCuN25-20-7 is the
 # EN designation VDM prints on its own alloy 926 sheet, and it was seeded onto
 # both rows - which is how two different UNS numbers, N08367 and N08926, came to

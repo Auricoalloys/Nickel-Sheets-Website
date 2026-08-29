@@ -1472,3 +1472,33 @@ special-stainless-steel,Alloy 20,Ni,32.0,38.0
 special-stainless-steel,Alloy 20,Mo,2.00,3.00
 special-stainless-steel,Alloy 20,Cu,3.00,4.00
 special-stainless-steel,Alloy 20,Nb,,1.00,8×C min
+
+# 254 SMO / S31254 — voestalpine BOHLER A965SA product page, "Chemical composition
+# (wt. %)", read 2026-08-29. The table footnote scopes it: "Refers to ASTM A479
+# S31254" — the BAR standard. specs.csv gives this grade ASTM A240 for flat, so the
+# sheets and plates pages carry limits read off the bar standard until an A240 row
+# for S31254 is available; docs/references/ASTM-A240-A240M-25a.md covers N08020,
+# N08904, S32205, S32750 and S32760 and does NOT include S31254. The standard is
+# named in grades.csv `source` rather than left implied, the same way the HAYNES 25
+# row names ASTM F90 for its BOHLER-sourced limits.
+#
+# Six cells read "max." and four are ranges — every figure is a limit, so none of
+# them belongs in `note`. Rows follow the order the page prints them, reading its
+# two-column grid across: C, Si then Mn, P then S, Cr then Mo, Ni then Cu, N.
+#
+# IRON IS THE BALANCE, confirmed by the business owner. BOHLER's panel does not
+# print an Fe row, but omitting it here would leave a 6-Mo austenitic looking like
+# it has no stated base element at all - so it is recorded as bal, last, exactly as
+# the sibling 6-Mo grades AL-6XN and Alloy 31 record theirs. `bal` is neither a
+# limit nor a nominal figure, so it does not change how the caption reads.
+special-stainless-steel,254 SMO,C,,0.020
+special-stainless-steel,254 SMO,Si,,0.80
+special-stainless-steel,254 SMO,Mn,,1.00
+special-stainless-steel,254 SMO,P,,0.030
+special-stainless-steel,254 SMO,S,,0.010
+special-stainless-steel,254 SMO,Cr,19.5,20.5
+special-stainless-steel,254 SMO,Mo,6.0,6.5
+special-stainless-steel,254 SMO,Ni,17.5,18.5
+special-stainless-steel,254 SMO,Cu,0.50,1.00
+special-stainless-steel,254 SMO,N,0.18,0.25
+special-stainless-steel,254 SMO,Fe,,bal
