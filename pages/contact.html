@@ -46,7 +46,7 @@ redirect_from:
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Get in Touch",
+  "name": "Contact Aurico Alloys LLP",
   "description": "Contact Aurico Alloys LLP, a leading global supplier of high-performance nickel, titanium, and other specialty alloys. Get in touch for product inquiries, custom metal fabrication, or to request a quote.",
   "about": {
     "@type": "Organization",
@@ -78,27 +78,34 @@ redirect_from:
 <body>
    <div id="header__container">{% include header.html %}</div>
      
+    <!-- One heading, not two. The banner said "Get In Touch" at level three and
+         the body then repeated the same announcement as the page heading a few
+         hundred pixels below it, so the page introduced itself twice before the
+         form. The banner carries the page heading now, and the lead sits in a
+         centred column the way the quality page's does - at full container
+         width it read as a third column of prose above a two-column layout. -->
     <header class="header text-center">
         <div class="container">
-            <h3 class="display-4 ">Get In Touch</h3>
-            <p class="lead">For inquiries, custom quotes, or technical support regarding our premium alloys and laser
-                cutting
-                services, our team is ready to assist you. Find our corporate office location on the map below or fill out
-                the
-                contact form to get in touch.
-            </p>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-4">Contact Aurico Alloys LLP</h1>
+                    <p class="lead mb-0">For inquiries, custom quotes, or technical support regarding our premium alloys
+                        and laser cutting services, our team is ready to assist you. Find our corporate office location
+                        on the map below or fill out the contact form to get in touch.
+                    </p>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main id="main" class="contact-container">
-    <nav class="container my-3" aria-label="Breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Contact Aurico Alloys LLP</li>
-      </ol>
-    </nav>
-      <h1 class="page-title">Contact Aurico Alloys LLP</h1>
+    <main id="main" class="container">
+        <nav class="my-3" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact Aurico Alloys LLP</li>
+            </ol>
+        </nav>
         <div class="row g-4">
             <!-- Enquiry form. The page copy has always told visitors to "fill out
                  the contact form"; until now there was no form on it to fill out,
@@ -117,7 +124,7 @@ redirect_from:
 
             <!-- Location Information -->
             <div class="col-lg-5">
-                <div class="card shadow-sm border-0 rounded-3 p-4">
+                <div class="card contact-details rounded-3 p-4">
                     <h2 class="mb-4">Location Details</h2>
     
                     <!-- Address -->

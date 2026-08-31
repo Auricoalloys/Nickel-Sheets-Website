@@ -549,10 +549,13 @@ img {
 
 /* Contact Page */
 
-.contact_container {
-    background-color: #f8f9fa;
-    margin: 10px;
-}
+/* There was a `.contact_container` rule here, spelled with an underscore while
+   the page has always written the class with a hyphen - so it matched nothing
+   and <main> ran the full width of the viewport. On a 1920px screen that made
+   the form fields over 1000px wide, and the .row inside pulled its negative
+   gutters past the left edge, so the heading sat against the window frame. The
+   page now uses Bootstrap's own .container, which is what the shared header and
+   footer use, so all three line up at every breakpoint. */
 
 .header {
     background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
@@ -563,6 +566,33 @@ img {
     --heading-color: currentColor;
     padding: 5rem 0;
     margin-bottom: 3rem;
+}
+
+/* The banner text is centred with .text-center, but `p { max-width: 68ch }`
+   leaves the lead narrower than its column, and a narrower block still sits at
+   the column's left edge - so the paragraph rendered a few dozen pixels left of
+   the heading it sits under. Both banners that use .header had this. */
+.header .lead {
+    margin-inline: auto;
+}
+
+/* The location card sits directly beside the enquiry form, so it borrows the
+   form's border, radius and shadow - it had border-0, which on a white page
+   left one of the two panels with no edge at all. Its headings ran at the
+   document h2/h3 sizes, so "Location Details" came out half again the size of
+   "Request a Quotation" next to it: two panels of equal standing reading as a
+   heading and a footnote. */
+.contact-details {
+    border: 1px solid #e3e6e8;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.contact-details h2 {
+    font-size: 1.5rem;
+}
+
+.contact-details h3 {
+    font-size: 1.15rem;
 }
 
 .map-container {
