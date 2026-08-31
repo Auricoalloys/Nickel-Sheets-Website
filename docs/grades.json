@@ -637,7 +637,7 @@
       "wnr": "2.4634",
       "en_name": null,
       "density_g_cm3": 8.01,
-      "melting_c": null,
+      "melting_c": "1290-1345",
       "source": "Special Metals NIMONIC alloy 105 bulletin",
       "checked": "2026-08"
     },

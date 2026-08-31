@@ -300,9 +300,13 @@ nimonic,80A,N07080,2.4952 / 2.4631,,8.19,1320-1365,Special Metals NIMONIC alloy 
 nimonic,81,-,,,8.06,1305-1375,Special Metals NIMONIC alloy 81 bulletin,2026-08
 nimonic,86,-,,,8.54,,Special Metals NIMONIC alloy 86 bulletin,2026-08
 nimonic,90,N07090,2.4632,,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin,2026-08
-# The 105 sheet prints a density and no melting range, so the seeded 1290-1330
-# is unsourced and the cell is emptied.
-nimonic,105,-,2.4634,-,8.01,,Special Metals NIMONIC alloy 105 bulletin,2026-08
+# The 105 sheet does print a melting range, but as two separately labelled lines
+# under the heading - "Liquidus temperature 1345°C" and "Solidus temperature
+# 1290°C" - rather than as one hyphenated figure like the other sheets, which is
+# why an earlier read recorded it as absent and emptied the cell. Restored as
+# solidus-liquidus, the same convention alloy 81 uses. The seeded value this
+# replaces was 1290-1330: the solidus was right and the liquidus was not.
+nimonic,105,-,2.4634,-,8.01,1290-1345,Special Metals NIMONIC alloy 105 bulletin,2026-08
 # 115 was seeded as having no Werkstoff number and the bulletin heads it
 # "(W. Nr. 2.4636)". Melting range corrected from 1250-1315 to 1260-1315.
 nimonic,115,-,2.4636,-,7.85,1260-1315,Special Metals NIMONIC alloy 115 bulletin,2026-08

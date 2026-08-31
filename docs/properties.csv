@@ -53,6 +53,11 @@ inconel,601,Curie temperature,< -196,°C,,
 inconel,617,Specific heat,419,J/kg·°C,26 °C,
 inconel,617,Electrical resistivity,1.22,µΩ·m,26 °C,
 
+# --- INCONEL 625 --- the bulletin prints specific heat as a temperature series
+# with both units paired on every row - 70°F (21°C) 0.098 (410) - so the room
+# temperature row is read straight off it and no conversion is involved.
+inconel,625,Specific heat,410,J/kg·°C,21 °C,
+
 # --- INCONEL 625LCF --- ATI 625HP data sheet, physical constants table
 # ATI prints specific heat in both units (0.098 Btu/lb·°F) so the SI figure is
 # taken. Permeability it gives at one condition only.
@@ -120,6 +125,74 @@ incoloy,945,Electrical resistivity,1.10,µΩ·m,,
 incoloy,945,Magnetic permeability,1.003,,at 200 oersted / 15.9 kA/m,
 incoloy,945,Young's modulus,200.8,GPa,,
 
+# --- INCOLOY 660 (A286) --- no rows, for the same reason as HASTELLOY B-2 below.
+# ATI's A286 technical data sheet - the source named on the grades.csv row - has
+# no physical properties table at all: its sections are General, Forgeability,
+# Machinability, Weldability and Special Precautions, and the only constants it
+# prints are forging temperatures. Everything else the trade quotes for A286
+# comes from distributor pages, which this file does not treat as a source.
+
+# --- INCOLOY 800 / 800H / 800HT --- the alloy 800 bulletin and the combined
+# 800H/800HT bulletin print an identical Physical Constants block, so all three
+# grades carry the same rows rather than one being treated as the source for the
+# others. Density and melting range are in grades.csv and match both bulletins.
+# Permeability is published per condition, which is why there are two rows.
+incoloy,800,Specific heat,460,J/kg·°C,0-100 °C,
+incoloy,800,Magnetic permeability,1.014,,200 oersted at 21 °C - annealed,
+incoloy,800,Magnetic permeability,1.009,,200 oersted at 21 °C - hot-rolled,
+incoloy,800,Curie temperature,-115,°C,,
+incoloy,800H,Specific heat,460,J/kg·°C,0-100 °C,
+incoloy,800H,Magnetic permeability,1.014,,200 oersted at 21 °C - annealed,
+incoloy,800H,Magnetic permeability,1.009,,200 oersted at 21 °C - hot-rolled,
+incoloy,800H,Curie temperature,-115,°C,,
+incoloy,800HT,Specific heat,460,J/kg·°C,0-100 °C,
+incoloy,800HT,Magnetic permeability,1.014,,200 oersted at 21 °C - annealed,
+incoloy,800HT,Magnetic permeability,1.009,,200 oersted at 21 °C - hot-rolled,
+incoloy,800HT,Curie temperature,-115,°C,,
+# 825's specific heat carries no temperature against it, unlike 800's which is
+# printed for 0-100 °C, so the condition column stays empty rather than
+# borrowing a range the sheet does not state.
+incoloy,825,Specific heat,440,J/kg·°C,,
+incoloy,825,Curie temperature,< -196,°C,,
+incoloy,825,Magnetic permeability,1.005,,at 200 oersted / 15.9 kA/m,
+# 890 publishes density and melting range only - both in grades.csv - so it has
+# no rows here at all.
+# 903's constants table is headed "Physical Constants of Age-Hardened INCOLOY
+# alloy 903", so the condition is the table's own and not an assumption.
+incoloy,903,Curie temperature,416-471,°C,age-hardened,
+incoloy,909,Curie temperature,400-455,°C,,
+incoloy,909,Young's modulus,159,GPa,,
+incoloy,909,Modulus of rigidity,59,GPa,,
+# 925 prints resistivity in both ohm·cmil/ft and µΩ·m, so the SI figure is taken.
+incoloy,925,Electrical resistivity,1.17,µΩ·m,,
+incoloy,925,Magnetic permeability,1.001,,at 200 oersted / 15.9 kA/m,
+# --- INCOLOY DS (alloy 330 / RA330) --- Rolled Alloys' RA330 databook sheet, the
+# fuller companion to the short data sheet the grades.csv row was read from. Its
+# Specifications line confirms the row: UNS N08330 and W.Nr. 1.4886.
+#
+# EVERY FIGURE HERE IS IMPERIAL BECAUSE THE SHEET PUBLISHES NO SI COLUMN at all -
+# not one table has a metric equivalent. That is the X-750 Curie case again: the
+# unit column carries the bulletin's own unit and nothing is converted. Anyone
+# wanting SI should convert at the point of use, not here.
+#
+# The expansion figure is a MEAN coefficient from 70 °F to the temperature shown,
+# per the footnote on the companion data sheet ("*70°F to indicated temperature"),
+# which is why its condition is a range while the others are single temperatures.
+# Each row takes the lowest temperature the table publishes, as everywhere else -
+# note that is 100 °F for specific heat, 75 °F for conductivity and resistivity,
+# and 200 °F for expansion, because the four tables do not start together.
+#
+# The short data sheet carries a fourth column reading 28.5 / 21.0 / 19.5 / 18.0
+# whose heading its rotated layout makes unrecoverable - it renders under
+# "Electrical Conductivity %IACS", which cannot be right, since 28.5 %IACS for
+# this alloy is off by a factor of about seventeen. The databook has no such
+# column, so nothing here is taken from it.
+incoloy,DS,Specific heat,0.117,Btu/lb·°F,100 °F,no SI value published
+incoloy,DS,Thermal conductivity,7.2,Btu·ft/ft²·hr·°F,75 °F,no SI value published
+incoloy,DS,Electrical resistivity,616,ohm·circ mil/ft,75 °F,no SI value published
+incoloy,DS,Coefficient of expansion,8.3,µin/in·°F,70-200 °F,no SI value published
+incoloy,DS,Magnetic permeability,1.009,,annealed at H=2810 oersted,
+
 # --- HASTELLOY C-276 --- the Haynes International brochure's Physical
 # Properties table, in the order it prints them, metric column. Density and the
 # melting range are the same table's first and last rows and live in grades.csv.
@@ -161,6 +234,15 @@ hastelloy,C-276,Poisson's ratio,0.31,,,
 # Haynes prints resistivity in µΩ·cm for N and X but µΩ·m for the others. The
 # bulletin's unit is recorded either way, as the header says - 120.5 µΩ·cm and
 # 1.205 µΩ·m are the same number and the unit column keeps it unambiguous.
+
+# --- HASTELLOY B-2 --- has no rows here because no mill publishes the constants,
+# not because nobody has looked. Checked 2026-08-31: VDM has withdrawn the
+# NIMOFER 6928 data sheet, Haynes publishes no B-2 page (B-3 superseded it), and
+# ATI - who do still make the alloy, as ATI HB-2 (UNS N10665) - publish density
+# alone, 9.21 g/cm3. grades.csv carries 9.22 from VDM; the 0.01 difference is two
+# producers' own figures, not an error, so that cell is left as it stands.
+# ASTM B333, the other source on the grades.csv row, is a product specification
+# and states no physical constants at all.
 
 # --- HASTELLOY B-3 ---
 hastelloy,B-3,Electrical resistivity,1.37,µΩ·m,,
@@ -251,9 +333,33 @@ nimonic,75,Electrical resistivity,1.09,µΩ·m,20 °C,
 nimonic,80A,Mass susceptibility,5.85 × 10⁻⁶,,at 1000 gauss,
 nimonic,80A,Volume susceptibility,4.78 × 10⁻⁶,,at 1000 gauss,
 nimonic,80A,Magnetic permeability,1.000601,,for 200-2000 oersted,
+# 81's sheet is the fullest in the family: three tables, all headed in °C and SI
+# units, so every figure below is the 20 °C row read straight off them with no
+# conversion. Expansion and dynamic modulus are published per product form, which
+# is why those carry two rows each rather than one averaged figure. Resistivity
+# is printed once in Table 2's own header - "at 20°C = 1.27 µΩ•m" - with the
+# column beneath it holding relative resistance, not resistivity; the header
+# figure is the one recorded.
+nimonic,81,Specific heat,461,J/kg·°C,20 °C,
+nimonic,81,Thermal conductivity,10.9,W/m·°C,20 °C,
+nimonic,81,Electrical resistivity,1.27,µΩ·m,20 °C,
+nimonic,81,Coefficient of expansion,11.1,µm/m·°C,20-100 °C - extruded and stretched bar,
+nimonic,81,Coefficient of expansion,11.7,µm/m·°C,20-100 °C - cold rolled sheet,
+nimonic,81,Dynamic modulus of elasticity,196,GPa,20 °C - extruded bar,
+nimonic,81,Dynamic modulus of elasticity,212,GPa,20 °C - sheet,
+nimonic,81,Modulus of rigidity,80,GPa,20 °C - dynamic torsional,
+# 86's sheet publishes density and a Dynamic Young's Modulus table headed in °C
+# and GPa, and no other constant. The 20 °C row of that table is taken; its
+# melting range is not published at all, which is why grades.csv leaves it empty.
+nimonic,86,Young's modulus,210,GPa,20 °C - dynamic,
 # Alloy 90's specific heat is the 20 °C row of its Table 1 - the table runs to
 # 600 °C and only the room-temperature figure is taken here.
 nimonic,90,Specific heat,446,J/kg·°C,20 °C,
+# 105's resistivity is printed as a single sentence - "Electrical resistivity at
+# 20°C = 131 microhm cm" - not in a table, and in µΩ·cm like 115 and 901 rather
+# than 75's µΩ·m. Recorded in the printed unit, per the note above.
+nimonic,105,Electrical resistivity,131,µΩ·cm,20 °C,
+nimonic,105,Magnetic permeability,1.000715,,0.02 T - 0.2 T,
 nimonic,115,Specific heat,444,J/kg·°C,20 °C,
 nimonic,115,Thermal conductivity,10.6,W/m·°C,20 °C,
 nimonic,115,Electrical resistivity,139,µΩ·cm,20 °C,
@@ -462,6 +568,63 @@ nichrome,60/15,Maximum working temperature,600,°C,as resistance material,sheet 
 # grades.json feeds a weight calculator one bare number; the aged one belongs
 # here, where `condition` can say which state it applies to.
 haynes,282,Density,8.29,g/cm3,Age-hardened,
+#
+# The five grades below come from the Physical Properties table on each alloy's
+# own page, read 2026-08-31, on the same terms as the HASTELLOY family above:
+# the lowest published temperature only, the metric column, the page's own unit
+# with no conversion. Density and melting range stay in grades.csv, and every
+# one of the five matched what was already recorded there.
+#
+# Resistivity is µΩ·cm on all five, unlike the HASTELLOY pages which split
+# between µΩ·cm and µΩ·m. Diffusivity is printed in scientific form
+# (30.5 x 10-3 cm2/s) and recorded as the plain decimal in the same unit, which
+# is how C-22's row above was written.
+#
+# ALLOY 188'S ROOM-TEMPERATURE SPECIFIC HEAT IS WRONG ON HAYNES' OWN PAGE. The
+# cell reads "12.1 J/kg·°C", which is not a specific heat at all - it is the
+# 12.1 expansion figure from the table below it. The imperial cell beside it
+# (0.096 Btu/lb-°F) is right, and the rows under it run 423, 444, 465 J/kg·°C at
+# 100, 200 and 300 °C. So the 100 °C row is recorded here with its condition
+# stated, rather than the corrupt RT figure or a conversion of the imperial one.
+# This is the unit-versus-label check in the HASTELLOY note catching a bad cell
+# a second time.
+haynes,25,Electrical resistivity,88.6,µΩ·cm,,
+haynes,25,Thermal diffusivity,0.0283,cm²/s,,
+haynes,25,Thermal conductivity,10.5,W/m·°C,25 °C,
+haynes,25,Specific heat,403,J/kg·°C,25 °C,
+haynes,25,Coefficient of expansion,12.8,µm/m·°C,25-100 °C,
+haynes,25,Dynamic modulus of elasticity,225,GPa,,
+haynes,188,Electrical resistivity,101.0,µΩ·cm,,
+haynes,188,Thermal diffusivity,0.0292,cm²/s,,
+haynes,188,Thermal conductivity,10.4,W/m·°C,,
+haynes,188,Specific heat,423,J/kg·°C,100 °C,RT cell on the source page is corrupt - see note above
+haynes,188,Coefficient of expansion,12.1,µm/m·°C,25-100 °C,
+haynes,188,Dynamic modulus of elasticity,232,GPa,,
+haynes,188,Modulus of rigidity,90,GPa,dynamic,
+haynes,188,Poisson's ratio,0.30,,,
+# 214 publishes no density in this table - grades.csv leaves that cell empty too
+# - and its lowest expansion range is 25-200 °C rather than the 25-100 °C the
+# other four print. The wider range is recorded as published.
+haynes,214,Electrical resistivity,135.9,µΩ·cm,,
+haynes,214,Thermal diffusivity,0.0336,cm²/s,,
+haynes,214,Thermal conductivity,12.0,W/m·°C,,
+haynes,214,Specific heat,452,J/kg·°C,,
+haynes,214,Coefficient of expansion,13.3,µm/m·°C,25-200 °C,
+haynes,214,Dynamic modulus of elasticity,218,GPa,,
+haynes,230,Electrical resistivity,125.0,µΩ·cm,,
+haynes,230,Thermal diffusivity,0.0242,cm²/s,,
+haynes,230,Thermal conductivity,8.9,W/m·°C,,
+haynes,230,Specific heat,397,J/kg·°C,,
+haynes,230,Coefficient of expansion,11.8,µm/m·°C,25-100 °C,
+haynes,230,Dynamic modulus of elasticity,209,GPa,,
+haynes,230,Modulus of rigidity,79,GPa,dynamic,
+haynes,230,Poisson's ratio,0.31,,,
+haynes,242,Electrical resistivity,122.0,µΩ·cm,,
+haynes,242,Thermal diffusivity,0.0305,cm²/s,,
+haynes,242,Thermal conductivity,11.3,W/m·°C,,
+haynes,242,Specific heat,386,J/kg·°C,,
+haynes,242,Coefficient of expansion,10.8,µm/m·°C,25-100 °C,
+haynes,242,Dynamic modulus of elasticity,229,GPa,,
 # --- DUPLEX STAINLESS STEEL --- Aperam DX1803/DX2205 Technical Data Sheet.
 # The thermal and conformance rows below apply to the DX2205 grade (S32205).
 # DX1803 (S31803) shares these physical constants per the same datasheet.
