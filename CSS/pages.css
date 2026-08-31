@@ -40,6 +40,30 @@
     text-decoration: underline;
   }
 
+  /* Inside a Bootstrap `.table` the cells keep a white background - `--bs-table-bg`
+     outranks the navy `th` rule above - so the white row-header link colour set
+     just above for the site's own navy tables rendered white-on-white, and the
+     Grade column of every family-hub "Grades Supplied" table read as blank. Give
+     links in a `.table` row header the visible navy link colour instead. */
+  body .table th a,
+  body .table th a:hover,
+  body .table th a:focus,
+  body .table th a:visited {
+    color: var(--primary-color);
+  }
+
+  /* The Available Forms list ran one item per line and left most of the row
+     empty; flow it into up to three columns that collapse to fewer as the
+     viewport narrows. */
+  .forms-columns {
+    columns: 13rem 3;
+    column-gap: 2rem;
+  }
+
+  .forms-columns li {
+    break-inside: avoid;
+  }
+
   .page-layout {
     display: flex;
     min-height: auto;
