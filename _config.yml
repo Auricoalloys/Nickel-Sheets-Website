@@ -58,6 +58,11 @@ exclude:
   - docs/chemistry.csv
   - docs/properties.csv
   - docs/grades.json
+  # The family-hub Grades Supplied table generator and its companion, which
+  # carries the Type and "Chosen for" columns while the UNS is joined from
+  # grades.csv. Added with exclusions in the same commit, per the note above.
+  - docs/build-hub-grades.mjs
+  - docs/hub-grades.csv
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
   - prices-todo.csv

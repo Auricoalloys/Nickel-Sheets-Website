@@ -1,0 +1,102 @@
+# Presentation data for the "Grades Supplied" table on each alloy family hub:
+# grade order, the link label and target, the Type column and the "Chosen for"
+# reason. docs/build-hub-grades.mjs writes the tables from this, joining
+# docs/grades.csv for the UNS - so the hub table's UNS can never drift from the
+# grade database. One row per (family, grade); every grade a family lists in
+# grades.csv should have a row here. chosen_for may contain commas, so fields are
+# CSV-quoted. An empty url renders the grade as plain text (no grade page yet).
+#
+# After editing: node docs/build-hub-grades.mjs   then commit the hubs.
+# node docs/build-hub-grades.mjs --check reports drift and exits non-zero.
+family,grade,label,url,type,chosen_for
+inconel,600,Inconel 600,/inconel/600/,Solid solution,"Heat and oxidation resistance, chloride stress corrosion"
+inconel,601,Inconel 601,/inconel/601/,Solid solution,Aluminium added for higher oxidation resistance
+inconel,617,Inconel 617,/inconel/617/,Solid solution,Creep strength above 900 &deg;C
+inconel,625,Inconel 625,/inconel/625/,Solid solution,"The general-purpose grade; seawater, chemical and marine"
+inconel,625 LCF,Inconel 625 LCF,/inconel/625LCF/,Solid solution,Low cycle fatigue variant for bellows and expansion joints
+inconel,686,Inconel 686,/inconel/686/,Solid solution,Higher molybdenum and tungsten for severe wet corrosion
+inconel,690,Inconel 690,/inconel/690/,Solid solution,High chromium for nuclear steam generator service
+inconel,693,Inconel 693,/inconel/693/,Solid solution,Metal dusting resistance in syngas and reformer service
+inconel,718,Inconel 718,/inconel/718/,Age hardened,The workhorse; strength to about 700 &deg;C and weldable
+inconel,725,Inconel 725,/inconel/725/,Age hardened,Corrosion resistance of 625 with age-hardened strength
+inconel,740H,Inconel 740H,/inconel/740H/,Age hardened,Advanced ultra-supercritical boiler service
+inconel,751,Inconel 751,/inconel/751/,Age hardened,Exhaust valves and high-temperature fasteners
+inconel,783,Inconel 783,/inconel/783/,Controlled expansion,Oxidation resistant with low thermal expansion
+inconel,X-750,Inconel X-750,/inconel/X-750/sheets/,Age hardened,Age-hardened spring and high-temperature bolting grade
+hastelloy,B-2,Hastelloy B2,/hastelloy/B2/,Ni-Mo,"Reducing acids, especially hydrochloric at all concentrations"
+hastelloy,B-3,Hastelloy B3,/hastelloy/B3/,Ni-Mo,"As B2, with better thermal stability and fabricability"
+hastelloy,C-4,Hastelloy C4,/hastelloy/C4/,Ni-Cr-Mo,"High-temperature stability, resists sensitisation after welding"
+hastelloy,C-22,Hastelloy C22,/hastelloy/C22/,Ni-Cr-Mo,Broad resistance across oxidising and reducing service
+hastelloy,C-276,Hastelloy C276,/hastelloy/C276/,Ni-Cr-Mo,"The general-purpose choice; wet chlorine, hypochlorite, seawater"
+hastelloy,C-2000,Hastelloy C2000,/hastelloy/C2000/,Ni-Cr-Mo-Cu,Copper added for sulphuric acid alongside the usual range
+hastelloy,G-30,Hastelloy G30,/hastelloy/G30/,Ni-Cr-Fe-Mo,Phosphoric acid and mixed-acid pickling
+hastelloy,N,Hastelloy N,/hastelloy/N/,Ni-Mo-Cr,Molten fluoride salts
+hastelloy,X,Hastelloy X,/hastelloy/X/,Ni-Cr-Fe-Mo,"Strength and oxidation resistance at temperature, gas turbine parts"
+haynes,25,Haynes 25 (L-605),,Cobalt base,"Wear and sulphidation resistance, sliding contact at temperature"
+haynes,188,Haynes 188,,Cobalt base,"Oxidation resistance to about 1095 &deg;C, combustor hardware"
+haynes,214,Haynes 214,,Ni-Cr-Al,"The highest oxidation resistance of the family, honeycomb seals and foil"
+haynes,230,Haynes 230,,Ni-Cr-W-Mo,"Strength, oxidation resistance and long-term stability combined"
+haynes,242,Haynes 242,,Age hardened,"Strength with low thermal expansion, seal rings and ducting"
+haynes,282,Haynes 282,,Age hardened,Creep strength with better weldability than earlier disc alloys
+haynes,HR-120,Haynes HR-120,,Fe-Ni-Cr,A lower-cost heat resisting grade for furnace and process service
+incoloy,DS,Incoloy DS,/incoloy/DS/,Heat resisting,Carburisation and thermal cycling in furnace parts
+incoloy,800,Incoloy 800,/incoloy/800/,Heat resisting,General furnace and process service
+incoloy,800H,Incoloy 800H,/incoloy/800H/,Heat resisting,Controlled carbon and grain size for creep strength
+incoloy,800HT,Incoloy 800HT,/incoloy/800HT/,Heat resisting,Tighter still on carbon and aluminium plus titanium
+incoloy,825,Incoloy 825,/incoloy/825/,Corrosion resisting,"Sulphuric and phosphoric acid, pickling plant"
+incoloy,660 (A286),Incoloy 660 (A-286),/incoloy/660/sheets/,Age hardened,Iron-base precipitation-hardened superalloy for turbine and fastener service
+incoloy,890,Incoloy 890,/incoloy/890/,Corrosion resisting,Wet corrosion service
+incoloy,903,Incoloy 903,/incoloy/903/,Controlled expansion,"Constant modulus and low expansion, aerospace rings"
+incoloy,909,Incoloy 909,/incoloy/909/,Controlled expansion,Low expansion with higher strength than 903
+incoloy,925,Incoloy 925,/incoloy/925/,Age hardened,Sour oil and gas service with high strength
+incoloy,945,Incoloy 945,/incoloy/945/,Age hardened,Higher strength again for downhole components
+nichrome,80/20,NiCr 80/20,,"80% Ni, 20% Cr",The highest usable temperature of the family; furnace elements
+nichrome,70/30,NiCr 70/30,,"70% Ni, 30% Cr","Higher resistivity, good oxidation resistance"
+nichrome,60/15,NiCr 60/15,,"60% Ni, 15% Cr","General purpose heating, iron balance"
+nichrome,40/20,NiCr 40/20,,"40% Ni, 20% Cr",Moderate temperature elements and resistors
+nichrome,30/20,NiCr 30/20,,"30% Ni, 20% Cr",Lower temperature service at lower cost
+nichrome,20/25,NiCr 20/25,,"20% Ni, 25% Cr",The most economical of the range
+cobalt-alloy,Haynes 25 (L-605),Haynes 25 (L-605),,Co-Cr-W-Ni,"Wear and sulphidation resistance, sliding contact at temperature"
+cobalt-alloy,Haynes 188,Haynes 188,,Co-Ni-Cr-W,High-temperature oxidation resistance for combustor hardware
+cobalt-alloy,Elgiloy,Elgiloy,/cobalt-alloys/elgiloy/sheets/,Co-Cr-Ni-Mo,"Springs and diaphragms, high fatigue strength, sour gas service"
+cobalt-alloy,MP35N,MP35N,,Co-Ni-Cr-Mo,Multiphase alloy with very high strength and corrosion resistance for fasteners
+cobalt-alloy,CoCrMo,CoCrMo,/cobalt-alloys/cocrmo/powder/,Co-Cr-Mo,Implants and additive manufacturing feedstock
+cobalt-alloy,Stellite 6,Stellite 6,/stellite/,Co-Cr-W,"General-purpose wear resistance, hardfacing and valve seats"
+cobalt-alloy,Stellite 12,Stellite 12,/stellite/,Co-Cr-W,Higher carbon and tungsten for abrasion and low-angle erosion
+cobalt-alloy,Stellite 21,Stellite 21,/stellite/,Co-Cr-Mo,"Molybdenum grade for cavitation, galling and thermal shock"
+duplex-steel,2205,Duplex 2205,/duplex-steel/2205/sheets/,Duplex,"The standard grade; chemical, marine and pressure vessel work"
+duplex-steel,32750,Super Duplex 2507,/duplex-steel/32750/sheets/,Super duplex,Warm seawater and high chloride service
+duplex-steel,32760,Super Duplex Zeron 100,/duplex-steel/32760/sheets/,Super duplex,"As 2507, with copper and tungsten added"
+monel,400,Monel 400,/monel/400/,Solid solution,"The base alloy; seawater, hydrofluoric acid, brine"
+monel,405,Monel 405,/monel/405/,Free machining,Sulphur added for machinability in high-volume turning
+monel,K-500,Monel K-500,/monel/K-500/,Age hardened,"Aluminium and titanium added for strength, same corrosion behaviour"
+nimonic,75,Nimonic 75,/nimonic/75/,Solid solution,Oxidation resistance with good formability and weldability
+nimonic,80A,Nimonic 80A,/nimonic/80A/,Age hardened,The original turbine blade alloy; strength at temperature
+nimonic,81,Nimonic 81,/nimonic/81/,Age hardened,Resistance to high-temperature corrosion
+nimonic,86,Nimonic 86,/nimonic/86/,Solid solution,"Molybdenum-bearing, for strength without age hardening"
+nimonic,90,Nimonic 90,/nimonic/90/,Age hardened,Cobalt added over the 80A base for higher creep strength
+nimonic,105,Nimonic 105,/nimonic/105/,Age hardened,Higher operating temperature than 90
+nimonic,115,Nimonic 115,/nimonic/115/,Age hardened,The highest creep strength in the family
+nimonic,263,Nimonic 263,/nimonic/263/,Age hardened,"Age hardened but picked for weldability, so it suits sheet fabrications"
+nimonic,901,Nimonic 901,/nimonic/901/,Age hardened,"Iron-bearing disc alloy, for large rotating sections"
+special-stainless-steel,904L,904L,/stainless/904L/,Super austenitic,Sulphuric acid and general chemical service
+special-stainless-steel,254 SMO,254 SMO,/stainless/SMO-254/,6% molybdenum,"Seawater and high chloride, PREN above 40"
+special-stainless-steel,AL-6XN,AL-6XN,/stainless/AL-6XN/,6% molybdenum,Seawater cooling and desalination
+special-stainless-steel,Alloy 20,Alloy 20,/stainless/alloy-20/,Acid resisting,"Sulphuric acid, the grade it was designed around"
+special-stainless-steel,Alloy 28,Alloy 28,/stainless/alloy-28/,Super austenitic,Phosphoric and sulphuric acid service
+special-stainless-steel,Alloy 31,Alloy 31,/stainless/alloy-31/,Super austenitic,"Severe acid service, higher alloyed again"
+special-stainless-steel,Alloy 926,Alloy 926,/stainless/alloy-926/,6% molybdenum,Seawater and flue gas desulphurisation
+special-stainless-steel,Sanicro 35,Sanicro 35,/stainless/sanicro-35/,Nitrogen-alloyed austenitic,Seawater and sour service between 6-moly stainless and nickel alloy
+special-stainless-steel,AM 350,AM 350,/stainless/AM-350/,Precipitation hardening,Strength with moderate corrosion resistance
+titanium,Grade 1,Grade 1,/titanium/grade-1/,Commercially pure,The softest and most formable; deep drawing and lining
+titanium,Grade 2,Grade 2,/titanium/grade-2/,Commercially pure,"The workhorse CP grade; chemical, marine and heat exchange"
+titanium,Grade 3,Grade 3,/titanium/grade-3/,Commercially pure,"Higher strength than Grade 2, still readily formed"
+titanium,Grade 4,Grade 4,/titanium/grade-4/,Commercially pure,The strongest CP grade
+titanium,Grade 5,Grade 5,/titanium/grade-5/,Ti-6Al-4V,The most used titanium alloy; aerospace and high-load parts
+titanium,Grade 6,Grade 6,/titanium/grade-6/,Ti-5Al-2.5Sn,"Weldable, stable at elevated temperature and cryogenic service"
+titanium,Grade 7,Grade 7,/titanium/grade-7/,CP with palladium,Grade 2 chemistry with palladium for reducing acids
+titanium,Grade 9,Grade 9,/titanium/grade-9/,Ti-3Al-2.5V,Between CP and Grade 5; tubing and hydraulic lines
+titanium,Grade 11,Grade 11,/titanium/grade-11/,CP with palladium,Grade 1 chemistry with palladium added
+titanium,Grade 12,Grade 12,/titanium/grade-12/,Ti-0.3Mo-0.8Ni,Crevice corrosion resistance in hot brines
+titanium,Grade 16,Grade 16,/titanium/grade-16/,CP with palladium,As Grade 7 at a lower palladium content
+titanium,Grade 23,Grade 23,/titanium/grade-23/,Ti-6Al-4V ELI,Extra low interstitial; fracture toughness and implants
