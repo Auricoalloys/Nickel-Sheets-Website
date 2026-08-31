@@ -476,11 +476,28 @@ Treat the count in `prices-todo.csv` as a **pricing backlog**, not as a list of 
 258 pages are valid as they stand — they keep their `BreadcrumbList`, and 67 keep their `FAQPage`.
 What they do not have is a product rich result, and only a real price earns that.
 
-**Prices are re-quoted quarterly.** `priceValidUntil` is derived from the `# updated:` line plus
-`VALID_DAYS`, which is 100 — a little over a quarter, so a pass that slips a few weeks still has a
-valid price on the page, and a pass that never happens expires quietly instead of going on asserting
-a stale figure. Google uses a price only while it trusts it, the same way it treats `<lastmod>` — and
-loses trust the same way.
+**One re-quote pass per 100-day validity window.** `priceValidUntil` is derived from the
+`# updated:` line plus `VALID_DAYS`, which is 100, and a pass that never happens expires quietly
+instead of going on asserting a stale figure. Google uses a price only while it trusts it, the same
+way it treats `<lastmod>` — and loses trust the same way.
+
+The cadence is enforced by `~/.claude/scheduled-tasks/nickelsheets-price-review/SKILL.md`, which
+fires monthly on the 10th and decides from `# updated:` whether anything is due, rather than from
+the calendar. Cron cannot express "every 100 days", and a fixed date drifts out of step with the
+file the moment a pass lands early or late.
+
+**It acts at 35 days remaining, and that threshold must always exceed the gap between runs.**
+Monthly runs are up to 31 days apart, so a shorter threshold lets a whole window slip between two
+runs — one run sees 32 days left and stays silent, the next is 31 days later and the prices lapsed
+a day ago. That is not hypothetical: the lead-review task's two-week warning could not fire at all
+for the window expiring 2026-11-27, because runs land on the 3rd and Nov 3 was 24 days out while
+Dec 3 was 6 days past expiry. Both thresholds were widened to 35 on 2026-08-31.
+
+**In practice that lands a pass every 89–92 days, not every 100, and that is accepted.** A pass
+always lands on a run day, so the next one falls on the same day of the month three months later —
+which is 89–92 days, whatever the threshold. Simulating four years gives exactly one pass per
+window, acting with 8–17 days spare, and no gap above 100. Chasing a true 100 would mean acting
+with 0–3 days spare on a daily cron, trading the whole safety margin for eight days.
 
 The window and the cadence have to move together, and `VALID_DAYS` lives in **two** files that must
 agree: `docs/build-prices.mjs` and `docs/build-price-worklist.mjs`. Set it shorter than the gap
@@ -488,7 +505,7 @@ between passes and every price spends the tail of each cycle expired, which drop
 result — the 268 rich results this site has are only worth having while the date is in the future.
 Set it much longer and a pass nobody ran keeps asserting a figure nobody checked.
 
-What makes a quarter honest is the width of the ranges: the median row spans 2× low to high, so
+What makes the window honest is the width of the ranges: the median row spans 2× low to high, so
 ordinary movement stays inside the figure already published. Roughly 37 rows are tighter than 1.5×
 — `/nimonic/115/plates/` is 1.17×, the Incoloy 825 rows are 1.25× — and those are the ones to widen
 or re-quote first. Stretching the window without widening them is how a wrong price gets published,
