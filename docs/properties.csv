@@ -681,3 +681,64 @@ cobalt-alloy,Elgiloy,Modulus of rigidity,77.2,GPa,20°C,
 cobalt-alloy,Elgiloy,Coefficient of expansion,15.2,µm/m·°C,20-300°C,
 cobalt-alloy,Elgiloy,Electrical resistivity,99.6,µΩ·cm,20°C,
 cobalt-alloy,Elgiloy,Thermal conductivity,12.5,W/m·K,20°C,
+
+# --- TITANIUM --- ATI "Corrosion-Resistant Titanium" technical data sheet,
+# Typical Physical Properties table, read 2026-09-01. Density and melt
+# temperature are in grades.csv; the four constants below are the rest of that
+# table. Grade 6 and Grade 23 are not in the ATI sheet and so have no rows here.
+#
+# IMPERIAL UNITS, UNCONVERTED, the way the INCOLOY DS rows above are - ATI prints
+# no SI column at all, so per the rule at the head of this file the bulletin's
+# own unit travels with the value and nothing is converted. Modulus is in psi
+# (with ATI's own "x 10^6" multiplier in the value, as the MONEL "x 10^3 ksi"
+# rows do), beta transus and melt in °F, thermal conductivity in Btu/ft·h·°F and
+# expansion in µin/in·°F (= 10^-6/°F). Note that °F expansion is NOT the µm/m·°C
+# figure other grades use: 5.1 x 10^-6/°F is 9.2 µm/m·°C, so the unit matters.
+#
+# ATI GROUPS MOST GRADES INTO ONE COLUMN - Grades 1-4, 7, 11, 12 and 16-18 share
+# a column, with Grade 5 and Grade 9 broken out. So the eight site grades in that
+# group carry ATI's collective figures, and where the group spans a range (beta
+# transus, thermal conductivity) the value IS that range and the note says so, so
+# a single grade's page does not read it as a per-grade figure. Grade 5 and
+# Grade 9 carry their own single values. Beta transus is published as ± 25 °F and
+# the mean expansion coefficient over 32-600 °F, both per ATI's own headers.
+titanium,Grade 1,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 1,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 1,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 1,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+titanium,Grade 2,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 2,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 2,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 2,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+titanium,Grade 3,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 3,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 3,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 3,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+titanium,Grade 4,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 4,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 4,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 4,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+titanium,Grade 5,Modulus of elasticity,16 × 10⁶,psi,,
+titanium,Grade 5,Beta transus,1800,°F,,± 25 °F
+titanium,Grade 5,Thermal conductivity,4,Btu/ft·h·°F,,
+titanium,Grade 5,Coefficient of expansion,5.3,µin/in·°F,32-600 °F,
+titanium,Grade 7,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 7,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 7,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 7,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+titanium,Grade 9,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 9,Beta transus,1715,°F,,± 25 °F
+titanium,Grade 9,Thermal conductivity,10,Btu/ft·h·°F,,
+titanium,Grade 9,Coefficient of expansion,5.5,µin/in·°F,32-600 °F,
+titanium,Grade 11,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 11,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 11,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 11,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+titanium,Grade 12,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 12,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 12,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 12,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+titanium,Grade 16,Modulus of elasticity,15 × 10⁶,psi,,
+titanium,Grade 16,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
+titanium,Grade 16,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
+titanium,Grade 16,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,

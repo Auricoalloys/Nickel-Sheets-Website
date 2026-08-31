@@ -784,10 +784,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -799,10 +799,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -814,10 +814,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -829,10 +829,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -844,10 +844,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.43,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -874,10 +874,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -889,10 +889,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.48,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -904,10 +904,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -919,10 +919,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",
@@ -934,10 +934,10 @@
       ],
       "wnr": null,
       "en_name": null,
-      "density_g_cm3": null,
-      "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "density_g_cm3": 4.51,
+      "melting_c": "1650",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "checked": "2026-09"
     },
     {
       "family": "titanium",

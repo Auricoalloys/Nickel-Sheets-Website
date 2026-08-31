@@ -256,10 +256,9 @@ src="/docs/media/plates-banner.webp"
           <th>Main Plate Standards</th>
           <td>ASTM B265 / ASME SB‑265 Grade 4 for strip, sheet and plate; ASTM F67 Grade 4 for unalloyed titanium products</td>
         </tr>
-        <tr>
-          <th>Density</th>
-          <td>≈4.51–4.54 g/cm³ (≈0.163 lb/in³), less than 60% of typical steel density</td>
-        </tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr>
           <th>Service Temperature</th>
           <td>Strength usable up to about 400 °F (≈204 °C) with oxidation resistance to about 600 °F (≈315 °C) in many environments</td>
@@ -280,10 +279,16 @@ src="/docs/media/plates-banner.webp"
 <thead><tr><th scope="col">Property</th><th scope="col">Value</th></tr></thead>
 <tbody>
 <tr><th scope="row">UNS number</th><td>R50700</td></tr>
+<tr><th scope="row">Density</th><td>4.51 g/cm<sup>3</sup></td></tr>
+<tr><th scope="row">Melting range</th><td>1650 &deg;C</td></tr>
+<tr><th scope="row">Modulus of elasticity</th><td>15 × 10⁶ psi</td></tr>
+<tr><th scope="row">Beta transus</th><td>1635-1735 °F <span class="small text-muted">(ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F))</span></td></tr>
+<tr><th scope="row">Thermal conductivity</th><td>13-10 Btu/ft·h·°F <span class="small text-muted">(ATI range for grades 1-4 7 11 12 and 16-18)</span></td></tr>
+<tr><th scope="row">Coefficient of expansion (32-600 °F)</th><td>5.1 µin/in·°F</td></tr>
 </tbody>
 </table>
 </div>
-<p class="small text-muted">Identifiers and physical constants for Titanium Grade 4 as published in the source cited (ASME SB-265 Table 8 (BPVC.II.B-2023), checked 2026-08). A dash means that source publishes no such designation for this grade.</p>
+<p class="small text-muted">Identifiers and physical constants for Titanium Grade 4 as published in the source cited (ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants), checked 2026-09). A dash means that source publishes no such designation for this grade.</p>
 <!-- grade-identity:end -->
 </section>
         <section class="product-content" id="product-grade">    <h2>Stock & Product Availability</h2>
@@ -309,7 +314,7 @@ src="/docs/media/plates-banner.webp"
 </tbody>
 </table>
 </div>
-<p class="small text-muted">Composition limits per ASME SB-265 Table 8 (BPVC.II.B-2023), checked 2026-08. These are specification limits for the grade, not measured values for a lot; the mill test certificate supplied with your order states the actual analysis.</p>
+<p class="small text-muted">Composition limits per ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants), checked 2026-09. These are specification limits for the grade, not measured values for a lot; the mill test certificate supplied with your order states the actual analysis.</p>
 <!-- grade-chem:end -->
 </section>
         <section class="grade-table-section py-5 bg-light" id="mechanical-properties">    <h2 id="mechanical">Mechanical & Physical Properties</h2>
@@ -321,7 +326,9 @@ src="/docs/media/plates-banner.webp"
         </tr>
       </thead>
       <tbody>
-        <tr><td>Density</td><td>≈4.51–4.54 g/cm³ (0.163 lb/in³)</td></tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr><td>Ultimate Tensile Strength</td><td>Minimum ≈550–552 MPa, typical ≈650–690 MPa in datasheets</td></tr>
         <tr><td>Yield Strength (0.2% offset)</td><td>Minimum ≈480 MPa, typical values up to ≈559–635 MPa in cold-worked conditions</td></tr>
         <tr><td>Elongation (in 50 mm)</td><td>Minimum ≈15%; typical ≈20–25% depending on product form</td></tr>

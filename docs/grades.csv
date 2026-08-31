@@ -399,47 +399,65 @@ haynes,242,N10242,,,9.05,1290-1375,Haynes International HAYNES 242 alloy page,20
 # feeds a weight calculator one bare number; the aged one is in properties.csv
 # with its condition, which is the column that exists for exactly this.
 haynes,282,N07208,,,8.27,1300-1375,Haynes International HAYNES 282 alloy page,2026-08
-# --- TITANIUM --- ASME BPVC Section II Part B, SB-265 Table 8 "Chemical
-# Requirements", 2023 edition, read 2026-08-26. Titanium is not a proprietary
-# family: no mill defines these grades, the standard does, so the standard is
-# the source - the same reasoning that sources HASTELLOY B-2 to ASTM B333.
+# --- TITANIUM --- Two sources, named separately in `source` the way the HAYNES
+# 25 and 254 SMO rows carry two. Identity and composition come from ASME BPVC
+# Section II Part B, SB-265 Table 8 "Chemical Requirements", 2023 edition, read
+# 2026-08-26: the UNS number and the composition limits (docs/chemistry.csv).
+# The physical constants SB-265 does not publish come from ATI's "Corrosion-
+# Resistant Titanium" technical data sheet, read 2026-09-01 - density and melt
+# temperature here, and modulus, beta transus, thermal conductivity and thermal
+# expansion in docs/properties.csv. Titanium is not a proprietary family: no mill
+# defines these grades, the standard does - the same reasoning that sources
+# HASTELLOY B-2 to ASTM B333 - so the standard is the source for identity and a
+# mill data sheet is the source for the constants.
 #
-# WHAT THIS SOURCE DOES AND DOES NOT PUBLISH. Table 8 gives the UNS number and
-# the composition limits. It gives NO Werkstoff number, NO EN symbolic name, NO
-# density and NO melting point. Those four cells are therefore EMPTY, not "-":
-# the standard is silent on them, which is "not verified yet", whereas "-" would
-# claim the source publishes no such designation. The identity table drops an
-# empty row rather than printing a dash the caption would then attribute to
-# ASME. Density and melting are coming from manufacturer data sheets and will be
-# filled then - together with the Werkstoff numbers, which need the same source.
+# DENSITY IS CONVERTED, uniquely in this file. ATI prints it in lb/in3 only, and
+# density_g_cm3 must be a bare g/cm3 number for docs/grades.json. 0.163 lb/in3 x
+# 27.6799 = 4.51 (the CP and Pd grades), 0.160 = 4.43 (Grade 5), 0.162 = 4.48
+# (Grade 9) - the canonical titanium figures. The other ATI constants stay in
+# ATI's own imperial units in properties.csv, unconverted, the way the INCOLOY
+# DS rows there are all imperial.
 #
-# WHAT WAS REMOVED AND WHY. These rows previously carried seeded W.Nr (3.7025,
-# 3.7035, ...), EN names (TiAl6V4) and density/melting (4.51/1670, ...). All of
-# it was `pending` seed data - a starting point for verification, never verified
-# figures - and none of it comes from SB-265. Publishing it under an ASME
-# citation would put words in the standard's mouth. It is not lost: git has it,
-# and the pages' own hand-written tables still carry their versions until a
-# sourced figure replaces them.
+# MELT TEMPERATURE is ATI's "~3000 F" (= 1649 C), printed identically for every
+# grade and recorded as 1650. It is an approximate single figure, not a per-grade
+# range - the "approx." case VDM's 1400 C for Nichrome 70/30 already set.
 #
-# GRADES 3, 4, 6 AND 16 ARE NEW HERE and were the reason four published pages
-# had no row at all - /titanium/grade-3/, grade-4/, grade-6-plates and grade-16/
-# have existed all along while grades.csv knew nothing about them, so nothing
-# checked what they claimed. Table 8 covers all four.
+# WERKSTOFF AND EN NAME STAY EMPTY. Neither source publishes them - SB-265 has no
+# DIN field and the ATI sheet prints no Werkstoff number for any grade - so both
+# cells are "not verified yet", not "-" ("the source publishes none"). Blank
+# until a register that carries them is read.
+#
+# GRADE 6 AND GRADE 23 ARE NOT IN THE ATI SHEET. It covers ATI Grades 1-5, 7, 9,
+# 11, 12 and 16-18; Grade 6 (Ti-5Al-2.5Sn) and Grade 23 (Ti-6Al-4V ELI) are not
+# corrosion-resistant grades and it does not list them, so their density and
+# melting stay empty and their pages keep their own hand-written figures until a
+# sheet that covers them is read. Do NOT fill them from Grade 5 or Grade 2 by
+# analogy - that is the copy-the-sibling error this whole file exists to stop.
+#
+# WHAT WAS REMOVED IN 2026-08 AND WHY. These rows once carried seeded W.Nr
+# (3.7025, ...), EN names (TiAl6V4) and density/melting (4.51/1670, ...), all of
+# it `pending` seed data from no named source. git has it; the ATI sheet now
+# refills the density and melting half from a real bulletin, and the 4.51 it
+# happened to seed for the CP grades turns out to have been right.
+#
+# GRADES 3, 4, 6 AND 16 were added in 2026-08 as the reason four published pages
+# had no row at all - /titanium/grade-3/, grade-4/, grade-6-plates and grade-16/.
+# Table 8 covers all four; the ATI sheet covers 3, 4 and 16 but not 6.
 #
 # 2/2H, 7/7H, 16/16H and 26/26H share one row each in Table 8; the H suffix is
 # the same chemistry with a higher guaranteed minimum strength, so the grade
 # key here stays the plain number.
-titanium,Grade 1,R50250,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 2,R50400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 3,R50550,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 4,R50700,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 5,R56400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 1,R50250,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 2,R50400,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 3,R50550,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 4,R50700,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 5,R56400,,,4.43,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 6,R54520,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 7,R52400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 9,R56320,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 11,R52250,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 12,R53400,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 16,R52402,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 7,R52400,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 9,R56320,,,4.48,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 11,R52250,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 12,R53400,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 16,R52402,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 23,R56407,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
 # Special Metals publishes 200 and 201 in one bulletin, which heads alloy 200
 # "(UNS N02200/W.Nr. 2.4060 & 2.4066)" and states in the 201 section that the

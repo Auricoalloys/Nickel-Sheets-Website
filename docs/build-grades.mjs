@@ -565,11 +565,12 @@ const dupConstants = [];
 // Which constants the identity table on this page actually publishes. An empty
 // CSV cell DROPS its row - "not verified yet" is a different claim from "the
 // mill publishes none" - so a constant the table does not carry has no second
-// home to delete, only a first one. This is not hypothetical: all 12 verified
-// titanium grades have an empty density_g_cm3 and 18 grades an empty melting_c,
-// so a strip that ignored this would delete the only density figure on every
-// titanium page. Every grade on a combined page must publish it, for the same
-// reason - one hand-written row cannot stand in for three different densities.
+// home to delete, only a first one. This is not hypothetical: Grade 6 and
+// Grade 23 still have an empty density_g_cm3 - they sit outside ATI's data
+// sheet, which sources the other ten titanium grades - so a strip that ignored
+// this would delete the only density figure on those two titanium pages. Every
+// grade on a combined page must publish it, for the same reason - one
+// hand-written row cannot stand in for three different densities.
 const publishedConstants = rows => ({
   density: rows.length > 0 && rows.every(r => r.density_g_cm3 !== '' && r.density_g_cm3 != null),
   melting: rows.length > 0 && rows.every(r => r.melting_c !== '' && r.melting_c != null),

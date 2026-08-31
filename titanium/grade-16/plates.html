@@ -234,10 +234,9 @@ src="/docs/media/plates-banner.webp"
           <th>Main Plate Standards</th>
           <td>ASTM B265 / ASME SB‑265 Grade 16 for strip, sheet and plate; Grade 16H defined in the same standard with minimum 400 MPa (58 ksi) UTS</td>
         </tr>
-        <tr>
-          <th>Density</th>
-          <td>≈4.5–4.51 g/cm³, similar to other commercially pure titanium grades and around 56–60% of carbon steel density</td>
-        </tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr>
           <th>Corrosion Focus</th>
           <td>Improved resistance in mildly reducing and oxidising chloride and acid environments versus Grade 2, with behaviour described as between Grade 7 and Grade 2</td>
@@ -253,10 +252,16 @@ src="/docs/media/plates-banner.webp"
 <thead><tr><th scope="col">Property</th><th scope="col">Value</th></tr></thead>
 <tbody>
 <tr><th scope="row">UNS number</th><td>R52402</td></tr>
+<tr><th scope="row">Density</th><td>4.51 g/cm<sup>3</sup></td></tr>
+<tr><th scope="row">Melting range</th><td>1650 &deg;C</td></tr>
+<tr><th scope="row">Modulus of elasticity</th><td>15 × 10⁶ psi</td></tr>
+<tr><th scope="row">Beta transus</th><td>1635-1735 °F <span class="small text-muted">(ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F))</span></td></tr>
+<tr><th scope="row">Thermal conductivity</th><td>13-10 Btu/ft·h·°F <span class="small text-muted">(ATI range for grades 1-4 7 11 12 and 16-18)</span></td></tr>
+<tr><th scope="row">Coefficient of expansion (32-600 °F)</th><td>5.1 µin/in·°F</td></tr>
 </tbody>
 </table>
 </div>
-<p class="small text-muted">Identifiers and physical constants for Titanium Grade 16 as published in the source cited (ASME SB-265 Table 8 (BPVC.II.B-2023), checked 2026-08). A dash means that source publishes no such designation for this grade.</p>
+<p class="small text-muted">Identifiers and physical constants for Titanium Grade 16 as published in the source cited (ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants), checked 2026-09). A dash means that source publishes no such designation for this grade.</p>
 <!-- grade-identity:end -->
 </section>
         <section class="product-content" id="product-grade">    <h2>Stock & Product Availability</h2>
@@ -283,7 +288,7 @@ src="/docs/media/plates-banner.webp"
 </tbody>
 </table>
 </div>
-<p class="small text-muted">Composition limits per ASME SB-265 Table 8 (BPVC.II.B-2023), checked 2026-08. These are specification limits for the grade, not measured values for a lot; the mill test certificate supplied with your order states the actual analysis.</p>
+<p class="small text-muted">Composition limits per ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants), checked 2026-09. These are specification limits for the grade, not measured values for a lot; the mill test certificate supplied with your order states the actual analysis.</p>
 <!-- grade-chem:end -->
 </section>
         <section class="grade-table-section py-5 bg-light" id="mechanical-properties">    <h2 id="mechanical">Mechanical & Physical Properties</h2>
@@ -295,7 +300,9 @@ src="/docs/media/plates-banner.webp"
         </tr>
       </thead>
       <tbody>
-        <tr><td>Density</td><td>≈4.5–4.51 g/cm³</td></tr>
+        <!-- grade-constants-removed by docs/build-grades.mjs: density and melting range print
+             from docs/grades.csv in the Equivalent Grades table above; a second
+             hand-written copy here is what let 63 pages state two densities. -->
         <tr><td>Ultimate Tensile Strength</td><td>Described as having relatively low tensile strength among wrought titaniums; typical values are similar to Grade 2 ranges rather than high‑strength alloys</td></tr>
         <tr><td>Yield Strength (0.2% offset)</td><td>Comparable to CP titanium with standard oxygen; mechanical property tables show Grade 16 in a medium CP range between the softest and strongest CP grades</td></tr>
         <tr><td>Elongation</td><td>Moderately high ductility, with one source noting “moderately high ductility” and example data around the mid‑20% range</td></tr>
