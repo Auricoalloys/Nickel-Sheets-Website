@@ -399,10 +399,11 @@ haynes,242,N10242,,,9.05,1290-1375,Haynes International HAYNES 242 alloy page,20
 # feeds a weight calculator one bare number; the aged one is in properties.csv
 # with its condition, which is the column that exists for exactly this.
 haynes,282,N07208,,,8.27,1300-1375,Haynes International HAYNES 282 alloy page,2026-08
-# HR-120 added 2026-09-01. UNS N08120 from the Haynes International HR-120
-# datasheet. Held pending until Werkstoff, chemistry and physical constants
-# are read and its pages migrated; the hub table reads only the UNS.
-haynes,HR-120,N08120,,,,,pending,
+# HR-120: UNS N08120, density 8.07 (0.291 lb/in3) and melting 1300 C (2375 F),
+# plus the nominal composition, read from the Haynes International HR-120
+# brochure (2026-09). Haynes prints no Werkstoff or EN symbolic designation for
+# it, so wnr and en_name stay empty.
+haynes,HR-120,N08120,,,8.07,1300,Haynes International HAYNES HR-120 alloy brochure,2026-09
 # --- TITANIUM --- Two sources, named separately in `source` the way the HAYNES
 # 25 and 254 SMO rows carry two. Identity and composition come from ASME BPVC
 # Section II Part B, SB-265 Table 8 "Chemical Requirements", 2023 edition, read
@@ -617,9 +618,12 @@ special-stainless-steel,Alloy 926,N08926,1.4529,X1NiCrMoCuN25-20-7,8.10,1320-139
 # Physical properties section gives density, conductivity, specific heat,
 # expansion, resistivity and modulus, and no melting range.
 special-stainless-steel,Sanicro 35,N08935,-,-,8.10,,Alleima Sanicro 35 datasheet (seamless tube and pipe),2026-08
-# AM 350 added 2026-09-01. UNS S35000 and density 7.92 from the ATI AM 350
-# Technical Data Sheet. Held pending until chemistry and Werkstoff are read.
-special-stainless-steel,AM 350,S35000,,,7.92,,pending,
+# AM 350 (AISI 633): UNS S35000, no Werkstoff and no EN symbolic designation -
+# the Lamineries Matthey AM 350 data sheet prints "-" for both - density 7.94
+# annealed (7.81 sub-zero cooled and tempered) and melting 1370-1400 C, read
+# from that sheet (2026-09). grades.csv has no AISI column; AISI 633 is named in
+# the AM 350 page body instead.
+special-stainless-steel,AM 350,S35000,-,-,7.94,1370-1400,Lamineries Matthey AM 350 Stainless Steel data sheet,2026-09
 # These two duplicate the haynes/25 and haynes/188 rows above under a second
 # family key, the same shape as the nickel-alloy duplicates: no page resolves to
 # them for identity, but docs/specs.csv keys rows to them, so deleting either is
@@ -671,12 +675,15 @@ cobalt-alloy,MP35N,R30035,,,8.43,1316-1443,Carpenter Technology MP35N datasheet,
 # and ISO numbers, and nothing read so far shows whether that omission is
 # deliberate the way the Sanicro 35 panel's blank W.Nr row was.
 cobalt-alloy,CoCrMo,R31537,,,8.25,,Alleima F1537 bar datasheet,2026-08
-# Stellite is a family; the grades stocked are 6, 12 and 21. UNS R30006 /
-# R30012 / R30021 from the Kennametal Stellite alloy portfolio (stellite.com).
-# Held pending until chemistry and physical constants are read.
-cobalt-alloy,Stellite 6,R30006,,,,,pending,
-cobalt-alloy,Stellite 12,R30012,,,,,pending,
-cobalt-alloy,Stellite 21,R30021,,,,,pending,
+# Stellite is its own family (family key `stellite`, grades 6/12/21), not a set of
+# grades under cobalt-alloy, so /stellite/6/ and its form pages resolve. Kennametal
+# owns the STELLITE mark and publishes a technical data sheet per grade
+# (stellite.com): UNS R30006 / R30012 / R30021 for the rod-and-cast form, the
+# densities, melting ranges and chemistry are read from those. Kennametal prints no
+# Werkstoff or EN number for these cobalt alloys, so wnr and en_name stay empty.
+stellite,6,R30006,,,8.44,1250-1360,Kennametal Stellite 6 Alloy technical data (B-20-06297),2026-09
+stellite,12,R30012,,,8.53,1225-1280,Kennametal Stellite 12 Alloy technical data (B-20-06299),2026-09
+stellite,21,R30021,,,8.33,1295-1435,Kennametal Stellite 21 Alloy technical data (B-20-06300),2026-09
 # --- NICHROME --- VDM Metals' three Basic Information sheets, read 2026-08-25.
 #
 # WHY VDM AND NOT A BULLETIN ALREADY IN THIS FILE: Nichrome is not a Special
@@ -707,10 +714,14 @@ cobalt-alloy,Stellite 21,R30021,,,,,pending,
 nichrome,80/20,N06023,2.4869,NiCr 80 20,8.3,1400,VDM Metals VDM Alloy HT 80 Basic Information sheet 03/2020,2026-08
 nichrome,70/30,N06003,2.4658,NiCr 70 30,8.1,1400,VDM Metals VDM Alloy HT 70 Basic Information sheet 03/2020,2026-08
 nichrome,60/15,N06024,2.4867,NiCr 6015,8.2,1390,VDM Metals VDM Alloy HT 60 Basic Information sheet 03/2020,2026-08
-# NiCr 40/20, 30/20, 20/25 have NO assigned UNS - a resistance-alloy producer
-# datasheet (DIN 17470 grades) prints "-" in the UNS column, so uns is "-".
-# Werkstoff 1.4860 (30/20) and 1.4843 (20/25) and the densities are from that
-# datasheet. Held pending; a UNS will be added only if reliable data surfaces.
-nichrome,40/20,-,-,,7.95,,pending,
-nichrome,30/20,-,1.4860,,7.90,,pending,
-nichrome,20/25,-,1.4843,,7.80,,pending,
+# NiCr 40/20, 30/20, 20/25 have NO assigned UNS. JLC Electromet's Nickel-Chromium
+# data sheet prints "-" in the UNS column for these three DIN 17470 grades while
+# giving a UNS for 80/20-60/15, so the "-" is a statement, not a gap. Its Werkstoff
+# column agrees with VDM's verified 2.4869 / 2.4658 / 2.4867 on the grades that
+# overlap, so 1.4860 (30/20) and 1.4843 (20/25) are trusted; 40/20 has none. The
+# sheet publishes density but no melting point, so melting_c stays empty. Its UNS
+# column is NOT a source - it repeats the trade's N06003/N06004 for 80/20 and
+# 60/15, the very errors VDM corrected to N06023/N06024; here it only says "-".
+nichrome,40/20,-,-,,7.95,,JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020),2026-09
+nichrome,30/20,-,1.4860,,7.90,,JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020),2026-09
+nichrome,20/25,-,1.4843,,7.80,,JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020),2026-09

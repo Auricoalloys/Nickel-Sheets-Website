@@ -90,14 +90,20 @@ const isDisallowed = u => disallowed.some(d => u.startsWith(d));
 // ---- last meaningful commit date per file ----------------------------------
 // One pass over history rather than a git call per file.
 function lastModifiedMap() {
-  const log = execSync('git log --no-merges --date=short --format="@@@%h %ad" --name-only',
+  // Log full SHAs (%H), not abbreviated (%h): BOILERPLATE holds 8-char SHAs, but
+  // git abbreviates %h to 7 here, so `BOILERPLATE.has(shortSha)` never matched and
+  // every sweep silently leaked into the dates - the "signal rots" failure this set
+  // exists to prevent. Match the full SHA against each entry as a prefix, so the
+  // guard keeps working whatever length either side is.
+  const log = execSync('git log --no-merges --date=short --format="@@@%H %ad" --name-only',
     { cwd: ROOT, encoding: 'utf8', maxBuffer: 1 << 28 });
+  const boilerplate = [...BOILERPLATE];
   const map = new Map();
   let date = null, skip = false;
   for (const line of log.split('\n')) {
     if (line.startsWith('@@@')) {
       const [sha, d] = line.slice(3).split(' ');
-      date = d; skip = BOILERPLATE.has(sha);
+      date = d; skip = boilerplate.some(b => sha.startsWith(b));
       continue;
     }
     const f = line.trim();

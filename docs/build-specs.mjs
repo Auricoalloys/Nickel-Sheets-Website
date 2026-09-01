@@ -78,6 +78,7 @@ const FAMILY_KEYS = [
   ['titanium', 'titanium'],
   ['haynes', 'haynes'],
   ['monel', 'monel'],
+  ['stellite', 'stellite'],
 ];
 
 // ---- read the CSV -----------------------------------------------------------
@@ -123,7 +124,7 @@ const DISPLAY = {
   inconel: 'Inconel', incoloy: 'Incoloy', hastelloy: 'Hastelloy', monel: 'Monel',
   nimonic: 'Nimonic', haynes: 'Haynes', titanium: 'Titanium', nichrome: 'Nichrome',
   'duplex-steel': 'Duplex', 'cobalt-alloy': '', 'nickel-alloy': '',
-  'special-stainless-steel': '',
+  'special-stainless-steel': '', stellite: 'Stellite',
 };
 const fullName = row => {
   const p = DISPLAY[row.family] ?? '';
