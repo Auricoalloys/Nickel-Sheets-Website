@@ -109,6 +109,7 @@ const FAMILY_KEYS = [
   ['haynes', 'haynes'],
   ['monel', 'monel'],
   ['nicr', 'nichrome'],
+  ['stellite', 'stellite'],
 ];
 
 // Which form column of specs.csv a URL's form segment sells. This is the rule
@@ -149,6 +150,14 @@ const COMBINED = {
   '/nichrome/sheets/': [
     ['nichrome', '80/20'], ['nichrome', '70/30'], ['nichrome', '60/15'],
   ],
+  // The Stellite family-level pages sell every grade in one form. Per-grade
+  // pages live at /stellite/<grade>/<form>/; these four stay as combined
+  // form-hubs showing all three grades side by side. /stellite/foil/ also
+  // carries a price - its Product node is in <head> and untouched here.
+  '/stellite/sheets/': [['stellite', '6'], ['stellite', '12'], ['stellite', '21']],
+  '/stellite/plates/': [['stellite', '6'], ['stellite', '12'], ['stellite', '21']],
+  '/stellite/round-bar/': [['stellite', '6'], ['stellite', '12'], ['stellite', '21']],
+  '/stellite/foil/': [['stellite', '6'], ['stellite', '12'], ['stellite', '21']],
 };
 
 const ELEMENT_NAMES = {
@@ -287,7 +296,7 @@ const DISPLAY = {
   inconel: 'Inconel', incoloy: 'Incoloy', hastelloy: 'Hastelloy', monel: 'Monel',
   nimonic: 'Nimonic', haynes: 'Haynes', titanium: 'Titanium', nichrome: 'Nichrome',
   'duplex-steel': 'Duplex', 'cobalt-alloy': '', 'nickel-alloy': '',
-  'special-stainless-steel': '', 'tool-steel': '',
+  'special-stainless-steel': '', 'tool-steel': '', stellite: 'Stellite',
 };
 const fullName = r => {
   const p = DISPLAY[r.family] ?? '';

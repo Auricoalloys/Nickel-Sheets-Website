@@ -775,6 +775,21 @@
       "checked": "2026-08"
     },
     {
+      "family": "haynes",
+      "grade": "HR-120",
+      "name": "Haynes HR-120",
+      "uns": "N08120",
+      "uns_all": [
+        "N08120"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.07,
+      "melting_c": "1300",
+      "source": "Haynes International HAYNES HR-120 alloy brochure",
+      "checked": "2026-09"
+    },
+    {
       "family": "titanium",
       "grade": "Grade 1",
       "name": "Titanium Grade 1",
@@ -1256,6 +1271,21 @@
       "checked": "2026-08"
     },
     {
+      "family": "special-stainless-steel",
+      "grade": "AM 350",
+      "name": "AM 350",
+      "uns": "S35000",
+      "uns_all": [
+        "S35000"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.94,
+      "melting_c": "1370-1400",
+      "source": "Lamineries Matthey AM 350 Stainless Steel data sheet",
+      "checked": "2026-09"
+    },
+    {
       "family": "cobalt-alloy",
       "grade": "Haynes 25 (L-605)",
       "name": "Haynes 25 (L-605)",
@@ -1331,6 +1361,51 @@
       "checked": "2026-08"
     },
     {
+      "family": "stellite",
+      "grade": "6",
+      "name": "Stellite 6",
+      "uns": "R30006",
+      "uns_all": [
+        "R30006"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.44,
+      "melting_c": "1250-1360",
+      "source": "Kennametal Stellite 6 Alloy technical data (B-20-06297)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "stellite",
+      "grade": "12",
+      "name": "Stellite 12",
+      "uns": "R30012",
+      "uns_all": [
+        "R30012"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.53,
+      "melting_c": "1225-1280",
+      "source": "Kennametal Stellite 12 Alloy technical data (B-20-06299)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "stellite",
+      "grade": "21",
+      "name": "Stellite 21",
+      "uns": "R30021",
+      "uns_all": [
+        "R30021"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.33,
+      "melting_c": "1295-1435",
+      "source": "Kennametal Stellite 21 Alloy technical data (B-20-06300)",
+      "checked": "2026-09"
+    },
+    {
       "family": "nichrome",
       "grade": "80/20",
       "name": "Nichrome 80/20",
@@ -1374,6 +1449,45 @@
       "melting_c": "1390",
       "source": "VDM Metals VDM Alloy HT 60 Basic Information sheet 03/2020",
       "checked": "2026-08"
+    },
+    {
+      "family": "nichrome",
+      "grade": "40/20",
+      "name": "Nichrome 40/20",
+      "uns": null,
+      "uns_all": [],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.95,
+      "melting_c": null,
+      "source": "JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "nichrome",
+      "grade": "30/20",
+      "name": "Nichrome 30/20",
+      "uns": null,
+      "uns_all": [],
+      "wnr": "1.4860",
+      "en_name": null,
+      "density_g_cm3": 7.9,
+      "melting_c": null,
+      "source": "JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "nichrome",
+      "grade": "20/25",
+      "name": "Nichrome 20/25",
+      "uns": null,
+      "uns_all": [],
+      "wnr": "1.4843",
+      "en_name": null,
+      "density_g_cm3": 7.8,
+      "melting_c": null,
+      "source": "JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020)",
+      "checked": "2026-09"
     }
   ]
 }
