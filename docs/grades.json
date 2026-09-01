@@ -1374,6 +1374,45 @@
       "melting_c": "1390",
       "source": "VDM Metals VDM Alloy HT 60 Basic Information sheet 03/2020",
       "checked": "2026-08"
+    },
+    {
+      "family": "nichrome",
+      "grade": "40/20",
+      "name": "Nichrome 40/20",
+      "uns": null,
+      "uns_all": [],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.95,
+      "melting_c": null,
+      "source": "JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "nichrome",
+      "grade": "30/20",
+      "name": "Nichrome 30/20",
+      "uns": null,
+      "uns_all": [],
+      "wnr": "1.4860",
+      "en_name": null,
+      "density_g_cm3": 7.9,
+      "melting_c": null,
+      "source": "JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "nichrome",
+      "grade": "20/25",
+      "name": "Nichrome 20/25",
+      "uns": null,
+      "uns_all": [],
+      "wnr": "1.4843",
+      "en_name": null,
+      "density_g_cm3": 7.8,
+      "melting_c": null,
+      "source": "JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020)",
+      "checked": "2026-09"
     }
   ]
 }

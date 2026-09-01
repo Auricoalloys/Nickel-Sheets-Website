@@ -1197,6 +1197,38 @@ nichrome,60/15,Si,1.0,1.75
 nichrome,60/15,Al,,0.3
 nichrome,60/15,Other,,0.04
 
+# NiCr 40/20, 30/20, 20/25 - JLC Electromet Nickel-Chromium data sheet, column
+# order Ni, Mn, Fe, Si, Cr, C, Al, Cu. Fe is the balance and Ni a minimum here,
+# the reverse of the 80/20-60/15 grades above. The sheet heads the table
+# "Nominal" but every cell is a range, a maximum or the balance - real limits,
+# with no bare nominal figure - so they are recorded as limits, like VDM's above.
+nichrome,40/20,Ni,37.0,
+nichrome,40/20,Mn,,1.0
+nichrome,40/20,Fe,,bal
+nichrome,40/20,Si,1.8,3.0
+nichrome,40/20,Cr,18,22
+nichrome,40/20,C,,0.10
+nichrome,40/20,Al,,0.30
+nichrome,40/20,Cu,,0.50
+
+nichrome,30/20,Ni,28.0,
+nichrome,30/20,Mn,,1.0
+nichrome,30/20,Fe,,bal
+nichrome,30/20,Si,1.8,3.0
+nichrome,30/20,Cr,18,22
+nichrome,30/20,C,,0.10
+nichrome,30/20,Al,,0.30
+nichrome,30/20,Cu,,0.50
+
+nichrome,20/25,Ni,18.0,
+nichrome,20/25,Mn,,1.0
+nichrome,20/25,Fe,,bal
+nichrome,20/25,Si,1.0,1.5
+nichrome,20/25,Cr,23,27
+nichrome,20/25,C,,0.10
+nichrome,20/25,Al,,0.30
+nichrome,20/25,Cu,,0.50
+
 # Grades 3, 4, 6 and 16 - the four that had published pages but no row in
 # grades.csv, so nothing checked what they claimed. Same source and same column
 # order as the block above.

@@ -707,10 +707,14 @@ cobalt-alloy,Stellite 21,R30021,,,,,pending,
 nichrome,80/20,N06023,2.4869,NiCr 80 20,8.3,1400,VDM Metals VDM Alloy HT 80 Basic Information sheet 03/2020,2026-08
 nichrome,70/30,N06003,2.4658,NiCr 70 30,8.1,1400,VDM Metals VDM Alloy HT 70 Basic Information sheet 03/2020,2026-08
 nichrome,60/15,N06024,2.4867,NiCr 6015,8.2,1390,VDM Metals VDM Alloy HT 60 Basic Information sheet 03/2020,2026-08
-# NiCr 40/20, 30/20, 20/25 have NO assigned UNS - a resistance-alloy producer
-# datasheet (DIN 17470 grades) prints "-" in the UNS column, so uns is "-".
-# Werkstoff 1.4860 (30/20) and 1.4843 (20/25) and the densities are from that
-# datasheet. Held pending; a UNS will be added only if reliable data surfaces.
-nichrome,40/20,-,-,,7.95,,pending,
-nichrome,30/20,-,1.4860,,7.90,,pending,
-nichrome,20/25,-,1.4843,,7.80,,pending,
+# NiCr 40/20, 30/20, 20/25 have NO assigned UNS. JLC Electromet's Nickel-Chromium
+# data sheet prints "-" in the UNS column for these three DIN 17470 grades while
+# giving a UNS for 80/20-60/15, so the "-" is a statement, not a gap. Its Werkstoff
+# column agrees with VDM's verified 2.4869 / 2.4658 / 2.4867 on the grades that
+# overlap, so 1.4860 (30/20) and 1.4843 (20/25) are trusted; 40/20 has none. The
+# sheet publishes density but no melting point, so melting_c stays empty. Its UNS
+# column is NOT a source - it repeats the trade's N06003/N06004 for 80/20 and
+# 60/15, the very errors VDM corrected to N06023/N06024; here it only says "-".
+nichrome,40/20,-,-,,7.95,,JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020),2026-09
+nichrome,30/20,-,1.4860,,7.90,,JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020),2026-09
+nichrome,20/25,-,1.4843,,7.80,,JLC Electromet Nickel-Chromium Heating & Resistance Alloys data sheet (December 2020),2026-09
