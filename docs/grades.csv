@@ -671,12 +671,15 @@ cobalt-alloy,MP35N,R30035,,,8.43,1316-1443,Carpenter Technology MP35N datasheet,
 # and ISO numbers, and nothing read so far shows whether that omission is
 # deliberate the way the Sanicro 35 panel's blank W.Nr row was.
 cobalt-alloy,CoCrMo,R31537,,,8.25,,Alleima F1537 bar datasheet,2026-08
-# Stellite is a family; the grades stocked are 6, 12 and 21. UNS R30006 /
-# R30012 / R30021 from the Kennametal Stellite alloy portfolio (stellite.com).
-# Held pending until chemistry and physical constants are read.
-cobalt-alloy,Stellite 6,R30006,,,,,pending,
-cobalt-alloy,Stellite 12,R30012,,,,,pending,
-cobalt-alloy,Stellite 21,R30021,,,,,pending,
+# Stellite is its own family (family key `stellite`, grades 6/12/21), not a set of
+# grades under cobalt-alloy, so /stellite/6/ and its form pages resolve. Kennametal
+# owns the STELLITE mark and publishes a technical data sheet per grade
+# (stellite.com): UNS R30006 / R30012 / R30021 for the rod-and-cast form, the
+# densities, melting ranges and chemistry are read from those. Kennametal prints no
+# Werkstoff or EN number for these cobalt alloys, so wnr and en_name stay empty.
+stellite,6,R30006,,,8.44,1250-1360,Kennametal Stellite 6 Alloy technical data (B-20-06297),2026-09
+stellite,12,R30012,,,8.53,1225-1280,Kennametal Stellite 12 Alloy technical data (B-20-06299),2026-09
+stellite,21,R30021,,,8.33,1295-1435,Kennametal Stellite 21 Alloy technical data (B-20-06300),2026-09
 # --- NICHROME --- VDM Metals' three Basic Information sheets, read 2026-08-25.
 #
 # WHY VDM AND NOT A BULLETIN ALREADY IN THIS FILE: Nichrome is not a Special

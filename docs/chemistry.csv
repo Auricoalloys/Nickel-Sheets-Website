@@ -1354,6 +1354,30 @@ cobalt-alloy,MP35N,C,,0.025
 cobalt-alloy,MP35N,B,,0.015
 cobalt-alloy,MP35N,P,,0.015
 cobalt-alloy,MP35N,S,,0.010
+
+# STELLITE 6/12/21 (family key `stellite`, grades 6/12/21) - Kennametal technical
+# data sheets, "Nominal Composition (mass %)", in the sheet's column order (Co base
+# first). The "Others" line -
+# Ni Fe Si Mn Mo on 6 and 12, Fe Si Mn on 21 - is printed unquantified, so those
+# elements are not recorded. Every stated cell is a range, a max or the base,
+# real limits with no bare nominal figure, so recorded as limits like the cobalt
+# grades above. Stellite 21 carries Mo and no W; 6 and 12 carry W and no Mo.
+stellite,6,Co,,bal
+stellite,6,Cr,27,32
+stellite,6,W,3,6
+stellite,6,C,0.9,1.4
+
+stellite,12,Co,,bal
+stellite,12,Cr,27,32
+stellite,12,W,7.5,9.5
+stellite,12,C,1.4,2.0
+
+stellite,21,Co,,bal
+stellite,21,Cr,26,29
+stellite,21,Mo,4.5,6.0
+stellite,21,C,,0.35
+stellite,21,Ni,,3.0
+
 haynes,25,C,0.05,0.15
 haynes,25,Si,,0.40
 haynes,25,Mn,1.00,2.00

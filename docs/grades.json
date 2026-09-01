@@ -1331,6 +1331,51 @@
       "checked": "2026-08"
     },
     {
+      "family": "stellite",
+      "grade": "6",
+      "name": "Stellite 6",
+      "uns": "R30006",
+      "uns_all": [
+        "R30006"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.44,
+      "melting_c": "1250-1360",
+      "source": "Kennametal Stellite 6 Alloy technical data (B-20-06297)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "stellite",
+      "grade": "12",
+      "name": "Stellite 12",
+      "uns": "R30012",
+      "uns_all": [
+        "R30012"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.53,
+      "melting_c": "1225-1280",
+      "source": "Kennametal Stellite 12 Alloy technical data (B-20-06299)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "stellite",
+      "grade": "21",
+      "name": "Stellite 21",
+      "uns": "R30021",
+      "uns_all": [
+        "R30021"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.33,
+      "melting_c": "1295-1435",
+      "source": "Kennametal Stellite 21 Alloy technical data (B-20-06300)",
+      "checked": "2026-09"
+    },
+    {
       "family": "nichrome",
       "grade": "80/20",
       "name": "Nichrome 80/20",
