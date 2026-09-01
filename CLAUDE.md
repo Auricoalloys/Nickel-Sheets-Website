@@ -761,11 +761,37 @@ eleven hub pages were invisible to it. After changing a grade's identity, grep t
 the old number; do not trust a clean lint to mean the site is clean.
 
 Careful with what "cleared" means for the Nimonic pages: the numbers were removed because Special
-Metals publishes none, not because none exist. `N07081`, `N07105` and `N06081` still sit on ~14
-other pages inside a cloned "Nimonic 81" comparison row whose *standard* column was re-typed from
-whatever page it was pasted onto — AMS 5599 on the Haynes 242 page, AMS 5951 on Haynes 282, AMS
-5872 on Nimonic 263. Fixing the UNS cell alone would leave a fabricated standard behind, so that
-row needs deleting or rebuilding from `specs.csv`, not patching.
+Metals publishes none, not because none exist. `grades.csv` records `-` for Nimonic 81, 86, 105 and
+115, so **every `N07081`, `N07105` and `N06081` on this site was fabricated** — not a typo of a real
+number, an invention of one.
+
+**Cleared tree-wide on 2026-09-01; grep is now 0, so any reappearance is a regression.** It turned
+out not to be a comparison row at all. It was mostly **`<meta name="keywords">`**, where a cloned
+"Nimonic 81" run had been pasted onto the end of seven pages' keyword lists, each carrying the
+fabricated UNS *and a standard belonging to the host page*: AMS 5599 on Haynes 242, AMS 5951 on
+Haynes 282, AMS 5872 on Nimonic 263, AMS 5660/5661 on Nimonic 901, BS HR 3 on Nimonic 105, AECMA
+PrEN 2298 on Nimonic 90 — and on Haynes 214 the self-refuting *"Haynes International mill
+specification for UNS N07214 Nimonic 81 sheet"*. The whole run was deleted rather than corrected:
+on a Haynes 242 page it is a different alloy's keywords, so there is nothing there to correct.
+
+Three other shapes, none of them a comparison row either:
+
+- Cross-link labels reading `81 (N07081)` on four pages. The siblings in the same label — 75
+  (N06075), 80A (N07080), 90 (N07090) — are all genuine, so only the parenthetical came out.
+- One real table row, on `nimonic_round_bar.html`, rebuilt from source rather than patched:
+  `Nimonic 105 | - | BS HR 3 | - | 2.4634`, the BS number from `specs.csv` and the Werkstoff from
+  `grades.csv`. Its `BS HR501` was Nimonic 90's, copied from the row directly above it.
+- One prose sentence on the same page naming "Nimonic 105 (UNS N07105)".
+
+**The search lesson: grep the numbers, not the story.** This was recorded here as a comparison-row
+problem, and looking for comparison rows would have found one instance and missed eleven. The
+number is the invariant; the markup it sits in is not.
+
+That page is `published: false` — an abandoned half-converted draft that says so in its own front
+matter — and two of its other rows still carry form-mismatched standards (`BS HR201` and `AMS 5580`
+against Nimonic 75, whose `specs.csv` bar cell reads `BS HR 5 / HR 504 / DIN 17752`). Left alone
+deliberately: nothing publishes it, and rebuilding a whole table on a dead page is not the same
+task as removing an invented identifier.
 
 Details worth keeping:
 
