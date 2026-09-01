@@ -350,10 +350,16 @@ function identityTable(r, form) {
     '</tbody>',
     '</table>',
     '</div>',
-    // "the source cited", not "the mill": most rows come from a mill bulletin,
-    // but Hastelloy B-2 is sourced to ASTM B333 because no mill publishes the
-    // grade any more, and a caption claiming a mill published it would be false.
-    `<p class="small text-muted">Identifiers and physical constants for ${esc(fullName(r))} as published in the source cited (${esc(r.source)}, checked ${esc(r.checked)}). A dash means that source publishes no such designation for this grade.</p>`,
+    // THE SOURCE IS NOT PUBLISHED. `source` and `checked` are verification
+    // apparatus - they are how a row is proved before it is allowed onto a
+    // page, and the publication gate and the spec-review rotation both read
+    // them - but the business does not want the bulletin it buys from named in
+    // public. They stay in grades.csv, out of the HTML.
+    //
+    // What the reader still needs is kept: the dash still has to be explained,
+    // or an empty cell reads as missing data rather than as "no such
+    // designation exists". It is now stated without attributing it to anyone.
+    `<p class="small text-muted">Identifiers and physical constants for ${esc(fullName(r))}. A dash means no such designation is published for this grade.</p>`,
   ].join('\n');
 }
 
@@ -391,12 +397,17 @@ function chemTable(r, rows) {
     : someNominal
       ? `Chemical composition for ${esc(fullName(r))}`
       : `Chemical composition limits for ${esc(fullName(r))}`;
-  const provenance = `${esc(r.source)}, checked ${esc(r.checked)}.`;
+  // The source is deliberately absent here too; see the identity caption. What
+  // survives is the part that is about the FIGURES rather than about where they
+  // came from - whether they are limits or nominal, and that neither is a
+  // measurement of the lot being shipped. Dropping that distinction would let a
+  // nominal table read as a set of acceptance limits, which is the claim the
+  // nominal/limit split in chemistry.csv exists to keep the site out of.
   const lead = allNominal
-    ? `Nominal composition per ${provenance} The source publishes nominal figures for this grade rather than acceptance limits, and they are not measured values for a lot;`
+    ? `Nominal composition for ${esc(fullName(r))}. These are nominal figures rather than acceptance limits, and they are not measured values for a lot;`
     : someNominal
-      ? `Composition per ${provenance} Figures given as a range or a maximum are limits and those marked <em>nominal</em> are not; none of them are measured values for a lot;`
-      : `Composition limits per ${provenance} These are specification limits for the grade, not measured values for a lot;`;
+      ? `Composition for ${esc(fullName(r))}. Figures given as a range or a maximum are limits and those marked <em>nominal</em> are not; none of them are measured values for a lot;`
+      : `Composition limits for ${esc(fullName(r))}. These are specification limits for the grade, not measured values for a lot;`;
   return [
     '<div class="table-responsive">',
     '<table class="table table-bordered">',
