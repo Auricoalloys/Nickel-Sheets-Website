@@ -600,11 +600,31 @@ form matches.
 
 ASTM's own abstract for **B649-21** scopes it to N08925, N08031, N08354, N08926, R20033 and N08936.
 Alloy 28 is **N08028** and Alloy 31 is **N08031** — so the same `ASTM B649` sat in the bar and wire
-cells of both rows, correct on one and out of scope on the other. **904L is N08904 and is not in
-that list either**; its row still cites B649 and is deliberately *not* fixed, with a comment above
-it saying why: no bulletin read so far states what 904L's bar standard actually is, and guessing a
-replacement is how AMS 5542 reached a Haynes 214 bar page. A wrong citation left in place under a
-comment is recoverable; a plausible invented one is not.
+cells of both rows, correct on one and out of scope on the other. **904L is N08904 and was not in
+that list either** — its row cited B649 for both bar and wire, and was deliberately left wrong for
+months under a comment saying why: no bulletin read so far stated what 904L's bar standard actually
+was, and guessing a replacement is how AMS 5542 reached a Haynes 214 bar page. A wrong citation left
+in place under a comment is recoverable; a plausible invented one is not.
+
+**That wait ended on 2026-09-01.** voestalpine BÖHLER's A962RC datasheet (Alloy 904L, N08904; long
+products — rolled bar 12.5–130 mm, forged to 254 mm, wire rod 5.00–13.50 mm) names ASTM A479/A479M
+and A182/A182M with EN ISO 10088-3, over a composition table headed "Refers to ASTM A479 - 904L".
+So bar is now `ASTM A479 / EN 10088-3`. The grade was in the wrong ASTM *series* all along: 904L is
+a stainless and A479 is a stainless bar standard, while B649 is a nickel-alloy standard.
+
+**Wire took EN 10088-3, not A479.** A479 is titled "Bars and Shapes" and does not cover wire, so
+carrying it into the wire cell would have repeated in one column the scope error just removed from
+the next — the failure this file exists to prevent, committed while fixing itself. EN 10088-3
+covers "bars, rods, wire, sections and bright products" and is on the same mill panel.
+
+The same datasheet corrected a second figure. `chemistry.csv` had 904L **nitrogen at 0.01**, taken
+from Aperam's "Typical values" panel and argued into a limit because it was printed with a `≤`.
+BÖHLER prints `max. 0.10`, which is also the A240 limit the row's other nine cells already came
+from — and those nine match BÖHLER exactly, so the sheet corroborates the source and contradicts
+only the imported cell. A conforming BÖHLER bar at N 0.06 would have failed the table this site
+published. **A bounded figure is not a specification limit; what makes it one is the document being
+a specification.** Prefer the standard the rest of the row was read from over a tighter number from
+a different producer.
 
 The same failure one alloy over: `/alloy-28-round-bar/` cited **ASTM B473** in six places including
 its meta description and JSON-LD. B473 covers N08020, N08024 and N08026 — **Alloy 20's** bar spec,
@@ -824,22 +844,41 @@ first run that reached the page replaced it with the identity table. It was rest
 an application table or any other hand-written table goes in **its own section**; only the
 generated one belongs in `#equivalent-grades` and `#chemical`.
 
-**Whole families are still out of `gradeForUrl`'s reach, for the same reason the combined pages
-were.** It resolves `/family/grade/…`, so the special-stainless form pages — `/alloy-28/sheets/`,
-`/alloy-28/plates/`, `/alloy-28-round-bar/` and their 904L, AL-6XN, 254 SMO, Alloy 20 and Alloy 926
-equivalents — are never written and never linted, because the first segment is the grade and there
-is no family segment at all. Only the `/stainless/<grade>/` hubs resolve. The cost is visible: the
-three Alloy 28 form pages disagree with each other on sulphur (`≤0.01` on sheets against `≤0.03` on
-plates and round bar) and on whether phosphorus and nitrogen are stated at all — the sibling
-contradiction the CSV exists to end, on pages the writer cannot reach.
+**The special-stainless form pages were out of `gradeForUrl`'s reach until 2026-09-01**, for the
+same reason the combined pages were. It resolves `/family/grade/…`, and `/alloy-28/sheets/` puts the
+grade in the first segment with no family segment at all, so those pages were never written and
+never linted while the `/stainless/<grade>/` hubs above them resolved and looked fine. The cost was
+the sibling contradiction the CSV exists to end: the three Alloy 28 form pages disagreed on sulphur
+(`≤0.01` on sheets against `≤0.03` on plates and round bar).
 
-Two things to weigh before wiring them up with a URL map. Their hand-written tables carry **ASTM
-B709's acceptance limits**, which for a buyer are worth more than Alleima's nominal figures, so the
-generated table would be a step down in usefulness even as it ends the contradiction — the fix is a
-decision about which source to publish, not a mechanical run. And new pages should simply be built
-at `/stainless/<grade>/<form>/`, which resolves today: that is why the Sanicro 35 pages are at
-`/stainless/sanicro-35/plates/` rather than `/sanicro-35/plates/`, and they pick up their identity
-table, chemistry table and per-form specification row with no map entry at all.
+They are wired up through **two** maps, because there are two URL shapes:
+
+- `SINGLE_GRADE` — the Kovar shape, grade first and form second. Five entries added: `904l`,
+  `al-6xn`, `alloy-20`, `alloy-28`, `alloy-926`.
+- `FLAT_FORM_PAGES` — the flat SEO permalinks `/alloy-28-round-bar/` and `/alloy-20-round-bar/`,
+  which **fuse the grade and the form into one segment** so neither is readable from the path. They
+  need the form stated in the map, and they need exempting from the `isHub` test, which counts
+  segments and would otherwise call a one-segment URL a grade hub and write identifiers only. That
+  page was the last one still publishing `≤0.03`. The permalinks stay as they are — they are
+  indexed, and this repo does not rename a flat SEO URL to suit a generator.
+
+**Wiring Alloy 28 cost something, and it is a real debt, not a nit.** Its pages' hand-written tables
+carried **ASTM B709's acceptance limits** (Ni 30.0–32.0, Cr 26.0–28.0, Mo 3.0–4.0, Cu 0.6–1.4);
+`chemistry.csv` holds Alleima's table, in which those same four are **nominal figures**, not limits.
+The generated table captions them honestly and the three pages finally agree — but a buyer lost four
+ranges and got four single numbers. **Reading B709 and replacing those four cells is the upgrade**,
+and it cannot be done from the pages themselves: they are the thing being corrected. No B709 text is
+in `docs/references/` yet, which is what blocked it.
+
+New pages should still simply be built at `/stainless/<grade>/<form>/`, which resolves with no map
+entry at all — that is why the Sanicro 35 pages are at `/stainless/sanicro-35/plates/`.
+
+**`--lint` used to write.** Its branch sits at the end of `build-grades.mjs`, after the page loop
+has already run, so a flag documented as "only the contradiction report" silently rewrote every
+stale page on its way to reporting — 14 of them the day these pages were wired up. CI runs `--check`,
+so nothing caught it, and the damage was invisible unless you diffed the tree after what you were
+told was a read-only command. `writeBlocks` now returns early under `--lint` as well as `--check`,
+kept separate so a lint run does not report pages as drift the caller never asked about.
 
 **The bug this fixed was silence.** `build-grades.mjs` reported a page whose section existed but
 held no table, and said *nothing at all* about a page with no section — it just `continue`d. So a

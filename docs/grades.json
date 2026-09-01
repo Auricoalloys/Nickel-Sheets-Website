@@ -1162,8 +1162,8 @@
       "en_name": "X1NiCrMoCu25-20-5",
       "density_g_cm3": 8,
       "melting_c": "1383",
-      "source": "ASTM A240/A240M-25a (composition limits) and Aperam 904L Technical Data Sheet (melting and physical properties)",
-      "checked": "2026-08"
+      "source": "ASTM A240/A240M-25a (composition limits) and Aperam 904L Technical Data Sheet (melting and physical properties) - identity re-verified against voestalpine BOHLER A962RC datasheet 04.2026 which prints all four designations identically",
+      "checked": "2026-09"
     },
     {
       "family": "special-stainless-steel",

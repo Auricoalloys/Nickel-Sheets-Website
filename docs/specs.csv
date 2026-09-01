@@ -253,14 +253,29 @@ nickel-alloy,Kovar,K94610,AMS 7728,ASTM F15 / AMS 7727,ASTM F15 / AMS 7726,ASTM 
 duplex-steel,2205,S32205,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,32750,S32750,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,32760,S32760,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
-# 904L HAS THE SAME B649 PROBLEM AS ALLOY 28 BELOW and is NOT fixed here, on
-# purpose. ASTM's abstract for B649-21 lists N08925, N08031, N08354, N08926,
-# R20033 and N08936; N08904 is not one of them either. The difference is that
-# Alleima's datasheet told us what Alloy 28's bar standard actually is, and
-# nothing read so far says what 904L's is - its grades.csv row is still pending.
-# Guessing a replacement is how AMS 5542 reached a Haynes 214 bar page. Read a
-# mill bulletin for 904L, then fix bar and wire in the same pass that clears it.
-special-stainless-steel,904L,N08904,ASTM B625,ASTM B649,ASTM B649,ASTM B673 / B677,ASTM B366
+# 904L's B649 PROBLEM IS NOW FIXED - the bulletin the note below waited for
+# arrived. voestalpine BOHLER A962RC (Alloy 904L, UNS N08904; A962RC EN_GB -
+# 04.2026) is a long-products datasheet: rolled bar 12.5-130 mm, forged to
+# 254 mm, wire rod 5.00-13.50 mm. Its Standards panel names ASTM A479/A479M
+# and A182/A182M with EN ISO 10088-3, and its composition table is headed
+# "Refers to ASTM A479 - 904L". So the mill states the bar standard outright.
+#
+# B649 was wrong on the scope test, not the form test: ASTM's abstract for
+# B649-21 lists N08925, N08031, N08354, N08926, R20033 and N08936, and N08904
+# is not one of them - the same error as Alloy 28 below. A479 is a stainless
+# bar standard and 904L is a stainless; B649 is a nickel-alloy standard, which
+# is how a grade sold as both came to be cited under the wrong series.
+#
+# Wire is EN 10088-3, NOT A479. A479 is titled "Bars and Shapes" and does not
+# cover wire, so carrying it across would repeat in the wire cell exactly the
+# scope error just removed from the bar cell. EN 10088-3 covers "bars, rods,
+# wire, sections and bright products" and is on the same BOHLER panel - the
+# same terms the EN numbers in the Alloy 28 row below are here on.
+#
+# fitting stays ASTM B366 rather than taking the panel's A182: B366 is the
+# wrought-fittings spec and lists N08904, while A182 covers forged flanges and
+# fittings. Both are real; changing a cell that is not wrong is not this pass.
+special-stainless-steel,904L,N08904,ASTM B625,ASTM A479 / EN 10088-3,EN 10088-3,ASTM B673 / B677,ASTM B366
 special-stainless-steel,254 SMO,S31254,ASTM A240,ASTM A479,ASTM A479,ASTM A312,ASTM A403
 special-stainless-steel,AL-6XN,N08367,ASTM B688,ASTM B691,ASTM B691,ASTM B675 / B676,ASTM B366
 special-stainless-steel,Alloy 20,N08020,ASTM B463,ASTM B473,ASTM B473,ASTM B464 / B468,ASTM B366
