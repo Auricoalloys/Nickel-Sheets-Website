@@ -65,6 +65,8 @@ const BOILERPLATE = new Set([
   '0c9fc678', // repointed cross-links at the renamed 602 CA and 660 pages; label and href only
   'b89f7477', // repointed cross-links at the moved Elgiloy and 254 SMO pages; href only
   'f3f50ded', // added the GA4 tag to two wire pages; an analytics script, no word a reader sees
+  'd1880f51', // settled the page width at 1100px; the six hubs put their h1 first, same words
+  'fdfe1532', // wrapped 975 tables in .table-responsive so they scroll; markup only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
