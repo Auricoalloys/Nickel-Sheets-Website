@@ -122,18 +122,6 @@ redirect_from:
   <div id="header__container">{% include header.html %}</div>
 
   <main id="main">
-      <section id="family-intro">
-        <p class="lead">Aurico Alloys LLP supplies Monel&reg; from Mumbai in sheet, plate, round bar and foil. Held in stock or arranged with the manufacturer, depending on grade and
-          quantity.</p>
-        <p>Monel is nickel-copper, roughly two parts nickel to one part copper, and it occupies a narrow but
-      genuinely useful niche: it is one of the few alloys that resists both seawater and hydrofluoric acid, and
-      it does not suffer the chloride stress corrosion cracking that limits austenitic stainless steel.</p>
-    <p>The family is small and the choice is straightforward. Monel 400 is the base alloy and covers most duty.
-      Monel 405 is the same chemistry with sulphur added to break up swarf, so it is chosen when the part is
-      screw-machined in quantity. Monel K-500 adds aluminium and titanium so it can be age-hardened, roughly
-      tripling the yield strength while keeping the corrosion behaviour of 400.</p>
-      </section>
-
     <div class="flat-banner" id="flat-banner">
       <figure>
         <img src="/docs/images/monel-sheets.webp" alt="Monel supplier, stockist and exporter" width="1600"
@@ -180,6 +168,25 @@ redirect_from:
                 customers across India and in more than 40 export markets.</p>
               <p>Monel covers nickel-copper alloys with outstanding resistance to seawater, hydrofluoric acid and flowing brackish water.</p>
             </div>
+
+            <!-- The family intro used to sit above the banner and above the
+                 breadcrumb, so the page opened with three paragraphs of body
+                 text before its own title. It is in the content column now,
+                 under the h1. Monel cannot take titanium.html's fix: this is
+                 the older banner-and-sidebar template and its h1 is four levels
+                 down inside the layout, not in a product-header section. -->
+            <section id="family-intro">
+              <p class="lead">Aurico Alloys LLP supplies Monel&reg; from Mumbai in sheet, plate, round bar and foil. Held in stock or arranged with the manufacturer, depending on grade and
+                quantity.</p>
+              <p>Monel is nickel-copper, roughly two parts nickel to one part copper, and it occupies a narrow but
+                genuinely useful niche: it is one of the few alloys that resists both seawater and hydrofluoric acid, and
+                it does not suffer the chloride stress corrosion cracking that limits austenitic stainless steel.</p>
+              <p>The family is small and the choice is straightforward. Monel 400 is the base alloy and covers most duty.
+                Monel 405 is the same chemistry with sulphur added to break up swarf, so it is chosen when the part is
+                screw-machined in quantity. Monel K-500 adds aluminium and titanium so it can be age-hardened, roughly
+                tripling the yield strength while keeping the corrosion behaviour of 400.</p>
+            </section>
+
             <section class="grade-table-section" id="equivalent-grades">
               <h2>Grades and International Equivalents</h2>
               <div class="table-responsive">
@@ -305,6 +312,10 @@ redirect_from:
       </div>
     </div>
   
+    <!-- These three sections were direct children of main, so the Grades
+         Supplied table ran the full width of the viewport while the content
+         above it sat in a column. -->
+    <div class="container">
       <section class="py-4" id="grades">
         <h2>Grades Supplied</h2>
         <div class="table-responsive">
@@ -359,7 +370,8 @@ redirect_from:
         <h2>Certification and Cutting</h2>
         <p>Material is supplied against EN 10204 3.1 mill test certificates, with chemical composition and
           mechanical properties for the batch. Cutting to size is done in house.</p>
-</section>
+      </section>
+    </div>
 </main>
 
   <div id="footer-container">{% include footer.html %}</div>

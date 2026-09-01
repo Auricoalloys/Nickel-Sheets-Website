@@ -853,9 +853,72 @@ footer p a {
   }
 
   .container {
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 10px;
+  }
+
+  /* One reading measure for page content. Three rules used to decide how wide a
+     page was: the max-width that used to sit in the rule above said 1200px,
+     bootstrap.min.css says 1320px at wide viewports, and the generated spec and
+     grade table wrappers cap at 1100px. Both .container rules are a single
+     class, so the winner was whichever stylesheet the page happened to link
+     last - 396 pages rendered 1320px wide and 353 at 1200px, and nobody chose
+     either. The tables inside stretched to fill whichever it was, which is how
+     a nine-character cell like "ASTM B162" came to hold 300px of empty space.
+     Qualified with body so it outranks bootstrap whatever the link order, and
+     set to the 1100px the generated tables already use. */
+  body .container {
+    max-width: 1100px;
+  }
+
+  /* The header and footer are chrome, not reading matter, and the navbar needs
+     about 1170px before it starts to wrap - logo, eight nav items, the quote
+     button and the search field. Pinned here so they are also the same width on
+     every page, which the accidental 1200/1320 split above meant they were not.
+     Breadcrumbs are deliberately not exempt: they belong to the page and should
+     line up with it, including on the 64 pages that put the breadcrumb nav
+     before <main> rather than inside it. */
+  #header__container .container,
+  #footer-container .container,
+  #footer__container .container {
+    max-width: 1320px;
+  }
+
+  /* The detailed product pages - 619 of them - put their sidebar and content in
+     a .container-fluid, which is 100% wide, so they had no measure at all: on a
+     wide monitor the content column and its tables simply ran to the edge of
+     the window, and the breadcrumb directly above sat in a .container. Same
+     1100px as everything else, so the breadcrumb and the block beneath it line
+     up. .content-container itself carried no CSS whatsoever before this.
+
+     This only became safe once every table had a scrolling ancestor: 975 of
+     them across 367 pages had none, so narrowing the column would have made
+     them overflow the page instead of scrolling inside it. They are wrapped in
+     .table-responsive now. Do not widen the sidebar's column or drop that
+     wrapping without re-checking the widest chemistry tables. */
+  body .content-container {
+    max-width: 1100px;
+  }
+
+  /* Prose gets a measure of its own; tables, figures and card grids keep the
+     full container width. At 1100px a paragraph runs about 120 characters to
+     the line, well past the point where the eye loses the start of the next
+     one - and p is justified site-wide a few rules up, which makes a long line
+     worse rather than better. */
+  main .container > p,
+  main .container > section > p {
+    max-width: 78ch;
+  }
+
+  /* A centred paragraph has to stay centred once it is narrower than the block
+     it sits in. 816 paragraphs carry .text-center - the export and supply
+     network blurbs on every detailed product page among them - and capping the
+     width alone would have pulled all of them to the left. */
+  main .container.text-center > p,
+  main .container > section.text-center > p,
+  main .container > p.text-center,
+  main .container > section > p.text-center {
+    margin-inline: auto;
   }
 
   .btn {

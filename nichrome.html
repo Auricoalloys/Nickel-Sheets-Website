@@ -95,7 +95,17 @@ redirect_from:
         <li class="breadcrumb-item active" aria-current="page">Nichrome Alloys</li>
       </ol>
     </nav>
-      <section id="family-intro">
+      <!-- Heading first, then the intro. The h1 used to sit after these
+           paragraphs, so the page opened with body text and no title. Both
+           sections also sat outside a container and ran the full width of the
+           viewport while everything below them was constrained - the same fix
+           titanium.html carries. -->
+      <div class="container">
+        <section class="product-header">
+          <h1>Nichrome Alloys</h1>
+        </section>
+
+        <section id="family-intro">
         <p class="lead">Aurico Alloys LLP supplies nichrome resistance alloys from Mumbai in sheet, plate, round bar, foil and pipe. Held in stock or arranged with the manufacturer, depending on grade and
           quantity.</p>
         <p>Nichrome is nickel-chromium wound or formed into something that is meant to get hot and stay
@@ -105,12 +115,8 @@ redirect_from:
     <p>Grades are named by their nickel-to-chromium ratio, and the ratio is the whole specification. More nickel
       means a higher usable temperature and a longer life, and costs more. The lower-nickel grades substitute
       iron, which is cheaper and works perfectly well at lower temperatures.</p>
-      </section>
-
-      <!-- Product Header -->
-<section class="product-header">
-  <h1>Nichrome Alloys</h1>
-</section>
+        </section>
+      </div>
 
 <!-- Product Information -->
 <section class="materials-info container">

@@ -98,7 +98,17 @@ redirect_from:
         <li class="breadcrumb-item active" aria-current="page">Hastelloy</li>
       </ol>
     </nav>
-      <section id="family-intro">
+      <!-- Heading first, then the intro. The h1 used to sit after these
+           paragraphs, so the page opened with body text and no title. Both
+           sections also sat outside a container and ran the full width of the
+           viewport while everything below them was constrained - the same fix
+           titanium.html carries. -->
+      <div class="container">
+        <section class="product-header">
+          <h1>Hastelloy</h1>
+        </section>
+
+        <section id="family-intro">
         <p class="lead">Aurico Alloys LLP supplies Hastelloy&reg; from Mumbai in sheet, plate, round bar and foil. Held in stock or arranged with the manufacturer, depending on grade and
           quantity.</p>
         <p>Hastelloy is a family of nickel-molybdenum and nickel-chromium-molybdenum alloys built for wet
@@ -109,12 +119,8 @@ redirect_from:
       molybdenum and handle both, which is why they are the usual answer when a plant sees mixed or variable
       conditions. The remaining grades are specialists: G30 for phosphoric acid, N for molten fluoride salts,
       and X for strength and oxidation resistance at temperature rather than wet corrosion at all.</p>
-      </section>
-
-           <!-- Product Header -->
-<section class="product-header">
-  <h1>Hastelloy</h1>
-</section>
+        </section>
+      </div>
 
 <!-- Product Information -->
 <section class="materials-info container">

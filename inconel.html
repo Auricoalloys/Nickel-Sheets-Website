@@ -98,7 +98,17 @@ redirect_from:
         <li class="breadcrumb-item active" aria-current="page">Inconel Alloys</li>
       </ol>
     </nav>
-      <section id="family-intro">
+      <!-- Heading first, then the intro. The h1 used to sit after these
+           paragraphs, so the page opened with body text and no title. Both
+           sections also sat outside a container and ran the full width of the
+           viewport while everything below them was constrained - the same fix
+           titanium.html carries. -->
+      <div class="container">
+        <section class="product-header">
+          <h1>Inconel Alloys</h1>
+        </section>
+
+        <section id="family-intro">
         <p class="lead">Aurico Alloys LLP supplies Inconel&reg; from Mumbai in sheet, plate, round bar, foil and powder. Held in stock or arranged with the manufacturer, depending on grade and
           quantity.</p>
         <p>Inconel is the nickel-chromium core of the superalloy range, and the widest family we stock. The
@@ -109,12 +119,8 @@ redirect_from:
     <p>Within that, 625 and 600 are the general-purpose corrosion and heat grades, 718 is the age-hardened
       workhorse for aerospace and downhole hardware, and the rest are specialists chosen for a particular
       environment or temperature.</p>
-      </section>
-
-    <!-- Product Header -->
-<section class="product-header">
-  <h1>Inconel Alloys</h1>
-</section>
+        </section>
+      </div>
 
 <!-- Product Information -->
 <section class="materials-info container">
