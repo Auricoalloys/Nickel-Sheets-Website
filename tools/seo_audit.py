@@ -230,6 +230,50 @@ def audit(pages):
         for p, d in real.items()
         if len(re.findall(r"<a[\s>]", d["raw"], re.I)) != d["raw"].lower().count("</a>"))
 
+    # Unbalanced tables, the same failure one element over. The Equivalent
+    # Grades table on the two duplex wire pages ended at its last <tr> with no
+    # </tbody></table>, so the parser kept the table open and folded the three
+    # sections that followed into it - Product Forms, Chemical Composition and
+    # Mechanical Properties all ended up inside the table. Nothing looked
+    # obviously broken on the page, which is how it survived unnoticed.
+    findings["unclosed_tables"] = sorted(
+        {"file": p, "open": len(re.findall(r"<table[\s>]", d["raw"], re.I)),
+         "close": d["raw"].lower().count("</table>")}.__repr__()
+        for p, d in real.items()
+        if len(re.findall(r"<table[\s>]", d["raw"], re.I)) != d["raw"].lower().count("</table>"))
+
+    # Every table must open inside something that scrolls sideways. Page content
+    # is capped at 1100px (body .container and body .content-container in
+    # CSS/pages.css) and the widest chemistry tables are wider than the column
+    # they sit in: inside a wrapper they scroll, outside one they push the whole
+    # page sideways. 975 tables across 367 pages had no wrapper before that cap
+    # was applied.
+    #
+    # This is the invariant most likely to come back silently, and it already
+    # did once: resolving the PR #41 merge with `git checkout --theirs` kept
+    # that side's hand-written grade data and dropped the wrappers on 17 files.
+    # Every generator --check still passed, because no generator owns
+    # .table-responsive on a hand-written table - only this notices.
+    #
+    # It asks for the wrapper to be the tag immediately before the table rather
+    # than anywhere above it. That is stricter than the rendered behaviour
+    # requires, but it is how all 2419 tables are actually written -
+    # build-specs.mjs and build-grades.mjs emit exactly that shape - and it
+    # needs no HTML tree, which this file has no parser for and no dependency
+    # to add one with.
+    scroll_re = re.compile(r"\b(?:table-responsive|spec-table-wrapper|grade-table-wrapper)\b")
+    findings["table_without_scroll_wrapper"] = []
+    for p, d in sorted(real.items()):
+        body = re.sub(r"<!--.*?-->", "", d["raw"], flags=re.S)
+        bare, prev_attrs = 0, ""
+        # the pattern matches opening tags only - a closing tag starts with "/"
+        for m in re.finditer(r"<([a-zA-Z][a-zA-Z0-9]*)\b([^>]*)>", body):
+            if m.group(1).lower() == "table" and not scroll_re.search(prev_attrs):
+                bare += 1
+            prev_attrs = m.group(2)
+        if bare:
+            findings["table_without_scroll_wrapper"].append({"file": p, "tables": bare})
+
     # image alt naming a different alloy/grade than the page's own H1.
     #
     # Grades match numerically, brand families by name. The family list holds
@@ -351,6 +395,39 @@ def audit(pages):
                 broken[h_] += 1
     findings["broken_internal_links"] = [
         {"url": u, "count": n} for u, n in broken.most_common()]
+
+    # In-page anchors pointing at an id nothing on the page carries.
+    # broken_internal_links cannot see these - it splits the fragment off every
+    # href before comparing - so a table of contents can rot completely while
+    # that check reports zero, which is what happened. Three pages had TOCs
+    # using a different naming scheme from their own sections (#specifications
+    # against id="specification", #faq against id="search", #forms against
+    # id="product-grade"), and a fourth linked a Conclusion heading that carried
+    # no id at all: 28 rows that scrolled nowhere.
+    #
+    # The shared chrome supplies ids too. A page's source carries
+    # {% include header.html %} rather than the header's markup, so an anchor
+    # into the search box or a nav dropdown has no matching id in the page's own
+    # file and would read as dead here. Fold the includes' ids in - it is the
+    # same source-tree blind spot that makes this file trust href="#main",
+    # firing the other way.
+    chrome_ids = set()
+    for frag in ("_includes/header.html", "_includes/footer.html"):
+        if frag in pages:
+            chrome_ids |= set(re.findall(r'\bid=["\']([^"\']+)["\']', pages[frag]["raw"]))
+    # FRAGMENTS are excluded by rule rather than by the baseline: html/header.html
+    # is the include published standalone for the runtime product route, and its
+    # own #main skip link resolves only once a real page has rendered it. That is
+    # a permanent, correct exception, and a count could not tell it apart from a
+    # genuine finding that replaced it.
+    findings["dead_page_anchors"] = []
+    for p, d in sorted(real.items()):
+        ids = set(re.findall(r'\bid=["\']([^"\']+)["\']', d["raw"])) | chrome_ids
+        dead = sorted({m.group(1) for m in
+                       re.finditer(r'<a\b[^>]*\bhref=["\']#([^"\']+)["\']', d["raw"], re.I)}
+                      - ids)
+        if dead:
+            findings["dead_page_anchors"].append({"file": p, "anchors": dead})
 
     return findings
 
