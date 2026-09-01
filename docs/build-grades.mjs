@@ -460,10 +460,56 @@ const familyOf = url => (FAMILY_KEYS.find(([k]) => url.toLowerCase().includes('/
 // COMBINED is: the mapping is not regular, and guessing it puts one grade's
 // data on another grade's page. Invar and Nitinol have the same URL shape and
 // are NOT here, because neither has a verified row yet - add the row first.
+// THE SPECIAL-STAINLESS FORM PAGES HAVE THIS SHAPE TOO. /alloy-28/sheets/ and
+// /904L/plates/ put the grade first with no family segment, exactly like Kovar,
+// so gradeForUrl read family "alloy-28", grade "sheets" and matched nothing.
+// The /stainless/<grade>/ hubs always resolved - FAMILY_KEYS maps "stainless"
+// to special-stainless-steel - which is why the hubs looked wired up while
+// their own form pages were neither written nor linted.
+//
+// The cost of that silence was the sibling contradiction this CSV exists to
+// end: the three Alloy 28 form pages disagreed with each other on sulphur
+// (<=0.01 on sheets against <=0.03 on plates and round bar) and on whether
+// phosphorus and nitrogen were stated at all.
+//
+// All five rows are verified, which is the gate for writing anything. Note
+// what wiring Alloy 28 trades: its hand-written tables carry ASTM B709
+// acceptance limits, while chemistry.csv holds Alleima's table, four of whose
+// figures are nominal rather than limits. The generated table captions those
+// honestly, so the pages stop contradicting each other - but Cr, Ni, Mo and Cu
+// go from limits to nominal figures, which is less use to a buyer. Reading
+// B709 and replacing those four cells is the upgrade; it is not guesswork that
+// can be done from the pages themselves, which is why it is not done here.
 const SINGLE_GRADE = {
   kovar: ['nickel-alloy', 'Kovar'],
+  '904l': ['special-stainless-steel', '904L'],
+  'al-6xn': ['special-stainless-steel', 'AL-6XN'],
+  'alloy-20': ['special-stainless-steel', 'Alloy 20'],
+  'alloy-28': ['special-stainless-steel', 'Alloy 28'],
+  'alloy-926': ['special-stainless-steel', 'Alloy 926'],
 };
 const singleGradeOf = url => SINGLE_GRADE[(url.split('/').filter(Boolean)[0] || '').toLowerCase()] || null;
+
+// FLAT SEO PERMALINKS FUSE THE GRADE AND THE FORM INTO ONE SEGMENT, so neither
+// is readable from the path: /alloy-28-round-bar/ has no grade segment for
+// SINGLE_GRADE to match and no form segment after it, and one segment means
+// the isHub test below would call it a grade hub and write identifiers only.
+//
+// These two are the last special-stainless form pages left unreachable after
+// SINGLE_GRADE was extended, and they are why /alloy-28-round-bar/ went on
+// publishing S <=0.03 while its own sheets and plates pages had been corrected
+// to <=0.010 - the sibling contradiction, surviving on the one page of the
+// three that the writer could not see.
+//
+// The permalinks stay as they are: they are indexed, and this repo does not
+// rename a flat SEO URL to suit a generator. An explicit map is the same
+// answer COMBINED and SINGLE_GRADE give - the mapping is not regular, and
+// deriving it from the path is how a page gets another grade's data.
+const FLAT_FORM_PAGES = {
+  '/alloy-28-round-bar/': ['special-stainless-steel', 'Alloy 28', 'bar'],
+  '/alloy-20-round-bar/': ['special-stainless-steel', 'Alloy 20', 'bar'],
+};
+const flatFormOf = url => FLAT_FORM_PAGES[url.toLowerCase()] || null;
 
 // GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.
 // The trade writes 254 SMO both ways round, and this site's URL has always put
@@ -487,6 +533,8 @@ const GRADE_ALIAS = {
 // Resolve /family/grade/[form/] to a CSV row. The grade segment is normalised
 // so "625-LCF" finds "625 LCF" and "Grade-2" finds "Grade 2".
 function gradeForUrl(url) {
+  const flat = flatFormOf(url);
+  if (flat) return grades.find(r => r.family === flat[0] && r.grade === flat[1]) || null;
   const single = singleGradeOf(url);
   if (single) return grades.find(r => r.family === single[0] && r.grade === single[1]) || null;
   const family = familyOf(url);
@@ -802,6 +850,18 @@ function writeBlocks(fp, raw, rel, blocks, constants) {
 
   if (s === before) return false;
   if (CHECK) { drift.push(rel); return false; }
+  // --lint IS A REPORT AND MUST NOT WRITE. Its branch sits at the end of the
+  // file, after this loop has already run, so the flag reported contradictions
+  // and silently rewrote every stale page on the way there - 14 of them the
+  // day the special-stainless form pages were wired up. CI runs --check, so
+  // nothing caught it; the damage is invisible until someone diffs the tree
+  // after what they were told is a read-only command.
+  //
+  // Not folded into CHECK above, because the drift list is the answer to a
+  // different question: --check asks whether the pages match the CSVs, and a
+  // lint run reporting them as drift would say the tree is stale when the
+  // caller never asked about staleness.
+  if (LINT_ONLY) return false;
   fs.writeFileSync(fp, crlf ? s.replace(/\n/g, '\r\n') : s);
   return true;
 }
@@ -931,8 +991,11 @@ for (const fp of walk(ROOT)) {
   // finds nothing and would print no per-form specification row at all - the
   // silent skip the missing-section fix already had to stamp out once.
   const sgrade = singleGradeOf(url);
+  // A flat permalink carries its form in the map because the path cannot say
+  // it; everything else reads the form off the URL as before.
+  const flat = flatFormOf(url);
   const formSeg = sgrade ? segs[1] : segs[2];
-  const form = formSeg ? (FORM_OF_SEGMENT[formSeg.toLowerCase()] || null) : null;
+  const form = flat ? flat[2] : (formSeg ? (FORM_OF_SEGMENT[formSeg.toLowerCase()] || null) : null);
 
   // WHICH TABLES BELONG ON THIS PAGE. Not every page should carry both, and a
   // check that reports a page for correctly lacking a section is a false
@@ -949,7 +1012,9 @@ for (const fp of walk(ROOT)) {
   // made eleven hubs near-duplicates of their own children and cost them their
   // canonical in Search Console. A hub states the UNS/Werkstoff and points at
   // the forms.
-  const isHub = segs.length === (sgrade ? 1 : 2);
+  // A flat permalink is one segment long but is a FORM page, not a hub - it
+  // gets chemistry. Testing segment count alone would give it identifiers only.
+  const isHub = flat ? false : segs.length === (sgrade ? 1 : 2);
 
   const blocks = [
     { section: ID_SECTION, start: ID_START, end: ID_END, html: identityTable(row, form) },

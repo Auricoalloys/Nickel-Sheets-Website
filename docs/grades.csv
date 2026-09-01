@@ -541,7 +541,7 @@ duplex-steel,32760,S32760,1.4501,X2CrNiMoCuWN25-7-4,7.80,,ASTM A240/A240M-25a,20
 # Density 8.00 is the established figure for N08904 (ASTM table does not specify
 # it). Melting range cleared: ASTM A240 does not publish one and the seeded
 # 1300-1390 had no source.
-special-stainless-steel,904L,N08904,1.4539,X1NiCrMoCu25-20-5,8.00,1383,ASTM A240/A240M-25a (composition limits) and Aperam 904L Technical Data Sheet (melting and physical properties),2026-08
+special-stainless-steel,904L,N08904,1.4539,X1NiCrMoCu25-20-5,8.00,1383,ASTM A240/A240M-25a (composition limits) and Aperam 904L Technical Data Sheet (melting and physical properties) - identity re-verified against voestalpine BOHLER A962RC datasheet 04.2026 which prints all four designations identically,2026-09
 # Outokumpu owns the 254 SMO trademark and its product page is the mill source.
 # Identity confirmed there: the standards panel cites EN 10088-2 / 10088-4 /
 # 10028-7 as 1.4547 and ASTM A240 / ASME SA-240 as UNS S31254. Density 8 kg/dm3

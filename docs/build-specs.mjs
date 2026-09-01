@@ -166,8 +166,23 @@ const familyOf = url => (FAMILY_KEYS.find(([k]) => url.includes(k)) || [])[1] ||
 // branch below requires two segments and therefore never saw it. Kept in step
 // with the identical map in docs/build-grades.mjs - a grade added to one and
 // not the other gets its spec table written with nothing linting the page.
+// The five special-stainless grades are here to hold the invariant above, not
+// because they do anything today: this branch only fires for a ONE-SEGMENT
+// grade hub, and theirs are at /stainless/<grade>/, which the two-segment
+// branch below already resolves. Their FORM pages are the ones that were
+// unreachable, and those are fixed in build-grades.mjs, which reads the form
+// from the URL rather than the directory.
+//
+// Listed anyway so the two maps cannot drift: a grade in one and not the other
+// is the state this comment warns about, and a hub added later at /904L/ would
+// otherwise be written by build-grades and skipped silently here.
 const SINGLE_GRADE = {
   kovar: ['nickel-alloy', 'Kovar'],
+  '904l': ['special-stainless-steel', '904L'],
+  'al-6xn': ['special-stainless-steel', 'AL-6XN'],
+  'alloy-20': ['special-stainless-steel', 'Alloy 20'],
+  'alloy-28': ['special-stainless-steel', 'Alloy 28'],
+  'alloy-926': ['special-stainless-steel', 'Alloy 926'],
 };
 
 // GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.

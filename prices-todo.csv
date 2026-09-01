@@ -21,7 +21,7 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-08-28 by docs/build-price-worklist.mjs
+# generated: 2026-09-01 by docs/build-price-worklist.mjs
 # pending: 259 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
@@ -456,5 +456,19 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /inconel/powder/   (inconel/powder.html)
 # /pages/products/powder/   (pages/products/powder.html)
 # /stainless/powder/   (stainless/powder.html)
+# /stellite/12/round-bar/   (detailed_product_page/stellite/stellite-12-round-bar.html)
+# /stellite/12/sheets/   (detailed_product_page/stellite/stellite-12-sheets.html)
+# /stellite/12/strips/   (detailed_product_page/stellite/stellite-12-strips.html)
+# /stellite/12/wire/   (detailed_product_page/stellite/stellite-12-wire.html)
+# /stellite/21/powder/   (detailed_product_page/stellite/stellite-21-powder.html)
+# /stellite/21/round-bar/   (detailed_product_page/stellite/stellite-21-round-bar.html)
+# /stellite/21/sheets/   (detailed_product_page/stellite/stellite-21-sheets.html)
+# /stellite/21/strips/   (detailed_product_page/stellite/stellite-21-strips.html)
+# /stellite/21/wire/   (detailed_product_page/stellite/stellite-21-wire.html)
+# /stellite/6/powder/   (detailed_product_page/stellite/stellite-6-powder.html)
+# /stellite/6/round-bar/   (detailed_product_page/stellite/stellite-6-round-bar.html)
+# /stellite/6/sheets/   (detailed_product_page/stellite/stellite-6-sheets.html)
+# /stellite/6/strips/   (detailed_product_page/stellite/stellite-6-strips.html)
+# /stellite/6/wire/   (detailed_product_page/stellite/stellite-6-wire.html)
 # /titanium/powder/   (titanium/powder.html)
 # /tool-steel/powder/   (tool-steel/powder.html)

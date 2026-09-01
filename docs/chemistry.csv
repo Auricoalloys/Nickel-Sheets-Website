@@ -1520,10 +1520,25 @@ duplex-steel,32760,Cu,0.50,1.00
 duplex-steel,32760,W,0.50,1.00
 
 # 904L / N08904 — ASTM A240/A240M-25a Table 1 (Austenitic section, Type 904L, footnote G)
-# for C, Mn, P, S, Si, Cr, Ni, Mo, Cu limits. Aperam 904L TDS for N: Aperam prints
-# N ≤ 0.01 (with the ≤ symbol) under "Typical values", which is treated as a
-# specification limit because it is bounded rather than bare. ASTM A240 allows
-# N ≤ 0.10 but Aperam's production limit is much tighter.
+# for C, Mn, P, S, Si, Cr, Ni, Mo, Cu limits.
+#
+# NITROGEN WAS 0.01 AND IS NOW 0.10, which is the A240 limit the other nine
+# cells already come from. The old value was Aperam's, printed as N ≤ 0.01
+# under "Typical values", and the note here argued the ≤ made it a limit. That
+# was the wrong call for a reason a flat-product sheet could not show: a
+# TYPICAL VALUE FROM ONE MILL IS NOT AN ACCEPTANCE LIMIT FOR THE GRADE, and
+# publishing it as one asserts a bound the material need not meet.
+#
+# voestalpine BOHLER A962RC (Alloy 904L, N08904; A962RC EN_GB - 04.2026), the
+# bar the site actually sells, prints N max 0.10 over a table headed "Refers to
+# ASTM A479 - 904L". Its other nine cells match this row exactly, so the sheet
+# corroborates the source and contradicts only the imported cell. A conforming
+# BOHLER bar at N 0.06 would have failed the table this site published.
+#
+# The lesson is the one the nominal-vs-limit rule states one file over: a
+# bounded figure is not automatically a specification limit - what makes it one
+# is the document being a specification. Prefer the standard every other cell
+# in the row was read from over a tighter number from a different producer.
 special-stainless-steel,904L,C,,0.020
 special-stainless-steel,904L,Mn,,2.00
 special-stainless-steel,904L,P,,0.045
@@ -1533,7 +1548,7 @@ special-stainless-steel,904L,Cr,19.0,23.0
 special-stainless-steel,904L,Ni,23.0,28.0
 special-stainless-steel,904L,Mo,4.00,5.00
 special-stainless-steel,904L,Cu,1.00,2.00
-special-stainless-steel,904L,N,,0.01
+special-stainless-steel,904L,N,,0.10
 
 # Alloy 20 / N08020 — ASTM A240/A240M-25a Table 1 (Austenitic section).
 # Nb min is formula-based: 8×C min (footnote E: Cb and Nb are the same element).
