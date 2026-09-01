@@ -399,10 +399,11 @@ haynes,242,N10242,,,9.05,1290-1375,Haynes International HAYNES 242 alloy page,20
 # feeds a weight calculator one bare number; the aged one is in properties.csv
 # with its condition, which is the column that exists for exactly this.
 haynes,282,N07208,,,8.27,1300-1375,Haynes International HAYNES 282 alloy page,2026-08
-# HR-120 added 2026-09-01. UNS N08120 from the Haynes International HR-120
-# datasheet. Held pending until Werkstoff, chemistry and physical constants
-# are read and its pages migrated; the hub table reads only the UNS.
-haynes,HR-120,N08120,,,,,pending,
+# HR-120: UNS N08120, density 8.07 (0.291 lb/in3) and melting 1300 C (2375 F),
+# plus the nominal composition, read from the Haynes International HR-120
+# brochure (2026-09). Haynes prints no Werkstoff or EN symbolic designation for
+# it, so wnr and en_name stay empty.
+haynes,HR-120,N08120,,,8.07,1300,Haynes International HAYNES HR-120 alloy brochure,2026-09
 # --- TITANIUM --- Two sources, named separately in `source` the way the HAYNES
 # 25 and 254 SMO rows carry two. Identity and composition come from ASME BPVC
 # Section II Part B, SB-265 Table 8 "Chemical Requirements", 2023 edition, read
@@ -617,9 +618,12 @@ special-stainless-steel,Alloy 926,N08926,1.4529,X1NiCrMoCuN25-20-7,8.10,1320-139
 # Physical properties section gives density, conductivity, specific heat,
 # expansion, resistivity and modulus, and no melting range.
 special-stainless-steel,Sanicro 35,N08935,-,-,8.10,,Alleima Sanicro 35 datasheet (seamless tube and pipe),2026-08
-# AM 350 added 2026-09-01. UNS S35000 and density 7.92 from the ATI AM 350
-# Technical Data Sheet. Held pending until chemistry and Werkstoff are read.
-special-stainless-steel,AM 350,S35000,,,7.92,,pending,
+# AM 350 (AISI 633): UNS S35000, no Werkstoff and no EN symbolic designation -
+# the Lamineries Matthey AM 350 data sheet prints "-" for both - density 7.94
+# annealed (7.81 sub-zero cooled and tempered) and melting 1370-1400 C, read
+# from that sheet (2026-09). grades.csv has no AISI column; AISI 633 is named in
+# the AM 350 page body instead.
+special-stainless-steel,AM 350,S35000,-,-,7.94,1370-1400,Lamineries Matthey AM 350 Stainless Steel data sheet,2026-09
 # These two duplicate the haynes/25 and haynes/188 rows above under a second
 # family key, the same shape as the nickel-alloy duplicates: no page resolves to
 # them for identity, but docs/specs.csv keys rows to them, so deleting either is

@@ -1459,6 +1459,25 @@ haynes,282,Mn,,0.3
 haynes,282,Si,,0.15
 haynes,282,C,,,0.06 nominal
 haynes,282,B,,,0.005 nominal
+
+# HR-120 - Haynes International HR-120 brochure "Nominal Composition", in the
+# sheet's column order. Most figures are nominal single values; Co, Mo, W and Ti
+# carry a maximum, and iron is the balance - a mixed table, captioned as such.
+haynes,HR-120,Fe,,bal
+haynes,HR-120,Ni,,,37 nominal
+haynes,HR-120,Co,,3
+haynes,HR-120,Cr,,,25 nominal
+haynes,HR-120,Mo,,1
+haynes,HR-120,W,,0.5
+haynes,HR-120,Nb,,,0.7 nominal
+haynes,HR-120,Mn,,,0.7 nominal
+haynes,HR-120,Si,,,0.6 nominal
+haynes,HR-120,N,,,0.2 nominal
+haynes,HR-120,Al,,,0.1 nominal
+haynes,HR-120,C,,,0.05 nominal
+haynes,HR-120,B,,,0.004 nominal
+haynes,HR-120,Ti,,0.2
+
 # Duplex stainless steel — composition limits from SIJ Acroni SINOXX 4462 datasheet.
 # Section heading is "Typical values [wt. %]" but the table carries explicit Min./Max.
 # columns; values treated as specification limits. Cr/Ni/Mo/N ranges are Acroni's
@@ -1558,3 +1577,17 @@ special-stainless-steel,254 SMO,Ni,17.5,18.5
 special-stainless-steel,254 SMO,Cu,0.50,1.00
 special-stainless-steel,254 SMO,N,0.18,0.25
 special-stainless-steel,254 SMO,Fe,,bal
+
+# AM 350 (AISI 633) - Lamineries Matthey AM 350 data sheet, composition limits
+# (weight %), in the sheet's column order. Iron is the balance; every other cell
+# is a range or a maximum, so a straight limits table.
+special-stainless-steel,AM 350,Fe,,bal
+special-stainless-steel,AM 350,C,0.07,0.11
+special-stainless-steel,AM 350,Cr,16.0,17.0
+special-stainless-steel,AM 350,Ni,4.0,5.0
+special-stainless-steel,AM 350,Mo,2.5,3.25
+special-stainless-steel,AM 350,N,0.07,0.13
+special-stainless-steel,AM 350,Mn,0.5,1.25
+special-stainless-steel,AM 350,Si,,0.5
+special-stainless-steel,AM 350,P,,0.04
+special-stainless-steel,AM 350,S,,0.03

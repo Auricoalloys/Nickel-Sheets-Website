@@ -775,6 +775,21 @@
       "checked": "2026-08"
     },
     {
+      "family": "haynes",
+      "grade": "HR-120",
+      "name": "Haynes HR-120",
+      "uns": "N08120",
+      "uns_all": [
+        "N08120"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 8.07,
+      "melting_c": "1300",
+      "source": "Haynes International HAYNES HR-120 alloy brochure",
+      "checked": "2026-09"
+    },
+    {
       "family": "titanium",
       "grade": "Grade 1",
       "name": "Titanium Grade 1",
@@ -1254,6 +1269,21 @@
       "melting_c": null,
       "source": "Alleima Sanicro 35 datasheet (seamless tube and pipe)",
       "checked": "2026-08"
+    },
+    {
+      "family": "special-stainless-steel",
+      "grade": "AM 350",
+      "name": "AM 350",
+      "uns": "S35000",
+      "uns_all": [
+        "S35000"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 7.94,
+      "melting_c": "1370-1400",
+      "source": "Lamineries Matthey AM 350 Stainless Steel data sheet",
+      "checked": "2026-09"
     },
     {
       "family": "cobalt-alloy",
