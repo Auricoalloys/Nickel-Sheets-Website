@@ -118,6 +118,19 @@ function tidySubject(name) {
   return collapsed.replace(/\S+/g, (word) => word.charAt(0) + word.slice(1).toLowerCase());
 }
 
+// What the page is about, tidied and with the suppression list applied: the last
+// breadcrumb crumb on a product page, or "" on home, the location pages and the
+// tools, where a derived subject tells the sales desk nothing. Shared by the
+// textarea prefill and the WhatsApp seed so the two never disagree about what a
+// page is selling.
+function derivedSubject() {
+  const path = window.location.pathname;
+  if (path === "/" || NO_SUBJECT_PREFIXES.some((prefix) => path.startsWith(prefix))) {
+    return "";
+  }
+  return tidySubject(breadcrumbSubject());
+}
+
 // The textarea default. An explicit ?enquiry= CTA always wins over the derived
 // subject - it says what the visitor clicked, which is more specific than what
 // the page is about.
@@ -125,12 +138,7 @@ function prefillInquiry() {
   const explicit = ctaEnquiry();
   if (explicit) return escapeHtml(explicit);
 
-  const path = window.location.pathname;
-  if (path === "/" || NO_SUBJECT_PREFIXES.some((prefix) => path.startsWith(prefix))) {
-    return "";
-  }
-
-  const subject = tidySubject(breadcrumbSubject());
+  const subject = derivedSubject();
   // "Enquiry: " prefix so the line reads as something the form supplied rather
   // than as text the visitor left behind, and a trailing newline so the caret
   // lands under it and they add their sizes instead of editing around the seed.
@@ -711,6 +719,18 @@ export class FloatingForm {
     }, 300);
   }
 
+  // Opens the panel with the enquiry textarea already written out. Used by a CTA
+  // that knows exactly what the visitor wants - the weight calculator hands over
+  // the material, form, size and computed weight - so they land on a form that
+  // is half-filled instead of being sent through a page reload to the contact
+  // page. Floating mode only; the inline form is always open already.
+  openWith(text) {
+    if (this.config.mode !== "floating") return;
+    const textarea = this.form?.querySelector('textarea[name="inquiry"]');
+    if (textarea && text) textarea.value = text;
+    this.open();
+  }
+
   setStatus(element, variant, html) {
     element.className = `floating-form-status floating-form-status--${variant}`;
     element.innerHTML = html;
@@ -879,6 +899,49 @@ function trackContactClicks() {
 }
 
 /* ------------------------------------------------------------------ *
+ * WhatsApp deep-link seeding
+ * ------------------------------------------------------------------ */
+
+// The header rail carries a static WhatsApp link, rendered identically onto
+// every page by the shared include, so on its own it opens a blank chat and the
+// sales desk learns nothing about what the visitor was looking at. Seed it at
+// runtime with the same subject the enquiry form uses - an explicit ?enquiry=
+// CTA first, then the page's breadcrumb - plus the page URL, so a visitor who
+// reaches for WhatsApp instead of the form still arrives with the enquiry
+// half-written. This is the WhatsApp half of prefillInquiry, and it reuses the
+// same derivation on purpose: document.title is not used here for the same
+// reason it is not used there - marketing tails, entity escapes and mojibake.
+//
+// The number lives only in the markup (and lead-config's FALLBACK_CONTACT); it
+// is never written here, so this cannot send leads to the wrong phone.
+function seedWhatsAppLinks() {
+  const subject = ctaEnquiry() || derivedSubject();
+  const body = [
+    subject
+      ? `Hello Aurico Alloys, I would like a quote for: ${subject}`
+      : "Hello Aurico Alloys, I would like a quote.",
+    "",
+    `Page: ${window.location.href}`,
+  ].join("\n");
+  const text = encodeURIComponent(body);
+
+  // Runs once at start(). On the runtime product route the header is injected
+  // after this fires, so that one page's rail link keeps its blank chat - it
+  // still works, it just is not seeded, which is a graceful miss rather than a
+  // break.
+  document
+    .querySelectorAll('a[href*="api.whatsapp.com"], a[href*="wa.me"]')
+    .forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      // A link that already carries its own message says more than this generic
+      // seed - the failed-submission fallback builds one - so leave it be.
+      if (/[?&]text=/.test(href)) return;
+      const separator = href.includes("?") ? "&" : "?";
+      link.setAttribute("href", `${href}${separator}text=${text}`);
+    });
+}
+
+/* ------------------------------------------------------------------ *
  * Bootstrap
  * ------------------------------------------------------------------ */
 
@@ -892,6 +955,7 @@ function start() {
 
   captureAttribution();
   trackContactClicks();
+  seedWhatsAppLinks();
 
   // The contact page (and any other page that wants the form in the flow of the
   // content) opts in by placing an empty <div id="rfq-form"> where it belongs.
