@@ -805,6 +805,21 @@
       "checked": "2026-09"
     },
     {
+      "family": "haynes",
+      "grade": "HR-160",
+      "name": "Haynes HR-160",
+      "uns": "N12160",
+      "uns_all": [
+        "N12160"
+      ],
+      "wnr": "2.4880",
+      "en_name": "NiCo29Cr28Si",
+      "density_g_cm3": 8.08,
+      "melting_c": null,
+      "source": "Haynes International HAYNES HR-160 alloy brochure",
+      "checked": "2026-09"
+    },
+    {
       "family": "titanium",
       "grade": "Grade 1",
       "name": "Titanium Grade 1",

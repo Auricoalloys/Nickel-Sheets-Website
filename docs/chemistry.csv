@@ -1527,6 +1527,24 @@ haynes,556,B,,0.02
 haynes,556,La,,,0.02 nominal
 haynes,556,Zr,,,0.02 nominal
 
+# HR-160 - Haynes International HR-160 brochure "Nominal Composition", in the
+# sheet's column order. Nickel is the balance; iron, tungsten, molybdenum,
+# columbium and aluminium carry a maximum; cobalt, chromium, silicon, manganese,
+# titanium and carbon are nominal single values - a mixed table. The brochure
+# lists the element as Columbium, the older name for niobium, recorded as Nb.
+haynes,HR-160,Ni,,bal
+haynes,HR-160,Co,,,29 nominal
+haynes,HR-160,Cr,,,28 nominal
+haynes,HR-160,Fe,,2
+haynes,HR-160,Si,,,2.75 nominal
+haynes,HR-160,Mn,,,0.5 nominal
+haynes,HR-160,Ti,,,0.5 nominal
+haynes,HR-160,C,,,0.05 nominal
+haynes,HR-160,W,,1
+haynes,HR-160,Mo,,1
+haynes,HR-160,Nb,,1
+haynes,HR-160,Al,,0.4
+
 # Duplex stainless steel — composition limits from SIJ Acroni SINOXX 4462 datasheet.
 # Section heading is "Typical values [wt. %]" but the table carries explicit Min./Max.
 # columns; values treated as specification limits. Cr/Ni/Mo/N ranges are Acroni's

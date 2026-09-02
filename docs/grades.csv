@@ -427,12 +427,14 @@ haynes,HR-120,N08120,2.4854,NiFe33Cr25Co,8.07,1300,Haynes International HAYNES H
 # 20 18"); the three number groups 22-20-18 are Cr-Ni-Co and match the nominal
 # composition, which is what ties the designation to this alloy. See chemistry.csv.
 haynes,556,R30556,1.4883,X10CrNiCoMoN22-20-18,8.23,1330-1415,Haynes International HAYNES 556 alloy brochure,2026-09
-# HR-160 (N12160) is still PENDING. The bulletin supplied on 2026-09-02 was the
-# HR-120 sheet, not HR-160 - two easily confused designations for different alloys
-# (HR-120 is Fe-Ni-Cr, N08120; HR-160 is a Ni-Co-Cr-Si alloy, N12160), so it
-# cannot verify this row. UNS is the published designation, kept as a lead. Do not
-# clear pending without the HAYNES HR-160 bulletin; no chemistry.csv rows yet.
-haynes,HR-160,N12160,,,,,pending,
+# HR-160 - Haynes International HR-160 brochure (N12160, H-3129E), read
+# 2026-09-02. A nickel-cobalt-chromium-silicon alloy: density 8.08 (0.292 lb/in3)
+# from the Physical Properties table, W.Nr. 2.4880 and EN name NiCo29Cr28Si from
+# the Specifications DIN row. Melting is EMPTY - the brochure's Physical
+# Properties table prints density and goes straight to resistivity, publishing no
+# melting range (the 2200 F / 1204 C on page 1 is a service limit, not melting),
+# the same call as C-4 and G-30 above. See chemistry.csv.
+haynes,HR-160,N12160,2.4880,NiCo29Cr28Si,8.08,,Haynes International HAYNES HR-160 alloy brochure,2026-09
 # --- TITANIUM --- Two sources, named separately in `source` the way the HAYNES
 # 25 and 254 SMO rows carry two. Identity and composition come from ASME BPVC
 # Section II Part B, SB-265 Table 8 "Chemical Requirements", 2023 edition, read
