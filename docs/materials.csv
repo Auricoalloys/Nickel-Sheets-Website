@@ -1,0 +1,101 @@
+# Common engineering materials for the weight calculator.
+#
+# These are NOT mill-verified grade data. That lives in grades.csv behind the
+# checked/pending gate and is joined in separately by build-weight-data.mjs,
+# where every density carries the bulletin it was read from. A row in THIS file
+# is a nominal handbook density for a generic material a buyer sizes against -
+# mild steel; SS 304; aluminium 6061 - which no mill bulletin in this repo
+# covers because this business does not stock them.
+#
+# The calculator labels the two tiers differently on the page, so a reader can
+# tell a figure read off a mill bulletin from a handbook one. Do not blur them
+# by writing a mill name into the source column here.
+#
+# What the source column may say:
+#   CRC Handbook   - a pure element. Exact to the digits shown and not in
+#                    dispute; these are the values every reference agrees on.
+#   Nominal        - an alloy. Real tempers heats and castings vary by around
+#                    1%, and a theoretical weight is arithmetic on a nominal
+#                    figure - it is not a shipping weight. The page says so.
+#
+# A theoretical weight is honest arithmetic. A stock or supply claim is not
+# ours to make - see the commercial-figures rule in CLAUDE.md - so nothing in
+# this file implies the material is stocked. It is a calculator input.
+#
+# No field may contain a comma: the reader splits on it and a stray comma
+# shifts every value right. Same rule as grades.csv and chemistry.csv.
+#
+# After editing run:  node docs/build-weight-data.mjs
+#
+key,name,category,density_g_cm3,source,note
+ss-304,Stainless Steel 304 / 304L,Stainless Steel,7.90,Nominal,1.4301 / 1.4307
+ss-316,Stainless Steel 316 / 316L,Stainless Steel,8.00,Nominal,1.4401 / 1.4404
+ss-317l,Stainless Steel 317L,Stainless Steel,8.00,Nominal,1.4438
+ss-321,Stainless Steel 321,Stainless Steel,7.90,Nominal,1.4541
+ss-347,Stainless Steel 347,Stainless Steel,7.90,Nominal,1.4550
+ss-310,Stainless Steel 310 / 310S,Stainless Steel,7.90,Nominal,1.4845
+ss-409,Stainless Steel 409,Stainless Steel,7.70,Nominal,ferritic
+ss-410,Stainless Steel 410,Stainless Steel,7.70,Nominal,martensitic
+ss-416,Stainless Steel 416,Stainless Steel,7.70,Nominal,free machining
+ss-420,Stainless Steel 420,Stainless Steel,7.70,Nominal,martensitic
+ss-430,Stainless Steel 430,Stainless Steel,7.70,Nominal,1.4016
+ss-446,Stainless Steel 446,Stainless Steel,7.60,Nominal,high chromium ferritic
+ss-17-4ph,Stainless Steel 17-4 PH (630),Stainless Steel,7.80,Nominal,1.4542
+ss-15-5ph,Stainless Steel 15-5 PH,Stainless Steel,7.80,Nominal,precipitation hardening
+carbon-mild,Mild Steel / Carbon Steel,Carbon & Alloy Steel,7.85,Nominal,A36 / IS 2062 / S235
+carbon-a516,Carbon Steel Plate A516,Carbon & Alloy Steel,7.85,Nominal,pressure vessel plate
+alloy-4140,Alloy Steel 4140 / EN19,Carbon & Alloy Steel,7.85,Nominal,chrome molybdenum
+alloy-4340,Alloy Steel 4340 / EN24,Carbon & Alloy Steel,7.85,Nominal,nickel chrome molybdenum
+spring-steel,Spring Steel,Carbon & Alloy Steel,7.85,Nominal,EN47 / 5160
+tool-d2,Tool Steel D2,Carbon & Alloy Steel,7.70,Nominal,cold work
+tool-h13,Tool Steel H13,Carbon & Alloy Steel,7.80,Nominal,hot work
+tool-m2,Tool Steel M2 / HSS,Carbon & Alloy Steel,8.14,Nominal,high speed steel
+cast-iron-grey,Cast Iron (grey),Carbon & Alloy Steel,7.20,Nominal,varies widely with grade
+cast-iron-ductile,Ductile / SG Iron,Carbon & Alloy Steel,7.10,Nominal,nodular
+al-1050,Aluminium 1050 / 1100,Aluminium,2.71,Nominal,commercially pure
+al-2014,Aluminium 2014,Aluminium,2.80,Nominal,aerospace
+al-2024,Aluminium 2024,Aluminium,2.78,Nominal,aerospace
+al-5052,Aluminium 5052,Aluminium,2.68,Nominal,marine
+al-5083,Aluminium 5083,Aluminium,2.66,Nominal,marine
+al-6061,Aluminium 6061,Aluminium,2.70,Nominal,structural
+al-6063,Aluminium 6063,Aluminium,2.70,Nominal,extrusion
+al-7075,Aluminium 7075,Aluminium,2.81,Nominal,high strength
+cu-etp,Copper C11000 (ETP),Copper Alloys,8.94,Nominal,electrolytic tough pitch
+cu-ofc,Copper C10200 (OFC),Copper Alloys,8.94,Nominal,oxygen free
+brass-c26000,Brass C26000 (70/30 cartridge),Copper Alloys,8.53,Nominal,cartridge brass
+brass-c36000,Brass C36000 (free cutting),Copper Alloys,8.50,Nominal,free machining
+brass-c46400,Naval Brass C46400,Copper Alloys,8.41,Nominal,marine
+bronze-c51000,Phosphor Bronze C51000,Copper Alloys,8.86,Nominal,spring bronze
+bronze-alum,Aluminium Bronze C63000,Copper Alloys,7.58,Nominal,seawater service
+gunmetal,Gunmetal / Leaded Bronze,Copper Alloys,8.80,Nominal,LG2 / C83600
+cuni-9010,Cupro Nickel 90/10 (C70600),Copper Alloys,8.94,Nominal,seawater piping
+cuni-7030,Cupro Nickel 70/30 (C71500),Copper Alloys,8.94,Nominal,seawater piping
+becu-c17200,Beryllium Copper C17200,Copper Alloys,8.25,Nominal,high conductivity spring
+tantalum,Tantalum,Refractory & Reactive,16.65,CRC Handbook,Ta
+niobium,Niobium / Columbium,Refractory & Reactive,8.57,CRC Handbook,Nb
+molybdenum,Molybdenum,Refractory & Reactive,10.22,CRC Handbook,Mo
+tungsten,Tungsten,Refractory & Reactive,19.25,CRC Handbook,W
+zirconium,Zirconium,Refractory & Reactive,6.51,CRC Handbook,Zr
+hafnium,Hafnium,Refractory & Reactive,13.31,CRC Handbook,Hf
+vanadium,Vanadium,Refractory & Reactive,6.11,CRC Handbook,V
+rhenium,Rhenium,Refractory & Reactive,21.02,CRC Handbook,Re
+iron,Iron (pure),Pure Metals,7.87,CRC Handbook,Fe
+nickel,Nickel (pure),Pure Metals,8.91,CRC Handbook,Ni
+cobalt,Cobalt,Pure Metals,8.90,CRC Handbook,Co
+chromium,Chromium,Pure Metals,7.19,CRC Handbook,Cr
+titanium-pure,Titanium (pure),Pure Metals,4.51,CRC Handbook,Ti
+aluminium-pure,Aluminium (pure),Pure Metals,2.70,CRC Handbook,Al
+magnesium,Magnesium,Pure Metals,1.74,CRC Handbook,Mg
+magnesium-az31b,Magnesium AZ31B,Pure Metals,1.77,Nominal,wrought magnesium alloy
+zinc,Zinc,Pure Metals,7.14,CRC Handbook,Zn
+lead,Lead,Pure Metals,11.34,CRC Handbook,Pb
+tin,Tin,Pure Metals,7.29,CRC Handbook,Sn
+manganese,Manganese,Pure Metals,7.44,CRC Handbook,Mn
+beryllium,Beryllium,Pure Metals,1.85,CRC Handbook,Be
+antimony,Antimony,Pure Metals,6.68,CRC Handbook,Sb
+bismuth,Bismuth,Pure Metals,9.79,CRC Handbook,Bi
+cadmium,Cadmium,Pure Metals,8.69,CRC Handbook,Cd
+silver,Silver,Precious Metals,10.49,CRC Handbook,Ag
+gold,Gold,Precious Metals,19.32,CRC Handbook,Au
+platinum,Platinum,Precious Metals,21.45,CRC Handbook,Pt
+palladium,Palladium,Precious Metals,12.02,CRC Handbook,Pd

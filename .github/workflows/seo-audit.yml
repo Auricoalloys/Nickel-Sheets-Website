@@ -40,6 +40,9 @@ on:
       - "docs/build-grades.mjs"
       - "docs/hub-grades.csv"
       - "docs/build-hub-grades.mjs"
+      - "docs/materials.csv"
+      - "docs/build-weight-data.mjs"
+      - "javascript/weight-data.js"
       - "CSS/**"
       - "docs/check-tables.mjs"
   push:
@@ -61,6 +64,9 @@ on:
       - "docs/build-grades.mjs"
       - "docs/hub-grades.csv"
       - "docs/build-hub-grades.mjs"
+      - "docs/materials.csv"
+      - "docs/build-weight-data.mjs"
+      - "javascript/weight-data.js"
       - "CSS/**"
       - "docs/check-tables.mjs"
   workflow_dispatch:
@@ -133,6 +139,16 @@ jobs:
       # every hub reported stale on a tree with no drift in it at all.
       - name: Hub grade tables match docs/hub-grades.csv
         run: node docs/build-hub-grades.mjs --check
+
+      # The weight calculator's material list is generated from grades.json and
+      # docs/materials.csv. It is checked for the same reason the hub tables
+      # are: the density a visitor calculates with is joined from the same
+      # verified grade database that prints the identity table on the product
+      # pages, and the two must not be able to disagree. It also fails when the
+      # two families that file a grade twice stop agreeing on its density, which
+      # is a contradiction in grades.csv rather than in the calculator.
+      - name: Weight calculator data matches the grade database
+        run: node docs/build-weight-data.mjs --check
 
       # Every table on the site uses one system. It used to use three, and which
       # one a <th> obeyed came down to the order of two <link> tags: `.table th`

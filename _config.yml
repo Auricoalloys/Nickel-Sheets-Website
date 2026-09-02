@@ -66,6 +66,13 @@ exclude:
   # Guards the one table look: that the system block in pages.css and tables.css
   # stay identical, and that no page styles a table on its own. Reports only.
   - docs/check-tables.mjs
+  # The weight calculator's material list and its generator. What it PRODUCES -
+  # javascript/weight-data.js - is served, because the page imports it; only the
+  # sources are withheld. Excluded in the same commit that added them, which is
+  # the lesson from the grades.csv block above: docs/ is not excluded wholesale,
+  # so anything new here publishes by default at a URL nothing links to.
+  - docs/build-weight-data.mjs
+  - docs/materials.csv
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
   - prices-todo.csv
