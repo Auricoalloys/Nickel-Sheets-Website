@@ -169,14 +169,14 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-28-round-bar/</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-28/plates/</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -186,7 +186,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/alloy-28/sheets/</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
     </image:image>
@@ -4606,7 +4606,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nimonic/round-bars/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Haynes-2.webp</image:loc>
     </image:image>
