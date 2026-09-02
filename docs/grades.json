@@ -710,9 +710,9 @@
       "wnr": "2.4683",
       "en_name": "CoCr20NiW",
       "density_g_cm3": 8.98,
-      "melting_c": "1315-1410",
-      "source": "Haynes International HAYNES 188 alloy page (physical constants) and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name)",
-      "checked": "2026-09"
+      "melting_c": "1300-1415",
+      "source": "Haynes International HAYNES 188 alloy page (density) with VDM Metals and ATI 188 sheets (melting range union)",
+      "checked": "and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name)"
     },
     {
       "family": "haynes",

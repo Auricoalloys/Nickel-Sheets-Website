@@ -359,6 +359,12 @@ nimonic,901,N09901,2.4662,,8.14,1280-1345,Special Metals NIMONIC alloy 901 bulle
 # Four of the seven melting ranges the seed carried were wrong, not slightly:
 # 188 read 1302-1330 against the bulletin's 1315-1410, and 242 read 1320-1353
 # against 1290-1375. 25's density read 9.13 against 9.07.
+# 188's melting was later WIDENED to 1300-1415 to span all three mills rather than
+# assert one: Haynes reads 1315-1410, VDM 1300-1330 and ATI 1300-1355 - the two
+# independent sheets both start at 1300, below Haynes' low end, so the range is
+# loosened to the union rather than pick a winner. Density stays Haynes' 8.98 (the
+# mark holder) even though VDM and ATI both read ~9.1; that disagreement is noted
+# but not resolved here.
 # 25's Werkstoff and EN name come from voestalpine BOHLER's L605 sheet, whose
 # Material designation block prints "2.4964 SEL", "CoCr20W15Ni EN" and "R30605
 # UNS" together - the UNS agreeing with Haynes is what ties the two documents to
@@ -403,7 +409,7 @@ nimonic,901,N09901,2.4662,,8.14,1280-1345,Special Metals NIMONIC alloy 901 bulle
 # here. If its text or a mill certificate turns up and its limits differ, this
 # table changes and the source line changes with it. See chemistry.csv.
 haynes,25,R30605,2.4964,CoCr20W15Ni,9.07,1330-1410,Haynes International HAYNES 25 alloy page (identity and physical constants) and voestalpine BOHLER L605 datasheet to ASTM F90 / ISO 5832-5 (composition limits),2026-08
-haynes,188,R30188,2.4683,CoCr20NiW,8.98,1315-1410,Haynes International HAYNES 188 alloy page (physical constants) and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name),2026-09
+haynes,188,R30188,2.4683,CoCr20NiW,8.98,1300-1415,Haynes International HAYNES 188 alloy page (density) with VDM Metals and ATI 188 sheets (melting range union), and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name),2026-09
 haynes,214,N07214,,,,1355-1400,Haynes International HAYNES 214 alloy page,2026-08
 # 230 is the one grade in this family with real composition LIMITS rather than a
 # nominal column, because ATI publishes a Limiting Composition table for the same
