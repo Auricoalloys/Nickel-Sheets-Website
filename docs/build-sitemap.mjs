@@ -69,6 +69,7 @@ const BOILERPLATE = new Set([
   'fdfe1532', // wrapped 975 tables in .table-responsive so they scroll; markup only
   '533ec89e', // re-wrapped 34 tables the NiCr and Stellite merge had reverted; markup only
   'a655d001', // dropped the data source from the generated captions; 385 pages, no material claim moved
+  '5d4c5dd2', // took dead table classes and one page's own table styling off ten pages; presentation only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
