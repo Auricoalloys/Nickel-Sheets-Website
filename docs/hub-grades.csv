@@ -6,9 +6,15 @@
 # grades.csv should have a row here. chosen_for may contain commas, so fields are
 # CSV-quoted. An empty url renders the grade as plain text (no grade page yet).
 #
+# `family` picks the hub the row appears on. The optional 7th column `uns_family`
+# is the grades.csv family the UNS is read from, for the case where a hub lists a
+# grade filed under another family - only the three Stellite rows below, which the
+# cobalt alloys hub lists but grades.csv files under `stellite`. Leave it empty
+# and the UNS is looked up under `family`.
+#
 # After editing: node docs/build-hub-grades.mjs   then commit the hubs.
 # node docs/build-hub-grades.mjs --check reports drift and exits non-zero.
-family,grade,label,url,type,chosen_for
+family,grade,label,url,type,chosen_for,uns_family
 inconel,600,Inconel 600,/inconel/600/,Solid solution,"Heat and oxidation resistance, chloride stress corrosion"
 inconel,601,Inconel 601,/inconel/601/,Solid solution,Aluminium added for higher oxidation resistance
 inconel,617,Inconel 617,/inconel/617/,Solid solution,Creep strength above 900 &deg;C
@@ -61,9 +67,9 @@ cobalt-alloy,Haynes 188,Haynes 188,,Co-Ni-Cr-W,High-temperature oxidation resist
 cobalt-alloy,Elgiloy,Elgiloy,/cobalt-alloys/elgiloy/sheets/,Co-Cr-Ni-Mo,"Springs and diaphragms, high fatigue strength, sour gas service"
 cobalt-alloy,MP35N,MP35N,,Co-Ni-Cr-Mo,Multiphase alloy with very high strength and corrosion resistance for fasteners
 cobalt-alloy,CoCrMo,CoCrMo,/cobalt-alloys/cocrmo/powder/,Co-Cr-Mo,Implants and additive manufacturing feedstock
-cobalt-alloy,Stellite 6,Stellite 6,/stellite/,Co-Cr-W,"General-purpose wear resistance, hardfacing and valve seats"
-cobalt-alloy,Stellite 12,Stellite 12,/stellite/,Co-Cr-W,Higher carbon and tungsten for abrasion and low-angle erosion
-cobalt-alloy,Stellite 21,Stellite 21,/stellite/,Co-Cr-Mo,"Molybdenum grade for cavitation, galling and thermal shock"
+cobalt-alloy,6,Stellite 6,/stellite/,Co-Cr-W,"General-purpose wear resistance, hardfacing and valve seats",stellite
+cobalt-alloy,12,Stellite 12,/stellite/,Co-Cr-W,Higher carbon and tungsten for abrasion and low-angle erosion,stellite
+cobalt-alloy,21,Stellite 21,/stellite/,Co-Cr-Mo,"Molybdenum grade for cavitation, galling and thermal shock",stellite
 duplex-steel,2205,Duplex 2205,/duplex-steel/2205/sheets/,Duplex,"The standard grade; chemical, marine and pressure vessel work"
 duplex-steel,32750,Super Duplex 2507,/duplex-steel/32750/sheets/,Super duplex,Warm seawater and high chloride service
 duplex-steel,32760,Super Duplex Zeron 100,/duplex-steel/32760/sheets/,Super duplex,"As 2507, with copper and tungsten added"
