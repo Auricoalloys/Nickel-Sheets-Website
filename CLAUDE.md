@@ -43,7 +43,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Eight generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Ten generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -52,21 +52,54 @@ node docs/build-prices.mjs             # after editing prices.csv
 node docs/build-price-worklist.mjs     # after adding/removing a page, or to queue up pricing work
 node docs/build-specs.mjs              # after editing docs/specs.csv
 node docs/build-grades.mjs             # after editing grades.csv, chemistry.csv or properties.csv
+node docs/build-hub-grades.mjs         # after editing docs/hub-grades.csv or a grade's UNS
 node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
-`build-sitemap`, `build-search-index`, `build-prices`, `build-price-worklist`, `build-specs`,
-`build-grades`, `build-cuts` and `powder-datasheets/build` all take `--check`, which reports drift
-and exits non-zero without writing. CI runs the price, specification and
-grade-data checks on every pull request, because a price the HTML no longer matches is worse than
-no price at all, a specification cited for the wrong product form tells a buyer the material is
-certified to something it is not, and a wrong UNS number tells them it is a different material
-altogether.
+Every one of those except `purge-bootstrap` takes `--check`, which reports drift and exits non-zero
+without writing. CI runs the price, specification, grade-data, hub-grade and table-system checks on
+every pull request, because a price the HTML no longer matches is worse than no price at all, a
+specification cited for the wrong product form tells a buyer the material is certified to something
+it is not, and a wrong UNS number tells them it is a different material altogether.
 
-Both live in `docs/` and are excluded from the build in `_config.yml`. Only the purge script needs
-npm (`purgecss@7`); the sitemap script is plain Node.
+Keep that list honest. It read "Eight generators" over a block of nine, and `build-hub-grades.mjs`
+was in neither the count nor the block nor CI — which is how a generator comes to exist that nobody
+runs and nothing guards.
+
+They all live in `docs/` and are excluded from the build in `_config.yml`. Only the purge script
+needs npm (`purgecss@7`); the sitemap script is plain Node.
+
+### A generator that byte-compares needs the line endings normalised
+
+`.gitattributes` sets `* text=auto` and `core.autocrlf` is true on the machine this repo is
+maintained from, so **every HTML page arrives in the working tree as CRLF while the index holds
+LF**. A generator that builds its block with `\n` and then compares it to the page byte-for-byte
+therefore fails on *every line*, and `--check` reports drift on a tree whose content is perfect.
+
+`build-hub-grades.mjs` shipped without the guard and reported all eleven hubs stale from the day it
+was added; all eleven were byte-identical once `\r` was stripped. The idiom every other generator
+already uses, and the one to copy:
+
+```js
+const crlf = raw.includes('\r\n');
+const s = raw.replace(/\r\n/g, '\n');       // do all the work in LF space
+writeFileSync(fp, crlf ? s.replace(/\n/g, '\r\n') : s);
+```
+
+So **before believing a `--check` that claims drift, diff the two with line endings stripped.** If
+they match, the bug is the comparison and not the data — do not "fix" the pages.
+
+`.gitattributes` also pins `eol=lf` on the files where that restore is not possible: the powder data
+sheets, their generator and `cuts.csv`, and `docs/grades.json`, which `build-grades.mjs` writes
+unconditionally as LF. Its comments record the same failure each time. The pages need no such rule
+*because* their generators restore what they found.
+
+Two traps when checking this on Windows. `perl -i -pe 's/x$//'` silently does nothing on a CRLF
+file, because `$` anchors before `\n` and the line really ends `x\r` — write `s/x(\r?)$/$1/`. And
+`git diff | cat -A` shows no `^M` whatever the file holds, because git normalises its own diff
+output; read the bytes with Node instead.
 
 ### The SEO audit
 
@@ -1019,6 +1052,60 @@ it is more of the same.
 
 Reviewed **quarterly, like prices** — see the review task below.
 
+### The family hub "Grades Supplied" table comes from docs/hub-grades.csv
+
+Each alloy family hub (`/inconel/`, `/hastelloy/`, `/stellite/`) carries a table of the grades that
+family is stocked in. Those used to be hand-typed **alongside** a plain "Available Grades" list, so
+the two duplicated each other and the UNS numbers were typed by hand — one hub showed CoCrMo as
+R31538 where `grades.csv` says R31537.
+
+`docs/hub-grades.csv` holds the presentation half only — grade order, link label, link target, the
+Type column and the "Chosen for" reason — and `docs/build-hub-grades.mjs` **joins `grades.csv` for
+the UNS**, so the number in a hub table cannot drift from the grade database:
+
+```bash
+node docs/build-hub-grades.mjs          # write the tables
+node docs/build-hub-grades.mjs --check  # reports drift, writes nothing, exits non-zero
+```
+
+The `HUBS` map at the top names the twelve hub files, each with its `grades.csv` family key and the
+table caption. The writer replaces the first `<table>` between `id="grades"` and the next
+`id="forms"` or `id="applications"`, so a hub opts in by having those two anchors and any table
+between them — **an empty `<table></table>` is enough**, the same as `build-grades.mjs`. A hub
+missing the section is reported, never guessed at.
+
+The UNS is taken from `grades.csv` **even for a grade held `pending`** there: the UNS is verified
+even when the rest of the row is not. An empty `uns` cell or `-` prints an em dash. Seven grades
+render that way and every one of them is a `-` rather than a blank — NiCr 40/20, 30/20 and 20/25,
+and Nimonic 81, 86, 105 and 115 — so the dash is the mill publishing no such designation, not a gap
+in the file. Those four Nimonic numbers were fabricated on this site once already; the em dash is
+the correct published answer, not a placeholder to fill in.
+
+**A hub may list a grade that `grades.csv` files under another family, and the optional 7th column
+`uns_family` says which.** The cobalt alloys hub lists Stellite 6, 12 and 21, but Stellite is its own
+family in `grades.csv` (key `stellite`) so that `/stellite/6/` and its form pages resolve. Keyed on
+the hub's own family it looked up `cobalt-alloy|Stellite 6`, which does not exist.
+
+The fix for that is **not** a second `grades.csv` row under `cobalt-alloy`. That shape exists only
+where `specs.csv` forces it — the Haynes 25 and 188 rows — and it needs a duplicate-UNS guard to stay
+honest. Nothing forces it here, and duplicating a row puts one UNS in two places, which is the drift
+this generator exists to prevent. Reach for `uns_family` instead.
+
+**A grade with no `grades.csv` row is reported, and the hub skipped — not thrown on.** Throwing
+killed the run at the first offender, so that hub and the five after it went unevaluated and nothing
+said so: a check that reported five stale hubs when it had only looked at five of eleven. A missing row
+fails both modes, because a write run that quietly skipped a hub leaves it hand-maintained while the
+caller was told the tables were generated.
+
+`/stellite/` was the last hub still typing its UNS numbers into prose, and was wired up on
+2026-09-02. It is on the older `div.details` template, which is fine — that block is closed and
+carries no pasted paragraph, unlike the seven hubs described above — so only the grades list became
+a `#grades` section and Available Forms gained the `#forms` anchor the generator needs.
+
+**`llms.txt` makes the same claims and nothing checks it.** It is a hand-maintained summary for AI
+crawlers, listing each family with its grades, and it is generated by nothing and read by no test.
+Treat it as a page when a grade is added, renamed or retired.
+
 ### Particle size cuts come from cuts.csv — do not type them onto powder pages
 
 Which cuts a grade is sold in is **not uniform** — that is the whole reason
@@ -1146,9 +1233,17 @@ explained by the sweep. Anything else in the diff makes it content.
 
 ### JavaScript inventory
 
-`floating-form.js` (every page, via footer) and `detailed.js` (~650 pages — TOC toggles, smooth
-anchor scroll, scroll-up button) are the live ones. `script.js` (mobile nav, language switcher,
-homepage marquee) is loaded only by `index.html`. `google-auth.js` and `detailed_database_page.js` were referenced by no page and have both been
+`floating-form.js` (every page, via footer), `site-search.js` (every page, via footer) and
+`detailed.js` (~650 pages — TOC toggles, smooth anchor scroll, scroll-up button) are the live ones.
+`script.js` (mobile nav, language switcher, homepage marquee) is loaded only by `index.html`.
+
+`site-search.js` powers the search box in the shared header and is **the consumer of
+`search-index.json`** — which is the reason to re-run `build-search-index.mjs` after adding or
+retitling a page, not just the sitemap cross-check it is mentioned for below. The index is ~200 KB,
+so it is fetched on the first real interaction rather than at page load: a visitor who never
+searches never downloads it. Like `floating-form.js` it loads from the **footer** include even
+though its markup is in the header, because the runtime product route injects the header with
+`innerHTML` and scripts inside injected markup never execute. `google-auth.js` and `detailed_database_page.js` were referenced by no page and have both been
 deleted; the latter also pulled Supabase from unpkg, which this site otherwise avoids. `javascript/translations/translations.js` is empty and no `<lang>.json`
 files exist, so the language switcher's fetch always no-ops — it fails silently by design.
 
@@ -1233,6 +1328,23 @@ that when adding them.
 
 Images are WebP under `docs/images/`; camera originals live in `docs/images/source/`, which is both
 gitignored and excluded from the build.
+
+### llms.txt is hand-maintained and nothing checks it
+
+`llms.txt` is a summary of the business and its catalogue for AI crawlers — one line per alloy
+family with its grade list, plus the address, certifications and how pricing works. No generator
+writes it, no `--check` reads it, and it is absent from `tools/seo_audit.py`, so it is the one place
+on this site where a grade list can go stale in complete silence.
+
+It duplicates claims that now have owners: the family grade lists belong to `docs/hub-grades.csv`,
+and what the site says about prices belongs to `prices.csv`. **Update it in the same commit that
+adds, renames or retires a grade**, the same as any page.
+
+Known drift as of 2026-09-02, listed because a reader will otherwise trust it: Incoloy still reads
+`330`, which was renamed to Alloy 330 at `/incoloy/DS/`; Sanicro 35 is missing from the stainless
+line; Stellite has no grade list, so 6, 12 and 21 appear nowhere; and the opening paragraph says
+"no list prices are published on the site" when `prices.csv` publishes 270. Fixing these is a
+content pass nobody has run, not a bug in a generator.
 
 **Commercial figures are the business's to state, not ours to infer.** Prices already have a whole
 pipeline built on that; size and stock ranges are the same claim in a less obvious place. Copying

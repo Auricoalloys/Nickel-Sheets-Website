@@ -30,8 +30,8 @@
 // generator exists to prevent.
 //
 // A missing row is reported and the hub skipped, rather than thrown on. Throwing
-// killed the run at the first offender, so the six hubs after it in HUBS were
-// never evaluated and nothing said so - a check reporting five stale hubs when it
+// killed the run at the first offender, so that hub and the five after it in HUBS
+// went unevaluated and nothing said so - a check reporting five stale hubs when it
 // had only looked at five of eleven.
 
 import { readFileSync, writeFileSync } from 'node:fs';
