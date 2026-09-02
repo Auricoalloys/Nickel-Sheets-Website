@@ -170,6 +170,23 @@ hastelloy,X,N06002,ASTM B435 / AMS 5536,ASTM B572 / AMS 5754,-,ASTM B619 / B622 
 monel,400,N04400,ASTM B127,ASTM B164,ASTM B164,ASTM B163 / B165,ASTM B366
 monel,405,N04405,-,ASTM B164,ASTM B164,-,-
 monel,K-500,N05500,QQ-N-286,ASTM B865,ASTM B865,-,-
+# NIMONIC 75 FLAT CORROBORATED 2026-09-02 by an ATI Specialty Rolled Products
+# certificate of test for "ATI 75" nickel alloy sheet (cold rolled, annealed,
+# EN 10204 3.1). It certifies the sheet to BS 2HR 203:2009 - the same standard
+# as this row's BS HR 203, written the way the BS series prints it - and states
+# WNR 2.4951, which is the first of the two Werkstoff numbers grades.csv holds.
+#
+# NOTHING CHANGED IN THIS ROW, and that is the finding rather than a shrug.
+# The certificate also names DIN 17742:2002, marked "CHEM ONLY", and it is
+# tempting to read that as correcting the DIN 17750 in this cell. It does not:
+# 17742 is a COMPOSITION standard and 17750 is the plate/sheet/strip PRODUCT
+# standard, so they answer different questions and this column asks the second
+# one. Swapping a composition standard into a product-form column is the same
+# category error as citing a plate spec for wire, one axis over.
+#
+# The certificate is a shipment document for one heat and its measured values
+# are never published - it is evidence that the row is right, not content. It
+# also covers SHEET only, so it says nothing about the bar, wire or pipe cells.
 nimonic,75,N06075,BS HR 203 / DIN 17750 / ISO 6208,BS HR 5 / HR 504 / DIN 17752,BS HR 5 / ISO 9723-25,BS HR 403 / DIN 17751,-
 nimonic,80A,N07080,BS HR 201 / AECMA PrEn 2191,ASTM B637 / BS 3076 / HR 1,ASTM B637 / BS 3076,BS HR 401,-
 nimonic,81,-,mill,mill,mill,mill,-
