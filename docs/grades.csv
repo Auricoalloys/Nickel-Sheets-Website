@@ -418,6 +418,17 @@ haynes,282,N07208,,,8.27,1300-1375,Haynes International HAYNES 282 alloy page,20
 # brochure (2026-09). Haynes prints no Werkstoff or EN symbolic designation for
 # it, so wnr and en_name stay empty.
 haynes,HR-120,N08120,,,8.07,1300,Haynes International HAYNES HR-120 alloy brochure,2026-09
+# 556 and HR-160 are cross-referenced across the site (556 as HR-120's filler wire,
+# HR-160 in the plates keywords and applications) but are not stocked as their own
+# product pages. Seeded PENDING - starter rows only, not verified data. The UNS is
+# the widely-published designation (R30556; N12160), left as a lead the way the
+# original seed carried numbers. Everything else waits on the Haynes International
+# bulletin, which is NOT reachable from this environment - haynesintl.com is
+# egress-blocked, and a distributor listing is never a source here (that is how
+# N06003 reached an 80/20 page and AMS 5542 a 214 bar). Do not clear pending
+# without reading the mill sheet; no chemistry.csv rows exist for these two yet.
+haynes,556,R30556,,,,,pending,
+haynes,HR-160,N12160,,,,,pending,
 # --- TITANIUM --- Two sources, named separately in `source` the way the HAYNES
 # 25 and 254 SMO rows carry two. Identity and composition come from ASME BPVC
 # Section II Part B, SB-265 Table 8 "Chemical Requirements", 2023 edition, read
