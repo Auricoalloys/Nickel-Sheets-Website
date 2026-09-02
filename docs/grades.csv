@@ -342,11 +342,15 @@ nimonic,901,N09901,2.4662,,8.14,1280-1345,Special Metals NIMONIC alloy 901 bulle
 #
 # The Specifications table carries the UNS in its own header - "HAYNES 188 alloy
 # (R30188)" - and a DIN row. Only 230 has one: "17744 No. 2.4733 NiCr22W14Mo",
-# which is where that row's wnr AND en_name come from. Every other grade's DIN
-# row reads a dash, so their wnr is left EMPTY, following hastelloy/N above:
-# publishing the widely-quoted 2.4683 for 188 or 2.4964 for 25 under a Haynes
-# citation would put a number in the mill's mouth that its bulletin does not
-# contain. Those seeded numbers were exactly that and have been cleared.
+# which is where that row's wnr AND en_name come from. Haynes' own DIN row reads a
+# dash for every other grade, so nothing is taken from HAYNES for them - but the
+# same designations appear on OTHER mills' sheets and are recorded from those:
+# 188 is Werkstoff 2.4683 / CoCr20NiW on VDM Metals' VDM Alloy 188 (Conicro 4023 W)
+# datasheet, and 25 is 2.4964 on voestalpine BOHLER's L605 sheet. These are the
+# widely-quoted numbers this file once cleared as unsourced; each is now carried by
+# a real mill bulletin that names the same UNS, which is what makes it citable (a
+# distributor listing still would not be). Every such sheet names the grade's UNS,
+# so the number is tied to this material and not merely to a similar one.
 #
 # 214 has no Specifications table at all and no density anywhere on its page, so
 # its wnr, en_name AND density are empty - not dashed. The pages keep their own
@@ -399,7 +403,7 @@ nimonic,901,N09901,2.4662,,8.14,1280-1345,Special Metals NIMONIC alloy 901 bulle
 # here. If its text or a mill certificate turns up and its limits differ, this
 # table changes and the source line changes with it. See chemistry.csv.
 haynes,25,R30605,2.4964,CoCr20W15Ni,9.07,1330-1410,Haynes International HAYNES 25 alloy page (identity and physical constants) and voestalpine BOHLER L605 datasheet to ASTM F90 / ISO 5832-5 (composition limits),2026-08
-haynes,188,R30188,,,8.98,1315-1410,Haynes International HAYNES 188 alloy page,2026-08
+haynes,188,R30188,2.4683,CoCr20NiW,8.98,1315-1410,Haynes International HAYNES 188 alloy page (physical constants) and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name),2026-09
 haynes,214,N07214,,,,1355-1400,Haynes International HAYNES 214 alloy page,2026-08
 # 230 is the one grade in this family with real composition LIMITS rather than a
 # nominal column, because ATI publishes a Limiting Composition table for the same
@@ -748,9 +752,13 @@ cobalt-alloy,Elgiloy,R30003,2.4711,-,8.30,,Elgiloy Specialty Metals Strip Produc
 # mis-rounding of the 0.3046 that 8.43 converts to. Anyone quoting a weight where
 # 1% matters should confirm it with the mill rather than trust this cell.
 #
-# wnr and en_name are empty rather than "-": the sheet has no DIN or EN field at
-# all, so its silence is not the deliberate blank a Haynes DIN row would be.
-cobalt-alloy,MP35N,R30035,,,8.43,1316-1443,Carpenter Technology MP35N datasheet,2026-08
+# WERKSTOFF 2.4999 comes from voestalpine BOHLER's L035 (MP35N) datasheet, whose
+# Material designation block prints "MP35N Market grade" and "2.4999 SEL" over a
+# composition headed "Refers to AMS 5844" (UNS R30035) - the market grade and UNS
+# agreeing is what ties the SEL number to this alloy. The Carpenter sheet had no
+# DIN or EN field, which is why this was empty before; en_name stays empty because
+# BOHLER prints only the market grade, no EN symbolic designation.
+cobalt-alloy,MP35N,R30035,2.4999,,8.43,1316-1443,Carpenter Technology MP35N datasheet and voestalpine BOHLER L035 datasheet (Werkstoff),2026-09
 # CoCrMo is verified: Alleima's F1537 bar datasheet publishes 8.25 g/cm3 and gives
 # no melting range at all, the same selective silence as the Sanicro sheets, so
 # melting_c is empty and the pages keep whatever they state. wnr and en_name are

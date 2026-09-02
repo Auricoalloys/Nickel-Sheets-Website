@@ -707,12 +707,12 @@
       "uns_all": [
         "R30188"
       ],
-      "wnr": null,
-      "en_name": null,
+      "wnr": "2.4683",
+      "en_name": "CoCr20NiW",
       "density_g_cm3": 8.98,
       "melting_c": "1315-1410",
-      "source": "Haynes International HAYNES 188 alloy page",
-      "checked": "2026-08"
+      "source": "Haynes International HAYNES 188 alloy page (physical constants) and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name)",
+      "checked": "2026-09"
     },
     {
       "family": "haynes",
@@ -1368,12 +1368,12 @@
       "uns_all": [
         "R30035"
       ],
-      "wnr": null,
+      "wnr": "2.4999",
       "en_name": null,
       "density_g_cm3": 8.43,
       "melting_c": "1316-1443",
-      "source": "Carpenter Technology MP35N datasheet",
-      "checked": "2026-08"
+      "source": "Carpenter Technology MP35N datasheet and voestalpine BOHLER L035 datasheet (Werkstoff)",
+      "checked": "2026-09"
     },
     {
       "family": "cobalt-alloy",
