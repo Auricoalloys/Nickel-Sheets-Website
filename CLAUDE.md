@@ -1008,10 +1008,14 @@ Four rules the strip enforces, each of which was a way to get it wrong:
   melting point around 1370 °C" and `grades.csv` has no `melting_c` for B-2, so cutting the row would
   have deleted the page's only melting figure.
 
-What it will not cut, it **reports** — 18 findings, 16 of them pages restating a constant in prose
-rather than in a row. Prose is a real second home and a real backlog; it is named rather than passed
-over, because a check may exclude a case by rule but may never be silent about one it does not
-handle.
+What it will not cut, it **reports**. That started as 18 findings, 16 of them pages restating a
+constant in prose rather than in a row — a real second home and a real backlog, named rather than
+passed over, because a check may exclude a case by rule but may never be silent about one it does
+not handle. The prose 16 were copy-edited out in `28a32c0f` (2026-08-28), so the report now stands
+at **5**, and all five are the three-cell comparison rows described above — `incoloy/DS/DS.html`
+and the two like it, where a density row sets one grade against another. Those are the rule working,
+not a backlog: the count is expected to stay at 5, so a sixth is worth reading rather than assuming
+it is more of the same.
 
 Reviewed **quarterly, like prices** — see the review task below.
 
@@ -1229,24 +1233,6 @@ that when adding them.
 
 Images are WebP under `docs/images/`; camera originals live in `docs/images/source/`, which is both
 gitignored and excluded from the build.
-
-### Pending: two merged branches still need deleting
-
-**`claude/bohler-titanium-equivalents-1nn0fg` is merged into `main` and should be deleted, and this
-session could not do it.** The remote branch is still there. Both routes out of a Claude Code on the
-web container are closed: the agent proxy drops a delete push (`git push origin --delete` and the
-`:refs/heads/...` refspec both die with *send-pack: unexpected disconnect while reading sideband
-packet*, then report "Everything up-to-date" on every retry, because git never sends the delete),
-and the GitHub MCP server exposes `create_branch` and `list_branches` but **no delete**. The local
-branch is gone; only the remote ref remains.
-
-`claude/unverified-haynes-grades-hnnmxv` is in the same state — merged, pushed, still present — and
-whoever clears one should clear both. Delete them from the GitHub branches page, or from a full
-checkout with `git push origin --delete <branch>`, then delete this section.
-
-**Neither branch holds unmerged work.** Verified 2026-09-02: each is an ancestor of `main`, so
-deleting them loses nothing. Check that again before deleting rather than trusting this line — the
-whole point of the note is that time has passed.
 
 **Commercial figures are the business's to state, not ours to infer.** Prices already have a whole
 pipeline built on that; size and stock ranges are the same claim in a less obvious place. Copying
