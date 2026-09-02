@@ -38,6 +38,8 @@ on:
       - "docs/chemistry.csv"
       - "docs/properties.csv"
       - "docs/build-grades.mjs"
+      - "docs/hub-grades.csv"
+      - "docs/build-hub-grades.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
   push:
@@ -57,6 +59,8 @@ on:
       - "docs/chemistry.csv"
       - "docs/properties.csv"
       - "docs/build-grades.mjs"
+      - "docs/hub-grades.csv"
+      - "docs/build-hub-grades.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
   workflow_dispatch:
@@ -115,6 +119,20 @@ jobs:
       # a "-" in the uns column claims the mill publishes no such designation.
       - name: Grade data matches docs/grades.csv
         run: node docs/build-grades.mjs --check --strict
+
+      # The "Grades Supplied" table on each family hub is generated, and its UNS
+      # column is joined from grades.csv so it cannot drift from the grade
+      # database - one hub used to show CoCrMo as R31538 where grades.csv says
+      # R31537. This fails the build when hub-grades.csv was edited without
+      # re-running the generator, and when a hub lists a grade that grades.csv
+      # has no row for, which leaves the UNS with nowhere to come from.
+      #
+      # It was the last generator with a --check that CI did not run, and it had
+      # been failing unnoticed since it was added: it compared byte-for-byte
+      # against a working tree that is CRLF wherever core.autocrlf is true, so
+      # every hub reported stale on a tree with no drift in it at all.
+      - name: Hub grade tables match docs/hub-grades.csv
+        run: node docs/build-hub-grades.mjs --check
 
       # Every table on the site uses one system. It used to use three, and which
       # one a <th> obeyed came down to the order of two <link> tags: `.table th`
