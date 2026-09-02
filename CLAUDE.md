@@ -1230,6 +1230,24 @@ that when adding them.
 Images are WebP under `docs/images/`; camera originals live in `docs/images/source/`, which is both
 gitignored and excluded from the build.
 
+### Pending: two merged branches still need deleting
+
+**`claude/bohler-titanium-equivalents-1nn0fg` is merged into `main` and should be deleted, and this
+session could not do it.** The remote branch is still there. Both routes out of a Claude Code on the
+web container are closed: the agent proxy drops a delete push (`git push origin --delete` and the
+`:refs/heads/...` refspec both die with *send-pack: unexpected disconnect while reading sideband
+packet*, then report "Everything up-to-date" on every retry, because git never sends the delete),
+and the GitHub MCP server exposes `create_branch` and `list_branches` but **no delete**. The local
+branch is gone; only the remote ref remains.
+
+`claude/unverified-haynes-grades-hnnmxv` is in the same state — merged, pushed, still present — and
+whoever clears one should clear both. Delete them from the GitHub branches page, or from a full
+checkout with `git push origin --delete <branch>`, then delete this section.
+
+**Neither branch holds unmerged work.** Verified 2026-09-02: each is an ancestor of `main`, so
+deleting them loses nothing. Check that again before deleting rather than trusting this line — the
+whole point of the note is that time has passed.
+
 **Commercial figures are the business's to state, not ours to infer.** Prices already have a whole
 pipeline built on that; size and stock ranges are the same claim in a less obvious place. Copying
 "14 mm to 300 mm" off the neighbouring grade's page because a new page needs a Size Range row
