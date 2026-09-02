@@ -1130,6 +1130,55 @@ Plain stylesheets in `CSS/`, no preprocessor. `header.css` and `footer.css` are 
 `pages.css` is the workhorse for content pages, `tables.css` for the spec/chemistry tables.
 Stylesheets belong in each page's `<head>`, not in the shared includes.
 
+#### Tables are one system, and the link order used to decide how they looked
+
+There is **one table look**, in the block marked `table system` in `CSS/pages.css`, mirrored
+byte-for-byte in `CSS/tables.css` and driven by tokens in `header.css`. Style a new kind of table by
+teaching that block. Do not add a class beside it — that is how three systems appeared.
+
+The three were `.grade-table` (15px text, 12/15px cells), `.spec-table` (16px text, 15/20px cells, a
+30% label column) and bare Bootstrap `.table` (8px cells, no navy), across 2,466 tables in seven
+class × shape combinations. A grade hub stacked two tables of the same kind of data that shared no
+measurement.
+
+Underneath that was a worse problem. `.table th` and Bootstrap's `.table > :not(caption) > * > *` are
+**both specificity (0,1,1)**, so they tied and the winner was whichever stylesheet the page linked
+last. 391 pages list `pages.css` first and rendered a row header white; 336 list Bootstrap first and
+rendered it navy — **8,349 `<th>` cells, and nobody chose either**. On six of the Bootstrap-first
+pages it put a navy link on a navy cell, so the three grade links on `monel.html` were invisible —
+the same bug the `.table th a` rule had been written to fix on the other half of the site.
+
+**Every rule in the block is therefore qualified with `body`**, which outranks Bootstrap in both
+orders. Same fix, and the same reason, as `body .container` — check that precedent before writing a
+bare class selector that Bootstrap also defines.
+
+Four things the block does that are easy to undo by accident:
+
+- **Bootstrap's cell painting is cleared, not overridden.** Its rule sets a background-color *and* an
+  inset box-shadow, and the shadow is the mechanism behind `.table-striped`. A background set without
+  clearing the shadow gets painted over. `.table-striped` and `.table-hover` are inert as a result,
+  deliberately — they were a fourth and fifth look on 109 and 38 tables.
+- **The zebra is painted on the `<tr>`, not the cell.** `.grade-table` striped `tbody td` only, so the
+  first column of a key/value table — a `<th>` — stayed unstriped and the stripe ran at half width.
+- **A `<th scope="row">` is a label, not a second header band.** Painting it navy draws an L round the
+  data on the 1,454 tables carrying both a `<thead>` and row headers, and stops the zebra at the label
+  column. Weight and colour say "label" at neither cost.
+- **`.spec-table-section` and `.grade-table-section` carry no horizontal padding.** `build-specs.mjs`
+  writes the same block bare into `<main>` on 50 pages, inside `.spec-table-section` on 86 and inside
+  `.grade-table-section` on 1; the 40px/20px that section used to carry made the Specifications table
+  40px narrower than the Equivalent Grades table directly above it. Zero padding means the placement
+  no longer changes the width, so the generator did not have to learn a container.
+
+`node docs/check-tables.mjs` guards all of it and runs in CI: the two copies of the block staying
+identical, no undefined class on a table, no inline style or presentational attribute, and no page
+styling tables in its own `<style>` block — which is how `.tech-table { font-size: 0.9em }` set three
+tables a tenth smaller than the rest while being invisible to any search of `CSS/`. It prints its own
+coverage, because a count of zero cannot otherwise say what it never looked at.
+
+`tables.css` is currently redundant: all 119 pages linking it also link `pages.css`, and the one page
+that links neither has a single table styled by `.pmi-table` in `proof.css`. It is kept as an exact
+mirror so that removing 119 `<link>` tags can be its own reviewable change.
+
 The site loads **no third-party origins**. Bootstrap 5.3.3 is vendored at `CSS/bootstrap.min.css` and
 `javascript/bootstrap.bundle.min.js` (deferred). Font Awesome is gone entirely — its icons are inline
 SVG carrying `class="icon"`, sized in `em` and painted with `currentColor` by a rule in `header.css`.

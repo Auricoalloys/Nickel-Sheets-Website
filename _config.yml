@@ -63,6 +63,9 @@ exclude:
   # grades.csv. Added with exclusions in the same commit, per the note above.
   - docs/build-hub-grades.mjs
   - docs/hub-grades.csv
+  # Guards the one table look: that the system block in pages.css and tables.css
+  # stay identical, and that no page styles a table on its own. Reports only.
+  - docs/check-tables.mjs
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
   - prices-todo.csv

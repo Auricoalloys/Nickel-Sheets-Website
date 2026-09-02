@@ -20,37 +20,13 @@
   }
 
 
-  /* The dark background was set without a text colour, so anything in a <th>
-     inherited the dark body colour and rendered navy on navy - invisible.
-     Row headers are the visible case: 1,402 of them across the site. */
-  th {
-    background-color: #154360;
-    color: #fff;
-  }
-
-  /* Qualified with body so this outranks the `body a { color: var(--primary-color) }`
-     rule in products.css. Both were specificity (0,0,2) and products.css loads
-     after pages.css, so the navy link colour was winning and every row-header
-     link rendered navy on the navy th - invisible. */
-  body th a,
-  body th a:hover,
-  body th a:focus,
-  body th a:visited {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  /* Inside a Bootstrap `.table` the cells keep a white background - `--bs-table-bg`
-     outranks the navy `th` rule above - so the white row-header link colour set
-     just above for the site's own navy tables rendered white-on-white, and the
-     Grade column of every family-hub "Grades Supplied" table read as blank. Give
-     links in a `.table` row header the visible navy link colour instead. */
-  body .table th a,
-  body .table th a:hover,
-  body .table th a:focus,
-  body .table th a:visited {
-    color: var(--primary-color);
-  }
+  /* A bare `th { background-color: #154360 }` used to live here, which painted
+     every row header navy and made the three rules that chased it necessary:
+     white link text for the navy cell, then navy link text again for the cells
+     Bootstrap repainted white. All three are gone. A row header is a label, not
+     a second header band, and it is styled as one by the table system further
+     down - which also settles the link colour in one place instead of three
+     that contradicted each other depending on <link> order. */
 
   /* The Available Forms list ran one item per line and left most of the row
      empty; flow it into up to three columns that collapse to fewer as the
@@ -490,108 +466,187 @@
     }
   }
 
-  .spec-table-section {
-    padding: 10px 5px;
-  }
+  /* ===== table system : start =============================================
+     One look for every table on the site. This block is kept identical with
+     the block of the same name in CSS/tables.css; tools/seo_audit.py fails if
+     the two drift, because a page loading only one of them would then render a
+     different table. The values are tokens and live once, in header.css.
 
-  .spec-table-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    overflow-x: auto;
-    border-radius: 10px;
-  }
+     It replaces three systems that disagreed about everything: .grade-table
+     (15px text, 12/15px cells), .spec-table (16px text, 15/20px cells, a 30%
+     label column) and bare Bootstrap .table (8px cells, no navy) - so a grade
+     hub stacked two tables of the same kind of data that shared no measurement.
 
-  .spec-table {
+     WHY EVERY RULE IS QUALIFIED WITH `body`.
+     Bootstrap paints cells with `.table > :not(caption) > * > *`, specificity
+     (0,1,1) - exactly the same as the `.table th` rule this replaces. A tie is
+     broken by source order, so which of two <link> tags came last decided
+     whether a row header rendered navy-on-white or white-on-navy: 391 pages
+     list pages.css first, 336 list bootstrap first, and 8,349 <th> cells went
+     one way or the other with nobody choosing either. On six of the
+     bootstrap-first pages it also put a navy link on a navy cell, which is how
+     the three grade links on the Monel family hub came to be invisible - the
+     same bug the deleted `.table th a` rule was written to fix on the other
+     half of the site. `body` outranks Bootstrap in both orders: same fix, and
+     for the same reason, as `body .container` further down.
+
+     WHY BOOTSTRAP'S CELL PAINTING IS CLEARED RATHER THAN OVERRIDDEN.
+     That rule sets a background-color AND an inset box-shadow, and the shadow
+     is the mechanism behind .table-striped. A background set here would be
+     painted over by the shadow, so both are cleared and this block paints
+     instead. .table-striped and .table-hover are inert as a result, which is
+     deliberate - they were a fourth and fifth look, on 109 and 38 tables.
+
+     WHY THE ZEBRA IS PAINTED ON THE ROW, NOT THE CELL.
+     .grade-table striped `tbody td` only, so the first column of a key/value
+     table - a <th> - stayed unstriped while the rest of the row was tinted and
+     the stripe ran at half width. Painting the <tr> and leaving cells
+     transparent makes a stripe cross the whole row.
+
+     WHY ROW HEADERS ARE NOT NAVY.
+     A <th scope="row"> is a label, not a second header band. Painting it navy
+     draws an L-shaped frame round the data on the 1,454 tables carrying both a
+     <thead> and row headers, and stops the zebra at the label column. Weight
+     and colour say "label" at neither cost.
+     ======================================================================== */
+
+  body table.table,
+  body table.grade-table,
+  body table.spec-table {
     width: 100%;
+    margin-bottom: 1.25rem;
     border-collapse: collapse;
-    font-size: 16px;
+    font-size: var(--table-font-size);
+    background-color: var(--table-row-bg);
+    vertical-align: top;
   }
 
-  .spec-table th,
-  .spec-table td {
-    padding: 15px 20px;
+  /* Bootstrap's cell painting, cleared. See the note above. */
+  body table.table > :not(caption) > * > * {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  /* Browsers default thead/tbody to vertical-align: middle, which stops a cell
+     inheriting the table's own alignment. Bootstrap corrects this for .table;
+     the two site classes need it too. */
+  body table.table > tbody,
+  body table.grade-table > tbody,
+  body table.spec-table > tbody {
+    vertical-align: inherit;
+  }
+
+  body table.table > * > tr > *,
+  body table.grade-table > * > tr > *,
+  body table.spec-table > * > tr > * {
+    padding: var(--table-cell-pad-y) var(--table-cell-pad-x);
     text-align: left;
-    border-bottom: 1px solid #e0e0e0;
+    border: 1px solid var(--table-border);
+    background-color: transparent;
+    box-shadow: none;
+    /* Bootstrap routes cell colour through --bs-table-color-type, which
+       .table-striped repoints at #000 for odd rows. Clearing the background
+       above stops its stripe but not that, so 109 tables would still have set
+       their odd rows in a different ink from every other table. */
+    color: inherit;
   }
 
-  .spec-table th {
-    background-color: #154360;
-    color: #fff;
+  body table.table > thead > tr > *,
+  body table.grade-table > thead > tr > *,
+  body table.spec-table > thead > tr > * {
+    background-color: var(--table-head-bg);
+    color: var(--table-head-fg);
     font-weight: 600;
-    width: 30%;
+    border-color: var(--table-head-rule);
   }
 
-  .spec-table tr:nth-child(even) td {
-    background-color: #f9f9f9;
+  /* A row header keeps the row's own background so the zebra is unbroken, and
+     states itself with weight and colour instead. */
+  body table.table > tbody > tr > th,
+  body table.grade-table > tbody > tr > th,
+  body table.spec-table > tbody > tr > th {
+    color: var(--table-label-fg);
+    font-weight: 600;
   }
 
-  .spec-table tr:hover td {
-    background-color: #eaf2f8;
-    transition: background-color 0.3s ease;
+  body table.table > tbody > tr:nth-of-type(even),
+  body table.grade-table > tbody > tr:nth-of-type(even),
+  body table.spec-table > tbody > tr:nth-of-type(even) {
+    background-color: var(--table-row-alt-bg);
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  body table.table > tbody > tr:hover,
+  body table.grade-table > tbody > tr:hover,
+  body table.spec-table > tbody > tr:hover {
+    background-color: var(--table-row-hover-bg);
+    transition: background-color 0.2s ease;
   }
 
+  /* Links: white inside the navy header band, ordinary navy in a label cell.
+     Which of the two a row header got used to depend on the <link> order. */
+  body table.table > thead > tr > * a,
+  body table.grade-table > thead > tr > * a,
+  body table.spec-table > thead > tr > * a,
+  body table.table > thead > tr > * a:hover,
+  body table.grade-table > thead > tr > * a:hover,
+  body table.spec-table > thead > tr > * a:hover,
+  body table.table > thead > tr > * a:focus,
+  body table.grade-table > thead > tr > * a:focus,
+  body table.spec-table > thead > tr > * a:focus,
+  body table.table > thead > tr > * a:visited,
+  body table.grade-table > thead > tr > * a:visited,
+  body table.spec-table > thead > tr > * a:visited {
+    color: var(--table-head-fg);
+    text-decoration: underline;
+  }
+
+  body table.table > tbody > tr > th a,
+  body table.grade-table > tbody > tr > th a,
+  body table.spec-table > tbody > tr > th a,
+  body table.table > tbody > tr > th a:hover,
+  body table.grade-table > tbody > tr > th a:hover,
+  body table.spec-table > tbody > tr > th a:hover,
+  body table.table > tbody > tr > th a:focus,
+  body table.grade-table > tbody > tr > th a:focus,
+  body table.spec-table > tbody > tr > th a:focus,
+  body table.table > tbody > tr > th a:visited,
+  body table.grade-table > tbody > tr > th a:visited,
+  body table.spec-table > tbody > tr > th a:visited {
+    color: var(--primary-color);
+  }
+
+  /* Every table scrolls inside its own wrapper rather than widening the page.
+     tools/seo_audit.py checks that one of these three is the tag immediately
+     before each <table>, so do not rename one without teaching that check.
+     .grade-table-wrapper also carried a drop shadow, which left 16 of 2,466
+     tables looking raised and every other one flat. */
+  .table-responsive,
+  .spec-table-wrapper,
+  .grade-table-wrapper {
+    overflow-x: auto;
+    margin: 0 auto;
+  }
+
+  /* Horizontal padding is 0 so a table is the full reading measure wherever it
+     landed. build-specs.mjs writes the same block bare into <main> on 50 pages,
+     inside .spec-table-section on 86 and inside .grade-table-section on 1, and
+     the 40px/20px this used to carry made the Specifications table 40px wider
+     than the Equivalent Grades table directly above it. Nesting one of these
+     sections inside another is free now, which is what that generator does. */
+  .spec-table-section,
   .grade-table-section {
-    padding: 40px 20px;
-    background-color: #ffffff;
-    animation: fadeIn 0.6s ease-in-out;
+    padding: 32px 0;
   }
 
+  /* Left, like every other heading on the page. Centring this one was the rest
+     of why the two generated tables did not read as a pair. */
   .grade-table-section h2 {
-    text-align: center;
     font-size: 1.8rem;
-    color: #154360;
+    color: var(--heading-color);
     margin-bottom: 20px;
     font-weight: 600;
   }
-
-  .grade-table-wrapper {
-    max-width: 1100px;
-    margin: auto;
-    overflow-x: auto;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  }
-
-  .grade-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 15px;
-  }
-
-  .grade-table thead th {
-    background-color: #154360;
-    color: #ffffff;
-    padding: 12px 15px;
-    text-align: left;
-    font-weight: 600;
-  }
-
-  .grade-table tbody td {
-    padding: 14px 15px;
-    border-bottom: 1px solid #e0e0e0;
-    background-color: #f9f9f9;
-  }
-
-  .grade-table tbody tr:nth-child(even) td {
-    background-color: #f1f5f9;
-  }
-
-  .grade-table tbody tr:hover td {
-    background-color: #e8f4fc;
-    transition: background-color 0.3s ease;
-  }
+  /* ===== table system : end =============================================== */
 
   @keyframes fadeIn {
     from {
@@ -1059,14 +1114,11 @@ footer p a {
     border-color: var(--secondary-cta);
   }
 
-  .table {
-    background-color: #fff;
-  }
-
-  .table th {
-    background-color: var(--primary-color);
-    color: #fff;
-  }
+  /* `.table` and `.table th` were declared here. `.table th` was specificity
+     (0,1,1), the same as Bootstrap's own `.table > :not(caption) > * > *`, so
+     the two tied and the winner was whichever stylesheet the page linked last.
+     Both are now part of the table system above, qualified with body so the
+     result no longer depends on the <head>. */
 
   .accordion-button {
     color: var(--primary-color);

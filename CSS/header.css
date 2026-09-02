@@ -37,6 +37,26 @@
      override it for everything inside. Navy headings on a navy panel measured
      1.05:1 in the footer and the same on the quality page's case study. */
   --heading-color: var(--primary-color);
+
+  /* One table look, for the same reason the brand navy is declared once above.
+     The site had three table systems - .grade-table at 15px/12px, .spec-table
+     at 16px/15px and bare Bootstrap .table at 8px - over 2,466 tables, so two
+     tables stating the same kind of data one above the other on a grade hub
+     disagreed about size, padding and colour. The rules that read these live in
+     pages.css and tables.css; the values live here so there is one copy. */
+  --table-head-bg: var(--primary-color);
+  --table-head-fg: #fff;
+  --table-head-rule: rgba(255, 255, 255, 0.22);
+  --table-row-bg: #fff;
+  --table-row-alt-bg: #f4f7fa;
+  --table-row-hover-bg: #eaf2f8;
+  --table-border: #dbe2e8;
+  /* Row headers are labels, not a second header band - see the table system in
+     pages.css for why they are no longer painted navy. */
+  --table-label-fg: var(--primary-color);
+  --table-cell-pad-y: 12px;
+  --table-cell-pad-x: 16px;
+  --table-font-size: 15px;
 }
 
 /* The footer is dark on every page, so its override lives here with the token.

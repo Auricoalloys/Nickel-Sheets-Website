@@ -38,6 +38,8 @@ on:
       - "docs/chemistry.csv"
       - "docs/properties.csv"
       - "docs/build-grades.mjs"
+      - "CSS/**"
+      - "docs/check-tables.mjs"
   push:
     branches: [main]
     paths:
@@ -55,6 +57,8 @@ on:
       - "docs/chemistry.csv"
       - "docs/properties.csv"
       - "docs/build-grades.mjs"
+      - "CSS/**"
+      - "docs/check-tables.mjs"
   workflow_dispatch:
 
 permissions:
@@ -111,6 +115,19 @@ jobs:
       # a "-" in the uns column claims the mill publishes no such designation.
       - name: Grade data matches docs/grades.csv
         run: node docs/build-grades.mjs --check --strict
+
+      # Every table on the site uses one system. It used to use three, and which
+      # one a <th> obeyed came down to the order of two <link> tags: `.table th`
+      # and Bootstrap's own cell rule are both specificity (0,1,1), so 391 pages
+      # rendered a row header white and 336 rendered it navy across 8,349 cells,
+      # and on six pages a navy link landed on a navy cell and disappeared.
+      #
+      # This fails the build when the system block in CSS/pages.css and
+      # CSS/tables.css drift apart, when a table carries a class no stylesheet
+      # defines, and when a page styles a table in its own <style> block - which
+      # is how three tables came to be set a tenth smaller than the rest.
+      - name: Tables use one system
+        run: node docs/check-tables.mjs
 
       - name: Run audit
         id: audit
