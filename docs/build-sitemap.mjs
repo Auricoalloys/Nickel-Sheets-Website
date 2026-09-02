@@ -192,5 +192,12 @@ if (CHECK) {
   console.log('\nsitemap.xml is STALE - run: node docs/build-sitemap.mjs');
   process.exit(1);
 }
-fs.writeFileSync(OUT, xml);
+// Restore the line endings the file already had, the same way build-specs,
+// build-prices, build-cuts, build-grades and build-hub-grades do. `--check`
+// above compares in LF space but this wrote bare LF, so on a checkout where
+// `core.autocrlf` gives CRLF every run rewrote all 6,625 line endings and left
+// sitemap.xml permanently "modified" in git status while `git diff` showed
+// nothing - drift that looks real and is not.
+const crlf = prev.includes('\r\n');
+fs.writeFileSync(OUT, crlf ? xml.replace(/\n/g, '\r\n') : xml);
 console.log(`\nwrote sitemap.xml (${(xml.length / 1024).toFixed(0)} KB)`);
