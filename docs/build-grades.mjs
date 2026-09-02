@@ -516,9 +516,32 @@ const singleGradeOf = url => SINGLE_GRADE[(url.split('/').filter(Boolean)[0] || 
 // rename a flat SEO URL to suit a generator. An explicit map is the same
 // answer COMBINED and SINGLE_GRADE give - the mapping is not regular, and
 // deriving it from the path is how a page gets another grade's data.
+//
+// The five titanium plate pages are the same shape one family over:
+// /titanium/grade-1-plates/ reads as family "titanium" + grade
+// "grade-1-plates", which matches no CSV row, so gradeForUrl returned null and
+// the pages were neither written nor linted. Their siblings under
+// /titanium/grade-23/plates/ resolved normally the whole time, which is what
+// made the gap invisible - the family looked covered.
+//
+// It was hiding the sibling contradiction this file exists to end.
+// grade-5-plates published iron at 0.25 max, which is GRADE 23's limit; SB-265
+// allows Grade 5 up to 0.40, so a conforming plate at 0.35 read as out of
+// specification against this site's own table. The rest were hedges rather
+// than errors - "in typical datasheets", "on the order of", carbon given as a
+// 0.08-0.10 range - which is what a page writes when nothing is generating it.
 const FLAT_FORM_PAGES = {
   '/alloy-28-round-bar/': ['special-stainless-steel', 'Alloy 28', 'bar'],
   '/alloy-20-round-bar/': ['special-stainless-steel', 'Alloy 20', 'bar'],
+  // The third of the three sibling round bars, missed when the other two were
+  // mapped. Its hand-written identity table was right but thin - no phosphorus
+  // row, and ASTM B649 alone where specs.csv carries B581 / B649 for bar.
+  '/alloy-31-round-bar/': ['special-stainless-steel', 'Alloy 31', 'bar'],
+  '/titanium/grade-1-plates/': ['titanium', 'Grade 1', 'flat'],
+  '/titanium/grade-5-plates/': ['titanium', 'Grade 5', 'flat'],
+  '/titanium/grade-6-plates/': ['titanium', 'Grade 6', 'flat'],
+  '/titanium/grade-9-plates/': ['titanium', 'Grade 9', 'flat'],
+  '/titanium/grade-11-plates/': ['titanium', 'Grade 11', 'flat'],
 };
 const flatFormOf = url => FLAT_FORM_PAGES[url.toLowerCase()] || null;
 

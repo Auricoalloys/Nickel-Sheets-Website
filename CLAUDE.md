@@ -888,6 +888,30 @@ They are wired up through **two** maps, because there are two URL shapes:
   page was the last one still publishing `≤0.03`. The permalinks stay as they are — they are
   indexed, and this repo does not rename a flat SEO URL to suit a generator.
 
+**The map grew by six on 2026-09-02, and the sweep that found them is the reusable part.** Listing
+every published permalink whose segment *ends* in a form word without having one of its own turns up
+39 URLs, and three groups fall out of it: `/alloy-31-round-bar/`, the third of three sibling round
+bars, missed when the other two were mapped; the five `/titanium/grade-<n>-plates/` pages, whose
+siblings under `/titanium/grade-23/plates/` resolved the whole time, which is what made the gap
+look covered; and the `pure-nickel-strip/` battery-tab pages and the combined
+`/haynes-…-foil/`, which are **not** the same case and are left alone — the tab pages sell a
+product shape rather than a grade in a form, and the Haynes page needs `COMBINED`, which may not
+write a grade until every grade on the page is verified.
+
+What the six were publishing says why the sweep is worth repeating rather than the finding worth
+memorising. `grade-5-plates` gave iron as `≤0.25`, which is **Grade 23's** limit — SB-265 allows
+Grade 5 up to 0.40, so a conforming plate at 0.35 read as out of specification against this site's
+own table. `alloy-31-round-bar` cited **EN 10028-7**, a flat-product standard, on a bar page, and
+omitted phosphorus. The rest were hedges rather than errors — "in typical datasheets", "on the
+order of", carbon as a `0.08–0.10` range — which is what a page writes when nothing generates it.
+
+**All five titanium pages had a real comparison table parked in `#equivalent-grades`**, so
+wiring them up would have eaten it exactly as it ate `alloy-31.html`'s. Each moved to its own
+`<section id="grade-comparison">` first, with a TOC entry, and `#equivalent-grades` was left holding
+a bare `<table></table>` — which is all it takes to opt in, and is the safe order: **move the
+hand-written table out, then add the map entry.** Doing it the other way round means recovering the
+table from git.
+
 **Wiring Alloy 28 briefly cost something, and the debt is now paid.** Its pages' hand-written tables
 carried acceptance limits (Ni 30.0–32.0, Cr 26.0–28.0, Mo 3.0–4.0, Cu 0.6–1.4), while
 `chemistry.csv` held Alleima's table, in which those same four are **nominal figures**. So the three
