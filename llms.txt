@@ -24,7 +24,7 @@ mechanical properties and the stocked size envelope for that grade and form.
 - [Haynes](https://www.nickelsheets.com/haynes/): high-temperature alloys — 214, 230, 242, 282, HR-120, 25, 188
 - [Nimonic](https://www.nickelsheets.com/nimonic/): 75, 80A, 81, 86, 90, 105, 115, 263, 901
 - [Nichrome](https://www.nickelsheets.com/nichrome/): NiCr resistance alloys — 80/20, 70/30, 60/15, 40/20, 30/20, 20/25
-- [Titanium](https://www.nickelsheets.com/titanium/): commercially pure and alloyed — Grades 1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 16, 23
+- [Titanium](https://www.nickelsheets.com/titanium/): commercially pure and alloyed — Grades 1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 16, 23; and the aerospace and medical alloys Ti-6-2-4-2 (Ti-6Al-2Sn-4Zr-2Mo), Ti-6-6-2 (Ti-6Al-6V-2Sn), Ti-17 (Ti-5Al-2Sn-2Zr-4Cr-4Mo), Ti-8-1-1 (Ti-8Al-1Mo-1V) and Ti-6Al-7Nb
 - [Stainless Steel](https://www.nickelsheets.com/stainless/): super-austenitic and special grades — 904L, AL-6XN, SMO 254, Alloy 20, 28, 31, 926, AM 350
 - [Duplex Steel](https://www.nickelsheets.com/duplex-steel/): duplex and super duplex — 2205 (S31803 / S32205), 2507 (S32750), S32760
 - [Cobalt Alloys](https://www.nickelsheets.com/cobalt-alloys/): Stellite, Elgiloy, cobalt-chrome

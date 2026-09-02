@@ -1000,6 +1000,81 @@
       "checked": "2026-09"
     },
     {
+      "family": "titanium",
+      "grade": "Ti-6-2-4-2",
+      "name": "Titanium Ti-6-2-4-2",
+      "uns": "R54620",
+      "uns_all": [
+        "R54620"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 4.54,
+      "melting_c": "1588-1716",
+      "source": "ATI 6-2-4-2 Alloy technical data sheet (version 1 2012)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "titanium",
+      "grade": "Ti-6-6-2",
+      "name": "Titanium Ti-6-6-2",
+      "uns": "R56620",
+      "uns_all": [
+        "R56620"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 4.58,
+      "melting_c": null,
+      "source": "ATI 6-6-2 (Ti-6Al-6V-2Sn) technical data sheet (version 1)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "titanium",
+      "grade": "Ti-5-2-4-4",
+      "name": "Titanium Ti-5-2-4-4",
+      "uns": "R58650",
+      "uns_all": [
+        "R58650"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 4.658,
+      "melting_c": null,
+      "source": "ATI 17 (Ti-5Al-2Sn-2Zr-4Cr-4Mo / Ti-17) technical data sheet (version 1 2011)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "titanium",
+      "grade": "Ti-8-1-1",
+      "name": "Titanium Ti-8-1-1",
+      "uns": "R54810",
+      "uns_all": [
+        "R54810"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 4.37,
+      "melting_c": "1704",
+      "source": "ATI 8-1-1 (Ti-8Al-1Mo-1V) technical data sheet (version 1 2011)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "titanium",
+      "grade": "Ti-6Al-7Nb",
+      "name": "Titanium Ti-6Al-7Nb",
+      "uns": "R56700",
+      "uns_all": [
+        "R56700"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 4.52,
+      "melting_c": "1538-1649",
+      "source": "ATI 6-7 (Ti-6Al-7Nb) technical data sheet",
+      "checked": "2026-09"
+    },
+    {
       "family": "nickel-alloy",
       "grade": "Nickel 200",
       "name": "Nickel 200",

@@ -1305,6 +1305,66 @@ titanium,Grade 16,Pd,0.04,0.08
 titanium,Grade 16,Other elements (each),,0.1
 titanium,Grade 16,Other elements (total),,0.4
 titanium,Grade 16,Ti,,bal,determined by difference
+# --- TITANIUM: ATI aerospace and medical alloys -----------------------------
+# Composition read off the ATI Technical Data Sheets, 2026-09-02, in each
+# sheet's own column order. The four AMS aerospace alloys print a % w/w min /
+# max table whose limits are the AMS/UNS acceptance limits; Ti-6Al-7Nb prints
+# the ASTM F1295 limits. Ti is the balance on every one.
+#
+# ONE ATI TYPO CORRECTED: the 6-2-4-2 sheet prints hydrogen max as 0.125, ten
+# times the titanium hydrogen limit and a plain decimal-point slip - every
+# other titanium grade here is 0.015 or 0.0125, and AMS 4975 / UNS R54620
+# specify 0.0125. Recorded as 0.0125, the corroborated value; a conforming bar
+# cannot carry 1250 ppm hydrogen.
+titanium,Ti-6-2-4-2,Al,5.50,6.50
+titanium,Ti-6-2-4-2,Sn,1.80,2.20
+titanium,Ti-6-2-4-2,Mo,1.80,2.20
+titanium,Ti-6-2-4-2,Zr,3.60,4.40
+titanium,Ti-6-2-4-2,Fe,,0.25
+titanium,Ti-6-2-4-2,O,,0.15
+titanium,Ti-6-2-4-2,N,,0.05
+titanium,Ti-6-2-4-2,C,,0.05
+titanium,Ti-6-2-4-2,H,,0.0125
+titanium,Ti-6-2-4-2,Si,,0.1
+titanium,Ti-6-2-4-2,Ti,,bal
+titanium,Ti-6-6-2,N,,0.04
+titanium,Ti-6-6-2,C,,0.05
+titanium,Ti-6-6-2,H,,0.015
+titanium,Ti-6-6-2,O,,0.20
+titanium,Ti-6-6-2,Fe,0.35,1.00
+titanium,Ti-6-6-2,Al,5.00,6.00
+titanium,Ti-6-6-2,V,5.00,6.00
+titanium,Ti-6-6-2,Sn,1.50,2.50
+titanium,Ti-6-6-2,Cu,0.35,1.00
+titanium,Ti-6-6-2,Ti,,bal
+titanium,Ti-5-2-4-4,Al,4.5,5.5
+titanium,Ti-5-2-4-4,Sn,1.5,2.5
+titanium,Ti-5-2-4-4,Zr,1.5,2.5
+titanium,Ti-5-2-4-4,Mo,3.5,4.5
+titanium,Ti-5-2-4-4,Cr,3.5,4.5
+titanium,Ti-5-2-4-4,O,0.08,0.13
+titanium,Ti-5-2-4-4,N,,0.04
+titanium,Ti-5-2-4-4,H,,0.0125
+titanium,Ti-5-2-4-4,Fe,,0.3
+titanium,Ti-5-2-4-4,Ti,,bal
+titanium,Ti-8-1-1,N,,0.05
+titanium,Ti-8-1-1,C,,0.08
+titanium,Ti-8-1-1,H,,0.015
+titanium,Ti-8-1-1,O,,0.12
+titanium,Ti-8-1-1,Fe,,0.30
+titanium,Ti-8-1-1,Al,7.50,8.50
+titanium,Ti-8-1-1,V,0.75,1.25
+titanium,Ti-8-1-1,Mo,0.75,1.25
+titanium,Ti-8-1-1,Ti,,bal
+titanium,Ti-6Al-7Nb,Al,5.5,6.5
+titanium,Ti-6Al-7Nb,Nb,6.5,7.5
+titanium,Ti-6Al-7Nb,Ta,,0.50
+titanium,Ti-6Al-7Nb,Fe,,0.25
+titanium,Ti-6Al-7Nb,O,,0.20
+titanium,Ti-6Al-7Nb,C,,0.08
+titanium,Ti-6Al-7Nb,N,,0.05
+titanium,Ti-6Al-7Nb,H,,0.009,sampled from the semi-finished mill product
+titanium,Ti-6Al-7Nb,Ti,,bal
 # --- HAYNES --- Haynes International alloy pages, read 2026-08-27, in the order
 # each bulletin prints its elements.
 #

@@ -557,6 +557,27 @@ titanium,Grade 11,R52250,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS a
 titanium,Grade 12,R53400,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 16,R52402,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 23,R56407,3.7165,,,,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and voestalpine BOHLER L533 (Werkstoff),2026-09
+# --- TITANIUM: ATI aerospace and medical alloys -----------------------------
+# Five named titanium alloys from ATI (Allegheny Technologies) Technical Data
+# Sheets, read 2026-09-02. Unlike the ASME SB-265 grades above, these are AMS
+# aerospace bar/forging alloys (and one ASTM F1295 surgical alloy), NOT ASTM
+# B265 numbered grades - they carry no "Grade N" number, so the pages are named
+# by composition with the mill short form in parentheses, e.g.
+# "Ti-6Al-2Sn-4Zr-2Mo (Ti-6-2-4-2)".
+#
+# Titanium is not a proprietary family: the AMS/ASTM specification defines these,
+# ATI is one producer publishing the same UNS, and each sheet heads the grade
+# with its UNS in parentheses. Density is ATI's own g/cc figure (the sheets print
+# both lb/in3 and gm/cc), so no conversion. 6-6-2 and Ti-17 publish no melting
+# figure - density and beta transus and stop - so melting_c is EMPTY, as 254 SMO
+# is; 8-1-1's is a single figure (3,100 F / 1,704 C). Werkstoff and EN name are
+# EMPTY (not verified yet): the ATI sheets print neither, and the business is to
+# supply them later.
+titanium,Ti-6-2-4-2,R54620,,,4.54,1588-1716,ATI 6-2-4-2 Alloy technical data sheet (version 1 2012),2026-09
+titanium,Ti-6-6-2,R56620,,,4.58,,ATI 6-6-2 (Ti-6Al-6V-2Sn) technical data sheet (version 1),2026-09
+titanium,Ti-5-2-4-4,R58650,,,4.658,,ATI 17 (Ti-5Al-2Sn-2Zr-4Cr-4Mo / Ti-17) technical data sheet (version 1 2011),2026-09
+titanium,Ti-8-1-1,R54810,,,4.37,1704,ATI 8-1-1 (Ti-8Al-1Mo-1V) technical data sheet (version 1 2011),2026-09
+titanium,Ti-6Al-7Nb,R56700,,,4.52,1538-1649,ATI 6-7 (Ti-6Al-7Nb) technical data sheet,2026-09
 # Special Metals publishes 200 and 201 in one bulletin, which heads alloy 200
 # "(UNS N02200/W.Nr. 2.4060 & 2.4066)" and states in the 201 section that the
 # grade "is designated as UNS N02201 and Werkstoff Numbers 2.4061 and 2.4068".

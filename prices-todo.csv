@@ -21,8 +21,8 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-09-01 by docs/build-price-worklist.mjs
-# pending: 259 page(s)
+# generated: 2026-09-02 by docs/build-price-worklist.mjs
+# pending: 268 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -440,6 +440,25 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 
 # /titanium/grade-9/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
 /titanium/grade-9/foil/,,,,,kg
+
+# /titanium/ti-5-2-4-4/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/ti-5-2-4-4/round-bar/,,,,,kg
+
+# /titanium/ti-6-2-4-2/  (4)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/ti-6-2-4-2/plates/,,,,,kg
+/titanium/ti-6-2-4-2/round-bar/,,,,,kg
+/titanium/ti-6-2-4-2/sheets/,,,,,kg
+/titanium/ti-6-2-4-2/wire/,,,,,kg
+
+# /titanium/ti-6-6-2/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/ti-6-6-2/round-bar/,,,,,kg
+
+# /titanium/ti-6al-7nb/  (2)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/ti-6al-7nb/round-bar/,,,,,kg
+/titanium/ti-6al-7nb/wire/,,,,,kg
+
+# /titanium/ti-8-1-1/  (1)  |  titanium priced on 33 page(s) at INR 900-25,000 per kg
+/titanium/ti-8-1-1/round-bar/,,,,,kg
 
 # /tool-steel/h13/  (1)
 /tool-steel/h13/powder/,,,,,kg

@@ -290,6 +290,20 @@ titanium,Grade 9,R56320,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
 titanium,Grade 11,R52250,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
 titanium,Grade 12,R53400,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
 titanium,Grade 23,R56407,ASTM B265,ASTM B348,ASTM B863,ASTM B338 / B861,ASTM B363
+# --- TITANIUM: ATI aerospace and medical alloys, from each ATI data sheet's
+# SPECIFICATIONS list, 2026-09-02. These are AMS bar/forging alloys, so most
+# cells are bar; forgings share the bar column (there is no forging column).
+# Billet is not a bar standard, so Ti-5-2-4-4, whose only spec is AMS 4995 for
+# billet, reads "mill" for bar and names AMS 4995 in its page prose instead.
+# Ti-6-2-4-2 is also rolled flat and drawn to wire (ATI lists flat products and
+# wire as forms) with no AMS for either, so those read "mill". Ti-6Al-7Nb is the
+# surgical grade: ASTM F1295 covers bar/rod/wire, ISO 5832-11 bar. Pipe, tube
+# and fittings are not made in these grades - "-".
+titanium,Ti-6-2-4-2,R54620,mill,AMS 4975 / MIL-T-9047G,mill,-,-
+titanium,Ti-6-6-2,R56620,-,AMS 4971 / AMS 4978,-,-,-
+titanium,Ti-5-2-4-4,R58650,-,mill,-,-,-
+titanium,Ti-8-1-1,R54810,-,AMS 4972,-,-,-
+titanium,Ti-6Al-7Nb,R56700,-,ASTM F1295 / ISO 5832-11,ASTM F1295,-,-
 nickel-alloy,Nickel 200,N02200,ASTM B162,ASTM B160,ASTM B160,ASTM B161 / B163,ASTM B366
 nickel-alloy,Nickel 201,N02201,ASTM B162,ASTM B160,ASTM B160,ASTM B161 / B163,ASTM B366
 nickel-alloy,Monel 400,N04400,ASTM B127,ASTM B164,ASTM B164,ASTM B163 / B165,ASTM B366

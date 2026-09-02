@@ -760,3 +760,12 @@ titanium,Grade 16,Modulus of elasticity,15 × 10⁶,psi,,
 titanium,Grade 16,Beta transus,1635-1735,°F,,ATI range for grades 1-4 7 11 12 and 16-18 (± 25 °F)
 titanium,Grade 16,Thermal conductivity,13-10,Btu/ft·h·°F,,ATI range for grades 1-4 7 11 12 and 16-18
 titanium,Grade 16,Coefficient of expansion,5.1,µin/in·°F,32-600 °F,
+# --- TITANIUM: ATI aerospace and medical alloys -----------------------------
+# Beta transus from each ATI data sheet (in °F, as the SB-265 grades above
+# are), plus Ti-6Al-7Nb's published elastic modulus. Read 2026-09-02.
+titanium,Ti-6-2-4-2,Beta transus,1825,°F,,± 25 °F
+titanium,Ti-6-6-2,Beta transus,1735,°F,,
+titanium,Ti-5-2-4-4,Beta transus,1635,°F,,
+titanium,Ti-8-1-1,Beta transus,1900,°F,,
+titanium,Ti-6Al-7Nb,Beta transus,1850,°F,,± 27 °F
+titanium,Ti-6Al-7Nb,Modulus of elasticity,105,GPa,solution annealed,
