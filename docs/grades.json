@@ -797,11 +797,11 @@
       "uns_all": [
         "R50250"
       ],
-      "wnr": null,
+      "wnr": "3.7024",
       "en_name": null,
       "density_g_cm3": 4.51,
       "melting_c": "1650",
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table (Werkstoff)",
       "checked": "2026-09"
     },
     {
@@ -812,11 +812,11 @@
       "uns_all": [
         "R50400"
       ],
-      "wnr": null,
+      "wnr": "3.7034 / 3.7035",
       "en_name": null,
       "density_g_cm3": 4.51,
       "melting_c": "1650",
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table and voestalpine BOHLER L512 (Werkstoff)",
       "checked": "2026-09"
     },
     {
@@ -857,11 +857,11 @@
       "uns_all": [
         "R56400"
       ],
-      "wnr": null,
+      "wnr": "3.7164 / 3.7165",
       "en_name": null,
       "density_g_cm3": 4.43,
       "melting_c": "1650",
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table and voestalpine BOHLER L531 (Werkstoff)",
       "checked": "2026-09"
     },
     {
@@ -887,11 +887,11 @@
       "uns_all": [
         "R52400"
       ],
-      "wnr": null,
+      "wnr": "3.7235",
       "en_name": null,
       "density_g_cm3": 4.51,
       "melting_c": "1650",
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants)",
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table (Werkstoff)",
       "checked": "2026-09"
     },
     {
@@ -962,12 +962,12 @@
       "uns_all": [
         "R56407"
       ],
-      "wnr": null,
+      "wnr": "3.7165",
       "en_name": null,
       "density_g_cm3": null,
       "melting_c": null,
-      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023)",
-      "checked": "2026-08"
+      "source": "ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and voestalpine BOHLER L533 (Werkstoff)",
+      "checked": "2026-09"
     },
     {
       "family": "nickel-alloy",

@@ -441,17 +441,69 @@ haynes,HR-120,N08120,,,8.07,1300,Haynes International HAYNES HR-120 alloy brochu
 # grade and recorded as 1650. It is an approximate single figure, not a per-grade
 # range - the "approx." case VDM's 1400 C for Nichrome 70/30 already set.
 #
-# WERKSTOFF AND EN NAME STAY EMPTY. Neither source publishes them - SB-265 has no
-# DIN field and the ATI sheet prints no Werkstoff number for any grade - so both
-# cells are "not verified yet", not "-" ("the source publishes none"). Blank
-# until a register that carries them is read.
+# WERKSTOFF NUMBERS ARRIVED 2026-09-02, AND FROM A THIRD PUBLISHER. Neither
+# source above prints one - SB-265 has no DIN field and the ATI sheet prints no
+# Werkstoff number for any grade - so the cells sat empty as "not verified yet",
+# not "-", waiting for a register that carries them. Two voestalpine
+# publications are that register and fill five of them: the Specialty Metals
+# Europe titanium equivalents table (columns Alloy / WstNo. / UNS / ISO / AMS /
+# ASTM), which maps Grades 1, 2, 5 and 7; and the BOHLER plate data sheets
+# L512 (Grade 2 / Grade 2H), L531 (Grade 5) and L533 (Grade 23 / Grade 5 ELI),
+# each printing its SEL number beside the UNS.
+#
+# THE TWO PUBLICATIONS DISAGREE BY ONE DIGIT ON GRADES 2 AND 5, and both numbers
+# are recorded - the equivalents table's grade-level mapping first, the product
+# sheet's second, the way Monel 400 carries 2.4360 / 2.4361. The table maps
+# Grade 2 to 3.7034 and Grade 5 to 3.7164; BOHLER prints 3.7035 on the plate it
+# rolls as Grade 2 / Grade 2H and 3.7165 on Grade 5. Recording one of a pair is
+# what made the Monel and Nimonic pages lint as contradictions, so a page citing
+# either number is right and the lint accepts both.
+#
+# GRADE 5 AND GRADE 23 BOTH CARRY 3.7165 because BOHLER prints it on L531 and on
+# L533 - the SEL number does not separate Ti-6Al-4V from its ELI version, though
+# the two sheets' own compositions do (O max 0.2 against 0.13, Fe max 0.40
+# against 0.25). The rows are still different grades with different UNS numbers,
+# so the cross-file check that compares rows sharing a UNS does not fire, and
+# this is not the copy-the-sibling error - it is what the mill printed twice.
+#
+# GRADE 1 PAGES SAID 3.7025 AND NOTHING SOURCED IT. The equivalents table prints
+# 3.7024, so the four Grade 1 pages were moved to it rather than the register
+# being bent to the pages - the same call as the Nichrome UNS numbers, where the
+# trade circulates N0600x and the mill prints N0602x. 3.7025 may well be a real
+# designation as 3.7035 is for Grade 2; if a bulletin printing it turns up, add
+# it as a second number in this cell rather than replacing 3.7024.
+#
+# GRADES 3, 4, 6, 9, 11, 12 AND 16 STAY EMPTY. Neither publication covers them,
+# so the numbers their pages carry (3.7055, 3.7065, 3.7115, 3.7195 / 3.7194,
+# 3.7225, 3.7105, 3.7240) remain unsourced and unlinted - an empty cell reports
+# nothing. Do NOT fill them by continuing the pattern from a neighbouring grade;
+# that is the copy-the-sibling error this whole file exists to stop. Grade 16 is
+# the one to read a bulletin for first: its own pages disagree, foil saying
+# 3.7054 and plates 3.7240.
+#
+# EN NAME STILL STAYS EMPTY. Neither publication has an EN-name column. The
+# equivalents table's Alloy column reads "Titan Grade 5 / Ti Al6V4" and "Titan
+# Grade 7 / Pd" - a symbolic name and a market name sharing one cell - and
+# BOHLER labels "Titan Grade 5" a Market grade while labelling 3.7165 SEL. So
+# TiAl6V4 is not read out of a column that means EN designation, on the same
+# terms that kept the NIMONIC en_name cells empty.
+#
+# THE BOHLER SHEETS CORROBORATE THE COMPOSITION and changed nothing in
+# chemistry.csv - L512, L531 and L533 print every cell identically to the SB-265
+# rows already here (Grade 5 O max 0.2 / Fe max 0.40 / Al 5.50-6.75, Grade 23
+# O max 0.13 / Fe max 0.25 / H max 0.0125), which is what the "Related to ASTM
+# B265" line under each sheet's table says they should be. Corroboration is
+# worth recording: it is the same test that let BOHLER's A962RC correct 904L's
+# nitrogen, where nine cells matched and only the tenth did not.
 #
 # GRADE 6 AND GRADE 23 ARE NOT IN THE ATI SHEET. It covers ATI Grades 1-5, 7, 9,
 # 11, 12 and 16-18; Grade 6 (Ti-5Al-2.5Sn) and Grade 23 (Ti-6Al-4V ELI) are not
 # corrosion-resistant grades and it does not list them, so their density and
 # melting stay empty and their pages keep their own hand-written figures until a
-# sheet that covers them is read. Do NOT fill them from Grade 5 or Grade 2 by
-# analogy - that is the copy-the-sibling error this whole file exists to stop.
+# sheet that covers them is read. L533 does not close that half - it prints
+# Grade 23's identity and composition and no physical constants. Do NOT fill
+# them from Grade 5 or Grade 2 by analogy - that is the copy-the-sibling error
+# this whole file exists to stop.
 #
 # WHAT WAS REMOVED IN 2026-08 AND WHY. These rows once carried seeded W.Nr
 # (3.7025, ...), EN names (TiAl6V4) and density/melting (4.51/1670, ...), all of
@@ -466,18 +518,18 @@ haynes,HR-120,N08120,,,8.07,1300,Haynes International HAYNES HR-120 alloy brochu
 # 2/2H, 7/7H, 16/16H and 26/26H share one row each in Table 8; the H suffix is
 # the same chemistry with a higher guaranteed minimum strength, so the grade
 # key here stays the plain number.
-titanium,Grade 1,R50250,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
-titanium,Grade 2,R50400,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 1,R50250,3.7024,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table (Werkstoff),2026-09
+titanium,Grade 2,R50400,3.7034 / 3.7035,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table and voestalpine BOHLER L512 (Werkstoff),2026-09
 titanium,Grade 3,R50550,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 4,R50700,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
-titanium,Grade 5,R56400,,,4.43,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 5,R56400,3.7164 / 3.7165,,4.43,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table and voestalpine BOHLER L531 (Werkstoff),2026-09
 titanium,Grade 6,R54520,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
-titanium,Grade 7,R52400,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
+titanium,Grade 7,R52400,3.7235,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants) and voestalpine Specialty Metals Europe titanium equivalents table (Werkstoff),2026-09
 titanium,Grade 9,R56320,,,4.48,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 11,R52250,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 12,R53400,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
 titanium,Grade 16,R52402,,,4.51,1650,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and ATI Corrosion-Resistant Titanium data sheet (physical constants),2026-09
-titanium,Grade 23,R56407,,,,,ASME SB-265 Table 8 (BPVC.II.B-2023),2026-08
+titanium,Grade 23,R56407,3.7165,,,,ASME SB-265 Table 8 (BPVC.II.B-2023) (UNS and composition) and voestalpine BOHLER L533 (Werkstoff),2026-09
 # Special Metals publishes 200 and 201 in one bulletin, which heads alloy 200
 # "(UNS N02200/W.Nr. 2.4060 & 2.4066)" and states in the 201 section that the
 # grade "is designated as UNS N02201 and Werkstoff Numbers 2.4061 and 2.4068".
