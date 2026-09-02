@@ -6616,6 +6616,12 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/tools/weight-calculator/</loc>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/Round-Bars.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/waspalloy/</loc>
     <lastmod>2026-08-21</lastmod>
     <image:image>

@@ -43,7 +43,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Ten generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Eleven generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -54,12 +54,13 @@ node docs/build-specs.mjs              # after editing docs/specs.csv
 node docs/build-grades.mjs             # after editing grades.csv, chemistry.csv or properties.csv
 node docs/build-hub-grades.mjs         # after editing docs/hub-grades.csv or a grade's UNS
 node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
+node docs/build-weight-data.mjs        # after editing docs/materials.csv or any grade's density
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
 Every one of those except `purge-bootstrap` takes `--check`, which reports drift and exits non-zero
-without writing. CI runs the price, specification, grade-data, hub-grade and table-system checks on
+without writing. CI runs the price, specification, grade-data, hub-grade, weight-calculator and table-system checks on
 every pull request, because a price the HTML no longer matches is worse than no price at all, a
 specification cited for the wrong product form tells a buyer the material is certified to something
 it is not, and a wrong UNS number tells them it is a different material altogether.
@@ -1140,6 +1141,61 @@ sharing one data sheet.
 **`/pages/products/powder/` is deliberately not generated.** Its grades table gives each grade its
 own cell with a per-process gloss rather than a flat list, so it is hand-maintained — but it makes
 the same claims. Change a row in `cuts.csv` and check that page too.
+
+### The weight calculator publishes densities, so it inherits the sourcing rules
+
+`/tools/weight-calculator/` is a free tool at `weight-calculator.html`, with `CSS/weight-calculator.css`
+and `javascript/weight-calculator.js`. It computes a **theoretical** weight — nominal density on an
+ideal shape — across 18 product forms and 172 materials.
+
+The reason it exists here rather than anywhere else is that `docs/grades.json` was already built for
+it: `density_g_cm3` is a bare number in `grades.csv` precisely "so a weight calculator can consume it
+directly". `docs/build-weight-data.mjs` joins that to `docs/materials.csv` and writes
+`javascript/weight-data.js`, which the page imports:
+
+```bash
+node docs/build-weight-data.mjs          # after editing materials.csv or a grade's density
+node docs/build-weight-data.mjs --check  # drift + cross-family density disagreement, exits non-zero
+```
+
+**Two tiers, and collapsing them is the failure mode to avoid.** A `mill` density was read off a named
+bulletin via the `checked`/`pending` gate and the page prints the bulletin under the figure; a
+`handbook` density is a nominal value for a generic material this business does not stock (mild
+steel, SS 304, aluminium 6061) and the page says so in different words and a different colour. Merging
+them into one undifferentiated list would let a nominal 7.85 borrow the authority of a Special Metals
+figure. Never write a mill name into `materials.csv`'s `source` column: that column may say
+`CRC Handbook` (a pure element) or `Nominal` (an alloy), and nothing else.
+
+**A grade whose bulletin publishes no density is carried through with `density: null`, not dropped.**
+Four are in that state — Haynes 214, Titanium Grade 6, Titanium Grade 23 and Kovar. Dropping them
+would make a grade silently absent from a picker listing its siblings, which reads to a visitor as
+"they do not supply it". The page offers the grade and asks for the figure instead, which is the
+honest answer. Same rule as everywhere else here: a check may exclude a case by rule but may never be
+silent about one it does not handle.
+
+**Rolled sections read light and the page says by how much.** Angle, tee, channel and beam are
+computed from plate geometry and ignore root and toe radii; IS channel flanges are also tapered.
+Measured against IS 808: ISA 50×50×6 is 1.6% light, ISMB 200 is 1.8% light and **ISMC 100 is 5.6%
+light**. That last one is a real error on a structural order, not a rounding difference, so both the
+page and the form state the measured deviations and point at the mill's section table. Do not soften
+that to "approximate" — the number is the useful part.
+
+**The quote button supplies its own enquiry subject.** `/tools/` is in `NO_SUBJECT_PREFIXES` because
+the last breadcrumb crumb is "Weight Calculator", which tells the sales desk nothing — the same
+failure as seeding "Enquiry: Mumbai" off a location page. The button builds an explicit `?enquiry=`
+naming the material, form, size and calculated weight, and an explicit one always beats the derived
+seed.
+
+The page carries `WebApplication`, `BreadcrumbList` and `FAQPage` and **no `Product` node**, so none
+of the offers/review invalid-item states apply to it. It quotes no price and must not start to: the
+optional rate-per-kg field is the visitor's own number, used in their browser only.
+
+`docs/materials.csv` and `docs/build-weight-data.mjs` are excluded in `_config.yml`;
+`javascript/weight-data.js` is deliberately **not**, because the page imports it.
+
+Formulas were checked against published section tables before shipping — 2″ sch40 pipe, 25 mm round
+bar, 20 mm hex, ISMB 200, and a coil cross-check proving the OD/ID volume equals width × thickness ×
+developed length exactly. Re-run that comparison rather than trusting a diff if you touch a formula.
 
 ### Powder data sheets are generated, and are not Certificates of Analysis
 

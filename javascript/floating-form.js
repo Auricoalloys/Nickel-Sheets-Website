@@ -50,6 +50,12 @@ const NO_SUBJECT_PREFIXES = [
   "/pages/contact/",
   "/privacy/",
   "/terms/",
+  // The weight calculator's last crumb is "Weight Calculator", which tells the
+  // sales desk nothing - the same failure as seeding "Enquiry: Mumbai" off a
+  // location page. It supplies its own subject instead: its quote button builds
+  // an explicit ?enquiry= naming the material, form, size and calculated
+  // weight, and an explicit one always beats the derived seed.
+  "/tools/",
 ];
 
 // Pulls the current page's subject out of its BreadcrumbList. The last crumb is
