@@ -622,10 +622,10 @@
         "N07090"
       ],
       "wnr": "2.4632 / 2.4969",
-      "en_name": null,
+      "en_name": "NiCr20Co18Ti",
       "density_g_cm3": 8.18,
       "melting_c": "1310-1370",
-      "source": "Special Metals NIMONIC alloy 90 bulletin - second Werkstoff number 2.4969 and the UNS and density corroborated by Alloy Wire International NIMONIC 90 datasheet AWS 030 Rev.3",
+      "source": "Special Metals NIMONIC alloy 90 bulletin for the constants - identity Werkstoff pair and EN designation corroborated by Alloy Wire International AWS 030 Rev.3 and voestalpine BOHLER L090 10.2025",
       "checked": "2026-09"
     },
     {
