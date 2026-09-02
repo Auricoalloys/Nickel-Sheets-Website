@@ -588,7 +588,7 @@ special-stainless-steel,Alloy 20,N08020,2.4660,-,8.08,,ASTM A240/A240M-25a,2026-
 # no melting range. The seeded 1350-1370 has nothing behind it. Empty also
 # leaves the pages' own melting figures alone, which is what the constant-strip
 # gate does with an empty cell, rather than replacing them with a guess.
-special-stainless-steel,Alloy 28,N08028,1.4563,X1NiCrMoCu31-27-4,8.00,,Alleima Sanicro 28 datasheet (seamless tube and pipe),2026-08
+special-stainless-steel,Alloy 28,N08028,1.4563,X1NiCrMoCu31-27-4,8.00,,Alleima Sanicro 28 datasheet (seamless tube and pipe) for the physical constants - all four designations re-verified against voestalpine BOHLER A959 datasheet 11.2025 which prints them identically,2026-09
 # VDM Alloy 31 / Nicrofer 3127 hMo data sheet of August 2024. Its Table 1 heads
 # the grade "1.4562 - X1NiCrMoCu32-28-7" against standard D and "N08031" against
 # UNS, so both seeded identifiers are the mill's own.

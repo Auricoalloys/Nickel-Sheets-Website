@@ -1222,8 +1222,8 @@
       "en_name": "X1NiCrMoCu31-27-4",
       "density_g_cm3": 8,
       "melting_c": null,
-      "source": "Alleima Sanicro 28 datasheet (seamless tube and pipe)",
-      "checked": "2026-08"
+      "source": "Alleima Sanicro 28 datasheet (seamless tube and pipe) for the physical constants - all four designations re-verified against voestalpine BOHLER A959 datasheet 11.2025 which prints them identically",
+      "checked": "2026-09"
     },
     {
       "family": "special-stainless-steel",

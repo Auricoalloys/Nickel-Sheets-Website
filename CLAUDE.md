@@ -888,13 +888,23 @@ They are wired up through **two** maps, because there are two URL shapes:
   page was the last one still publishing `≤0.03`. The permalinks stay as they are — they are
   indexed, and this repo does not rename a flat SEO URL to suit a generator.
 
-**Wiring Alloy 28 cost something, and it is a real debt, not a nit.** Its pages' hand-written tables
-carried **ASTM B709's acceptance limits** (Ni 30.0–32.0, Cr 26.0–28.0, Mo 3.0–4.0, Cu 0.6–1.4);
-`chemistry.csv` holds Alleima's table, in which those same four are **nominal figures**, not limits.
-The generated table captions them honestly and the three pages finally agree — but a buyer lost four
-ranges and got four single numbers. **Reading B709 and replacing those four cells is the upgrade**,
-and it cannot be done from the pages themselves: they are the thing being corrected. No B709 text is
-in `docs/references/` yet, which is what blocked it.
+**Wiring Alloy 28 briefly cost something, and the debt is now paid.** Its pages' hand-written tables
+carried acceptance limits (Ni 30.0–32.0, Cr 26.0–28.0, Mo 3.0–4.0, Cu 0.6–1.4), while
+`chemistry.csv` held Alleima's table, in which those same four are **nominal figures**. So the three
+pages finally agreed and were captioned honestly, but a buyer had lost four ranges and got four
+single numbers — better sourced and less useful.
+
+**Closed on 2026-09-02 from voestalpine BÖHLER A959**, whose composition table is headed *"Refers to
+DIN EN 10088-3 1.4563"* and prints limits for all ten elements. The fix was never going to be B709,
+which is what this note assumed: **EN 10088-3 is what Alleima itself names as the product standard
+for Sanicro 28 bar**, and what BÖHLER certifies A959 to, so its limits bind the material whichever
+of the two mills supplies it. Two cells moved — P 0.020 → 0.030 and Cu 1.0 nominal → 0.70–1.50 —
+while C, S and N were unchanged, which is the corroboration that the two sheets describe one grade.
+
+The general lesson: **when a nominal table is the only source, the missing limits are usually in the
+product standard the mill names, not in the ASTM number a neighbouring page happens to cite.** The
+debt sat open because it was written down as "read B709", which was a harder and wronger errand than
+the real one.
 
 New pages should still simply be built at `/stainless/<grade>/<form>/`, which resolves with no map
 entry at all — that is why the Sanicro 35 pages are at `/stainless/sanicro-35/plates/`.
