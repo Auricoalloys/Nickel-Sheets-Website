@@ -70,6 +70,9 @@ cobalt-alloy,CoCrMo,CoCrMo,/cobalt-alloys/cocrmo/powder/,Co-Cr-Mo,Implants and a
 cobalt-alloy,6,Stellite 6,/stellite/,Co-Cr-W,"General-purpose wear resistance, hardfacing and valve seats",stellite
 cobalt-alloy,12,Stellite 12,/stellite/,Co-Cr-W,Higher carbon and tungsten for abrasion and low-angle erosion,stellite
 cobalt-alloy,21,Stellite 21,/stellite/,Co-Cr-Mo,"Molybdenum grade for cavitation, galling and thermal shock",stellite
+stellite,6,Stellite 6,/stellite/6/,Co-Cr-W,"General-purpose wear resistance, hardfacing and valve seats"
+stellite,12,Stellite 12,/stellite/12/,Co-Cr-W,Higher carbon and tungsten for abrasion and low-angle erosion
+stellite,21,Stellite 21,/stellite/21/,Co-Cr-Mo,"Molybdenum grade for cavitation, galling and thermal shock"
 duplex-steel,2205,Duplex 2205,/duplex-steel/2205/sheets/,Duplex,"The standard grade; chemical, marine and pressure vessel work"
 duplex-steel,32750,Super Duplex 2507,/duplex-steel/32750/sheets/,Super duplex,Warm seawater and high chloride service
 duplex-steel,32760,Super Duplex Zeron 100,/duplex-steel/32760/sheets/,Super duplex,"As 2507, with copper and tungsten added"

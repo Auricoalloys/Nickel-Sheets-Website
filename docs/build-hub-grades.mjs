@@ -49,6 +49,7 @@ const HUBS = {
   'incoloy.html':       ['incoloy', 'Incoloy grades supplied'],
   'nichrome.html':      ['nichrome', 'Nichrome grades supplied'],
   'cobalt-alloys.html': ['cobalt-alloy', 'Cobalt alloy grades supplied'],
+  'stellite.html':      ['stellite', 'Stellite grades supplied'],
   'duplex-steel.html':  ['duplex-steel', 'Duplex steel grades supplied'],
   'monel.html':         ['monel', 'Monel grades supplied'],
   'nimonic.html':       ['nimonic', 'Nimonic grades supplied'],
