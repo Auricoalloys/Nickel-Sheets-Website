@@ -70,6 +70,8 @@ const BOILERPLATE = new Set([
   '533ec89e', // re-wrapped 34 tables the NiCr and Stellite merge had reverted; markup only
   'a655d001', // dropped the data source from the generated captions; 385 pages, no material claim moved
   '5d4c5dd2', // took dead table classes and one page's own table styling off ten pages; presentation only
+  'e879e31f', // cloned the marquee cards at runtime; index.html gained only a comment
+  '0bc3438b', // added the weight-calculator CTA to 305 form pages; a sitewide element, no product copy moved
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
