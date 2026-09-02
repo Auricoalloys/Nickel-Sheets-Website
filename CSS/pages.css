@@ -1300,3 +1300,38 @@ footer p a {
   .trademark-note{
     text-align: center;
   }
+
+  /* The weight-calculator call to action, written into the form pages by
+     docs/build-calc-links.mjs. It sits under the Specification Overview, where a
+     buyer is already thinking about size, and deep-links to the calculator with
+     this grade and form pre-selected. White on --secondary-cta clears AA (it is
+     the darkened brand fill). */
+  .calc-cta {
+    margin: 22px 0;
+    padding: 16px 20px;
+    background: var(--light-color);
+    border: 1px solid #d9e2ea;
+    border-left: 4px solid var(--secondary-cta);
+    border-radius: 6px;
+  }
+
+  .calc-cta-text {
+    margin: 0 0 10px;
+    color: var(--text-color);
+  }
+
+  .calc-cta-link {
+    display: inline-block;
+    padding: 9px 16px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--secondary-cta);
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .calc-cta-link:hover,
+  .calc-cta-link:focus {
+    background: var(--secondary-cta-dark);
+    color: #fff;
+  }

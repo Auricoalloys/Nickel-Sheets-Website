@@ -43,7 +43,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Eleven generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Twelve generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -55,12 +55,14 @@ node docs/build-grades.mjs             # after editing grades.csv, chemistry.csv
 node docs/build-hub-grades.mjs         # after editing docs/hub-grades.csv or a grade's UNS
 node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
 node docs/build-weight-data.mjs        # after editing docs/materials.csv or any grade's density
+node docs/build-calc-links.mjs         # after adding/renaming a form page, or a grade's calculator id
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
 Every one of those except `purge-bootstrap` takes `--check`, which reports drift and exits non-zero
-without writing. CI runs the price, specification, grade-data, hub-grade, weight-calculator and table-system checks on
+without writing. CI runs the price, specification, grade-data, hub-grade, weight-calculator,
+calculator-CTA and table-system checks on
 every pull request, because a price the HTML no longer matches is worse than no price at all, a
 specification cited for the wrong product form tells a buyer the material is certified to something
 it is not, and a wrong UNS number tells them it is a different material altogether.
@@ -1202,6 +1204,36 @@ the last breadcrumb crumb is "Weight Calculator", which tells the sales desk not
 failure as seeding "Enquiry: Mumbai" off a location page. The button builds an explicit `?enquiry=`
 naming the material, form, size and calculated weight, and an explicit one always beats the derived
 seed.
+
+**A result is one click from an enquiry, two ways.** The calculator exists to make enquiries, so a
+computed weight raises two CTAs (`calculate()` in `weight-calculator.js` un-hides both): *Get a
+quotation*, which opens the site-wide floating form **in place**, pre-filled — no page reload, the
+visitor stays with the number they just calculated — via `window.floatingForm.openWith()`, falling
+back to a `/pages/contact/?enquiry=` navigation if the form module has not loaded; and *Send this
+spec on WhatsApp*, a `wa.me` deep link carrying the same line. Both read one `quoteLine()` so the
+sales desk gets the same spec whichever the visitor uses, and the WhatsApp number is imported from
+`lead-config.js` (`FALLBACK_CONTACT`), never typed here — the site has **one** WhatsApp number and it
+lives in the markup and that config, nowhere else. The quote click fires `calculator_quote_click`
+(added to `EVENTS`), so the calculator → RFQ funnel is measurable rather than a hunch.
+
+**The form pages funnel into the calculator, deep-linked, and that is generated.** The footer links
+every page to `/tools/weight-calculator/`, but a generic link buried in the footer is not the same as
+a contextual one under the Specification Overview with the grade and form already chosen.
+`docs/build-calc-links.mjs` writes that CTA into the ~305 grade form pages, between
+`<!-- calc-cta:start -->` / `<!-- calc-cta:end -->` markers, right after the `#specification` section
+(or `#introduction` on the older template). The value is only there if the deep link is **right** —
+sending an Inconel 625 sheet buyer to the calculator pre-set to another grade is the wrong-material
+error one tool over — so the material id is never guessed: it is derived from the URL and then
+**checked against the real list the calculator ships** (`javascript/weight-data.js`), and a page
+whose grade is not in that list gets no CTA rather than a wrong one. URLs write grades more tersely
+than the display names (`/hastelloy/C276/` against id `hastelloy-c-276`), so the matcher compares on
+letters and digits alone and aliases the few families whose URL prefix differs (`duplex-steel`→
+`duplex`, `NiCr`→`nichrome`); the two grades with no derivable relationship (`incoloy/660`→
+`incoloy-660-a286`, `stainless/SMO-254`→`254-smo`) are in an explicit `GRADE_ALIAS`, the way
+`build-grades.mjs` states its irregular URL maps. Combined family pages (`hastelloy/plates`), the
+generic `pages/products/*` hubs and genuinely un-stocked grades are reported and skipped. `--check`
+guards it in CI. Run it after adding or renaming a form page, or after a grade's calculator id
+changes; the CTA is styled by `.calc-cta` in `pages.css`, so a new class there needs no per-page edit.
 
 The page carries `WebApplication`, `BreadcrumbList` and `FAQPage` and **no `Product` node**, so none
 of the offers/review invalid-item states apply to it. It quotes no price and must not start to: the

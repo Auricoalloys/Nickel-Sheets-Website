@@ -43,6 +43,7 @@ on:
       - "docs/materials.csv"
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
+      - "docs/build-calc-links.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
   push:
@@ -67,6 +68,7 @@ on:
       - "docs/materials.csv"
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
+      - "docs/build-calc-links.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
   workflow_dispatch:
@@ -149,6 +151,14 @@ jobs:
       # is a contradiction in grades.csv rather than in the calculator.
       - name: Weight calculator data matches the grade database
         run: node docs/build-weight-data.mjs --check
+
+      # The deep-linked "calculate the weight" CTA on the form pages. This fails
+      # the build when a page's CTA drifts from what the generator would write -
+      # a material renamed in weight-data.js, a page's Specification anchor
+      # removed - so a CTA can never point at a grade the calculator no longer
+      # knows by that id, which would land a buyer on the wrong material.
+      - name: Calculator CTAs match the material list
+        run: node docs/build-calc-links.mjs --check
 
       # Every table on the site uses one system. It used to use three, and which
       # one a <th> obeyed came down to the order of two <link> tags: `.table th`

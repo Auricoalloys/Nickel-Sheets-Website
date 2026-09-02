@@ -73,6 +73,10 @@ exclude:
   # so anything new here publishes by default at a URL nothing links to.
   - docs/build-weight-data.mjs
   - docs/materials.csv
+  # Writes the deep-linked weight-calculator CTA into the form pages. A working
+  # generator, not a page - excluded in the same commit that adds it, per the
+  # docs/ note above.
+  - docs/build-calc-links.mjs
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
   - prices-todo.csv
