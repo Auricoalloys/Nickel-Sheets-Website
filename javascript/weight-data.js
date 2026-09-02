@@ -37,6 +37,15 @@ export const GROUP_ORDER = [
   "Precious Metals"
 ];
 
+// The same groups split by tier, so the family filter can offer "Grades we
+// stock" and "Common materials" as separate headings. Emitted rather than
+// re-derived in the page, because the page cannot tell an alloy family from a
+// handbook category by its name alone.
+export const GROUPS = {
+  mill: ["Inconel","Incoloy","Hastelloy","Monel","Nimonic","Haynes","Nichrome","Titanium","Duplex & Super Duplex","Special Stainless Steel","Stellite","Cobalt Alloys","Nickel Alloys"],
+  handbook: ["Stainless Steel","Carbon & Alloy Steel","Aluminium","Copper Alloys","Refractory & Reactive","Pure Metals","Precious Metals"]
+};
+
 export const MATERIALS = [
   {"id":"inconel-600","name":"Inconel 600","group":"Inconel","tier":"mill","density":8.47,"source":"Special Metals INCONEL alloy 600 bulletin","note":"N06600 / 2.4816"},
   {"id":"inconel-601","name":"Inconel 601","group":"Inconel","tier":"mill","density":8.11,"source":"Special Metals INCONEL alloy 601 bulletin","note":"N06601 / 2.4851"},

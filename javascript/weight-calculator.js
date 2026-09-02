@@ -12,7 +12,7 @@
 // was read from and the page prints it, because a calculator that will not say
 // where its number came from is asking to be trusted rather than checked.
 
-import { MATERIALS, GROUP_ORDER } from "./weight-data.js";
+import { MATERIALS, GROUP_ORDER, GROUPS } from "./weight-data.js";
 
 /* ------------------------------------------------------------------ *
  * Units
@@ -465,14 +465,78 @@ const $ = (id) => document.getElementById(id);
 const CUSTOM = "custom";
 const MATERIAL_BY_ID = new Map(MATERIALS.map((m) => [m.id, m]));
 
-function buildMaterialSelect(select) {
+// 172 materials in one list is more than anyone will scroll, so the picker is
+// narrowed two ways that combine: a family filter, and a free-text search.
+//
+// Both drive a plain <select> rather than a custom combobox. A native select
+// gets the platform's own picker on a phone - a full-height wheel with its own
+// scroll and type-ahead - and no ARIA of ours to get wrong. Once a family is
+// chosen the longest list left is Titanium at 17.
+
+function buildFamilyFilter(select) {
+  const counts = new Map();
+  for (const m of MATERIALS) counts.set(m.group, (counts.get(m.group) || 0) + 1);
+
+  const all = document.createElement("option");
+  all.value = "";
+  all.textContent = `All materials (${MATERIALS.length})`;
+  select.append(all);
+
+  for (const [heading, names] of [
+    ["Grades we stock", GROUPS.mill],
+    ["Common materials", GROUPS.handbook],
+  ]) {
+    const og = document.createElement("optgroup");
+    og.label = heading;
+    for (const name of names) {
+      if (!counts.get(name)) continue;
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = `${name} (${counts.get(name)})`;
+      og.append(opt);
+    }
+    select.append(og);
+  }
+}
+
+// The search haystack includes `note`, which carries the UNS and Werkstoff
+// numbers for a mill grade - so "N06625" and "2.4856" both find Inconel 625.
+// That is how a buyer with a drawing in front of them actually looks: by the
+// number on the drawing, not by the trade name.
+// Whether the visitor picked Custom deliberately, or was only parked on it
+// because the filter matched nothing. The two have to be told apart: a filter
+// that matches nothing falls back to Custom, and without this flag the
+// selection then STAYS on Custom once the matches come back - so mistyping a
+// search and then correcting it left the material list populated and the
+// picker still reading "Custom material".
+let customByChoice = false;
+
+function matchesFilter(m, family, query) {
+  if (family && m.group !== family) return false;
+  if (!query) return true;
+  return `${m.name} ${m.group} ${m.note}`.toLowerCase().includes(query);
+}
+
+function buildMaterialSelect() {
+  const select = $("wc-material");
+  const family = $("wc-family").value;
+  const query = $("wc-search").value.trim().toLowerCase();
+  const previous = select.value;
+
+  select.textContent = "";
+
+  // Custom is never filtered away: it is the escape hatch for a material that
+  // is not on the list at all, which is exactly the case a filter that hid it
+  // would strand the visitor in.
   const custom = document.createElement("option");
   custom.value = CUSTOM;
   custom.textContent = "— Custom material (enter your own density) —";
   select.append(custom);
 
+  const shown = MATERIALS.filter((m) => matchesFilter(m, family, query));
+
   const groups = new Map();
-  for (const m of MATERIALS) {
+  for (const m of shown) {
     if (!groups.has(m.group)) groups.set(m.group, []);
     groups.get(m.group).push(m);
   }
@@ -494,6 +558,32 @@ function buildMaterialSelect(select) {
     }
     select.append(og);
   }
+
+  // Keep what the visitor had chosen if the filter still contains it - typing
+  // in the search box must not silently swap the material under a weight they
+  // are already reading.
+  if (previous && shown.some((m) => m.id === previous)) {
+    select.value = previous;
+  } else if (previous === CUSTOM && customByChoice) {
+    select.value = CUSTOM;
+  } else if (shown.length) {
+    select.value = shown[0].id;
+  } else {
+    select.value = CUSTOM;
+  }
+
+  const count = $("wc-match-count");
+  if (!shown.length) {
+    count.textContent = query
+      ? `No material matches “${$("wc-search").value.trim()}”. Use Custom material, or clear the filters.`
+      : "No materials in that family.";
+  } else if (shown.length === MATERIALS.length) {
+    count.textContent = `${MATERIALS.length} materials. Filter by family or search by name, UNS or Werkstoff number.`;
+  } else {
+    count.textContent = `Showing ${shown.length} of ${MATERIALS.length} materials.`;
+  }
+
+  return select.value !== previous;
 }
 
 function buildShapeSelect(select) {
@@ -762,6 +852,7 @@ function applyQueryString() {
   const material = q.get("material");
   if (material && (material === CUSTOM || MATERIAL_BY_ID.has(material))) {
     $("wc-material").value = material;
+    customByChoice = material === CUSTOM;
   }
   const shape = q.get("shape");
   if (shape && SHAPE_BY_KEY.has(shape)) $("wc-shape").value = shape;
@@ -772,7 +863,8 @@ function applyQueryString() {
 function init() {
   if (!$("wc-form")) return;
 
-  buildMaterialSelect($("wc-material"));
+  buildFamilyFilter($("wc-family"));
+  buildMaterialSelect();
   buildShapeSelect($("wc-shape"));
 
   // A sensible starting point rather than a blank form.
@@ -785,7 +877,18 @@ function init() {
   applyMaterial();
   buildFields();
 
+  // Narrowing the list only reapplies the material when the selection actually
+  // moved - otherwise typing in the search box would wipe a density override
+  // the visitor had just entered.
+  const refilter = () => {
+    if (buildMaterialSelect()) applyMaterial();
+    calculate();
+  };
+  $("wc-family").addEventListener("change", refilter);
+  $("wc-search").addEventListener("input", refilter);
+
   $("wc-material").addEventListener("change", () => {
+    customByChoice = $("wc-material").value === CUSTOM;
     applyMaterial();
     calculate();
   });

@@ -182,9 +182,22 @@ title: Metal Weight Calculator
             <fieldset class="wc-fieldset">
               <legend>Material</legend>
 
+              <div class="wc-row">
+                <div>
+                  <label for="wc-family">Filter by family</label>
+                  <select id="wc-family"></select>
+                </div>
+                <div>
+                  <label for="wc-search">Search</label>
+                  <input type="search" id="wc-search" placeholder="625, N06625, tantalum…"
+                    autocomplete="off">
+                </div>
+              </div>
+
               <div class="wc-field">
                 <label for="wc-material">Material or grade</label>
                 <select id="wc-material"></select>
+                <p class="wc-match-count" id="wc-match-count"></p>
               </div>
 
               <div class="wc-field" id="wc-custom-name-row" hidden>
@@ -427,6 +440,16 @@ title: Metal Weight Calculator
           tolerances move the real figure by a few per cent, and material is invoiced on weighed shipping weight. Use
           this to budget, compare and specify, then <a href="/pages/contact/">ask us for a quotation</a> for the
           number that will actually be billed.</p>
+
+        <h3>How do I find my grade in the list?</h3>
+        <p>Two filters sit above the material picker and they work together. <strong>Filter by
+          family</strong> narrows the list to one alloy family or one class of common material —
+          Inconel, Titanium, Stainless Steel, Copper Alloys — which brings the longest list down to
+          seventeen. <strong>Search</strong> matches the grade name, the family and the identifiers,
+          so <span class="wc-formula">625</span>, <span class="wc-formula">N06625</span> and
+          <span class="wc-formula">2.4856</span> all find Inconel 625. That matters when you are
+          working from a drawing, where the UNS or Werkstoff number is usually the only name the
+          material has.</p>
 
         <h3>Why does the calculator show kg per metre and kg per m²?</h3>
         <p>Because that is the figure most orders are actually quoted against. Bars, pipes and sections get kg per

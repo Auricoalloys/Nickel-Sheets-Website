@@ -1180,6 +1180,23 @@ light**. That last one is a real error on a structural order, not a rounding dif
 page and the form state the measured deviations and point at the mill's section table. Do not soften
 that to "approximate" — the number is the useful part.
 
+**172 materials is more than anyone will scroll, so the picker has two filters that combine** — a
+family select (with counts, split into "Grades we stock" and "Common materials" from the `GROUPS`
+export) and a free-text search. The search haystack includes `note`, which carries the UNS and
+Werkstoff numbers, so `N06625` and `2.4856` both find Inconel 625 — that is how a buyer working from
+a drawing actually looks. A family brings the longest list down to 17.
+
+Both drive a plain `<select>` rather than a custom combobox, deliberately: a native select gets the
+platform's own picker on a phone and has no ARIA of ours to get wrong.
+
+Two rules the filter has to keep, each of which was a bug first:
+
+- **Custom material is never filtered away**, and the code distinguishes *chose* Custom from *was
+  parked on* Custom by an empty result set. Without that flag, mistyping a search and then correcting
+  it left the list repopulated and the picker still reading "Custom material".
+- **Re-filtering only reapplies the material when the selection actually moved.** Reapplying
+  unconditionally wipes a density override the visitor has just typed.
+
 **The quote button supplies its own enquiry subject.** `/tools/` is in `NO_SUBJECT_PREFIXES` because
 the last breadcrumb crumb is "Weight Calculator", which tells the sales desk nothing — the same
 failure as seeding "Enquiry: Mumbai" off a location page. The button builds an explicit `?enquiry=`

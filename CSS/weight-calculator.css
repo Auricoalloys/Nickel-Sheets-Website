@@ -122,6 +122,16 @@
   margin-bottom: 16px;
 }
 
+/* The line under the material picker saying how many of the 172 materials the
+   filter is currently showing. It is the feedback that makes the filter
+   trustworthy: without it a short list looks like a short catalogue. */
+.wc-match-count {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
 .wc-fieldset {
   border: 0;
   padding: 0;
