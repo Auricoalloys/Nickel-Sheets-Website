@@ -299,7 +299,7 @@ nimonic,80A,N07080,2.4952 / 2.4631,,8.19,1320-1365,Special Metals NIMONIC alloy 
 # calculator quotes from.
 nimonic,81,-,,,8.06,1305-1375,Special Metals NIMONIC alloy 81 bulletin,2026-08
 nimonic,86,-,,,8.54,,Special Metals NIMONIC alloy 86 bulletin,2026-08
-nimonic,90,N07090,2.4632,,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin,2026-08
+nimonic,90,N07090,2.4632 / 2.4969,,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin - second Werkstoff number 2.4969 and the UNS and density corroborated by Alloy Wire International NIMONIC 90 datasheet AWS 030 Rev.3,2026-09
 # The 105 sheet does print a melting range, but as two separately labelled lines
 # under the heading - "Liquidus temperature 1345°C" and "Solidus temperature
 # 1290°C" - rather than as one hyphenated figure like the other sheets, which is
