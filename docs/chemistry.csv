@@ -1507,6 +1507,26 @@ haynes,HR-120,C,,,0.05 nominal
 haynes,HR-120,B,,,0.004 nominal
 haynes,HR-120,Ti,,0.2
 
+# 556 - Haynes International 556 brochure "Nominal Composition", in the sheet's
+# column order. Iron is the balance; niobium (0.3 max) and boron (0.02 max) carry
+# a maximum; every other figure is a nominal single value - a mixed table.
+haynes,556,Fe,,bal
+haynes,556,Ni,,,20 nominal
+haynes,556,Co,,,18 nominal
+haynes,556,Cr,,,22 nominal
+haynes,556,Mo,,,3 nominal
+haynes,556,W,,,2.5 nominal
+haynes,556,Ta,,,0.6 nominal
+haynes,556,N,,,0.2 nominal
+haynes,556,Si,,,0.4 nominal
+haynes,556,Nb,,0.3
+haynes,556,Mn,,,1 nominal
+haynes,556,Al,,,0.2 nominal
+haynes,556,C,,,0.1 nominal
+haynes,556,B,,0.02
+haynes,556,La,,,0.02 nominal
+haynes,556,Zr,,,0.02 nominal
+
 # Duplex stainless steel — composition limits from SIJ Acroni SINOXX 4462 datasheet.
 # Section heading is "Typical values [wt. %]" but the table carries explicit Min./Max.
 # columns; values treated as specification limits. Cr/Ni/Mo/N ranges are Acroni's

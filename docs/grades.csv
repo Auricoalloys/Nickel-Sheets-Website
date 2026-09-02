@@ -413,21 +413,25 @@ haynes,242,N10242,,,9.05,1290-1375,Haynes International HAYNES 242 alloy page,20
 # feeds a weight calculator one bare number; the aged one is in properties.csv
 # with its condition, which is the column that exists for exactly this.
 haynes,282,N07208,,,8.27,1300-1375,Haynes International HAYNES 282 alloy page,2026-08
-# HR-120: UNS N08120, density 8.07 (0.291 lb/in3) and melting 1300 C (2375 F),
-# plus the nominal composition, read from the Haynes International HR-120
-# brochure (2026-09). Haynes prints no Werkstoff or EN symbolic designation for
-# it, so wnr and en_name stay empty.
-haynes,HR-120,N08120,,,8.07,1300,Haynes International HAYNES HR-120 alloy brochure,2026-09
-# 556 and HR-160 are cross-referenced across the site (556 as HR-120's filler wire,
-# HR-160 in the plates keywords and applications) but are not stocked as their own
-# product pages. Seeded PENDING - starter rows only, not verified data. The UNS is
-# the widely-published designation (R30556; N12160), left as a lead the way the
-# original seed carried numbers. Everything else waits on the Haynes International
-# bulletin, which is NOT reachable from this environment - haynesintl.com is
-# egress-blocked, and a distributor listing is never a source here (that is how
-# N06003 reached an 80/20 page and AMS 5542 a 214 bar). Do not clear pending
-# without reading the mill sheet; no chemistry.csv rows exist for these two yet.
-haynes,556,R30556,,,,,pending,
+# HR-120: UNS N08120, W.Nr. 2.4854 and EN name NiFe33Cr25Co, density 8.07
+# (0.291 lb/in3) and melting 1300 C (2375 F), plus the nominal composition, read
+# from the Haynes International HR-120 brochure (2026-09). The DIN row was missed
+# on the first read, which recorded no Werkstoff; the Specifications page (28 of
+# 33) prints "DIN No. 2.4854 NiFe33Cr25Co", so both cells are now filled from the
+# mill's own sheet rather than left empty.
+haynes,HR-120,N08120,2.4854,NiFe33Cr25Co,8.07,1300,Haynes International HAYNES HR-120 alloy brochure,2026-09
+# 556 - Haynes International 556 brochure (R30556), read 2026-09-02. An iron-
+# nickel-chromium-cobalt alloy: density 8.23 (0.297 lb/in3) and melting 1330-1415
+# C (2425-2580 F) from the Physical Properties table. W.Nr. 1.4883 and EN name
+# X10CrNiCoMoN22-20-18 from the Specifications DIN row ("No. 1.4883 X10CrNiCoMoN22
+# 20 18"); the three number groups 22-20-18 are Cr-Ni-Co and match the nominal
+# composition, which is what ties the designation to this alloy. See chemistry.csv.
+haynes,556,R30556,1.4883,X10CrNiCoMoN22-20-18,8.23,1330-1415,Haynes International HAYNES 556 alloy brochure,2026-09
+# HR-160 (N12160) is still PENDING. The bulletin supplied on 2026-09-02 was the
+# HR-120 sheet, not HR-160 - two easily confused designations for different alloys
+# (HR-120 is Fe-Ni-Cr, N08120; HR-160 is a Ni-Co-Cr-Si alloy, N12160), so it
+# cannot verify this row. UNS is the published designation, kept as a lead. Do not
+# clear pending without the HAYNES HR-160 bulletin; no chemistry.csv rows yet.
 haynes,HR-160,N12160,,,,,pending,
 # --- TITANIUM --- Two sources, named separately in `source` the way the HAYNES
 # 25 and 254 SMO rows carry two. Identity and composition come from ASME BPVC
