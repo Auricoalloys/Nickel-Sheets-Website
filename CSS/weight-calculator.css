@@ -315,7 +315,10 @@
   margin: 16px 0 0;
   font-size: 0.8rem;
   line-height: 1.5;
-  opacity: 0.78;
+  /* Explicit light colour, not opacity: pages.css sets a dark colour on every
+     <p>, which beats the white inherited from .wc-results and left this line
+     near-invisible on the navy card. */
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .wc-quote {

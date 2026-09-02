@@ -563,11 +563,8 @@ function buildMaterialSelect() {
     for (const m of rows) {
       const opt = document.createElement("option");
       opt.value = m.id;
-      // A grade with no published density still appears, flagged, rather than
-      // going silently missing from a list that shows its siblings.
-      opt.textContent = m.density
-        ? `${m.name} — ${m.density} g/cm³`
-        : `${m.name} — density not published`;
+      // Names only - the density figure is not shown to visitors.
+      opt.textContent = m.name;
       og.append(opt);
     }
     select.append(og);
@@ -614,21 +611,19 @@ function buildShapeSelect(select) {
   }
 }
 
+// The density figure is used for the arithmetic but not shown: the field only
+// appears when the visitor has to supply the number themselves - Custom
+// material, or one of the few grades that carry no density.
 function applyMaterial() {
   const id = $("wc-material").value;
   const density = $("wc-density");
-  const provenance = $("wc-provenance");
-
-  $("wc-reset-density").hidden = true;
+  const densityRow = $("wc-density-row");
 
   if (id === CUSTOM) {
     $("wc-custom-name-row").hidden = false;
+    densityRow.hidden = false;
     density.value = "";
     density.placeholder = "e.g. 7.85";
-    provenance.innerHTML =
-      "<strong>Your own figure.</strong> Enter the density from your material " +
-      "certificate or the mill's data sheet.";
-    provenance.className = "wc-provenance wc-provenance-custom";
     return;
   }
 
@@ -636,34 +631,13 @@ function applyMaterial() {
   const m = MATERIAL_BY_ID.get(id);
   if (!m) return;
 
-  density.value = m.density ?? "";
-  density.placeholder = m.density ? "" : "enter density";
-
-  if (!m.density) {
-    provenance.innerHTML =
-      "<strong>No density published.</strong> " +
-      escapeHtml(m.source || "The source for this grade") +
-      " does not give one, so we will not invent it. Enter the figure from " +
-      "your material certificate.";
-    provenance.className = "wc-provenance wc-provenance-missing";
-  } else if (m.tier === "mill") {
-    provenance.innerHTML =
-      "<strong>Mill-sourced.</strong> " +
-      escapeHtml(String(m.density)) +
-      " g/cm³, read from " +
-      escapeHtml(m.source) +
-      (m.note ? ` (${escapeHtml(m.note)})` : "") +
-      ".";
-    provenance.className = "wc-provenance wc-provenance-mill";
+  if (m.density) {
+    density.value = m.density;
+    densityRow.hidden = true;
   } else {
-    provenance.innerHTML =
-      "<strong>Nominal figure.</strong> " +
-      (m.source === "CRC Handbook"
-        ? "Element density from the CRC Handbook."
-        : "A representative handbook value — real tempers and heats vary by " +
-          "around 1%.") +
-      (m.note ? ` ${escapeHtml(m.note)}.` : "");
-    provenance.className = "wc-provenance wc-provenance-nominal";
+    density.value = "";
+    density.placeholder = "enter density";
+    densityRow.hidden = false;
   }
 }
 
@@ -702,8 +676,6 @@ function buildFields() {
   host.querySelectorAll("input").forEach((i) =>
     i.addEventListener("input", calculate)
   );
-
-  $("wc-rolled-note").hidden = !shape.rolled;
 }
 
 function readDimensions(shape) {
@@ -818,9 +790,6 @@ function calculate() {
             )}</dd></div>`
         )
         .join("")}
-      <div><dt>Density used</dt><dd>${escapeHtml(
-        String(density)
-      )} g/cm³</dd></div>
       ${
         hasRate
           ? `<div class="wc-cost"><dt>At ${fmtMoney(
@@ -950,30 +919,7 @@ function init() {
     $(id).addEventListener("change", calculate);
   }
 
-  $("wc-density").addEventListener("input", () => {
-    const m = MATERIAL_BY_ID.get($("wc-material").value);
-    if (m && m.density) {
-      if (String(m.density) === $("wc-density").value) {
-        applyMaterial();
-      } else {
-        $("wc-reset-density").hidden = false;
-        $("wc-provenance").innerHTML =
-          "<strong>Your own figure.</strong> Overriding the " +
-          (m.tier === "mill" ? "mill" : "handbook") +
-          " density of " +
-          escapeHtml(String(m.density)) +
-          " g/cm³.";
-        $("wc-provenance").className = "wc-provenance wc-provenance-custom";
-      }
-    }
-    calculate();
-  });
-
-  $("wc-reset-density").addEventListener("click", (e) => {
-    e.preventDefault();
-    applyMaterial();
-    calculate();
-  });
+  $("wc-density").addEventListener("input", calculate);
 
   $("wc-form").addEventListener("submit", (e) => e.preventDefault());
 

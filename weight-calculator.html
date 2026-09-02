@@ -10,7 +10,7 @@ title: Metal Weight Calculator
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Metal Weight Calculator | Sheet, Pipe, Bar &amp; Beam | Aurico Alloys</title>
   <meta name="description"
-    content="Free metal weight calculator for sheet, plate, coil, pipe, tube, round bar, hex bar, angle, channel and beam. 172 materials with mill-sourced densities.">
+    content="Free metal weight calculator for sheet, plate, coil, pipe, tube, round bar, hex bar, angle, channel and beam. 172 materials, metric and imperial.">
   <meta name="keywords"
     content="metal weight calculator, sheet weight calculator, pipe weight calculator, round bar weight calculator, beam weight calculator, channel weight calculator, angle weight calculator, coil weight calculator, nickel alloy weight calculator, titanium weight calculator, stainless steel weight calculator">
 
@@ -26,7 +26,7 @@ title: Metal Weight Calculator
   <meta property="og:type" content="website">
   <meta property="og:title" content="Metal Weight Calculator | Sheet, Pipe, Bar &amp; Beam">
   <meta property="og:description"
-    content="Free metal weight calculator for sheet, plate, coil, pipe, tube, round bar, hex bar, angle, channel and beam. 172 materials with mill-sourced densities.">
+    content="Free metal weight calculator for sheet, plate, coil, pipe, tube, round bar, hex bar, angle, channel and beam. 172 materials, metric and imperial.">
   <meta property="og:url" content="https://www.nickelsheets.com/tools/weight-calculator/">
   <meta property="og:image" content="https://www.nickelsheets.com/docs/images/Round-Bars.webp">
   <meta property="og:site_name" content="Aurico Alloys LLP">
@@ -34,7 +34,7 @@ title: Metal Weight Calculator
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Metal Weight Calculator | Sheet, Pipe, Bar &amp; Beam">
   <meta name="twitter:description"
-    content="Free metal weight calculator for sheet, plate, coil, pipe, tube, round bar, hex bar, angle, channel and beam. 172 materials with mill-sourced densities.">
+    content="Free metal weight calculator for sheet, plate, coil, pipe, tube, round bar, hex bar, angle, channel and beam. 172 materials, metric and imperial.">
   <meta name="twitter:image" content="https://www.nickelsheets.com/docs/images/Round-Bars.webp">
 
   <!-- WebApplication, not Product. This page sells nothing and quotes no price,
@@ -50,11 +50,11 @@ title: Metal Weight Calculator
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
   "isAccessibleForFree": true,
-  "description": "Calculates the theoretical weight of sheet, plate, coil, pipe, tube, round bar, square bar, hex bar, flat bar, angle, tee, channel and beam in 172 materials, including nickel alloys, titanium, duplex and stainless grades whose densities are read from mill bulletins.",
+  "description": "Calculates the theoretical weight of sheet, plate, coil, pipe, tube, round bar, square bar, hex bar, flat bar, angle, tee, channel and beam in 172 materials, in metric or imperial.",
   "featureList": [
     "18 product forms including coil by outside and inside diameter",
-    "172 materials with the source of every density stated",
-    "Custom material entry and density override",
+    "172 materials",
+    "Custom material entry",
     "Metric and imperial input",
     "Weight per piece, total weight, kg per metre and kg per square metre"
   ],
@@ -102,42 +102,34 @@ title: Metal Weight Calculator
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How is metal weight calculated?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Weight is the volume of the piece multiplied by the density of the material. Work out the volume in cubic millimetres from the shape's dimensions, multiply by the density in grams per cubic centimetre, and divide by one million to get kilograms. For a 2000 x 1000 x 10 mm mild steel plate at 7.85 g/cm3 that is 20,000,000 mm3 x 7.85 / 1,000,000 = 157 kg."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where do the densities in this calculator come from?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "There are two kinds. Densities for the nickel, titanium, duplex, cobalt and special stainless grades are read from the producing mill's own technical bulletin, and the calculator names the bulletin under the figure. Densities for generic materials such as mild steel, SS 304 or aluminium 6061 are nominal handbook values, which real tempers and heats vary from by about one per cent. The calculator labels which of the two you are using."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is my rolled beam or channel heavier than the calculated weight?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Rolled sections have root and toe radii that this calculator does not model, and channel flanges are tapered. Measured against IS 808 the shortfall is about 1.6 per cent on a 50 x 50 x 6 angle, 1.8 per cent on an ISMB 200 beam and 5.6 per cent on an ISMC 100 channel. For a standard designation, use the mill's own section table rather than this figure."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I enter my own material or change the density?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Choose Custom material at the top of the material list and type a name and a density, or pick any listed grade and simply type over the density shown. The calculator says when you are overriding a published figure and offers a link to put the original back."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Is this the weight that will be invoiced?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. This is a theoretical weight: nominal density multiplied by the volume of an ideal shape. Rolling, wall and diameter tolerances move the actual weight by a few per cent, and material is invoiced on weighed shipping weight. Use this to budget, compare and specify, and ask us for a quotation for the figure that will be billed."
+        "text": "No. This is a theoretical weight for an ideal shape. Rolling, wall and diameter tolerances move the actual weight by a few per cent, and material is invoiced on weighed shipping weight. Use this to budget, compare and specify, and ask us for a quotation for the figure that will be billed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find my grade in the list?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two filters sit above the material picker and work together. Filter by family narrows the list to one alloy family or one class of common material, which brings the longest list down to seventeen. Search matches the grade name, the family and the identifiers, so 625, N06625 and 2.4856 all find Inconel 625."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the calculator show kg per metre and kg per square metre?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because that is the figure most orders are quoted against. Bars, pipes and sections get kg per metre; sheet, plate, discs and rings get kg per square metre. For a coil entered by outside and inside diameter it also works out the developed strip length."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I share a calculation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The material, form and unit are carried in the address bar, so a link such as /tools/weight-calculator/?material=inconel-625&shape=round-bar opens the calculator set up for Inconel 625 round bar."
       }
     }
   ]
@@ -168,10 +160,8 @@ title: Metal Weight Calculator
       <h1>Metal Weight Calculator</h1>
 
       <p class="wc-intro">Work out the theoretical weight of sheet, plate, coil, pipe, tube, round bar, square bar,
-        hex bar, flat bar, angle, tee, channel or beam in any of 172 materials. Densities for the nickel, titanium,
-        duplex, cobalt and special stainless grades are taken from the producing mill's own technical bulletin and
-        the calculator names it, so you can check the number rather than take it on trust. Free to use, and no
-        sign-up.</p>
+        hex bar, flat bar, angle, tee, channel or beam in any of 172 materials, in metric or imperial. Free to use,
+        and no sign-up.</p>
 
       <div class="wc-layout">
         <div class="wc-panel">
@@ -205,15 +195,12 @@ title: Metal Weight Calculator
                 <input type="text" id="wc-custom-name" placeholder="e.g. EN8 bright bar" autocomplete="off">
               </div>
 
-              <div class="wc-density-row">
+              <div class="wc-density-row" id="wc-density-row" hidden>
                 <div class="wc-field">
                   <label for="wc-density">Density (g/cm³)</label>
                   <input type="number" id="wc-density" min="0" step="any" inputmode="decimal" autocomplete="off">
                 </div>
-                <button type="button" class="wc-reset" id="wc-reset-density" hidden>Reset</button>
               </div>
-
-              <p class="wc-provenance" id="wc-provenance"></p>
             </fieldset>
 
             <fieldset class="wc-fieldset">
@@ -243,12 +230,6 @@ title: Metal Weight Calculator
               </div>
 
               <div class="wc-dimensions" id="wc-dimensions"></div>
-
-              <p class="wc-provenance wc-provenance-nominal" id="wc-rolled-note" hidden>
-                <strong>Rolled section.</strong> This is plate geometry and excludes root and toe radii, so it reads
-                light against a mill section table — about 1.6% on an angle, 1.8% on a beam and 5.6% on an IS
-                channel. For a standard designation use the mill's section table.
-              </p>
             </fieldset>
 
             <fieldset class="wc-fieldset">
@@ -298,151 +279,11 @@ title: Metal Weight Calculator
       </div>
 
       <div class="wc-notes">
-        <h2>How the calculation works</h2>
-
-        <p>Every figure on this page is volume multiplied by density. The volume comes from the dimensions you type,
-          the density from the material you pick, and the two are combined once:</p>
-
-        <p><span class="wc-formula">weight (kg) = volume (mm³) × density (g/cm³) ÷ 1,000,000</span></p>
-
-        <p>The divisor is two conversions rolled into one — cubic millimetres to cubic centimetres, then grams to
-          kilograms. These are the volume formulas behind each product form:</p>
-
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <caption>Volume of one piece, by product form. B is flange width, H overall depth, t<sub>f</sub> flange
-              thickness and t<sub>w</sub> web thickness.</caption>
-            <thead>
-              <tr>
-                <th scope="col">Product form</th>
-                <th scope="col">Volume of one piece</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Sheet / Plate</th>
-                <td>length × width × thickness</td>
-              </tr>
-              <tr>
-                <th scope="row">Coil / Strip (by length)</th>
-                <td>width × thickness × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Coil (by coil OD and ID)</th>
-                <td>π/4 × (OD² − ID²) × strip width</td>
-              </tr>
-              <tr>
-                <th scope="row">Flat Bar</th>
-                <td>width × thickness × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Round Bar / Wire</th>
-                <td>π/4 × diameter² × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Square Bar</th>
-                <td>side² × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Hexagonal Bar</th>
-                <td>0.8660 × (across flats)² × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Pipe / Round Tube (OD × wall)</th>
-                <td>π × wall × (OD − wall) × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Round Tube / Hollow Bar (OD × ID)</th>
-                <td>π/4 × (OD² − ID²) × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Square Tube</th>
-                <td>[side² − (side − 2t)²] × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Rectangular Tube</th>
-                <td>[width × height − (width − 2t)(height − 2t)] × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Angle</th>
-                <td>(leg A + leg B − t) × t × length</td>
-              </tr>
-              <tr>
-                <th scope="row">T Bar</th>
-                <td>[B × t<sub>f</sub> + (H − t<sub>f</sub>) × t<sub>w</sub>] × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Channel and Beam</th>
-                <td>[2 × B × t<sub>f</sub> + (H − 2t<sub>f</sub>) × t<sub>w</sub>] × length</td>
-              </tr>
-              <tr>
-                <th scope="row">Circle / Disc</th>
-                <td>π/4 × diameter² × thickness</td>
-              </tr>
-              <tr>
-                <th scope="row">Ring / Flange Blank</th>
-                <td>π/4 × (OD² − ID²) × thickness</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p>Channel and beam share one formula because the two ways of measuring them are the same expression. A beam
-          is two full-width flanges with a web between them, <span class="wc-formula">2Bt<sub>f</sub> + (H −
-            2t<sub>f</sub>)t<sub>w</sub></span>. A channel is a full-depth web with two flanges standing off it,
-          <span class="wc-formula">2(B − t<sub>w</sub>)t<sub>f</sub> + Ht<sub>w</sub></span>. Expand the second and
-          it becomes the first.</p>
-
-        <div class="wc-callout">
-          <h3>Rolled sections read light, and by how much</h3>
-          <p>The four structural forms — angle, tee, channel and beam — are computed from plate geometry. Real rolled
-            sections carry root and toe radii, and IS channel flanges are tapered, so a real section weighs more than
-            this page will tell you. Measured against IS 808:</p>
-          <ul>
-            <li>ISA 50 × 50 × 6 angle — 4.427 against 4.50 kg/m, <strong>1.6% light</strong></li>
-            <li>ISMB 200 beam — 24.939 against 25.4 kg/m, <strong>1.8% light</strong></li>
-            <li>ISMC 100 channel — 9.024 against 9.56 kg/m, <strong>5.6% light</strong></li>
-          </ul>
-          <p>The channel is the one to watch. If you are ordering a standard designation, take the weight from the
-            mill's section table; use this calculator for a section that has no table entry, or for a cut-to-size
-            fabricated profile.</p>
-        </div>
-
-        <h2>Where the densities come from</h2>
-
-        <p>A weight calculator is only as good as the density behind it, and most of them will not say where theirs
-          came from. This one splits its materials into two tiers and tells you which one you are using every time
-          you pick a material.</p>
-
-        <h3>Mill-sourced grades</h3>
-        <p>The 101 nickel, titanium, duplex, cobalt, nichrome and special stainless grades are the ones this business
-          actually stocks. Their densities are read from the producing mill's own technical bulletin — Special Metals
-          for INCONEL, INCOLOY, MONEL and NIMONIC, Haynes International for HASTELLOY and HAYNES, VDM Metals,
-          Alleima, Outokumpu, ATI and voestalpine BÖHLER for the rest — and the calculator names the document under
-          the figure. They come from the same verified grade database that writes the identity and chemistry tables
-          on every product page on this site, so a density here cannot drift from the one printed there.</p>
-
-        <p>Four grades carry no density, because the bulletin publishes none: Haynes 214, Titanium Grade 6, Titanium
-          Grade 23 and Kovar. They are still in the list, flagged, asking you for the figure. Inventing a plausible
-          number would have been easy and would have been worse.</p>
-
-        <h3>Generic materials</h3>
-        <p>Mild steel, the 300 and 400 series stainless grades, the aluminium and copper alloys, tantalum,
-          molybdenum, tungsten and the rest are nominal handbook values. Pure elements are CRC Handbook figures and
-          are not in dispute; the alloy values are representative, and a real temper or heat will sit within about
-          one per cent of them. That is fine for estimating and specifying, and it is not a substitute for the
-          density on your own material certificate — which you can type straight over the top.</p>
-
-        <h2>Using your own material</h2>
-        <p>Two ways, and both are one click. Pick <strong>Custom material</strong> at the top of the material list to
-          name a material and give its density outright. Or pick any listed grade and type over the density shown —
-          the calculator will say you are overriding a published figure and offer a link to put the original back.
-          Everything you type stays in your browser.</p>
 
         <h2>Questions</h2>
 
         <h3>Is this the weight that will be invoiced?</h3>
-        <p>No. This is a theoretical weight — nominal density on an ideal shape. Rolling, wall and diameter
+        <p>No. This is a theoretical weight for an ideal shape. Rolling, wall and diameter
           tolerances move the real figure by a few per cent, and material is invoiced on weighed shipping weight. Use
           this to budget, compare and specify, then <a href="/pages/contact/">ask us for a quotation</a> for the
           number that will actually be billed.</p>
