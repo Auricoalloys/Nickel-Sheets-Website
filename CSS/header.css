@@ -59,6 +59,19 @@
   --table-font-size: 15px;
 }
 
+/* Page titles are centred site-wide, hero style. Lives here because header.css
+   is the one stylesheet every page loads, so the homepage (which links no
+   pages.css) is covered too. Set directly on the h1: the common page wraps its
+   h1 in <div class="title"> whose text-align:justify the h1 only inherits, and
+   a declaration on the element itself beats an inherited value at any
+   specificity, so this wins without having to outrank .title. Qualified with
+   body so it also beats any bare h1 rule regardless of <link> order - the same
+   reason body .container is. The banner-title h1s are absolutely positioned and
+   already centred, so this only tidies how a wrapped caption line sits. */
+body h1 {
+  text-align: center;
+}
+
 /* The footer is dark on every page, so its override lives here with the token.
    Every other dark surface sets --heading-color: currentColor beside its own
    background rule - see hero.css, proof.css, pages.css and style.css. Keeping

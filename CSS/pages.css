@@ -907,6 +907,17 @@ footer p a {
     line-height: 1.6;
   }
 
+  /* The .lead intro paragraph is Bootstrap's, which sets font-weight:300 -
+     lighter than body text - so the opening line under each hub's h1 read faint
+     against the page. Bring it to a normal 400 so it has presence without
+     shouting or competing with the title; the colour is already #333 from the
+     p rule above, so weight was the whole problem. Qualified with body so it
+     outranks Bootstrap's own .lead (both 0,1,0) in either link order - the same
+     reason body .container does. */
+  body .lead {
+    font-weight: 400;
+  }
+
   .container {
     margin: 0 auto;
     padding: 0 10px;

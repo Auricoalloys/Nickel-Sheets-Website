@@ -6,6 +6,18 @@
       padding: 60px 0 20px;
   }
 
+  /* Make the footer's paragraph colour explicit rather than inherited. The
+     footer sets color:#fff, but pages.css carries a bare `p { color:
+     var(--text-color) }` (#333), and a matching element selector defeats an
+     inherited value however light it is - so on every content page the tagline,
+     the Contact address and the copyright line rendered near-black #333 on the
+     #2c3e50 navy, about 1.6:1 and unreadable. `footer p` (0,0,2) outranks that
+     bare `p` (0,0,1) in either link order; the class-based .mill-sources p and
+     .trademarks p (0,1,1) still win, so they keep their own tones. */
+  footer p {
+      color: #fff;
+  }
+
   .footer-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
