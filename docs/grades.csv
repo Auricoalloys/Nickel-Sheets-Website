@@ -284,7 +284,7 @@ monel,K-500,N05500,2.4375,,8.44,1315-1350,Special Metals MONEL alloy K-500 bulle
 nimonic,75,N06075,2.4951 / 2.4630,,8.37,1340-1380,Special Metals NIMONIC alloy 75 bulletin,2026-08
 # Melting range was seeded 1360-1390 and the bulletin says 1320-1365. Density
 # 8.19 was right.
-nimonic,80A,N07080,2.4952 / 2.4631,,8.19,1320-1365,Special Metals NIMONIC alloy 80A bulletin,2026-08
+nimonic,80A,N07080,2.4952 / 2.4631,NiCr20TiAl,8.19,1320-1365,Special Metals NIMONIC alloy 80A bulletin - EN designation NiCr20TiAl from the voestalpine BOHLER Alloy 80A / N07080 / 2.4952 product page which also confirms the UNS Werkstoff density and melting range,2026-09
 # 81 and 86 are the two NIMONIC sheets that print no identity line at all - no
 # "(UNS .../W. Nr. ...)" parenthetical of the kind 75, 80A, 90, 105, 115, 263
 # and 901 all carry. uns stays "-" because neither alloy was ever registered,
@@ -299,7 +299,7 @@ nimonic,80A,N07080,2.4952 / 2.4631,,8.19,1320-1365,Special Metals NIMONIC alloy 
 # calculator quotes from.
 nimonic,81,-,,,8.06,1305-1375,Special Metals NIMONIC alloy 81 bulletin,2026-08
 nimonic,86,-,,,8.54,,Special Metals NIMONIC alloy 86 bulletin,2026-08
-nimonic,90,N07090,2.4632,,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin,2026-08
+nimonic,90,N07090,2.4632 / 2.4969,,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin - second Werkstoff number 2.4969 and the UNS and density corroborated by Alloy Wire International NIMONIC 90 datasheet AWS 030 Rev.3,2026-09
 # The 105 sheet does print a melting range, but as two separately labelled lines
 # under the heading - "Liquidus temperature 1345°C" and "Solidus temperature
 # 1290°C" - rather than as one hyphenated figure like the other sheets, which is

@@ -187,10 +187,70 @@ monel,K-500,N05500,QQ-N-286,ASTM B865,ASTM B865,-,-
 # The certificate is a shipment document for one heat and its measured values
 # are never published - it is evidence that the row is right, not content. It
 # also covers SHEET only, so it says nothing about the bar, wire or pipe cells.
+#
+# NEITHER NIMONIC 75 NOR 80A HAS AN AMS SPECIFICATION. Confirmed by the
+# business on 2026-09-02, and it is the reason no cell in either row carries
+# one. The absence is a fact about the grades, not a gap in this file, so do
+# not go looking for the "missing" AMS number.
+#
+# It has been filled in wrongly once already. Both /nimonic/round-bars/ and the
+# unpublished nimonic_round_bar.html printed AMS 5580 against 75 and AMS 5594
+# against 80A, in an equivalents table whose BS numbers were shifted a row at
+# the same time - 75 carrying 80A's BS HR 201 and 80A carrying 90's BS HR 202.
+# Neither AMS number appears in any mill source this repo holds. The pattern to
+# recognise is a table where every row is one grade out: the AMS column was
+# invented to fill a column that should have read "-", which is what it reads
+# now. Nimonic 90 keeps AMS 5829 and 901 keeps AMS 5660 / 5661; those are real.
 nimonic,75,N06075,BS HR 203 / DIN 17750 / ISO 6208,BS HR 5 / HR 504 / DIN 17752,BS HR 5 / ISO 9723-25,BS HR 403 / DIN 17751,-
-nimonic,80A,N07080,BS HR 201 / AECMA PrEn 2191,ASTM B637 / BS 3076 / HR 1,ASTM B637 / BS 3076,BS HR 401,-
+# ASTM B637 ON THIS ROW IS CORRECT AND IS NOW SOURCED. The voestalpine BOHLER
+# product page for Alloy 80A / UNS N07080 / 2.4952 (Bohler L080A) lists
+# "ASTM B637 / ASME SB637" under Forged or rolled components, which settles the
+# scope question the B637 note at the top of this file raises: N07080 is inside
+# it. Queried and confirmed 2026-09-02.
+#
+# Worth recording rather than leaving implicit, because B637 is exactly the
+# shape of citation this file teaches people to distrust - a precipitation
+# hardening bar spec whose scope list has to be checked grade by grade, on a
+# family whose other rows turned out to be unchecked seed data. Without a named
+# source it invites removal on suspicion. It now has one.
+#
+# The same page adds three form-matched standards this row did not carry, each
+# taken from the form BOHLER maps it to and no other: DIN EN 10302 for sheets
+# and strips, and DIN EN 10269 under both Forged or rolled components and Wire.
+nimonic,80A,N07080,BS HR 201 / AECMA PrEn 2191 / DIN EN 10302,ASTM B637 / BS 3076 / HR 1 / DIN EN 10269,ASTM B637 / BS 3076 / DIN EN 10269,BS HR 401,-
 nimonic,81,-,mill,mill,mill,mill,-
 nimonic,86,-,mill,mill,mill,-,-
+# AMS 5829 ON THIS ROW IS CORRECT. DO NOT REMOVE IT. Confirmed by the business
+# and by the Alloy Wire International NIMONIC 90 technical datasheet (AWS 030
+# Rev.3), which lists it first under Specifications alongside BS HR 501/502/503,
+# BS 3075 NA 19, ISO 15156-3 (NACE MR 0175) and NCK 20TA.
+#
+# THIS NOTE EXISTS BECAUSE THE NUMBER WAS REMOVED ONCE, ON 2026-09-02, ON
+# EVIDENCE THAT LOOKED CONCLUSIVE AND WAS NOT. SAE's catalogue entry titles
+# AMS5829 "ALLOY WIRE, WELDING, CORROSION AND HEAT RESISTANT Nickel Base -
+# 19.5Cr - 18Co - 2.5Ti - 1.5Al", issued 1973-12-01 and flagged HISTORICAL.
+# Read alone that says welding consumable, withdrawn - the wrong-form error
+# this whole file exists to prevent. A mill that actually makes the product
+# says otherwise, and the mill wins.
+#
+# The lesson is the one the B637 and B425 note near the top of this file
+# already states, arriving from the opposite direction: A CATALOGUE TITLE IS
+# NOT A SCOPE. That note warns against reading "Rod, Bar, Wire and Forging
+# Stock" as excluding wire. This is the same mistake inverted - reading
+# "WELDING" as excluding a wrought wire product. Both times the title was a
+# worse guide than the mill's own specification list.
+#
+# "HISTORICAL" at SAE is also not the same claim as "not used". It means SAE
+# no longer maintains the document, not that material stops being certified to
+# it, and a wire mill still listing it in 2021 settles which of those is true
+# here.
+#
+# THE REST OF THE NIMONIC BLOCK IS STILL SEED DATA. Unlike the haynes and
+# hastelloy rows above, which carry dated comments recording a bulletin re-read,
+# these rows came in with commit 27e85454 and have never been checked against a
+# mill source. AMS 5660 / 5661 on the 901 row below is unverified on those
+# terms. Check the mill before changing any of them - that is the whole moral
+# of the paragraph above.
 nimonic,90,N07090,BS HR 202 / AECMA PrEN 2298,AMS 5829 / BS HR 2 / HR 501-503,AMS 5829 / BS HR 2,BS HR 402,-
 nimonic,105,-,BS HR 3,BS HR 3 / AECMA PrEn 2179-2181,-,-,-
 nimonic,115,-,-,BS HR 4 / AECMA PrEn 2196 / 2197,-,-,-
