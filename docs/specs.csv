@@ -202,7 +202,22 @@ monel,K-500,N05500,QQ-N-286,ASTM B865,ASTM B865,-,-
 # invented to fill a column that should have read "-", which is what it reads
 # now. Nimonic 90 keeps AMS 5829 and 901 keeps AMS 5660 / 5661; those are real.
 nimonic,75,N06075,BS HR 203 / DIN 17750 / ISO 6208,BS HR 5 / HR 504 / DIN 17752,BS HR 5 / ISO 9723-25,BS HR 403 / DIN 17751,-
-nimonic,80A,N07080,BS HR 201 / AECMA PrEn 2191,ASTM B637 / BS 3076 / HR 1,ASTM B637 / BS 3076,BS HR 401,-
+# ASTM B637 ON THIS ROW IS CORRECT AND IS NOW SOURCED. The voestalpine BOHLER
+# product page for Alloy 80A / UNS N07080 / 2.4952 (Bohler L080A) lists
+# "ASTM B637 / ASME SB637" under Forged or rolled components, which settles the
+# scope question the B637 note at the top of this file raises: N07080 is inside
+# it. Queried and confirmed 2026-09-02.
+#
+# Worth recording rather than leaving implicit, because B637 is exactly the
+# shape of citation this file teaches people to distrust - a precipitation
+# hardening bar spec whose scope list has to be checked grade by grade, on a
+# family whose other rows turned out to be unchecked seed data. Without a named
+# source it invites removal on suspicion. It now has one.
+#
+# The same page adds three form-matched standards this row did not carry, each
+# taken from the form BOHLER maps it to and no other: DIN EN 10302 for sheets
+# and strips, and DIN EN 10269 under both Forged or rolled components and Wire.
+nimonic,80A,N07080,BS HR 201 / AECMA PrEn 2191 / DIN EN 10302,ASTM B637 / BS 3076 / HR 1 / DIN EN 10269,ASTM B637 / BS 3076 / DIN EN 10269,BS HR 401,-
 nimonic,81,-,mill,mill,mill,mill,-
 nimonic,86,-,mill,mill,mill,-,-
 # AMS 5829 ON THIS ROW IS CORRECT. DO NOT REMOVE IT. Confirmed by the business

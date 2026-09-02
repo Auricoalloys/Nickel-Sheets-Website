@@ -333,6 +333,24 @@ nimonic,75,Electrical resistivity,1.09,µΩ·m,20 °C,
 nimonic,80A,Mass susceptibility,5.85 × 10⁻⁶,,at 1000 gauss,
 nimonic,80A,Volume susceptibility,4.78 × 10⁻⁶,,at 1000 gauss,
 nimonic,80A,Magnetic permeability,1.000601,,for 200-2000 oersted,
+# NIMONIC 80A thermal constants from the voestalpine BOHLER Alloy 80A / UNS
+# N07080 / 2.4952 (Bohler L080A) product page, Physical Properties table. The
+# three magnetic rows above are Special Metals'; these three are not published
+# on that bulletin, so the two sources fill different gaps rather than compete.
+#
+# NO FIGURE HERE IS A CONVERSION, which the unit column exists to guarantee.
+# BOHLER prints resistivity as 1.2 Ohm mm2/m and expansion as 12.7 x 10-6/K.
+# Ohm mm2/m and micro-ohm metre are the SAME unit written two ways, and a
+# per-kelvin interval equals a per-celsius one, so the NUMBER is unchanged in
+# both rows - only the notation matches this file's convention.
+#
+# Bohler also calls the alloy "practically non-magnetic" at mu-r < 1.01. That is
+# not recorded: Special Metals already publishes 1.000601, which satisfies it
+# and is far more precise. A looser restatement of a figure already held is
+# not a second data point.
+nimonic,80A,Thermal conductivity,11.2,W/m·°C,20 °C,
+nimonic,80A,Electrical resistivity,1.2,µΩ·m,20 °C,
+nimonic,80A,Coefficient of expansion,12.7,µm/m·°C,20-100 °C,
 # 81's sheet is the fullest in the family: three tables, all headed in °C and SI
 # units, so every figure below is the 20 °C row read straight off them with no
 # conversion. Expansion and dynamic modulus are published per product form, which

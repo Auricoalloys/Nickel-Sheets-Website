@@ -581,11 +581,11 @@
         "N07080"
       ],
       "wnr": "2.4952 / 2.4631",
-      "en_name": null,
+      "en_name": "NiCr20TiAl",
       "density_g_cm3": 8.19,
       "melting_c": "1320-1365",
-      "source": "Special Metals NIMONIC alloy 80A bulletin",
-      "checked": "2026-08"
+      "source": "Special Metals NIMONIC alloy 80A bulletin - EN designation NiCr20TiAl from the voestalpine BOHLER Alloy 80A / N07080 / 2.4952 product page which also confirms the UNS Werkstoff density and melting range",
+      "checked": "2026-09"
     },
     {
       "family": "nimonic",
