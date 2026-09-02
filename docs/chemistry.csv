@@ -1417,16 +1417,23 @@ haynes,25,Ni,9.00,11.00
 haynes,25,W,14.00,16.00
 haynes,25,Co,,bal
 haynes,25,Fe,,3.00
-haynes,188,Co,,bal,39 nominal
-haynes,188,Ni,,,22 nominal
-haynes,188,Cr,,,22 nominal
-haynes,188,W,,,14 nominal
-haynes,188,Fe,,3
+# 188 - AMS 5608 Specification Limits for UNS R30188, from ATI's ATI 188 alloy
+# datasheet, replacing the nominal figures the Haynes alloy page carried with a
+# real limiting-composition table. Cobalt is the remainder; Mn, P, S, B and Fe are
+# maxima; the rest are ranges - so this reads as specification limits, not nominal.
+# ATI's element order. P and S were absent from the nominal set and are added here.
+haynes,188,C,0.05,0.15
 haynes,188,Mn,,1.25
-haynes,188,Si,,,0.35 nominal
-haynes,188,C,,,0.10 nominal
-haynes,188,La,,,0.03 nominal
+haynes,188,Si,0.20,0.50
+haynes,188,P,,0.020
+haynes,188,S,,0.015
+haynes,188,Cr,20.00,24.00
+haynes,188,Ni,20.00,24.00
+haynes,188,W,13.00,16.00
+haynes,188,La,0.02,0.12
 haynes,188,B,,0.015
+haynes,188,Fe,,3.00
+haynes,188,Co,,bal
 haynes,214,Ni,,bal,75 nominal
 haynes,214,Cr,,,16 nominal
 haynes,214,Al,,,4.5 nominal
