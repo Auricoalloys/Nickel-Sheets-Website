@@ -38,4 +38,7 @@ export const EVENTS = {
   leadUnverified: "form_submit_unverified",
   leadFailed: "form_submit_error",
   contactClick: "contact_click",
+  // Fired when a visitor turns a weight-calculator result into an enquiry, so
+  // the calculator -> RFQ funnel is measurable rather than a hunch.
+  calculatorQuote: "calculator_quote_click",
 };

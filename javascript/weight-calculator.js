@@ -13,6 +13,20 @@
 // where its number came from is asking to be trusted rather than checked.
 
 import { MATERIALS, GROUP_ORDER, GROUPS } from "./weight-data.js";
+// The WhatsApp number and the analytics event names live in lead-config so the
+// calculator's two enquiry paths cannot drift from the rest of the site - the
+// number is single-sourced there and in the header markup, never typed here.
+import { FALLBACK_CONTACT, EVENTS } from "./lead-config.js";
+
+// gtag is absent on some pages and stripped by ad-blockers; tracking must never
+// break the calculator. Mirrors the guard in floating-form.js.
+function track(name, params = {}) {
+  try {
+    if (typeof window.gtag === "function") window.gtag("event", name, params);
+  } catch {
+    /* analytics is best-effort */
+  }
+}
 
 /* ------------------------------------------------------------------ *
  * Units
@@ -725,6 +739,7 @@ function calculate() {
   const fail = (msg) => {
     lastResult = null;
     $("wc-quote").hidden = true;
+    $("wc-whatsapp").hidden = true;
     results.className = "wc-results wc-results-empty";
     results.innerHTML = `<p class="wc-placeholder">${escapeHtml(msg)}</p>`;
   };
@@ -826,19 +841,46 @@ function calculate() {
     </p>`;
 
   $("wc-quote").hidden = false;
+  const wa = $("wc-whatsapp");
+  wa.href = whatsappHref();
+  wa.hidden = false;
 }
 
-// Hands the enquiry form a subject that says what was actually calculated. An
-// explicit ?enquiry= always beats the breadcrumb-derived seed, which is why
-// this route exists rather than relying on the page's own crumb - "Weight
-// Calculator" would tell the sales desk nothing.
-function quoteHref() {
-  if (!lastResult) return "/pages/contact/";
+// One line that says exactly what was calculated - the material, form, size,
+// quantity and theoretical weight. Both enquiry paths (the form and WhatsApp)
+// carry it, so the sales desk gets the same spec whichever the visitor uses.
+function quoteLine() {
+  if (!lastResult) return "";
   const r = lastResult;
-  const line =
+  return (
     `${r.materialName} — ${r.shapeLabel} — ${r.dims} — ` +
-    `${r.qty} pc${r.qty > 1 ? "s" : ""} — ${fmt(r.kgTotal)} kg theoretical`;
-  return `/pages/contact/?enquiry=${encodeURIComponent(line.slice(0, 280))}`;
+    `${r.qty} pc${r.qty > 1 ? "s" : ""} — ${fmt(r.kgTotal)} kg theoretical`
+  );
+}
+
+// The contact-page fallback: an explicit ?enquiry= always beats the
+// breadcrumb-derived seed, which is why this route exists rather than relying on
+// the page's own crumb - "Weight Calculator" would tell the sales desk nothing.
+function quoteHref() {
+  const line = quoteLine();
+  return line
+    ? `/pages/contact/?enquiry=${encodeURIComponent(line.slice(0, 280))}`
+    : "/pages/contact/";
+}
+
+// The WhatsApp path off a result. A lot of the buyers here quote over WhatsApp
+// rather than fill a form, so the calculated spec goes straight into a chat,
+// pre-written, to the site's one WhatsApp number. The page URL rides along so
+// the desk can see what was on screen.
+function whatsappHref() {
+  const line = quoteLine();
+  if (!line) return "#";
+  const body =
+    `Hello Aurico Alloys, I would like a quote for:\n${line}\n\n` +
+    `Page: ${window.location.href}`;
+  return `https://api.whatsapp.com/send?phone=${FALLBACK_CONTACT.whatsapp}&text=${encodeURIComponent(
+    body
+  )}`;
 }
 
 /* ------------------------------------------------------------------ *
@@ -937,7 +979,36 @@ function init() {
 
   $("wc-quote").addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = quoteHref();
+    track(EVENTS.calculatorQuote, {
+      page_path: window.location.pathname,
+      material: lastResult?.materialName,
+      shape: lastResult?.shapeLabel,
+      method: "form",
+    });
+    // Open the site-wide enquiry form in place, pre-filled - no page reload, the
+    // visitor stays with the number they just calculated. Fall back to the
+    // contact page carrying the same ?enquiry= seed if the form module has not
+    // loaded for any reason.
+    const line = quoteLine();
+    if (line && typeof window.floatingForm?.openWith === "function") {
+      window.floatingForm.openWith(line);
+    } else {
+      window.location.href = quoteHref();
+    }
+  });
+
+  // The WhatsApp button is a real <a> that opens the chat itself; this only
+  // records that the result turned into an enquiry, under the same event as the
+  // form path so the funnel reads as one number split by method. (The generic
+  // contact_click also fires, from floating-form's rail tracking - that is fine,
+  // a different event for a different question.)
+  $("wc-whatsapp").addEventListener("click", () => {
+    track(EVENTS.calculatorQuote, {
+      page_path: window.location.pathname,
+      material: lastResult?.materialName,
+      shape: lastResult?.shapeLabel,
+      method: "whatsapp",
+    });
   });
 
   calculate();

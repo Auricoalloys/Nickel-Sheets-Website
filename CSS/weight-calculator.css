@@ -341,6 +341,41 @@
   background: var(--secondary-cta-dark);
 }
 
+/* The two enquiry paths off a result, stacked. The margin that .wc-quote
+   carried on its own moves here so the gap between the buttons stays even. */
+.wc-cta {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wc-cta .wc-quote {
+  margin-top: 0;
+}
+
+/* WhatsApp is the lighter-commitment path - a lot of the buyers here quote over
+   WhatsApp rather than fill a form. Dark WhatsApp green so white text clears AA;
+   the brand #25D366 does not. */
+.wc-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #075e54;
+  text-decoration: none;
+}
+
+.wc-whatsapp:hover,
+.wc-whatsapp:focus {
+  background: #053f39;
+}
+
+.wc-whatsapp .icon {
+  width: 1.1em;
+  height: 1.1em;
+}
+
 /* The house slot under the results card. Kept as its own block so the layout
    already has a home for a promotion without a redesign. */
 .wc-aside {
