@@ -299,7 +299,21 @@ nimonic,80A,N07080,2.4952 / 2.4631,NiCr20TiAl,8.19,1320-1365,Special Metals NIMO
 # calculator quotes from.
 nimonic,81,-,,,8.06,1305-1375,Special Metals NIMONIC alloy 81 bulletin,2026-08
 nimonic,86,-,,,8.54,,Special Metals NIMONIC alloy 86 bulletin,2026-08
-nimonic,90,N07090,2.4632 / 2.4969,,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin - second Werkstoff number 2.4969 and the UNS and density corroborated by Alloy Wire International NIMONIC 90 datasheet AWS 030 Rev.3,2026-09
+# NIMONIC 90 IS NOW CONFIRMED BY THREE SOURCES. Special Metals for the
+# constants; Alloy Wire International AWS 030 Rev.3 and voestalpine BOHLER L090
+# (10.2025) independently for the identity. Both of the latter print BOTH
+# Werkstoff numbers 2.4632 and 2.4969 - the second was missing here until
+# 2026-09-02 and its absence would have made any page citing it lint as a
+# contradiction.
+#
+# en_name RECORDS NiCr20Co18Ti ONLY. BOHLER groups NiCr20Co18Ti and NCK20TA
+# together under a heading of EN, and Alloy Wire lists NCK 20TA too, so the
+# designation is real - but this column is the EN SYMBOLIC name, the
+# NiCr22Mo9Nb pattern, and NCK20TA is an AFNOR-style French designation in a
+# different naming system. Printing it in a row labelled EN designation would
+# tell a buyer it is something it is not. There is no column for it yet, which
+# is why it is written down here instead of being quietly dropped.
+nimonic,90,N07090,2.4632 / 2.4969,NiCr20Co18Ti,8.18,1310-1370,Special Metals NIMONIC alloy 90 bulletin for the constants - identity Werkstoff pair and EN designation corroborated by Alloy Wire International AWS 030 Rev.3 and voestalpine BOHLER L090 10.2025,2026-09
 # The 105 sheet does print a melting range, but as two separately labelled lines
 # under the heading - "Liquidus temperature 1345°C" and "Solidus temperature
 # 1290°C" - rather than as one hyphenated figure like the other sheets, which is

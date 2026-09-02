@@ -221,9 +221,18 @@ nimonic,80A,N07080,BS HR 201 / AECMA PrEn 2191 / DIN EN 10302,ASTM B637 / BS 307
 nimonic,81,-,mill,mill,mill,mill,-
 nimonic,86,-,mill,mill,mill,-,-
 # AMS 5829 ON THIS ROW IS CORRECT. DO NOT REMOVE IT. Confirmed by the business
-# and by the Alloy Wire International NIMONIC 90 technical datasheet (AWS 030
-# Rev.3), which lists it first under Specifications alongside BS HR 501/502/503,
-# BS 3075 NA 19, ISO 15156-3 (NACE MR 0175) and NCK 20TA.
+# and by TWO INDEPENDENT MILLS: the Alloy Wire International NIMONIC 90
+# technical datasheet (AWS 030 Rev.3), which lists it first under Specifications
+# alongside BS HR 501/502/503, BS 3075 NA 19, ISO 15156-3 (NACE MR 0175) and
+# NCK 20TA; and voestalpine BOHLER L090 (L090 EN_GB - 10.2025), whose Standards
+# panel holds exactly two entries, ASTM B637 and AMS 5829.
+#
+# ASTM B637 ADDED TO BAR 2026-09-02 from that BOHLER sheet. Its product
+# variants are Semi-Finished Products / Billet and Plates, and B637 covers
+# "Rod, Bar, Wire and Forging Stock" - forging stock is the billet - so it
+# belongs in this column. It is NOT added to wire: no mill maps it to wire for
+# this grade, and Alloy Wire, which actually makes the wire, does not list it.
+# Nor to flat, because B637 does not cover plate whatever BOHLER rolls.
 #
 # THIS NOTE EXISTS BECAUSE THE NUMBER WAS REMOVED ONCE, ON 2026-09-02, ON
 # EVIDENCE THAT LOOKED CONCLUSIVE AND WAS NOT. SAE's catalogue entry titles
@@ -251,7 +260,7 @@ nimonic,86,-,mill,mill,mill,-,-
 # mill source. AMS 5660 / 5661 on the 901 row below is unverified on those
 # terms. Check the mill before changing any of them - that is the whole moral
 # of the paragraph above.
-nimonic,90,N07090,BS HR 202 / AECMA PrEN 2298,AMS 5829 / BS HR 2 / HR 501-503,AMS 5829 / BS HR 2,BS HR 402,-
+nimonic,90,N07090,BS HR 202 / AECMA PrEN 2298,ASTM B637 / AMS 5829 / BS HR 2 / HR 501-503,AMS 5829 / BS HR 2,BS HR 402,-
 nimonic,105,-,BS HR 3,BS HR 3 / AECMA PrEn 2179-2181,-,-,-
 nimonic,115,-,-,BS HR 4 / AECMA PrEn 2196 / 2197,-,-,-
 nimonic,263,N07263,AMS 5872 / BS HR 206 / DIN 17750,BS HR 10 / DIN 17752,DIN 17753,BS HR 404 / DIN 17751,-

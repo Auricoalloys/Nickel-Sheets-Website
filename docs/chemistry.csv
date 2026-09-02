@@ -730,6 +730,20 @@ nimonic,80A,Ni,,bal
 # looks like a range - it was found only by reading the printed table cell
 # against the file. Copper, boron, sulfur, lead and zirconium were missing
 # outright. Reordered to the bulletin's order.
+# NIMONIC 90 - THESE ARE ACCEPTANCE LIMITS AND MUST STAY THAT WAY. Alloy Wire
+# International AWS 030 Rev.3 prints the same min/max table independently, so
+# the limits below are confirmed by a second source.
+#
+# voestalpine BOHLER L090 (10.2025) publishes a composition for the same grade
+# and it is NOMINAL - bare figures C 0.07, Cr 19.5, Co 16.3, Ti 2.5, Al 1.4
+# with only B and Fe carrying a <=. Do not paste it over these rows. Every one
+# of its figures falls inside the limits here, which makes it corroboration,
+# not a competing dataset, and a nominal figure is not a limit.
+#
+# That swap has been made on this site before, in the opposite direction:
+# Alloy 28 spent a week publishing four nominal figures where its pages had
+# carried acceptance ranges, because the only source read at the time was a
+# nominal table. Better provenance is not automatically better data.
 nimonic,90,C,,0.13
 nimonic,90,Si,,1.0
 nimonic,90,Cu,,0.2
