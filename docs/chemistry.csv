@@ -1093,28 +1093,43 @@ special-stainless-steel,Alloy 31,N,0.15,0.25
 special-stainless-steel,Alloy 31,C,,0.015
 
 # Alloy 28 (Sanicro 28) is not a 6-Mo grade and sits here because it is the same
-# family key, not the same class. Alleima datasheet, table "Chemical composition
-# (nominal) %", rows in the order it prints them.
+# family key, not the same class.
 #
-# A MIXED TABLE, and the two halves are different claims. The five figures
-# Alleima writes with a <= are acceptance limits and go in max. The four bare
-# ones - Cr 27, Ni 31, Mo 3.5, Cu 1.0 - are nominal, so they carry no min and no
-# max and say "nominal" in the note; a nominal figure is not a limit. That shape
-# is what makes build-grades.mjs caption the table as "specification limits
-# except where a figure is marked nominal" rather than calling all of it limits.
+# NOW ACCEPTANCE LIMITS THROUGHOUT, from voestalpine BOHLER A959 (Alloy 28, UNS
+# N08028, W. Nr. 1.4563; A959 EN_GB - 11.2025), whose composition table is
+# headed "Refers to DIN EN 10088-3 1.4563". Rows in the order that sheet prints
+# them, which puts Mo before Ni.
 #
-# NO IRON ROW. Iron is the balance of this alloy but Alleima does not print it,
+# THIS REPLACES ALLEIMA'S NOMINAL TABLE and closes a debt this file created.
+# Alleima publishes "Chemical composition (nominal) %", in which Cr 27, Ni 31,
+# Mo 3.5 and Cu 1.0 are bare figures - nominal, not limits - so they were
+# recorded with no min and no max. That was correct bookkeeping and a bad
+# outcome: when the form pages were wired up to this file, four acceptance
+# RANGES on the hand-written tables were replaced by four single numbers, which
+# is less use to a buyer even though it is better sourced.
+#
+# EN 10088-3 is the right standard to take them from, not a second-best. It is
+# what Alleima itself names as the product standard for Sanicro 28 bar, and it
+# is what BOHLER certifies A959 to, so the limits bind the material this site
+# sells whichever of the two mills supplies it.
+#
+# Two cells moved as a result, and both are the standard being stricter or
+# looser than one producer's habit: P goes 0.020 -> 0.030 and Cu 1.0 nominal ->
+# 0.70-1.50. C, S and N are unchanged, which is the corroboration that the two
+# sheets describe the same grade.
+#
+# NO IRON ROW. Iron is the balance of this alloy but neither sheet prints it,
 # and this file does not add what the mill left out - same as VDM Alloy 926.
 special-stainless-steel,Alloy 28,C,,0.020
-special-stainless-steel,Alloy 28,Si,,0.7
-special-stainless-steel,Alloy 28,Mn,,2.0
-special-stainless-steel,Alloy 28,P,,0.020
+special-stainless-steel,Alloy 28,Si,,0.70
+special-stainless-steel,Alloy 28,Mn,,2.00
+special-stainless-steel,Alloy 28,P,,0.030
 special-stainless-steel,Alloy 28,S,,0.010
-special-stainless-steel,Alloy 28,Cr,,,27 nominal
-special-stainless-steel,Alloy 28,Ni,,,31 nominal
-special-stainless-steel,Alloy 28,Mo,,,3.5 nominal
-special-stainless-steel,Alloy 28,Cu,,,1.0 nominal
-special-stainless-steel,Alloy 28,N,,0.1
+special-stainless-steel,Alloy 28,Cr,26.0,28.0
+special-stainless-steel,Alloy 28,Mo,3.0,4.0
+special-stainless-steel,Alloy 28,Ni,30.0,32.0
+special-stainless-steel,Alloy 28,Cu,0.70,1.50
+special-stainless-steel,Alloy 28,N,,0.10
 
 # Sanicro 35, Alleima datasheet, table "Chemical composition (nominal) %", rows
 # in the order it prints them. Mixed like the Sanicro 28 table above, but the
