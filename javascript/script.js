@@ -29,14 +29,40 @@ document.addEventListener('DOMContentLoaded', function () {
   // not indexed". Restore this only alongside real translated content and
   // hreflang tags; a switcher with nothing behind it only mints duplicate URLs.
 
-  // Product marquee - only present on the homepage
-  const slider = document.querySelector('.product-track');
-  if (slider) {
-    slider.addEventListener('mouseenter', () => {
-      slider.style.animationPlayState = 'paused';
+  // Product marquee - only present on the homepage. The track holds one set of
+  // cards. For a gap-free loop a second copy has to scroll into view before the
+  // first has fully left; without it the strip scrolled entirely off and snapped
+  // back (the animation travelled -100%, the whole track width). Rather than
+  // duplicate the twelve cards in the HTML - which would put every product title
+  // in the crawlable markup twice - clone them here and mark the clones
+  // aria-hidden and untabbable, so assistive tech and search engines still see
+  // one set. The .is-cloned class then switches the animation to travel exactly
+  // one copy's width (-50%). Skipped under reduced motion, where the CSS stops
+  // the animation and a second copy would only add hidden DOM for nothing.
+  const track = document.querySelector('.product-track');
+  if (track) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduceMotion) {
+      Array.from(track.children).forEach((node) => {
+        const clone = node.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        // The children are <a> card wrappers; take the clone and any nested
+        // links out of the tab order so keyboard users do not traverse a
+        // duplicate set (aria-hidden on a focusable element is invalid on its
+        // own).
+        clone.setAttribute('tabindex', '-1');
+        clone.querySelectorAll('a').forEach((a) => a.setAttribute('tabindex', '-1'));
+        track.appendChild(clone);
+      });
+      track.classList.add('is-cloned');
+    }
+
+    track.addEventListener('mouseenter', () => {
+      track.style.animationPlayState = 'paused';
     });
-    slider.addEventListener('mouseleave', () => {
-      slider.style.animationPlayState = 'running';
+    track.addEventListener('mouseleave', () => {
+      track.style.animationPlayState = 'running';
     });
   }
 

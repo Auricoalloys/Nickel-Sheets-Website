@@ -432,6 +432,29 @@ img {
     }
 }
 
+/* Once script.js has cloned the cards, one copy is half the track, so travelling
+   -50% lands the clone exactly where the original began - no snap. Without JS the
+   single set still scrolls under scrollLoop above, so this is additive. */
+.product-track.is-cloned {
+    animation-name: scrollLoopSeamless;
+}
+
+@keyframes scrollLoopSeamless {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-track {
+        animation: none;
+    }
+}
+
 /* Carousal Slider */
 .apple-slider .slide-content {
     height: 450px;

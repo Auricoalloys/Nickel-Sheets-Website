@@ -163,7 +163,8 @@ title: Home
             </h2>
             <div class="product-slider">
                 <div class="product-track">
-                    <!-- Repeat product cards twice for seamless loop -->
+                    <!-- One set of product forms. script.js clones it at runtime for a gap-free
+                         loop; do not hand-duplicate, or every title lands in the markup twice. -->
                     <a href="/pages/products/">
                         <div class="product-card-1 shadow-sm p-3">
                             <img src="/docs/images/h-type-nickel-busbar-18650.webp" class="img-fluid mb-3" alt="Busbar" loading="lazy" decoding="async" width="1000" height="1000">
