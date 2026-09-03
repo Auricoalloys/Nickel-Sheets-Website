@@ -73,6 +73,7 @@ const BOILERPLATE = new Set([
   'e879e31f', // cloned the marquee cards at runtime; index.html gained only a comment
   '0bc3438b', // added the weight-calculator CTA to 305 form pages; a sitewide element, no product copy moved
   '53a88b80', // repaired rel="stylesheet" and a stray "ggt" on one page; nothing it says about Grade 2 moved
+  'f1a46388', // Available Forms became a grid of link cards; presentation only, no word a reader sees moved
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
