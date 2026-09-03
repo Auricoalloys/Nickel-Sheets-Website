@@ -72,6 +72,7 @@ const BOILERPLATE = new Set([
   '5d4c5dd2', // took dead table classes and one page's own table styling off ten pages; presentation only
   'e879e31f', // cloned the marquee cards at runtime; index.html gained only a comment
   '0bc3438b', // added the weight-calculator CTA to 305 form pages; a sitewide element, no product copy moved
+  '53a88b80', // repaired rel="stylesheet" and a stray "ggt" on one page; nothing it says about Grade 2 moved
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
@@ -193,5 +194,12 @@ if (CHECK) {
   console.log('\nsitemap.xml is STALE - run: node docs/build-sitemap.mjs');
   process.exit(1);
 }
-fs.writeFileSync(OUT, xml);
+// Restore the line endings the file already had, the same way build-specs,
+// build-prices, build-cuts, build-grades and build-hub-grades do. `--check`
+// above compares in LF space but this wrote bare LF, so on a checkout where
+// `core.autocrlf` gives CRLF every run rewrote all 6,625 line endings and left
+// sitemap.xml permanently "modified" in git status while `git diff` showed
+// nothing - drift that looks real and is not.
+const crlf = prev.includes('\r\n');
+fs.writeFileSync(OUT, crlf ? xml.replace(/\n/g, '\r\n') : xml);
 console.log(`\nwrote sitemap.xml (${(xml.length / 1024).toFixed(0)} KB)`);
