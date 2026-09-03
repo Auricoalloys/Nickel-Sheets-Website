@@ -31,8 +31,10 @@
   /* Available Forms - the list of product forms a grade or family is stocked
      in. It used to run one plain link per line down the left, leaving most of
      the row empty; it is now a responsive grid of link cards - bold, with a
-     brand accent bar and a hover lift - so the forms read as the navigation
-     they are. The .forms-columns class is carried on the <ul> of every page
+     navy accent bar, an orange arrow and a hover lift, the label and arrow
+     going orange together on hover the way the header's Services menu does -
+     so the forms read as the navigation they are. The .forms-columns class is
+     carried on the <ul> of every page
      holding the list, so the whole treatment lives here and no per-page markup
      (no per-link <strong>) is needed. A grid of auto-filled minmax() tracks
      collapses to one column on a phone on its own, so this needs no media
@@ -63,7 +65,7 @@
     text-decoration: none;
     background: #fff;
     border: 1px solid var(--border-color);
-    border-left: 3px solid var(--secondary-color);
+    border-left: 3px solid var(--primary-color);
     border-radius: 6px;
     transition: border-color 0.15s ease, background-color 0.15s ease,
       box-shadow 0.15s ease, transform 0.15s ease;
@@ -81,10 +83,9 @@
 
   .forms-columns a:hover,
   .forms-columns a:focus-visible {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     background: var(--table-row-hover-bg);
     border-color: var(--primary-color);
-    border-left-color: var(--secondary-color);
     box-shadow: 0 2px 6px rgba(21, 67, 96, 0.12);
     transform: translateY(-1px);
   }
