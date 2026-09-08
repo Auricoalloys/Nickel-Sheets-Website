@@ -25,11 +25,20 @@
 # What is marked here is also what the website claims. The size fractions on
 # /pages/products/powder/ and the family and grade powder pages were reconciled
 # against this file - if you change a row, those pages need changing with it.
+# Changing a row here does not change those pages: re-run build-cuts.mjs, or the
+# site goes on publishing the previous answer.
 #
 # Excel rewrites this header on save - it appends trailing commas to every line
 # and splits the ones with commas in their own text. Harmless to the build, which
 # skips # lines, but restore it before committing.
-slug,grade,5-25,10-30,15-45,15-53,20-63,45-105,53-105,45-150,53-150
+#
+# Worse, Excel reads the cut headings as DATES. On 2026-09-08 it saved back
+# "May-25" for 5-25 and "Oct-30" for 10-30. The sheet build rejects those outright;
+# build-cuts.mjs silently drops them, which would have stripped both cuts from 13
+# pages and put nothing in their place. Format the heading row as Text before
+# saving, and read this row back afterwards - any heading that has turned into a
+# month name is the same bug.
+slug,grade,0-15,10-30,15-45,15-53,20-63,45-105,53-105,45-150,53-150
 ss316l,"Stainless Steel 316L",Y,,Y,Y,,Y,Y,Y,Y
 ss304l,"Stainless Steel 304L",Y,,Y,Y,,Y,Y,Y,Y
 17-4ph,"17-4 PH Stainless Steel",Y,,Y,Y,,Y,Y,Y,Y
@@ -41,9 +50,9 @@ inconel-625,"Inconel 625",Y,,Y,Y,,Y,Y,Y,Y
 inconel-718,"Inconel 718",Y,,Y,Y,,Y,Y,Y,Y
 hastelloy-x,"Nickel Alloy HX",Y,,Y,Y,,Y,Y,Y,Y
 hastelloy-c22,"Nickel Alloy C-22",Y,,Y,Y,,Y,Y,Y,Y
-ti6al4v,"Ti-6Al-4V",Y,,Y,Y,,Y,Y,Y,Y
+ti6al4v,"Ti-6Al-4V",Y,Y,Y,Y,,Y,Y,Y,Y
 cp-titanium-grade-2,"Commercially Pure Titanium Grade 2",Y,,Y,Y,,Y,Y,Y,Y
 cocrmo,"Cobalt Chrome CoCrMo",,Y,Y,Y,,Y,Y,Y,Y
-alsi10mg,"AlSi10Mg",,,Y,Y,Y,Y,Y,Y,Y
+alsi10mg,"AlSi10Mg",,Y,Y,Y,Y,Y,Y,Y,Y
 al6061,"Aluminium 6061",,,Y,Y,Y,Y,Y,Y,Y
 al7075,"Aluminium 7075",,,Y,Y,Y,Y,Y,Y,Y

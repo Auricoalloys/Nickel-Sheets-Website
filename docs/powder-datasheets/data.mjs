@@ -23,7 +23,7 @@ export const COMPANY = {
 
 // Revision stamps every sheet. Bump REV when the specification content changes;
 // the date is what a reader checks the sheet's age against.
-export const REVISION = { rev: '1.1', date: '2026-08-21' };
+export const REVISION = { rev: '1.2', date: '2026-09-08' };
 
 // A particle size cut is a classification result, so the distribution it yields
 // is close to grade-independent — a 15-53 um cut of In625 and of SS316L land
@@ -39,18 +39,30 @@ export const REVISION = { rev: '1.1', date: '2026-08-21' };
 // exists (SS316L 15-53, CP-Ti 45-105, Ti64 20-53, SS316L 50-150); each falls
 // inside the band quoted.
 export const CUT_SPECS = {
-  '5–25': {
-    d10: '6–9', d50: '12–16', d90: '22–26', flow: 'Carney funnel†',
+  // Named 5–25 until 2026-09-08, when the business confirmed the cut actually
+  // supplied is 0–15: a top cut, the way the fine MIM and binder-jetting grades
+  // are specified, not a band. It is not a running size and no distribution has
+  // been classified for it, so the D10/D50/D90 the row used to carry did not come
+  // with it — they described a 5–25 band, and asserting a D90 of 22–26 µm on a cut
+  // that tops out at 15 µm would contradict the cut's own name. Empty here means
+  // the sheet prints "classified to order", which is what we can actually stand
+  // behind; footnote 1 has always said other cuts are classified to order.
+  '0–15': {
+    d10: null, d50: null, d90: null, flow: 'Carney funnel†',
     processes: 'Metal Injection Moulding (MIM), Binder Jetting',
   },
   // Not a general-purpose cut. Some L-PBF machine manuals call for 10–30 µm to
-  // get their best result on particular grades — dental CoCrMo is one — which is
-  // why this is marked on a single grade rather than offered across the file.
+  // get their best result on particular grades — dental CoCrMo is one. It was
+  // marked on that grade alone until 2026-09-08, when Ti-6Al-4V and AlSi10Mg
+  // were added to it.
   //
-  // The distribution below is interpolated between 5–25 and 15–45, not measured:
-  // it is the one row here with no lot data behind it. Replace it the first time
-  // a 10–30 run is classified. Footnote 2 already tells the reader these are
-  // typical and that the lot's real distribution is on its CoA.
+  // The distribution below is interpolated between the old 5–25 row and 15–45,
+  // not measured: it is the one row here with no lot data behind it, and it now
+  // prints on three grades rather than one. Its lower endpoint no longer exists
+  // as published data — 5–25 became 0–15 with no distribution — so this row can
+  // no longer be re-derived, only replaced. Replace it the first time a 10–30 run
+  // is classified. Footnote 2 already tells the reader these are typical and that
+  // the lot's real distribution is on its CoA.
   '10–30': {
     d10: '11–14', d50: '17–22', d90: '27–32', flow: 'Carney funnel†',
     processes: 'Laser Powder Bed Fusion — fine-layer dental and fine-feature work',
@@ -93,13 +105,22 @@ export const CUT_SPECS = {
 // to exist costs more than omitting one that does, and the footnote already says
 // other cuts can be classified to order. The other three are defined in
 // CUT_SPECS above and only need naming in a grade's `cuts` to appear.
-export const DEFAULT_CUTS = ['5–25', '15–53', '45–105', '45–150', '53–150'];
+export const DEFAULT_CUTS = ['0–15', '15–53', '45–105', '45–150', '53–150'];
 
 export const CUT_FOOTNOTES = [
   'Cuts listed are those normally supplied in this grade. Availability varies by grade and by mill run — confirm the cut required at enquiry, and other cuts can be classified to order.',
   'Particle size distribution determined by laser diffraction per ASTM B822. Values are typical for the stated cut and are indicative only — the measured distribution for the lot supplied is stated on its Certificate of Analysis.',
+  // A cut can be genuinely available without a distribution being published for
+  // it; 0–15 is one, classified on enquiry rather than run as a standard size.
+  // Saying so is the honest alternative to carrying figures over from the band
+  // the cut used to be named after.
+  'A cut shown as "classified to order" is supplied against the top size named in the cut, and no standard particle size distribution is published for it. The distribution measured for the lot supplied is stated on its Certificate of Analysis.',
   '† Cuts finer than approximately 15 µm do not reliably flow through the 2.5 mm orifice of a Hall funnel (ASTM B213); a Carney funnel (ASTM B964) is used instead and the two results are not comparable.',
-  'Apparent density per ASTM B212, tap density per ASTM B527. Both fall with decreasing particle size, so the finer cuts of a grade sit toward the lower end of the quoted band.',
+  // B212 is the Hall-funnel method and uses the same 2.5 mm orifice footnote 3
+  // says fine powder will not pass, so citing it alone put an unrunnable method
+  // on the two Carney cuts. B417 is the Carney equivalent; VDM's powder sheets
+  // print both side by side for exactly this reason.
+  'Apparent density per ASTM B212, or ASTM B417 for the Carney-funnel cuts marked †; tap density per ASTM B527. All fall with decreasing particle size, so the finer cuts of a grade sit toward the lower end of the quoted band.',
 ];
 
 // Apparent and tap density scale with the alloy's solid density, so they are

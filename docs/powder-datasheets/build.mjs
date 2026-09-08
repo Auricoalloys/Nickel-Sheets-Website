@@ -229,10 +229,15 @@ function cutsTable(g) {
 <tbody>${cutsFor(g).map((key) => {
     const c = CUT_SPECS[key];
     const nums = key.match(/\d+/g).join('-');
+    // A cut with no published distribution says so across the three PSD columns
+    // rather than printing blanks, which would read as data we forgot to fill in.
+    const psd = c.d10 == null
+      ? `<td class="num" colspan="3">classified to order</td>`
+      : `<td class="num">${esc(c.d10)}</td><td class="num">${esc(c.d50)}</td><td class="num">${esc(c.d90)}</td>`;
     return `<tr>
   <td><b>${esc(key)} µm</b></td>
   <td>AAL-${esc(code)}-${nums}</td>
-  <td class="num">${esc(c.d10)}</td><td class="num">${esc(c.d50)}</td><td class="num">${esc(c.d90)}</td>
+  ${psd}
   <td class="num">${esc(c.flow)}</td>
   <td>${esc(c.processes)}</td>
 </tr>`;

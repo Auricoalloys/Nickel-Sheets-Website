@@ -1144,6 +1144,40 @@ sharing one data sheet.
 own cell with a per-process gloss rather than a flat list, so it is hand-maintained — but it makes
 the same claims. Change a row in `cuts.csv` and check that page too.
 
+That instruction went unfollowed until 2026-09-08, and "check that page too" turned out to be the
+whole job: **all ten of its `Size fractions` rows still recited the `DEFAULT_CUTS` five**, identical
+for every grade, so the page told a CoCrMo buyer it was sold in 5–25 — the very error the generator
+was written to remove from `/cobalt-alloys/cocrmo/powder/` — and omitted 20–63 from AlSi10Mg. A page
+excluded from a generator does not stay correct by being mentioned in a comment. When `cuts.csv`
+changes, **regenerate the rows on that page from the CSV too** rather than reading them.
+
+#### The fine cut is 0–15, and it publishes no distribution
+
+Renamed from `5–25` on 2026-09-08: the business confirmed the cut actually supplied is **0–15**, a
+top cut of 15 µm rather than a band, which is how the fine MIM and binder-jetting grades are
+specified. It is **not a running size**, and no distribution has been classified for it.
+
+So the D10/D50/D90 the row used to carry did **not** come with the rename. They described a 5–25
+band, and a D90 of 22–26 µm on a cut that tops out at 15 µm contradicts the cut's own name. `0–15`
+carries `d10/d50/d90: null`, `build.mjs` renders the three PSD columns as one `colspan` cell reading
+**"classified to order"**, and a footnote says what that means. Renaming a cut and keeping the old
+band's figures would have published a self-contradicting specification — **a cut can be genuinely
+available without a distribution being published for it, and saying so is the honest ending.**
+
+One casualty worth knowing about: `10–30`'s figures were interpolated between the old `5–25` row and
+`15–45`, so its lower endpoint no longer exists as published data. That row can now only be
+*replaced* — by a classified 10–30 run — not re-derived. It also spread from CoCrMo alone to
+Ti-6Al-4V and AlSi10Mg on the same day, so the one row with no lot data behind it now prints on
+three grades.
+
+**Excel reads the cut headings as dates, and this is the dangerous one.** Opening `cuts.csv` in
+Excel and saving turned `5-25` into **`May-25`** and `10-30` into **`Oct-30`**. The two generators
+then disagree, which is what makes it hard to spot: `build.mjs` stops and names the unknown column,
+while **`build-cuts.mjs` silently drops it** — it orders by `Object.keys(CUT_SPECS)` and never
+validates the header — so running it would have stripped both cuts from 13 pages and put nothing in
+their place. Format the heading row as Text before saving, and read the header back afterwards. The
+header comment in `cuts.csv` records this; the guard in `build-cuts.mjs` is the real fix.
+
 ### The weight calculator publishes densities, so it inherits the sourcing rules
 
 `/tools/weight-calculator/` is a free tool at `weight-calculator.html`, with `CSS/weight-calculator.css`
