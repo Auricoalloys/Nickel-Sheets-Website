@@ -78,15 +78,32 @@ function loadCuts() {
     }
   }
 
+  const known = new Set(GRADES.map((g) => g.slug));
   const out = {};
+  const unknown = [];
   for (const line of lines.slice(1)) {
     const cells = splitCsv(line);
     const slug = cells[0].trim();
     if (!slug) continue;
+    if (!known.has(slug)) unknown.push(slug);
     const marks = cells.slice(2);
     const picked = cols.filter((c, i) => /^(y|yes|x|✓|1)$/i.test((marks[i] || '').trim()));
     if (picked.length) out[slug] = picked;
   }
+
+  // The slug half of the column check above, and the same failure shape: this
+  // loop keys rows by slug and never looks the other way, so a typo'd slug was
+  // not an error but a silent stop - the row simply ceased to apply, the grade
+  // fell back to DEFAULT_CUTS, and cuts.csv still looked filled in. Its header
+  // used to warn about that in capitals and ask the maintainer to confirm by
+  // hand with --matrix; checking it is the machine's job, so it is done here.
+  if (unknown.length) {
+    console.error(`  cuts.csv: slug "${unknown.join('", "')}" matches no grade.`);
+    console.error(`  Known: ${GRADES.map((g) => g.slug).join(', ')}`);
+    console.error(`  Fix the slug column, or add the grade to GRADES in data.mjs.`);
+    process.exit(1);
+  }
+
   return out;
 }
 

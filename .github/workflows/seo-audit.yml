@@ -44,6 +44,10 @@ on:
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
+      - "docs/powder-datasheets/cuts.csv"
+      - "docs/powder-datasheets/data.mjs"
+      - "docs/powder-datasheets/build.mjs"
+      - "docs/build-cuts.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
   push:
@@ -69,6 +73,10 @@ on:
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
+      - "docs/powder-datasheets/cuts.csv"
+      - "docs/powder-datasheets/data.mjs"
+      - "docs/powder-datasheets/build.mjs"
+      - "docs/build-cuts.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
   workflow_dispatch:
@@ -159,6 +167,35 @@ jobs:
       # knows by that id, which would land a buyer on the wrong material.
       - name: Calculator CTAs match the material list
         run: node docs/build-calc-links.mjs --check
+
+      # Which particle size cuts a grade is sold in is not uniform - that is the
+      # whole reason cuts.csv exists - and the cut lists on the fourteen family
+      # and grade powder pages are generated from it. This fails the build when
+      # cuts.csv was edited without re-running the generator, so a page can no
+      # longer go on offering a cut the stock record has dropped.
+      #
+      # It also fails on a cut column heading that is not a key of CUT_SPECS, and
+      # on a slug named in PAGES with no row in the CSV. Both were silent, and
+      # neither was a no-op: the marks under an unknown column were filtered away
+      # and the affected lists rewritten without them, and a slug with no row
+      # fell through to DEFAULT_CUTS, which is the flyer's placeholder list. When
+      # the 5-25 column was renamed to 0-15 on 2026-09-08 this script reported
+      # ordinary-looking drift in twelve pages and would have deleted "5-25 µm"
+      # from every list on them.
+      - name: Powder cut lists match cuts.csv
+        run: node docs/build-cuts.mjs --check
+
+      # The other consumer of cuts.csv, checked for the same reason and against
+      # the same file. A data sheet states specification limits for a grade, so
+      # it must say what the stock record says; these were hand-maintained PDFs
+      # until they drifted, which is how the CP-Ti oxygen limit came to read
+      # 0.015 % on one sheet and 0.15 % on another for the same material.
+      #
+      # This is also the guard on the slug axis: it owns GRADES, so it is what
+      # catches a cuts.csv slug matching no grade at all - a row that used to
+      # stop applying in silence while the file still looked filled in.
+      - name: Powder data sheets match data.mjs
+        run: node docs/powder-datasheets/build.mjs --check
 
       # Every table on the site uses one system. It used to use three, and which
       # one a <th> obeyed came down to the order of two <link> tags: `.table th`

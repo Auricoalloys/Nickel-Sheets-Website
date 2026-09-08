@@ -1,9 +1,12 @@
 # Which particle size cuts each grade is actually supplied in.
 #
 # Put Y in a cut column if that grade is offered in it. Leave it blank if not.
-# Open in Excel, fill it in, save as CSV, then regenerate:
+# Open in Excel, fill it in, save as CSV, then regenerate BOTH consumers - this
+# file feeds the data sheets and the website, and running only the first leaves
+# the pages quietly reciting the old list:
 #
 #     node docs/powder-datasheets/build.mjs
+#     node docs/build-cuts.mjs
 #
 # To see what is still outstanding:
 #
@@ -13,31 +16,39 @@
 # reports as unconfirmed. That fallback is a signal, not an answer - do not leave
 # a grade sitting on it once its real availability is known.
 #
-# The slug column is the key and must match data.mjs - do not edit it. A slug
-# matching nothing in GRADES is SILENTLY IGNORED: the build keys rows by slug and
-# never checks the other way, so a typo does not error, it just quietly stops
-# applying. After editing, run --matrix and confirm the grade actually moved.
+# The slug column is the key and must match data.mjs - do not edit it. A cut
+# column heading must match a key of CUT_SPECS. Both are now checked, and a typo
+# in either stops the build and names it; to offer a cut that is not a column
+# yet, add it to CUT_SPECS with its typical D10/D50/D90 and flow first.
 #
-# The grade column is only there to read by. A cut column heading must match a
-# cut in CUT_SPECS, or the build stops and tells you. To offer a cut that is not
-# a column yet, add it to CUT_SPECS with its typical D10/D50/D90 and flow first.
+# Neither used to be checked, and the failure was silence rather than an error:
+# rows are keyed by slug and columns are filtered against CUT_SPECS, so a typo
+# did not error, it just quietly stopped applying. The 5-25 to 0-15 rename on
+# 2026-09-08 is what made the column half visible: in the window before 0-15 was
+# added to CUT_SPECS, build.mjs stopped and said why, while build-cuts.mjs read
+# the same file, dropped the marks on the floor, and would have deleted
+# "5-25 µm" from the cut lists on twelve pages, replacing it with nothing. The
+# slug half fails the same way one axis over.
 #
-# What is marked here is also what the website claims. The size fractions on
-# /pages/products/powder/ and the family and grade powder pages were reconciled
-# against this file - if you change a row, those pages need changing with it.
-# Changing a row here does not change those pages: re-run build-cuts.mjs, or the
-# site goes on publishing the previous answer.
+# The grade column is only there to read by.
+#
+# What is marked here is also what the website claims. The family and grade
+# powder pages are generated from this file by docs/build-cuts.mjs, and changing
+# a row here does not change them: re-run it, or the site goes on publishing the
+# previous answer. /pages/products/powder/ is deliberately NOT generated - its
+# table gives each grade a per-process gloss rather than a flat list - so change
+# a row and check that page by hand.
 #
 # Excel rewrites this header on save - it appends trailing commas to every line
 # and splits the ones with commas in their own text. Harmless to the build, which
 # skips # lines, but restore it before committing.
 #
 # Worse, Excel reads the cut headings as DATES. On 2026-09-08 it saved back
-# "May-25" for 5-25 and "Oct-30" for 10-30. The sheet build rejects those outright;
-# build-cuts.mjs silently drops them, which would have stripped both cuts from 13
-# pages and put nothing in their place. Format the heading row as Text before
-# saving, and read this row back afterwards - any heading that has turned into a
-# month name is the same bug.
+# "May-25" for 5-25 and "Oct-30" for 10-30. Both builds now reject those
+# outright - build-cuts.mjs used to drop them silently, which would have stripped
+# both cuts from 13 pages and put nothing in their place. Format the heading row
+# as Text before saving, and read this row back afterwards - any heading that has
+# turned into a month name is the same bug.
 slug,grade,0-15,10-30,15-45,15-53,20-63,45-105,53-105,45-150,53-150
 ss316l,"Stainless Steel 316L",Y,,Y,Y,,Y,Y,Y,Y
 ss304l,"Stainless Steel 304L",Y,,Y,Y,,Y,Y,Y,Y

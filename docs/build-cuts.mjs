@@ -68,6 +68,7 @@ const PAGES = {
 if (!fs.existsSync(CSV)) { console.error('cuts.csv not found'); process.exit(1); }
 
 const marks = {};
+const rows = new Set();
 {
   const lines = fs.readFileSync(CSV, 'utf8')
     .replace(/^﻿/, '')
@@ -75,14 +76,63 @@ const marks = {};
     .filter(l => l.trim() && !l.startsWith('#'));
   const head = lines[0].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
   const cols = head.slice(2).map(c => c.replace(/-/g, '–'));
+
+  // A column heading that is not a CUT_SPECS key is fatal, never ignorable.
+  // listFor() below filters through ORDER = Object.keys(CUT_SPECS), so an
+  // unknown column's marks are dropped on the floor - and the result is not a
+  // no-op, it is a deletion.
+  //
+  // Two ways that has happened, both on 2026-09-08. The "5-25" column was
+  // renamed to "0-15", and in the window before 0-15 was added to CUT_SPECS
+  // powder-datasheets/build.mjs stopped and named the problem while this script
+  // reported ordinary-looking drift in 12 pages - it would have stripped
+  // "5-25 µm" out of 7 cut lists on each of 8 grade powder pages and 4-5 on each
+  // of 4 family hubs, replacing it with nothing. And Excel, saving this file
+  // back, rewrote the headings as dates: "May-25" for 5-25, "Oct-30" for 10-30,
+  // which would have taken two cuts off 13 pages the same way. The second is the
+  // one that can still happen, and cuts.csv's header says how to avoid it.
+  //
+  // The wording below is build.mjs's, copied deliberately so the two read alike.
+  for (const c of cols) {
+    if (!CUT_SPECS[c]) {
+      console.error(`  cuts.csv: column "${plain(c)}" is not a known cut.`);
+      console.error(`  Known: ${ORDER.map(plain).join(', ')}`);
+      console.error(`  Add it to CUT_SPECS in data.mjs with its typical D10/D50/D90 and flow.`);
+      process.exit(1);
+    }
+  }
+
   for (const line of lines.slice(1)) {
     // Grade names are quoted and may contain commas.
     const cells = line.match(/("([^"]*)"|[^,]*)(,|$)/g).map(c =>
       c.replace(/,$/, '').replace(/^"|"$/g, '').trim());
     const slug = cells[0];
     if (!slug) continue;
+    rows.add(slug);
     const picked = cols.filter((c, i) => /^(y|yes|x|✓|1)$/i.test((cells[i + 2] || '').trim()));
     if (picked.length) marks[slug] = picked;
+  }
+}
+
+// The slug axis, which fails the same way. A slug PAGES names that has no row at
+// all in cuts.csv falls through cutsFor() to DEFAULT_CUTS - the flyer's
+// placeholder list this generator exists to get off the pages - and publishes it
+// as though it were a stock record. `rows` is tracked apart from `marks` because
+// a row that exists and is merely unmarked is the deliberate fallback below,
+// while a slug with no row is a typo, and cutsFor() cannot tell them apart.
+//
+// The reverse is not an error and is not checked here: cuts.csv carries a row
+// per data sheet, and seven of its grades have no powder page at all (ss304l,
+// 15-5ph, cx, hastelloy-x, hastelloy-c22, al6061, al7075). A cuts.csv slug
+// matching nothing in GRADES is caught by powder-datasheets/build.mjs, which is
+// where GRADES lives.
+{
+  const unknown = [...new Set(Object.values(PAGES).flat())].filter(s => !rows.has(s));
+  if (unknown.length) {
+    console.error(`  cuts.csv: no row for slug "${unknown.join('", "')}" named in PAGES.`);
+    console.error(`  Known: ${[...rows].join(', ')}`);
+    console.error(`  Fix the slug in PAGES above, or add the row to cuts.csv.`);
+    process.exit(1);
   }
 }
 
