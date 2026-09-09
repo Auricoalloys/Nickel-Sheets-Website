@@ -51,6 +51,7 @@ on:
       - "docs/build-cuts.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
+      - "docs/check-tags.mjs"
   push:
     branches: [main]
     paths:
@@ -81,6 +82,7 @@ on:
       - "docs/build-cuts.mjs"
       - "CSS/**"
       - "docs/check-tables.mjs"
+      - "docs/check-tags.mjs"
   workflow_dispatch:
 
 permissions:
@@ -221,6 +223,20 @@ jobs:
       # is how three tables came to be set a tenth smaller than the rest.
       - name: Tables use one system
         run: node docs/check-tables.mjs
+
+      # A <div> that is never closed does not break a page: the browser closes
+      # it at </main> and the layout still looks right, so this class of bug has
+      # only ever been found by counting tags. div.details swallowed #grades,
+      # #applications, #quality and #cta on seven hub pages; div.container.my-5
+      # swallowed the body of eight service pages; and a sweep with this checker
+      # found 143 more, including a sidebar accordion item pasted half-finished
+      # onto 47 pages and a paragraph corrupted into visible nonsense.
+      #
+      # It also catches an unbalanced quote, which is worse than it sounds: a
+      # stray '"' inside a tag makes every parser downstream - this one, and
+      # anything else reading the page - lose its place for the rest of the file.
+      - name: Every page's <main> is balanced
+        run: node docs/check-tags.mjs
 
       - name: Run audit
         id: audit
