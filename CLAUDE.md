@@ -43,7 +43,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Twelve generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Thirteen generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -56,13 +56,14 @@ node docs/build-hub-grades.mjs         # after editing docs/hub-grades.csv or a 
 node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
 node docs/build-weight-data.mjs        # after editing docs/materials.csv or any grade's density
 node docs/build-calc-links.mjs         # after adding/renaming a form page, or a grade's calculator id
+node docs/build-breadcrumbs.mjs        # after adding/renaming a form page, or adding a grade hub
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
 Every one of those except `purge-bootstrap` takes `--check`, which reports drift and exits non-zero
 without writing. CI runs the price, specification, grade-data, hub-grade, weight-calculator,
-calculator-CTA and table-system checks on
+calculator-CTA, breadcrumb and table-system checks on
 every pull request, because a price the HTML no longer matches is worse than no price at all, a
 specification cited for the wrong product form tells a buyer the material is certified to something
 it is not, and a wrong UNS number tells them it is a different material altogether.
@@ -260,6 +261,65 @@ are in use:
 Do not put a form-specific standard in a hub's spec table. `alloy-31.html` and `AM-350.html` had a
 row headed "Main Plate Standards" — accurate for plates, wrong as the grade's specification. State
 the UNS/Werkstoff identifiers and point at the form pages for the rest.
+
+#### A form page's breadcrumb must name its grade hub
+
+`/inconel/625/coil/` breadcrumbed **Home › Inconel › Inconel 625 Coil**, straight past
+`/inconel/625/`. **311 of 338 form pages did this**, so a grade hub's only inbound link was the one
+row in its family hub's grades table — and the five pages most obviously about that grade, its own
+children, pointed around it to the family.
+
+That is what Search Console's *Discovered – currently not indexed* is made of: on 2026-09-09 it held
+**232 URLs**, known from the sitemap and never crawled, against 133 sitemap pages carrying exactly
+one body-written inbound link and 135 carrying two. A crawler deciding where to spend reads one
+inbound link as a page nobody cites.
+
+`docs/build-breadcrumbs.mjs` writes the crumb into **both** places it has to exist — the visible
+`<ol class="breadcrumb">` and the JSON-LD `BreadcrumbList` — inserting at position 3 and renumbering
+the page's own item to 4:
+
+```bash
+node docs/build-breadcrumbs.mjs          # write
+node docs/build-breadcrumbs.mjs --check  # reports drift, writes nothing, exits non-zero
+```
+
+**The last crumb is never touched.** `floating-form.js` seeds the enquiry subject from the final
+`BreadcrumbList` item, so a generator that appended instead of inserting would retitle 199 enquiries
+from "Inconel 625 Coil" to "Inconel 625" — the form silently getting *less* specific. Verify that
+invariant after any change here, by comparing the last item before and after rather than by reading
+the diff.
+
+**The label is the grade hub's own final crumb, not a string built from the URL.** Breadcrumbs on
+this site are hand-written single noun phrases and are already trusted as such — that is the same
+reason the enquiry form reads them instead of the `<title>` or the `<h1>`. Deriving from the URL
+would publish "625" and "C276" where the hub says "Inconel 625" and "Hastelloy® C276".
+
+Four things it refuses rather than guesses at, each of which was a way to make the site worse:
+
+- **A form page whose grade hub does not exist** — 68 of them, mostly `/NiCr/<ratio>/` and
+  `/duplex-steel/<grade>/`. Linking anyway would trade uncrawled URLs for **404s**, which is the
+  same mistake one direction over. They are listed on every run: the hubs are missing, and building
+  them is the fix.
+- **A grade hub whose own last crumb names a product form.** `/hastelloy/C22/` calls itself
+  "Hastelloy C22 Foil" and `/incoloy/903/` "Incoloy 903 Sheets", so adopting the label would publish
+  "Hastelloy C22 Foil › Hastelloy C22 Plates" — a breadcrumb asserting plates live under foil. **18
+  pages across 6 hubs.** Refused rather than trimmed, because the hub carries the same wrong crumb
+  on its own page: this is the *form page sitting at a grade URL* duplication described above, still
+  visible in the breadcrumb after the rest of the page was fixed. Fix the hub and the children
+  follow.
+- **A third crumb pointing somewhere else.** The four `/…/powder/` pages route via `/inconel/powder/`
+  and `/titanium/powder/` deliberately — powder is a different production route, per the powder rule
+  above — so they are reported and left alone, not rewritten into the grade taxonomy.
+- **A URL with three segments that is not a grade form page.** `/pages/products/coil/` has the same
+  shape and is a form hub with a two-crumb breadcrumb; counting segments alone put eleven of them in
+  the skip report as malformed. `NOT_GRADE_ROUTES` excludes them.
+
+Two implementation notes worth keeping. The site writes `ListItem` objects **two ways** — six
+pretty-printed lines, and all on one line on the stellite pages — so the script brace-scans
+`itemListElement` instead of matching a shape; a regex for one format reported the other as "0
+items", which reads as a broken page when it is a correct one written differently. And the form
+words it refuses are collected from the form pages' **own URLs**, not typed into a list, so a new
+form needs no edit here.
 
 #### A family hub is the newer template — the `div.details` block underneath it is an older layer
 

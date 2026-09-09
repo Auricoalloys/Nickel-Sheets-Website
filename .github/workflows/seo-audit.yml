@@ -44,6 +44,7 @@ on:
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
+      - "docs/build-breadcrumbs.mjs"
       - "docs/powder-datasheets/cuts.csv"
       - "docs/powder-datasheets/data.mjs"
       - "docs/powder-datasheets/build.mjs"
@@ -73,6 +74,7 @@ on:
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
+      - "docs/build-breadcrumbs.mjs"
       - "docs/powder-datasheets/cuts.csv"
       - "docs/powder-datasheets/data.mjs"
       - "docs/powder-datasheets/build.mjs"
@@ -167,6 +169,16 @@ jobs:
       # knows by that id, which would land a buyer on the wrong material.
       - name: Calculator CTAs match the material list
         run: node docs/build-calc-links.mjs --check
+
+      # The grade-hub crumb in the form pages' breadcrumbs, visible and JSON-LD.
+      # 311 of 338 form pages once breadcrumbed straight past their grade hub to
+      # the family, leaving each hub on one inbound link and 232 URLs sitting in
+      # "Discovered - currently not indexed". This fails the build when a page's
+      # crumb drifts from the hub's own label, and - the part worth having - when
+      # a page links a grade hub that no longer exists, which would turn an
+      # uncrawled URL into a 404.
+      - name: Breadcrumbs name the grade hub
+        run: node docs/build-breadcrumbs.mjs --check
 
       # Which particle size cuts a grade is sold in is not uniform - that is the
       # whole reason cuts.csv exists - and the cut lists on the fourteen family

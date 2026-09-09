@@ -77,6 +77,9 @@ exclude:
   # generator, not a page - excluded in the same commit that adds it, per the
   # docs/ note above.
   - docs/build-calc-links.mjs
+  # Writes the grade-hub crumb into the form pages' breadcrumbs. Excluded in the
+  # same commit that adds it, per the docs/ note above.
+  - docs/build-breadcrumbs.mjs
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
   - prices-todo.csv
