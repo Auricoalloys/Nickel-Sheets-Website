@@ -409,7 +409,7 @@ nimonic,901,N09901,2.4662,,8.14,1280-1345,Special Metals NIMONIC alloy 901 bulle
 # here. If its text or a mill certificate turns up and its limits differ, this
 # table changes and the source line changes with it. See chemistry.csv.
 haynes,25,R30605,2.4964,CoCr20W15Ni,9.07,1330-1410,Haynes International HAYNES 25 alloy page (identity and physical constants) and voestalpine BOHLER L605 datasheet to ASTM F90 / ISO 5832-5 (composition limits),2026-08
-haynes,188,R30188,2.4683,CoCr20NiW,8.98,1300-1415,Haynes International HAYNES 188 alloy page (density) with VDM Metals and ATI 188 sheets (melting range union), and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name),2026-09
+haynes,188,R30188,2.4683,CoCr20NiW,8.98,1300-1415,Haynes International HAYNES 188 alloy page (density) with VDM Metals and ATI 188 sheets (melting range union) and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name),2026-09
 haynes,214,N07214,,,,1355-1400,Haynes International HAYNES 214 alloy page,2026-08
 # 230 is the one grade in this family with real composition LIMITS rather than a
 # nominal column, because ATI publishes a Limiting Composition table for the same

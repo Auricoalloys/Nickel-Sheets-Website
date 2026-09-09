@@ -79,6 +79,11 @@ const FAMILY_KEYS = [
   ['haynes', 'haynes'],
   ['monel', 'monel'],
   ['stellite', 'stellite'],
+  // The nichrome grade hubs live at /NiCr/<ratio>/, not /nichrome/<ratio>/, so no
+  // lowercase key above matches them - the same blind spot the 'stainless' key
+  // above was added to close. Written with its real capitalisation because
+  // familyOf tests url.includes(k) against the URL as published.
+  ['NiCr', 'nichrome'],
 ];
 
 // ---- read the CSV -----------------------------------------------------------
@@ -191,6 +196,12 @@ const SINGLE_GRADE = {
 // the identical map in docs/build-grades.mjs, which carries the full reasoning.
 const GRADE_ALIAS = {
   'special-stainless-steel': { smo254: '254smo' },
+  // specs.csv files A-286 as "660 (A286)" because both names are in use, and the
+  // normaliser strips it to "660a286" - which the URL segment "660" never matches.
+  // build-grades.mjs resolves the same page through its own alias, so the hub got
+  // an identity table and no specification table, which reads as the grade having
+  // no standards rather than as a key that did not join.
+  incoloy: { 660: '660a286' },
 };
 
 // ---- apply ------------------------------------------------------------------

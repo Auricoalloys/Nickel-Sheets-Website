@@ -94,7 +94,7 @@ export const MATERIALS = [
   {"id":"nimonic-263","name":"Nimonic 263","group":"Nimonic","tier":"mill","density":8.36,"source":"Special Metals NIMONIC alloy 263 bulletin","note":"N07263 / 2.4650"},
   {"id":"nimonic-901","name":"Nimonic 901","group":"Nimonic","tier":"mill","density":8.14,"source":"Special Metals NIMONIC alloy 901 bulletin","note":"N09901 / 2.4662"},
   {"id":"haynes-25","name":"Haynes 25","group":"Haynes","tier":"mill","density":9.07,"source":"Haynes International HAYNES 25 alloy page (identity and physical constants) and voestalpine BOHLER L605 datasheet to ASTM F90 / ISO 5832-5 (composition limits)","note":"R30605 / 2.4964"},
-  {"id":"haynes-188","name":"Haynes 188","group":"Haynes","tier":"mill","density":8.98,"source":"Haynes International HAYNES 188 alloy page (density) with VDM Metals and ATI 188 sheets (melting range union)","note":"R30188 / 2.4683"},
+  {"id":"haynes-188","name":"Haynes 188","group":"Haynes","tier":"mill","density":8.98,"source":"Haynes International HAYNES 188 alloy page (density) with VDM Metals and ATI 188 sheets (melting range union) and VDM Metals VDM Alloy 188 datasheet (Werkstoff and EN name)","note":"R30188 / 2.4683"},
   {"id":"haynes-214","name":"Haynes 214","group":"Haynes","tier":"mill","density":null,"source":"Haynes International HAYNES 214 alloy page","note":"N07214"},
   {"id":"haynes-230","name":"Haynes 230","group":"Haynes","tier":"mill","density":8.97,"source":"Haynes International HAYNES 230 alloy page and ATI 6230 datasheet (2022)","note":"N06230 / 2.4733"},
   {"id":"haynes-242","name":"Haynes 242","group":"Haynes","tier":"mill","density":9.05,"source":"Haynes International HAYNES 242 alloy page","note":"N10242"},
