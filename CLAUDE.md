@@ -482,38 +482,23 @@ fields down the form is the obvious next test, and running it now would make the
 `supabase/migrations/` holds the `leads` table. RLS is on with **no** policies, so the public anon
 key gets no access — do not add an anon policy, the table holds customer contact details.
 
-`busbarproduct` is the opposite case, and needs both halves stated. The intended state is RLS on
-with a **select-only** policy for `anon`: the content is public marketing copy and
+`busbarproduct` is the opposite case, and needs both halves stated. It is RLS on with a
+**select-only** policy for `anon`: the content is public marketing copy and
 product-page-runtime.js renders every product page from it using the public key, so reads must stay
 open — while insert, update and delete are revoked.
 
-> ### ⚠ PENDING — busbarproduct is still unprotected in the live database
->
-> Supabase flagged it `rls_disabled_in_public` (critical) on **06 Sep 2026**, and as of
-> **08 Sep 2026** it is **not fixed**. `20260908000000_busbarproduct_rls.sql` is written and
-> committed but **has never been run** — the migration is the record, not the fix.
->
-> The hole is confirmed, not theoretical. With the anon key copied out of the deployed
-> JavaScript, `DELETE /rest/v1/busbarproduct?slug=eq.<no-such-slug>` returns **`204`**, not
-> `401` (that filter matches nothing, so nothing was deleted — the status is the finding).
-> `?id=gt.0` would empty the catalogue and every product page with it.
->
-> **Remaining steps, in order:**
-> 1. Run the migration in the SQL editor —
->    `https://supabase.com/dashboard/project/nnxiioeqroxutwwcqnpg/sql/new`. It is idempotent.
->    The CLI on the work PC is not logged in, which is why this is a manual step.
-> 2. Read its **two** result sets. First: `rls_enabled = true`, `select_policies = 1`,
->    `anon_write_grants = 0`. Second: any other public table still missing RLS — expect zero
->    rows, and give anything listed the same decision (public → select policy, private →
->    the `leads` treatment).
-> 3. Re-probe with the public key: the `DELETE` above must now return **401/403**, and a real
->    product read (`?slug=eq.<a real slug>&select=slug`) must still return its row. Both
->    matter — the second is what proves the site did not just go dark.
-> 4. **Only then push the commit.** It is deliberately held back locally: this repo is
->    **public**, and until step 1 is done the migration and this note together are a working
->    exploit for a live hole in a database whose key is already published.
->
-> Delete this block once step 4 is done.
+Supabase flagged it `rls_disabled_in_public` (critical) on **06 Sep 2026**;
+`20260908000000_busbarproduct_rls.sql` was applied on **09 Sep 2026** and verified from outside with
+the key out of the deployed JavaScript. `DELETE /rest/v1/busbarproduct?slug=eq.<no-such-slug>` had
+returned **`204`** — that filter matches nothing, so nothing was deleted, and the status was the
+whole finding — and now returns **`401`**, `42501 permission denied`, as does `UPDATE`. A read by
+slug still returns its row, which is the half that proves the site did not go dark.
+
+**Verify a lockdown with both halves, and probe the writes with a filter that matches nothing.**
+A `401` on its own is equally consistent with having revoked too much — on this table a read that
+stopped working would blank every product page. `INSERT` is deliberately left unprobed: it is
+revoked by the same statement and blocked by the same absent policy, and a POST that turned out
+*not* to be blocked would leave a junk row in the catalogue to clean up.
 
 **On this site the anon key's permissions ARE the security boundary.** It is public by design (see
 Secrets below), so "only our own code calls this" is never a control. Every new table needs RLS on
