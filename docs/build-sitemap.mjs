@@ -78,6 +78,7 @@ const BOILERPLATE = new Set([
   '024f5bee', // closed the container div left open on 8 service pages; the DOM signature is unchanged
   'cb217126', // closed the tags 89 more pages left open; DOM signature identical on every one
   '5b8630fd', // added the grade-hub crumb to 53 more form pages; navigation only, same as c13cdb9c
+  '1f12f136', // the last 18 grade-hub crumbs; navigation only, same as c13cdb9c and 5b8630fd
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
