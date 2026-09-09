@@ -76,6 +76,7 @@ const BOILERPLATE = new Set([
   'f1a46388', // Available Forms became a grid of link cards; presentation only, no word a reader sees moved
   'c13cdb9c', // added the grade-hub crumb to 199 form pages; a navigation element, no product copy moved
   '024f5bee', // closed the container div left open on 8 service pages; the DOM signature is unchanged
+  'cb217126', // closed the tags 89 more pages left open; DOM signature identical on every one
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
