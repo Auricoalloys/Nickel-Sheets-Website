@@ -321,6 +321,36 @@ items", which reads as a broken page when it is a correct one written differentl
 words it refuses are collected from the form pages' **own URLs**, not typed into a list, so a new
 form needs no edit here.
 
+#### A hub that names itself by a form is a form page's title, not a heading to trim
+
+Seven grade hubs used **a form page's title as the grade's own name**, and not only in the
+heading. `/titanium/grade-2/` listed its forms as *"Titanium Grade 2 Foil UNS R50400 Plates"* and
+closed with *"supplies Titanium Grade 2 Foil UNS R50400 across all the forms above"*;
+`/incoloy/903/` offered *"Incoloy 903 Sheets Supplier Round Bars"*. Fixed 2026-09-09 on titanium
+grades 2, 3, 4, 5 and 7, hastelloy C22 and incoloy 903.
+
+Three things that pass on to the next one of these:
+
+- **Measure before assuming it is a duplicate.** These read like the eleven copied hubs above,
+  but they share only **4–11%** of their visible text with the form page they were named after.
+  The bodies were genuine overviews and needed nothing; only the name was wrong. Shingle the two
+  pages before rewriting either.
+- **A clean breadcrumb is not evidence the page is right.** `build-breadcrumbs.mjs` inspects the
+  crumb alone, so it found 5 of the 7 — `/titanium/grade-5/` and `/grade-7/` carried the form
+  word in the `<h1>` and `<title>` only and were invisible to it. Sweep all three.
+- **A global find-and-replace is the right tool here** precisely because no occurrence is
+  correct — but it eats the legitimate trailing form word on the one link whose form matches the
+  bogus name (`"…Foil UNS R50400 Foil"` collapses to just the grade). Re-check that every
+  `forms-columns` label still names its own form afterwards.
+
+Splitting a title on `" - "` to isolate the grade name **misfires on titles that use `/`**:
+`/stainless/SMO-254/` reads "SMO 254 / UNS S31254 / 1.4547 Sheets, Plates, Foil, Round Bars" and
+is a false positive — its `<h1>` and crumb are clean. Leave it.
+
+The UNS and ASTM numbers come **out** of the heading and stay on the page in the generated
+identity table, which is where the siblings that were already right keep them (`/incoloy/909/`
+heads "Incoloy 909", `/titanium/grade-1/` "Titanium Grade 1").
+
 #### A family hub is the newer template — the `div.details` block underneath it is an older layer
 
 The family tier (`/inconel/`, `/hastelloy/`, `/nichrome/`) sits above the grade hubs and introduces
@@ -702,6 +732,22 @@ that form only** — that is what stops a plate spec reappearing on a wire page.
 `<!-- specs:end -->` markers, so re-running replaces only the generated block and never touches
 hand-written copy around it. A hub with nowhere to put it is reported, not guessed at.
 
+**`build-specs.mjs` and `build-grades.mjs` resolve a URL to a grade through two different maps,
+and a hub can pass one and fail the other silently.** Both were repaired on 2026-09-09 when the
+17 new grade hubs landed:
+
+- `familyOf` matches `url.includes(k)` over `FAMILY_KEYS`, which held `nichrome` and nothing for
+  `/NiCr/<ratio>/` — the shape those hubs actually use. All six resolved to no family and were
+  skipped. This is the same blind spot the `stainless` key was added to close, one family over.
+- `specs.csv` files A-286 as `660 (A286)`, which the normaliser strips to `660a286`; the URL
+  segment is `660`, so it never matched. `build-grades.mjs` resolves that page through its own
+  alias, so the hub carried an identity table and **no specification table** — which reads as a
+  grade with no published standards rather than as a key that did not join.
+
+The failure mode both share: **a hub that gets one generated table and not the other looks
+finished**. After adding a hub, check for `specs:start` *and* `grade-identity:start`, and treat a
+missing one as a join failure until proved otherwise.
+
 **Fill a cell only from a mill technical bulletin.** Special Metals publishes INCONEL, INCOLOY,
 MONEL and NIMONIC; Haynes International publishes HAYNES. Where a mill publishes no standard the
 cell reads `mill`; where the grade is not made in that form it reads `-`. Distributor listings are
@@ -827,6 +873,30 @@ grade has them and `grades.json` feeds them to a weight calculator as bare numbe
 
 None of the three CSVs may contain a comma inside a field — `readCsv` splits on it, and a stray
 comma shifts every value right.
+
+**That happened, and nothing caught it for months.** `grades.csv` line 412 read
+`…(melting range union), and VDM Metals VDM Alloy 188 datasheet…`, so the Haynes 188 row split
+into **10 fields against a 9-column header**: `checked` held the tail of the sentence instead of
+a date, `source` was truncated mid-clause, and `2026-09` fell off the end entirely. The weight
+calculator publishes that `source` under the density, so it was showing half a sentence. Fixed
+2026-09-09.
+
+It survived because **the publication gate only tests truthiness** — `verified` is
+`!!(r.checked && r.source && r.source !== 'pending')`, and a prose fragment is truthy. So the
+row passed the gate that exists to stop unverified data publishing, on the strength of a value
+that was not a date. The identity tables were unaffected only by luck: the comma sits after
+every numeric field.
+
+The cheap guard is a **field count**, which no `--check` currently runs:
+
+```bash
+awk -F, 'NR==FNR&&/^family,/{h=NF} /^[^#]/&&NF>h{print FILENAME": line "FNR" has "NF" fields"}' docs/grades.csv docs/grades.csv
+```
+
+Seed `h` from the **header row**, not `NR==1` — these files open with a block of `#` comments,
+so `NR==1` takes its field count from prose and reports the whole file. A row with *fewer*
+fields than the header is fine and common: `chemistry.csv` omits the optional trailing `note`
+on most rows and `readCsv` fills it with `''`. Only **more** fields than the header is the bug.
 
 ```bash
 node docs/build-grades.mjs          # write the tables into the pages
@@ -1453,6 +1523,49 @@ Worked example — the N08330 rename (2026-08-24) touched 49 files as one change
 
 The mechanical way to sort them is to diff each file and ask whether *every* changed line is
 explained by the sweep. Anything else in the diff makes it content.
+
+### Retired URLs: mine git history, do not wait for the export
+
+Search Console's *Not found (404)* summary carries **counts, not URLs** — the .xlsx export
+has four sheets and none of them lists a URL. Do not treat that as a blocker. **Every URL the
+site has ever published is in git history**, and the answer comes from comparing that to what
+the site serves today:
+
+```bash
+git log --all -p --format="@@@%H %ad" --date=short -- "*.html" | grep -E "^[-+]permalink:"
+```
+
+Against a live set of published permalinks **plus every `redirect_from` target**. On 2026-09-09
+that was 1,247 permalinks ever, 1,272 URLs served, and **115 that resolved to nothing**. 53 had
+an unambiguous live target and were redirected in `f0997d1a`.
+
+Four things that analysis has to get right, each of which was wrong the first time:
+
+- **`redirect_from` is part of the live set, not separate from it.** A URL with a redirect is
+  not a 404, and counting only permalinks reports several hundred false findings.
+- **Parse the front matter with `[ \t]*`, never `\s*`.** `\s` matches `\n`, so
+  `/^redirect_from:\s*(.*)$/m` swallows the newline and captures the **first list item with its
+  `- ` prefix**, then the list loop skips it — one redirect silently lost per page, on exactly
+  the pages that have them. It reported 13 colon URLs as `/- /NiCr/20:25/plates/`, which is the
+  tell.
+- **Check whether a retired URL ever really existed.** 24 `redirect_from` entries point at
+  `/cobalt-alloy-Hex Bars-supplier-exporter-mumbai-india/` — capitalised, with a literal space.
+  No such permalink is anywhere in history; the real one was
+  `/cobalt-alloy-hex-bars-supplier-exporter-mumbai-india/` and is a live page. Someone guessed
+  the old URL instead of reading history. They are harmless but cover nothing.
+- **Date the URL before redirecting it.** 51 of the 115 carry `&reg;` in the path
+  (`/Hastelloy&reg;/C276/`) from three commits on **2025-11-27**, replaced the same day. Nothing
+  linked them long enough to be crawled, so they get no redirect. `git log -S` on the permalink
+  gives the lifetime.
+
+**A new page can collide with an existing `redirect_from`.** Adding the grade hub at
+`/haynes/242/` in `3660664c` clashed with a `redirect_from: /haynes/242/` on
+`detailed_product_page/haynes/242/round-bar.html` — a page and a redirect claiming one URL. So
+**after adding any page, check its permalink against every `redirect_from` in the tree**; the
+static check is the same one that finds the 404s, and it is cheaper than a build.
+
+A redirect sweep is **boilerplate** for `<lastmod>`, like `e20a13f4` and `d506331b` before it:
+the targets gain a `redirect_from` line and say nothing new.
 
 ### JavaScript inventory
 
