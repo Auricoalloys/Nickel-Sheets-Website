@@ -630,6 +630,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/duplex-steel/2205/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/duplex-steel/2205/foil/</loc>
     <lastmod>2026-08-27</lastmod>
     <image:image>
@@ -664,6 +668,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/duplex-steel/32750/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/duplex-steel/32750/plates/</loc>
     <lastmod>2026-08-28</lastmod>
     <image:image>
@@ -689,6 +697,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/duplex-steel/32760/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/duplex-steel/32760/foil/</loc>
@@ -1213,6 +1225,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/haynes/188/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/haynes/188/plates/</loc>
     <lastmod>2026-09-02</lastmod>
     <image:image>
@@ -1241,6 +1257,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/haynes/214/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/214/plates/</loc>
@@ -1273,6 +1293,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/haynes/230/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/haynes/230/plates/</loc>
     <lastmod>2026-08-31</lastmod>
     <image:image>
@@ -1301,6 +1325,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/haynes/242/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/242/plates/</loc>
@@ -1333,6 +1361,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/haynes/25/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/haynes/25/plates/</loc>
     <lastmod>2026-08-31</lastmod>
     <image:image>
@@ -1361,6 +1393,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/haynes/282/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/282/plates/</loc>
@@ -1395,6 +1431,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/haynes/HR-120/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/HR-120/plates/</loc>
@@ -1529,6 +1569,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/incoloy-sheets.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/incoloy/660/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/incoloy/660/plates/</loc>
@@ -4031,6 +4075,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/NiCr/20-25/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/NiCr/20-25/plates/</loc>
     <lastmod>2026-09-01</lastmod>
     <image:image>
@@ -4059,6 +4107,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/NiCr/30-20/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/NiCr/30-20/plates/</loc>
@@ -4091,6 +4143,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/NiCr/40-20/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/NiCr/40-20/plates/</loc>
     <lastmod>2026-09-01</lastmod>
     <image:image>
@@ -4119,6 +4175,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/NiCr/60-15/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/NiCr/60-15/plates/</loc>
@@ -4151,6 +4211,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/NiCr/70-30/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/NiCr/70-30/plates/</loc>
     <lastmod>2026-08-29</lastmod>
     <image:image>
@@ -4179,6 +4243,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/NiCr/80-20/</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/NiCr/80-20/plates/</loc>
