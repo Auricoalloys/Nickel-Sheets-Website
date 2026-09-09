@@ -80,6 +80,7 @@ const BOILERPLATE = new Set([
   '5b8630fd', // added the grade-hub crumb to 53 more form pages; navigation only, same as c13cdb9c
   '1f12f136', // the last 18 grade-hub crumbs; navigation only, same as c13cdb9c and 5b8630fd
   'f0997d1a', // redirected 53 retired URLs; the targets gained only a redirect_from line
+  'e050e4b6', // linked the orphaned titanium plates pages; a neighbour's link, no grade copy moved
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
