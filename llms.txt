@@ -55,7 +55,7 @@ mechanical properties and the stocked size envelope for that grade and form.
 ## Processing services
 
 - [Laser cutting](https://www.nickelsheets.com/laser-cutting/)
-- [Laser welding](https://www.nickelsheets.com/pages/services/laser-welding/)
+- [Laser welding](https://www.nickelsheets.com/pages/services/laser-welding/) for battery tabs and busbars
 - [Plasma cutting](https://www.nickelsheets.com/pages/services/plasma-cutting/)
 - [Waterjet cutting](https://www.nickelsheets.com/pages/services/waterjet-cutting/)
 - [Wire cutting](https://www.nickelsheets.com/pages/services/wire-cutting/)
