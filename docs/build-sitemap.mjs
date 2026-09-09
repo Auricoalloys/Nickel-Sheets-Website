@@ -75,6 +75,7 @@ const BOILERPLATE = new Set([
   '53a88b80', // repaired rel="stylesheet" and a stray "ggt" on one page; nothing it says about Grade 2 moved
   'f1a46388', // Available Forms became a grid of link cards; presentation only, no word a reader sees moved
   'c13cdb9c', // added the grade-hub crumb to 199 form pages; a navigation element, no product copy moved
+  '024f5bee', // closed the container div left open on 8 service pages; the DOM signature is unchanged
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
