@@ -3,7 +3,11 @@ permalink: /waspaloy/
 redirect_from:
   - /waspalloy/
 title: Waspaloy | UNS N07001, 2.4654 Age-Hardened Superalloy | Aurico Alloys LLP
-description: Waspaloy (UNS N07001, 2.4654): cobalt and molybdenum bearing nickel superalloy for gas turbine discs and shafts. Ex-stock Mumbai.
+# Quoted because the value contains ": " after the UNS/Werkstoff bracket. Unquoted,
+# YAML reads that as a nested mapping and throws, and Jekyll then drops the WHOLE
+# front matter - which silently took redirect_from with it, so the retired
+# /waspalloy/ spelling 404ed while the page itself still built at /waspaloy/.
+description: "Waspaloy (UNS N07001, 2.4654): cobalt and molybdenum bearing nickel superalloy for gas turbine discs and shafts. Ex-stock Mumbai."
 ---
 
 <!DOCTYPE html>
@@ -120,10 +124,10 @@ description: Waspaloy (UNS N07001, 2.4654): cobalt and molybdenum bearing nickel
           <li>High-Temperature Fasteners</li>
       </ul>
 
-      <h4>Specification:</h4>
-      <ul>
-          <li>UNS N07001</li>
-          <li>AMS 5704 / AMS 5706 / AMS 5707</li>
+      <h2 id="forms">Available Forms</h2>
+      <ul class="forms-columns">
+          <li><a href="/waspaloy/sheets/">Waspaloy Sheets</a></li>
+          <li><a href="/waspaloy/plates/">Waspaloy Plates</a></li>
       </ul>
 
       <section class="grade-table-section" id="equivalent-grades">

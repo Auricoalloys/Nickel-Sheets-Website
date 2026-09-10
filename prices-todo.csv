@@ -21,8 +21,8 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-09-02 by docs/build-price-worklist.mjs
-# pending: 268 page(s)
+# generated: 2026-09-10 by docs/build-price-worklist.mjs
+# pending: 272 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -292,13 +292,15 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /nichrome/round-bars/  (1)
 /nichrome/round-bars/,,,,,kg
 
-# /nickel-...  (10)
+# /nickel-...  (12)
 /nickel-200-201/,,,,,kg
 /nickel-alloy-coil-supplier-exporter-in-mumbai-india/,,,,,kg
 /nickel-alloy-fittings-supplier-exporter-in-mumbai-india/,,,,,kg
 /nickel-alloy-hex-bars-supplier-exporter-in-mumbai-india/,,,,,kg
 /nickel-alloy-hollow-bars-supplier-trader-in-mumbai-india/,,,,,kg
 /nickel-alloy-pipes-supplier-exporter-in-mumbai-india/,,,,,kg
+/nickel-alloy-round-bar-supplier-exporter-in-mumbai-india/,,,,,kg
+/nickel-alloy-sheets-supplier-exporter-in-mumbai-india/,,,,,kg
 /nickel-alloy-tube-supplier-exporter-in-mumbai-india/,,,,,kg
 /nickel-alloy-wire-supplier-exporter-in-mumbai-india/,,,,,kg
 /Nickel-Copper-Sandwich-Busbar/,,,,,kg
@@ -465,6 +467,10 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 
 # /tool-steel/maraging/  (1)
 /tool-steel/maraging/powder/,,,,,kg
+
+# /waspaloy/  (2)
+/waspaloy/plates/,,,,,kg
+/waspaloy/sheets/,,,,,kg
 
 # ---------------------------------------------------------------------------
 # Product pages with nowhere to print the figure: no spec table, no Price row.

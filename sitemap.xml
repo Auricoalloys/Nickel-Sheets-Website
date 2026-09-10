@@ -6714,4 +6714,22 @@ sitemap: false
       <image:loc>https://www.nickelsheets.com/docs/images/aerospace_metal.webp</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.nickelsheets.com/waspaloy/plates/</loc>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/waspaloy/sheets/</loc>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/media/sheets4.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>
