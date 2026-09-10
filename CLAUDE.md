@@ -1230,10 +1230,21 @@ What it will not cut, it **reports**. That started as 18 findings, 16 of them pa
 constant in prose rather than in a row — a real second home and a real backlog, named rather than
 passed over, because a check may exclude a case by rule but may never be silent about one it does
 not handle. The prose 16 were copy-edited out in `28a32c0f` (2026-08-28), so the report now stands
-at **5**, and all five are the three-cell comparison rows described above — `incoloy/DS/DS.html`
-and the two like it, where a density row sets one grade against another. Those are the rule working,
-not a backlog: the count is expected to stay at 5, so a sixth is worth reading rather than assuming
-it is more of the same.
+at **6**. Five are the three-cell comparison rows described above — `incoloy/DS/DS.html` and the two
+like it, where a density row sets one grade against another. Those are the rule working, not a
+backlog.
+
+**The sixth was read on 2026-09-10 and is also deliberate.** `monel/K-500.html` states the density
+in prose as well as in the generated table, and the sentence is *"Density 8.44 g/cm³, **not 8.80**"*
+— a bullet in a list contrasting K-500 with Monel 400, whose density is the 8.80. It agrees with
+`grades.csv` exactly, and it exists because carrying 8.80 over with the template is the error that
+put a wrong density on this very grade's pages once already. Cutting it to make a counter read 5
+would delete the page's correction of a mistake this repo actually made.
+
+So the count is expected to stay at **6**, and a seventh is worth reading rather than assuming it
+is more of the same. The general shape: **a constant stated twice is a duplicate only when both
+copies assert the same thing about the same grade.** A figure that names another grade's number in
+order to deny it is a comparison, in prose exactly as in a three-cell row.
 
 Reviewed **quarterly, like prices** — see the review task below.
 
