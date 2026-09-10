@@ -6716,6 +6716,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/waspaloy/plates/</loc>
+    <lastmod>2026-09-10</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -6725,6 +6726,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/waspaloy/sheets/</loc>
+    <lastmod>2026-09-10</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/sheets-banner.webp</image:loc>
     </image:image>
