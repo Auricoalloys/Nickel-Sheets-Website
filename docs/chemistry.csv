@@ -1053,6 +1053,37 @@ nickel-alloy,602 CA,Y,0.05,0.12,
 nickel-alloy,602 CA,Zr,0.01,0.1,
 nickel-alloy,602 CA,P,,0.02,
 nickel-alloy,602 CA,S,,0.01,
+# Waspaloy - Elgiloy Specialty Metals Strip Products sheet (REV 2024 04 02), read
+# 2026-09-10, which prints a min and a max column against AMS 5544 for strip and
+# foil. Taken over the HAYNES H-3232 brochure's figures, which are a NOMINAL
+# composition, because a range is the acceptance limit a buyer needs and a nominal
+# is not one.
+#
+# The two corroborate rather than compete: every Haynes nominal falls inside the
+# Elgiloy range - Cr 19 in 18.0-21.0, Co 13.5 in 12.0-15.0, Mo 4.3 in 3.5-5.0,
+# Al 1.5 in 1.20-1.60, Ti 3 in 2.75-3.25, B 0.006 in 0.003-0.010, Zr 0.05 in
+# 0.02-0.12, C 0.08 in 0.02-0.10. The nominal is the midpoint of the range.
+#
+# TWO CELLS DIVERGE and are recorded at the wider Elgiloy figure, not the tighter
+# Haynes one: manganese 1.00 against 0.1, and silicon 0.75 against 0.15. Recording
+# the tighter number would publish an acceptance limit a conforming AMS 5544 strip
+# could fail - the 904L nitrogen mistake, in the other direction. Copper 0.50 max
+# appears only on the Elgiloy sheet.
+nickel-alloy,Waspaloy,C,0.02,0.10
+nickel-alloy,Waspaloy,Mn,,1.00
+nickel-alloy,Waspaloy,Si,,0.75
+nickel-alloy,Waspaloy,P,,0.030
+nickel-alloy,Waspaloy,S,,0.030
+nickel-alloy,Waspaloy,Cr,18.0,21.0
+nickel-alloy,Waspaloy,Co,12.0,15.0
+nickel-alloy,Waspaloy,Mo,3.5,5.0
+nickel-alloy,Waspaloy,Fe,,2.0
+nickel-alloy,Waspaloy,Al,1.20,1.60
+nickel-alloy,Waspaloy,Ti,2.75,3.25
+nickel-alloy,Waspaloy,B,0.003,0.010
+nickel-alloy,Waspaloy,Zr,0.02,0.12
+nickel-alloy,Waspaloy,Cu,,0.50
+nickel-alloy,Waspaloy,Ni,,bal,58 bal
 # --- special-stainless-steel: the 6% molybdenum super-austenitics -------------
 # VDM Alloy 926, VDM Metals data sheet April 2024, Table 2. VDM prints no iron
 # row - iron is the balance of the alloy but the sheet does not say so in the

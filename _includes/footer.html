@@ -126,6 +126,15 @@
       {%- if subject contains 'stellite' %}
       <p><small>STELLITE&reg; is a trademark of Kennametal Inc.</small></p>
       {%- endif %}
+      {%- comment -%}
+        Matched on the stem 'waspal', not the full name, because the page sits at
+        /waspalloy/ before it was renamed. The old URL redirects here, and the stem
+        still catches both spellings and any `trademarks:` entry. Owner is per the Elgiloy Specialty Metals strip data sheet,
+        which states it outright; neither mill bulletin claims the mark.
+      {%- endcomment -%}
+      {%- if subject contains 'waspal' %}
+      <p><small>WASPALOY&reg; is a registered trademark of United Technologies Corporation.</small></p>
+      {%- endif %}
       {%- if subject contains 'smo' %}
       <p><small>254&nbsp;SMO&reg; is a trademark of Outokumpu OY.</small></p>
       {%- endif %}

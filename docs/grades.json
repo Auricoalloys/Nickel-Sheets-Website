@@ -1210,6 +1210,21 @@
       "checked": "2026-08"
     },
     {
+      "family": "nickel-alloy",
+      "grade": "Waspaloy",
+      "name": "Waspaloy",
+      "uns": "N07001",
+      "uns_all": [
+        "N07001"
+      ],
+      "wnr": "2.4654",
+      "en_name": null,
+      "density_g_cm3": 8.2,
+      "melting_c": "1330-1360",
+      "source": "Haynes International HAYNES Waspaloy alloy brochure H-3232 (UNS and physical constants) with Elgiloy Specialty Metals Strip Products sheet (Werkstoff and composition)",
+      "checked": "2026-09"
+    },
+    {
       "family": "duplex-steel",
       "grade": "2205",
       "name": "Duplex 2205",

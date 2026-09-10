@@ -644,6 +644,27 @@ nickel-alloy,Kovar,K94610,,,,,ASTM F15-04 (Reapproved 2022),2026-08
 # wnr, en_name and density across rows sharing a UNS - it would not have caught
 # the melting range drifting apart, so both rows are moved together.
 nickel-alloy,Hastelloy C-276,N10276,2.4819,NiMo16Cr15W,8.89,1323-1371,Haynes International HASTELLOY C-276 alloy brochure,2026-08
+# Waspaloy - TWO sources, on the same terms as the HAYNES 25 and 254 SMO rows.
+# Read 2026-09-10.
+#
+# Haynes International HAYNES Waspaloy alloy brochure (H-3232, (c) 2017) gives
+# UNS N07001, density 8.20 g/cm3 (0.296 lb/in3) and melting range 1330-1360 C
+# (2425-2475 F) from its Physical Properties table. It prints no Specifications or
+# DIN row, so no Werkstoff.
+#
+# Elgiloy Specialty Metals Strip Products sheet for Waspaloy alloy (REV 2024 04 02)
+# supplies the Werkstoff, 2.4654, printed against UNS N07001 in its header, and
+# AMS 5544 for strip and foil. Its density is 8.19 at 20 C against Haynes' 8.20 at
+# RT - the same figure to the precision either publishes, so 8.20 stands.
+#
+# en_name is EMPTY, not "-": neither document prints a symbolic EN designation, and
+# neither is silent about it selectively, so there is nothing to read either way.
+#
+# Filed under `nickel-alloy`, NOT `haynes`: DISPLAY prefixes the family name onto
+# the grade, and "Haynes Waspaloy" would put a mill's name on a mark it does not
+# own. The MARK IS NEITHER MILL'S: the Elgiloy sheet states
+# "Waspaloy(R) is a registered trademark of United Technologies Corp."
+nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES Waspaloy alloy brochure H-3232 (UNS and physical constants) with Elgiloy Specialty Metals Strip Products sheet (Werkstoff and composition),2026-09
 duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1430,SIJ Acroni SINOXX 4462 datasheet (density and composition limits) and Aperam DX1803/DX2205 Technical Data Sheet (melting temperature),2026-08
 duplex-steel,32750,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1445,Aperam DX2507 Technical Data Sheet,2026-08
 # ASTM A240/A240M-25a supplies the chemistry limits. Density 7.80 confirmed by

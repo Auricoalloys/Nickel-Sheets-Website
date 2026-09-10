@@ -498,6 +498,9 @@ const SINGLE_GRADE = {
   'alloy-20': ['special-stainless-steel', 'Alloy 20'],
   'alloy-28': ['special-stainless-steel', 'Alloy 28'],
   'alloy-926': ['special-stainless-steel', 'Alloy 926'],
+  // /waspaloy/ is one segment with no family in it, so SINGLE_GRADE is the only
+  // way to resolve it. The old misspelled /waspalloy/ redirects to it.
+  waspaloy: ['nickel-alloy', 'Waspaloy'],
 };
 const singleGradeOf = url => SINGLE_GRADE[(url.split('/').filter(Boolean)[0] || '').toLowerCase()] || null;
 

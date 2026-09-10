@@ -148,6 +148,7 @@ export const MATERIALS = [
   {"id":"kovar","name":"Kovar","group":"Nickel Alloys","tier":"mill","density":null,"source":"ASTM F15-04 (Reapproved 2022)","note":"K94610"},
   {"id":"nickel-200","name":"Nickel 200","group":"Nickel Alloys","tier":"mill","density":8.89,"source":"Special Metals Nickel 200 & 201 bulletin","note":"N02200 / 2.4060 / 2.4066"},
   {"id":"nickel-201","name":"Nickel 201","group":"Nickel Alloys","tier":"mill","density":8.89,"source":"Special Metals Nickel 200 & 201 bulletin","note":"N02201 / 2.4061 / 2.4068"},
+  {"id":"waspaloy","name":"Waspaloy","group":"Nickel Alloys","tier":"mill","density":8.2,"source":"Haynes International HAYNES Waspaloy alloy brochure H-3232 (UNS and physical constants) with Elgiloy Specialty Metals Strip Products sheet (Werkstoff and composition)","note":"N07001 / 2.4654"},
   {"id":"stainless-steel-304-304l","name":"Stainless Steel 304 / 304L","group":"Stainless Steel","tier":"handbook","density":7.9,"source":"Nominal","note":"1.4301 / 1.4307"},
   {"id":"stainless-steel-316-316l","name":"Stainless Steel 316 / 316L","group":"Stainless Steel","tier":"handbook","density":8,"source":"Nominal","note":"1.4401 / 1.4404"},
   {"id":"stainless-steel-317l","name":"Stainless Steel 317L","group":"Stainless Steel","tier":"handbook","density":8,"source":"Nominal","note":"1.4438"},
