@@ -389,6 +389,34 @@ Two mechanical traps rode along on all seven:
 
 The paragraph is now gone tree-wide (grep is 0), so any reappearance is a regression.
 
+#### A colon in a front-matter value drops the whole front matter, silently
+
+`description: Waspaloy (UNS N07001, 2.4654): cobalt and molybdenum bearing…` is not a string to
+YAML — the `": "` makes it a nested mapping, and the parse throws. Jekyll does **not** fail the
+build for that. It prints one `YAML Exception` line among ~800 files of build output and falls back
+to **no front matter at all**, so every key on the page is lost at once.
+
+The damage is invisible because the page still builds. `permalink: pretty` derives `/waspaloy/`
+from the filename `waspaloy.html`, so the URL was right by coincidence — while `redirect_from:
+/waspalloy/` was gone, and the retired misspelling this repo had just redirected went back to
+404ing. The rename looked done and was not.
+
+So **a front-matter value containing `": "` or ending in `:` must be quoted**, and the tell is not
+something you will notice in a page diff. Sweep for the shape rather than reading for it:
+
+```bash
+node --input-type=module -e 'import{readFileSync}from"node:fs";import{execSync}from"node:child_process";
+for(const f of execSync(`git ls-files "*.html"`,{encoding:"utf8",maxBuffer:1<<28}).trim().split("\n")){
+let s;try{s=readFileSync(f,"utf8").replace(/\r\n/g,"\n")}catch{continue};if(!s.startsWith("---"))continue;
+const e=s.indexOf("\n---",3);if(e<0)continue;for(const l of s.slice(4,e).split("\n")){
+const m=l.match(/^([A-Za-z_][\w-]*):[ \t]+(.*)$/);if(!m)continue;const v=m[2].trim();
+if(!v||/^["\x27|>]/.test(v))continue;if(/:[ \t]/.test(v)||/:$/.test(v))console.log(f,"->",m[1])}}'
+```
+
+Tree-wide that is **0** as of 2026-09-10, so any hit is a regression. And after any front-matter
+edit, grep the build output for `YAML Exception` — a clean `_site` listing is not evidence, because
+the page builds either way.
+
 Never put a colon in a permalink. Colons build on the Linux runners GitHub Pages uses but are
 illegal in Windows filenames, so the local build breaks. This already bit the NiCr pages once.
 
@@ -1566,6 +1594,29 @@ static check is the same one that finds the 404s, and it is cheaper than a build
 
 A redirect sweep is **boilerplate** for `<lastmod>`, like `e20a13f4` and `d506331b` before it:
 the targets gain a `redirect_from` line and say nothing new.
+
+#### A "missing" form page may be a retired one — check before building it
+
+A sweep for grades whose hub has no sheets or plates page reports gaps, and a gap is not the same
+as a hole. `/inconel/625-LCF/plates/` came out of exactly that sweep, and building it would have
+resurrected a page **retired on purpose**: 625 LCF is made in flat product only, ATI lists sheet
+and strip as its product forms, and the plate and round-bar pages were withdrawn on 2026-08-26 for
+that reason. The comment block above the row in `docs/specs.csv` says so in as many words, and the
+hub already carried `redirect_from: /inconel/625-LCF/plates/` — a page and a redirect would have
+claimed one URL.
+
+Three cheap tests, in the order they cost least, before writing any new form page:
+
+- **Read the `specs.csv` comment block for that grade.** The `-` cells carry a reason above them,
+  and `-` means *not made in that form* — it is already the answer to "why is there no page".
+- **Grep the tree for the permalink.** An existing `redirect_from` pointing at the URL you are
+  about to create is the repo telling you it retired that page.
+- **`git log --all --diff-filter=D -- <path>`.** If the file was deleted, read the commit message
+  that deleted it before deciding it was an oversight.
+
+The same sweep is what correctly produced `/waspaloy/sheets/` and `/waspaloy/plates/` — Haynes'
+brochure H-3232 lists "Sheet, Plate & Strip — AMS 5544", so there the mill states the form is made.
+**The sweep finds candidates; the mill's own form table decides.**
 
 ### JavaScript inventory
 
