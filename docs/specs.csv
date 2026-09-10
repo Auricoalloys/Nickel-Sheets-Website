@@ -350,6 +350,25 @@ nickel-alloy,602 CA,N06025,ASTM B168,ASTM B166,ASTM B166,-,-
 # does. fitting is "-": F15 does not reach fittings and no mill lists the grade
 # in that form.
 nickel-alloy,Kovar,K94610,AMS 7728,ASTM F15 / AMS 7727,ASTM F15 / AMS 7726,ASTM F15,-
+# Waspaloy - Haynes International HAYNES Waspaloy alloy brochure H-3232,
+# "Specifications and Codes" table, read 2026-09-10. It lists every form this
+# file has a column for, so nothing here is inferred:
+#   Sheet, Plate & Strip     AMS 5544
+#   Billet, Rod & Bar        AMS 5704 / 5706 / 5707 / SB 637 / B 637
+#   Bare Welding Rods & Wire AMS 5828
+#   Seamless Pipe & Tube     -      Welded Pipe & Tube  -      Fittings  -
+# The `wire` column takes AMS 5828 because that is the welding rod and wire row;
+# the bar specs cover rod and bar. Pipe, tube and fittings are dashed by the
+# brochure itself, so they are "-" and not empty.
+#
+# The same table dashes the DIN row, which is Haynes publishing no DIN
+# designation - not a contradiction of the 2.4654 in grades.csv, which comes off
+# the Elgiloy strip sheet. One mill publishing none and another publishing one
+# are different claims.
+#
+# The page carried "AMS 5704 / AMS 5706 / AMS 5708" by hand. The brochure says
+# 5707. 5708 was wrong and is corrected on the page in the same commit.
+nickel-alloy,Waspaloy,N07001,AMS 5544,AMS 5704 / 5706 / 5707 / ASTM B637,AMS 5828,-,-
 duplex-steel,2205,S32205,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,32750,S32750,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815
 duplex-steel,32760,S32760,ASTM A240,ASTM A276 / A479,ASTM A479,ASTM A790 / A789,ASTM A815

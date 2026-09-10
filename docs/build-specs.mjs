@@ -188,6 +188,7 @@ const SINGLE_GRADE = {
   'alloy-20': ['special-stainless-steel', 'Alloy 20'],
   'alloy-28': ['special-stainless-steel', 'Alloy 28'],
   'alloy-926': ['special-stainless-steel', 'Alloy 926'],
+  waspaloy: ['nickel-alloy', 'Waspaloy'],
 };
 
 // GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.
