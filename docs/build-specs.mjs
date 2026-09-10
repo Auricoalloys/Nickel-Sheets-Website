@@ -44,6 +44,13 @@ const FORM_OF_DIR = {
   tube: 'pipe_tube',
   coil: 'flat',
   fittings: 'fitting',
+  // Sheets and plates are both flat product: one standard per grade covers plate,
+  // sheet and strip, so these three hubs cite the same column and that is correct,
+  // not a copy. round-bar is 'bar' and cites a DIFFERENT standard - which is the
+  // whole reason a bar order must not be quoted off a plate certificate.
+  sheets: 'flat',
+  plates: 'flat',
+  'round-bar': 'bar',
 };
 const FORM_LABEL = {
   flat: 'Plate, sheet and strip',
