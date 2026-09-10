@@ -9,25 +9,28 @@ Aurico Alloys LLP is an ISO 9001:2015 certified supplier based at 112, 1st Floor
 Aman Grih, Carpenter 1st Street, C.P. Tank, Mumbai 400004, Maharashtra, India.
 Contact: info@auricoalloys.com, +91 79778 86611. Exports to more than 40 countries.
 
-Pricing is quotation-based and depends on grade, form, dimensions and quantity;
-no list prices are published on the site. Product pages carry the UNS number,
-Werkstoff (W.Nr.) number, applicable ASTM/ASME specifications, chemistry ranges,
-mechanical properties and the stocked size envelope for that grade and form.
+Indicative price ranges (INR per kg, with USD shown for reference) are published
+on many grade and form pages and refreshed on a rolling basis; the remaining
+pages are quoted on request. Final pricing always depends on grade, form,
+dimensions and quantity and is confirmed by quotation. Product pages carry the
+UNS number, Werkstoff (W.Nr.) number, applicable ASTM/ASME specifications,
+chemistry ranges, mechanical properties and the stocked size envelope for that
+grade and form.
 
 ## Alloy families
 
 - [Inconel](https://www.nickelsheets.com/inconel/): nickel-chromium superalloys — 600, 601, 617, 625, 625 LCF, 686, 690, 693, 718, 725, 740H, 751, 783, X-750
 - [Alloy 602 CA](https://www.nickelsheets.com/nickel-alloy/602-CA/): UNS N06025 / 2.4633, a VDM Metals grade (VDM Alloy 602 CA / Nicrofer 6025 HT). Often searched as "Inconel 602 CA", but Special Metals does not make it
-- [Incoloy](https://www.nickelsheets.com/incoloy/): nickel-iron-chromium alloys — 330, 660 (A-286, UNS S66286), 800, 800H, 800HT, 825, 890, 903, 909, 925, 945
+- [Incoloy](https://www.nickelsheets.com/incoloy/): nickel-iron-chromium alloys — Alloy 330 (Incoloy DS), 660 (A-286, UNS S66286), 800, 800H, 800HT, 825, 890, 903, 909, 925, 945
 - [Monel](https://www.nickelsheets.com/monel/): nickel-copper alloys — 400, 405, K-500
 - [Hastelloy](https://www.nickelsheets.com/hastelloy/): nickel-molybdenum/chromium alloys — B2, B3, C22, C276, C2000, C4, G30, N, X
 - [Haynes](https://www.nickelsheets.com/haynes/): high-temperature alloys — 214, 230, 242, 282, HR-120, 25, 188
 - [Nimonic](https://www.nickelsheets.com/nimonic/): 75, 80A, 81, 86, 90, 105, 115, 263, 901
 - [Nichrome](https://www.nickelsheets.com/nichrome/): NiCr resistance alloys — 80/20, 70/30, 60/15, 40/20, 30/20, 20/25
 - [Titanium](https://www.nickelsheets.com/titanium/): commercially pure and alloyed — Grades 1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 16, 23; and the aerospace and medical alloys Ti-6-2-4-2 (Ti-6Al-2Sn-4Zr-2Mo), Ti-6-6-2 (Ti-6Al-6V-2Sn), Ti-17 (Ti-5Al-2Sn-2Zr-4Cr-4Mo), Ti-8-1-1 (Ti-8Al-1Mo-1V) and Ti-6Al-7Nb
-- [Stainless Steel](https://www.nickelsheets.com/stainless/): super-austenitic and special grades — 904L, AL-6XN, SMO 254, Alloy 20, 28, 31, 926, AM 350
+- [Stainless Steel](https://www.nickelsheets.com/stainless/): super-austenitic and special grades — 904L, AL-6XN, SMO 254, Sanicro 35, Alloy 20, 28, 31, 926, AM 350
 - [Duplex Steel](https://www.nickelsheets.com/duplex-steel/): duplex and super duplex — 2205 (S31803 / S32205), 2507 (S32750), S32760
-- [Cobalt Alloys](https://www.nickelsheets.com/cobalt-alloys/): Stellite, Elgiloy, cobalt-chrome
+- [Cobalt Alloys](https://www.nickelsheets.com/cobalt-alloys/): Stellite 6, 12, 21; Elgiloy, MP35N, CoCrMo, and the cobalt-base Haynes grades 25 (L-605) and 188
 - [Pure Nickel Strips](https://www.nickelsheets.com/pure-nickel-strips/): Nickel 200/201 strip and busbar for battery packs
 - [Nickel 200 / 201](https://www.nickelsheets.com/nickel-200-201/): commercially pure nickel
 - [Invar](https://www.nickelsheets.com/invar/) and [Kovar](https://www.nickelsheets.com/kovar/): controlled-expansion alloys
