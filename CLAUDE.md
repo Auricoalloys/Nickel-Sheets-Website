@@ -1751,3 +1751,12 @@ publishes a supply commitment nobody made. Where neither mill publishes a range 
 has not given one, the row says so — the three Sanicro 35 pages read "quoted against the mill
 programme in force at the time of enquiry", which is true and answerable, and the real ranges
 replace it when someone who knows them supplies them.
+
+**"Ex-stock Mumbai" is one of these claims, and it rides in the metadata where nobody re-reads
+it.** It sat in the Waspaloy hub's front matter, meta description, og, twitter and JSON-LD
+description — five copies of a sentence written once — on a grade the business sources against each
+order. The family-level pages using the same phrase are fine, because they name the grades they
+mean (`Nickel 200 / 201, Monel 400, Inconel 600`); the hub had inherited the phrasing without the
+qualification. So when adding or reviewing a grade page, **ask whether that grade is actually
+carried before the boilerplate says it is**, and prefer "Supplied from Mumbai" where the answer is
+no. Confirmed sourced-to-order for Waspaloy on 2026-09-10 and corrected in `d743adba`.
