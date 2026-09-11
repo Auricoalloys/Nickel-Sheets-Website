@@ -736,8 +736,13 @@ Three things it refuses rather than guesses at:
 ### Specifications come from docs/specs.csv — do not edit hub tables by hand
 
 A standard is written for a **product form**. ASTM B443 covers plate, sheet and strip; B446 covers
-rod, bar and wire; B444 covers pipe and tube. They are not interchangeable, and citing one for the
-wrong form tells a buyer the material is certified to something it is not.
+rod and bar — **not wire**, see below; B444 covers pipe and tube. They are not interchangeable, and
+citing one for the wrong form tells a buyer the material is certified to something it is not.
+
+This paragraph said "B446 covers rod, bar and wire" until 2026-09-10. It does not: ASTM titles it
+"… (UNS N06625) … Rod and Bar", and Special Metals' own 625 bulletin prints "ASTM B 446 (Rod & Bar)".
+The example this whole section opens with — `/inconel/625/wire/` citing B443 — had been "fixed" to
+B446, which swapped a plate standard for a bar standard on a wire page.
 
 That went wrong at scale. `/inconel/625/wire/` cited B443 — a plate spec — in seven places
 including its meta description and JSON-LD. An audit of every published page found **80 pages citing
@@ -782,10 +787,56 @@ cell reads `mill`; where the grade is not made in that form it reads `-`. Distri
 not a source — that is where AMS 5542, an Inconel X-750 *sheet* spec, came to be cited for Haynes
 214 *round bar*.
 
-Two things the mills' own groupings settle, which the ASTM title alone gets wrong: B637 covers
-"Rod, Bar, **Wire** and Forging Stock" for alloy 718 and Nimonic 80A, and B425 covers "Rod, Bar,
-**Wire** and Forging Stock" for Incoloy 825. Reading only the standard's title flags those as errors
-when they are correct.
+#### Read the mill's label for each standard, not the heading it sits under
+
+This section used to say the opposite, and the reversal is worth keeping in full. It read: *"Two
+things the mills' own groupings settle, which the ASTM title alone gets wrong: B637 covers 'Rod, Bar,
+**Wire** and Forging Stock' for alloy 718 and Nimonic 80A, and B425 covers 'Rod, Bar, **Wire** and
+Forging Stock' for Incoloy 825."* Both were wrong, and so were four more wire cells built the same
+way. Corrected 2026-09-10/11.
+
+The mistake was reading a **group heading as a scope**. Special Metals lists a grade's standards
+under headings such as "Rod, Bar, Wire and Forging Stock", and the heading describes the group, not
+each member — the same group holds B564 (forgings) and B462 (flanges and fittings). Where a bulletin
+labels its entries it says so outright, and those labels are what settled it:
+
+| Bulletin says | So |
+|---|---|
+| 625: "ASTM B 446 (Rod & Bar)" … "SAE/AMS 5837 (Wire), ISO 9724 (Wire)" | 625 wire is ISO 9724 / AMS 5837 |
+| K-500: "ASTM B 865 (Rod and Bar)" … "QQ-N-286 (Rod, Bar, Wire, and Forgings)" | K-500 wire is QQ-N-286 / ISO 9724 |
+| 617: "ASTM B 546 (Pipe)" | not tube — 617 pipe and tube is B167 / B546 |
+| 400: "ASTM B 164 (Rod, Bar, **and Wire**)" | B164 was right |
+| X-750: B637 on its own "Rod, Bar and Forging Stock" line; "Wire – … AMS 5698 and 5699" | B637 is not a wire standard |
+
+Where a bulletin does not label, **the standard's own scope decides** — ASTM scopes B637 to "rod, bar,
+forgings, and forging stock", B425 to "rounds, squares, hexagons, and rectangles", B574 to rod. And
+Haynes' Specifications and Codes tables are unambiguous: every Hastelloy C-family grade files B574 or
+B581 under "Billet, Rod & Bar" and lists the wire form only as AWS A5.14 welding wire.
+
+What the sweep changed: wire cells for 625, 686, 718, 825, K-500, Nickel 200/201, Nimonic 75, 80A,
+90 and 901, the Hastelloy C-family, G-30 and B-2, the three duplex grades (A479 → EN 10088-3) and
+254 SMO (A479 → `mill`); flat AMS numbers added for 600, 601, 625, 800, Monel 400, Nickel 201, Haynes
+230 and titanium Grades 1, 2, 5, 9 and 23. Every addition was checked against SAE's or ASTM's own
+title, because the lesson cuts both ways — AMS 5950 is listed in the 718 bulletin and is a 718SPF
+standard, so it was left out.
+
+**A welding-consumable listing is not by itself a wire product.** Where AWS A5.14 / "Bare Welding Rods
+& Wire" is a grade's *only* wire listing, the cell reads `-` (Hastelloy X, and now the C-family). Beside
+a wire-product standard it may stand (625 AMS 5837, 718 AMS 5832), and a welding-titled AMS stays
+wherever a wire mill sells its wire product to it — Nimonic 90 AMS 5829 and Waspaloy AMS 5828, both
+listed by Alloy Wire International. That last case is the protected note in `specs.csv`: a catalogue
+title is not a scope in either direction.
+
+**Hand-written copy repeats the cell, and the generators cannot reach it.** Fixing the CSV left 81
+hand-written claims on 21 pages — wire hub titles such as "Hastelloy Wire: UNS N10276, ASTM B574
+Supplier", FAQ answers, JSON-LD descriptions. After changing a standard in `specs.csv`, grep the whole
+tree for the old number in a wire context, with the generated blocks stripped.
+
+**`build-specs.mjs` used to leave a stale table on a form hub that lost its last grade.** When all six
+Hastelloy wire cells became `-`, `/wire/hastelloy/` had no grades left, and the generator reported
+"no table written" and moved on — so the old block, telling readers three rod standards "are the ones
+that cover wire", stayed published and `--check` passed. It now removes the stale block and `--check`
+reports it as drift.
 
 **The right form is not enough — the grade has to be inside the standard's scope.** An ASTM
 specification names the UNS numbers it covers, and a bar standard cited for a grade it does not list

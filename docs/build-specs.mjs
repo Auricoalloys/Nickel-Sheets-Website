@@ -226,11 +226,19 @@ for (const fp of walk(ROOT)) {
 
   const dir = rel.split('/')[0];
   let table = null;
+  // A form hub whose family resolves but which has NO grades left for its form.
+  // Until 2026-09-10 that case only reported and moved on, so a hub that used to
+  // have a table kept it for ever: when the Hastelloy wire cells were corrected
+  // from B574 / B581 / B335 (rod standards) to "-", /wire/hastelloy/ would have
+  // gone on telling readers those rod standards "are the ones that cover wire",
+  // and --check would have passed. Now the stale generated block is removed, and
+  // --check reports it as drift until it is.
+  let emptyFormHub = false;
 
   if (FORM_OF_DIR[dir]) {
     const family = familyOf(url);
     if (family) table = formTable(family, FORM_OF_DIR[dir]);
-    if (family && !table) noData.push(`${rel}  (${family} / ${FORM_OF_DIR[dir]})`);
+    if (family && !table) { noData.push(`${rel}  (${family} / ${FORM_OF_DIR[dir]})`); emptyFormHub = true; }
   } else {
     // grade hub: /family/grade/ with no form segment, or /grade/ for a
     // single-grade family, which has no family segment to carry.
@@ -252,7 +260,16 @@ for (const fp of walk(ROOT)) {
       if (row) table = gradeTable(row);
     }
   }
-  if (!table) continue;
+  if (!table) {
+    if (emptyFormHub && raw.includes(START)) {
+      const crlf = raw.includes('\r\n');
+      const s = raw.replace(/\r\n/g, '\n')
+        .replace(new RegExp('\\n?[ \\t]*' + START.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?' + END), '');
+      if (CHECK) drift.push(`${rel}  (stale table - no grades left for this form)`);
+      else { fs.writeFileSync(fp, crlf ? s.replace(/\n/g, '\r\n') : s); wrote++; }
+    }
+    continue;
+  }
 
   const crlf = raw.includes('\r\n');
   let s = raw.replace(/\r\n/g, '\n');
