@@ -9,8 +9,8 @@
 # One row here is the single source of truth for one grade.
 #
 # THE RULE THIS TABLE ENFORCES: a specification is written for a product form.
-# B443 covers plate, sheet and strip; B446 covers rod, bar and wire; B444 covers
-# pipe and tube. They are not interchangeable, and a hub must never print a
+# B443 covers plate, sheet and strip; B446 covers rod and bar - NOT wire, see the
+# 2026-09-10 sweep below; B444 covers pipe and tube. They are not interchangeable, and a hub must never print a
 # flat-product spec in the wire column.
 #
 # Sources are the mill technical bulletins - Special Metals for INCONEL,
@@ -47,12 +47,54 @@
 # node docs/build-specs.mjs --check reports drift and exits non-zero.
 
 family,grade,uns,flat,bar,wire,pipe_tube,fitting
-inconel,600,N06600,ASTM B168,ASTM B166 / AMS 5665,ASTM B166,ASTM B167,ASTM B366
-inconel,601,N06601,ASTM B168,ASTM B166 / AMS 5715,ASTM B166,ASTM B167,ASTM B366
+# --- WIRE AND FLAT SWEEP, 2026-09-10. Four wire cells in this block cited a ROD or
+# BAR standard as the wire specification, because the Special Metals bulletins list
+# standards under grouped headings - "Rod, Bar, Wire and Forging Stock" - and each
+# cell took the group's first ASTM number. A group heading is not a claim about each
+# standard in it: the same group holds B564 (forgings) and B462 (flanges). The
+# bulletins that annotate settle it in the mill's own words - the INCONEL alloy 625
+# bulletin (specialmetals.com; no publication number in its text) prints
+# "ASTM B 446/ASME SB 446 (Rod & Bar)" and separately "SAE/AMS 5837 (Wire), ISO 9724
+# (Wire), DIN 17753 (Wire)"; SMC-029 (617) prints "DIN 17752 (Rod and Bar), DIN 17753
+# (Wire)"; and SMC-067 (X-750) gives B637 its own "Rod, Bar and Forging Stock" line
+# with "Wire - BS HR 505, SAE AMS 5698 and 5699" on another. ASTM's titles agree:
+#   B446 "... (UNS N06625) ... Rod and Bar"     B637 "... Bars, Forgings, and Forging Stock"
+#   B574 "... Alloy Rod"                        B166 "... Rod, Bar, and Wire"  (wire in scope)
+# So 625 wire is ISO 9724 / AMS 5837, 686 wire is DIN 17753 (the only wire standard
+# in SMC-024's list), and 718 wire drops B637 for AMS 5962 ("Round Bars and Wire",
+# SAE) / AMS 5832 / ISO 9724. AMS 5837 and AMS 5832 are WELDING wire specs (SAE
+# titles them "Welding Wire"; Elgiloy calls them filler metal), so the pages label
+# them as such.
+#
+# Flat AMS numbers added the same day, each confirmed against SAE's own title:
+#   600 AMS 5540 (SMC-027 "Plate, Sheet and Strip"; Elgiloy lists it for 600 too)
+#   601 AMS 5870 "Sheet, Strip, and Plate ... (Alloy 601)" - from Elgiloy's Inconel
+#       specifications page; SMC-028 lists no AMS for 601 at all
+#   625 AMS 5869 "Sheet, Strip, and Plate ... (Alloy 625)" - the 625 bulletin "(Plate, Sheet & Strip)"
+# 600 wire also gains AMS 5687, SAE "Wire, 74Ni-15.5Cr-8.0Fe, Annealed", listed by
+# both SMC-027 and Elgiloy. AMS 5950 is NOT added to 718 although SMC-045 lists it:
+# SAE titles it sheet and strip in "Inconel 718SPF", a superplastic-forming variant,
+# so it would certify a different product.
+inconel,600,N06600,ASTM B168 / AMS 5540,ASTM B166 / AMS 5665,ASTM B166 / AMS 5687,ASTM B167,ASTM B366
+inconel,601,N06601,ASTM B168 / AMS 5870,ASTM B166 / AMS 5715,ASTM B166,ASTM B167,ASTM B366
 # 602 CA moved to the nickel-alloy family on 2026-08-26 - the row is in that
 # block below. Special Metals does not make this alloy; VDM Metals does.
-inconel,617,N06617,ASTM B168 / AMS 5888 / 5889,ASTM B166 / AMS 5887,ASTM B166 / ISO 9724,ASTM B546,ASTM B366
-inconel,625,N06625,ASTM B443 / AMS 5599,ASTM B446 / AMS 5666,ASTM B446,ASTM B444,ASTM B366
+#
+# 617 pipe_tube read "ASTM B546" alone until 2026-09-10, which published a welded
+# large-bore PIPE standard as the specification for 617 tube. Two sources settle it:
+#   - Special Metals INCONEL alloy 617 bulletin SMC-029 (Mar 2005), "Pipe and Tube"
+#     row: "ISO 6207 (Tubing), ASTM B 546/ASME SB 546 (Pipe), DIN 17751 (Pipe and
+#     Tube)" - the mill labels B546 as pipe. The cell took the row's one ASTM number
+#     and applied it to both forms.
+#   - ASTM's own titles: B546 is "Electric Fusion-Welded ... Pipe", 3 in. nominal and
+#     larger; B167 is "... Nickel-Chromium-Cobalt-Molybdenum Alloy (UNS N06617)
+#     Seamless Pipe and Tube" in every revision from B167-06 to B167-23.
+# The SM bulletin predates N06617 entering B167, which is why it does not list it.
+# B167 is therefore sourced from ASTM's title rather than the bulletin - the same
+# use of ASTM's own scope that settled B649 below - and B546 stays for welded pipe.
+# Same shape as the Alloy 330 row: seamless and welded standards listed together.
+inconel,617,N06617,ASTM B168 / AMS 5888 / 5889,ASTM B166 / AMS 5887,ASTM B166 / ISO 9724,ASTM B167 / B546,ASTM B366
+inconel,625,N06625,ASTM B443 / AMS 5599 / 5869,ASTM B446 / AMS 5666,ISO 9724 / AMS 5837,ASTM B444,ASTM B366
 # N06626 IS NOT COVERED BY ASTM OR ASME. The ATI 625HP data sheet - the only
 # published source for this grade, Special Metals issuing no 625LCF bulletin -
 # says so in as many words: "N06626 is not covered by ASTM or ASME
@@ -68,10 +110,18 @@ inconel,625 LCF,N06626,AMS 5879,-,-,-,-
 # 660 (A286) moved to the incoloy family on 2026-08-26 - the row is in that
 # block below. It is an iron-based precipitation-hardened superalloy, and "660"
 # is a specification designation rather than an alloy name.
-inconel,686,N06686,ASTM B575 / B906,ASTM B574,ASTM B574,ASTM B619 / B622 / B626,ASTM B366
+inconel,686,N06686,ASTM B575 / B906,ASTM B574,DIN 17753,ASTM B619 / B622 / B626,ASTM B366
 inconel,690,N06690,ASTM B168 / B906,ASTM B166 / B564,ASTM B166,ASTM B163 / B167 / B829,ASTM B366
 inconel,693,N06693,ASTM B168 / B906,ASTM B166,ASTM B166,ASTM B167,ASTM B366
-inconel,718,N07718,ASTM B670 / B906 / AMS 5596 / 5597,ASTM B637 / AMS 5662 / 5663,ASTM B637 / AMS 5962,AMS 5589 / 5590,ASTM B366
+# 718 fitting read "ASTM B366" until 2026-09-10. B366 names the UNS numbers it covers,
+# and in B366-04b N07718 is not among them - every other nickel alloy in this file is.
+# SMC-045 lists no fittings either: it gives 718 as "pipe, tube, sheet, strip, plate,
+# round bar, flat bar, forging stock, hexagon, wire and extruded section", and its tube
+# line is "SAE AMS 5589, SAE AMS 5590" with no pipe standard at all. So the cell is "-",
+# on the 602 CA pattern below: /inconel/718/fittings/ stays published, the identity table
+# omits the row instead of printing a blank, and the page says 718 fittings are machined
+# from bar and forging stock to B637 / AMS 5662 / 5663 of the same heat.
+inconel,718,N07718,ASTM B670 / B906 / AMS 5596 / 5597,ASTM B637 / AMS 5662 / 5663,AMS 5962 / 5832 / ISO 9724,AMS 5589 / 5590,-
 inconel,725,N07725,-,ASTM B805,ASTM B805,-,-
 inconel,751,N07751,-,mill,-,-,-
 inconel,783,R30783,-,AMS 5940 / ASTM B637,-,-,-
@@ -307,8 +357,8 @@ titanium,Ti-6Al-7Nb,R56700,-,ASTM F1295 / ISO 5832-11,ASTM F1295,-,-
 nickel-alloy,Nickel 200,N02200,ASTM B162,ASTM B160,ASTM B160,ASTM B161 / B163,ASTM B366
 nickel-alloy,Nickel 201,N02201,ASTM B162,ASTM B160,ASTM B160,ASTM B161 / B163,ASTM B366
 nickel-alloy,Monel 400,N04400,ASTM B127,ASTM B164,ASTM B164,ASTM B163 / B165,ASTM B366
-nickel-alloy,Inconel 600,N06600,ASTM B168,ASTM B166,ASTM B166,ASTM B167,ASTM B366
-nickel-alloy,Inconel 625,N06625,ASTM B443,ASTM B446,ASTM B446,ASTM B444,ASTM B366
+nickel-alloy,Inconel 600,N06600,ASTM B168 / AMS 5540,ASTM B166,ASTM B166 / AMS 5687,ASTM B167,ASTM B366
+nickel-alloy,Inconel 625,N06625,ASTM B443 / AMS 5599 / 5869,ASTM B446,ISO 9724 / AMS 5837,ASTM B444,ASTM B366
 nickel-alloy,Incoloy 825,N08825,ASTM B424,ASTM B425,ASTM B425,ASTM B423,ASTM B366
 nickel-alloy,Hastelloy C-276,N10276,ASTM B575,ASTM B574,ASTM B574,ASTM B622,ASTM B366
 # Alloy 602 CA, read off Table 1b of the VDM Alloy 602 CA data sheet (March
