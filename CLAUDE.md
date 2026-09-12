@@ -1680,6 +1680,50 @@ The same sweep is what correctly produced `/waspaloy/sheets/` and `/waspaloy/pla
 brochure H-3232 lists "Sheet, Plate & Strip — AMS 5544", so there the mill states the form is made.
 **The sweep finds candidates; the mill's own form table decides.**
 
+### Application guides select a grade, and every claim names the producer
+
+Two pages route by service rather than by product form: `sour-service.html`
+(`/alloys-for-sour-service-nace-mr0175-mr0103/`) and `acid-alkali-service.html`
+(`/alloys-for-acid-and-alkali-service/`, added 2026-09-12), which places every grade the site
+supplies against caustic soda and potash and against sulphuric, hydrochloric, hydrofluoric,
+phosphoric, nitric and organic acids.
+
+They carry the same rule as `docs/specs.csv`: **a limit, a rate or a ranking is published only if
+the producer of that alloy published it.** "Everyone knows C-276 is the sulphuric acid grade" is not
+a source, and the site has already been wrong that way — the `/monel/400/` hub said Monel 400
+"resists … caustic alkalis" while the Special Metals **MONEL alloy 400 bulletin never mentions
+alkalis at all**. The claim is sound, but the document that carries it is the separate
+*High-Performance Alloys for Resistance to Aqueous Corrosion* handbook, which rates alloy 400 "nearly
+as resistant as Nickel 200 … through most of the concentration range" with a stress-corrosion caveat.
+**A bulletin's silence is not a denial, and it is not a licence either — find the document that says
+it.**
+
+The reverse also bites: a grade's reputation can name the wrong sibling. Haynes sells **C-2000**, not
+C-276, as its sulphuric acid alloy (a deliberate copper addition), and in dilute sulphuric acid
+Special Metals ranks **Incoloy 825 above C-276**. Check the ranking before repeating the reputation.
+
+**Haynes' per-acid tables are not safe to read; its summary table is.** Each corrosion-resistant
+alloy page ends with a *Reagent Grade Solutions, mm/y* table carrying the chemical's name in the same
+row as the figures. Above it sit per-acid tables under `<h3>` headings, and on some pages the
+headings and tables are out of step: **C-276's hydrochloric acid data sits under a stray
+"Hydrobromic Acid" heading**, and **C-4's "Hydrochloric Acid" table runs 1–96%, which is the
+sulphuric series**. Read the summary table, and confirm any figure by the concentration series —
+Haynes stops hydrochloric tests at 20%, the azeotrope, while hydrobromic runs to 40%. The cross-check
+that exposed this is worth repeating on any new alloy page: rebuild both kinds of table from the
+`data-cell-id` attributes and compare cell by cell. B-3 agreed on all 167 cells; C-276, C-2000 and
+C-4 did not.
+
+**Never put two producers' numbers in one table.** Each laboratory tests differently, so the page
+compares grades *within* a producer's table and says so in the caption. Special Metals' names for
+grades the site sells under other names are stated where its data is used: C-22 is INCONEL 622,
+Alloy 20 is INCOLOY 020, Alloy 926 is INCOLOY 25-6MO — same UNS numbers, which is the only reason
+its data may be printed against those grades.
+
+A guide needs inbound links or it is an orphan to `tools/seo_audit.py`. Each of the 22 grade hubs the
+acid/alkali guide names carries **one sentence of its own grade's fact** and a link — not the same
+line 22 times, which is the near-duplicate pattern that put 132 pages in *Crawled – currently not
+indexed*.
+
 ### JavaScript inventory
 
 `floating-form.js` (every page, via footer), `site-search.js` (every page, via footer) and
