@@ -3024,14 +3024,14 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/mu-metal/</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-sheets.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/mu-metal/foil/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/Foil-New-Banner.webp</image:loc>
     </image:image>
@@ -3041,7 +3041,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/mu-metal/plates/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
