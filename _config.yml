@@ -66,6 +66,15 @@ exclude:
   # Guards the one table look: that the system block in pages.css and tables.css
   # stay identical, and that no page styles a table on its own. Reports only.
   - docs/check-tables.mjs
+  # Guards every page's <main> nesting. Run in CI since before this repo had a
+  # generator to check; missed its own exclusion until this line was added, so
+  # it was publishing at /docs/check-tags.mjs with nothing linking to it - the
+  # exact failure the note above describes, on the script that guards it.
+  - docs/check-tags.mjs
+  # Guards llms.txt against a grade with a live page that the file never
+  # mentions - what happened to Alloy 59 before this existed. Reports only,
+  # excluded in the same commit per the note above.
+  - docs/check-llms-txt.mjs
   # The weight calculator's material list and its generator. What it PRODUCES -
   # javascript/weight-data.js - is served, because the page imports it; only the
   # sources are withheld. Excluded in the same commit that added them, which is

@@ -1822,22 +1822,51 @@ that when adding them.
 Images are WebP under `docs/images/`; camera originals live in `docs/images/source/`, which is both
 gitignored and excluded from the build.
 
-### llms.txt is hand-maintained and nothing checks it
+### llms.txt is hand-maintained, and docs/check-llms-txt.mjs guards the grade list
 
 `llms.txt` is a summary of the business and its catalogue for AI crawlers — one line per alloy
 family with its grade list, plus the address, certifications and how pricing works. No generator
-writes it, no `--check` reads it, and it is absent from `tools/seo_audit.py`, so it is the one place
-on this site where a grade list can go stale in complete silence.
+writes it — the family descriptions are a human's word choice, not derived data — and it was absent
+from `tools/seo_audit.py` and every other check until 2026-09-14, so it was the one place on this
+site where a grade list could go stale in complete silence.
+
+That silence is how **Alloy 59 went missing**: four live, sitemapped pages
+(`/alloy-59/round-bar/`, `/foil/`, `/sheets/`, `/plates/`) and zero mentions in the file. The same
+sweep found the titanium aerospace grade named **"Ti-17"** where the page's own `<h1>` calls it
+"Ti-5-2-4-4" — the site's own hand-written name, per the naming rule this file already follows
+elsewhere. Both fixed.
+
+```bash
+node docs/check-llms-txt.mjs
+```
+
+It checks one thing: a grade that has a live page (its own token found in `sitemap.xml`) but is not
+mentioned anywhere in `llms.txt`. Reports and exits non-zero; it never writes, and CI runs it on any
+PR touching `llms.txt`, `docs/grades.csv` or `sitemap.xml`.
+
+The matcher has to understand one piece of English grammar or it drowns in false positives: a
+qualifier stated once and reused across a comma list ("Grades 1, 2, 3...23", "Alloy 20, 28, 31, 926")
+does not repeat the qualifier next to every number, so a plain squash-and-substring check reports
+every grade after the first as missing. A "Qualifier Code" grade is accepted if the qualifier appears
+anywhere in the candidate text and the code appears as its own comma-delimited list item — which is
+what the prose actually does.
+
+What it does **not** catch: a grade mentioned under the wrong name (the Ti-17 case — telling "right
+name" from "wrong name" needs a human reading the page's own `<h1>`), a grade verified in
+`docs/grades.csv` with no page built yet (Haynes 556, HR-160 as of 2026-09 — a publishing backlog,
+not an llms.txt bug), and single- or two-character grade codes with no qualifier word in front of them
+(Hastelloy N, X; Incoloy DS — too short to search for as a bare substring without false positives).
+All three are named and skipped rather than silently passing.
 
 It duplicates claims that now have owners: the family grade lists belong to `docs/hub-grades.csv`,
 and what the site says about prices belongs to `prices.csv`. **Update it in the same commit that
-adds, renames or retires a grade**, the same as any page.
+adds, renames or retires a grade**, the same as any page, and run the checker before committing.
 
-Known drift as of 2026-09-02, listed because a reader will otherwise trust it: Incoloy still reads
-`330`, which was renamed to Alloy 330 at `/incoloy/DS/`; Sanicro 35 is missing from the stainless
-line; Stellite has no grade list, so 6, 12 and 21 appear nowhere; and the opening paragraph says
-"no list prices are published on the site" when `prices.csv` publishes 270. Fixing these is a
-content pass nobody has run, not a bug in a generator.
+The known drift recorded here as of 2026-09-02 — Incoloy reading `330` instead of Alloy 330, Sanicro
+35 missing from the stainless line, Stellite's grade list, the stale "no list prices" line — was a
+content pass nobody had run, not a bug in a generator, and was cleared by 2026-09-14. The checker
+above does not cover any of that: it only catches a grade the file omits entirely, not a stale claim
+about one it already mentions.
 
 **Commercial figures are the business's to state, not ours to infer.** Prices already have a whole
 pipeline built on that; size and stock ranges are the same claim in a less obvious place. Copying

@@ -52,6 +52,9 @@ on:
       - "CSS/**"
       - "docs/check-tables.mjs"
       - "docs/check-tags.mjs"
+      - "llms.txt"
+      - "docs/check-llms-txt.mjs"
+      - "sitemap.xml"
   push:
     branches: [main]
     paths:
@@ -83,6 +86,9 @@ on:
       - "CSS/**"
       - "docs/check-tables.mjs"
       - "docs/check-tags.mjs"
+      - "llms.txt"
+      - "docs/check-llms-txt.mjs"
+      - "sitemap.xml"
   workflow_dispatch:
 
 permissions:
@@ -153,6 +159,15 @@ jobs:
       # every hub reported stale on a tree with no drift in it at all.
       - name: Hub grade tables match docs/hub-grades.csv
         run: node docs/build-hub-grades.mjs --check
+
+      # llms.txt is the one AI-crawler-facing summary on the site, and it used
+      # to be checked by nothing at all: Alloy 59 had four live, sitemapped
+      # pages and zero mentions in it before this check existed. It does not
+      # write llms.txt - the family descriptions are a human's word choice,
+      # not derived data - it only flags a grade with a live page (per
+      # sitemap.xml) that is not mentioned anywhere in the file.
+      - name: llms.txt mentions every live grade
+        run: node docs/check-llms-txt.mjs
 
       # The weight calculator's material list is generated from grades.json and
       # docs/materials.csv. It is checked for the same reason the hub tables
