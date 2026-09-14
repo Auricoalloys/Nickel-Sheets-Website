@@ -1441,6 +1441,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/556/plates/</loc>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1450,12 +1451,14 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/556/round-bar/</loc>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/556/sheets/</loc>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1506,6 +1509,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/HR-160/plates/</loc>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
@@ -1515,12 +1519,14 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/HR-160/round-bar/</loc>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/HR-160/sheets/</loc>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
