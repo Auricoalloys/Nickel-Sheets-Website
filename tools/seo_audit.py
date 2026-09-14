@@ -109,6 +109,49 @@ def collect():
     return pages
 
 
+_VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
+         "meta", "param", "source", "track", "wbr"}
+_OPTIONAL_END = {"li", "p", "td", "th", "tr", "thead", "tbody", "tfoot",
+                 "option", "optgroup", "dd", "dt", "caption", "colgroup"}
+_TRACK = {"div", "main", "section", "aside", "nav", "article", "header",
+          "footer", "figure", "form", "table", "ul", "ol"}
+
+def unbalanced_fault(raw):
+    """First structural fault in the page, or None."""
+    # Blank the masked spans CHARACTER FOR CHARACTER BUT KEEP THE NEWLINES,
+    # or every line number this check reports is short by the number of lines
+    # it masked - it named line 78 for a fault on line 151 while the fault
+    # itself was right, which sends a reader to the wrong part of the page.
+    def _blank(m):
+        return re.sub(r"[^\n]", " ", m.group())
+    masked = re.sub(r"<!--[\s\S]*?-->", _blank, raw)
+    masked = re.sub(r"<script[\s\S]*?</script>", _blank, masked, flags=re.I)
+    masked = re.sub(r"<style[\s\S]*?</style>", _blank, masked, flags=re.I)
+    stack = []
+    for m in re.finditer(r"<(/?)([a-zA-Z][a-zA-Z0-9-]*)\b([^>]*)>", masked):
+        closing, tag, attrs = m.group(1), m.group(2).lower(), m.group(3)
+        if tag in _VOID or tag in _OPTIONAL_END or tag not in _TRACK:
+            continue
+        if attrs.rstrip().endswith("/"):
+            continue
+        line = masked.count("\n", 0, m.start()) + 1
+        if not closing:
+            stack.append((tag, line))
+            continue
+        names = [t for t, _ in stack]
+        if tag not in names:
+            return f"stray </{tag}> at line {line}"
+        at = len(names) - 1 - names[::-1].index(tag)
+        if at != len(stack) - 1:
+            t, ln = stack[at + 1]
+            return f"<{t}> opened line {ln} is closed over by </{tag}> at line {line}"
+        del stack[at:]
+    if stack:
+        t, ln = stack[0]
+        return f"<{t}> opened line {ln} is never closed"
+    return None
+
+
 def audit(pages):
     findings = collections.OrderedDict()
     real = {p: d for p, d in pages.items() if p not in FRAGMENTS}
@@ -260,51 +303,9 @@ def audit(pages):
     # tr and their kin close implicitly in HTML, so an unclosed one is not a
     # structural fault and counting it would bury the real findings - the site
     # writes hundreds of loose <li> in these very sidebars.
-    _VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
-             "meta", "param", "source", "track", "wbr"}
-    _OPTIONAL_END = {"li", "p", "td", "th", "tr", "thead", "tbody", "tfoot",
-                     "option", "optgroup", "dd", "dt", "caption", "colgroup"}
-    _TRACK = {"div", "main", "section", "aside", "nav", "article", "header",
-              "footer", "figure", "form", "table", "ul", "ol"}
-
-    def _unbalanced(raw):
-        """First structural fault in the page, or None."""
-        # Blank the masked spans CHARACTER FOR CHARACTER BUT KEEP THE NEWLINES,
-        # or every line number this check reports is short by the number of lines
-        # it masked - it named line 78 for a fault on line 151 while the fault
-        # itself was right, which sends a reader to the wrong part of the page.
-        def _blank(m):
-            return re.sub(r"[^\n]", " ", m.group())
-        masked = re.sub(r"<!--[\s\S]*?-->", _blank, raw)
-        masked = re.sub(r"<script[\s\S]*?</script>", _blank, masked, flags=re.I)
-        masked = re.sub(r"<style[\s\S]*?</style>", _blank, masked, flags=re.I)
-        stack = []
-        for m in re.finditer(r"<(/?)([a-zA-Z][a-zA-Z0-9-]*)\b([^>]*)>", masked):
-            closing, tag, attrs = m.group(1), m.group(2).lower(), m.group(3)
-            if tag in _VOID or tag in _OPTIONAL_END or tag not in _TRACK:
-                continue
-            if attrs.rstrip().endswith("/"):
-                continue
-            line = masked.count("\n", 0, m.start()) + 1
-            if not closing:
-                stack.append((tag, line))
-                continue
-            names = [t for t, _ in stack]
-            if tag not in names:
-                return f"stray </{tag}> at line {line}"
-            at = len(names) - 1 - names[::-1].index(tag)
-            if at != len(stack) - 1:
-                t, ln = stack[at + 1]
-                return f"<{t}> opened line {ln} is closed over by </{tag}> at line {line}"
-            del stack[at:]
-        if stack:
-            t, ln = stack[0]
-            return f"<{t}> opened line {ln} is never closed"
-        return None
-
     unbalanced = []
     for p, d in real.items():
-        why = _unbalanced(d["raw"])
+        why = unbalanced_fault(d["raw"])
         if why:
             unbalanced.append({"file": p, "fault": why}.__repr__())
     findings["unbalanced_containers"] = sorted(unbalanced)
@@ -613,6 +614,42 @@ def main():
         else:
             flag = ""
         print(f"  {n:>5}  {k}{flag}")
+
+    # AN EXCLUSION NOBODY CAN SEE IS INDISTINGUISHABLE FROM A CASE THE CHECK DOES
+    # NOT HANDLE. collect() drops published: false pages, which is right - they
+    # are never built and never served, so holding them to a canonical tag or a
+    # single <h1> would be noise. But ten of them carry the same structural
+    # faults this file now guards against on live pages, and until this note
+    # existed the report said 0 and did not say what it had not looked at.
+    #
+    # It is a NOTE AND NOT A FINDING on purpose. A finding would be baselined,
+    # and the next one would fail a pull request over a file that reaches no
+    # reader - which is how a check starts costing more than the bug. The moment
+    # one of these is published it stops being excluded and every check applies:
+    # flipping two of them to published: true reports duplicate_permalinks,
+    # case_variant_urls, unbalanced_containers and orphan_pages, and
+    # --fail-on-new exits 1. The exposure window is zero; this line is so the
+    # drafts are not forgotten in the meantime.
+    drafts = []
+    for dp, dn, fn in os.walk(ROOT):
+        dn[:] = [d for d in dn if d not in SKIP_DIRS]
+        for f in fn:
+            if not f.lower().endswith((".html", ".htm")):
+                continue
+            fp = os.path.join(dp, f)
+            raw = open(fp, encoding="utf-8", errors="replace").read()
+            fm = re.match(r"^\ufeff?---\s*\r?\n(.*?)\r?\n---\s*\r?\n", raw, re.S)
+            if not fm or not re.search(r"^published\s*:\s*false", fm.group(1), re.M):
+                continue
+            fault = unbalanced_fault(raw)
+            if fault:
+                drafts.append((os.path.relpath(fp, ROOT).replace("\\", "/"), fault))
+    if drafts:
+        print(f"\nnot checked - {len(drafts)} published: false draft(s) with unbalanced containers.")
+        print("These are never built, so no check above applies to them. Publishing one")
+        print("fails this audit on the spot; until then they are dead files.")
+        for f, why in sorted(drafts):
+            print(f"    {f}\n        {why}")
 
     for k in worse:
         print(f"\n--- new in {k} ---")
