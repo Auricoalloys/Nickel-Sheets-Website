@@ -665,6 +665,74 @@ nickel-alloy,Hastelloy C-276,N10276,2.4819,NiMo16Cr15W,8.89,1323-1371,Haynes Int
 # own. The MARK IS NEITHER MILL'S: the Elgiloy sheet states
 # "Waspaloy(R) is a registered trademark of United Technologies Corp."
 nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES Waspaloy alloy brochure H-3232 (UNS and physical constants) with Elgiloy Specialty Metals Strip Products sheet (Werkstoff and composition),2026-09
+# --- THE FOUR SINGLE-GRADE FAMILIES WITH FORM PAGES AND NO ROW ------------------
+# Invar, Mu-metal, Alloy 59 and Nitinol have 16 published pages between them and
+# were the last grades on this site with no row here at all, so build-grades.mjs
+# could not be pointed at them: SINGLE_GRADE needs a verified row, and these had
+# none. Seeded 2026-09-14 as `pending` with EVERY DATA CELL EMPTY.
+#
+# Empty is not "-" and not a guess. The pages carry candidate numbers - they are
+# recorded below as leads, NOT copied into the cells - because the pages are
+# exactly what a row here is supposed to adjudicate, and on three of these four
+# the pages already contradict each other. Reading a figure off them and calling
+# it sourced is the error this file exists to end; it is how AMS 5542, an Inconel
+# X-750 sheet spec, reached a Haynes 214 bar page.
+#
+# THE MILL DOCUMENTS COULD NOT BE READ FROM THE SESSION THAT SEEDED THIS. Every
+# publisher below is blocked by the network egress policy (vdm-metals.com,
+# rjtechnical.com, oishi-hm.co.jp and every other host tried), so no cell could
+# be filled to the standard the rest of this file is held to. Do not clear
+# `pending` from a search result, a distributor listing or one of the pages: the
+# Nichrome UNS numbers were wrong on this site for exactly that reason, the trade
+# circulating N0600x where the mill prints N0602x.
+#
+# WHAT EACH ROW NEEDS, and what the pages claim today:
+#
+# Invar - VDM Metals VDM Alloy 36 / Pernifer 36 (Material Data Sheet No. 7101),
+#   or Carpenter CarTech Invar 36. THE UNS IS THE OPEN QUESTION, and the site
+#   splits evenly on it: /invar/ and /invar/foil/ say K93600, /invar/plates/ says
+#   both K93600 and K93601, and /invar/sheets/ and /invar/round-bar/ say K93603
+#   - five pages, three answers. ASTM F1684 covers several K936xx
+#   designations for different applications, so which one this product is sold
+#   as has to be read, not inferred. Werkstoff 1.3912 and FeNi36 are consistent
+#   across the pages. Density claims run 8.0, 8.1, 8.1-8.2 and 8.05-8.1; melting
+#   1425, 1425-1450 and 1430-1460. /invar/round-bar/ also cites ISO 15156,
+#   NACE MR0175 and DIN 17458 - a sour-service standard and a stainless steel
+#   tube standard, on an Invar page - which is wrong whatever the bulletin says.
+#
+# Mu-metal - Magnetic Shield Corporation MuMETAL, Carpenter HyMu 80, or VDM
+#   Magnifer 7904; the grade is specified by ASTM A753 Alloy 4 rather than owned
+#   by one mill, so the standard may be the source, the way HASTELLOY B-2 is
+#   sourced to ASTM B333. /mu-metal/sheets/ PUBLISHED UNS K93600, WHICH IS
+#   INVAR'S NUMBER on this site's own Invar pages - one grade carrying another
+#   grade's identity, in seven places including its meta description and JSON-LD.
+#   Removed 2026-09-14 rather than replaced: the other four Mu-metal pages say
+#   N14080 and that is the candidate, but adopting the site's own majority answer
+#   is not verification. Nickel claims run ~80, 80-82 and 75.5-80; density 8.7,
+#   8.71 and 8.74; melting ~1450.
+#
+# Alloy 59 - VDM Metals VDM Alloy 59 / Nicrofer 5923 hMo (Material Data Sheet
+#   No. 4130). UNS N06059 and Werkstoff 2.4605 are consistent on all four pages
+#   and 2.4605 is recorded as Alloy 59's elsewhere in this repo, so they are the
+#   strongest candidates here - still unread. THE SHEETS PAGE IS THE ONE TO
+#   CHECK FIRST: it publishes Ni 59.0-63.0, Cr 20.0-22.0, Mo 6.0-7.0 and density
+#   8.36, while its foil, plates and round-bar siblings all say Cr 22.0-24.0,
+#   Mo 15.0-16.5 and density 8.6. A 16 % molybdenum alloy described as a 6 %
+#   one is not a rounding difference - one of the two is a different material.
+#   It also cites ISO 15156 as its standard, and /alloy-59/round-bar/ carries a
+#   second table row headed "Hastelloy 59" as though it were another grade.
+#
+# Nitinol - Confluent Medical, Fort Wayne Metals or SAES Smart Materials; the
+#   specification is ASTM F2063 for wrought Ni-Ti. /nitinol/ is a hub with no
+#   form pages and makes NO identity claim at all, so unlike the other three
+#   there is nothing on the site to contradict - and nothing to start from.
+#   Note it is the one grade here that is not nickel-iron or nickel-chromium:
+#   whether it belongs under `nickel-alloy` or a family of its own is a decision
+#   for whoever fills the row, not a default to inherit from this seed.
+nickel-alloy,Invar,,,,,,pending,
+nickel-alloy,Mu-metal,,,,,,pending,
+nickel-alloy,Alloy 59,,,,,,pending,
+nickel-alloy,Nitinol,,,,,,pending,
 duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1430,SIJ Acroni SINOXX 4462 datasheet (density and composition limits) and Aperam DX1803/DX2205 Technical Data Sheet (melting temperature),2026-08
 duplex-steel,32750,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1445,Aperam DX2507 Technical Data Sheet,2026-08
 # ASTM A240/A240M-25a supplies the chemistry limits. Density 7.80 confirmed by
