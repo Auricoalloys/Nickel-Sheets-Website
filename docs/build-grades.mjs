@@ -168,6 +168,157 @@ const COMBINED = {
     ['inconel', '690'], ['inconel', '693'], ['inconel', '718'],
     ['inconel', 'X-750'],
   ],
+  // EVERY OTHER FAMILY FORM HUB HAS THE SAME SHAPE, and all of them were
+  // missing from this map. /inconel/plates/ named "Hastelloy C-276" as one of
+  // its grades and cited ASTM B575 (a Hastelloy flat standard) and ASTM B446
+  // (a BAR standard, on a plate page); /inconel/round-bars/ listed 6 of the 12
+  // Inconel grades made as bar; /monel/sheets/ and the Nimonic hubs were the
+  // same story one family over. Nothing wrote their tables and nothing linted
+  // them, which is the whole failure this map exists to end.
+  //
+  // The grade list for each is the grades whose column for THAT FORM is not
+  // "-" in docs/specs.csv - the mill's own statement that the grade is made in
+  // the form the page sells. That is what keeps a bar grade off a plate hub:
+  // /incoloy/round-bar/ carries 925 and 945 and /incoloy/plates/ does not,
+  // because the flat cells for those two are "-".
+  //
+  // Generated from specs.csv rather than typed, and kept in that order, so a
+  // grade added to the CSV is a one-line edit here and not a re-reading of
+  // eleven lists.
+  '/hastelloy/sheets/': [
+      ['hastelloy', 'B-2'], ['hastelloy', 'C-4'], ['hastelloy', 'C-22'],
+      ['hastelloy', 'C-276'], ['hastelloy', 'C-2000'],
+      ['hastelloy', 'G-30'], ['hastelloy', 'N'], ['hastelloy', 'X'],
+  ],
+  '/hastelloy/plates/': [
+      ['hastelloy', 'B-2'], ['hastelloy', 'C-4'], ['hastelloy', 'C-22'],
+      ['hastelloy', 'C-276'], ['hastelloy', 'C-2000'],
+      ['hastelloy', 'G-30'], ['hastelloy', 'N'], ['hastelloy', 'X'],
+  ],
+  '/Hastelloy/foil/': [
+      ['hastelloy', 'B-2'], ['hastelloy', 'C-4'], ['hastelloy', 'C-22'],
+      ['hastelloy', 'C-276'], ['hastelloy', 'C-2000'],
+      ['hastelloy', 'G-30'], ['hastelloy', 'N'], ['hastelloy', 'X'],
+  ],
+  '/hastelloy/round-bar/': [
+      ['hastelloy', 'B-2'], ['hastelloy', 'C-4'], ['hastelloy', 'C-22'],
+      ['hastelloy', 'C-276'], ['hastelloy', 'C-2000'],
+      ['hastelloy', 'G-30'], ['hastelloy', 'N'], ['hastelloy', 'X'],
+  ],
+  '/haynes/sheets/': [
+      ['haynes', '25'], ['haynes', '188'], ['haynes', '214'],
+      ['haynes', '230'], ['haynes', '242'], ['haynes', '282'],
+  ],
+  '/haynes/plates/': [
+      ['haynes', '25'], ['haynes', '188'], ['haynes', '214'],
+      ['haynes', '230'], ['haynes', '242'], ['haynes', '282'],
+  ],
+  '/haynes/foil/': [
+      ['haynes', '25'], ['haynes', '188'], ['haynes', '214'],
+      ['haynes', '230'], ['haynes', '242'], ['haynes', '282'],
+  ],
+  '/haynes/round-bar/': [
+      ['haynes', '25'], ['haynes', '188'], ['haynes', '214'],
+      ['haynes', '230'], ['haynes', '242'], ['haynes', '282'],
+  ],
+  '/incoloy/sheets/': [
+      ['incoloy', 'DS'], ['incoloy', '800'], ['incoloy', '800H'],
+      ['incoloy', '800HT'], ['incoloy', '825'], ['incoloy', '890'],
+      ['incoloy', '903'], ['incoloy', '909'], ['incoloy', '660 (A286)'],
+  ],
+  '/incoloy/plates/': [
+      ['incoloy', 'DS'], ['incoloy', '800'], ['incoloy', '800H'],
+      ['incoloy', '800HT'], ['incoloy', '825'], ['incoloy', '890'],
+      ['incoloy', '903'], ['incoloy', '909'], ['incoloy', '660 (A286)'],
+  ],
+  '/incoloy/foil/': [
+      ['incoloy', 'DS'], ['incoloy', '800'], ['incoloy', '800H'],
+      ['incoloy', '800HT'], ['incoloy', '825'], ['incoloy', '890'],
+      ['incoloy', '903'], ['incoloy', '909'], ['incoloy', '660 (A286)'],
+  ],
+  '/incoloy/round-bar/': [
+      ['incoloy', 'DS'], ['incoloy', '800'], ['incoloy', '800H'],
+      ['incoloy', '800HT'], ['incoloy', '825'], ['incoloy', '890'],
+      ['incoloy', '903'], ['incoloy', '909'], ['incoloy', '925'],
+      ['incoloy', '945'], ['incoloy', '660 (A286)'],
+  ],
+  // 625 LCF IS NOT ON THIS HUB, though its flat cell is not "-". The flat
+  // column covers plate, sheet AND strip, and ATI lists sheet and strip as the
+  // only product forms for N06626 - /inconel/625-LCF/plates/ was retired on
+  // 2026-08-26 for exactly that reason and is a redirect_from on the grade hub
+  // today. Listing it here would advertise a plate the mill does not roll and
+  // name a URL this repo deliberately withdrew. It stays on the sheets and foil
+  // hubs, which are forms ATI does list.
+  '/inconel/plates/': [
+      ['inconel', '625'], ['inconel', '600'], ['inconel', '601'],
+      ['inconel', '617'], ['inconel', '686'], ['inconel', '690'],
+      ['inconel', '693'], ['inconel', '718'], ['inconel', 'X-750'],
+  ],
+  '/inconel/foil/': [
+      ['inconel', '625'], ['inconel', '600'], ['inconel', '601'],
+      ['inconel', '617'], ['inconel', '625 LCF'], ['inconel', '686'],
+      ['inconel', '690'], ['inconel', '693'], ['inconel', '718'],
+      ['inconel', 'X-750'],
+  ],
+  '/inconel/round-bars/': [
+      ['inconel', '625'], ['inconel', '600'], ['inconel', '601'],
+      ['inconel', '617'], ['inconel', '686'], ['inconel', '690'],
+      ['inconel', '693'], ['inconel', '718'], ['inconel', '725'],
+      ['inconel', '751'], ['inconel', '783'], ['inconel', 'X-750'],
+  ],
+  '/monel/sheets/': [
+      ['monel', '400'], ['monel', 'K-500'],
+  ],
+  '/monel/plates/': [
+      ['monel', '400'], ['monel', 'K-500'],
+  ],
+  '/monel/foil/': [
+      ['monel', '400'], ['monel', 'K-500'],
+  ],
+  '/monel/round-bar/': [
+      ['monel', '400'], ['monel', '405'], ['monel', 'K-500'],
+  ],
+  '/nichrome/plates/': [
+      ['nichrome', '80/20'], ['nichrome', '70/30'], ['nichrome', '60/15'],
+  ],
+  '/nichrome/foil/': [
+      ['nichrome', '80/20'], ['nichrome', '70/30'], ['nichrome', '60/15'],
+  ],
+  '/nichrome/round-bars/': [
+      ['nichrome', '80/20'], ['nichrome', '70/30'], ['nichrome', '60/15'],
+  ],
+  '/nimonic/sheets/': [
+      ['nimonic', '75'], ['nimonic', '80A'], ['nimonic', '81'],
+      ['nimonic', '86'], ['nimonic', '90'], ['nimonic', '105'],
+      ['nimonic', '263'],
+  ],
+  '/nimonic/plates/': [
+      ['nimonic', '75'], ['nimonic', '80A'], ['nimonic', '81'],
+      ['nimonic', '86'], ['nimonic', '90'], ['nimonic', '105'],
+      ['nimonic', '263'],
+  ],
+  '/nimonic/foil/': [
+      ['nimonic', '75'], ['nimonic', '80A'], ['nimonic', '81'],
+      ['nimonic', '86'], ['nimonic', '90'], ['nimonic', '105'],
+      ['nimonic', '263'],
+  ],
+  '/nimonic/round-bars/': [
+      ['nimonic', '75'], ['nimonic', '80A'], ['nimonic', '81'],
+      ['nimonic', '86'], ['nimonic', '90'], ['nimonic', '105'],
+      ['nimonic', '115'], ['nimonic', '263'], ['nimonic', '901'],
+  ],
+  '/nickel-200-201/sheets/': [
+      ['nickel-alloy', 'Nickel 200'], ['nickel-alloy', 'Nickel 201'],
+  ],
+  '/nickel-200-201/plates/': [
+      ['nickel-alloy', 'Nickel 200'], ['nickel-alloy', 'Nickel 201'],
+  ],
+  '/nickel-200-201/foil/': [
+      ['nickel-alloy', 'Nickel 200'], ['nickel-alloy', 'Nickel 201'],
+  ],
+  '/nickel-200-201/round-bar/': [
+      ['nickel-alloy', 'Nickel 200'], ['nickel-alloy', 'Nickel 201'],
+  ],
   '/nichrome/sheets/': [
     ['nichrome', '80/20'], ['nichrome', '70/30'], ['nichrome', '60/15'],
   ],
@@ -522,6 +673,13 @@ const SINGLE_GRADE = {
   // /waspaloy/ is one segment with no family in it, so SINGLE_GRADE is the only
   // way to resolve it. The old misspelled /waspalloy/ redirects to it.
   waspaloy: ['nickel-alloy', 'Waspaloy'],
+  // /alloy-31/sheets/ and /AM-350/round-bar/ are the same shape as /alloy-28/
+  // above and were left out when those five were added. Both rows are verified
+  // and carry chemistry, so the map entry was the only thing missing. AM 350
+  // has no specs.csv row, so its identity table prints no per-form standard -
+  // that is a gap in specs.csv, not a reason to leave the page unwritten.
+  'alloy-31': ['special-stainless-steel', 'Alloy 31'],
+  'am-350': ['special-stainless-steel', 'AM 350'],
 };
 const singleGradeOf = url => SINGLE_GRADE[(url.split('/').filter(Boolean)[0] || '').toLowerCase()] || null;
 
