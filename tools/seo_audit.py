@@ -242,6 +242,73 @@ def audit(pages):
         for p, d in real.items()
         if len(re.findall(r"<table[\s>]", d["raw"], re.I)) != d["raw"].lower().count("</table>"))
 
+    # Unbalanced layout containers, which is the same failure again and the one
+    # the two counting checks above cannot see. A count catches a <div> that is
+    # never closed anywhere; it does not catch one closed in the WRONG PLACE, and
+    # it passes a page that leaves one container open and closes another twice.
+    #
+    # Eleven round-bar and foil pages opened <div class="accordion"
+    # id="sidebarAccordion"> in the sidebar and never closed it, so </aside>
+    # closed over it and the accordion ended up inside whatever the browser
+    # recovered to. Nothing looked broken, which is exactly how the div.details
+    # family hubs swallowed #grades, #applications, #quality and #cta into a
+    # layout column and stayed that way for months. Three of the eleven also
+    # ended on a truncated accordion item whose button pointed at another item's
+    # panel id, so it opened someone else's list.
+    #
+    # Only the containers whose loss moves content are tracked. li, p, td, th,
+    # tr and their kin close implicitly in HTML, so an unclosed one is not a
+    # structural fault and counting it would bury the real findings - the site
+    # writes hundreds of loose <li> in these very sidebars.
+    _VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
+             "meta", "param", "source", "track", "wbr"}
+    _OPTIONAL_END = {"li", "p", "td", "th", "tr", "thead", "tbody", "tfoot",
+                     "option", "optgroup", "dd", "dt", "caption", "colgroup"}
+    _TRACK = {"div", "main", "section", "aside", "nav", "article", "header",
+              "footer", "figure", "form", "table", "ul", "ol"}
+
+    def _unbalanced(raw):
+        """First structural fault in the page, or None."""
+        # Blank the masked spans CHARACTER FOR CHARACTER BUT KEEP THE NEWLINES,
+        # or every line number this check reports is short by the number of lines
+        # it masked - it named line 78 for a fault on line 151 while the fault
+        # itself was right, which sends a reader to the wrong part of the page.
+        def _blank(m):
+            return re.sub(r"[^\n]", " ", m.group())
+        masked = re.sub(r"<!--[\s\S]*?-->", _blank, raw)
+        masked = re.sub(r"<script[\s\S]*?</script>", _blank, masked, flags=re.I)
+        masked = re.sub(r"<style[\s\S]*?</style>", _blank, masked, flags=re.I)
+        stack = []
+        for m in re.finditer(r"<(/?)([a-zA-Z][a-zA-Z0-9-]*)\b([^>]*)>", masked):
+            closing, tag, attrs = m.group(1), m.group(2).lower(), m.group(3)
+            if tag in _VOID or tag in _OPTIONAL_END or tag not in _TRACK:
+                continue
+            if attrs.rstrip().endswith("/"):
+                continue
+            line = masked.count("\n", 0, m.start()) + 1
+            if not closing:
+                stack.append((tag, line))
+                continue
+            names = [t for t, _ in stack]
+            if tag not in names:
+                return f"stray </{tag}> at line {line}"
+            at = len(names) - 1 - names[::-1].index(tag)
+            if at != len(stack) - 1:
+                t, ln = stack[at + 1]
+                return f"<{t}> opened line {ln} is closed over by </{tag}> at line {line}"
+            del stack[at:]
+        if stack:
+            t, ln = stack[0]
+            return f"<{t}> opened line {ln} is never closed"
+        return None
+
+    unbalanced = []
+    for p, d in real.items():
+        why = _unbalanced(d["raw"])
+        if why:
+            unbalanced.append({"file": p, "fault": why}.__repr__())
+    findings["unbalanced_containers"] = sorted(unbalanced)
+
     # Every table must open inside something that scrolls sideways. Page content
     # is capped at 1100px (body .container and body .content-container in
     # CSS/pages.css) and the widest chemistry tables are wider than the column

@@ -320,10 +320,29 @@ li{
 
   <div class="accordion-item">
     <h3 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-faq9">
+      <!-- data-bs-target was #sidebar-faq9, which is another item's panel on this
+           page, so this button opened that item's list instead of its own. -->
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-faq10">
         Advanced Haynes Alloy Round Bars
       </button>
-    </h3></aside>
+    </h3>
+    <div id="sidebar-faq10" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+      <div class="accordion-body">
+        <li><a href="/haynes/214/round-bar/">Haynes 214 Round Bars</a></li>
+              <li><a href="/haynes/230/round-bar/">Haynes 230 Round Bars</a></li>
+              <li><a href="/haynes/242/round-bar/">Haynes 242 Round Bars</a></li>
+              <li><a href="/haynes/282/round-bar/">Haynes 282 Round Bars</a></li>
+              <li><a href="/haynes/HR-120/round-bar/">Haynes HR-120 Round Bars</a></li>
+              <li><a href="/haynes/25/round-bar/">Haynes 25 Round Bars</a></li>
+              <li><a href="/haynes/188/round-bar/">Haynes 188 Round Bars</a></li>
+      </div>
+    </div>
+  </div>
+  <!-- closes <div class="accordion" id="sidebarAccordion"> above. It was left
+       open, so </aside> closed over it and the accordion sat inside whatever
+       the browser recovered to. -->
+</div>
+</aside>
     </nav>
 
     <main id="main" class="col-12 col-md-9">
