@@ -1831,10 +1831,17 @@ from `tools/seo_audit.py` and every other check until 2026-09-14, so it was the 
 site where a grade list could go stale in complete silence.
 
 That silence is how **Alloy 59 went missing**: four live, sitemapped pages
-(`/alloy-59/round-bar/`, `/foil/`, `/sheets/`, `/plates/`) and zero mentions in the file. The same
-sweep found the titanium aerospace grade named **"Ti-17"** where the page's own `<h1>` calls it
-"Ti-5-2-4-4" — the site's own hand-written name, per the naming rule this file already follows
-elsewhere. Both fixed.
+(`/alloy-59/round-bar/`, `/foil/`, `/sheets/`, `/plates/`) and zero mentions in the file. Fixed.
+
+The same sweep also renamed the titanium aerospace grade from "Ti-17" to "Ti-5-2-4-4", reasoning
+that the page's own `<h1>` uses the latter and this file already prefers a page's own hand-written
+name over a derived one elsewhere. **That was wrong and was reverted** — `docs/grades.csv`'s own
+source note for the row reads "ATI 17 (Ti-5Al-2Sn-2Zr-4Cr-4Mo / Ti-17) technical data sheet": ATI,
+the mill, names the grade Ti-17 in its own bulletin, so it is not a derived or invented name the
+site's convention argues against, only a name the page itself doesn't happen to print. The line now
+carries both: "Ti-5-2-4-4 / Ti-17". Telling a page's own naming choice apart from the mill's actual
+designation needs the source document, not just the page — the same lesson `docs/specs.csv`'s own
+history keeps teaching about reading the label the mill actually prints.
 
 ```bash
 node docs/check-llms-txt.mjs
@@ -1851,12 +1858,12 @@ every grade after the first as missing. A "Qualifier Code" grade is accepted if 
 anywhere in the candidate text and the code appears as its own comma-delimited list item — which is
 what the prose actually does.
 
-What it does **not** catch: a grade mentioned under the wrong name (the Ti-17 case — telling "right
-name" from "wrong name" needs a human reading the page's own `<h1>`), a grade verified in
-`docs/grades.csv` with no page built yet (Haynes 556, HR-160 as of 2026-09 — a publishing backlog,
-not an llms.txt bug), and single- or two-character grade codes with no qualifier word in front of them
-(Hastelloy N, X; Incoloy DS — too short to search for as a bare substring without false positives).
-All three are named and skipped rather than silently passing.
+What it does **not** catch: which of a grade's several legitimate names llms.txt should use — that
+needs the source bulletin, not just a page's own `<h1>`, per the Ti-17 correction above — a grade
+verified in `docs/grades.csv` with no page built yet (Haynes 556, HR-160 as of 2026-09 — a publishing
+backlog, not an llms.txt bug), and single- or two-character grade codes with no qualifier word in
+front of them (Hastelloy N, X; Incoloy DS — too short to search for as a bare substring without false
+positives). All three are named and skipped rather than silently passing.
 
 It duplicates claims that now have owners: the family grade lists belong to `docs/hub-grades.csv`,
 and what the site says about prices belongs to `prices.csv`. **Update it in the same commit that

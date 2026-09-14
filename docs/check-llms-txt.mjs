@@ -25,11 +25,13 @@
 // prose actually does.
 //
 // What it cannot catch, on purpose rather than by oversight:
-//   - a grade mentioned under the WRONG name (llms.txt naming "Ti-17" what
-//     the page itself calls "Ti-5-2-4-4") - telling "right name" from "wrong
-//     name" needs a human to read the page's own <h1>, the same reason
-//     build-grades.mjs's own lint only catches contradictions, not
-//     mis-naming.
+//   - which of a grade's several legitimate names llms.txt should use. A
+//     grade can carry both a mill's own trade designation (ATI calls one
+//     grade "Ti-17" in its own bulletin) and a page's own hand-written name
+//     ("Ti-5-2-4-4") - preferring one over the other needs the source
+//     document, not just the page, so this is left to a human, the same
+//     reason build-grades.mjs's own lint only catches contradictions, not
+//     which of several correct names to prefer.
 //   - a grade verified in grades.csv with no page built yet (Haynes 556,
 //     HR-160 as of 2026-09) - that is a publishing backlog, not an llms.txt
 //     bug, so it is deliberately not flagged as missing from llms.txt.
