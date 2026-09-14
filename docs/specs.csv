@@ -384,6 +384,28 @@ haynes,230,N06230,ASTM B435 / AMS 5878,ASTM B572,-,ASTM B619 / B622,ASTM B366
 # naming the standard against the form is the scope confirmation - B434's title
 # alone would not have told us N10242 is inside it.
 haynes,242,N10242,ASTM B434,ASTM B573,-,ASTM B619 / B622,ASTM B366
+# 556 and HR-160, 2026-09-14, both confirmed by reading the standard's own
+# scope rather than a heading: ASTM B435's own title names UNS N06002,
+# N06230, N12160 and R30556 for "Plate, Sheet, and Strip", and ASTM B572's
+# own title names the same four UNS numbers for "Bar or Rod" - so both grades
+# are genuinely inside both standards' scope, the same corroboration method
+# already used for 230/242 above. B572's title is "Bar or Rod" alone, which
+# is why HR-160's wire cell is not filled from it - a source calling B572
+# "rod, bar, wire, and forgings" was reading the group heading it sits under,
+# the exact mistake documented under "Read the mill's label for each
+# standard, not the heading it sits under" in CLAUDE.md.
+# 556 wire is AMS 5831, corroborated across independent sources as a
+# standalone wire product listing (not the RTW filler-metal welding
+# consumable Haynes sells separately under its own name). HR-160 wire reads
+# "-": every source found for it was a welding-consumable reference
+# (AWS/SFA 5.14), which CLAUDE.md's own rule says is not by itself a wire
+# product - the same reasoning already applied to Hastelloy X's wire cell.
+# 556 and HR-160 pipe/tube and fittings match the exact citations already
+# verified for sibling grades 230 and 242 above (ASTM B619/B622, ASTM B366),
+# and were independently corroborated for each grade by name, not assumed
+# from the sibling pattern alone.
+haynes,556,R30556,ASTM B435 / AMS 5874,ASTM B572 / AMS 5877,AMS 5831,ASTM B619 / B622,ASTM B366
+haynes,HR-160,N12160,ASTM B435,ASTM B572,-,ASTM B619 / B622,ASTM B366
 haynes,282,N07208,AMS 5951,ASTM B637 / AMS 5915,-,-,-
 # TITANIUM FLAT AMS, 2026-09-11, each checked against SAE's own title:
 #   Grade 1  AMS 4940 "CP, Annealed, Plate, Strip, and Sheet, 25.0 ksi yield" - Elgiloy's
