@@ -25,7 +25,7 @@ grade and form.
 - [Monel](https://www.nickelsheets.com/monel/): nickel-copper alloys — 400, 405, K-500
 - [Hastelloy](https://www.nickelsheets.com/hastelloy/): nickel-molybdenum/chromium alloys — B2, B3, C22, C276, C2000, C4, G30, N, X
 - [Alloy 59](https://www.nickelsheets.com/alloy-59/round-bar/): UNS N06059 / 2.4605, a VDM Metals grade (VDM Alloy 59 / Nicrofer 5923 hMo). Often searched alongside Hastelloy, but Haynes International does not make it
-- [Haynes](https://www.nickelsheets.com/haynes/): high-temperature alloys — 214, 230, 242, 282, HR-120, 25, 188
+- [Haynes](https://www.nickelsheets.com/haynes/): high-temperature alloys — 214, 230, 242, 282, HR-120, 25, 188, 556, HR-160
 - [Nimonic](https://www.nickelsheets.com/nimonic/): 75, 80A, 81, 86, 90, 105, 115, 263, 901
 - [Nichrome](https://www.nickelsheets.com/nichrome/): NiCr resistance alloys — 80/20, 70/30, 60/15, 40/20, 30/20, 20/25
 - [Titanium](https://www.nickelsheets.com/titanium/): commercially pure and alloyed — Grades 1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 16, 23; and the aerospace and medical alloys Ti-6-2-4-2 (Ti-6Al-2Sn-4Zr-2Mo), Ti-6-6-2 (Ti-6Al-6V-2Sn), Ti-5-2-4-4 / Ti-17 (Ti-5Al-2Sn-2Zr-4Cr-4Mo), Ti-8-1-1 (Ti-8Al-1Mo-1V) and Ti-6Al-7Nb
