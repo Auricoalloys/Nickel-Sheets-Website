@@ -1246,8 +1246,10 @@
       "family": "nickel-alloy",
       "grade": "Mu-metal",
       "name": "Mu-metal",
-      "uns": null,
-      "uns_all": [],
+      "uns": "N14080",
+      "uns_all": [
+        "N14080"
+      ],
       "wnr": "2.4545",
       "en_name": "NiFe15Mo",
       "density_g_cm3": 8.74,

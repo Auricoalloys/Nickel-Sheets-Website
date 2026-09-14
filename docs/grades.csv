@@ -759,10 +759,22 @@ nickel-alloy,Invar 36,K93600 / K93601 / K93602 / K93603,1.3912,Ni36,8.1,1430,VDM
 # is the standard both name, and neither publishes the other half. Anyone who
 # needs one producer's complete set should read that producer's sheet.
 #
-# UNS IS EMPTY, AND EMPTY IS NOT "-". NONE of the three documents shows a UNS
-# number, so there is nothing to record - "not verified yet", not "the producer
-# publishes none". Five pages on this site say N14080 and that may well be
-# right; it is simply unread.
+# UNS N14080, READ 2026-09-14 from Magnetic Shield Corporation's own front page:
+# "MuMETAL magnetic shielding alloy (mu metal grade ASTM A753 Alloy 4, UNS
+# N14080, 80NiFe) is our most widely known brand". The cell sat empty for one
+# day because the technical-data page the composition came from does not print
+# it and the Carpenter and VDM sheets print none at all.
+#
+# The five pages saying N14080 were right the whole time - which is the case
+# the empty-versus-dash split in the lint was built for the day before. Had an
+# empty cell kept reporting them as contradictions, the answer would have been
+# to delete a correct number from five pages. It reported them as backlog
+# instead, and the backlog is now closed.
+#
+# 80NiFe is NOT the en_name. It is Magnetic Shield's descriptive shorthand in
+# that same sentence; en_name holds VDM's DIN 17745 designation NiFe15Mo, which
+# is a different register. A grade may be described several ways and designated
+# only in the ones a standards body keeps.
 #
 # THE WERKSTOFF NUMBER AND EN NAME ARE VDM'S, from the Standards and
 # specifications table of its Magnifer 7904 sheet: DIN 17745 material no.
@@ -784,7 +796,7 @@ nickel-alloy,Invar 36,K93600 / K93601 / K93602 / K93603,1.3912,Ni36,8.1,1430,VDM
 # either publishes, so the more precise one stands, exactly as Haynes' 8.20 was
 # kept over Elgiloy's 8.19 for Waspaloy. Melting is Carpenter's alone: VDM
 # publishes none for Magnifer 7904.
-nickel-alloy,Mu-metal,,2.4545,NiFe15Mo,8.74,1454.4,Magnetic Shield Corporation MuMETAL technical data (composition) with Carpenter Electrification HyMu 80 datasheet (physical constants) and VDM Metals Magnifer 7904 data sheet (Werkstoff number and EN name),2026-09
+nickel-alloy,Mu-metal,N14080,2.4545,NiFe15Mo,8.74,1454.4,Magnetic Shield Corporation MuMETAL technical data (composition) with Carpenter Electrification HyMu 80 datasheet (physical constants) and VDM Metals Magnifer 7904 data sheet (Werkstoff number and EN name),2026-09
 # ALLOY 59 READ 2026-09-14 from the VDM Metals data sheet (December 2025), which
 # is the mill's own document - VDM developed the alloy and the sheet says so.
 # Identity off the Designations table: UNS N06059, EN 2.4605, NiCr23Mo16Al.
