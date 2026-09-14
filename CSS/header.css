@@ -290,6 +290,51 @@ textarea:focus-visible,
     }
 }
 
+@media (max-width: 575.98px) {
+    /* top: 40% floats wherever a short viewport happens to put it, which
+       landed the rail on top of the page's own <h1> - measured on
+       /inconel/625/ (h1 starts ~255px) and /inconel/ (h1 starts ~223px)
+       against the sticky header's ~167px bottom edge. Anchor it just under
+       the header instead, and lay the two icons out in a row rather than a
+       stacked column so the whole rail fits the ~55px gap before the
+       heading rather than spanning into it. */
+    .floating-contact-bar {
+        top: 172px;
+        flex-direction: row;
+        border-radius: 8px;
+    }
+
+    .floating-contact-bar .contact-item {
+        width: 36px;
+        min-height: 36px;
+        padding: 6px;
+        font-size: 15px;
+    }
+
+    .floating-contact-bar .contact-item.email {
+        border-bottom: none;
+        border-right: 1px solid #fff;
+    }
+
+    .floating-contact-bar .contact-item.whatsapp {
+        border-top: none;
+    }
+
+    /* No room to expand into a labelled pill at this width without
+       overrunning the header or the right edge. */
+    .floating-contact-bar .contact-item:hover,
+    .floating-contact-bar .contact-item:focus-visible {
+        width: 36px;
+        justify-content: center;
+        padding-left: 6px;
+    }
+
+    .floating-contact-bar .contact-item:hover span,
+    .floating-contact-bar .contact-item:focus-visible span {
+        display: none;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     .floating-contact-bar {

@@ -546,6 +546,32 @@ export class FloatingForm {
         .floating-form-inline { padding: 20px; }
       }
 
+      /* Below 480px the labelled pill routinely sat over body text and even
+         a cross-link (e.g. /inconel/625/wire/'s "Inconel 625 Coil" link) -
+         collapse to an icon-only circle, the same footprint as #scrollUpBtn. */
+      @media (max-width: 480px) {
+        .floating-form-button {
+          width: 52px;
+          height: 52px;
+          padding: 0;
+          gap: 0;
+          border-radius: 50%;
+          justify-content: center;
+        }
+        .floating-form-button .icon { width: 1.4em; height: 1.4em; }
+        .floating-form-button-text {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          margin: -1px;
+          padding: 0;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .floating-form-sidebar,
         .floating-form-overlay,
@@ -629,9 +655,16 @@ export class FloatingForm {
     this.button.className = "floating-form-button";
     this.button.setAttribute("aria-haspopup", "dialog");
     this.button.setAttribute("aria-expanded", "false");
+    // aria-label rather than relying on the visible span: below 480px the
+    // label is visually hidden and the button collapses to an icon-only FAB.
+    this.button.setAttribute("aria-label", this.config.buttonText);
+    // A plain speech-bubble outline, not sourced from Font Awesome like the
+    // header/footer icons - this button previously carried a `fas
+    // fa-comment-dots` class with no Font Awesome loaded anywhere on the
+    // site to back it, so the icon rendered at 0x0 on every page.
     this.button.innerHTML = `
-      <i class="fas fa-comment-dots" aria-hidden="true"></i>
-      <span>${this.config.buttonText}</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10.8L5 21v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /></svg>
+      <span class="floating-form-button-text">${this.config.buttonText}</span>
     `;
 
     this.sidebar = document.createElement("div");
