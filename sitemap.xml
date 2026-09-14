@@ -414,7 +414,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/cobalt-alloys/</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/hollow-bars.webp</image:loc>
     </image:image>
@@ -502,6 +502,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/cobalt-alloys/mp35n/round-bar/</loc>
+    <lastmod>2026-09-14</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
     </image:image>
