@@ -501,6 +501,12 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/mp35n/round-bar/</loc>
+    <image:image>
+      <image:loc>https://www.nickelsheets.com/docs/images/titanium-round-bar.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/Copper-Aluminum-Sandwich-Busbar/</loc>
     <lastmod>2026-09-10</lastmod>
     <image:image>

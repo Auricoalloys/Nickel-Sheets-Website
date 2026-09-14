@@ -65,7 +65,7 @@ nichrome,20/25,NiCr 20/25,,"20% Ni, 25% Cr",The most economical of the range
 cobalt-alloy,Haynes 25 (L-605),Haynes 25 (L-605),,Co-Cr-W-Ni,"Wear and sulphidation resistance, sliding contact at temperature"
 cobalt-alloy,Haynes 188,Haynes 188,,Co-Ni-Cr-W,High-temperature oxidation resistance for combustor hardware
 cobalt-alloy,Elgiloy,Elgiloy,/cobalt-alloys/elgiloy/sheets/,Co-Cr-Ni-Mo,"Springs and diaphragms, high fatigue strength, sour gas service"
-cobalt-alloy,MP35N,MP35N,,Co-Ni-Cr-Mo,Multiphase alloy with very high strength and corrosion resistance for fasteners
+cobalt-alloy,MP35N,MP35N,/cobalt-alloys/mp35n/round-bar/,Co-Ni-Cr-Mo,Multiphase alloy with very high strength and corrosion resistance for fasteners
 cobalt-alloy,CoCrMo,CoCrMo,/cobalt-alloys/cocrmo/powder/,Co-Cr-Mo,Implants and additive manufacturing feedstock
 cobalt-alloy,6,Stellite 6,/stellite/,Co-Cr-W,"General-purpose wear resistance, hardfacing and valve seats",stellite
 cobalt-alloy,12,Stellite 12,/stellite/,Co-Cr-W,Higher carbon and tungsten for abrasion and low-angle erosion,stellite
