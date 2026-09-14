@@ -1084,6 +1084,42 @@ nickel-alloy,Waspaloy,B,0.003,0.010
 nickel-alloy,Waspaloy,Zr,0.02,0.12
 nickel-alloy,Waspaloy,Cu,,0.50
 nickel-alloy,Waspaloy,Ni,,bal,58 bal
+# MU-METAL - Magnetic Shield Corporation MuMETAL technical data, "MuMETAL
+# Chemical Composition % In Weight", in the order that page prints it.
+#
+# RECORDED AS LIMITS, because that is how the source writes them: nickel and
+# molybdenum as ranges and every other element as an explicit "max". The page
+# footnotes the table "Composition may vary by production lot", which is a
+# disclaimer about what arrives inside the limits - the same kind of sentence as
+# VDM's "may contain other elements then listed" - and not a statement that
+# these are typical values. A nominal table would have bare figures; this one
+# does not.
+#
+# The constants for this grade come from Carpenter's HyMu 80 sheet instead, and
+# that sheet publishes no composition, so nothing here is mixed between the two.
+#
+# VDM'S MAGNIFER 7904 COMPOSITION IS DELIBERATELY NOT USED, though it is the
+# third document behind this grade. Its Table 4 is captioned "Chemical
+# composition (%) of Magnifer 7904 and variants, typical values" and prints
+# bare figures - Ni 80, Mo 4.9, Mn 0.5, Si 0.3, C 0.02, Fe balance - so they are
+# NOMINAL and belong in `note`, never in min or max. A buyer holding a table of
+# acceptance limits can reject material; a buyer holding typical values cannot.
+# Magnetic Shield publishes limits, so Magnetic Shield is the source here.
+#
+# VDM also names two variants on the same table - 7904 nMo at Mo 4.3 and 7904
+# hMo at Mo 5.1 - which are different products, not a range around 4.9. This
+# site sells neither by name and neither is recorded.
+nickel-alloy,Mu-metal,Ni,80,82,
+nickel-alloy,Mu-metal,Mo,3.5,6,
+nickel-alloy,Mu-metal,Mn,,0.8,
+nickel-alloy,Mu-metal,Si,,0.5,
+nickel-alloy,Mu-metal,Co,,0.5,
+nickel-alloy,Mu-metal,Cu,,0.30,
+nickel-alloy,Mu-metal,Cr,,0.30,
+nickel-alloy,Mu-metal,P,,0.02,
+nickel-alloy,Mu-metal,S,,0.01,
+nickel-alloy,Mu-metal,C,,0.05,
+nickel-alloy,Mu-metal,Fe,,bal,
 # INVAR 36 - VDM Metals VDM Alloy 36 data sheet March 2022, Table 2 "Chemical
 # composition (%)", in the sheet's own column order. Nickel is the only element
 # with a minimum; iron is the balance of a binary alloy and everything else is a

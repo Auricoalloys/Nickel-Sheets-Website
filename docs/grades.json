@@ -1244,6 +1244,19 @@
     },
     {
       "family": "nickel-alloy",
+      "grade": "Mu-metal",
+      "name": "Mu-metal",
+      "uns": null,
+      "uns_all": [],
+      "wnr": "2.4545",
+      "en_name": "NiFe15Mo",
+      "density_g_cm3": 8.74,
+      "melting_c": "1454.4",
+      "source": "Magnetic Shield Corporation MuMETAL technical data (composition) with Carpenter Electrification HyMu 80 datasheet (physical constants) and VDM Metals Magnifer 7904 data sheet (Werkstoff number and EN name)",
+      "checked": "2026-09"
+    },
+    {
+      "family": "nickel-alloy",
       "grade": "Alloy 59",
       "name": "Alloy 59",
       "uns": "N06059",

@@ -83,7 +83,12 @@ const CONSTANT_NOTE = 'grade-constants-removed';
 //   "Density (2205 / 2507)"                     - two grades in one row
 //   "Density (kg/m³)"                           - a unit the table never prints
 //   "Density / Specific Gravity"                - a second property in the row
-const DENSITY_LABEL = /^densit(?:y|ies)\s*(?:\(\s*g\s*\/\s*cm\s*(?:3|³)\s*\)|g\s*\/\s*cm\s*(?:3|³))?\s*:?$/i;
+// A page may pair the label with its dimensionless twin - Carpenter's HyMu 80
+// sheet lists SPECIFIC GRAVITY and DENSITY as separate rows, and
+// mu-metal-foil.html followed it with a single "Density / Specific Gravity"
+// row. That is still this page's density stated a second time, so the strip
+// should cut it rather than report it as a label it cannot classify.
+const DENSITY_LABEL = /^(?:densit(?:y|ies)|specific\s+gravity)(?:\s*\/\s*(?:densit(?:y|ies)|specific\s+gravity))?\s*(?:\(\s*g\s*\/\s*cm\s*(?:3|³)\s*\)|g\s*\/\s*cm\s*(?:3|³))?\s*:?$/i;
 // The unit may be parenthesised or bare, the way the density label may: the
 // incoloy/DS comparison heads its row "Melting range &deg;C" with no brackets,
 // and refusing that as an unrecognised label hid the real reason it is spared.
@@ -684,6 +689,11 @@ const SINGLE_GRADE = {
   // still pending and still absent, which is the rule above working rather than
   // an oversight: a row first, then the map entry.
   'invar': ['nickel-alloy', 'Invar 36'],
+  // Mu-metal joined 2026-09-14 on three producers' documents. Its uns cell is
+  // still empty and that is not a blocker: the lint tells an unverified cell
+  // from a "-" now, so the five pages citing N14080 are counted as backlog
+  // rather than reported as contradictions.
+  'mu-metal': ['nickel-alloy', 'Mu-metal'],
   // /alloy-31/sheets/ and /AM-350/round-bar/ are the same shape as /alloy-28/
   // above and were left out when those five were added. Both rows are verified
   // and carry chemistry, so the map entry was the only thing missing. AM 350
@@ -843,6 +853,9 @@ let scanned = 0, mapped = 0;
 
 // ---- apply ------------------------------------------------------------------
 let wrote = 0, powderPages = 0, stripped = 0, onlyCopy = 0;
+// Pages citing a UNS for a grade whose uns cell is still empty - backlog, not a
+// finding. See the note in the lint below for why the two are not the same.
+const unsUnchecked = new Set();
 const drift = [], noSection = [], unverifiedPages = new Map(), noChem = new Set();
 const dupConstants = [];
 
@@ -1193,9 +1206,28 @@ for (const fp of walk(ROOT)) {
     // was added here, which is a check punishing this file for getting more
     // complete. The uppercasing unsList does is harmless on digits and dots.
     const wantW = unsList(row.wnr);
+    // AN EMPTY uns CELL AND A "-" ARE DIFFERENT CLAIMS, and this check used to
+    // treat them the same. "-" means the producer publishes no such designation,
+    // so a UNS on the page is invented - that is the Nimonic case, where
+    // N07081, N07105 and N06081 were fabrications, and it must keep firing.
+    // EMPTY means "not verified yet": the cell is waiting for a document, and
+    // the page's number is unadjudicated rather than refuted. Reporting it as a
+    // contradiction says the page is wrong when nobody has looked.
+    //
+    // Mu-metal is the case that forced the split. Neither the Magnetic Shield
+    // nor the Carpenter sheet prints a UNS, so its cell is empty while five
+    // pages say N14080 - which may well be right. Firing there would have meant
+    // either deleting a probably-correct number from five pages or leaving the
+    // grade unwritten, and neither is what the CSV means by an empty cell.
+    //
+    // Silence is not the answer either: the pages are COUNTED below and named
+    // in the summary, so an unfilled cell is visible backlog rather than a
+    // check quietly looking away.
+    const unsUnverified = !String(row.uns ?? '').trim();
     for (const u of seenU) {
       if (wantU.length && !wantU.includes(u))
         findings.push({ rel, kind: 'UNS', found: u, expected: row.uns, grade: fullName(row) });
+      else if (unsUnverified) unsUnchecked.add(`${rel}  (cites ${u} - ${fullName(row)} has no uns in grades.csv yet)`);
       else if (!wantU.length)
         findings.push({ rel, kind: 'UNS', found: u, expected: '(none published)', grade: fullName(row) });
     }
@@ -1332,6 +1364,9 @@ if (CHECK) {
   // exclusion nobody can see is indistinguishable from a case the script does
   // not handle, which is the silence that hid 112 pages once already.
   if (powderPages) console.log(`  ${powderPages} powder page(s) skipped - a different production route, neither written nor linted`);
+  // Not a finding and not silence: the page cites a number, the CSV has not
+  // adjudicated it yet, and the count says so until someone reads the document.
+  if (unsUnchecked.size) console.log(`  ${unsUnchecked.size} page(s) cite a UNS for a grade whose uns cell is still empty - run with no flags to list them`);
   // Reported, never fatal. These need a human to decide what the row was for,
   // and failing the build on a backlog would block every unrelated pull request
   // - the reason --strict waited for the identifier backlog to reach zero.
@@ -1357,6 +1392,10 @@ console.log(`  pages updated         : ${wrote}`);
 console.log(`  duplicate constants cut: ${stripped} hand-written row(s)`);
 if (onlyCopy) {
   console.log(`  kept ${onlyCopy} hand-written constant(s) the CSV does not publish - the page holds the only copy`);
+}
+if (unsUnchecked.size) {
+  console.log(`  pages citing a UNS this file has not verified (${unsUnchecked.size}) - fill the uns cell:`);
+  [...unsUnchecked].sort().forEach(x => console.log('     ' + x));
 }
 if (dupConstants.length) {
   console.log(`  constants stated twice that this script will NOT cut (${dupConstants.length}) - fix by hand:`);

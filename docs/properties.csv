@@ -456,6 +456,50 @@ nickel-alloy,Kovar,Coefficient of expansion,5.10-5.50,µm/m·°C,30-450 °C,Acce
 # grades.csv - and one more constant. VDM prints it as "1.01 (Maximum)" rather
 # than a measured figure so the qualifier goes in the note.
 nickel-alloy,602 CA,Relative magnetic permeability,1.01,,20 °C,maximum
+# MU-METAL - Carpenter Electrification HyMu 80 datasheet, its Physical
+# properties and Magnetic properties tables. The magnetic four lead, because on
+# a shielding alloy permeability is what a buyer selects on - it is the reason
+# the grade exists - and a table that opens with specific heat buries it.
+#
+# ALL EIGHT EXPANSION CONDITIONS ARE HERE, not a chosen three. This file is long
+# format precisely so a value that only means something with its condition keeps
+# it, and picking a representative few is the silent dropping that shape exists
+# to prevent. The sheet prints them in English and metric; the metric column is
+# recorded, as SI is preferred where a source gives both.
+#
+# The modulus has three conditions because the alloy's temper moves it by 7 %,
+# and the figures are the MPa column of the sheet's mechanical table rather than
+# a conversion of its ksi. Note the sheet itself disagrees on one anneal
+# temperature - its physical table says hydrogen annealed at 1177 C where its
+# mechanical table says 1121 C - so the condition recorded is the one printed
+# beside the number that is recorded.
+#
+# ONE LABORATORY, ONE TABLE. VDM's Magnifer 7904 sheet publishes its own
+# constants for this alloy and they do not agree with Carpenter's: Curie 410 C
+# against 390, resistivity 55 against 58, conductivity 32 W/m.K against 34.6,
+# expansion 12 against 12.40 over much the same span. None of them is carried.
+# Interleaving two producers' measurements would publish a table no single
+# document supports - the rule the corrosion guides already follow, one column
+# over. VDM's saturation induction of 0.8 T is a real gap in what is recorded
+# here and is left out for the same reason, not because it does not matter.
+nickel-alloy,Mu-metal,Maximum permeability,200000,,,
+nickel-alloy,Mu-metal,Coercivity,0.008-0.02,Oe,,
+nickel-alloy,Mu-metal,Residual induction,3500,G,,
+nickel-alloy,Mu-metal,Curie temperature,390,°C,,
+nickel-alloy,Mu-metal,Mean specific heat,494,J/kg·K,,
+nickel-alloy,Mu-metal,Thermal conductivity,34.6,W/m·K,,
+nickel-alloy,Mu-metal,Electrical resistivity,58,µΩ·cm,21 °C,
+nickel-alloy,Mu-metal,Modulus of elasticity,232,GPa,cold drawn,
+nickel-alloy,Mu-metal,Modulus of elasticity,230,GPa,hydrogen annealed 1121 °C,
+nickel-alloy,Mu-metal,Modulus of elasticity,217,GPa,after process anneal 871 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,10.8,µm/m·°C,-75 to 25 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,10.7,µm/m·°C,-50 to 25 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,10.4,µm/m·°C,-25 to 25 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,12.30,µm/m·°C,25 to 50 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,12.40,µm/m·°C,25 to 100 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,12.76,µm/m·°C,25 to 200 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,13.00,µm/m·°C,25 to 300 °C,
+nickel-alloy,Mu-metal,Mean coefficient of thermal expansion,13.30,µm/m·°C,25 to 400 °C,
 # INVAR 36 - VDM Metals VDM Alloy 36 data sheet March 2022. The first four are
 # the 20 C row of Table 3 "Typical physical properties (at low, room and
 # elevated temperatures)"; the Curie temperature is printed beside density and

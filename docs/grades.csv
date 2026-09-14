@@ -749,7 +749,40 @@ nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES 
 # not a range: the sheet's Physical properties block heads the column "Melting
 # range" and prints one number, the same shape as the titanium 1650.
 nickel-alloy,Invar 36,K93600 / K93601 / K93602 / K93603,1.3912,Ni36,8.1,1430,VDM Metals VDM Alloy 36 (Pernifer 36) material data sheet March 2022,2026-09
-nickel-alloy,Mu-metal,,,,,,pending,
+# MU-METAL READ 2026-09-14 FROM TWO PRODUCERS, and the row says which gave
+# what - the same shape as the Waspaloy and Haynes 188 rows above. Composition
+# is Magnetic Shield Corporation's MuMETAL technical data; the physical
+# constants are Carpenter Electrification's HyMu 80 datasheet. Both are the
+# 80 % nickel high-permeability shielding alloy specified by ASTM A753, which
+# is the standard both name, and neither publishes the other half. Anyone who
+# needs one producer's complete set should read that producer's sheet.
+#
+# UNS IS EMPTY, AND EMPTY IS NOT "-". NONE of the three documents shows a UNS
+# number, so there is nothing to record - "not verified yet", not "the producer
+# publishes none". Five pages on this site say N14080 and that may well be
+# right; it is simply unread.
+#
+# THE WERKSTOFF NUMBER AND EN NAME ARE VDM'S, from the Standards and
+# specifications table of its Magnifer 7904 sheet: DIN 17745 material no.
+# 2.4545, NiFe15Mo. That table also confirms what this site's pages have been
+# claiming without a source - ASTM A753-97 Alloy 4 and MIL-N-14411C (MR)
+# Alloy 1 - alongside DIN 740 E11, DIN 17405, DIN 41301, DIN IEC 404 and
+# JIS C 2531 PC. Identity from one producer beside constants from another is
+# the Waspaloy shape: a Werkstoff number is a registry entry, not a laboratory
+# result, so it does not carry the mixing problem a measured value does.
+#
+# The lint was taught this distinction when this row landed: a `-` cell still
+# reports any UNS on the page, because that is the Nimonic case where the
+# numbers were invented, while an EMPTY cell reports the page as unadjudicated
+# backlog instead. Filling this cell is what closes that.
+#
+# Density is Carpenter's specific gravity 8.74 (8747 kg/m3). Melting range is a
+# single figure, 1454.4 C, converted by Carpenter from its own 2650 F.
+# DENSITY 8.74 IS CARPENTER'S, NOT VDM'S 8.7 - the same figure to the precision
+# either publishes, so the more precise one stands, exactly as Haynes' 8.20 was
+# kept over Elgiloy's 8.19 for Waspaloy. Melting is Carpenter's alone: VDM
+# publishes none for Magnifer 7904.
+nickel-alloy,Mu-metal,,2.4545,NiFe15Mo,8.74,1454.4,Magnetic Shield Corporation MuMETAL technical data (composition) with Carpenter Electrification HyMu 80 datasheet (physical constants) and VDM Metals Magnifer 7904 data sheet (Werkstoff number and EN name),2026-09
 # ALLOY 59 READ 2026-09-14 from the VDM Metals data sheet (December 2025), which
 # is the mill's own document - VDM developed the alloy and the sheet says so.
 # Identity off the Designations table: UNS N06059, EN 2.4605, NiCr23Mo16Al.

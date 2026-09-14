@@ -200,6 +200,7 @@ const SINGLE_GRADE = {
   // and not the other gets its table written with nothing linting the page.
   'alloy-59': ['nickel-alloy', 'Alloy 59'],
   'invar': ['nickel-alloy', 'Invar 36'],
+  'mu-metal': ['nickel-alloy', 'Mu-metal'],
 };
 
 // GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.
