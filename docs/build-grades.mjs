@@ -641,8 +641,9 @@ const familyOf = url => (FAMILY_KEYS.find(([k]) => url.toLowerCase().includes('/
 //
 // Stated explicitly rather than derived from the path, for the same reason
 // COMBINED is: the mapping is not regular, and guessing it puts one grade's
-// data on another grade's page. Invar and Nitinol have the same URL shape and
-// are NOT here, because neither has a verified row yet - add the row first.
+// data on another grade's page. Nitinol has the same URL shape and is NOT here,
+// because it has no verified row yet - add the row first. Invar was in exactly
+// that state until 2026-09-14, when its VDM Alloy 36 row was read.
 // THE SPECIAL-STAINLESS FORM PAGES HAVE THIS SHAPE TOO. /alloy-28/sheets/ and
 // /904L/plates/ put the grade first with no family segment, exactly like Kovar,
 // so gradeForUrl read family "alloy-28", grade "sheets" and matched nothing.
@@ -679,6 +680,10 @@ const SINGLE_GRADE = {
   // until the row landed: /alloy-59/sheets/ published Mo 6.0-7.0 and density
   // 8.36 where the mill says 15.0-16.5 and 8.6.
   'alloy-59': ['nickel-alloy', 'Alloy 59'],
+  // Invar 36 joined 2026-09-14, when its VDM Alloy 36 row landed. Nitinol is
+  // still pending and still absent, which is the rule above working rather than
+  // an oversight: a row first, then the map entry.
+  'invar': ['nickel-alloy', 'Invar 36'],
   // /alloy-31/sheets/ and /AM-350/round-bar/ are the same shape as /alloy-28/
   // above and were left out when those five were added. Both rows are verified
   // and carry chemistry, so the map entry was the only thing missing. AM 350

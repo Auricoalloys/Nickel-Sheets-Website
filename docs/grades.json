@@ -1226,6 +1226,24 @@
     },
     {
       "family": "nickel-alloy",
+      "grade": "Invar 36",
+      "name": "Invar 36",
+      "uns": "K93600",
+      "uns_all": [
+        "K93600",
+        "K93601",
+        "K93602",
+        "K93603"
+      ],
+      "wnr": "1.3912",
+      "en_name": "Ni36",
+      "density_g_cm3": 8.1,
+      "melting_c": "1430",
+      "source": "VDM Metals VDM Alloy 36 (Pernifer 36) material data sheet March 2022",
+      "checked": "2026-09"
+    },
+    {
+      "family": "nickel-alloy",
       "grade": "Alloy 59",
       "name": "Alloy 59",
       "uns": "N06059",

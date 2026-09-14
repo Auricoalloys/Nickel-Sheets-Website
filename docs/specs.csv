@@ -488,6 +488,30 @@ nickel-alloy,Kovar,K94610,AMS 7728,ASTM F15 / AMS 7727,ASTM F15 / AMS 7726,ASTM 
 # The page carried "AMS 5704 / AMS 5706 / AMS 5708" by hand. The brochure says
 # 5707. 5708 was wrong and is corrected on the page in the same commit.
 nickel-alloy,Waspaloy,N07001,AMS 5544,AMS 5704 / 5706 / 5707 / ASTM B637,AMS 5828,-,-
+# INVAR 36 - VDM Metals VDM Alloy 36 data sheet March 2022, Table 1
+# "Designations and standards", which is indexed by product form:
+#
+#   Sheet, plate  ASTM F1684 / B753   DIN 17745   SEW 385
+#   Strip         ASTM B603           DIN 17470
+#   Rod, bar      ASTM F1684          DIN 17745   SEW 385
+#   Wire          ASTM B603           DIN 17470
+#
+# VDM SPLITS FLAT PRODUCT WHERE THIS COLUMN DOES NOT: sheet and plate are
+# F1684 / B753 and strip is B603. The flat cell lists all three rather than
+# picking one, because the column means "the standards covering plate, sheet and
+# strip" and between them they do - the same shape as the Alloy 330 row, where
+# the seamless and welded pipe standards sit together in one cell. A foil page
+# reading that row is being shown the flat-product set, not told its foil is
+# certified to a plate spec. Which covers which is written above so the spec
+# review does not have to re-derive it.
+#
+# pipe_tube is `mill`, not "-". The Availability section lists sheet, strip, rod
+# and wire as the standard semi-finished forms and then says "other shapes and
+# dimensions such as discs, rings, seamless or longitudinally welded pipes and
+# forgings can be requested" - so pipe IS supplied and no standard is published
+# for it, which is exactly what `mill` means. Fittings are named nowhere in the
+# sheet, so that cell is "-".
+nickel-alloy,Invar 36,K93600 / K93601 / K93602 / K93603,ASTM F1684 / B753 / B603,ASTM F1684,ASTM B603,mill,-
 # ALLOY 59 - VDM Metals data sheet December 2025, Table 1 "Designations and
 # standards". That table is indexed BY PRODUCT FORM, so it settles each cell
 # directly rather than by reading a group heading - the mistake that put B637

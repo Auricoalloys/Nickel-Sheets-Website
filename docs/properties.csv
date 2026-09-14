@@ -456,6 +456,24 @@ nickel-alloy,Kovar,Coefficient of expansion,5.10-5.50,µm/m·°C,30-450 °C,Acce
 # grades.csv - and one more constant. VDM prints it as "1.01 (Maximum)" rather
 # than a measured figure so the qualifier goes in the note.
 nickel-alloy,602 CA,Relative magnetic permeability,1.01,,20 °C,maximum
+# INVAR 36 - VDM Metals VDM Alloy 36 data sheet March 2022. The first four are
+# the 20 C row of Table 3 "Typical physical properties (at low, room and
+# elevated temperatures)"; the Curie temperature is printed beside density and
+# melting range and carries no condition of its own.
+#
+# THE EXPANSION COEFFICIENT IS NOT HERE, which on this grade of all grades needs
+# saying: Invar is bought for it. Table 3 leaves the 20 C cell BLANK and gives
+# the coefficient as a RANGE at every other temperature - 1.3-2.2 at -250 C,
+# 0.6-2.1 at 100 C, 10-10.7 at 600 C - because, as page 2 says, cold forming and
+# artificial aging move it. A single 20 C figure would be inventing the one
+# number the mill deliberately declines to give, and properties.csv has no shape
+# for "a range that depends on the temper". Quote it against the customer's
+# temperature span instead.
+nickel-alloy,Invar 36,Specific heat capacity,486,J/kg·K,20 °C,
+nickel-alloy,Invar 36,Thermal conductivity,12.8,W/m·K,20 °C,
+nickel-alloy,Invar 36,Electrical resistivity,78,µΩ·cm,20 °C,
+nickel-alloy,Invar 36,Modulus of elasticity,143,GPa,20 °C,
+nickel-alloy,Invar 36,Curie temperature,230,°C,,
 # ALLOY 59 - VDM Metals data sheet December 2025. The four constants are the
 # 20 C row of "Typical physical properties of VDM Alloy 59 at elevated
 # temperatures"; the permeability is printed beside density and melting range.

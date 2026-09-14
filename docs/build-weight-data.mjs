@@ -201,7 +201,17 @@ for (const row of [...byName.values()].sort(
     density,
     // The bulletin, carried through so the page can show it under the figure.
     source: row.source || "",
-    note: [row.uns, row.wnr].filter((v) => v && v !== "-").join(" / "),
+    // EVERY UNS, not just the first. The note is the picker's search haystack -
+    // it is there so a buyer working from a drawing can type the number on it -
+    // and grades.json carries `uns` as the first of the list with `uns_all`
+    // holding all of them. Reading `uns` alone made only one findable: Invar 36
+    // is K93600/01/02/03, one per application in VDM's own designations table,
+    // and duplex 2205 is S32205 / S31803, the modern and original numbers. A
+    // drawing citing S31803 found nothing. wnr never had this problem because
+    // it is passed through whole, which is why Monel 400 lists both 2.4360 and
+    // 2.4361 today.
+    note: [...(row.uns_all?.length ? row.uns_all : [row.uns]), row.wnr]
+      .filter((v) => v && v !== "-").join(" / "),
   });
 }
 

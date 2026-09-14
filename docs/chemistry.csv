@@ -1084,6 +1084,25 @@ nickel-alloy,Waspaloy,B,0.003,0.010
 nickel-alloy,Waspaloy,Zr,0.02,0.12
 nickel-alloy,Waspaloy,Cu,,0.50
 nickel-alloy,Waspaloy,Ni,,bal,58 bal
+# INVAR 36 - VDM Metals VDM Alloy 36 data sheet March 2022, Table 2 "Chemical
+# composition (%)", in the sheet's own column order. Nickel is the only element
+# with a minimum; iron is the balance of a binary alloy and everything else is a
+# maximum, which is what "the levels of carbon and manganese as well as freedom
+# of impurities are significant" on page 2 means in a table.
+#
+# PHOSPHORUS IS MISSING ON PURPOSE. Table 2 has a P column and its value was
+# obscured in the page image this row was read from, so there is nothing to
+# record. Empty is the honest state; a P row with no min, max or note is
+# rejected by --check anyway, and inventing one from a neighbouring grade is how
+# Grade 5 came to publish Grade 23's iron limit. Add it when the cell is read.
+nickel-alloy,Invar 36,Ni,35,37,
+nickel-alloy,Invar 36,Cr,,0.25,
+nickel-alloy,Invar 36,Fe,,bal,
+nickel-alloy,Invar 36,Co,,0.5,
+nickel-alloy,Invar 36,Mn,,0.6,
+nickel-alloy,Invar 36,Si,,0.4,
+nickel-alloy,Invar 36,C,,0.05,
+nickel-alloy,Invar 36,S,,0.015,
 # ALLOY 59 - VDM Metals data sheet December 2025, Table 3, "Chemical composition
 # (%) according to VdTUV data sheet 505". Specification limits, printed in the
 # sheet's own column order. Nickel is "Bal." across both rows of the table.

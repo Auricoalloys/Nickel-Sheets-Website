@@ -665,11 +665,13 @@ nickel-alloy,Hastelloy C-276,N10276,2.4819,NiMo16Cr15W,8.89,1323-1371,Haynes Int
 # own. The MARK IS NEITHER MILL'S: the Elgiloy sheet states
 # "Waspaloy(R) is a registered trademark of United Technologies Corp."
 nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES Waspaloy alloy brochure H-3232 (UNS and physical constants) with Elgiloy Specialty Metals Strip Products sheet (Werkstoff and composition),2026-09
-# --- THE FOUR SINGLE-GRADE FAMILIES WITH FORM PAGES AND NO ROW ------------------
+# --- THE SINGLE-GRADE FAMILIES WITH FORM PAGES AND NO ROW -----------------------
 # Invar, Mu-metal, Alloy 59 and Nitinol have 16 published pages between them and
 # were the last grades on this site with no row here at all, so build-grades.mjs
 # could not be pointed at them: SINGLE_GRADE needs a verified row, and these had
-# none. Seeded 2026-09-14 as `pending` with EVERY DATA CELL EMPTY.
+# none. Seeded 2026-09-14 as `pending` with EVERY DATA CELL EMPTY. ALLOY 59 AND
+# INVAR 36 HAVE SINCE BEEN READ off their VDM data sheets and carry real rows;
+# Mu-metal and Nitinol are still pending and the notes below still apply to them.
 #
 # Empty is not "-" and not a guess. The pages carry candidate numbers - they are
 # recorded below as leads, NOT copied into the cells - because the pages are
@@ -688,17 +690,16 @@ nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES 
 #
 # WHAT EACH ROW NEEDS, and what the pages claim today:
 #
-# Invar - VDM Metals VDM Alloy 36 / Pernifer 36 (Material Data Sheet No. 7101),
-#   or Carpenter CarTech Invar 36. THE UNS IS THE OPEN QUESTION, and the site
-#   splits evenly on it: /invar/ and /invar/foil/ say K93600, /invar/plates/ says
-#   both K93600 and K93601, and /invar/sheets/ and /invar/round-bar/ say K93603
-#   - five pages, three answers. ASTM F1684 covers several K936xx
-#   designations for different applications, so which one this product is sold
-#   as has to be read, not inferred. Werkstoff 1.3912 and FeNi36 are consistent
-#   across the pages. Density claims run 8.0, 8.1, 8.1-8.2 and 8.05-8.1; melting
-#   1425, 1425-1450 and 1430-1460. /invar/round-bar/ also cites ISO 15156,
+# Invar 36 - DONE 2026-09-14, see its own row below. Left here because the
+#   finding is worth keeping: the site was NOT contradicting itself on the UNS.
+#   Five pages gave three answers - K93600, "K93600 and K93601", K93603 - and
+#   VDM publishes ALL FOUR of K93600/01/02/03 for this one alloy, each against a
+#   different application. Every page was citing a real designation. Recording
+#   one of them would have made the others lint as contradictions, which is the
+#   error the Monel 400 and Nimonic 75 Werkstoff pairs already taught this file.
+#   The one thing that WAS wrong survives: /invar/round-bar/ cites ISO 15156,
 #   NACE MR0175 and DIN 17458 - a sour-service standard and a stainless steel
-#   tube standard, on an Invar page - which is wrong whatever the bulletin says.
+#   tube standard, on an Invar page.
 #
 # Mu-metal - Magnetic Shield Corporation MuMETAL, Carpenter HyMu 80, or VDM
 #   Magnifer 7904; the grade is specified by ASTM A753 Alloy 4 rather than owned
@@ -729,7 +730,25 @@ nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES 
 #   Note it is the one grade here that is not nickel-iron or nickel-chromium:
 #   whether it belongs under `nickel-alloy` or a family of its own is a decision
 #   for whoever fills the row, not a default to inherit from this seed.
-nickel-alloy,Invar,,,,,,pending,
+# INVAR 36 READ 2026-09-14 from the VDM Metals VDM Alloy 36 / Pernifer 36 data
+# sheet (March 2022). A binary iron-nickel alloy - the sheet calls it that - so
+# it sits under nickel-alloy beside Kovar, the other controlled-expansion grade
+# here.
+#
+# FOUR UNS NUMBERS, ALL OF THEM THIS ALLOY. The Designations table prints
+#   K93600 (for thermostates)      K93602 (for chip removing process)
+#   K93601 (for pressure vessels)  K93603 (for alloys with low heat expansion)
+# so the list is by APPLICATION, not by a newer number superseding an older one
+# the way duplex 2205 carries S32205 / S31803. All four are recorded in the
+# sheet's own order. Recording only one would have put the site's other pages in
+# the lint as contradictions when they were citing VDM's own designations.
+#
+# EN is "1.3912 Ni36", so the Werkstoff number is 1.3912 and the symbolic name
+# is Ni36 - not FeNi36, which is AFNOR's "Fe-Ni36" on the row below it and a
+# different register. Density 8.1 at 20 C. MELTING IS A SINGLE FIGURE, 1430 C,
+# not a range: the sheet's Physical properties block heads the column "Melting
+# range" and prints one number, the same shape as the titanium 1650.
+nickel-alloy,Invar 36,K93600 / K93601 / K93602 / K93603,1.3912,Ni36,8.1,1430,VDM Metals VDM Alloy 36 (Pernifer 36) material data sheet March 2022,2026-09
 nickel-alloy,Mu-metal,,,,,,pending,
 # ALLOY 59 READ 2026-09-14 from the VDM Metals data sheet (December 2025), which
 # is the mill's own document - VDM developed the alloy and the sheet says so.
