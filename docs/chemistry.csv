@@ -1084,6 +1084,25 @@ nickel-alloy,Waspaloy,B,0.003,0.010
 nickel-alloy,Waspaloy,Zr,0.02,0.12
 nickel-alloy,Waspaloy,Cu,,0.50
 nickel-alloy,Waspaloy,Ni,,bal,58 bal
+# ALLOY 59 - VDM Metals data sheet December 2025, Table 3, "Chemical composition
+# (%) according to VdTUV data sheet 505". Specification limits, printed in the
+# sheet's own column order. Nickel is "Bal." across both rows of the table.
+# Aluminium is the one element with a MINIMUM as well as a maximum - 0.1 to 0.4
+# - which is what the "Al" in NiCr23Mo16Al names. The sheet closes the table
+# "Due to technical reasons the alloy may contain other elements then listed",
+# which is a disclaimer about unlisted elements, not a limit on a listed one.
+nickel-alloy,Alloy 59,Fe,,1.5,
+nickel-alloy,Alloy 59,Cr,22.0,24.0,
+nickel-alloy,Alloy 59,Ni,,bal,
+nickel-alloy,Alloy 59,Mo,15.0,16.5,
+nickel-alloy,Alloy 59,C,,0.01,
+nickel-alloy,Alloy 59,S,,0.01,
+nickel-alloy,Alloy 59,Mn,,0.5,
+nickel-alloy,Alloy 59,Si,,0.1,
+nickel-alloy,Alloy 59,Cu,,0.5,
+nickel-alloy,Alloy 59,P,,0.015,
+nickel-alloy,Alloy 59,Al,0.1,0.4,
+nickel-alloy,Alloy 59,Co,,0.3,
 # --- special-stainless-steel: the 6% molybdenum super-austenitics -------------
 # VDM Alloy 926, VDM Metals data sheet April 2024, Table 2. VDM prints no iron
 # row - iron is the balance of the alloy but the sheet does not say so in the

@@ -731,7 +731,24 @@ nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES 
 #   for whoever fills the row, not a default to inherit from this seed.
 nickel-alloy,Invar,,,,,,pending,
 nickel-alloy,Mu-metal,,,,,,pending,
-nickel-alloy,Alloy 59,,,,,,pending,
+# ALLOY 59 READ 2026-09-14 from the VDM Metals data sheet (December 2025), which
+# is the mill's own document - VDM developed the alloy and the sheet says so.
+# Identity off the Designations table: UNS N06059, EN 2.4605, NiCr23Mo16Al.
+# Density 8.6 g/cm3 at 20 C and melting range 1310-1360 C off Physical
+# properties. Composition is Table 3, headed "Chemical composition (%) according
+# to VdTUV data sheet 505" - SPECIFICATION LIMITS, not a nominal table, so min
+# and max are used rather than `note`.
+#
+# The sheet prints the melting range as "1.310 bis 1.360 C (710 - 738 F)" and
+# that Fahrenheit conversion is wrong in the document itself - 1310 C is 2390 F.
+# Only the Celsius figures are recorded, which is the pair this file wants
+# anyway; the error is noted so the next reader does not "correct" the C.
+#
+# 2.4607 IS NOT THIS GRADE. The welding section lists VDM FM 59 filler as
+# material no. 2.4607 with its own UNS N06059 and AWS A5.14 ERNiCrMo-13. The
+# filler carries the same UNS as the base metal but a different Werkstoff
+# number, so a page citing 2.4607 is citing the consumable.
+nickel-alloy,Alloy 59,N06059,2.4605,NiCr23Mo16Al,8.6,1310-1360,VDM Metals VDM Alloy 59 (Nicrofer 5923 hMo) material data sheet December 2025,2026-09
 nickel-alloy,Nitinol,,,,,,pending,
 duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1430,SIJ Acroni SINOXX 4462 datasheet (density and composition limits) and Aperam DX1803/DX2205 Technical Data Sheet (melting temperature),2026-08
 duplex-steel,32750,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1445,Aperam DX2507 Technical Data Sheet,2026-08

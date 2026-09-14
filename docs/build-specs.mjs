@@ -196,6 +196,9 @@ const SINGLE_GRADE = {
   'alloy-28': ['special-stainless-steel', 'Alloy 28'],
   'alloy-926': ['special-stainless-steel', 'Alloy 926'],
   waspaloy: ['nickel-alloy', 'Waspaloy'],
+  // Kept in step with build-grades.mjs, per the note above: a grade in one map
+  // and not the other gets its table written with nothing linting the page.
+  'alloy-59': ['nickel-alloy', 'Alloy 59'],
 };
 
 // GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.

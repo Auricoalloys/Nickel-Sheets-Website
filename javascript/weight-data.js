@@ -145,6 +145,7 @@ export const MATERIALS = [
   {"id":"haynes-25-l-605","name":"Haynes 25 (L-605)","group":"Cobalt Alloys","tier":"mill","density":9.07,"source":"Haynes International HAYNES 25 alloy page and voestalpine BOHLER L605 datasheet","note":"R30605 / 2.4964"},
   {"id":"mp35n","name":"MP35N","group":"Cobalt Alloys","tier":"mill","density":8.43,"source":"Carpenter Technology MP35N datasheet and voestalpine BOHLER L035 datasheet (Werkstoff)","note":"R30035 / 2.4999"},
   {"id":"602-ca","name":"602 CA","group":"Nickel Alloys","tier":"mill","density":7.93,"source":"VDM Alloy 602 CA data sheet (March 2022)","note":"N06025 / 2.4633"},
+  {"id":"alloy-59","name":"Alloy 59","group":"Nickel Alloys","tier":"mill","density":8.6,"source":"VDM Metals VDM Alloy 59 (Nicrofer 5923 hMo) material data sheet December 2025","note":"N06059 / 2.4605"},
   {"id":"kovar","name":"Kovar","group":"Nickel Alloys","tier":"mill","density":null,"source":"ASTM F15-04 (Reapproved 2022)","note":"K94610"},
   {"id":"nickel-200","name":"Nickel 200","group":"Nickel Alloys","tier":"mill","density":8.89,"source":"Special Metals Nickel 200 & 201 bulletin","note":"N02200 / 2.4060 / 2.4066"},
   {"id":"nickel-201","name":"Nickel 201","group":"Nickel Alloys","tier":"mill","density":8.89,"source":"Special Metals Nickel 200 & 201 bulletin","note":"N02201 / 2.4061 / 2.4068"},

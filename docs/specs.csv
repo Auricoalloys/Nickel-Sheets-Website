@@ -488,6 +488,32 @@ nickel-alloy,Kovar,K94610,AMS 7728,ASTM F15 / AMS 7727,ASTM F15 / AMS 7726,ASTM 
 # The page carried "AMS 5704 / AMS 5706 / AMS 5708" by hand. The brochure says
 # 5707. 5708 was wrong and is corrected on the page in the same commit.
 nickel-alloy,Waspaloy,N07001,AMS 5544,AMS 5704 / 5706 / 5707 / ASTM B637,AMS 5828,-,-
+# ALLOY 59 - VDM Metals data sheet December 2025, Table 1 "Designations and
+# standards". That table is indexed BY PRODUCT FORM, so it settles each cell
+# directly rather than by reading a group heading - the mistake that put B637
+# in six wire cells once already.
+#
+#   Sheet  DIN 17750 / 17744  VdTUV 505  ASTM B 575  ASME SB 575  NACE MR0175
+#   Strip  DIN 17744          VdTUV 505  ASTM B 575  ASME SB 575  API 5LD
+#   Bar    DIN 17752 / 17744  VdTUV 505  ASTM B 574 / B 564  ASME SB 574 / SB 564
+#   Wire   DIN 17744          (no VdTUV, ASTM, ASME or NACE entry)
+#
+# flat is B575 because sheet and strip carry the same ASTM number and the
+# mechanical table prints its flat rows as "Sheet/ Plate", so plate is inside
+# the same row rather than missing from the sheet.
+#
+# WIRE IS DIN 17744, NOT A DASH AND NOT AN ASTM NUMBER. VDM lists wire as a
+# product form and gives it one standard and no ASTM at all, so carrying B575
+# or B574 across would be the plate-spec-on-a-wire-page error this file exists
+# to prevent. A dash would be wrong the other way: it would say VDM does not
+# make the form, and the table says it does.
+#
+# B564 is ASTM's forgings standard and sits on VDM's BAR row, which is the
+# mill labelling it for bar - the same shape as the Incoloy 690 bar cell above.
+#
+# pipe_tube and fitting are "-": Table 1 lists Sheet, Strip, Bar and Wire and
+# no tube, pipe or fitting form at all.
+nickel-alloy,Alloy 59,N06059,ASTM B575,ASTM B574 / B564,DIN 17744,-,-
 # DUPLEX WIRE, 2026-09-11. All three wire cells read ASTM A479 - "Bars and Shapes",
 # no wire, the same finding that moved 904L's wire to EN 10088-3 on 2026-09-01. ASTM
 # has no wire standard for these grades either: A580 (stainless steel wire) covers

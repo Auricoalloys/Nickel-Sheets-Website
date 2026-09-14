@@ -1225,6 +1225,21 @@
       "checked": "2026-09"
     },
     {
+      "family": "nickel-alloy",
+      "grade": "Alloy 59",
+      "name": "Alloy 59",
+      "uns": "N06059",
+      "uns_all": [
+        "N06059"
+      ],
+      "wnr": "2.4605",
+      "en_name": "NiCr23Mo16Al",
+      "density_g_cm3": 8.6,
+      "melting_c": "1310-1360",
+      "source": "VDM Metals VDM Alloy 59 (Nicrofer 5923 hMo) material data sheet December 2025",
+      "checked": "2026-09"
+    },
+    {
       "family": "duplex-steel",
       "grade": "2205",
       "name": "Duplex 2205",

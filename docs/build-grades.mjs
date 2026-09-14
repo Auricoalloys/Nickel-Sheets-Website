@@ -673,6 +673,12 @@ const SINGLE_GRADE = {
   // /waspaloy/ is one segment with no family in it, so SINGLE_GRADE is the only
   // way to resolve it. The old misspelled /waspalloy/ redirects to it.
   waspaloy: ['nickel-alloy', 'Waspaloy'],
+  // Alloy 59 is the Kovar shape too - grade first, form second, no family
+  // segment - and is filed under nickel-alloy because VDM owns the mark and the
+  // grade heads no family of its own. Its four pages disagreed with each other
+  // until the row landed: /alloy-59/sheets/ published Mo 6.0-7.0 and density
+  // 8.36 where the mill says 15.0-16.5 and 8.6.
+  'alloy-59': ['nickel-alloy', 'Alloy 59'],
   // /alloy-31/sheets/ and /AM-350/round-bar/ are the same shape as /alloy-28/
   // above and were left out when those five were added. Both rows are verified
   // and carry chemistry, so the map entry was the only thing missing. AM 350
