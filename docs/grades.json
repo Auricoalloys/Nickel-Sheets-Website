@@ -1271,6 +1271,21 @@
       "checked": "2026-09"
     },
     {
+      "family": "nickel-alloy",
+      "grade": "Nitinol",
+      "name": "Nitinol",
+      "uns": "N01555",
+      "uns_all": [
+        "N01555"
+      ],
+      "wnr": null,
+      "en_name": null,
+      "density_g_cm3": 6.45,
+      "melting_c": "1310",
+      "source": "Fort Wayne Metals Nitinol material page (ASTM F2063 composition limits for UNS N01555) with ATI NiTi SEA 1 technical data sheet version 1 April 2014 (physical constants and product forms)",
+      "checked": "2026-09"
+    },
+    {
       "family": "duplex-steel",
       "grade": "2205",
       "name": "Duplex 2205",

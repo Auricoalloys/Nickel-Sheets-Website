@@ -488,6 +488,26 @@ nickel-alloy,Kovar,K94610,AMS 7728,ASTM F15 / AMS 7727,ASTM F15 / AMS 7726,ASTM 
 # The page carried "AMS 5704 / AMS 5706 / AMS 5708" by hand. The brochure says
 # 5707. 5708 was wrong and is corrected on the page in the same commit.
 nickel-alloy,Waspaloy,N07001,AMS 5544,AMS 5704 / 5706 / 5707 / ASTM B637,AMS 5828,-,-
+# NITINOL - ATI NiTi SEA 1 technical data sheet. Its "Applicable industry
+# standards" line reads ASTM F2063, F2005, F2004 and F2082, and ONLY F2063 IS A
+# PRODUCT SPECIFICATION: F2005 is terminology and F2004 and F2082 are the two
+# test methods for transformation temperature. Citing a test method as the
+# standard a bar is supplied to is the same class of error as citing a plate
+# spec for wire, so the three are named here and none is in a cell.
+#
+# F2063 sits in flat, bar and wire because the same sheet lists the forms ATI
+# sells under it - Sheet 0.020-0.125 in, Plate 0.126-0.250 in, Rod 0.1-2 in and
+# Wire 0.010-0.099 in - and Fort Wayne heads its composition table with F2063
+# for the strip and wire it draws. With one product standard and four forms
+# named under it there is no group heading to misread.
+#
+# pipe_tube IS "-" AND NOT `mill`, which is the opposite call to Invar's pipe
+# cell three rows up, and the difference is what the sheet names. VDM writes
+# "seamless or longitudinally welded pipes ... can be requested", naming the
+# form, so Invar reads `mill`. ATI writes only "other forms and sizes available
+# upon request" and names no tube at all, so there is nothing to read as a
+# pipe product. Fittings appear in neither document.
+nickel-alloy,Nitinol,N01555,ASTM F2063,ASTM F2063,ASTM F2063,-,-
 # INVAR 36 - VDM Metals VDM Alloy 36 data sheet March 2022, Table 1
 # "Designations and standards", which is indexed by product form:
 #

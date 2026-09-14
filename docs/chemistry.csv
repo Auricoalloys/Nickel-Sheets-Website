@@ -1084,6 +1084,30 @@ nickel-alloy,Waspaloy,B,0.003,0.010
 nickel-alloy,Waspaloy,Zr,0.02,0.12
 nickel-alloy,Waspaloy,Cu,,0.50
 nickel-alloy,Waspaloy,Ni,,bal,58 bal
+# NITINOL - Fort Wayne Metals' Nitinol page, the column headed "ASTM F2063 /
+# UNS N01555 %", in the order that table prints it. Specification limits: a
+# range on nickel and an explicit "max" on everything else, under a footnote
+# saying the binary grades "meet the chemistry requirements set forth by ASTM
+# F2063 for use in surgical implants".
+#
+# NOT ATI'S COLUMN, though its sheet prints F2063 limits too - see the row
+# comment in grades.csv. ATI gives carbon 0.050 and a combined nitrogen +
+# oxygen of 0.050 where Fort Wayne gives carbon 0.040 with N and O split at
+# 0.005 and 0.040. ATI's sheet is dated 2014 and Fort Wayne's page is current,
+# so these are two editions of the standard and the current one is recorded.
+# ATI's other column is headed "Typical maximum", which is a statement about
+# ATI's own ingots rather than about the grade and belongs in neither cell.
+nickel-alloy,Nitinol,Ni,54.5,57.0,
+nickel-alloy,Nitinol,C,,0.040,
+nickel-alloy,Nitinol,Co,,0.050,
+nickel-alloy,Nitinol,Cu,,0.010,
+nickel-alloy,Nitinol,Cr,,0.010,
+nickel-alloy,Nitinol,H,,0.005,
+nickel-alloy,Nitinol,Fe,,0.050,
+nickel-alloy,Nitinol,Nb,,0.025,
+nickel-alloy,Nitinol,N,,0.005,
+nickel-alloy,Nitinol,O,,0.040,
+nickel-alloy,Nitinol,Ti,,bal,
 # MU-METAL - Magnetic Shield Corporation MuMETAL technical data, "MuMETAL
 # Chemical Composition % In Weight", in the order that page prints it.
 #

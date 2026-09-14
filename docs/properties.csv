@@ -456,6 +456,29 @@ nickel-alloy,Kovar,Coefficient of expansion,5.10-5.50,µm/m·°C,30-450 °C,Acce
 # grades.csv - and one more constant. VDM prints it as "1.01 (Maximum)" rather
 # than a measured figure so the qualifier goes in the note.
 nickel-alloy,602 CA,Relative magnetic permeability,1.01,,20 °C,maximum
+# NITINOL - ATI NiTi SEA 1 technical data sheet, Table 3. EVERY CONSTANT IS
+# PER PHASE, which is the alloy rather than a quirk of the sheet: austenite and
+# martensite are the two structures Nitinol moves between, and the resistivity
+# nearly doubles across that change. A single figure would describe neither.
+#
+# UNITS ARE ATI'S OWN, unconverted. It prints conductivity in W/cm.°C and only
+# in W/cm.°C, so that is what is recorded - 0.18 here is 18 W/m.K, and turning
+# it into that would be this file inventing a figure the sheet does not print.
+# Same reason the INCOLOY DS constants stay imperial.
+#
+# THE TRANSFORMATION TEMPERATURE IS DELIBERATELY ABSENT, and on this grade that
+# needs saying, because Af is what a Nitinol order is actually specified on.
+# ATI gives its SEA 1 an austenite finish of -30 to 0 C, but that is one
+# product: Nitinol is supplied across a wide Af range and the figure is agreed
+# per order. Publishing ATI's as "Nitinol's" would tell a buyer this supplier
+# ships superelastic-at-room-temperature material and nothing else. Quote it
+# against the customer's requirement instead.
+nickel-alloy,Nitinol,Electrical resistivity,80-100,µΩ·cm,austenite phase,sheet prints this as approximate
+nickel-alloy,Nitinol,Electrical resistivity,70-80,µΩ·cm,martensite phase,sheet prints this as approximate
+nickel-alloy,Nitinol,Thermal conductivity,0.18,W/cm·°C,austenite phase,
+nickel-alloy,Nitinol,Thermal conductivity,0.085,W/cm·°C,martensite phase,
+nickel-alloy,Nitinol,Coefficient of thermal expansion,11,µm/m·°C,austenite phase,
+nickel-alloy,Nitinol,Coefficient of thermal expansion,6.6,µm/m·°C,martensite phase,sheet prints this as approximate
 # MU-METAL - Carpenter Electrification HyMu 80 datasheet, its Physical
 # properties and Magnetic properties tables. The magnetic four lead, because on
 # a shielding alloy permeability is what a buyer selects on - it is the reason

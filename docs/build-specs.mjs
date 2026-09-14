@@ -201,6 +201,7 @@ const SINGLE_GRADE = {
   'alloy-59': ['nickel-alloy', 'Alloy 59'],
   'invar': ['nickel-alloy', 'Invar 36'],
   'mu-metal': ['nickel-alloy', 'Mu-metal'],
+  'nitinol': ['nickel-alloy', 'Nitinol'],
 };
 
 // GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.

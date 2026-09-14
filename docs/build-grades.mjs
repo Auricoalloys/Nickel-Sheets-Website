@@ -694,6 +694,10 @@ const SINGLE_GRADE = {
   // from a "-" now, so the five pages citing N14080 are counted as backlog
   // rather than reported as contradictions.
   'mu-metal': ['nickel-alloy', 'Mu-metal'],
+  // Nitinol completes the four. Its uns cell is filled - Fort Wayne heads its
+  // composition table "ASTM F2063 / UNS N01555" - so unlike Mu-metal it needs
+  // nothing from the unverified-uns branch of the lint.
+  'nitinol': ['nickel-alloy', 'Nitinol'],
   // /alloy-31/sheets/ and /AM-350/round-bar/ are the same shape as /alloy-28/
   // above and were left out when those five were added. Both rows are verified
   // and carry chemistry, so the map entry was the only thing missing. AM 350

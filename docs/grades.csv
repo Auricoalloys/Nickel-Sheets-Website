@@ -669,9 +669,11 @@ nickel-alloy,Waspaloy,N07001,2.4654,,8.20,1330-1360,Haynes International HAYNES 
 # Invar, Mu-metal, Alloy 59 and Nitinol have 16 published pages between them and
 # were the last grades on this site with no row here at all, so build-grades.mjs
 # could not be pointed at them: SINGLE_GRADE needs a verified row, and these had
-# none. Seeded 2026-09-14 as `pending` with EVERY DATA CELL EMPTY. ALLOY 59 AND
-# INVAR 36 HAVE SINCE BEEN READ off their VDM data sheets and carry real rows;
-# Mu-metal and Nitinol are still pending and the notes below still apply to them.
+# none. Seeded 2026-09-14 as `pending` with EVERY DATA CELL EMPTY, AND ALL FOUR
+# WERE READ THE SAME DAY - Alloy 59 and Invar 36 off their VDM data sheets,
+# Mu-metal off three producers and Nitinol off two. Nothing here is pending any
+# more. The notes below are kept because what each page was publishing before,
+# and why a cell reads the way it does, is the part worth having later.
 #
 # Empty is not "-" and not a guess. The pages carry candidate numbers - they are
 # recorded below as leads, NOT copied into the cells - because the pages are
@@ -801,7 +803,29 @@ nickel-alloy,Mu-metal,,2.4545,NiFe15Mo,8.74,1454.4,Magnetic Shield Corporation M
 # filler carries the same UNS as the base metal but a different Werkstoff
 # number, so a page citing 2.4607 is citing the consumable.
 nickel-alloy,Alloy 59,N06059,2.4605,NiCr23Mo16Al,8.6,1310-1360,VDM Metals VDM Alloy 59 (Nicrofer 5923 hMo) material data sheet December 2025,2026-09
-nickel-alloy,Nitinol,,,,,,pending,
+# NITINOL READ 2026-09-14 from two producers. Composition is Fort Wayne Metals'
+# table, headed "ASTM F2063 / UNS N01555" - which is also where the UNS comes
+# from, the one number the seed above could not find anywhere. Physical
+# constants are ATI's NiTi SEA 1 technical data sheet, the only one of the two
+# that publishes any.
+#
+# THE TWO DISAGREE ABOUT WHAT F2063 SAYS, and the newer one is recorded. Fort
+# Wayne gives carbon 0.040 max with nitrogen 0.005 and oxygen 0.040 as separate
+# limits; ATI's sheet gives carbon 0.050 and a COMBINED "Nitrogen + Oxygen"
+# 0.050. Both label their column "ASTM F2063 limits". ATI's sheet is version 1
+# of April 2014 and Fort Wayne's page is current, so the standard was revised
+# between them - exactly the drift the spec review exists to catch, caught here
+# by reading two documents instead of one.
+#
+# Filed under nickel-alloy though titanium is the balance. The mark is a
+# nickel-titanium alloy the trade buys as a nickel alloy, /nitinol/ is a
+# one-segment URL like Kovar's, and this site lists it beside the nickel round
+# bars. Kovar sets the same precedent one alloy over: iron-nickel-cobalt, filed
+# here because that is how it is sold.
+#
+# wnr and en_name are EMPTY, not "-": neither document prints a Werkstoff
+# number or an EN name, and neither is silent about it selectively.
+nickel-alloy,Nitinol,N01555,,,6.45,1310,Fort Wayne Metals Nitinol material page (ASTM F2063 composition limits for UNS N01555) with ATI NiTi SEA 1 technical data sheet version 1 April 2014 (physical constants and product forms),2026-09
 duplex-steel,2205,S32205 / S31803,1.4462,X2CrNiMoN22-5-3,7.80,1430,SIJ Acroni SINOXX 4462 datasheet (density and composition limits) and Aperam DX1803/DX2205 Technical Data Sheet (melting temperature),2026-08
 duplex-steel,32750,S32750,1.4410,X2CrNiMoN25-7-4,7.80,1445,Aperam DX2507 Technical Data Sheet,2026-08
 # ASTM A240/A240M-25a supplies the chemistry limits. Density 7.80 confirmed by
