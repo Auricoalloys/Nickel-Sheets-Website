@@ -147,6 +147,27 @@ const FORM_LABEL = {
 //
 // Order is the order the tables print. Most-used grade first.
 const COMBINED = {
+  // /inconel/sheets/ named 625, 600 and 601 and nothing else, while the site
+  // publishes a sheets page for TEN Inconel grades - so the form hub omitted
+  // 617, 625 LCF, 686, 690, 693, 718 and X-750, and a buyer who wanted 718
+  // sheet was told this supplier does not stock it.
+  //
+  // The ten are exactly the grades whose "flat" cell in docs/specs.csv is not
+  // "-", which is the same test that decides whether a sheets page may exist
+  // at all. 725, 751 and 783 are "-" - not made in flat product - and 740H has
+  // no specs.csv row and no form pages, so none of the four is listed here.
+  // Adding one to this map without a flat cell behind it would advertise a
+  // sheet the mill does not roll.
+  //
+  // Order: the three the page already led with, then the rest in the order
+  // /inconel/ lists them, so the list is reproducible rather than a ranking
+  // nobody can check.
+  '/inconel/sheets/': [
+    ['inconel', '625'], ['inconel', '600'], ['inconel', '601'],
+    ['inconel', '617'], ['inconel', '625 LCF'], ['inconel', '686'],
+    ['inconel', '690'], ['inconel', '693'], ['inconel', '718'],
+    ['inconel', 'X-750'],
+  ],
   '/nichrome/sheets/': [
     ['nichrome', '80/20'], ['nichrome', '70/30'], ['nichrome', '60/15'],
   ],
