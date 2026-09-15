@@ -103,6 +103,18 @@ exclude:
   # Reference documents (standards excerpts, sourcing notes). Tracked in git
   # so the sourcing is auditable, but not site content.
   - docs/references
+  # Database migrations. Not site content, and they were being SERVED: a build
+  # writes them to _site/supabase/migrations/, so both files were live at
+  # www.nickelsheets.com/supabase/migrations/*.sql - the full leads table
+  # schema, the note that the sync worker holds a service_role key, and a
+  # dated account of which table had RLS disabled and for how long. None of it
+  # is a credential, and none of it is anybody's business either.
+  #
+  # Same failure as the docs/ block above, one directory over: Jekyll copies
+  # every top-level directory that is not excluded and not prefixed with an
+  # underscore, so anything added at the root publishes by default. Exclude a
+  # new working directory in the commit that adds it.
+  - supabase
   # local build toolchain, not site content
   - Gemfile
   - Gemfile.lock

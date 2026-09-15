@@ -90,7 +90,11 @@ title: Nickel Strip Product
 
   <div id="footer-container"></div>
 
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <!-- product-page-runtime.js reads the one row it needs straight off the
+       Supabase REST endpoint. It used to need @supabase/supabase-js here, loaded
+       from unpkg on a floating major version with no integrity hash - a third
+       party executing on this origin, on a page that carries the enquiry form.
+       Do not add it back: this was the site's last third-party script. -->
   <script src="/javascript/product-page-runtime.js"></script>
   <script type="module" src="/javascript/floating-form.js"></script>
   <script src="/javascript/detailed.js"></script>
