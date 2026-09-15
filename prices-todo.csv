@@ -21,8 +21,8 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-09-11 by docs/build-price-worklist.mjs
-# pending: 272 page(s)
+# generated: 2026-09-15 by docs/build-price-worklist.mjs
+# pending: 279 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -83,6 +83,9 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /cobalt-alloy-tube-supplier-exporter-mumbai-india/,,,,,kg
 /cobalt-alloy-wire-supplier-exporter-mumbai-india/,,,,,kg
 
+# /cobalt-alloys/mp35n/  (1)  |  cobalt-alloys priced on 5 page(s) at INR 8,500-45,000 per kg
+/cobalt-alloys/mp35n/round-bar/,,,,,kg
+
 # /copper-...  (4)
 /Copper-Aluminum-Sandwich-Busbar/,,,,,kg
 /Copper-Busbar-for-Lithium-Ion-Battery/,,,,,kg
@@ -136,6 +139,16 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /hastelloy/N/plates/,,,,,kg
 /hastelloy/N/round-bar/,,,,,kg
 /hastelloy/N/sheets/,,,,,kg
+
+# /haynes/556/  (3)  |  haynes priced on 33 page(s) at INR 5,000-15,000 per kg
+/haynes/556/plates/,,,,,kg
+/haynes/556/round-bar/,,,,,kg
+/haynes/556/sheets/,,,,,kg
+
+# /haynes/HR-160/  (3)  |  haynes priced on 33 page(s) at INR 5,000-15,000 per kg
+/haynes/HR-160/plates/,,,,,kg
+/haynes/HR-160/round-bar/,,,,,kg
+/haynes/HR-160/sheets/,,,,,kg
 
 # /incoloy-...  (10)  |  incoloy priced on 22 page(s) at INR 1,500-12,000 per kg
 /incoloy-330-800-foil-supplier-trader-stockist-exporter-in-mumbai-india/,,,,,kg

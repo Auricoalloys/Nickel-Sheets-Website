@@ -24,12 +24,23 @@
 // comma-delimited list item somewhere in that same text - which is what the
 // prose actually does.
 //
-// Two more shapes get the same treatment for the same reason: a grade whose
-// CSV spelling and URL disagree on word order (254 SMO / SMO-254 - aliased
-// the same way docs/build-grades.mjs already resolves the URL, see
-// GRADE_ALIAS below), and a grade carrying a parenthetical alternate name
+// Three more shapes get the same treatment for the same reason: a grade
+// whose CSV spelling and URL disagree on word order (254 SMO / SMO-254 -
+// aliased the same way docs/build-grades.mjs already resolves the URL, see
+// GRADE_ALIAS below), a grade carrying a parenthetical alternate name
 // (660 (A286), Haynes 25 (L-605)) where only the leading code, never the
-// alternate name, appears in a URL or in running prose.
+// alternate name, appears in a URL or in running prose, and a grade named
+// by its UNS number instead of grades.csv's own bare code ("2507 (S32750)"
+// in llms.txt against grades.csv's key "32750" - the UNS is a complete,
+// unambiguous name for the grade in its own right, so it is tried too).
+//
+// Matching needs two different tokenisers, not one, because '/' means
+// opposite things in the two documents this reads. In llms.txt prose it
+// sits *inside* a grade mention ("80/20") and must not be split on. In a
+// sitemap.xml <loc> it is the path separator: not splitting on it was a
+// real bug caught by testing against the actual sitemap rather than
+// assumed correct - it merged a whole URL into one token, so an exact
+// match against a bare grade code like "600" always failed.
 //
 // What it cannot catch, on purpose rather than by oversight:
 //   - which of a grade's several legitimate names llms.txt should use. A
@@ -39,11 +50,12 @@
 //     document, not just the page, so this is left to a human, the same
 //     reason build-grades.mjs's own lint only catches contradictions, not
 //     which of several correct names to prefer.
-//   - a grade verified in grades.csv with no page built yet (Haynes 556,
-//     HR-160, MP35N as of 2026-09 - the last one confirmed via its empty
-//     `url` cell in docs/hub-grades.csv, which is that file's own convention
-//     for "no grade page yet") - that is a publishing backlog, not an
-//     llms.txt bug, so it is deliberately not flagged as missing.
+//   - a grade verified in grades.csv with no page built yet - that is a
+//     publishing backlog, not an llms.txt bug, so it is deliberately not
+//     flagged as missing. (Haynes 556, HR-160 and MP35N were the example
+//     that motivated this exemption; all three now have pages, so the
+//     backlog this catches is empty as of this writing - watch for the
+//     next one rather than expecting this list to name anybody current.)
 //   - single- and two-character grade codes with no qualifier word in front
 //     of them (Hastelloy N, X; Incoloy DS) - too short to search for as a
 //     bare substring without false positives, so they are named and skipped
@@ -105,11 +117,50 @@ function hasListItem(text, code) {
   return items.some(item => squash(item).includes(squashedCode));
 }
 
-function checkOneForm(text, grade) {
-  const squashedText = squash(text);
-  if (squash(grade).length >= MIN_TOKEN_LEN && squashedText.includes(squash(grade))) return true;
+// Two tokenizers, not one, because '/' means opposite things in the two
+// documents this script reads. In llms.txt prose it is *inside* a grade
+// mention ("80/20", "625 LCF" written as "625-LCF" elsewhere) and must not
+// split it apart. In a sitemap.xml <loc> it is the path separator, and not
+// splitting on it was a real bug: it merged an entire URL into one token
+// ("wwwnickelsheetscominconel600coil"), so an exact-match check against
+// "600" alone always failed and every grade fell into "no live page
+// detected" - caught by testing against the actual sitemap, not assumed.
+//
+// Both split on whitespace and the punctuation that separates distinct
+// items (commas, semicolons, brackets, parens, quotes); tokenizeUrls also
+// splits on '/' and '.' for path segments and the domain. Squashing the
+// WHOLE document into one blob and doing a substring search, as this used
+// to, let a short numeric code "match" inside an unrelated longer number -
+// "601" was found inside "60/15" (squashed "6015") once Inconel 601 wasn't
+// in the text at all.
+function tokenizeProse(text) {
+  return text.split(/[\s,;:()[\]"'–—]+/).map(squash).filter(Boolean);
+}
+
+function tokenizeUrls(text) {
+  return text.split(/[\s,;:()[\]"'–—/.]+/).map(squash).filter(Boolean);
+}
+
+// Exact match against one token, or against 2-3 consecutive tokens
+// concatenated (for a grade written as separate words, "625 LCF" -> tokens
+// "625","LCF"). Exact, not substring - that is the fix.
+function tokensContain(tokens, target) {
+  for (let i = 0; i < tokens.length; i++) {
+    let acc = '';
+    for (let j = i; j < Math.min(i + 3, tokens.length); j++) {
+      acc += tokens[j];
+      if (acc === target) return true;
+      if (acc.length > target.length) break;
+    }
+  }
+  return false;
+}
+
+function checkOneForm(tokenize, text, grade) {
+  const target = squash(grade);
+  if (target.length >= MIN_TOKEN_LEN && tokensContain(tokenize(text), target)) return true;
   const parts = splitQualifier(grade);
-  return !!(parts && squashedText.includes(squash(parts.qualifier)) && hasListItem(text, parts.code));
+  return !!(parts && squash(text).includes(squash(parts.qualifier)) && hasListItem(text, parts.code));
 }
 
 // Kept in sync with the identical map in docs/build-grades.mjs and
@@ -131,12 +182,24 @@ function leadingCode(grade) {
   return m ? m[1] : null;
 }
 
-function gradeMentioned(text, grade, family) {
-  if (checkOneForm(text, grade)) return true;
+// A UNS number is a complete, unambiguous way to name a grade on its own -
+// "2507 (S32750)" mentions the grade by writing S32750, even though
+// grades.csv's own key for it is the bare "32750" ASTM drops the letter
+// prefix from. Try each UNS grades.csv records (it can be a list, "S32205 /
+// S31803") as its own candidate alongside the grade name.
+function unsCandidates(uns) {
+  if (!uns || uns === '-') return [];
+  return uns.split('/').map(s => s.trim()).filter(Boolean);
+}
+
+function gradeMentioned(tokenize, text, grade, family, uns) {
+  if (checkOneForm(tokenize, text, grade)) return true;
   const alias = GRADE_ALIAS[family]?.[squash(grade)];
-  if (alias && squash(text).includes(alias)) return true;
+  if (alias && tokensContain(tokenize(text), alias)) return true;
   const lead = leadingCode(grade);
-  return !!(lead && checkOneForm(text, lead));
+  if (lead && checkOneForm(tokenize, text, lead)) return true;
+  const tokens = tokenize(text);
+  return unsCandidates(uns).some(u => tokensContain(tokens, squash(u)));
 }
 
 const grades = readCsv(GRADES_CSV,
@@ -159,13 +222,13 @@ for (const row of grades) {
     continue;
   }
 
-  if (!gradeMentioned(liveUrlsText, row.grade, row.family)) {
+  if (!gradeMentioned(tokenizeUrls, liveUrlsText, row.grade, row.family, row.uns)) {
     noLivePage.push(`${row.family}/${row.grade}`);
     continue; // verified in the CSV but no page built - a backlog, not an llms.txt bug
   }
 
   checked++;
-  if (!gradeMentioned(llmsText, row.grade, row.family)) {
+  if (!gradeMentioned(tokenizeProse, llmsText, row.grade, row.family, row.uns)) {
     missing.push(`${row.family}/${row.grade}${row.uns && row.uns !== '-' ? ` (${row.uns})` : ''}`);
   }
 }
