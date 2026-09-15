@@ -17,6 +17,16 @@ import { LEAD_ENDPOINTS, FALLBACK_CONTACT, EVENTS } from "./lead-config.js";
 
 const ATTRIBUTION_KEY = "aurico_attribution";
 
+// Bot signals. Neither of these decides anything here - both are sent with the
+// payload and the Apps Script makes the call, because a check that only runs in
+// this file stops nothing: the /exec URL is in lead-config.js and a script can
+// POST to it directly, never having loaded the page.
+//
+// HONEYPOT_FIELD is a text input hidden from people and left in the tab order's
+// way for nothing: a human never sees it, so anything in it was typed by
+// something filling every input it could find.
+const HONEYPOT_FIELD = "website";
+
 // Everything that reaches the textarea default is escaped here, once. The text
 // comes from the query string or from the page's own JSON-LD, and is only ever
 // used as a textarea default - never as markup.
@@ -348,6 +358,11 @@ export class FloatingForm {
 
     this.isVisible = false;
     this.hasStarted = false;
+    // How long the visitor had the form in front of them. Both modes build the
+    // fields at page load, so this counts reading time as well as typing time -
+    // a real enquiry is tens of seconds, and a script that fills and posts is
+    // through in tens of milliseconds.
+    this.renderedAt = Date.now();
     this.init();
   }
 
@@ -540,6 +555,16 @@ export class FloatingForm {
         box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       }
 
+      /* The honeypot. Taken out of the layout entirely but still rendered, so
+         it is invisible to a person and present to anything reading the DOM. */
+      .floating-form-hp {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
       @media (max-width: 768px) {
         .floating-form-sidebar { width: 100%; padding: 24px 20px; }
         .floating-form-button { left: 15px; bottom: 15px; padding: 12px 16px; }
@@ -601,6 +626,17 @@ export class FloatingForm {
         <div class="floating-form-group">
           <label class="floating-form-label" for="${this.id}-country">Country <span class="floating-form-optional">(optional)</span></label>
           <input type="text" id="${this.id}-country" name="country" class="floating-form-input" autocomplete="country-name">
+        </div>
+        <!-- Not a field anyone fills in. Off-screen rather than display:none,
+             because a bot that bothers to check visibility at all usually
+             checks for that one property; aria-hidden and tabindex="-1" keep
+             it away from screen readers and the tab order, and autocomplete
+             is off so no password manager writes into it and turns a real
+             enquiry into a suspected one. -->
+        <div class="floating-form-hp" aria-hidden="true">
+          <label for="${this.id}-${HONEYPOT_FIELD}">Website</label>
+          <input type="text" id="${this.id}-${HONEYPOT_FIELD}" name="${HONEYPOT_FIELD}"
+            tabindex="-1" autocomplete="off">
         </div>
         <div class="floating-form-group">
           <label class="floating-form-label" for="${this.id}-name">Name*</label>
@@ -843,6 +879,12 @@ export class FloatingForm {
       page_url: window.location.href,
       page_title: document.title,
       form_location: this.config.mode,
+      // Bot signals, for the Apps Script to judge - see HONEYPOT_FIELD above.
+      // They are sent rather than acted on here, and the form submits normally
+      // either way: a visitor is never told they looked like a robot, and a bot
+      // is never told what gave it away.
+      [HONEYPOT_FIELD]: value(HONEYPOT_FIELD),
+      form_elapsed_ms: String(Date.now() - this.renderedAt),
       ...attribution,
     };
 

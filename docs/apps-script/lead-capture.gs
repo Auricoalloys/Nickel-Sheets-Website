@@ -117,6 +117,43 @@ var COLUMN_ORDER = [
 ];
 
 /**
+ * Fields the form sends for this script to judge, which are deliberately NOT
+ * stored: the honeypot's contents and how long the form was open. They are
+ * recognised so cleanPayload does not report them as junk, and then dropped so
+ * the desk's sheet keeps exactly the columns it has today. What they decided is
+ * recorded in spam_reason, on the spam tab, where it is worth reading.
+ */
+var HONEYPOT_FIELD = 'website';
+var TIMING_FIELD = 'form_elapsed_ms';
+var SIGNAL_FIELDS = [HONEYPOT_FIELD, TIMING_FIELD];
+
+/**
+ * A form filled in faster than this was not filled in by a person. Both form
+ * modes build their fields at page load, so the figure covers reading time as
+ * well as typing: a real enquiry runs to tens of seconds and the fastest
+ * plausible human is still several. Three seconds is far enough below that to
+ * cost nothing and still catch a script.
+ */
+var MIN_FILL_MS = 3000;
+
+/**
+ * Suspected spam is written HERE rather than rejected.
+ *
+ * Rejecting would be the obvious move and it is the wrong one twice over. A
+ * false positive would hand a real buyer the "we could not submit" fallback and
+ * the enquiry would depend on them bothering with WhatsApp - this endpoint's
+ * one unforgivable failure is a lost lead. And a bot told it failed learns
+ * that something detected it, which is free information; one told it succeeded
+ * goes away satisfied.
+ *
+ * So a flagged submission is captured like any other, on its own tab, with the
+ * notification email skipped and {ok:true} returned. Nothing is lost, the desk's
+ * inbox stays clean, and if real enquiries turn up on this tab the threshold
+ * above is wrong and can be seen to be wrong.
+ */
+var SPAM_SHEET_NAME = 'Leads (suspected spam)';
+
+/**
  * The only keys that may become columns. COLUMN_ORDER is the whole set the form
  * sends; anything else on a payload was not sent by this site's form, so it is
  * counted and dropped rather than given a column of its own. Add a field here
@@ -181,7 +218,8 @@ function cleanPayload(data) {
 
   Object.keys(data).forEach(function (key) {
     if (ALLOWED_FIELDS.indexOf(key) === -1) {
-      dropped++;
+      // Expected, judged, and not stored - not junk, so not counted as junk.
+      if (SIGNAL_FIELDS.indexOf(key) === -1) dropped++;
       return;
     }
     clean[key] = sanitizeCell(data[key]);
@@ -192,6 +230,34 @@ function cleanPayload(data) {
   }
 
   return clean;
+}
+
+/**
+ * Why this submission looks automated, or '' when it does not.
+ *
+ * A MISSING timing field is not a reason. GitHub Pages serves floating-form.js
+ * with its own cache lifetime, so for a while after any deploy there are real
+ * visitors running the previous version of the form, which sends no timing at
+ * all - reading absence as guilt would file those as spam. Only a figure that
+ * is present and implausibly small counts.
+ */
+function spamReason(data) {
+  var honeypot = String(data[HONEYPOT_FIELD] === undefined ? '' : data[HONEYPOT_FIELD]).trim();
+  if (honeypot) {
+    return 'honeypot filled: ' + honeypot.slice(0, 200);
+  }
+
+  var raw = data[TIMING_FIELD];
+  if (raw === undefined || raw === null || raw === '') return '';
+
+  var elapsed = Number(raw);
+  if (isNaN(elapsed) || elapsed < 0) return '';
+
+  if (elapsed < MIN_FILL_MS) {
+    return 'submitted ' + elapsed + 'ms after the form rendered (minimum ' + MIN_FILL_MS + ')';
+  }
+
+  return '';
 }
 
 /**
@@ -245,9 +311,18 @@ function doPost(e) {
       return jsonReply({ ok: false, error: 'Enquiry needs an email or a phone number' });
     }
 
-    var data = cleanPayload(parsed);
+    // Judged on the raw payload, because the signals it reads are dropped by
+    // cleanPayload - they are not columns on the desk's sheet.
+    var reason = spamReason(parsed);
 
-    var sheet = getSheet();
+    var data = cleanPayload(parsed);
+    if (reason) {
+      // Set after cleaning, never taken from the payload: an attacker who could
+      // write this field could label their own submission whatever they liked.
+      data.spam_reason = sanitizeCell(reason);
+    }
+
+    var sheet = getSheet(reason ? SPAM_SHEET_NAME : SHEET_NAME);
     var headers = syncHeaders(sheet, data);
 
     var row = headers.map(function (key) {
@@ -258,7 +333,14 @@ function doPost(e) {
     sheet.appendRow(row);
     var rowNumber = sheet.getLastRow();
 
-    notify(data, rowNumber);
+    // A flagged submission is captured and then left alone: no email, and the
+    // same {ok:true} a real lead gets. See SPAM_SHEET_NAME for why.
+    if (reason) {
+      console.warn('Suspected spam filed on "' + SPAM_SHEET_NAME + '" row ' +
+        rowNumber + ': ' + reason);
+    } else {
+      notify(data, rowNumber);
+    }
 
     // rowNumber is a stable identifier for this enquiry. When the CRM hop is
     // built, "enquiry:" + rowNumber is the external_id it should dedupe on.
@@ -277,12 +359,13 @@ function doGet() {
   return jsonReply({ ok: true, service: 'aurico-lead-capture' });
 }
 
-function getSheet() {
+function getSheet(name) {
   var book = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = book.getSheetByName(SHEET_NAME);
+  var wanted = name || SHEET_NAME;
+  var sheet = book.getSheetByName(wanted);
 
   if (!sheet) {
-    sheet = book.insertSheet(SHEET_NAME);
+    sheet = book.insertSheet(wanted);
   }
   return sheet;
 }
