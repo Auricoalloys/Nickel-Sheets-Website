@@ -382,6 +382,105 @@ def audit(pages):
             mismatch.append({"file": p, "alt": a.group(1)[:60], "h1": h1[:60]})
     findings["alt_alloy_mismatch"] = mismatch
 
+    # Any image naming a different alloy from the page it is on - by its FILENAME
+    # as well as its alt, in the body as well as the banner, and in the og:image,
+    # twitter:image and JSON-LD "image" URLs that crawlers read instead of the page.
+    #
+    # alt_alloy_mismatch above reads the banner alt only, against the banner
+    # caption, and nothing read a filename at all. So /nickel-200-201/ passed with
+    # titanium-round-bar.webp in its banner under a correct nickel alt, and the same
+    # file in its body under alt text naming Hastelloy. That was not one page: on
+    # 2026-09-16 this check found 303 references on 122 pages - 192 <img>, 96
+    # JSON-LD, 12 og/twitter and 3 captions, 20 of them the wrong grade rather than
+    # the wrong brand. The round-bar template's default was titanium-round-bar.webp
+    # or Haynes-2.webp, so Inconel, Hastelloy, Monel, Nimonic, duplex, Stellite and
+    # special-stainless pages all carried one or the other; eight non-Hastelloy foil
+    # pages carried hastelloy-foil.webp; the Alloy 602 CA pages carried inconel-*.webp;
+    # nine services banners were captioned "Duplex Steel". Nothing looked wrong on the
+    # page, because nearly all of them are generic photographs of a bar or a sheet -
+    # the wrong alloy was only ever in the words.
+    #
+    # Read the photograph before deciding which half is wrong. Titanium-grade-2.webp
+    # on the Grade 5 round bar page is a real photograph of plates hand-marked
+    # "Ti Gr 5": the page was right and the filename was not, so the file was renamed
+    # rather than swapped for a stock picture.
+    #
+    # The subject is the <h1>, the <title> and the permalink together: the NiCr
+    # pages name their grade only as "NiCr 80:20" and the titanium alloy pages only
+    # as "Ti-6Al-2Sn-4Zr-2Mo", and the URL is what says nichrome or titanium. "NiCr"
+    # is read as nichrome for that reason.
+    #
+    # Brands only, as above: "nickel alloy", "cobalt alloy" and "special stainless"
+    # are broader than a brand, so nickel-alloy-round-bar.webp on a Kovar page is a
+    # true description. That is also the check's limit, and three of the same sweep
+    # were found by eye for it: the titanium hollow bars banner read "Nickel-Alloy-
+    # Hollow-Bars Supplier", and two foil pages captioned "Mu Metal Foil" were Alloy
+    # 59 and Titanium Grade 2 - none of those names is a brand.
+    #
+    # Grades compare the same way alt_alloy_mismatch does, 3-4 digits or "Grade n",
+    # case-folded so a filename's "grade-1" meets a heading's "Grade 1". It caught
+    # Inconel 693 captioned 690, Haynes 214 captioned 230 and Incoloy-800H-round-
+    # bars.webp on seven other Incoloy grades. What the pattern cannot read, it
+    # cannot catch: "800HT" is no grade to it, so the eighth Incoloy page was found
+    # by eye, and so was the Nimonic 75 banner alt reading "Nimonic 90".
+    #
+    # Three classes are excluded by rule rather than parked in the baseline, because
+    # each one shows several families on purpose:
+    #   - pages/products/* are the form grids - one card per family, side by side.
+    #   - /alloys-for-*/ are the application guides, which select a grade across
+    #     every family the site sells.
+    #   - proof-*.webp are photographs of a real lot (an Incoloy 800H plate's mill
+    #     marking, Monel 400 packing labels), named and captioned for that lot.
+    IMAGE_BRANDS = BRANDS + ("stellite", "elgiloy")
+    GRADE_RE = re.compile(r"\b\d{3,4}[A-Z]?\b|\bGrade \d+\b", re.I)
+
+    def _image_brands(s):
+        t = re.sub(r"&reg;|&trade;|®|™", " ", s.lower())
+        t = re.sub(r"\bnicr\b", "nichrome", t)
+        return {w for w in IMAGE_BRANDS if w in t}
+
+    # hyphens and underscores read as spaces, or "Titanium-Grade-1-Foil" in an alt
+    # and titanium-foil-grade-1.webp in a filename would name no grade at all
+    def _grades(s):
+        return {g.upper() for g in GRADE_RE.findall(re.sub(r"[-_]", " ", s))}
+
+    image_mismatch = []
+    for p, d in sorted(real.items()):
+        if p.startswith("pages/products/") or (d["permalink"] or "").startswith("/alloys-for-"):
+            continue
+        h1m = re.search(r"<h1[^>]*>(.*?)</h1>", d["raw"], re.S | re.I)
+        subject = " ".join([re.sub(r"<[^>]+>", "", h1m.group(1)) if h1m else "",
+                            d["title"] or "", d["permalink"] or ""])
+        sb, sg = _image_brands(subject), _grades(subject)
+        refs = []
+        for t in d["imgs"]:
+            s_ = re.search(r'\bsrc\s*=\s*["\']([^"\']*)["\']', t, re.I)
+            a_ = re.search(r'\balt\s*=\s*"([^"]*)"', t, re.I)
+            refs.append(("img", s_.group(1) if s_ else "", html.unescape(a_.group(1)) if a_ else ""))
+        refs += [("meta", u, "") for u in re.findall(
+            r'<meta\s+(?:property|name)=["\'](?:og|twitter):image["\']\s+content=["\']([^"\']+)["\']',
+            d["raw"], re.I)]
+        # string values only - every "image" in the tree is one - and parked
+        # Product nodes included, since build-prices.mjs unparks them when priced
+        refs += [("jsonld", u, "") for u in re.findall(r'"image"\s*:\s*"([^"]+)"', d["raw"])]
+        # the caption printed under a body image says what the image is, in words a
+        # reader sees - "High-quality Nimonic Plates" sat under the Incoloy plates one
+        refs += [("caption", "", html.unescape(re.sub(r"<[^>]+>", "", c)))
+                 for c in re.findall(r'<p class="caption">(.*?)</p>', d["raw"], re.S)]
+        for kind, src, alt in refs:
+            fname = html.unescape(src.split("?")[0].split("/")[-1])
+            if fname.startswith("proof-"):
+                continue
+            wrong = sorted((_image_brands(fname) | _image_brands(alt)) - sb)
+            fg, ag = _grades(fname.replace(".", " ")), _grades(alt)
+            if sg:
+                wrong += sorted((fg if fg and not fg & sg else set())
+                                | (ag if ag and not ag & sg else set()))
+            if wrong:
+                image_mismatch.append({"file": p, "in": kind, "src": fname,
+                                       "alt": alt[:60], "names": wrong})
+    findings["image_alloy_mismatch"] = image_mismatch
+
     # The banner caption is a heading, so it must be marked up as one - <h2>
     # where the page has its own content heading, <h1> where the banner is the
     # only heading it has. Anything else drops the caption out of the document
