@@ -1,6 +1,9 @@
 ---
 permalink: /terms/
 title: Terms of Service
+# The page says noindex, so advertising it in sitemap.xml asked Google to index
+# a URL it was told not to - Search Console's "Submitted URL marked 'noindex'".
+sitemap: false
 redirect_from:
   - /Copper-Busbar-for-Prismatic-Cells/terms/
   - /NiCr/30-20/round-bar/terms/
@@ -37,6 +40,15 @@ redirect_from:
   <link rel="stylesheet" href="/CSS/pages.css">
   <link rel="stylesheet" href="/CSS/footer.css">
   <link rel="stylesheet" href="/CSS/header.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZL7EXDTQ0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XZL7EXDTQ0');
+  </script>
 
   <link rel="canonical" href="https://www.nickelsheets.com/terms/">
   <meta property="og:type" content="website">
