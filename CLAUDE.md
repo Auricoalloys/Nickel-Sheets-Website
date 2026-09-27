@@ -229,6 +229,32 @@ Count the invalid-item state with a JSON-LD **parse**, not a regex — and strip
 or the parked nodes read as still-broken. Priced pages use `lowPrice`/`highPrice` on an
 `AggregateOffer`, so grepping for `"price"` reports every correctly priced page as broken.
 
+**A nested `Product` is the same invalid item, and `build-prices.mjs` cannot see it.** It parks only
+a lone top-level `Product` block, so a `Product` used as a *list entry* passes straight through.
+Five powder collection pages did exactly that until 2026-09-27: `/pages/products/powder/` listed its
+ten grades as `Product` entries under `about`, and the Inconel, stainless, titanium and tool-steel
+powder hubs listed theirs under `hasPart` — a UNS number in `sku`, no offer, **eighteen invalid
+items on pages that price nothing**. A collection page names the pages it collects, so each entry is
+now a `WebPage` in `hasPart` (the `/kovar/` shape) pointing at the grade page that carries, or
+parks, the real `Product` node, with the grade in the entry's `about` as a `Thing` holding the
+material and the designation `sku` had been holding.
+
+`tools/seo_audit.py` guards it as `product_without_offers`: every `Product` node **at any depth** on
+every page the audit treats as published, plus the shared header and footer, with none of `offers`,
+`review` or `aggregateRating`. It parses with `json.loads` after blanking HTML comments, so the 293
+parked nodes do not count, and a block that fails to parse is a finding rather than a skip. On
+2026-09-27 it read 1,435 live blocks across 802 pages and the header, and found 268 `Product`
+nodes, every one with offers. It reads the `<script>` tag's `type` however HTML allows it to be
+written — quoted or not, with or without a `; charset` parameter — because its first version
+required quotes and passed a bare `Product` inside `<script type=application/ld+json>` at 0. A tag
+that mentions `ld+json` but whose type still does not read as one is reported as unrecognised.
+
+Keep the literal `"@type": "Product"` out of any explanatory comment on such a page.
+`build-price-worklist.mjs` matches that text in the raw page, comments included, so a comment
+quoting it puts the page back in `prices-todo.csv`. The five hubs sat in its "nowhere to print the
+figure" list for that match alone, and left it when the entries were retyped — correctly, since they
+are not pages waiting for a price.
+
 `permalink: pretty` is set globally. URLs follow alloy → grade → form:
 `/inconel/` (family hub), `/inconel/600/` (grade), `/inconel/600/coil/` (form factor). A minority of
 older pages use flat SEO permalinks instead (e.g. `/inconel-600-601-617-foil-supplier-...`); leave

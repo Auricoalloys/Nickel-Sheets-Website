@@ -497,6 +497,87 @@ def audit(pages):
         if dead:
             findings["dead_page_anchors"].append({"file": p, "anchors": dead})
 
+    # A Product node with none of offers, review or aggregateRating, at any
+    # depth. Google reports each one as an invalid item - "Either offers,
+    # review, or aggregateRating should be specified" - and the page earns no
+    # product result for it.
+    #
+    # build-prices.mjs keeps a page's own Product node honest by parking it in
+    # an HTML comment when prices.csv has no row for the page, but it only ever
+    # looks at a lone top-level Product block. Five powder collection pages
+    # listed their grades as Product entries inside hasPart and about, none of
+    # them priced there, so eighteen invalid items sat beside a pipeline that
+    # could not see them and every generator --check passed. The grades are
+    # WebPage entries now, pointing at the grade pages that hold their Product
+    # nodes - priced there, or parked there until they are.
+    #
+    # Parsed, not grepped: a regex for the node cannot tell a nested entry from
+    # a page's own product, and one for "price" reports every correctly priced
+    # page, which carries lowPrice/highPrice on an AggregateOffer. Comments come
+    # out first, because a parked node is exactly the one Google never sees -
+    # blanked rather than deleted, so the line numbers still point at the file.
+    #
+    # A block that does not parse is reported, not passed over: Google cannot
+    # read it either, and skipping it would be this check vouching for markup it
+    # never looked at. The shared header and footer render into every page and
+    # the header carries the site's Organization block, so both are read here
+    # too, once each.
+    #
+    # The type attribute is read, not matched as one literal shape. The first
+    # version required it quoted, so <script type=application/ld+json> - valid
+    # HTML, and Google reads it - was neither parsed nor reported, and a bare
+    # Product inside it passed at 0. Parameters such as "; charset=utf-8" do not
+    # change the type, so they are dropped before comparing. And a tag whose
+    # attributes mention ld+json but whose type still does not read as
+    # application/ld+json is reported as unrecognised: a shape this check has
+    # not been taught turns up as a finding rather than as a silent pass.
+    script_tag = re.compile(r"<script\b([^>]*)>(.*?)</script\s*>", re.S | re.I)
+    type_attr = re.compile(r"""(?<![\w:-])type\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))""", re.I)
+
+    def _is_ld_json(attrs):
+        m = type_attr.search(attrs)
+        if not m:
+            return False
+        value = next(g for g in m.groups() if g is not None)
+        return value.split(";")[0].strip().lower() == "application/ld+json"
+
+    def _bare_products(node, at, out):
+        if isinstance(node, dict):
+            types = node.get("@type")
+            types = types if isinstance(types, list) else [types]
+            # "Product", "schema:Product" and "https://schema.org/Product" alike
+            if any(isinstance(t, str) and re.sub(r"^.*[/:]", "", t) == "Product" for t in types) \
+                    and not any(node.get(k) for k in ("offers", "review", "aggregateRating")):
+                out.append({"at": at or "(top level)", "name": node.get("name")})
+            for k, v in node.items():
+                _bare_products(v, f"{at}.{k}" if at else k, out)
+        elif isinstance(node, list):
+            for i, v in enumerate(node):
+                _bare_products(v, f"{at}[{i}]", out)
+
+    findings["product_without_offers"] = []
+    chrome = [f for f in ("_includes/header.html", "_includes/footer.html") if f in pages]
+    for p in sorted(real) + chrome:
+        live = re.sub(r"<!--[\s\S]*?-->", lambda m: re.sub(r"[^\n]", " ", m.group()), pages[p]["raw"])
+        for m in script_tag.finditer(live):
+            if "ld+json" not in m.group(1).lower():
+                continue
+            line = live.count("\n", 0, m.start()) + 1
+            if not _is_ld_json(m.group(1)):
+                findings["product_without_offers"].append(
+                    {"file": p, "line": line, "unrecognised": "<script%s>" % m.group(1)})
+                continue
+            try:
+                data = json.loads(m.group(2))
+            except ValueError as e:
+                findings["product_without_offers"].append(
+                    {"file": p, "line": line, "unparsable": str(e)})
+                continue
+            found = []
+            _bare_products(data, "", found)
+            findings["product_without_offers"].extend(
+                {"file": p, "line": line, **f} for f in found)
+
     return findings
 
 
@@ -633,10 +714,14 @@ def main():
     drafts = []
     for dp, dn, fn in os.walk(ROOT):
         dn[:] = [d for d in dn if d not in SKIP_DIRS]
-        for f in fn:
-            if not f.lower().endswith((".html", ".htm")):
+        # Not "f": that name holds the findings, and rebinding it here made the
+        # regression listing below index a filename string - so any regression,
+        # in any check, printed its header and then a TypeError instead of the
+        # items, and CI's issue body carried the traceback, not the file.
+        for name in fn:
+            if not name.lower().endswith((".html", ".htm")):
                 continue
-            fp = os.path.join(dp, f)
+            fp = os.path.join(dp, name)
             raw = open(fp, encoding="utf-8", errors="replace").read()
             fm = re.match(r"^\ufeff?---\s*\r?\n(.*?)\r?\n---\s*\r?\n", raw, re.S)
             if not fm or not re.search(r"^published\s*:\s*false", fm.group(1), re.M):
@@ -648,8 +733,8 @@ def main():
         print(f"\nnot checked - {len(drafts)} published: false draft(s) with unbalanced containers.")
         print("These are never built, so no check above applies to them. Publishing one")
         print("fails this audit on the spot; until then they are dead files.")
-        for f, why in sorted(drafts):
-            print(f"    {f}\n        {why}")
+        for rel, why in sorted(drafts):
+            print(f"    {rel}\n        {why}")
 
     for k in worse:
         print(f"\n--- new in {k} ---")
