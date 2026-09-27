@@ -618,6 +618,14 @@ page: crawl waste and Search Console noise, for nothing. `pointerdown` is also w
 click or "open in new tab" arrive seeded, since neither fires a `click`, and it is why modified
 clicks are simply left to the browser. Do not "simplify" this into rewriting hrefs in `start()`.
 
+**A double-click must not close what it opened.** The overlay appears the instant the panel opens
+and covers the control that opened it, so the second click of a double-click, or the second tap of
+a double tap, landed on it and shut the panel: the form flashed and vanished. Measured at 1366 px,
+two clicks on Get a Quote 60 or 120 ms apart left it shut; from about 200 ms the second click hits
+the panel sliding over the button instead, which is why the bug hides from a slow tester. The
+overlay now ignores a click whose `detail` is above 1, and any click in the panel's first 400 ms,
+since a double tap need not report itself in `detail`. Escape and the close button are untouched.
+
 The listeners are delegated from `document`, because the runtime product route injects its header
 after the module has run. And a quote click never overwrites what the visitor typed: `seed()`
 replaces the textarea only while it is empty, still the page-load seed, or still the previous CTA's

@@ -382,6 +382,9 @@ export class FloatingForm {
     // Whatever opened the panel, so closing it puts focus back there.
     this.returnFocusTo = null;
     this.autoCloseTimer = null;
+    // When the panel last opened, so the overlay can tell the tail of the
+    // gesture that opened it from a click meant to close it.
+    this.openedAt = -Infinity;
     // How long the visitor had the form in front of them. Both modes build the
     // fields at page load, so this counts reading time as well as typing time -
     // a real enquiry is tens of seconds, and a script that fills and posts is
@@ -746,7 +749,19 @@ export class FloatingForm {
     this.sidebar
       .querySelector(".floating-form-close")
       .addEventListener("click", () => this.close());
-    this.overlay.addEventListener("click", () => this.close());
+    // The overlay appears the instant the panel opens and covers the control
+    // that opened it, so the second click of a double-click - or the second tap
+    // of a double tap - lands on it, and shut the panel again: the form flashed
+    // and vanished. That was a quirk of the launcher and the weight calculator
+    // until every Get a Quote opened the panel; then a double-click on the
+    // site's main CTA showed nothing at all. A mouse double-click reports itself
+    // in `detail`, however slow; a double tap may not, so any click in the first
+    // 400 ms - the panel is still finishing its 300 ms slide - is taken as that
+    // gesture too. performance.now(), because it cannot jump with the clock.
+    this.overlay.addEventListener("click", (event) => {
+      if (event.detail > 1 || performance.now() - this.openedAt < 400) return;
+      this.close();
+    });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && this.isVisible) this.close();
@@ -800,6 +815,7 @@ export class FloatingForm {
       const active = document.activeElement;
       const outside = active && active !== document.body && !this.sidebar.contains(active);
       this.returnFocusTo = opener || (outside ? active : null);
+      this.openedAt = performance.now();
     }
     // A verified submission schedules its own close. Reopened inside those four
     // seconds - another quote button, say - the panel must not shut on the
