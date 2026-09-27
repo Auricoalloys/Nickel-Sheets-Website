@@ -550,6 +550,18 @@ carry the deploy procedure — the important part is that updating means "Manage
 New version", not "New deployment", which would mint a different `/exec` URL. Apps Script cannot set
 HTTP status codes, so the site reads `{ok: …}` out of the body; keep that contract.
 
+**The alert email is written for the desk to act on.** `notify()` names the product in the subject
+— the enquiry's first non-empty line, less the `Enquiry:` the form seeds it with — so the inbox
+reads "Website enquiry #123 - Inconel 625 Sheets - Acme Ltd (India)" instead of a company name and
+nothing about what was asked. It sets `replyTo` to the buyer, so pressing Reply answers them rather
+than the account the script sends from; the address is used only when it is one plausible address
+(whitespace, a comma, angle brackets or a leading formula character reject it outright, and the body
+then says Reply-To was not set). And the body prints what the visitor typed: `sanitizeCell()`'s
+leading quote guards the sheet, and stays there, but a plain-text email parses no formulas, and the
+guard's quote showed up in it — every phone number written `+91 …` read `'+91 …`.
+`displayText()` removes only a quote `sanitizeCell()` could have added. None of this reaches the
+inbox until the script is redeployed as a new version of the existing deployment.
+
 #### The enquiry field is seeded from the page's own breadcrumb
 
 The textarea opens carrying `Enquiry: <subject>`, so a visitor who wants a price on Inconel 625
