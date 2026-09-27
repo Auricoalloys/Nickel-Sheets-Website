@@ -852,22 +852,53 @@ export class FloatingForm {
     }
   }
 
-  // Writes a CTA's enquiry into the textarea, unless the visitor has already
-  // written there themselves. "Untouched" is: empty, still the page-load seed,
-  // or still the text a previous CTA put there. Anything else is the visitor's
-  // own typing, and a second quote button must not wipe it - they would lose
-  // their sizes to a click that looked like it only opened the form.
+  // Writes a CTA's enquiry into the textarea without losing a word the visitor
+  // wrote there. Empty, still the page-load seed, or still exactly what the last
+  // CTA wrote, the textarea is all the form's own and is simply replaced. Once
+  // the visitor has typed, their text stays and only the CTA's words move:
+  //
+  //   - an earlier seed's words, where they still stand, are swapped for the
+  //     new ones, so a recalculated weight replaces the old figure and the
+  //     sizes typed under it stay put;
+  //   - new words with nowhere to go are put on top, where the product line
+  //     always sits and where the visitor will see that it changed;
+  //   - words the visitor already had in front of them and took out are not
+  //     put back.
+  //
+  // Refusing the new text outright protects the typing just as well, and was
+  // the first version of this rule; the weight calculator is why it is not the
+  // rule. Calculate, open the form, add a note, recalculate, open it again -
+  // and the form still held the first weight, with nothing to say so.
   seed(text) {
     const textarea = this.form?.querySelector('textarea[name="inquiry"]');
-    if (!textarea || !text) return;
+    const words = (text || "").trim();
+    if (!textarea || !words) return;
     const current = textarea.value;
-    const untouched =
-      !current.trim() || current === textarea.defaultValue || current === this.seeded;
-    // The page-load seed carries a trailing newline for the caret; the same
-    // words handed over by the header button do not. Leave the newline be.
-    if (!untouched || current.trim() === text.trim()) return;
-    textarea.value = text;
-    this.seeded = text;
+
+    if (!current.trim() || current === textarea.defaultValue || current === this.seeded) {
+      // The page-load seed carries a trailing newline for the caret; the same
+      // words handed over by the header button do not. Leave the newline be.
+      if (current.trim() === words) return;
+      textarea.value = text;
+      this.seeded = text;
+      return;
+    }
+
+    if (current.includes(words)) return;
+    const earlier = [this.seeded, textarea.defaultValue]
+      .map((seed) => seed.trim())
+      .filter(Boolean);
+    const standing = earlier.find((seed) => current.includes(seed));
+    if (standing) {
+      // A function rather than a string, so a "$" in the text is not read as a
+      // replacement pattern.
+      textarea.value = current.replace(standing, () => words);
+    } else if (earlier.includes(words)) {
+      return;
+    } else {
+      textarea.value = `${words}\n\n${current.replace(/^\s+/, "")}`;
+    }
+    this.seeded = words;
   }
 
   // Opens the panel with the enquiry textarea already written out. Used by a CTA

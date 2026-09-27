@@ -627,10 +627,16 @@ overlay now ignores a click whose `detail` is above 1, and any click in the pane
 since a double tap need not report itself in `detail`. Escape and the close button are untouched.
 
 The listeners are delegated from `document`, because the runtime product route injects its header
-after the module has run. And a quote click never overwrites what the visitor typed: `seed()`
-replaces the textarea only while it is empty, still the page-load seed, or still the previous CTA's
-own text. The weight calculator's `openWith()` goes through the same rule — it used to overwrite
-unconditionally, so reopening the form after typing sizes into it wiped them.
+after the module has run. And a quote click never loses what the visitor typed. `seed()` replaces
+the textarea outright only while it is empty, still the page-load seed, or still the last CTA's own
+text. Once the visitor has typed, it swaps the earlier seed's words for the new ones where they
+still stand and keeps everything around them, puts new words on top when none of the earlier seed
+is left, and does not put back words the visitor deleted. The weight calculator's `openWith()` goes
+through the same rule, and the calculator is what the rule has to satisfy in both directions: it
+used to overwrite unconditionally, which wiped the sizes typed under a result, and the first
+version of `seed()` refused new text instead, which left a recalculated weight out of the form
+with nothing to say so. After touching `seed()`, run calculate → quote → add a note → recalculate
+→ quote, and read the textarea.
 
 #### Country and company are optional, and are being measured
 
