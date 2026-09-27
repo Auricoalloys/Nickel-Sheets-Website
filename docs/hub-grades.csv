@@ -38,13 +38,23 @@ hastelloy,C-2000,Hastelloy C2000,/hastelloy/C2000/,Ni-Cr-Mo-Cu,Copper added for 
 hastelloy,G-30,Hastelloy G30,/hastelloy/G30/,Ni-Cr-Fe-Mo,Phosphoric acid and mixed-acid pickling
 hastelloy,N,Hastelloy N,/hastelloy/N/,Ni-Mo-Cr,Molten fluoride salts
 hastelloy,X,Hastelloy X,/hastelloy/X/,Ni-Cr-Fe-Mo,"Strength and oxidation resistance at temperature, gas turbine parts"
-haynes,25,Haynes 25 (L-605),,Cobalt base,"Wear and sulphidation resistance, sliding contact at temperature"
-haynes,188,Haynes 188,,Cobalt base,"Oxidation resistance to about 1095 &deg;C, combustor hardware"
-haynes,214,Haynes 214,,Ni-Cr-Al,"The highest oxidation resistance of the family, honeycomb seals and foil"
-haynes,230,Haynes 230,,Ni-Cr-W-Mo,"Strength, oxidation resistance and long-term stability combined"
-haynes,242,Haynes 242,,Age hardened,"Strength with low thermal expansion, seal rings and ducting"
-haynes,282,Haynes 282,,Age hardened,Creep strength with better weldability than earlier disc alloys
-haynes,HR-120,Haynes HR-120,,Fe-Ni-Cr,A lower-cost heat resisting grade for furnace and process service
+# Haynes: the seven grade hubs (/haynes/25/ ... /haynes/HR-120/) were built on
+# 2026-09-09, after these rows were written with an empty url, and nobody filled
+# the cells in - so the family hub linked none of them and each grade hub's only
+# inbound links came from its own form pages. 556 and HR-160 still have no grade
+# hub, so their url stays empty and haynes.html links their form pages from its
+# #forms section instead. Their Type and Chosen-for are read off grades.csv's
+# source notes and chemistry.csv (556 is iron-balance, HR-160 nickel-balance)
+# and the pages' own text, not typed from memory.
+haynes,25,Haynes 25 (L-605),/haynes/25/,Cobalt base,"Wear and sulphidation resistance, sliding contact at temperature"
+haynes,188,Haynes 188,/haynes/188/,Cobalt base,"Oxidation resistance to about 1095 &deg;C, combustor hardware"
+haynes,214,Haynes 214,/haynes/214/,Ni-Cr-Al,"The highest oxidation resistance of the family, honeycomb seals and foil"
+haynes,230,Haynes 230,/haynes/230/,Ni-Cr-W-Mo,"Strength, oxidation resistance and long-term stability combined"
+haynes,242,Haynes 242,/haynes/242/,Age hardened,"Strength with low thermal expansion, seal rings and ducting"
+haynes,282,Haynes 282,/haynes/282/,Age hardened,Creep strength with better weldability than earlier disc alloys
+haynes,HR-120,Haynes HR-120,/haynes/HR-120/,Fe-Ni-Cr,A lower-cost heat resisting grade for furnace and process service
+haynes,556,Haynes 556,,Fe-Ni-Cr-Co,"Sulphidising, carburising and chlorine-bearing atmospheres at high temperature"
+haynes,HR-160,Haynes HR-160,,Ni-Co-Cr-Si,Sulphidation and chlorination in mixed-gas waste-to-energy service
 incoloy,DS,Incoloy DS,/incoloy/DS/,Heat resisting,Carburisation and thermal cycling in furnace parts
 incoloy,800,Incoloy 800,/incoloy/800/,Heat resisting,General furnace and process service
 incoloy,800H,Incoloy 800H,/incoloy/800H/,Heat resisting,Controlled carbon and grain size for creep strength
