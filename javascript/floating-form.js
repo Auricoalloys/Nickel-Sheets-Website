@@ -152,7 +152,14 @@ function derivedSubject() {
 // the page is about.
 function prefillInquiry() {
   const explicit = ctaEnquiry();
-  if (explicit) return escapeHtml(explicit);
+  // The same trailing newline as the derived seed below, because contact links
+  // now arrive carrying "Enquiry: <subject>": without it a visitor clicking into
+  // the box typed straight onto the product line - "Enquiry: Inconel 625
+  // Sheets3mm x 1000" - and the alert email, which takes its subject from that
+  // line, named the fused string. A value that already ends in whitespace is
+  // left alone: the powder pages' "Request a sample" ends "Quantity: " and is
+  // meant to be continued on the same line.
+  if (explicit) return escapeHtml(/\s$/.test(explicit) ? explicit : `${explicit}\n`);
 
   const subject = derivedSubject();
   // "Enquiry: " prefix so the line reads as something the form supplied rather

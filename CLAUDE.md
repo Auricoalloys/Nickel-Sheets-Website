@@ -609,7 +609,10 @@ by kind:
   when the opener was inside a menu that is now collapsed.
 - **Every other contact link** gets `?enquiry=` added, which the contact page's `ctaEnquiry()`
   already seeds its inline form from. A link that carries its own `?enquiry=` — the powder pages'
-  "Request a sample" — is left alone.
+  "Request a sample" — is left alone. The seed gets the derived one's trailing newline unless it
+  already ends in whitespace: without it, a visitor who clicked into the box typed onto the product
+  line ("Enquiry: Inconel 625 Sheets3mm x 1000"), and the alert email reads its subject from that
+  line. The powder CTAs end `Quantity: ` and are meant to be continued on the same line.
 
 **The parameter is written at interaction time only** — `pointerdown`, `focusin`, `keydown`,
 `click` — never at page load, and the static hrefs stay bare `/pages/contact/`. Written at load,
