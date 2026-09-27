@@ -1724,6 +1724,84 @@ acid/alkali guide names carries **one sentence of its own grade's fact** and a l
 line 22 times, which is the near-duplicate pattern that put 132 pages in *Crawled – currently not
 indexed*.
 
+### IndexNow tells Bing when a page changes
+
+**ChatGPT search and Microsoft Copilot answer from Bing's index**, and until 2026-09-27 Bing learned
+about a change on this site only when it happened to recrawl — a re-quote pass or a corrected
+specification could sit unseen for weeks while an assistant kept quoting the old page to a buyer.
+[IndexNow](https://www.indexnow.org/documentation) is one POST that tells Bing, Yandex, Seznam,
+Naver and Yep which URLs changed. **Google does not read it**; `sitemap.xml` and its `<lastmod>` are
+still how Google hears, so nothing here replaces the sitemap discipline above.
+
+`.github/workflows/indexnow.yml` runs on every push to `main` that touches HTML or `sitemap.xml`. It
+**waits until GitHub Pages reports the pushed commit built** — polling the Pages builds API every
+20 s for up to 15 minutes — because a ping that lands before the deploy has Bing fetch the *old*
+page and cache it, which is worse than no ping. A failed Pages build fails the job with the build's
+own error and submits nothing. If the builds API is unavailable it falls back to a fixed five-minute
+wait and says so in the job summary. Then `tools/indexnow.mjs` computes the URLs from the pushed
+range and posts them; the job summary lists every URL with the reason it was sent.
+
+```bash
+node tools/indexnow.mjs --range <from>..<to> --dry-run   # what a push would send, and why
+node tools/indexnow.mjs --all --dry-run                  # every <loc> in sitemap.xml at HEAD
+```
+
+**The key is public by design**, in the same sense as the Supabase anon key under Secrets: it is
+`7300d5f431351d82efbe5e2645e5c8c2.txt` at the repo root, served at
+`https://www.nickelsheets.com/7300d5f431351d82efbe5e2645e5c8c2.txt`, and all it proves is that
+whoever submits URLs for this host controls what the host serves. It is not a secret and must not be
+moved into one. The script finds the key file by what it is — a root `.txt` whose content is its
+own name — and reads the key from it, so there is never a second copy to drift. To rotate it,
+replace that file in one commit; two such files at the root is an error. A **403** from the engine
+means the served file is missing or does not match, usually because the push carrying it had not
+deployed yet.
+
+**Seed the index once**: Actions tab → IndexNow → *Run workflow* → tick **all**. That submits every
+`<loc>` in `sitemap.xml` (801 on the day it was added). Do it once after this lands, not as a habit:
+the protocol is for URLs that changed, and the sitemap already lists the rest.
+
+**Also add the site to Bing Webmaster Tools** — that part needs the owner's Microsoft account, so it
+is not done. *Import from Google Search Console* takes minutes and carries the verification over, so
+no new DNS record or meta tag is needed. It is the only place Bing reports crawl errors, index
+coverage and which IndexNow submissions it received: **IndexNow on its own gives no feedback at
+all**, beyond a 200 or 202 that means "received", not "indexed".
+
+What a push submits, and what it deliberately does not:
+
+- **A changed or added page, only if its URL is in `sitemap.xml` at the pushed commit.** The sitemap
+  already encodes every reason a page is withheld — `published: false`, `sitemap: false`, a
+  robots-disallowed route, the `/html/` fragments — so the script reuses that judgement rather than
+  re-deriving it. A changed page missing from the sitemap for no such reason is flagged loudly: it
+  means the sitemap was not regenerated.
+- **The old URL** of a page deleted, unpublished or given a new permalink, so the engine sees the 404
+  or the redirect instead of keeping the dead page. **Every new `redirect_from` entry** likewise,
+  and one that was removed.
+- **A URL newly listed in `sitemap.xml`**, even when the push changed no HTML — otherwise a page
+  pushed before its sitemap entry would never be submitted, because the later push that lists it
+  touches only the sitemap.
+- **Not `_includes/`, `CSS/`, `javascript/`, the `html/` fragments or `_config.yml`.** They render into
+  every page, and resubmitting ~800 URLs because the footer changed tells the engines nothing worth
+  recrawling for. The output says so rather than doing it silently; pages whose own HTML changed in
+  the same push are still sent.
+- **Not a page whose only change is its `redirect_from` list, a front-matter comment or its line
+  endings.** It renders byte-for-byte the same page. That is what keeps a redirect sweep like
+  `f0997d1a` to its 53 retired URLs instead of those plus the 41 targets that gained a line.
+- **Not a page touched only by a commit in `BOILERPLATE`** in `docs/build-sitemap.mjs` — the same
+  commits the sitemap keeps out of `<lastmod>`, for the same reason: telling Bing a page changed
+  while its `<lastmod>` says it did not would be the inflated signal twice over. The set is read at
+  the pushed commit, so **push a sweep together with the commit that adds its SHA to `BOILERPLATE`**.
+  Pushed alone it is submitted in full, and the output flags any non-`BOILERPLATE` commit that
+  touched more than 100 pages as a probable sweep. Note the trade: `BOILERPLATE` also holds sweeps
+  that changed titles or structured data (`d3624386`, `7f9ce97c`), which Bing *would* want to
+  recrawl. After one of those, a dispatch with **all** ticked is the deliberate way to resubmit.
+
+Two operational limits. The workflow runs with `concurrency: indexnow` and `cancel-in-progress:
+false` so two quick pushes queue instead of racing — but **GitHub keeps only one pending run per
+group**, so a third push while one runs and one waits cancels the waiting one, and its range is never
+submitted. Re-run a cancelled run from the Actions tab; it keeps its own range. And the
+`INDEXNOW_ENDPOINT` environment variable redirects the POST — it exists for testing against a local
+stub and nothing in CI sets it.
+
 ### JavaScript inventory
 
 `floating-form.js` (every page, via footer), `site-search.js` (every page, via footer) and

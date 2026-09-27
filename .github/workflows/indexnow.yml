@@ -1,0 +1,215 @@
+name: IndexNow
+
+# Tells Bing - and through the shared protocol Yandex, Seznam, Naver and Yep -
+# which pages changed, the moment GitHub Pages has published them.
+#
+# ChatGPT search and Microsoft Copilot answer from Bing's index, and without this
+# Bing learns about a change only when it happens to recrawl. Google does not
+# read IndexNow; sitemap.xml and its <lastmod> are how Google hears. tools/indexnow.mjs
+# decides which URLs changed and says why; this workflow decides when.
+#
+# The key is PUBLIC BY DESIGN, the same way the Supabase anon key and the Apps
+# Script /exec URL are (see "Secrets" in CLAUDE.md). It lives in <key>.txt at the
+# repo root and is served at https://www.nickelsheets.com/<key>.txt, and all it
+# proves is that whoever submits URLs for this host controls what the host
+# serves. Knowing it lets someone ask the engines to recrawl our own pages - it
+# grants no access to anything. It is therefore committed, not stored as a
+# secret, and the script reads it from that one file.
+#
+# To seed the index once: Actions tab -> IndexNow -> Run workflow -> tick "all".
+
+on:
+  push:
+    branches: [main]
+    # sitemap.xml is here because a new page pushed before its sitemap entry is
+    # submitted by the later push that adds it - a push that changes no HTML.
+    paths:
+      - "**.html"
+      - "sitemap.xml"
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Submit every URL in sitemap.xml (one-off seeding run)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pages: read
+
+# Two quick pushes queue rather than race, so each run's range is submitted after
+# its own deploy. GitHub keeps only ONE pending run per group: a third push while
+# one runs and one waits cancels the waiting one, and that push's range is never
+# submitted. Re-run a cancelled run from the Actions tab - it keeps its range.
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    # A dispatch from another branch would submit URLs for content that is not
+    # live, and a fork has no business pinging the engines for this host.
+    if: github.ref == 'refs/heads/main' && !github.event.repository.fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      # The whole history, not the default single commit. The range diff needs
+      # both ends: with the default depth of 1 neither `before` nor the fallback
+      # `sha~1` exists and the script stops. History is also where a shallow clone
+      # does quiet damage - its oldest commit reads as touching every file, which
+      # is how b060d0f7 regenerated sitemap.xml from a 50-commit clone and dated
+      # 589 pages to one day - so this takes all of it rather than a depth that
+      # merely usually covers the push.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Ping too early and the engine fetches the OLD page and caches it, which
+      # is worse than not pinging: it then has no reason to come back soon. So
+      # wait until GitHub Pages reports this commit built.
+      #
+      # Pages coalesces builds, so a commit pushed just before another may never
+      # get a build of its own; a newer build that contains this commit counts.
+      # If the builds API is not available - Pages served from a custom Actions
+      # workflow, or the API refusing - fall back to a fixed wait and say so.
+      - name: Wait for GitHub Pages to deploy this commit
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const sha = context.sha;
+            const POLL_MS = 20_000, TIMEOUT_MS = 15 * 60_000, FALLBACK_MS = 5 * 60_000;
+            // "built" is the build record, not the CDN edge; a short settle is cheap
+            // insurance against the engine fetching a page mid-propagation.
+            const SETTLE_MS = 30_000;
+            const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+            async function fallback(why) {
+              const msg = `Could not confirm the Pages deploy (${why}), so this waited a fixed ` +
+                `${FALLBACK_MS / 60_000} minutes before submitting instead.`;
+              core.warning(msg);
+              await core.summary.addHeading('Pages deploy not confirmed', 3).addRaw(msg + '\n').write();
+              await sleep(FALLBACK_MS);
+            }
+
+            // Routes are spelled out with github.request rather than the named
+            // github.rest.* helpers, so they read exactly as the REST docs print them.
+            const api = (route, params = {}) => github.request(route, { owner, repo, ...params });
+
+            let site;
+            try {
+              site = (await api('GET /repos/{owner}/{repo}/pages')).data;
+            } catch (e) {
+              return fallback(`GET /repos/${owner}/${repo}/pages answered ${e.status || e.message}`);
+            }
+            // The builds endpoint records branch builds. A site published by its own
+            // Actions workflow reports build_type "workflow", and polling it would
+            // wait out the full timeout on a record that never moves.
+            if (site.build_type && site.build_type !== 'legacy') {
+              return fallback(`the Pages source is build_type "${site.build_type}", which the builds API does not track`);
+            }
+
+            const contains = new Map();   // build commit -> does it include this commit?
+            async function includes(buildSha) {
+              if (!contains.has(buildSha)) {
+                try {
+                  const { data } = await api('GET /repos/{owner}/{repo}/compare/{basehead}',
+                    { basehead: `${sha}...${buildSha}` });
+                  contains.set(buildSha, data.status === 'ahead' || data.status === 'identical');
+                } catch {
+                  contains.set(buildSha, false);
+                }
+              }
+              return contains.get(buildSha);
+            }
+
+            // This commit's own build, if Pages made one: when a newer push's build
+            // is the latest, ours may still have been built (and served) before it.
+            async function ownBuild() {
+              try {
+                const { data } = await api('GET /repos/{owner}/{repo}/pages/builds', { per_page: 30 });
+                return data.find(x => x.commit === sha && (x.status === 'built' || x.status === 'errored'));
+              } catch {
+                return undefined;
+              }
+            }
+
+            async function errored(b) {
+              const why = (b.error && b.error.message) || 'no message given';
+              core.setFailed(`The GitHub Pages build of ${b.commit.slice(0, 8)} errored: ${why}. Nothing was ` +
+                'submitted - the live site does not have this commit, and pinging now would point the engines ' +
+                'at the old pages.');
+              await core.summary.addHeading('IndexNow: not submitted', 3)
+                .addRaw(`The GitHub Pages build of ${b.commit.slice(0, 8)} errored: ${why}\n`).write();
+            }
+
+            async function built(b) {
+              core.info(`Pages has built ${b.commit.slice(0, 8)}, which includes ${sha.slice(0, 8)}.`);
+              await sleep(SETTLE_MS);
+            }
+
+            const start = Date.now();
+            let last = 'none';
+            while (Date.now() - start < TIMEOUT_MS) {
+              let b;
+              try {
+                b = (await api('GET /repos/{owner}/{repo}/pages/builds/latest')).data;
+              } catch (e) {
+                if (e.status === 403 || e.status === 404) {
+                  return fallback(`GET /repos/${owner}/${repo}/pages/builds/latest answered ${e.status}`);
+                }
+                core.info(`builds API error (${e.status || e.message}); retrying`);
+                await sleep(POLL_MS);
+                continue;
+              }
+              const state = `${b.status} at ${(b.commit || '?').slice(0, 8)}`;
+              if (state !== last) core.info(`latest Pages build: ${state}`);
+              last = state;
+              if (b.commit === sha) {
+                if (b.status === 'built') return built(b);
+                if (b.status === 'errored') return errored(b);
+              } else if (b.commit && (b.status === 'built' || b.status === 'errored')) {
+                const own = await ownBuild();
+                if (own) return own.status === 'built' ? built(own) : errored(own);
+                // No build of our own: a newer build that contains this commit stands in for it.
+                if (await includes(b.commit)) return b.status === 'built' ? built(b) : errored(b);
+              }
+              await sleep(POLL_MS);
+            }
+            core.setFailed(`GitHub Pages had not deployed ${sha.slice(0, 8)} after ${TIMEOUT_MS / 60_000} minutes ` +
+              `(latest build: ${last}). Nothing was submitted; re-run this job once the site is live.`);
+
+      # The range is worked out in the shell, not in an expression: `github.sha~1`
+      # is git revision syntax, and an expression would only paste the text.
+      - name: Submit the changed URLs
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+          ALL: ${{ inputs.all }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            if [ "$ALL" = "true" ]; then
+              set -- --all
+            else
+              set -- --range "HEAD~1..HEAD"
+            fi
+          else
+            from="$BEFORE"
+            # `before` is forty zeros when the push created the branch, and after a
+            # force push it can name a commit this checkout does not have. Either
+            # way the only range left to trust is the pushed commit itself.
+            if [ -z "$from" ] || [ "$from" = "0000000000000000000000000000000000000000" ] \
+               || ! git cat-file -e "${from}^{commit}" 2>/dev/null; then
+              echo "::notice::No usable 'before' commit (${from:-empty}); submitting ${SHA}~1..${SHA} only."
+              from="${SHA}~1"
+            fi
+            set -- --range "${from}..${SHA}"
+          fi
+          # tools/indexnow.mjs writes the URL count and the reasons to $GITHUB_STEP_SUMMARY.
+          node tools/indexnow.mjs "$@"
