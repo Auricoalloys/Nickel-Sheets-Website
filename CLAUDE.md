@@ -241,7 +241,10 @@ every page the audit treats as published, plus the shared header and footer, wit
 `review` or `aggregateRating`. It parses with `json.loads` after blanking HTML comments, so the 293
 parked nodes do not count, and a block that fails to parse is a finding rather than a skip. On
 2026-09-27 it read 1,435 live blocks across 802 pages and the header, and found 268 `Product`
-nodes, every one with offers.
+nodes, every one with offers. It reads the `<script>` tag's `type` however HTML allows it to be
+written — quoted or not, with or without a `; charset` parameter — because its first version
+required quotes and passed a bare `Product` inside `<script type=application/ld+json>` at 0. A tag
+that mentions `ld+json` but whose type still does not read as one is reported as unrecognised.
 
 Keep the literal `"@type": "Product"` out of any explanatory comment on such a page.
 `build-price-worklist.mjs` matches that text in the raw page, comments included, so a comment

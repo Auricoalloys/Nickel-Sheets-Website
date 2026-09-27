@@ -522,8 +522,24 @@ def audit(pages):
     # never looked at. The shared header and footer render into every page and
     # the header carries the site's Organization block, so both are read here
     # too, once each.
-    ld_json = re.compile(r"<script\b[^>]*\btype\s*=\s*[\"']application/ld\+json[\"'][^>]*>(.*?)</script>",
-                         re.S | re.I)
+    #
+    # The type attribute is read, not matched as one literal shape. The first
+    # version required it quoted, so <script type=application/ld+json> - valid
+    # HTML, and Google reads it - was neither parsed nor reported, and a bare
+    # Product inside it passed at 0. Parameters such as "; charset=utf-8" do not
+    # change the type, so they are dropped before comparing. And a tag whose
+    # attributes mention ld+json but whose type still does not read as
+    # application/ld+json is reported as unrecognised: a shape this check has
+    # not been taught turns up as a finding rather than as a silent pass.
+    script_tag = re.compile(r"<script\b([^>]*)>(.*?)</script\s*>", re.S | re.I)
+    type_attr = re.compile(r"""(?<![\w:-])type\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))""", re.I)
+
+    def _is_ld_json(attrs):
+        m = type_attr.search(attrs)
+        if not m:
+            return False
+        value = next(g for g in m.groups() if g is not None)
+        return value.split(";")[0].strip().lower() == "application/ld+json"
 
     def _bare_products(node, at, out):
         if isinstance(node, dict):
@@ -543,10 +559,16 @@ def audit(pages):
     chrome = [f for f in ("_includes/header.html", "_includes/footer.html") if f in pages]
     for p in sorted(real) + chrome:
         live = re.sub(r"<!--[\s\S]*?-->", lambda m: re.sub(r"[^\n]", " ", m.group()), pages[p]["raw"])
-        for m in ld_json.finditer(live):
+        for m in script_tag.finditer(live):
+            if "ld+json" not in m.group(1).lower():
+                continue
             line = live.count("\n", 0, m.start()) + 1
+            if not _is_ld_json(m.group(1)):
+                findings["product_without_offers"].append(
+                    {"file": p, "line": line, "unrecognised": "<script%s>" % m.group(1)})
+                continue
             try:
-                data = json.loads(m.group(1))
+                data = json.loads(m.group(2))
             except ValueError as e:
                 findings["product_without_offers"].append(
                     {"file": p, "line": line, "unparsable": str(e)})
