@@ -72,8 +72,8 @@ nichrome,60/15,NiCr 60/15,,"60% Ni, 15% Cr","General purpose heating, iron balan
 nichrome,40/20,NiCr 40/20,,"40% Ni, 20% Cr",Moderate temperature elements and resistors
 nichrome,30/20,NiCr 30/20,,"30% Ni, 20% Cr",Lower temperature service at lower cost
 nichrome,20/25,NiCr 20/25,,"20% Ni, 25% Cr",The most economical of the range
-cobalt-alloy,Haynes 25 (L-605),Haynes 25 (L-605),,Co-Cr-W-Ni,"Wear and sulphidation resistance, sliding contact at temperature"
-cobalt-alloy,Haynes 188,Haynes 188,,Co-Ni-Cr-W,High-temperature oxidation resistance for combustor hardware
+cobalt-alloy,Haynes 25 (L-605),Haynes 25 (L-605),/haynes/25/,Co-Cr-W-Ni,"Wear and sulphidation resistance, sliding contact at temperature"
+cobalt-alloy,Haynes 188,Haynes 188,/haynes/188/,Co-Ni-Cr-W,High-temperature oxidation resistance for combustor hardware
 cobalt-alloy,Elgiloy,Elgiloy,/cobalt-alloys/elgiloy/sheets/,Co-Cr-Ni-Mo,"Springs and diaphragms, high fatigue strength, sour gas service"
 cobalt-alloy,MP35N,MP35N,/cobalt-alloys/mp35n/round-bar/,Co-Ni-Cr-Mo,Multiphase alloy with very high strength and corrosion resistance for fasteners
 cobalt-alloy,CoCrMo,CoCrMo,/cobalt-alloys/cocrmo/powder/,Co-Cr-Mo,Implants and additive manufacturing feedstock
