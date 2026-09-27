@@ -528,9 +528,21 @@ include, so every page gets it; module scripts dedupe by URL, so pages carrying 
 unaffected.
 
 `javascript/lead-config.js` is the single place to change where leads go. Submissions land in one of
-three honest states (verified / unverified / failed); a failure hands the visitor a pre-filled
-WhatsApp link so a broken pipe still yields a lead. The transport deliberately avoids `no-cors` as
-its primary path, since opaque responses previously reported success for leads that never arrived.
+three honest states (verified / unverified / failed), and the last two both hand the visitor
+pre-filled WhatsApp and email links so a broken pipe still yields a lead. The transport deliberately
+avoids `no-cors` as its primary path, since opaque responses previously reported success for leads
+that never arrived.
+
+**Unverified is not delivered.** It means the readable request failed and a `no-cors` retry went
+out whose answer cannot be read — which is what an Apps Script predating the CORS-aware deployment
+looks like (the lead landed), and equally what a deployment answering with a Google sign-in page, or
+an office firewall's block page, looks like (it did not). Until 2026-09-27 that state said "your
+enquiry has reached us", reset the form and closed the panel after four seconds, with no fallback:
+the outcome where the visitor most needed the WhatsApp link was the one that hid it. It now says the
+enquiry was sent but could not be confirmed, keeps the form filled and the panel open, and offers
+the same links as the failed state — one `fallbackLinks()` builds both, from the payload, before
+anything can reset the form. `form_submit_unverified` still fires, and a jump in it right after an
+Apps Script redeploy is the deployment, not the visitors.
 
 The destination is a Google Apps Script web app whose source lives at
 `docs/apps-script/lead-capture.gs` (versioned here, excluded from the build). Its header comments
@@ -568,6 +580,37 @@ punctuation in the crumb means it is an identifier — leave it exactly as the p
 
 Because a seeded textarea hides its own placeholder, the "add the dimensions you need" guidance
 moved into a visible `.floating-form-hint` under the field. Do not put it back in the placeholder.
+
+**Get a Quote hands over the same seed.** The header's `a.nav-cta` is on every page and 573 in-body
+links on 359 pages point at `/pages/contact/`, and every one of them used to land on a blank form —
+a visitor reading about Inconel 625 sheets clicked a quote button and retyped what they had just
+been looking at, while the WhatsApp rail beside it already knew. `floating-form.js` now handles them
+by kind:
+
+- **Quote links** — `a.nav-cta` and any `a[data-enquiry]` — open the floating panel in place,
+  pre-filled with the link's `data-enquiry` or the page's `Enquiry: <subject>` (no trailing newline:
+  that exact string is the contract with the generated in-page quote buttons), and fire
+  `quote_cta_click` with a `placement` of `header`, `in_page` or the button's own `data-placement`.
+  On the contact page the header button scrolls to and focuses the inline form rather than opening a
+  second form; on a phone it collapses the Bootstrap menu first, by hand if the deferred bundle has
+  not loaded yet. Closing the panel returns focus to whatever opened it — or to the menu toggle,
+  when the opener was inside a menu that is now collapsed.
+- **Every other contact link** gets `?enquiry=` added, which the contact page's `ctaEnquiry()`
+  already seeds its inline form from. A link that carries its own `?enquiry=` — the powder pages'
+  "Request a sample" — is left alone.
+
+**The parameter is written at interaction time only** — `pointerdown`, `focusin`, `keydown`,
+`click` — never at page load, and the static hrefs stay bare `/pages/contact/`. Written at load,
+Googlebot would render hundreds of `/pages/contact/?enquiry=…` URLs that all canonicalise to one
+page: crawl waste and Search Console noise, for nothing. `pointerdown` is also what makes a middle
+click or "open in new tab" arrive seeded, since neither fires a `click`, and it is why modified
+clicks are simply left to the browser. Do not "simplify" this into rewriting hrefs in `start()`.
+
+The listeners are delegated from `document`, because the runtime product route injects its header
+after the module has run. And a quote click never overwrites what the visitor typed: `seed()`
+replaces the textarea only while it is empty, still the page-load seed, or still the previous CTA's
+own text. The weight calculator's `openWith()` goes through the same rule — it used to overwrite
+unconditionally, so reopening the form after typing sizes into it wiped them.
 
 #### Country and company are optional, and are being measured
 

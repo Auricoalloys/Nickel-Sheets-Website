@@ -10,8 +10,14 @@
 // mode:"no-cors" as its primary transport: a no-cors fetch resolves opaquely,
 // so the old code reported "Inquiry submitted successfully!" even when the lead
 // never arrived. Submissions now land in one of three honest states - verified,
-// unverified, or failed - and the last one hands the visitor a WhatsApp link
-// with their enquiry already written out, so a broken pipe still yields a lead.
+// unverified, or failed - and the last two hand the visitor WhatsApp and email
+// links with their enquiry already written out, so a broken pipe still yields a
+// lead.
+//
+// It also owns every "Get a Quote" on the site: the header button and any
+// a[data-enquiry] open this panel in place, pre-filled with what the page sells,
+// and plain links to the contact page pick up the same ?enquiry= when a visitor
+// reaches for them. See "Quote and contact links" below.
 
 import { LEAD_ENDPOINTS, FALLBACK_CONTACT, EVENTS } from "./lead-config.js";
 
@@ -153,6 +159,18 @@ function prefillInquiry() {
   // than as text the visitor left behind, and a trailing newline so the caret
   // lands under it and they add their sizes instead of editing around the seed.
   return subject ? `Enquiry: ${escapeHtml(subject)}\n` : "";
+}
+
+// The same seed as plain text, for a quote or contact link to carry off this
+// page: the explicit ?enquiry= first, then "Enquiry: <subject>". No trailing
+// newline - this is the exact string the generated quote buttons put in
+// data-enquiry, so a header click and an in-page click on one page hand the
+// form the same words. "" where the page has no subject.
+function pageEnquiry() {
+  const explicit = ctaEnquiry();
+  if (explicit) return explicit;
+  const subject = derivedSubject();
+  return subject ? `Enquiry: ${subject}` : "";
 }
 
 const ATTRIBUTION_FIELDS = [
@@ -358,6 +376,12 @@ export class FloatingForm {
 
     this.isVisible = false;
     this.hasStarted = false;
+    // The last text a CTA wrote into the textarea, so a second CTA can tell its
+    // own earlier seed (safe to replace) from the visitor's typing (not).
+    this.seeded = "";
+    // Whatever opened the panel, so closing it puts focus back there.
+    this.returnFocusTo = null;
+    this.autoCloseTimer = null;
     // How long the visitor had the form in front of them. Both modes build the
     // fields at page load, so this counts reading time as well as typing time -
     // a real enquiry is tens of seconds, and a script that fills and posts is
@@ -532,6 +556,7 @@ export class FloatingForm {
 
       .floating-form-status--pending { background: #f0f0f0; color: #444; }
       .floating-form-status--ok { background: #e8f5e9; color: #1b5e20; }
+      .floating-form-status--warn { background: #fff4e5; color: #6b3a00; }
       .floating-form-status--error { background: #fdecea; color: #8c1c13; }
 
       .floating-form-overlay {
@@ -717,7 +742,7 @@ export class FloatingForm {
     document.body.append(this.overlay, this.button, this.sidebar);
     this.form = this.sidebar.querySelector(".floating-form-form");
 
-    this.button.addEventListener("click", () => this.toggle());
+    this.button.addEventListener("click", () => this.toggle(this.button));
     this.sidebar
       .querySelector(".floating-form-close")
       .addEventListener("click", () => this.close());
@@ -761,12 +786,26 @@ export class FloatingForm {
     );
   }
 
-  toggle() {
+  toggle(opener) {
     if (this.isVisible) this.close();
-    else this.open();
+    else this.open(opener);
   }
 
-  open() {
+  // `opener` is the control the visitor used, and gets focus back on close.
+  // Closing used to leave focus on a field inside the panel, which slides off
+  // screen but stays in the tab order - so a keyboard user went on tabbing
+  // through a form they could no longer see, a long way from where they were.
+  open(opener) {
+    if (!this.isVisible) {
+      const active = document.activeElement;
+      const outside = active && active !== document.body && !this.sidebar.contains(active);
+      this.returnFocusTo = opener || (outside ? active : null);
+    }
+    // A verified submission schedules its own close. Reopened inside those four
+    // seconds - another quote button, say - the panel must not shut on the
+    // visitor mid-sentence.
+    window.clearTimeout(this.autoCloseTimer);
+
     this.isVisible = true;
     this.overlay.hidden = false;
     this.overlay.classList.add("show");
@@ -786,18 +825,45 @@ export class FloatingForm {
     window.setTimeout(() => {
       if (!this.isVisible) this.overlay.hidden = true;
     }, 300);
+
+    // Only when focus is still ours to move - inside the panel, or nowhere. A
+    // visitor who has already clicked elsewhere keeps the focus they chose.
+    const opener = this.returnFocusTo;
+    this.returnFocusTo = null;
+    const active = document.activeElement;
+    if (!active || active === document.body || this.sidebar.contains(active)) {
+      returnFocus(opener);
+    }
+  }
+
+  // Writes a CTA's enquiry into the textarea, unless the visitor has already
+  // written there themselves. "Untouched" is: empty, still the page-load seed,
+  // or still the text a previous CTA put there. Anything else is the visitor's
+  // own typing, and a second quote button must not wipe it - they would lose
+  // their sizes to a click that looked like it only opened the form.
+  seed(text) {
+    const textarea = this.form?.querySelector('textarea[name="inquiry"]');
+    if (!textarea || !text) return;
+    const current = textarea.value;
+    const untouched =
+      !current.trim() || current === textarea.defaultValue || current === this.seeded;
+    // The page-load seed carries a trailing newline for the caret; the same
+    // words handed over by the header button do not. Leave the newline be.
+    if (!untouched || current.trim() === text.trim()) return;
+    textarea.value = text;
+    this.seeded = text;
   }
 
   // Opens the panel with the enquiry textarea already written out. Used by a CTA
-  // that knows exactly what the visitor wants - the weight calculator hands over
+  // that knows exactly what the visitor wants - the header's Get a Quote and the
+  // in-page quote buttons hand over the page's product, the weight calculator
   // the material, form, size and computed weight - so they land on a form that
   // is half-filled instead of being sent through a page reload to the contact
   // page. Floating mode only; the inline form is always open already.
-  openWith(text) {
+  openWith(text, opener) {
     if (this.config.mode !== "floating") return;
-    const textarea = this.form?.querySelector('textarea[name="inquiry"]');
-    if (textarea && text) textarea.value = text;
-    this.open();
+    this.seed(text);
+    this.open(opener);
   }
 
   setStatus(element, variant, html) {
@@ -805,9 +871,11 @@ export class FloatingForm {
     element.innerHTML = html;
   }
 
-  // Turns a failed submission into a WhatsApp message that already contains
-  // everything the visitor typed, so the enquiry survives the outage.
-  fallbackMarkup(data) {
+  // WhatsApp and email links that already contain everything the visitor typed,
+  // so the enquiry survives an outage. Shared by the failed and the unverified
+  // states, and always built from the payload - never from the form, which the
+  // verified path resets - so the links carry what was actually sent.
+  fallbackLinks(data) {
     // Every optional field is conditional, not just quantity: a template
     // literal is truthy even when the value inside it is empty, so an
     // unconditional line here would put a bare "Company:" into the WhatsApp
@@ -827,12 +895,30 @@ export class FloatingForm {
       .filter(Boolean)
       .join("\n");
 
-    const whatsapp = `https://api.whatsapp.com/send?phone=${FALLBACK_CONTACT.whatsapp}&text=${encodeURIComponent(body)}`;
-    const mail = `mailto:${FALLBACK_CONTACT.email}?subject=${encodeURIComponent("Enquiry from nickelsheets.com")}&body=${encodeURIComponent(body)}`;
+    return {
+      whatsapp: `https://api.whatsapp.com/send?phone=${FALLBACK_CONTACT.whatsapp}&text=${encodeURIComponent(body)}`,
+      mail: `mailto:${FALLBACK_CONTACT.email}?subject=${encodeURIComponent("Enquiry from nickelsheets.com")}&body=${encodeURIComponent(body)}`,
+    };
+  }
 
+  // The failed state: every endpoint refused or was unreachable.
+  fallbackMarkup(links) {
     return `We could not submit the form just now. Your enquiry is not lost -
-      <a href="${whatsapp}" target="_blank" rel="noopener">send it on WhatsApp</a> or
-      <a href="${mail}">email it to us</a>, both already filled in.`;
+      <a href="${links.whatsapp}" target="_blank" rel="noopener">send it on WhatsApp</a> or
+      <a href="${links.mail}">email it to us</a>, both already filled in.`;
+  }
+
+  // The unverified state: a no-cors request went out and its answer cannot be
+  // read, so the lead may or may not have landed. This used to say "your
+  // enquiry has reached us", clear the form and close the panel - on a result
+  // that is equally what a mis-set deployment answering with a Google sign-in
+  // page, or an office firewall's block page, looks like. The visitor was told
+  // it arrived and given nothing to fall back on. Say what we know, and hand
+  // over the same filled-in links the failed state does.
+  unverifiedMarkup(links) {
+    return `Your enquiry was sent, but we could not confirm that it reached us.
+      To be sure it does, <a href="${links.whatsapp}" target="_blank" rel="noopener">send it on WhatsApp</a>
+      or <a href="${links.mail}">email it to us</a> as well - both are already filled in.`;
   }
 
   async handleSubmit(event) {
@@ -888,24 +974,37 @@ export class FloatingForm {
       ...attribution,
     };
 
+    // Built here, before anything can reset the form, so whichever state the
+    // submission ends in the fallback carries exactly what was sent.
+    const links = this.fallbackLinks(payload);
+
     try {
       const { status: outcome } = await dispatch(payload);
 
-      if (outcome === "verified") {
-        track(EVENTS.leadSubmitted, {
-          form_location: this.config.mode,
-          page_path: window.location.pathname,
-          country: payload.country,
-        });
-      } else {
-        // Delivered, but the endpoint did not confirm it. Almost always means
-        // the Apps Script predates the CORS-aware deployment; watch this event
-        // in GA4 after any change to the Apps Script.
+      if (outcome !== "verified") {
+        // Sent, but the endpoint did not confirm it: the readable request
+        // failed before an answer came back, and the no-cors retry that went
+        // out after it cannot be read. That covers an Apps Script predating the
+        // CORS-aware deployment (the lead did land), and a deployment answering
+        // with a sign-in page or a firewall's block page (it did not) - from
+        // here the two look identical. Watch this event in GA4 after any change
+        // to the Apps Script.
         track(EVENTS.leadUnverified, {
           form_location: this.config.mode,
           page_path: window.location.pathname,
         });
+        // No reset and no auto-close. A cleared form under a closing panel
+        // reads as "done", which is the one thing this state cannot claim, and
+        // the visitor's text stays in front of them beside the links.
+        this.setStatus(status, "warn", this.unverifiedMarkup(links));
+        return;
       }
+
+      track(EVENTS.leadSubmitted, {
+        form_location: this.config.mode,
+        page_path: window.location.pathname,
+        country: payload.country,
+      });
 
       this.setStatus(
         status,
@@ -914,9 +1013,10 @@ export class FloatingForm {
       );
       form.reset();
       this.hasStarted = false;
+      this.seeded = "";
 
       if (this.config.mode === "floating") {
-        window.setTimeout(() => this.close(), 4000);
+        this.autoCloseTimer = window.setTimeout(() => this.close(), 4000);
       }
     } catch (error) {
       console.error("Lead submission failed:", error);
@@ -924,7 +1024,7 @@ export class FloatingForm {
         form_location: this.config.mode,
         page_path: window.location.pathname,
       });
-      this.setStatus(status, "error", this.fallbackMarkup(payload));
+      this.setStatus(status, "error", this.fallbackMarkup(links));
     } finally {
       submitBtn.disabled = false;
     }
@@ -1017,6 +1117,229 @@ function seedWhatsAppLinks() {
 }
 
 /* ------------------------------------------------------------------ *
+ * Quote and contact links
+ * ------------------------------------------------------------------ */
+
+// "Get a Quote" forgot the product. The header button - on every page - and 573
+// in-body links on 359 pages all went to /pages/contact/ bare, so a visitor
+// reading about Inconel 625 sheets clicked a quote button and landed on a blank
+// form to retype what they had just been looking at, while the WhatsApp rail a
+// few pixels away already knew. Two fixes, one per kind of link:
+//
+//   Quote links - the header's a.nav-cta and any a[data-enquiry] - open this
+//   panel in place, pre-filled. No page load, and the visitor stays on the
+//   product they are asking about.
+//
+//   Every other link to the contact page gets ?enquiry= added, so the contact
+//   page's inline form arrives seeded the same way (ctaEnquiry() reads it).
+//
+// The ?enquiry= goes onto an href only when a visitor reaches for the link -
+// pointerdown, focusin, keydown, click - never at page load. Written at load,
+// Googlebot would render hundreds of parameterised /pages/contact/?enquiry=
+// URLs, all canonicalising to /pages/contact/: pure crawl waste and Search
+// Console noise. At interaction time it still covers the cases a click handler
+// cannot: a middle click or "open in new tab" fires no click event at all, but
+// it does fire pointerdown first.
+//
+// Delegated from the document rather than bound at start(), because the runtime
+// product route injects its header after this module has run.
+const QUOTE_LINKS = "a.nav-cta, a[data-enquiry]";
+const CONTACT_PATH = /^\/pages\/contact(?:\/|\.html)?$/;
+// An absolute link to the live site is still a link to this page when the site
+// is served from somewhere else - a local build, a preview.
+const SITE_HOSTS = ["www.nickelsheets.com", "nickelsheets.com"];
+
+function onContactPage() {
+  return CONTACT_PATH.test(window.location.pathname);
+}
+
+// The link's target as a URL if it is the contact page, however it is spelt:
+// relative or absolute, with or without the slash, with other parameters or a
+// #hash. null for anything else.
+function contactUrl(link) {
+  const raw = link.getAttribute("href");
+  if (!raw) return null;
+  let url;
+  try {
+    url = new URL(raw, window.location.href);
+  } catch {
+    return null;
+  }
+  if (url.protocol !== "http:" && url.protocol !== "https:") return null;
+  if (url.host !== window.location.host && !SITE_HOSTS.includes(url.hostname)) return null;
+  return CONTACT_PATH.test(url.pathname) ? url : null;
+}
+
+// What a link hands the form: its own data-enquiry when it carries one, else
+// the page's seed. Capped at the length ctaEnquiry() reads back.
+function linkEnquiry(link) {
+  const own = (link.getAttribute("data-enquiry") || "").trim();
+  return (own || pageEnquiry()).slice(0, 300);
+}
+
+// Adds ?enquiry= to a contact-page link, once. A link that already carries its
+// own - the powder pages' "Request a sample" CTAs - says more than this seed,
+// so it is left alone, exactly as seedWhatsAppLinks() leaves a WhatsApp link
+// that already has text.
+function addEnquiryParam(link) {
+  const url = contactUrl(link);
+  if (!url || url.searchParams.has("enquiry")) return;
+  const text = linkEnquiry(link);
+  if (!text) return;
+
+  // /pages/contact.html and /pages/contact are redirects to /pages/contact/,
+  // and a redirect is not guaranteed to carry the query across. The href is
+  // assembled by hand rather than through url.search or searchParams.set: set()
+  // writes spaces as "+", the search setter re-escapes the apostrophe, and the
+  // shared contract - and every other ?enquiry= on the site - is exactly
+  // encodeURIComponent.
+  const query = `${url.search ? `${url.search}&` : "?"}enquiry=${encodeURIComponent(text)}`;
+  const path = `/pages/contact/${query}${url.hash}`;
+
+  // A relative href comes out root-relative; an absolute one stays absolute,
+  // on the host it named.
+  const absolute = /^[a-z][a-z0-9+.-]*:/i.test(link.getAttribute("href") || "");
+  const sameSite = url.host === window.location.host;
+  link.setAttribute("href", absolute || !sameSite ? `${url.origin}${path}` : path);
+}
+
+// Focus back where the panel was opened from. The phone header's Get a Quote
+// lives inside the collapsed menu, which is gone by the time the panel closes,
+// so focusing it would do nothing; the menu's toggle button is the visible
+// control that leads back to it.
+function returnFocus(target) {
+  if (!target || !target.isConnected) return;
+  if (target.getClientRects().length) {
+    target.focus();
+    return;
+  }
+  const menu = target.closest(".navbar-collapse");
+  if (!menu || !menu.id) return;
+  const toggler = document.querySelector(`[data-bs-target="#${CSS.escape(menu.id)}"]`);
+  if (toggler && toggler.getClientRects().length) toggler.focus();
+}
+
+// On a phone the header's Get a Quote sits inside the open Bootstrap menu, and
+// opening the panel over it left the menu standing open behind the overlay -
+// still open when the panel closed. Resolves once the menu is shut, so a caller
+// that measures the page afterwards measures it without the menu in it.
+//
+// Bootstrap's bundle is deferred and can still be loading when the visitor
+// taps. Without it the menu can only be open through the no-JS path, so the
+// classes are flipped by hand - the same end state its hide() reaches.
+function collapseMenu(link) {
+  const menu = link.closest(".navbar-collapse");
+  if (!menu || !menu.classList.contains("show")) return Promise.resolve();
+
+  return new Promise((resolve) => {
+    const Collapse = window.bootstrap?.Collapse;
+    if (Collapse) {
+      try {
+        menu.addEventListener("hidden.bs.collapse", () => resolve(), { once: true });
+        // The event never comes if hide() is refused mid-transition.
+        window.setTimeout(resolve, 600);
+        Collapse.getOrCreateInstance(menu, { toggle: false }).hide();
+        return;
+      } catch {
+        // Fall through to the manual path.
+      }
+    }
+    menu.classList.remove("show");
+    if (menu.id) {
+      document
+        .querySelectorAll(`[data-bs-target="#${CSS.escape(menu.id)}"]`)
+        .forEach((toggler) => {
+          toggler.classList.add("collapsed");
+          toggler.setAttribute("aria-expanded", "false");
+        });
+    }
+    resolve();
+  });
+}
+
+// On the contact page the form is already on the page, so Get a Quote opening a
+// second copy of it in a panel would be two forms for one enquiry. Bring the
+// inline one into view instead, clear of the sticky header.
+async function showInlineForm(inline, link, text) {
+  await collapseMenu(link);
+  inline.seed(text);
+
+  const target = inline.form.closest(".floating-form-inline") || inline.form;
+  const header = document.querySelector(".navbar.sticky-top");
+  const clearance = (header ? header.getBoundingClientRect().height : 0) + 16;
+  const top = target.getBoundingClientRect().top + window.scrollY - clearance;
+  const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: Math.max(0, top), behavior: reduced ? "auto" : "smooth" });
+  inline.form.querySelector(".floating-form-input")?.focus({ preventScroll: true });
+}
+
+function trackQuoteClick(link) {
+  const placement =
+    link.getAttribute("data-placement") ||
+    (link.classList.contains("nav-cta") ? "header" : "in_page");
+  track(EVENTS.quoteClick, { placement, page_path: window.location.pathname });
+}
+
+function handleQuoteClick(event) {
+  const link = event.target?.closest?.("a[href]");
+  if (!link || !link.matches(QUOTE_LINKS) || event.defaultPrevented) return;
+
+  trackQuoteClick(link);
+
+  // Ctrl/cmd/shift/alt-click means "somewhere else, please" - a new tab, a new
+  // window, a download. Let the browser have it: the href already carries
+  // ?enquiry=, added on the way in, so the contact page opens seeded.
+  if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+    return;
+  }
+
+  const text = linkEnquiry(link);
+
+  const inline = window.inlineForm;
+  if (onContactPage() && inline?.form) {
+    event.preventDefault();
+    showInlineForm(inline, link, text);
+    return;
+  }
+
+  const panel = window.floatingForm;
+  // No panel means the constructor never finished; the decorated href still
+  // takes the visitor to a seeded contact page, which is the same outcome by
+  // the long way round.
+  if (!panel?.sidebar || typeof panel.openWith !== "function") return;
+
+  event.preventDefault();
+  collapseMenu(link);
+  // An unseeded page (home, the location pages, the tools) still opens the
+  // panel - just with nothing written in it.
+  panel.openWith(text, link);
+}
+
+function wireQuoteLinks() {
+  const prepare = (event) => {
+    const link = event.target?.closest?.("a[href]");
+    if (link) addEnquiryParam(link);
+  };
+  // Capture phase, so the href is written before anything else on the page
+  // gets the event - and before the browser acts on the click.
+  ["pointerdown", "focusin", "keydown", "click"].forEach((type) =>
+    document.addEventListener(type, prepare, true)
+  );
+
+  // Bubble phase, so a page script that has already handled the click and
+  // called preventDefault() is respected rather than overridden.
+  document.addEventListener("click", handleQuoteClick);
+
+  // A middle click opens a tab and fires auxclick, not click. It is still a
+  // visitor asking for a quote.
+  document.addEventListener("auxclick", (event) => {
+    if (event.button !== 1) return;
+    const link = event.target?.closest?.(QUOTE_LINKS);
+    if (link && link.hasAttribute("href")) trackQuoteClick(link);
+  });
+}
+
+/* ------------------------------------------------------------------ *
  * Bootstrap
  * ------------------------------------------------------------------ */
 
@@ -1031,6 +1354,9 @@ function start() {
   captureAttribution();
   trackContactClicks();
   seedWhatsAppLinks();
+  // Before the forms are built, so a quote link still reaches a seeded contact
+  // page even if building them throws.
+  wireQuoteLinks();
 
   // The contact page (and any other page that wants the form in the flow of the
   // content) opts in by placing an empty <div id="rfq-form"> where it belongs.
