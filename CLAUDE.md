@@ -8,8 +8,11 @@ The Aurico Alloys LLP marketing site (www.nickelsheets.com) — a Jekyll site of
 HTML pages for a nickel/titanium/duplex/cobalt alloy stockist. GitHub Pages builds and deploys it
 straight from `main`; there is no bundler and no unit tests. Pushing to `main` publishes.
 
-There is one CI workflow, `.github/workflows/seo-audit.yml`, and it only reports — it never edits or
-publishes. See **The SEO audit** below.
+There are two CI workflows, and neither edits or publishes anything. `.github/workflows/seo-audit.yml`
+only reports — see **The SEO audit** below. `.github/workflows/indexnow.yml` runs *after* GitHub
+Pages has deployed a push to `main` and sends the changed URLs to Bing's IndexNow API — see
+**IndexNow tells Bing when a page changes**. It is not part of the build, so "nothing runs at deploy
+time" below still holds.
 
 ## Commands
 
@@ -1723,6 +1726,97 @@ A guide needs inbound links or it is an orphan to `tools/seo_audit.py`. Each of 
 acid/alkali guide names carries **one sentence of its own grade's fact** and a link — not the same
 line 22 times, which is the near-duplicate pattern that put 132 pages in *Crawled – currently not
 indexed*.
+
+### IndexNow tells Bing when a page changes
+
+**ChatGPT search and Microsoft Copilot answer from Bing's index**, and until 2026-09-27 Bing learned
+about a change on this site only when it happened to recrawl — a re-quote pass or a corrected
+specification could sit unseen for weeks while an assistant kept quoting the old page to a buyer.
+[IndexNow](https://www.indexnow.org/documentation) is one POST that tells Bing, Yandex, Seznam,
+Naver and Yep which URLs changed. **Google does not read it**; `sitemap.xml` and its `<lastmod>` are
+still how Google hears, so nothing here replaces the sitemap discipline above.
+
+`.github/workflows/indexnow.yml` runs on every push to `main` that touches HTML or `sitemap.xml`. It
+**waits until GitHub Pages reports the pushed commit built** — polling the Pages builds API every
+20 s for up to 15 minutes — because a ping that lands before the deploy has Bing fetch the *old*
+page and cache it, which is worse than no ping. A commit counts as deployed when its own build or a
+later one that contains it is built — a push whose build errored and was fixed by the next push *is*
+live. When no successful build contains it the job fails with the build's own error and submits
+nothing. If the builds API is unavailable it falls back to a fixed five-minute wait and says so in
+the job summary. Then `tools/indexnow.mjs` computes the URLs and posts them; the job summary lists
+every URL with the reason it was sent.
+
+**A push's range starts at the last successful push run, not at `github.event.before`.** The
+workflow runs with `concurrency: indexnow` and `cancel-in-progress: false`, so two quick pushes queue
+instead of racing — but GitHub keeps only **one** pending run per group, so a third push cancels the
+waiting one, and a range that started at `before` would never submit that push's pages. Nor would it
+submit a push whose run failed. Starting at the commit of the newest successful push run triggered
+before this one covers both: the next run that succeeds sends everything since. The diff is tree to
+tree, so that start need not be an ancestor; when its commit has left the history after a force push,
+or the runs list cannot be read, the step says so and falls back to `before`, then to the pushed
+commit alone.
+
+```bash
+node tools/indexnow.mjs --range <from>..<to> --dry-run   # what a push would send, and why
+node tools/indexnow.mjs --all --dry-run                  # every <loc> in sitemap.xml at HEAD
+```
+
+To resubmit exactly some commits, run the workflow from the Actions tab with **range** set to
+`<from>..<to>`; left blank, a manual run sends `HEAD~1..HEAD`.
+
+**The key is public by design**, in the same sense as the Supabase anon key under Secrets: it is
+`7300d5f431351d82efbe5e2645e5c8c2.txt` at the repo root, served at
+`https://www.nickelsheets.com/7300d5f431351d82efbe5e2645e5c8c2.txt`, and all it proves is that
+whoever submits URLs for this host controls what the host serves. It is not a secret and must not be
+moved into one. The script finds the key file by what it is — a root `.txt` whose content is its
+own name — and reads the key from it, so there is never a second copy to drift. To rotate it,
+replace that file in one commit; two such files at the root is an error. A **403** from the engine
+means the served file is missing or does not match, usually because the push carrying it had not
+deployed yet.
+
+**Seed the index once**: Actions tab → IndexNow → *Run workflow* → tick **all**. That submits every
+`<loc>` in `sitemap.xml` (801 on the day it was added). Do it once after this lands, not as a habit:
+the protocol is for URLs that changed, and the sitemap already lists the rest.
+
+**Also add the site to Bing Webmaster Tools** — that part needs the owner's Microsoft account, so it
+is not done. *Import from Google Search Console* takes minutes and carries the verification over, so
+no new DNS record or meta tag is needed. It is the only place Bing reports crawl errors, index
+coverage and which IndexNow submissions it received: **IndexNow on its own gives no feedback at
+all**, beyond a 200 or 202 that means "received", not "indexed".
+
+What a push submits, and what it deliberately does not:
+
+- **A changed or added page, only if its URL is in `sitemap.xml` at the pushed commit.** The sitemap
+  already encodes every reason a page is withheld — `published: false`, `sitemap: false`, a
+  robots-disallowed route, the `/html/` fragments — so the script reuses that judgement rather than
+  re-deriving it. A changed page missing from the sitemap for no such reason is flagged loudly: it
+  means the sitemap was not regenerated.
+- **The old URL** of a page deleted, unpublished or given a new permalink, so the engine sees the 404
+  or the redirect instead of keeping the dead page. **Every new `redirect_from` entry** likewise,
+  and one that was removed.
+- **A URL newly listed in `sitemap.xml`**, even when the push changed no HTML — otherwise a page
+  pushed before its sitemap entry would never be submitted, because the later push that lists it
+  touches only the sitemap.
+- **Not `_includes/`, `CSS/`, `javascript/`, the `html/` fragments or `_config.yml`.** They render into
+  every page, and resubmitting ~800 URLs because the footer changed tells the engines nothing worth
+  recrawling for. The output says so rather than doing it silently; pages whose own HTML changed in
+  the same push are still sent.
+- **Not a page whose only change is its `redirect_from` list, a front-matter comment or its line
+  endings.** It renders byte-for-byte the same page. That is what keeps a redirect sweep like
+  `f0997d1a` to its 53 retired URLs instead of those plus the 41 targets that gained a line.
+
+**A sitewide sweep that edits the pages themselves is submitted, page by page — even when its SHA is
+in `BOILERPLATE`.** The first version skipped those, and that was wrong: `BOILERPLATE` is Google's
+`<lastmod>` discipline, and it holds sweeps that rewrote exactly what Bing shows and an assistant
+quotes. `d3624386` finished 86 truncated `<title>` tags, `c710232f` put a meta description on every
+page, `7f9ce97c` parked the Product node on 258 — and a dry run over `d3624386` would have sent
+**0** of the 86.
+The two signals do not conflict: IndexNow carries no date, so there is nothing to inflate, and even a
+sweep of every page is ~800 URLs against a 10,000 cap. The rule that does the useful filtering is the
+one above — a page that renders the same is not sent — and it needs no list kept in step.
+
+The `INDEXNOW_ENDPOINT` environment variable redirects the POST — it exists for testing against a
+local stub and nothing in CI sets it.
 
 ### JavaScript inventory
 
