@@ -692,10 +692,14 @@ def main():
     drafts = []
     for dp, dn, fn in os.walk(ROOT):
         dn[:] = [d for d in dn if d not in SKIP_DIRS]
-        for f in fn:
-            if not f.lower().endswith((".html", ".htm")):
+        # Not "f": that name holds the findings, and rebinding it here made the
+        # regression listing below index a filename string - so any regression,
+        # in any check, printed its header and then a TypeError instead of the
+        # items, and CI's issue body carried the traceback, not the file.
+        for name in fn:
+            if not name.lower().endswith((".html", ".htm")):
                 continue
-            fp = os.path.join(dp, f)
+            fp = os.path.join(dp, name)
             raw = open(fp, encoding="utf-8", errors="replace").read()
             fm = re.match(r"^\ufeff?---\s*\r?\n(.*?)\r?\n---\s*\r?\n", raw, re.S)
             if not fm or not re.search(r"^published\s*:\s*false", fm.group(1), re.M):
@@ -707,8 +711,8 @@ def main():
         print(f"\nnot checked - {len(drafts)} published: false draft(s) with unbalanced containers.")
         print("These are never built, so no check above applies to them. Publishing one")
         print("fails this audit on the spot; until then they are dead files.")
-        for f, why in sorted(drafts):
-            print(f"    {f}\n        {why}")
+        for rel, why in sorted(drafts):
+            print(f"    {rel}\n        {why}")
 
     for k in worse:
         print(f"\n--- new in {k} ---")
