@@ -21,8 +21,8 @@
 # priceValidUntil is derived from it, so a price adopted into a stale file is
 # published already expired.
 #
-# generated: 2026-09-15 by docs/build-price-worklist.mjs
-# pending: 279 page(s)
+# generated: 2026-09-27 by docs/build-price-worklist.mjs
+# pending: 278 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -296,9 +296,8 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /nichrome-tube-supplier-exporter-mumbai-india/,,,,,kg
 /nichrome-wire-supplier-exporter-mumbai-india/,,,,,kg
 
-# /nichrome/  (4)
+# /nichrome/  (3)
 /nichrome/foil/,,,,,kg
-/nichrome/pipes/,,,,,kg
 /nichrome/plates/,,,,,kg
 /nichrome/sheets/,,,,,kg
 
