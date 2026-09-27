@@ -162,8 +162,44 @@ footer {
 .navbar-brand {
   color: var(--primary-color);
 }
-/* Contact  */
-.floating-contact-bar {
+
+/* The logo is drawn at its intrinsic 160x48. pages.css, style.css and
+   products.css each carry a bare `img { width: 100%; height: auto }`, and the
+   logo is an <img>, so it was sized by whatever room the navbar happened to
+   leave it: 350x105 on a 390px phone, which pushed the menu button onto a
+   second row and made the sticky header 145-179px tall between 320 and 414px
+   wide - a fifth of the screen, on every page, before a word of the page. At
+   1366px it came out 325x98 on a form page and 91x27 on the homepage, because
+   the nav left different room on each. The width attribute on the <img> says
+   160, but any stylesheet width beats an attribute. Qualified with body, like
+   body .container, so no <link> order or later bare rule can take it back.
+   max-width lets it shrink in proportion where the desktop nav genuinely needs
+   the room (992-1199px, where the nav does not fit and never did) instead of
+   stretching where it does not. */
+body .navbar-brand img {
+  width: 160px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* The header's own container is 1320px on every page, the width pages.css
+   already gives it through #header__container. style.css caps .container at
+   1200px, and the homepage and contact page load style.css and not pages.css,
+   so their nav had 120px less room and squeezed the logo to 91x27 at 1366px -
+   out of the rule above's reach, because max-width had no room to give back. */
+body .navbar > .container {
+  max-width: 1320px;
+}
+
+/* Contact rail: email, WhatsApp and Call.
+
+   Every rule here is qualified with body because pages.css and products.css
+   each still carry an older copy of the rail at the same specificity, so which
+   copy won used to depend on the order a page linked its stylesheets in. The
+   138 pages that list pages.css after header.css drew the email item grey
+   instead of navy and, on a phone, kept the 40%-down position that the 575px
+   rules below exist to replace. */
+body .floating-contact-bar {
     position: fixed;
     top: 40%;
     right: 0;
@@ -172,10 +208,10 @@ footer {
     flex-direction: column;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px 0 0 8px;
-    animation: pulse 2s infinite;
+    animation: contact-rail-bob 2s infinite;
 }
 
-.contact-item {
+body .contact-item {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,36 +223,63 @@ footer {
     transition: all 0.3s ease;
 }
 
-.contact-item span {
-    display: none;
+/* The label is hidden visually, not with display: none, which also took it out
+   of the accessibility tree: with the icon aria-hidden beside it, every link in
+   the rail read to a screen reader as a bare, unnamed "link". */
+body .contact-item span {
+    display: inline;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }
 
-.contact-item.email {
+/* A 2px white rule between neighbours in the column - each side draws half of
+   it, which is how the email/WhatsApp pair was already built. */
+body .contact-item.email {
     background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
     border-bottom: 1px solid #fff;
 }
 
-.contact-item.whatsapp {
+body .contact-item.whatsapp {
     background-color: #25D366;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+/* The site's call-to-action fill: white on it clears AA at 4.58:1, which the
+   brand orange (2.85:1) does not. */
+body .contact-item.phone {
+    background-color: var(--secondary-cta);
     border-top: 1px solid #fff;
 }
 
-.contact-item:hover,
-.contact-item:focus-visible {
+body .contact-item:hover,
+body .contact-item:focus-visible {
     width: 150px;
     justify-content: start;
     padding-left: 15px;
 }
 
-.contact-item:hover span,
-.contact-item:focus-visible span {
+body .contact-item:hover span,
+body .contact-item:focus-visible span {
     display: inline-block;
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
     margin-left: 10px;
 }
 
-/* The bar animates via `pulse`, which lives in style.css - a stylesheet most
-   pages do not load. Declared here so the rule resolves wherever it renders. */
-@keyframes pulse {
+/* Named for the rail alone. It was `pulse`, which pages.css also defines -
+   twice, the second time as a scale-and-fade for its loading spinner - and
+   @keyframes of the same name resolve to whichever stylesheet loaded last, so
+   on the 138 pages that link pages.css after this file the rail swelled and
+   faded instead of bobbing. */
+@keyframes contact-rail-bob {
 
     0%,
     100% {
@@ -285,63 +348,78 @@ textarea:focus-visible,
 
     /* 60px-wide icons are below the 44px comfortable-tap guidance once the
        vertical padding is counted; give them room on small screens. */
-    .contact-item {
+    body .contact-item {
         min-height: 48px;
+    }
+
+    /* The rail is fixed at z-index 9999 and the sticky navbar at 1020, so an
+       opened menu slid underneath it and the rail sat on the right-hand end of
+       the menu's rows for as long as it was open. Step aside while it is.
+       :has() is the only way to see the menu from here, because the rail comes
+       before the navbar in the markup; a browser without it keeps the old
+       overlap and nothing worse. */
+    body:has(#mainNav.show, #mainNav.collapsing) .floating-contact-bar {
+        visibility: hidden;
     }
 }
 
 @media (max-width: 575.98px) {
     /* top: 40% floats wherever a short viewport happens to put it, which
-       landed the rail on top of the page's own <h1> - measured on
-       /inconel/625/ (h1 starts ~255px) and /inconel/ (h1 starts ~223px)
-       against the sticky header's ~167px bottom edge. Anchor it just under
-       the header instead, and lay the two icons out in a row rather than a
-       stacked column so the whole rail fits the ~55px gap before the
-       heading rather than spanning into it. */
-    .floating-contact-bar {
-        top: 172px;
-        flex-direction: row;
-        border-radius: 8px;
+       landed the rail on top of the page's own <h1>. Anchor it just under the
+       sticky header instead: 74px tall now that the logo keeps its own size,
+       and 80px leaves room for the 5px lift of the bob.
+
+       A narrow column, not the row this used to be. The row fitted a ~55px gap
+       under a 145-179px header; under a 74px one it lands on the page's first
+       heading. Measured on 134 pages at landing, a three-icon row at 320px
+       covered <h1> text on 40 and banner-caption text on 76, and this column
+       covers <h1> text on 2 and caption text on none. While reading it hides
+       less too: over 201 scrolled views it overlapped text on 86 at 320px
+       against the row's 172, a seventh of the area. */
+    body .floating-contact-bar {
+        top: 80px;
     }
 
-    .floating-contact-bar .contact-item {
+    /* 36px wide keeps the column clear of all but the last few pixels of a
+       justified line; 40px tall keeps each target near the 44px guidance. */
+    body .floating-contact-bar .contact-item {
         width: 36px;
-        min-height: 36px;
+        min-height: 40px;
         padding: 6px;
-        font-size: 15px;
-    }
-
-    .floating-contact-bar .contact-item.email {
-        border-bottom: none;
-        border-right: 1px solid #fff;
-    }
-
-    .floating-contact-bar .contact-item.whatsapp {
-        border-top: none;
+        font-size: 16px;
     }
 
     /* No room to expand into a labelled pill at this width without
-       overrunning the header or the right edge. */
-    .floating-contact-bar .contact-item:hover,
-    .floating-contact-bar .contact-item:focus-visible {
+       overrunning the page text beneath. */
+    body .floating-contact-bar .contact-item:hover,
+    body .floating-contact-bar .contact-item:focus-visible {
         width: 36px;
         justify-content: center;
         padding-left: 6px;
     }
 
-    .floating-contact-bar .contact-item:hover span,
-    .floating-contact-bar .contact-item:focus-visible span {
-        display: none;
+    /* The label stays visually hidden, and so still names the link. */
+    body .floating-contact-bar .contact-item:hover span,
+    body .floating-contact-bar .contact-item:focus-visible span {
+        display: inline;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        margin-left: 0;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-    .floating-contact-bar {
+    /* Qualified to match the rules above, which would otherwise outrank these
+       and keep the rail bouncing for a visitor who asked for no motion. */
+    body .floating-contact-bar {
         animation: none;
     }
 
-    .contact-item,
+    body .contact-item,
     .navbar .nav-link,
     .navbar-brand span {
         transition: none;
