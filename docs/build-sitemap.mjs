@@ -37,6 +37,48 @@ const ORIGIN = 'https://www.nickelsheets.com';
 const OUT = path.join(ROOT, 'sitemap.xml');
 const CHECK = process.argv.includes('--check');
 
+// ---- refuse a shallow clone -------------------------------------------------
+// Every <lastmod> below comes from git history, so a clone that holds only part
+// of it dates pages wrongly - and not at random. The oldest commit a shallow
+// clone has, the shallow boundary, has no parent to diff against, so
+// `git log --name-only` lists every file in the tree under it, as though that
+// one commit had written the whole site. Each page nobody has edited since then
+// takes the boundary's date.
+//
+// That is what happened on 2026-09-14. A cloud session - they clone 50 commits
+// deep by default - found the generator disagreeing with the committed sitemap
+// on hundreds of dates, took it for the documented one-commit-behind state, and
+// regenerated (b060d0f7, "lastmod dates were stale on hundreds of URLs"). 589 of
+// 801 URLs came out dated 2026-09-10, the date of df0ceec3, the boundary. Full
+// history puts 63 of them there; the other 526 were last edited between
+// 2026-08-12 and 2026-09-09, and each claimed an update that never happened.
+// It is the inflated-lastmod failure BOILERPLATE exists to prevent, arriving
+// from the other side, and nothing in the output looked wrong: the drift was
+// the bug, and writing the file was the "fix" that published it.
+//
+// So both modes stop here. A --check that ran would call a correct sitemap
+// stale and send the reader to the write mode, which would then publish the
+// wrong dates - refusing only the write would leave the misleading half. Exit 2,
+// not 1, as check-tags.mjs does for the same distinction: 1 means "looked and
+// found drift", 2 means "could not look".
+const shallow = execSync('git rev-parse --is-shallow-repository',
+  { cwd: ROOT, encoding: 'utf8' }).trim();
+if (shallow === 'true') {
+  console.error(
+    'build-sitemap: refusing to run in a shallow clone - nothing was written.\n' +
+    '\n' +
+    'Every <lastmod> is read from git history. In a shallow clone the oldest\n' +
+    'commit present appears to have touched every file, so each page not edited\n' +
+    'since then would be dated to that commit: on 2026-09-14 this dated 526 URLs\n' +
+    '2026-09-10 whose last edit was up to four weeks earlier. For the same\n' +
+    'reason --check would report drift that is not there.\n' +
+    '\n' +
+    'Fetch the full history, then run this again:\n' +
+    '\n' +
+    '    git fetch --unshallow\n');
+  process.exit(2);
+}
+
 // Commits that changed markup sitewide without changing what any page says.
 // A page whose only recent commit is one of these keeps its earlier, truthful
 // date. Add to this list when you land another sweep of the same kind.

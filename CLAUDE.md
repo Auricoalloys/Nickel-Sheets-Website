@@ -1562,6 +1562,34 @@ and commit the result. That second commit touches only `sitemap.xml`, which is n
 dates change and it converges — you never need a third. `--check` tells you when you are in that
 state.
 
+**Regenerate only from a full clone — the script refuses a shallow one.** In a shallow clone the
+oldest commit present, the shallow boundary, has no parent to diff against, so `git log
+--name-only` reports it as touching *every file in the tree*, and each page nobody has edited since
+then takes the boundary's date. Cloud sessions clone **50 commits deep by default**, so this is the
+normal state of a fresh cloud checkout, not an edge case.
+
+It has already happened. On 2026-09-14 a cloud session found the generator disagreeing with the
+committed sitemap on hundreds of dates, took it for the one-commit-behind state above, and
+regenerated (`b060d0f7`, "lastmod dates were stale on hundreds of URLs"). **589 of 801 URLs** came
+out dated 2026-09-10, the day of `df0ceec3` — the boundary. Full history puts 63 of them there; the
+other **526 claimed an update they never had** — their real last edits run from 2026-08-12 to
+2026-09-09. That is the inflation `BOILERPLATE` exists to prevent, arriving from the other side, in
+a commit whose message called it a fix. A 20-deep test clone of the same tree dates all 801 URLs to
+one day.
+
+So `build-sitemap.mjs` now checks `git rev-parse --is-shallow-repository` before anything else and,
+in a shallow clone, exits 2 having written nothing — **in `--check` mode too**, because a check
+that ran there would report drift that is not there and send you to the write mode to "fix" it.
+The remedy is one command, after which the output is byte-identical to a full clone's:
+
+```bash
+git fetch --unshallow
+```
+
+The tell, for any other script that reads history: a regeneration that moves hundreds of dates **to
+the same day**, when nothing committed that day could explain them. Real drift after a batch of
+edits moves the pages that batch touched, to the day they were touched.
+
 **A brand-new page is invisible to this generator until git knows about it.** Pages are discovered
 with `git ls-files "*.html"`, so an untracked file is not enumerated — no URL, no warning, and
 `--check` still reports "up to date", because the page is missing from both sides of the
