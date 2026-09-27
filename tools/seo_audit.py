@@ -35,6 +35,11 @@ FRAGMENTS = {"_includes/header.html", "_includes/footer.html",
              "html/header.html", "html/footer.html",
              "html/product_detailed_page.html"}
 
+# GitHub Pages serves /404.html at every missing URL. It is a real page - one
+# <h1>, a title, a description, links that must resolve - so every check applies
+# to it except the ones that assume a page has an address of its own.
+ERROR_PAGES = {"/404.html"}
+
 
 # robots.txt is the site's own statement of which routes it withholds.
 # docs/build-sitemap.mjs already reads it for the same reason - a route must
@@ -174,7 +179,15 @@ def audit(pages):
 
     findings["missing_title"] = sorted(p for p, d in real.items() if not d["title"])
     findings["missing_description"] = sorted(p for p, d in real.items() if not d["desc"])
-    findings["missing_canonical"] = sorted(p for p, d in real.items() if not d["canonical"])
+    # The error page is served, with status 404, at every URL that has no page,
+    # so it has no URL of its own for a canonical to name. Pointing one at
+    # /404.html would ask Google to index the error page; pointing it anywhere
+    # else would declare a missing address a duplicate of a real one. It carries
+    # noindex instead. Excluded by name rather than by the baseline, so the
+    # count stays at 0 and a real page losing its canonical still fails.
+    findings["missing_canonical"] = sorted(
+        p for p, d in real.items()
+        if not d["canonical"] and d["permalink"] not in ERROR_PAGES)
 
     findings["truncated_description"] = sorted(
         p for p, d in real.items() if d["desc"] and d["desc"].rstrip().endswith("..."))

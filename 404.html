@@ -1,0 +1,702 @@
+---
+permalink: /404.html
+title: Page Not Found
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- GITHUB PAGES SERVES THIS FILE, WITH STATUS 404, AT EVERY URL THAT HAS NO PAGE.
+         Before it existed a mistyped or re-cased address got GitHub's bare error page: no
+         menu, no search, no way to ask for the material. 153 live URLs carry capitals
+         (/hastelloy/C276/, /stainless/904L/, /inconel/X-750/sheets/), and chat assistants
+         and people typing lowercase them, so those visitors were the ones being lost.
+
+         Because it is served at any depth, every URL in this file is root-absolute - a
+         relative "CSS/pages.css" would resolve under /hastelloy/c276/ and fail.
+
+         It carries no canonical: it has no URL of its own to name, and pointing one at
+         /404.html would ask Google to index the error page. noindex says the same thing
+         to a crawler that ignores the status. tools/seo_audit.py exempts it by name. -->
+    <title>Page Not Found | Aurico Alloys</title>
+    <meta name="description" content="That address is not a page on nickelsheets.com. Try the closest matches, browse the alloy families, or send us your enquiry.">
+    <meta name="robots" content="noindex">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/aurico-favicon.png">
+
+    <!-- CSS -->
+    <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/pages.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/header.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZL7EXDTQ0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XZL7EXDTQ0');
+    </script>
+
+    <!-- Page-level styles. This page is the only user of them, and keeping them here
+         keeps it out of the shared stylesheets. Colours come from the tokens in
+         header.css. No tables on this page, so nothing here touches the table system. -->
+    <style>
+        .nf {
+            padding-top: 40px;
+            padding-bottom: 56px;
+        }
+
+        .nf-intro {
+            max-width: 720px;
+            margin: 0 auto 32px;
+            text-align: center;
+        }
+
+        .nf-kicker {
+            margin: 0 0 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--secondary-cta);
+        }
+
+        body .nf h1 {
+            margin: 0 0 16px;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            line-height: 1.2;
+        }
+
+        /* p is justified site-wide; a centred intro and a few short lines read
+           better without the stretched word spacing. */
+        .nf p {
+            text-align: left;
+        }
+
+        .nf .nf-intro p {
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .nf-requested code {
+            color: var(--primary-color);
+            background: var(--light-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            /* a pasted address can be one unbroken 200-character string */
+            overflow-wrap: anywhere;
+        }
+
+        .nf-status {
+            min-height: 1.6em;
+            margin-top: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .nf h2 {
+            font-size: 1.4rem;
+            margin: 0 0 12px;
+        }
+
+        .nf-matches {
+            margin: 0 0 40px;
+        }
+
+        .nf-guess {
+            font-size: 1.1rem;
+            margin: 0 0 16px;
+        }
+
+        .nf-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nf-list a {
+            display: block;
+            height: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 6px;
+            background: #fff;
+            text-decoration: none;
+        }
+
+        .nf-list a:hover,
+        .nf-list a:focus-visible {
+            border-left-color: var(--secondary-cta);
+            background: var(--light-color);
+        }
+
+        .nf-list .nf-list__title {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .nf-list .nf-list__url {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            overflow-wrap: anywhere;
+        }
+
+        /* The enquiry block is the point of the page for a buyer who arrived on a
+           dead link: it has to be the most prominent thing after the matches. A
+           dark panel sets --heading-color itself, as header.css asks. */
+        .nf-cta {
+            --heading-color: currentColor;
+            margin: 0 0 40px;
+            padding: 28px 24px;
+            border-radius: 10px;
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .nf .nf-cta p {
+            color: #fff;
+            max-width: 62ch;
+            margin: 0 0 20px;
+        }
+
+        .nf-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nf-cta .nf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 10px 22px;
+            border: 2px solid #fff;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nf-cta .nf-btn:hover,
+        .nf-cta .nf-btn:focus-visible {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        /* --secondary-cta, not the brand orange: white on #e67e22 is 2.85:1. */
+        .nf-cta .nf-btn--primary {
+            border-color: var(--secondary-cta);
+            background: var(--secondary-cta);
+        }
+
+        .nf-cta .nf-btn--primary:hover,
+        .nf-cta .nf-btn--primary:focus-visible {
+            border-color: var(--secondary-cta-dark);
+            background: var(--secondary-cta-dark);
+        }
+
+        .nf-cta .nf-btn:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .nf-browse h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin: 0 0 8px;
+        }
+
+        .nf-cols {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .nf-links {
+            columns: 2;
+            column-gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nf-links li {
+            break-inside: avoid;
+            padding: 4px 0;
+        }
+
+        @media (max-width: 575.98px) {
+            .nf {
+                padding-top: 24px;
+            }
+
+            .nf-cta {
+                padding: 24px 16px;
+            }
+
+            .nf-cta .nf-btn {
+                width: 100%;
+            }
+
+            /* Six stacked cards put the enquiry block two screens down on a phone.
+               Four keep it within reach; the best matches are first anyway. */
+            .nf-list li:nth-child(n+5) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+  <div id="header__container">{% include header.html %}</div>
+
+  <main id="main">
+    <div class="container nf">
+
+      <section class="nf-intro" aria-labelledby="nf-title">
+        <p class="nf-kicker">Error 404</p>
+        <h1 id="nf-title">We couldn&rsquo;t find that page</h1>
+        <p>There is no page at this address. It may have moved, or a letter may have changed when the link was typed or copied.</p>
+        <p class="nf-requested" id="nf-requested" hidden>You asked for <code id="nf-path"></code></p>
+        <p class="nf-status" id="nf-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="nf-matches" id="nf-matches" aria-labelledby="nf-matches-title" hidden>
+        <h2 id="nf-matches-title">Closest matches</h2>
+        <p class="nf-guess" id="nf-guess" hidden>Did you mean <a id="nf-guess-link" href="/">this page</a>?</p>
+        <ul class="nf-list" id="nf-list"></ul>
+      </section>
+
+      <!-- data-enquiry is written by the script below, from the best guess at what the
+           visitor wanted. javascript/floating-form.js opens the enquiry panel with it on
+           click. The href stays the bare contact URL, which is what a click without that
+           script reaches. -->
+      <section class="nf-cta" aria-labelledby="nf-cta-title">
+        <h2 id="nf-cta-title">Tell us what you were looking for</h2>
+        <p>Send the grade, form and size you need and we will reply with price and availability within one working day.</p>
+        <div class="nf-actions">
+          <a class="nf-btn nf-btn--primary" id="nf-quote" href="/pages/contact/" data-placement="not_found">Request a quote</a>
+          <a class="nf-btn" id="nf-whatsapp" href="https://wa.me/917977886611" target="_blank" rel="noopener">WhatsApp us</a>
+          <a class="nf-btn" href="tel:+917977886611">Call +91 79778 86611</a>
+        </div>
+      </section>
+
+      <section class="nf-browse" aria-labelledby="nf-browse-title">
+        <h2 id="nf-browse-title">Browse the catalogue</h2>
+        <div class="nf-cols">
+          <div>
+            <h3>Alloy families</h3>
+            <ul class="nf-links">
+              <li><a href="/inconel/">Inconel</a></li>
+              <li><a href="/incoloy/">Incoloy</a></li>
+              <li><a href="/hastelloy/">Hastelloy</a></li>
+              <li><a href="/monel/">Monel</a></li>
+              <li><a href="/nimonic/">Nimonic</a></li>
+              <li><a href="/haynes/">Haynes</a></li>
+              <li><a href="/nickel-200-201/">Nickel 200 / 201</a></li>
+              <li><a href="/pure-nickel-strips/">Pure nickel strip</a></li>
+              <li><a href="/nichrome/">Nichrome</a></li>
+              <li><a href="/titanium/">Titanium</a></li>
+              <li><a href="/duplex-steel/">Duplex steel</a></li>
+              <li><a href="/stainless/">Special stainless</a></li>
+              <li><a href="/cobalt-alloys/">Cobalt alloys</a></li>
+              <li><a href="/nickel-alloys-supplier-exporter-and-stockist-in-india/">All nickel alloys</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Product forms</h3>
+            <ul class="nf-links">
+              <li><a href="/pages/products/sheets/">Sheets</a></li>
+              <li><a href="/pages/products/plates/">Plates</a></li>
+              <li><a href="/pages/products/round-bar/">Round bar</a></li>
+              <li><a href="/pages/products/wire/">Wire</a></li>
+              <li><a href="/pages/products/foil/">Foil</a></li>
+              <li><a href="/pages/products/coil/">Coil</a></li>
+              <li><a href="/pages/products/pipes/">Pipes</a></li>
+              <li><a href="/pages/products/tubes/">Tubes</a></li>
+              <li><a href="/pages/products/fittings/">Fittings</a></li>
+              <li><a href="/pages/products/powder/">Powder</a></li>
+              <li><a href="/tools/weight-calculator/">Weight calculator</a></li>
+              <li><a href="/pages/contact/">Contact us</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="footer__container">{% include footer.html %}</div>
+
+  <script defer src="/javascript/bootstrap.bundle.min.js"></script>
+  <script>
+    // Recovery, then suggestions. Runs inline, while the page parses, so the enquiry
+    // link carries its data-enquiry before floating-form.js (a deferred module) starts.
+    //
+    // 1. Recovery. search-index.json lists every published page. If one of them has the
+    //    requested address apart from letter case, a missing trailing slash, a trailing
+    //    index.html or .html, trailing punctuation from a pasted sentence, or the hyphen
+    //    in a grade (c276 for C-276 is the same page on this site as K500 for K-500), go
+    //    there with location.replace, keeping the query and hash, so the dead address
+    //    does not stay in the back button's history.
+    // 2. Otherwise, suggest the pages whose address shares the most words with the one
+    //    asked for, and seed the enquiry with the best guess at what was wanted.
+    //
+    // Loop guards, because a redirect from an error page that lands on another error
+    // page would bounce forever: never redirect to the address already showing; do not
+    // redirect at all when the index lists this exact address (the page is missing, not
+    // misspelt, and the index is stale); only redirect when exactly one page matches;
+    // and never redirect away from an address this page sent the visitor to in the
+    // last 30 seconds.
+    //
+    // Anything here that fails leaves a working page: the static links, the enquiry
+    // block and the header search do not depend on this script.
+    (function () {
+      'use strict';
+
+      var INDEX_URL = '/search-index.json';
+      var MAX_SUGGESTIONS = 6;
+      // How long a redirect waits for the analytics hit to be sent. gtag.js calls
+      // event_callback once it has; when it is blocked or has not loaded, the timer is
+      // what moves the visitor on.
+      var REDIRECT_WAIT_MS = 1000;
+      var FETCH_TIMEOUT_MS = 8000;
+      var GUARD_KEY = 'aurico_404_redirect';
+      // Words that say nothing about which material a page is for. The flat SEO
+      // permalinks are full of the last group, so matching on them would rank every
+      // "-supplier-exporter-in-mumbai-india" page alike.
+      var STOP = ('html htm php asp aspx index www amp reg trade the and for of in to ' +
+        'supplier suppliers stockist stockists exporter exporters manufacturer manufacturers ' +
+        'dealer dealers india mumbai').split(' ');
+
+      var rawPath = location.pathname;
+      var path = decodePath(rawPath);
+
+      var $ = function (id) { return document.getElementById(id); };
+      var quote = $('nf-quote');
+      var whatsapp = $('nf-whatsapp');
+      var whatsappBase = whatsapp ? whatsapp.getAttribute('href') : '';
+
+      if ($('nf-path')) {
+        $('nf-path').textContent = path;
+        $('nf-requested').hidden = false;
+      }
+      // Until the index says more, the enquiry names the address itself: a sales
+      // desk reading "/hastelloy/c-276/tube" knows what was wanted.
+      seedEnquiry(path);
+
+      // Someone opening /404.html directly is not following a broken link.
+      if (rawPath === '/404.html') return;
+
+      say('Looking for a page with a similar address…');
+      loadIndex();
+
+      function decodePath(p) {
+        try { return decodeURIComponent(p); } catch (e) { return p; }
+      }
+
+      function say(message) {
+        var el = $('nf-status');
+        if (el) el.textContent = message;
+      }
+
+      // Mirrors tidySubject() in javascript/floating-form.js, so an enquiry raised here
+      // reads like one raised from any other page: collapse whitespace, cap at 120
+      // characters, and title-case only a subject that is capitals and spaces alone -
+      // anything with a digit is a grade designation and is left exactly as written.
+      function tidy(name) {
+        var collapsed = String(name).replace(/\s+/g, ' ').trim().slice(0, 120);
+        if (!/^[A-Z][A-Z ]*$/.test(collapsed)) return collapsed;
+        return collapsed.replace(/\S+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); });
+      }
+
+      function seedEnquiry(subject) {
+        var text = tidy(subject);
+        // Attribute and href only, never markup: the path is whatever the visitor, or
+        // whoever wrote the link they followed, put in the address bar.
+        if (quote) quote.setAttribute('data-enquiry', 'Enquiry: ' + text);
+        if (whatsapp && whatsappBase) {
+          var body = 'Hello Aurico Alloys, I would like a quote for: ' + text + '\n\nPage: ' + location.href;
+          whatsapp.setAttribute('href', whatsappBase + '?text=' + encodeURIComponent(body));
+        }
+      }
+
+      // page_not_found is written here, literally, rather than taken from EVENTS in
+      // lead-config.js: this is a classic inline script and cannot import the module,
+      // and the event is about broken inbound links, not about the enquiry form.
+      // It fires before any redirect so that a recovered visit still shows up in GA4
+      // with the address that was broken - which is the whole value of the event.
+      function report(recovered, then) {
+        var done = false;
+        var proceed = function () {
+          if (done) return;
+          done = true;
+          if (then) then();
+        };
+        try {
+          if (typeof window.gtag === 'function') {
+            var params = { page_path: rawPath, recovered: recovered };
+            if (then) {
+              params.event_callback = proceed;
+              params.event_timeout = REDIRECT_WAIT_MS;
+            }
+            window.gtag('event', 'page_not_found', params);
+          }
+        } catch (e) { /* analytics must never stop the recovery */ }
+        if (then) setTimeout(proceed, REDIRECT_WAIT_MS);
+      }
+
+      function loadIndex() {
+        var controller = typeof AbortController === 'function' ? new AbortController() : null;
+        var timer = setTimeout(function () { if (controller) controller.abort(); }, FETCH_TIMEOUT_MS);
+        var request;
+        try {
+          request = fetch(INDEX_URL, controller ? { signal: controller.signal } : {});
+        } catch (e) {
+          request = Promise.reject(e);
+        }
+        request
+          .then(function (r) {
+            if (!r.ok) throw new Error('search index HTTP ' + r.status);
+            return r.json();
+          })
+          .then(function (rows) {
+            clearTimeout(timer);
+            if (!Array.isArray(rows)) throw new Error('search index is not a list');
+            useIndex(rows.filter(function (r) { return r && isSafe(r.u) && typeof r.t === 'string'; }));
+          })
+          .catch(function () {
+            // No index, no suggestions - the rest of the page stands on its own.
+            clearTimeout(timer);
+            say('');
+            report(false);
+          });
+      }
+
+      // Only a same-site path from the index is ever navigated to or linked. The
+      // requested path is never a redirect target, so this page cannot be turned into
+      // an open redirect by a crafted link.
+      function isSafe(u) {
+        return typeof u === 'string' && /^\/(?![\/\\])[^\\]*$/.test(u);
+      }
+
+      // --- matching ------------------------------------------------------------
+
+      function key(p) {
+        var s = String(p).toLowerCase().replace(/\/{2,}/g, '/');
+        // ")" "." "," and quotes are what a link picks up when it is pasted out of a
+        // sentence or a chat reply.
+        s = s.replace(/[\s.,;:!?)\]}>'"]+$/, '');
+        s = s.replace(/\/index\.html?$/, '/').replace(/\.html?$/, '');
+        return s.charAt(s.length - 1) === '/' ? s : s + '/';
+      }
+
+      // Same segments, separators ignored within each one.
+      function looseKey(p) {
+        return key(p).split('/').map(function (seg) { return seg.replace(/[^a-z0-9]+/g, ''); }).join('/');
+      }
+
+      function unique(list) {
+        return list.filter(function (x, i) { return list.indexOf(x) === i; });
+      }
+
+      function findTarget(rows) {
+        if (rows.some(function (r) { return r.u === path; })) return null;
+        var k = key(path);
+        var exact = unique(rows.filter(function (r) { return key(r.u) === k; }).map(function (r) { return r.u; }));
+        if (exact.length) return exact.length === 1 ? exact[0] : null;
+        var lk = looseKey(path);
+        var loose = unique(rows.filter(function (r) { return looseKey(r.u) === lk; }).map(function (r) { return r.u; }));
+        return loose.length === 1 ? loose[0] : null;
+      }
+
+      function redirectedHereRecently() {
+        try {
+          var g = JSON.parse(sessionStorage.getItem(GUARD_KEY) || 'null');
+          return !!g && g.to === path && Date.now() - g.at < 30000;
+        } catch (e) { return false; }
+      }
+
+      function useIndex(rows) {
+        var target = findTarget(rows);
+        if (target && target !== path && !redirectedHereRecently()) {
+          try { sessionStorage.setItem(GUARD_KEY, JSON.stringify({ to: target, at: Date.now() })); } catch (e) { /* private mode */ }
+          say('Found it – taking you to ' + target);
+          report(true, function () {
+            location.replace(encodeURI(target) + location.search + location.hash);
+          });
+          return;
+        }
+        say('');
+        suggest(rows);
+        report(false);
+      }
+
+      // --- suggestions ---------------------------------------------------------
+
+      function words(s) {
+        return String(s).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+      }
+
+      function keep(w) {
+        return STOP.indexOf(w) < 0 && (w.length > 1 || /\d/.test(w));
+      }
+
+      // A grade designation split by a hyphen: a one- or two-letter prefix against a
+      // number (c-276, k-500, x-750, hr-120, 904-l) or two short numbers (80-20).
+      // Joining anything wider - inconel + 625 - made "inconel625" a word of its own,
+      // and the flat foil permalink that happens to spell it that way outranked the
+      // Inconel 625 sheets page for a request that named sheets.
+      function joinable(a, b) {
+        var prefix = /^[a-z]{1,2}$/, num = /^\d{1,3}$/;
+        return (prefix.test(a) && /\d/.test(b)) || (/\d/.test(a) && prefix.test(b)) ||
+          (num.test(a) && num.test(b));
+      }
+
+      // Words of an address, segment by segment, plus each hyphen-split grade joined
+      // back up - c-276 also yields c276 - because the catalogue writes the same
+      // grade both ways.
+      function tokens(p) {
+        var out = [];
+        String(p).toLowerCase().split('/').forEach(function (seg) {
+          var parts = words(seg);
+          parts.forEach(function (w, i) {
+            out.push(w);
+            if (i && joinable(parts[i - 1], w)) out.push(parts[i - 1] + w);
+          });
+        });
+        return unique(out.filter(keep));
+      }
+
+      function prep(row) {
+        if (!row._tok) {
+          row._tok = tokens(row.u);
+          row._title = words(row.t);
+          row._specs = words(row.k || '');
+          row._depth = row.u.split('/').filter(Boolean).length;
+        }
+        return row;
+      }
+
+      // "sheet" finds "sheets", "bars" finds "bar", and "276" finds "c276", but a
+      // short word has to match whole or it matches everything.
+      function near(list, q) {
+        for (var i = 0; i < list.length; i++) {
+          var w = list[i];
+          if (w === q) return 2;
+          if (q.length >= 3 && (w.indexOf(q) === 0 || w.slice(-q.length) === q)) return 1;
+          if (w.length >= 3 && q.indexOf(w) === 0 && q.length - w.length <= 2) return 1;
+        }
+        return 0;
+      }
+
+      function hit(row, q) {
+        var inUrl = near(row._tok, q);
+        var s = inUrl === 2 ? 5 : inUrl === 1 ? 3 : 0;
+        if (near(row._title, q)) s += 2;
+        if (q.length >= 4 && row._specs.indexOf(q) >= 0) s += 2;
+        return s;
+      }
+
+      // A page name for the enquiry, from the index title without its marketing tail:
+      // "Stellite 6 Round Bar Supplier & Stockist" is asked about as "Stellite 6 Round Bar".
+      function pageName(row) {
+        var name = row.t.split(/\s+[-–|]\s+|:\s|\s+(?:supplier|stockist|manufacturer|exporter)s?\b/i)[0].trim();
+        return name || row.t;
+      }
+
+      // Every page sharing a word with the request, best first.
+      function rank(rows, all) {
+        var scored = [];
+        rows.forEach(function (row) {
+          if (row.u === path) return;
+          prep(row);
+          var s = 0, matched = 0;
+          all.forEach(function (q) {
+            var h = hit(row, q);
+            if (h) { s += h; matched++; }
+          });
+          if (!matched) return;
+          // A word in the page's address that the request never mentioned makes it a
+          // less exact answer: /inconel/625-LCF/sheets/ is further from
+          // "inconel-625-sheet" than /inconel/625/sheets/ is.
+          var extra = row._tok.filter(function (w) {
+            return !all.some(function (q) { return near([w], q) > 0; });
+          }).length;
+          s += matched * 3 - extra;
+          // a flat SEO permalink sharing one word out of ten is not a match
+          if (s > 0) scored.push({ row: row, s: s });
+        });
+        // best score first; on a tie the shallower, shorter address is the broader page
+        return scored.sort(function (a, b) {
+          return b.s - a.s || a.row._depth - b.row._depth || a.row.u.length - b.row.u.length ||
+            (a.row.u < b.row.u ? -1 : 1);
+        });
+      }
+
+      // The leading page's name, when it is a fair guess at what was asked for: it
+      // clearly beats the next page, and its own address or name accounts for every
+      // word in the request. Otherwise "", and the enquiry keeps the address itself,
+      // which is more specific than any page we would pick. The name has to account
+      // for the words and not just the title: "duplex 2205 pipe" matched the duplex
+      // pipes page through the S32205 in its title's UNS list, and the name that
+      // would have seeded the enquiry, "Duplex Steel Pipes", had lost the 2205.
+      function guessName(best, next, need) {
+        if (!best || !need.length || (next && next.s >= best.s)) return '';
+        var name = pageName(best.row);
+        var own = best.row._tok.concat(words(name));
+        return need.every(function (q) { return near(own, q) > 0; }) ? name : '';
+      }
+
+      function suggest(rows) {
+        var all = tokens(key(path));
+        // the words a strong match has to account for; joined forms are extras
+        var need = unique(key(path).split('/').reduce(function (acc, seg) { return acc.concat(words(seg)); }, []).filter(keep));
+        if (!all.length) return;
+
+        var top = rank(rows, all).slice(0, MAX_SUGGESTIONS);
+        if (!top.length) return;
+
+        var list = $('nf-list');
+        top.forEach(function (item) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.setAttribute('href', item.row.u);
+          var title = document.createElement('span');
+          title.className = 'nf-list__title';
+          title.textContent = item.row.t;
+          var url = document.createElement('span');
+          url.className = 'nf-list__url';
+          url.textContent = item.row.u;
+          a.appendChild(title);
+          a.appendChild(url);
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+        $('nf-matches').hidden = false;
+
+        var best = top[0];
+        var name = guessName(best, top[1], need);
+        if (name) {
+          var link = $('nf-guess-link');
+          link.setAttribute('href', best.row.u);
+          link.textContent = name;
+          $('nf-guess').hidden = false;
+          seedEnquiry(name);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
