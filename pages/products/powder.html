@@ -33,6 +33,13 @@ title: Metal Powders for Additive Manufacturing
   <meta name="twitter:description" content="Gas and plasma atomised metal powders for additive manufacturing: Inconel 718 and 625, Ti-6Al-4V Grade 5 and ELI, CoCrMo, 316L, 17-4 PH and H13.">
   <meta name="twitter:image" content="https://www.nickelsheets.com/docs/images/titanium-powder-in-industrial-setting.webp">
 
+  <!-- The ten grades are hasPart WebPage entries, not Product entries under
+       about. This page prices nothing, and a Product with no offers is an
+       invalid item in Search Console; each grade is priced on its own page,
+       where its Product node lives. hasPart is how a CollectionPage names the
+       pages it collects, as the family powder hubs and /kovar/ do. The grade
+       itself moves into each entry's about, a Thing carrying the material and
+       the designation the old sku field held. -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,66 +47,106 @@ title: Metal Powders for Additive Manufacturing
   "name": "Metal Powders for Additive Manufacturing",
   "url": "https://www.nickelsheets.com/pages/products/powder/",
   "description": "Gas and plasma atomised metal powders for additive manufacturing: Inconel 718 and 625, Ti-6Al-4V Grade 5 and ELI, CoCrMo, 316L, 17-4 PH, maraging, H13 and AlSi10Mg.",
-  "about": [
+  "hasPart": [
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "Inconel 718 Powder",
-      "material": "Inconel 718",
-      "sku": "N07718"
+      "url": "https://www.nickelsheets.com/inconel/718/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "Inconel 718",
+        "identifier": "N07718"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "Inconel 625 Powder",
-      "material": "Inconel 625",
-      "sku": "N06625"
+      "url": "https://www.nickelsheets.com/inconel/625/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "Inconel 625",
+        "identifier": "N06625"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "316L Stainless Steel Powder",
-      "material": "316L",
-      "sku": "S31603"
+      "url": "https://www.nickelsheets.com/stainless/316l/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "316L",
+        "identifier": "S31603"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "17-4 PH Stainless Steel Powder",
-      "material": "17-4 PH",
-      "sku": "S17400"
+      "url": "https://www.nickelsheets.com/stainless/17-4-ph/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "17-4 PH",
+        "identifier": "S17400"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "Maraging Steel Powder (18Ni300)",
-      "material": "Maraging 18Ni300",
-      "sku": "1.2709 / X3NiCoMoTi 18-9-5"
+      "url": "https://www.nickelsheets.com/tool-steel/maraging/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "Maraging 18Ni300",
+        "identifier": "1.2709 / X3NiCoMoTi 18-9-5"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "H13 Tool Steel Powder",
-      "material": "H13",
-      "sku": "T20813"
+      "url": "https://www.nickelsheets.com/tool-steel/h13/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "H13",
+        "identifier": "T20813"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "CoCrMo Powder",
-      "material": "CoCrMo",
-      "sku": "R31537 / R30075"
+      "url": "https://www.nickelsheets.com/cobalt-alloys/cocrmo/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "CoCrMo",
+        "identifier": "R31537 / R30075"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "Titanium Grade 5 Powder (Ti-6Al-4V)",
-      "material": "Ti-6Al-4V Grade 5",
-      "sku": "R56400"
+      "url": "https://www.nickelsheets.com/titanium/grade-5/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "Ti-6Al-4V Grade 5",
+        "identifier": "R56400"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "Titanium Grade 23 Powder (Ti-6Al-4V ELI)",
-      "material": "Ti-6Al-4V ELI Grade 23",
-      "sku": "R56407"
+      "url": "https://www.nickelsheets.com/titanium/grade-23/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "Ti-6Al-4V ELI Grade 23",
+        "identifier": "R56407"
+      }
     },
     {
-      "@type": "Product",
+      "@type": "WebPage",
       "name": "AlSi10Mg Powder",
-      "material": "AlSi10Mg",
-      "sku": "EN AC-43000 equivalent"
+      "url": "https://www.nickelsheets.com/aluminium/alsi10mg/powder/",
+      "about": {
+        "@type": "Thing",
+        "name": "AlSi10Mg",
+        "identifier": "EN AC-43000 equivalent"
+      }
     }
   ]
 }
