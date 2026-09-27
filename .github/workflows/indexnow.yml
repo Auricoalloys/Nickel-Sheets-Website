@@ -17,6 +17,7 @@ name: IndexNow
 # secret, and the script reads it from that one file.
 #
 # To seed the index once: Actions tab -> IndexNow -> Run workflow -> tick "all".
+# To resubmit exactly some commits: the same, with "range" set to <from>..<to>.
 
 on:
   push:
@@ -32,15 +33,23 @@ on:
         description: "Submit every URL in sitemap.xml (one-off seeding run)"
         type: boolean
         default: false
+      range:
+        description: "Or submit exactly this range, <from>..<to> (blank: HEAD~1..HEAD)"
+        type: string
+        default: ""
 
 permissions:
   contents: read
   pages: read
+  # To find the last successful run, which is where a push's range starts.
+  actions: read
 
 # Two quick pushes queue rather than race, so each run's range is submitted after
-# its own deploy. GitHub keeps only ONE pending run per group: a third push while
-# one runs and one waits cancels the waiting one, and that push's range is never
-# submitted. Re-run a cancelled run from the Actions tab - it keeps its range.
+# its own deploy. GitHub keeps only ONE pending run per group, so a third push
+# while one runs and one waits cancels the waiting one - which is why a push's
+# range starts at the last SUCCESSFUL push run rather than at github.event.before:
+# the next run then covers a cancelled or failed push's commits too. The queue is
+# also what makes "last successful" well defined when the range is worked out.
 concurrency:
   group: indexnow
   cancel-in-progress: false
@@ -113,15 +122,19 @@ jobs:
               return fallback(`the Pages source is build_type "${site.build_type}", which the builds API does not track`);
             }
 
-            const contains = new Map();   // build commit -> does it include this commit?
+            // build commit -> does it include this commit? Only a definite answer is
+            // cached: caching a failed call as "no" turns one 502 into a 15-minute
+            // wait that ends in a failure, on a commit that is already live.
+            const contains = new Map();
             async function includes(buildSha) {
               if (!contains.has(buildSha)) {
                 try {
                   const { data } = await api('GET /repos/{owner}/{repo}/compare/{basehead}',
                     { basehead: `${sha}...${buildSha}` });
                   contains.set(buildSha, data.status === 'ahead' || data.status === 'identical');
-                } catch {
-                  contains.set(buildSha, false);
+                } catch (e) {
+                  core.info(`compare ${sha.slice(0, 8)}...${buildSha.slice(0, 8)} failed (${e.status || e.message}); asking again next poll`);
+                  return false;
                 }
               }
               return contains.get(buildSha);
@@ -141,8 +154,9 @@ jobs:
             async function errored(b) {
               const why = (b.error && b.error.message) || 'no message given';
               core.setFailed(`The GitHub Pages build of ${b.commit.slice(0, 8)} errored: ${why}. Nothing was ` +
-                'submitted - the live site does not have this commit, and pinging now would point the engines ' +
-                'at the old pages.');
+                'submitted - no successful build contains this commit, so it is not live, and pinging now ' +
+                'would point the engines at the old pages. The next successful push run submits these ' +
+                'pages with its own, because its range starts at the last run that succeeded.');
               await core.summary.addHeading('IndexNow: not submitted', 3)
                 .addRaw(`The GitHub Pages build of ${b.commit.slice(0, 8)} errored: ${why}\n`).write();
             }
@@ -173,15 +187,20 @@ jobs:
                 if (b.status === 'built') return built(b);
                 if (b.status === 'errored') return errored(b);
               } else if (b.commit && (b.status === 'built' || b.status === 'errored')) {
+                // A newer build that is live and contains this commit means the site has
+                // it, whatever became of this commit's own build. Asked first: a push
+                // whose own build errored and was fixed by the next push IS live.
+                if (b.status === 'built' && await includes(b.commit)) return built(b);
                 const own = await ownBuild();
                 if (own) return own.status === 'built' ? built(own) : errored(own);
-                // No build of our own: a newer build that contains this commit stands in for it.
-                if (await includes(b.commit)) return b.status === 'built' ? built(b) : errored(b);
+                // No build of our own, and the newer one containing it failed.
+                if (b.status === 'errored' && await includes(b.commit)) return errored(b);
               }
               await sleep(POLL_MS);
             }
             core.setFailed(`GitHub Pages had not deployed ${sha.slice(0, 8)} after ${TIMEOUT_MS / 60_000} minutes ` +
-              `(latest build: ${last}). Nothing was submitted; re-run this job once the site is live.`);
+              `(latest build: ${last}). Nothing was submitted; re-run this job once the site is live, ` +
+              'or let the next successful push run cover it.');
 
       # The range is worked out in the shell, not in an expression: `github.sha~1`
       # is git revision syntax, and an expression would only paste the text.
@@ -191,23 +210,52 @@ jobs:
           BEFORE: ${{ github.event.before }}
           SHA: ${{ github.sha }}
           ALL: ${{ inputs.all }}
+          RANGE: ${{ inputs.range }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           if [ "$EVENT" = "workflow_dispatch" ]; then
             if [ "$ALL" = "true" ]; then
+              if [ -n "$RANGE" ]; then echo "::notice::'all' is ticked, so the range input is ignored."; fi
               set -- --all
+            elif [ -n "$RANGE" ]; then
+              # Passed as one argument; tools/indexnow.mjs refuses anything but <from>..<to>.
+              set -- --range "$RANGE"
             else
               set -- --range "HEAD~1..HEAD"
             fi
           else
-            from="$BEFORE"
-            # `before` is forty zeros when the push created the branch, and after a
-            # force push it can name a commit this checkout does not have. Either
-            # way the only range left to trust is the pushed commit itself.
-            if [ -z "$from" ] || [ "$from" = "0000000000000000000000000000000000000000" ] \
-               || ! git cat-file -e "${from}^{commit}" 2>/dev/null; then
-              echo "::notice::No usable 'before' commit (${from:-empty}); submitting ${SHA}~1..${SHA} only."
-              from="${SHA}~1"
+            # Start where the last successful push run left off: the newest one
+            # triggered before this push (a re-run keeps its run_number, so it finds
+            # the same start). `before` alone drops the commits of any push whose run
+            # was cancelled in the queue, or failed - on a Pages build that errored
+            # until the next push fixed it, say - because no later run covers them.
+            # The diff is tree to tree, so the start need not be an ancestor.
+            wf="$(basename "${GITHUB_WORKFLOW_REF%@*}")"
+            from=""
+            if last="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${wf}/runs?branch=main&event=push&status=success&per_page=50" \
+                  --jq "[.workflow_runs[] | select(.run_number < ${GITHUB_RUN_NUMBER})][0].head_sha // \"\"")"; then
+              if [ -n "$last" ] && [ "$last" != "$SHA" ] && git cat-file -e "${last}^{commit}" 2>/dev/null; then
+                from="$last"
+                echo "Starting at ${last:0:8}, the commit of the last successful push run."
+              elif [ -n "$last" ]; then
+                echo "::notice::The last successful push run (${last:0:8}) cannot start this range; using the push's own."
+              else
+                echo "No earlier successful push run; using the push's own range."
+              fi
+            else
+              echo "::warning::Could not list earlier runs of ${wf}; using the push's own range, which misses any push whose run was cancelled or failed."
+            fi
+            if [ -z "$from" ]; then
+              from="$BEFORE"
+              # `before` is forty zeros when the push created the branch, and after a
+              # force push it can name a commit this checkout does not have. Either
+              # way the only range left to trust is the pushed commit itself.
+              if [ -z "$from" ] || [ "$from" = "0000000000000000000000000000000000000000" ] \
+                 || ! git cat-file -e "${from}^{commit}" 2>/dev/null; then
+                echo "::notice::No usable 'before' commit (${from:-empty}); submitting ${SHA}~1..${SHA} only."
+                from="${SHA}~1"
+              fi
             fi
             set -- --range "${from}..${SHA}"
           fi

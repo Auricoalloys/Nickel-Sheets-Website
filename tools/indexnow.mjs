@@ -41,15 +41,17 @@
 //     into every page, and resubmitting ~800 URLs because the footer changed
 //     tells the engines nothing worth recrawling for. Pages whose own HTML
 //     changed in the same range are still submitted.
-//   - a page touched only by commits listed in BOILERPLATE in
-//     docs/build-sitemap.mjs. Those are the sitewide sweeps that changed markup
-//     and not what any page says; the sitemap keeps their pages' <lastmod>
-//     unchanged for that reason, and telling Bing the page changed while the
-//     sitemap says it did not would be the same inflated signal twice over.
-//     The set is read at <to>, so a sweep pushed without the commit that lists
-//     it is submitted in full - the output flags any such commit over 100 pages.
 //   - a page whose only change is its redirect_from list, a front-matter comment
 //     or its line endings. The page it renders is byte-for-byte the same.
+//
+//   A sitewide sweep that edited the pages themselves IS submitted, page by page,
+//   even when its SHA is in BOILERPLATE in docs/build-sitemap.mjs. That set is
+//   Google's <lastmod> discipline, and it holds sweeps that rewrote exactly what
+//   Bing shows and an assistant quotes: d3624386 finished 86 truncated <title>s,
+//   c710232f put a breadcrumb and meta description on every page, 7f9ce97c
+//   parked the Product node on 258 pages. Honouring the set here would have sent
+//   0 of those 86 titles. IndexNow carries no date to inflate, and even a sweep
+//   of every page is ~800 URLs, far inside the 10,000 cap.
 //
 // INDEXNOW_ENDPOINT overrides the endpoint. It exists for TESTS ONLY - pointing
 // the script at a local stub server - and nothing in CI sets it.
@@ -64,9 +66,6 @@ const ORIGIN = `https://${HOST}`;
 const ENDPOINT = process.env.INDEXNOW_ENDPOINT || 'https://api.indexnow.org/indexnow';
 // The protocol caps one request at 10,000 URLs; more are sent as several POSTs.
 const MAX_PER_REQUEST = 10000;
-// A commit outside BOILERPLATE that touches more pages than this is flagged: it
-// is probably a sweep whose SHA has not reached BOILERPLATE yet.
-const SWEEP_WARN = 100;
 
 // ---- arguments ---------------------------------------------------------------
 const argv = process.argv.slice(2);
@@ -257,7 +256,6 @@ function add(p, reason, detail) {
 
 const SKIP_TEXT = {
   shared: 'shared chrome: renders into every page, so it is not expanded into ~800 URLs',
-  boilerplate: 'touched only by BOILERPLATE commits (docs/build-sitemap.mjs): a sitewide sweep, not a content change',
   unchanged: 'renders the same page: only redirect_from, front-matter comments or line endings changed',
   'not-in-sitemap': 'not in sitemap.xml at <to>, so not submitted',
   'not-a-page': 'no front matter: not a Jekyll page',
@@ -278,45 +276,12 @@ if (ALL) {
   header = `--all: every <loc> in sitemap.xml at ${head.slice(0, 8)} (${sm.paths.length + sm.foreign.length} <loc>)`;
 } else {
   const parts = RANGE.split('..');
-  if (parts.length !== 2 || !parts[0] || !parts[1] || parts[1].startsWith('.')) fail(`--range must be <from>..<to>, got "${RANGE}"`);
+  // A side opening with "-" would reach git as an option; "a...b" splits into a
+  // second part opening with ".".
+  if (parts.length !== 2 || parts.some(p => !p || /^[-.]/.test(p))) fail(`--range must be <from>..<to>, got "${RANGE}"`);
   const from = commit(parts[0]);
   const to = commit(parts[1]);
   disallowed = disallowRules(to);
-
-  // BOILERPLATE, read from the sitemap generator at <to>. Only quoted SHAs that
-  // open a line count - the comments beside them mention other SHAs in passing.
-  const genSrc = readBlob(to, 'docs/build-sitemap.mjs') || '';
-  const setSrc = (genSrc.match(/const BOILERPLATE = new Set\(\[([\s\S]*?)\]\);/) || [, ''])[1];
-  const boilerplate = [...setSrc.matchAll(/^[ \t]*'([0-9a-f]{7,40})'/gm)].map(x => x[1]);
-  if (!boilerplate.length) notes.push('BOILERPLATE could not be read from docs/build-sitemap.mjs at <to>, so no sweep is recognised.');
-
-  // Which pages a non-sweep commit touched, and which only a sweep did. Merges are
-  // left out; a page touched only by a merge's own resolution is in neither set
-  // and is treated as content, which is the safe direction.
-  const log = git(['-c', 'core.quotePath=false', 'log', '--no-merges', '--format=@@@%H', '--name-only',
-    `${from}..${to}`, '--', ':(icase)*.html', ':(icase)*.htm']);
-  const byContent = new Set(), bySweep = new Set();
-  let cur = null;
-  const perCommit = [];
-  for (const line of log.split('\n')) {
-    if (line.startsWith('@@@')) {
-      const sha = line.slice(3);
-      cur = { sha, sweep: boilerplate.some(b => sha.startsWith(b)), n: 0 };
-      perCommit.push(cur);
-      continue;
-    }
-    const f = line.trim();
-    if (!f || !cur) continue;
-    (cur.sweep ? bySweep : byContent).add(f);
-    if (!SHARED(f)) cur.n++;
-  }
-  for (const c of perCommit) {
-    if (!c.sweep && c.n > SWEEP_WARN) {
-      notes.push(`commit ${c.sha.slice(0, 8)} touched ${c.n} pages and is not in BOILERPLATE. If it changed markup ` +
-        'and not what the pages say, its SHA belongs there - and pushing that commit together with the sweep keeps ' +
-        'this workflow from resubmitting every page it touched.');
-    }
-  }
 
   // Everything that changed, for the shared-chrome report.
   const allChanged = git(['-c', 'core.quotePath=false', 'diff', '-z', '--name-only', from, to]).split('\0').filter(Boolean);
@@ -370,8 +335,6 @@ if (ALL) {
     }
     if (!wasLive || F.permalink !== T.permalink) { add(T.permalink, 'added', `${file} ${e.status === 'A' ? 'added' : 'now serves this URL'}`); continue; }
     if (F.signature === T.signature) { noteSkip('unchanged', T.permalink); continue; }
-    const paths = [e.old, e.neu];
-    if (paths.some(p => bySweep.has(p)) && !paths.some(p => byContent.has(p))) { noteSkip('boilerplate', T.permalink); continue; }
     add(T.permalink, 'changed', file);
   }
 
@@ -389,10 +352,8 @@ if (ALL) {
   } else notes.push('sitemap.xml did not exist at <from>, so newly listed URLs were not compared.');
 
   const commits = Number(git(['rev-list', '--count', `${from}..${to}`]).trim());
-  const touching = perCommit.filter(c => c.n > 0);
   pagesChanged = pageEntries.length;
-  header = `--range ${from.slice(0, 8)}..${to.slice(0, 8)}: ${commits} commit(s), ${touching.length} touching pages, ` +
-    `${touching.filter(c => c.sweep).length} of those in BOILERPLATE (${boilerplate.length} SHAs read at <to>)`;
+  header = `--range ${from.slice(0, 8)}..${to.slice(0, 8)}: ${commits} commit(s), ${pagesChanged} page file(s) changed`;
 }
 
 // ---- absolute URLs -------------------------------------------------------------------

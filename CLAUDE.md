@@ -8,8 +8,11 @@ The Aurico Alloys LLP marketing site (www.nickelsheets.com) — a Jekyll site of
 HTML pages for a nickel/titanium/duplex/cobalt alloy stockist. GitHub Pages builds and deploys it
 straight from `main`; there is no bundler and no unit tests. Pushing to `main` publishes.
 
-There is one CI workflow, `.github/workflows/seo-audit.yml`, and it only reports — it never edits or
-publishes. See **The SEO audit** below.
+There are two CI workflows, and neither edits or publishes anything. `.github/workflows/seo-audit.yml`
+only reports — see **The SEO audit** below. `.github/workflows/indexnow.yml` runs *after* GitHub
+Pages has deployed a push to `main` and sends the changed URLs to Bing's IndexNow API — see
+**IndexNow tells Bing when a page changes**. It is not part of the build, so "nothing runs at deploy
+time" below still holds.
 
 ## Commands
 
@@ -1736,15 +1739,30 @@ still how Google hears, so nothing here replaces the sitemap discipline above.
 `.github/workflows/indexnow.yml` runs on every push to `main` that touches HTML or `sitemap.xml`. It
 **waits until GitHub Pages reports the pushed commit built** — polling the Pages builds API every
 20 s for up to 15 minutes — because a ping that lands before the deploy has Bing fetch the *old*
-page and cache it, which is worse than no ping. A failed Pages build fails the job with the build's
-own error and submits nothing. If the builds API is unavailable it falls back to a fixed five-minute
-wait and says so in the job summary. Then `tools/indexnow.mjs` computes the URLs from the pushed
-range and posts them; the job summary lists every URL with the reason it was sent.
+page and cache it, which is worse than no ping. A commit counts as deployed when its own build or a
+later one that contains it is built — a push whose build errored and was fixed by the next push *is*
+live. When no successful build contains it the job fails with the build's own error and submits
+nothing. If the builds API is unavailable it falls back to a fixed five-minute wait and says so in
+the job summary. Then `tools/indexnow.mjs` computes the URLs and posts them; the job summary lists
+every URL with the reason it was sent.
+
+**A push's range starts at the last successful push run, not at `github.event.before`.** The
+workflow runs with `concurrency: indexnow` and `cancel-in-progress: false`, so two quick pushes queue
+instead of racing — but GitHub keeps only **one** pending run per group, so a third push cancels the
+waiting one, and a range that started at `before` would never submit that push's pages. Nor would it
+submit a push whose run failed. Starting at the commit of the newest successful push run triggered
+before this one covers both: the next run that succeeds sends everything since. The diff is tree to
+tree, so that start need not be an ancestor; when its commit has left the history after a force push,
+or the runs list cannot be read, the step says so and falls back to `before`, then to the pushed
+commit alone.
 
 ```bash
 node tools/indexnow.mjs --range <from>..<to> --dry-run   # what a push would send, and why
 node tools/indexnow.mjs --all --dry-run                  # every <loc> in sitemap.xml at HEAD
 ```
+
+To resubmit exactly some commits, run the workflow from the Actions tab with **range** set to
+`<from>..<to>`; left blank, a manual run sends `HEAD~1..HEAD`.
 
 **The key is public by design**, in the same sense as the Supabase anon key under Secrets: it is
 `7300d5f431351d82efbe5e2645e5c8c2.txt` at the repo root, served at
@@ -1786,21 +1804,19 @@ What a push submits, and what it deliberately does not:
 - **Not a page whose only change is its `redirect_from` list, a front-matter comment or its line
   endings.** It renders byte-for-byte the same page. That is what keeps a redirect sweep like
   `f0997d1a` to its 53 retired URLs instead of those plus the 41 targets that gained a line.
-- **Not a page touched only by a commit in `BOILERPLATE`** in `docs/build-sitemap.mjs` — the same
-  commits the sitemap keeps out of `<lastmod>`, for the same reason: telling Bing a page changed
-  while its `<lastmod>` says it did not would be the inflated signal twice over. The set is read at
-  the pushed commit, so **push a sweep together with the commit that adds its SHA to `BOILERPLATE`**.
-  Pushed alone it is submitted in full, and the output flags any non-`BOILERPLATE` commit that
-  touched more than 100 pages as a probable sweep. Note the trade: `BOILERPLATE` also holds sweeps
-  that changed titles or structured data (`d3624386`, `7f9ce97c`), which Bing *would* want to
-  recrawl. After one of those, a dispatch with **all** ticked is the deliberate way to resubmit.
 
-Two operational limits. The workflow runs with `concurrency: indexnow` and `cancel-in-progress:
-false` so two quick pushes queue instead of racing — but **GitHub keeps only one pending run per
-group**, so a third push while one runs and one waits cancels the waiting one, and its range is never
-submitted. Re-run a cancelled run from the Actions tab; it keeps its own range. And the
-`INDEXNOW_ENDPOINT` environment variable redirects the POST — it exists for testing against a local
-stub and nothing in CI sets it.
+**A sitewide sweep that edits the pages themselves is submitted, page by page — even when its SHA is
+in `BOILERPLATE`.** The first version skipped those, and that was wrong: `BOILERPLATE` is Google's
+`<lastmod>` discipline, and it holds sweeps that rewrote exactly what Bing shows and an assistant
+quotes. `d3624386` finished 86 truncated `<title>` tags, `c710232f` put a meta description on every
+page, `7f9ce97c` parked the Product node on 258 — and a dry run over `d3624386` would have sent
+**0** of the 86.
+The two signals do not conflict: IndexNow carries no date, so there is nothing to inflate, and even a
+sweep of every page is ~800 URLs against a 10,000 cap. The rule that does the useful filtering is the
+one above — a page that renders the same is not sent — and it needs no list kept in step.
+
+The `INDEXNOW_ENDPOINT` environment variable redirects the POST — it exists for testing against a
+local stub and nothing in CI sets it.
 
 ### JavaScript inventory
 
