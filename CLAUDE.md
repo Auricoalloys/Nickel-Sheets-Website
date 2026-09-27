@@ -669,6 +669,24 @@ mostly separable because a pre-filled textarea fires no `input` event and so doe
 `form_start`. Field **order** was deliberately left alone for the same reason — moving the optional
 fields down the form is the obvious next test, and running it now would make the month unreadable.
 
+**The quote links moved the funnel's entry inside this same window.** Until the *Get a Quote hands
+over the same seed* change above reached `main` (committed 2026-09-27), Get a Quote loaded a blank
+contact page. After it, the header button and any in-page quote button open the floating panel in
+place, pre-filled, every contact link arrives seeded, and `quote_cta_click` counts the clicks. That
+changes how many visitors see the form and in what state, and it moves `form_start` from
+`form_location: inline` to `floating` for the same visitors. So the review splits the window on the
+day it reached `main`, which is the day it went live, reads each side on its own, and credits no
+shift across the split to the optional fields; and it reads `quote_cta_click` by `placement` against
+`form_start` and `generate_lead`. This dates the commit or merge that brought it in:
+
+```bash
+git log --first-parent -S quote_cta_click --format=%cd --date=short main -- javascript/lead-config.js
+```
+
+`placement` appears in GA4's reports only once it is registered as an event-scoped custom dimension
+(Admin → Custom definitions), and GA4 does not backfill one, so register it before that deploy. The
+review task's `SKILL.md` lives outside this repo and needs the same split.
+
 `supabase/migrations/` holds the `leads` table. RLS is on with **no** policies, so the public anon
 key gets no access — do not add an anon policy, the table holds customer contact details.
 
