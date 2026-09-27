@@ -43,7 +43,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Thirteen generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Fourteen generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -57,13 +57,14 @@ node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cu
 node docs/build-weight-data.mjs        # after editing docs/materials.csv or any grade's density
 node docs/build-calc-links.mjs         # after adding/renaming a form page, or a grade's calculator id
 node docs/build-breadcrumbs.mjs        # after adding/renaming a form page, or adding a grade hub
+node docs/build-quote-cta.mjs          # after adding a product page, changing a breadcrumb, or the WhatsApp number
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
 Every one of those except `purge-bootstrap` takes `--check`, which reports drift and exits non-zero
 without writing. CI runs the price, specification, grade-data, hub-grade, weight-calculator,
-calculator-CTA, breadcrumb and table-system checks on
+calculator-CTA, quote-CTA, breadcrumb and table-system checks on
 every pull request, because a price the HTML no longer matches is worse than no price at all, a
 specification cited for the wrong product form tells a buyer the material is certified to something
 it is not, and a wrong UNS number tells them it is a different material altogether.
@@ -1512,6 +1513,42 @@ letters and digits alone and aliases the few families whose URL prefix differs (
 generic `pages/products/*` hubs and genuinely un-stocked grades are reported and skipped. `--check`
 guards it in CI. Run it after adding or renaming a form page, or after a grade's calculator id
 changes; the CTA is styled by `.calc-cta` in `pages.css`, so a new class there needs no per-page edit.
+
+**The product pages carry their own "Get a quote", and that is generated too.** A headless audit of
+382 grade-and-form pages found 298 with no quote, call or WhatsApp link anywhere in their content,
+and on a 390px phone only 6 showed any enquiry route on the first screen: the header's "Get a Quote"
+sits inside the collapsed menu there, the floating launcher is an unlabelled circle, and the Price row
+sat a median 4,407px down. `docs/build-quote-cta.mjs` writes an `aside.quote-cta` — quote button,
+WhatsApp, call — between `<!-- quote-cta:start -->` / `<!-- quote-cta:end -->` markers directly after
+each page's lead heading block: the `div.title#title` on the older template, the lead `<p>` or
+`section#introduction` on the newer ones, `#family-intro` on a family hub, the `<h1>` and its lead `<p>`
+on a grade hub. 626 pages carry it (369 grade form pages, 95 grade hubs, 86 form hubs, 34 busbar
+pages, 32 combined family pages, 10 family hubs). It walks a tag stack at every insertion point and
+refuses unless only `div`/`section`/`article` are open inside `<main>`, so the block cannot land in a
+`<p>`, table, list or heading, and a page with no such anchor is named rather than guessed at. Powder
+pages are skipped because they already carry "Request a sample", and so are the location pages (the
+same `NO_SUBJECT_PREFIXES` the form suppresses), the `/pages/products/<form>/` catalogue hubs and the
+application guides; every skip is printed by reason. Run it after adding a product page, changing a
+page's breadcrumb, or changing the WhatsApp number; the block is styled by `.quote-cta` in
+`pages.css`, right after `.calc-cta`. Three rules it keeps, each of which was the obvious way to get
+it wrong:
+
+- **The button's `href` is the bare `/pages/contact/`.** The subject rides in
+  `data-enquiry="Enquiry: <subject>"` and `floating-form.js` adds `?enquiry=` only when the visitor
+  interacts. Written into the static markup it would publish six hundred parameterised contact URLs
+  for crawlers to fetch, every one canonicalising to the same page. With no JavaScript the link still
+  lands on the contact form, which is an honest fallback.
+- **The subject is the page's last `BreadcrumbList` crumb, tidied exactly as `tidySubject()` does it**,
+  so the in-page button and the floating launcher cannot disagree about what a page sells. A crumb
+  that names only a form — the stellite form pages end on "Sheet", "Round Bar", "Strip" — is reported,
+  not written: "Enquiry: Sheet" is a question the desk cannot price, and the breadcrumb is what needs
+  the grade name. Fix it there and the next run picks the page up.
+- **The number is read from `FALLBACK_CONTACT` in `lead-config.js` at generation time**, never typed
+  into the script, and printed as `+91 79778 86611` from those digits. Change it there and `--check`
+  fails in CI until the blocks are regenerated — `lead-config.js` is in the workflow's path lists for
+  that reason. The WhatsApp link deliberately carries **no `text=`**: `seedWhatsAppLinks()` fills
+  every WhatsApp link at runtime with the subject and the page URL, and skips any link that already
+  has a message, so a static one would have suppressed the richer seed.
 
 The page carries `WebApplication`, `BreadcrumbList` and `FAQPage` and **no `Product` node**, so none
 of the offers/review invalid-item states apply to it. It quotes no price and must not start to: the
