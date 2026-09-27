@@ -103,6 +103,9 @@ exclude:
   # Reference documents (standards excerpts, sourcing notes). Tracked in git
   # so the sourcing is auditable, but not site content.
   - docs/references
+  # Work plans parked for a later session (docs/plans/*.md). Markdown under docs/
+  # would otherwise be rendered and served like any other file there.
+  - docs/plans
   # Database migrations. Not site content, and they were being SERVED: a build
   # writes them to _site/supabase/migrations/, so both files were live at
   # www.nickelsheets.com/supabase/migrations/*.sql - the full leads table
