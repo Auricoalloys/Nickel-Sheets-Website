@@ -116,7 +116,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 /inconel/725/wire/,4500,8000,53,94,kg
 /inconel/round-bars/,2500,11000,29,129,kg
 /inconel/X-750/coil/,3500,7500,41,88,kg
-/inconel/x-750/plates/,3500,7500,41,88,kg
+/inconel/X-750/plates/,3500,7500,41,88,kg
 /inconel/X-750/round-bar/,3000,5500,35,65,kg
 /inconel/X-750/sheets/,3500,7500,41,88,kg
 /monel/400/,2500,6500,29,76,kg
