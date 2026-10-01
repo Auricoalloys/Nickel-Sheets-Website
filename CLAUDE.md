@@ -1849,7 +1849,7 @@ each page's lead heading block: the `div.title#title` on the older template, the
 newer titanium one, `#family-intro` on a family hub, the `<h1>` and its lead `<p>` on a grade hub.
 The stellite form pages are the exception: the block goes *inside* their `section#introduction`,
 before its end tag. That section is the page's `.container`, and after it the block would run
-full-bleed into the calc-cta aside that follows. 640 pages carry it (381 grade form pages, 95 grade
+full-bleed into the calc-cta aside that follows. 641 pages carry it (381 grade form pages, 96 grade
 hubs, 86 form hubs, 36 busbar pages, 32 combined family pages, 10 family hubs). It walks a tag stack at every insertion point and
 refuses unless only `div`/`section`/`article` are open inside `<main>`, so the block cannot land in a
 `<p>`, table, list or heading, and a page with no such anchor is named rather than guessed at. Powder
