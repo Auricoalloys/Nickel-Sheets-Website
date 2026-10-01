@@ -56,8 +56,9 @@ Found on the way, waiting on a source or the owner:
   to around 540 °C, the upper end for titanium in engine service", with no source. Read
   ATI's sheet: one of them goes or is qualified.
 - **Stock claims to confirm.**
-  - "Ex-stock" is in the metadata of 240 pages, 92 of them in these five directories.
-  - "From ready stock in Mumbai" opens 58 pages, most of them form hubs.
+  - "Ex-stock" is on 240 pages: in the metadata of 237, in visible text on 19. 92 of the
+    240 are in these five directories.
+  - "From ready stock in Mumbai" is on 58 pages, most of them form hubs.
   - The three Inconel hubs above say "from stock in Mumbai".
   - Ask which grades are held, not whether the sentence reads well. "Supplied from
     Mumbai" is the wording where the answer is no (CLAUDE.md, the Waspaloy note).
