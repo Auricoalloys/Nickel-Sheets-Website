@@ -23,6 +23,7 @@
   "unbalanced_containers": 0,
   "table_without_scroll_wrapper": 0,
   "alt_alloy_mismatch": 0,
+  "image_alloy_mismatch": 0,
   "banner_caption_not_heading": 0,
   "orphan_pages": 0,
   "broken_internal_links": 0,
