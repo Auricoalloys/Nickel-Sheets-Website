@@ -39,7 +39,12 @@ sitemap: false
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-        gtag('config', 'G-XZL7EXDTQ0');
+        // No automatic page_view. Most visits here are recovered and sent on within a
+        // second, and an automatic hit logged each of them as a "Page Not Found" view at
+        // the broken address - which GA4 then took as the session's landing page, so the
+        // leads that followed split between /hastelloy/C276/ and /hastelloy/c276/. The
+        // script at the foot of the page sends the page_view only when the visitor stays.
+        gtag('config', 'G-XZL7EXDTQ0', { send_page_view: false });
     </script>
 
     <!-- Page-level styles. This page is the only user of them, and keeping them here
@@ -287,8 +292,8 @@ sitemap: false
         <p>Send the grade, form and size you need and we will reply with price and availability within one working day.</p>
         <div class="nf-actions">
           <a class="nf-btn nf-btn--primary" id="nf-quote" href="/pages/contact/" data-placement="not_found">Request a quote</a>
-          <a class="nf-btn" id="nf-whatsapp" href="https://wa.me/917977886611" target="_blank" rel="noopener">WhatsApp us</a>
-          <a class="nf-btn" href="tel:+917977886611">Call +91 79778 86611</a>
+          <a class="nf-btn" id="nf-whatsapp" href="https://wa.me/917977886611" target="_blank" rel="noopener" data-placement="not_found">WhatsApp us</a>
+          <a class="nf-btn" href="tel:+917977886611" data-placement="not_found">Call +91 79778 86611</a>
         </div>
       </section>
 
@@ -367,10 +372,6 @@ sitemap: false
 
       var INDEX_URL = '/search-index.json';
       var MAX_SUGGESTIONS = 6;
-      // How long a redirect waits for the analytics hit to be sent. gtag.js calls
-      // event_callback once it has; when it is blocked or has not loaded, the timer is
-      // what moves the visitor on.
-      var REDIRECT_WAIT_MS = 1000;
       var FETCH_TIMEOUT_MS = 8000;
       var GUARD_KEY = 'aurico_404_redirect';
       // Words that say nothing about which material a page is for. The flat SEO
@@ -397,7 +398,7 @@ sitemap: false
       seedEnquiry(path);
 
       // Someone opening /404.html directly is not following a broken link.
-      if (rawPath === '/404.html') return;
+      if (rawPath === '/404.html') { pageView(); return; }
 
       say('Looking for a page with a similar address…');
       loadIndex();
@@ -432,29 +433,46 @@ sitemap: false
         }
       }
 
-      // page_not_found is written here, literally, rather than taken from EVENTS in
-      // lead-config.js: this is a classic inline script and cannot import the module,
-      // and the event is about broken inbound links, not about the enquiry form.
-      // It fires before any redirect so that a recovered visit still shows up in GA4
-      // with the address that was broken - which is the whole value of the event.
-      function report(recovered, then) {
-        var done = false;
-        var proceed = function () {
-          if (done) return;
-          done = true;
-          if (then) then();
-        };
+      function pageView() {
+        try { if (typeof window.gtag === 'function') window.gtag('event', 'page_view'); } catch (e) { /* never block the page */ }
+      }
+
+      // A visitor who stays on this page: one page_view, and page_not_found with the
+      // broken address. The event name is written literally rather than taken from
+      // EVENTS in lead-config.js: this is a classic inline script and cannot import the
+      // module, and the event is about broken inbound links, not about the form.
+      //
+      // A recovered visit sends nothing from here. floating-form.js on the page it
+      // lands on reads the note recover() leaves and sends page_not_found with
+      // recovered: true there, so GA4 still learns which inbound link was broken while
+      // the session starts on the real page instead of on an error page.
+      function report() {
+        pageView();
         try {
-          if (typeof window.gtag === 'function') {
-            var params = { page_path: rawPath, recovered: recovered };
-            if (then) {
-              params.event_callback = proceed;
-              params.event_timeout = REDIRECT_WAIT_MS;
-            }
-            window.gtag('event', 'page_not_found', params);
-          }
-        } catch (e) { /* analytics must never stop the recovery */ }
-        if (then) setTimeout(proceed, REDIRECT_WAIT_MS);
+          if (typeof window.gtag === 'function') window.gtag('event', 'page_not_found', { page_path: rawPath, recovered: false });
+        } catch (e) { /* analytics must never stop the page */ }
+      }
+
+      // Hands the visit to the page it was looking for. First-touch attribution is
+      // written here if floating-form.js has not written it yet - otherwise the target
+      // page records this error page as the referrer and the visitor's real source
+      // (a search engine, chatgpt.com) is lost - and corrected if it has, because the
+      // landing page is the target, not the address that 404ed.
+      function recover(target) {
+        try {
+          var KEY = 'aurico_attribution';
+          var stored = JSON.parse(sessionStorage.getItem(KEY) || 'null') || {};
+          if (!stored.landing_page || stored.landing_page === rawPath) stored.landing_page = target;
+          if (!stored.referrer) stored.referrer = document.referrer || 'direct';
+          var params = new URLSearchParams(location.search);
+          ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'].forEach(function (k) {
+            var v = params.get(k);
+            if (v && !stored[k]) stored[k] = v;
+          });
+          sessionStorage.setItem(KEY, JSON.stringify(stored));
+          sessionStorage.setItem('aurico_404_recovered', JSON.stringify({ from: rawPath, to: target, at: Date.now() }));
+        } catch (e) { /* private mode: the redirect still happens */ }
+        location.replace(encodeURI(target) + location.search + location.hash);
       }
 
       function loadIndex() {
@@ -479,8 +497,8 @@ sitemap: false
           .catch(function () {
             // No index, no suggestions - the rest of the page stands on its own.
             clearTimeout(timer);
-            say('');
-            report(false);
+            say('No similar address found. Browse the catalogue below, or send us your enquiry.');
+            report();
           });
       }
 
@@ -533,14 +551,12 @@ sitemap: false
         if (target && target !== path && !redirectedHereRecently()) {
           try { sessionStorage.setItem(GUARD_KEY, JSON.stringify({ to: target, at: Date.now() })); } catch (e) { /* private mode */ }
           say('Found it – taking you to ' + target);
-          report(true, function () {
-            location.replace(encodeURI(target) + location.search + location.hash);
-          });
+          recover(target);
           return;
         }
-        say('');
-        suggest(rows);
-        report(false);
+        var shown = suggest(rows);
+        say(shown ? 'Closest matches are listed below.' : 'No similar address found. Browse the catalogue below, or send us your enquiry.');
+        report();
       }
 
       // --- suggestions ---------------------------------------------------------
@@ -549,8 +565,11 @@ sitemap: false
         return String(s).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
       }
 
+      // One-letter words are kept: they are grade codes here - the x in /hastelloy/x/tube,
+      // the n in hastelloy-n-pipe - and dropping them made "Hastelloy Tube" a full answer
+      // to a request for Hastelloy X tube. near() only ever matches them whole.
       function keep(w) {
-        return STOP.indexOf(w) < 0 && (w.length > 1 || /\d/.test(w));
+        return STOP.indexOf(w) < 0;
       }
 
       // A grade designation split by a hyphen: a one- or two-letter prefix against a
@@ -612,7 +631,7 @@ sitemap: false
       // A page name for the enquiry, from the index title without its marketing tail:
       // "Stellite 6 Round Bar Supplier & Stockist" is asked about as "Stellite 6 Round Bar".
       function pageName(row) {
-        var name = row.t.split(/\s+[-–|]\s+|:\s|\s+(?:supplier|stockist|manufacturer|exporter)s?\b/i)[0].trim();
+        var name = row.t.split(/\s+[-–|]\s+|:\s|,\s|\s+(?:supplier|stockist|manufacturer|exporter)s?\b/i)[0].trim();
         return name || row.t;
       }
 
@@ -655,6 +674,13 @@ sitemap: false
       function guessName(best, next, need) {
         if (!best || !need.length || (next && next.s >= best.s)) return '';
         var name = pageName(best.row);
+        // Titles carry identifiers - "Haynes 242 UNS N10242 Foil" is the index title of a
+        // family foil page - so a name with a number the request never mentioned is
+        // a guess at one grade's product, not what was asked for. Keep the address.
+        var adds = words(name).some(function (w) {
+          return /\d/.test(w) && !need.some(function (q) { return near([w], q) > 0 || near([q], w) > 0; });
+        });
+        if (adds) return '';
         var own = best.row._tok.concat(words(name));
         return need.every(function (q) { return near(own, q) > 0; }) ? name : '';
       }
@@ -663,10 +689,10 @@ sitemap: false
         var all = tokens(key(path));
         // the words a strong match has to account for; joined forms are extras
         var need = unique(key(path).split('/').reduce(function (acc, seg) { return acc.concat(words(seg)); }, []).filter(keep));
-        if (!all.length) return;
+        if (!all.length) return 0;
 
         var top = rank(rows, all).slice(0, MAX_SUGGESTIONS);
-        if (!top.length) return;
+        if (!top.length) return 0;
 
         var list = $('nf-list');
         top.forEach(function (item) {
@@ -695,6 +721,7 @@ sitemap: false
           $('nf-guess').hidden = false;
           seedEnquiry(name);
         }
+        return top.length;
       }
     })();
   </script>

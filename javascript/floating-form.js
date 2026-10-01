@@ -54,7 +54,7 @@ function ctaEnquiry() {
   }
 }
 
-// Routes whose subject is not a thing anyone enquires about. The ~130 location
+// Routes whose subject is not a thing anyone enquires about. The 97 location
 // pages are the reason this list exists rather than a blanket "derive from the
 // breadcrumb": theirs ends on a bare place name, so the derived seed would read
 // "Enquiry: Mumbai", which tells the sales desk nothing and reads as a bug to
@@ -451,6 +451,10 @@ export class FloatingForm {
         width: 400px;
         max-width: 100%;
         height: 100vh;
+        /* 100vh is the tallest the viewport ever gets, so on iPhone Safari the panel's
+           foot - the Submit button on a short form - sat under the toolbar. dvh tracks
+           the toolbar; browsers without it keep the vh line above. */
+        height: 100dvh;
         background: white;
         box-shadow: -2px 0 10px rgba(0,0,0,0.1);
         transform: translateX(100%);
@@ -505,7 +509,9 @@ export class FloatingForm {
         padding: 12px;
         border: 1px solid #ddd;
         border-radius: 4px;
-        font-size: 14px;
+        /* 16px, not 14: iOS zooms the whole page into any field set below 16px the
+           moment it is tapped, and leaves it zoomed after the form closes. */
+        font-size: 16px;
         box-sizing: border-box;
         font-family: inherit;
       }
@@ -1115,8 +1121,21 @@ function trackContactClicks() {
 
       if (!method) return;
 
+      // Where on the page it was. The in-page quote block, the header rail and the
+      // footer all carry the same WhatsApp and Call links with the same text, so
+      // without this a call from the new quote block was indistinguishable from
+      // one off the rail that was already there, and the block could not be
+      // judged. Read from the DOM rather than written into every product page's markup.
+      const placement = link.dataset.placement
+        || (link.closest(".quote-cta") ? "in_page"
+          : link.closest(".floating-contact-bar") ? "rail"
+            : link.closest("footer, #footer-container") ? "footer"
+              : link.closest(".floating-form-status") ? "form_fallback"
+                : "other");
+
       track(EVENTS.contactClick, {
         method,
+        placement,
         page_path: window.location.pathname,
         link_text: (link.textContent || "").trim().slice(0, 100),
       });
@@ -1144,7 +1163,13 @@ function trackContactClicks() {
 // The number lives only in the markup (and lead-config's FALLBACK_CONTACT); it
 // is never written here, so this cannot send leads to the wrong phone.
 function seedWhatsAppLinks() {
-  const subject = ctaEnquiry() || derivedSubject();
+  // A quote link now hands the contact page "Enquiry: Inconel 625 Sheets", which
+  // is right for the textarea and read "I would like a quote for: Enquiry: ..."
+  // here, so the prefix and anything after the first line come off.
+  const subject = (ctaEnquiry() || derivedSubject())
+    .split("\n")[0]
+    .replace(/^\s*enquiry\s*:\s*/i, "")
+    .trim();
   const body = [
     subject
       ? `Hello Aurico Alloys, I would like a quote for: ${subject}`
@@ -1394,6 +1419,48 @@ function wireQuoteLinks() {
 }
 
 /* ------------------------------------------------------------------ *
+ * Recovered 404s
+ * ------------------------------------------------------------------ */
+
+// 404.html sends a mistyped or re-cased address on to the page it meant, and on
+// purpose sends no analytics hit while doing so: a page_view from the error page
+// became the session's landing page, so leads split between /hastelloy/C276/ and
+// /hastelloy/c276/. It leaves this note instead, and the page it lands on reports
+// the broken inbound link - page_not_found with recovered: true, the same event
+// the error page sends itself when nothing matches.
+const RECOVERED_404_KEY = "aurico_404_recovered";
+
+function reportRecovered404() {
+  let note;
+  try {
+    note = JSON.parse(sessionStorage.getItem(RECOVERED_404_KEY) || "null");
+  } catch {
+    return;
+  }
+  if (!note || typeof note.from !== "string") return;
+
+  let here = window.location.pathname;
+  try {
+    here = decodeURIComponent(here);
+  } catch {
+    // leave it encoded; it simply will not match
+  }
+  const stale = Date.now() - (Number(note.at) || 0) > 30000;
+  // This module also runs on the 404 page itself, possibly after the note is
+  // written and before the redirect lands, so a fresh note meant for another
+  // page is left alone rather than consumed.
+  if (note.to !== here && !stale) return;
+  try {
+    sessionStorage.removeItem(RECOVERED_404_KEY);
+  } catch {
+    // private mode; nothing to clean up
+  }
+  if (note.to === here && !stale) {
+    track("page_not_found", { page_path: note.from, recovered: true });
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Bootstrap
  * ------------------------------------------------------------------ */
 
@@ -1406,6 +1473,7 @@ function start() {
   window.floatingFormLoaded = true;
 
   captureAttribution();
+  reportRecovered404();
   trackContactClicks();
   seedWhatsAppLinks();
   // Before the forms are built, so a quote link still reaches a seeded contact
