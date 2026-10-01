@@ -1907,10 +1907,20 @@ meta.** `/privacy/` and `/terms/` say `noindex, follow` and were listed anyway, 
 reports as *Submitted URL marked 'noindex'* — the sitemap asking Google to index a page that tells it
 not to. Both carry `sitemap: false` since 2026-09-27. A sweep of every page for a `robots` or
 `googlebot` meta containing `noindex` found no third that would be listed —
-`/pure-nickel-strip/product/` is the only other, and `robots.txt` already keeps it out. The flag
-also drops a page from `search-index.json` and exempts it from `seo_audit.py`'s orphan check, both
-on purpose: those read the same front matter for the same reason. It does not exempt a page from the
-`<h1>` check, and neither of these needed it.
+`/pure-nickel-strip/product/` is the only other, and `robots.txt` already keeps it out.
+
+The flag does two more things, and neither is why these two carry it. It exempts a page from
+`seo_audit.py`'s orphan check, which costs them nothing: the footer links both from every page. And
+it drops a page from `search-index.json`, which is **a cost of the flag, not its purpose**.
+`build-search-index.mjs` follows the sitemap's rules "so a page can never be blocked from crawlers
+yet offered in search", and these two are blocked from no crawler — `noindex, follow`, and not in
+`robots.txt`. Since the index was regenerated in `bd71fbee`, the header search answers "privacy" and
+"terms" with *No match*, and the 404 page can neither send `/privacy.html` on to `/privacy/` nor
+suggest it, while it does recover `/inconel/625/sheets.html` (measured in a browser, 2026-10-01).
+That is the trade as it stands, with the footer link as the way in. The fix that has both is for
+`build-sitemap.mjs` to read the robots meta itself, so these two can drop the flag — a change to its
+page selection, not to these pages. The flag does not exempt a page from the `<h1>` check, and
+neither of these needed it.
 
 **`<lastmod>` is only as good as the discipline behind it.** Google uses the value *only* while it is
 "consistently and verifiably accurate", comparing it against the page it actually fetched. Get it
