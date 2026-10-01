@@ -124,6 +124,14 @@ const BOILERPLATE = new Set([
   'f0997d1a', // redirected 53 retired URLs; the targets gained only a redirect_from line
   'e050e4b6', // linked the orphaned titanium plates pages; a neighbour's link, no grade copy moved
   'd3624386', // finished 86 truncated <title> tags; metadata only, no page's subject matter moved
+  '6e57c6b0', // added the generated quote block to 626 product pages; a sitewide element, no product copy moved
+  'af2fd408', // GA4 tag on the calculator, privacy and terms, and sitemap: false on the last two
+  'f3fe24fc', // retired two duplicate pages into their keepers; redirect_from lines and repointed hrefs only
+  '2aeb8346', // linked Haynes 556, HR-160 and nickel foil from their siblings' lists; links only, no grade copy moved
+  '062da47d', // pointed the Nichrome grades table at the six NiCr grade hubs; link targets only
+  '9aed1379', // finished three cut-off <title> tags; metadata only, same as d3624386
+  'a32931f0', // 32140 page's crumb and Product name off a blog hook, plus its quote block; no product copy moved
+  '587a4a1e', // the grade in 15 breadcrumbs, and the quote block on those pages; navigation only, same as c13cdb9c
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
