@@ -2280,6 +2280,20 @@ keeps the full desktop nav on one row. Without it the logo absorbed the shortfal
 an iPad in landscape, and the homepage and contact page scrolled sideways. From 1200px the nav links
 are pinned at 1rem: on the four pages that load `style.css` they inherited its fluid 18px body size,
 which squeezed the logo to 100×30 at 1200px and wrapped "About Us" onto two lines at 1366.
+
+**On the desktop nav only the search box gives.** The links never wrap and the logo never
+shrinks; the search box takes any shortfall, down to a floor set per width band. Until 2026-10-01
+"About Us" and "Get a Quote" broke onto two lines from 992 to 1279px, and to 1319px on the
+`style.css` pages, on every page type: 892 of 1,545 widths measured. Flex shrinks every item in
+proportion to its width, so the two-word links broke while the search box still had 60px to spare.
+The bands meet at 1100, 1200 and 1280, and 992–1099 and 1200–1279 are the tight ones, with 15–17px
+to spare in DejaVu Sans, which is wider than Segoe UI, San Francisco or Roboto. When even the floor
+does not fit — a reader who has set a larger default font — the row wraps and the search box takes a
+second line, instead of the page scrolling sideways, which the old nav did at every width from 992
+to 1440 at a 20px default font. Get a Quote's side padding is `body`-qualified because it tied with
+Bootstrap's desktop link padding at (0,3,0) and so followed the link order: 1.1rem on 361 pages,
+.5rem on 435. Check a nav change at every width from 992 to 1400, on one page per stylesheet set,
+not at a few round numbers. The bands' edges are where it breaks.
 The contact rail sits at `bottom: 120px` on portrait tablets and in the compact column at `top: 80px`
 on phones and anything under 500px tall. At `top: 40%` it covered the `<h1>` on 56 of 161 sampled
 pages at 768×1024, and on a phone held in landscape it reached over the scroll-to-top button, so a tap

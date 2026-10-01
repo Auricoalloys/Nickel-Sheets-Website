@@ -191,18 +191,68 @@ body .navbar-brand img {
   height: auto;
 }
 
-/* 992-1199px: the full desktop nav - eight links, Get a Quote and a search box
-   with a 12rem floor - is wider than the bar, and max-width above let the logo
-   pay for all of it: 8x2px at 992 and 1024 on form pages, i.e. invisible on an
-   iPad in landscape, and on the homepage and contact page, where the nav was
-   wider still, the bar overflowed and the whole page scrolled sideways.
-   Measured at 992/1024/1100/1199: a fixed 120x36 logo, tighter link padding, a
-   .92rem link size and an 8.5rem search floor fit one row with no overflow on
-   all four page types. None of this applies from 1200px; see the link size
-   below for what does. */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  body .navbar-brand {
+/* The desktop nav, from 992px: eight links, Get a Quote and the search box on
+   one row. Only the search box gives when the row is short - from a floor set
+   per width band below, up to 14rem - and the links and the logo never do.
+
+   Until 2026-10-01 "About Us" and "Get a Quote" broke onto two lines from 992
+   to 1279px, and to 1319px on the four pages that load style.css, on every
+   page type: a 76-83px header, at 892 of 1,545 widths measured (one page per
+   stylesheet set, every 4px from 992 to 1400). Flex shrinks every item in
+   proportion to its width, so the two-word links broke while the search box
+   still had 60px to spare. Now the links keep their width and the search box
+   takes the shortfall, down to its floor.
+
+   Where even the floor does not fit - a reader who has set a larger default
+   font - the row wraps and the search box takes a second line, instead of the
+   page scrolling sideways. At a 20px default font the old nav did both at every
+   width from 992 to 1440: wrapped the links and widened the page.
+
+   Measured with DejaVu Sans, wider than Segoe UI, San Francisco or Roboto: no
+   link on two lines, no sideways scroll and no second row at any of the 1,545
+   widths, the logo 120x36 below 1200px and 160x48 from it, the header 62px and
+   74px, and at least 15px to spare (the homepage at 1200px). */
+@media (min-width: 992px) {
+  body .navbar {
+    --nav-search-floor: 11rem;
+  }
+
+  body .navbar-expand-lg .navbar-brand {
     flex-shrink: 0;
+  }
+
+  body .navbar-expand-lg .navbar-nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  body .navbar-expand-lg .navbar-nav .nav-link {
+    white-space: nowrap;
+  }
+
+  body .navbar-expand-lg .site-search {
+    flex: 1 1 var(--nav-search-floor);
+    max-width: 14rem;
+  }
+
+  body .navbar-expand-lg .site-search__input {
+    min-width: var(--nav-search-floor);
+  }
+}
+
+/* 992-1199px: the full desktop nav is wider than the bar at 16px, and before
+   the logo had a fixed size it paid for all of it: 8x2px at 992 and 1024 on
+   form pages, i.e. invisible on an iPad in landscape, and on the homepage and
+   contact page, where the nav was wider still, the bar overflowed and the whole
+   page scrolled sideways. A fixed 120x36 logo, tighter link padding, a .92rem
+   link size and an 8.5rem search floor make the room. None of this applies
+   from 1200px; see the link size below for what does. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  body .navbar {
+    --nav-search-floor: 8.5rem;
+  }
+
+  body .navbar-brand {
     margin-right: 0.5rem;
   }
 
@@ -220,9 +270,24 @@ body .navbar-brand img {
     padding: 0.45rem 0.75rem;
     margin-left: 0.25rem;
   }
+}
 
-  body .site-search__input {
-    min-width: 8.5rem;
+/* 992-1099px is still short with the links on one line: 59px on a form page at
+   992 and 75px on the style.css pages, whose container keeps 20px a side. A
+   .875rem link size, .25rem padding and a 6.5rem search floor leave 17px. */
+@media (min-width: 992px) and (max-width: 1099.98px) {
+  body .navbar {
+    --nav-search-floor: 6.5rem;
+  }
+
+  body .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  body .navbar .nav-link.nav-cta {
+    padding: 0.45rem 0.6rem;
   }
 }
 
@@ -243,10 +308,37 @@ body .navbar > .container {
    the homepage. With it, at 1200-1440 on all page types the logo is 154x46 at
    1200 and 159-160 from 1240, and the homepage header is 74px from 1320 like
    every other page. Every page that already drew them at 16px, which is all
-   but those four, is unchanged. */
+   but those four, is unchanged.
+
+   Get a Quote's side padding is set here too, because nothing decided it: the
+   1.1rem in the rule further down and Bootstrap's .5rem for every desktop nav
+   link are both (0,3,0), so the later stylesheet won - 1.1rem on 361 pages and
+   .5rem on 435, by link order alone. Qualified with body, it is 1.1rem on all. */
 @media (min-width: 1200px) {
   body .navbar-expand-lg .navbar-nav .nav-link {
     font-size: 1rem;
+  }
+
+  body .navbar .nav-link.nav-cta {
+    padding: 0.45rem 1.1rem;
+  }
+}
+
+/* 1200-1279px: the 160px logo and 1rem links leave the row 45px short on a
+   form page at 1200 and 61px on the style.css pages. .375rem link padding, a
+   .75rem button and a 9rem search floor leave 15px. */
+@media (min-width: 1200px) and (max-width: 1279.98px) {
+  body .navbar {
+    --nav-search-floor: 9rem;
+  }
+
+  body .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0.375rem;
+    padding-right: 0.375rem;
+  }
+
+  body .navbar .nav-link.nav-cta {
+    padding: 0.45rem 0.75rem;
   }
 }
 
