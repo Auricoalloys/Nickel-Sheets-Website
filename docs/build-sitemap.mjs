@@ -49,9 +49,13 @@ const CHECK = process.argv.includes('--check');
 // deep by default - found the generator disagreeing with the committed sitemap
 // on hundreds of dates, took it for the documented one-commit-behind state, and
 // regenerated (b060d0f7, "lastmod dates were stale on hundreds of URLs"). 589 of
-// 801 URLs came out dated 2026-09-10, the date of df0ceec3, the boundary. Full
-// history puts 63 of them there; the other 526 were last edited between
+// 801 URLs came out dated 2026-09-10, the date of the clone's shallow boundary.
+// Full history puts 63 of them there; the other 526 were last edited between
 // 2026-08-12 and 2026-09-09, and each claimed an update that never happened.
+// (The boundary is the oldest of the 50 commits a clone holds, so it moves with
+// whichever tip was cloned: the date is the evidence, not a SHA. This comment
+// once named df0ceec3, which a clone of b060d0f7's parent holds as its 40th
+// commit, not its 50th - that clone ends on cc09f52f, also of 2026-09-10.)
 // It is the inflated-lastmod failure BOILERPLATE exists to prevent, arriving
 // from the other side, and nothing in the output looked wrong: the drift was
 // the bug, and writing the file was the "fix" that published it.

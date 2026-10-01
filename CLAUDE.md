@@ -803,9 +803,13 @@ definitions). GA4 does not backfill one, so whatever it records before registrat
 report that splits on it. That is an owner's setting, like the key event below. The review task's
 `SKILL.md` lives outside this repo and needs the same split.
 
-**`generate_lead` counts form leads only, and a lot of enquiries never touch the form.** The review
-task lives outside this repo, at `~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, and
-should read three more events beside it:
+**`generate_lead` counts form leads only, and a lot of enquiries never touch the form.** The lead
+count is `generate_lead` plus `contact_click`. The review should read three more events beside
+`generate_lead`, but only the first adds leads: the other two measure intent, and adding either to
+the count counts an enquiry twice, or counts a click that never became one. The review task lives
+outside this repo, at `~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, so none of
+this reaches it until that file is edited on the machine that runs it. Nothing here can make that
+edit or tell whether it has been made — ask.
 
 - **`contact_click`, split by its `method` parameter — `phone`, `whatsapp`, `email`.**
   `floating-form.js` fires it on every `tel:`, `mailto:`, `wa.me` and `api.whatsapp.com` link on
@@ -816,9 +820,14 @@ should read three more events beside it:
   page markup carries it. Without it, a call from the quote block could not be told from one off the
   rail beside it, because both carry the same links with the same text.
 - **`calculator_quote_click`, split by `method` (`form` / `whatsapp`)** — a weight-calculator result
-  turned into an enquiry. Its `form` half opens the form, so it is intent in the same sense as
-  `quote_cta_click`; its `whatsapp` half is a hand-off the Sheet never sees. 316 form pages
-  deep-link into the calculator with the grade and form already chosen.
+  the visitor asked to have quoted. It is **intent, not a lead**, in both halves. The `form` half
+  opens the form in place, so a visitor who submits is already one `generate_lead`. The `whatsapp`
+  half is the same click as a `contact_click`: the calculator's WhatsApp button fires both, the
+  second with `method: whatsapp` and `placement: other`, so it is already in the count. Measured in
+  a browser on 2026-10-01: one enquiry by form records `calculator_quote_click`, `form_start` and
+  `generate_lead`, and one WhatsApp click records `calculator_quote_click` and `contact_click`. Read
+  it as the top of the calculator's funnel, the way `quote_cta_click` is read for the quote
+  buttons. 316 form pages deep-link into the calculator with the grade and form already chosen.
 - **`quote_cta_click`, split by `placement` (`header` / `in_page` / `not_found`)** — a click on a quote button that
   opens the form in place. It is **intent, not an enquiry**: a visitor who clicks and then submits is
   already one `generate_lead`, so adding the two double-counts the lead. Read it as the top of the
@@ -1913,10 +1922,20 @@ meta.** `/privacy/` and `/terms/` say `noindex, follow` and were listed anyway, 
 reports as *Submitted URL marked 'noindex'* — the sitemap asking Google to index a page that tells it
 not to. Both carry `sitemap: false` since 2026-09-27. A sweep of every page for a `robots` or
 `googlebot` meta containing `noindex` found no third that would be listed —
-`/pure-nickel-strip/product/` is the only other, and `robots.txt` already keeps it out. The flag
-also drops a page from `search-index.json` and exempts it from `seo_audit.py`'s orphan check, both
-on purpose: those read the same front matter for the same reason. It does not exempt a page from the
-`<h1>` check, and neither of these needed it.
+`/pure-nickel-strip/product/` is the only other, and `robots.txt` already keeps it out.
+
+The flag does two more things, and neither is why these two carry it. It exempts a page from
+`seo_audit.py`'s orphan check, which costs them nothing: the footer links both from every page. And
+it drops a page from `search-index.json`, which is **a cost of the flag, not its purpose**.
+`build-search-index.mjs` follows the sitemap's rules "so a page can never be blocked from crawlers
+yet offered in search", and these two are blocked from no crawler — `noindex, follow`, and not in
+`robots.txt`. Since the index was regenerated in `bd71fbee`, the header search answers "privacy" and
+"terms" with *No match*, and the 404 page can neither send `/privacy.html` on to `/privacy/` nor
+suggest it, while it does recover `/inconel/625/sheets.html` (measured in a browser, 2026-10-01).
+That is the trade as it stands, with the footer link as the way in. The fix that has both is for
+`build-sitemap.mjs` to read the robots meta itself, so these two can drop the flag — a change to its
+page selection, not to these pages. The flag does not exempt a page from the `<h1>` check, and
+neither of these needed it.
 
 **`<lastmod>` is only as good as the discipline behind it.** Google uses the value *only* while it is
 "consistently and verifiably accurate", comparing it against the page it actually fetched. Get it
