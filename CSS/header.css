@@ -72,6 +72,16 @@ body h1 {
   text-align: center;
 }
 
+/* A word that cannot fit its line breaks rather than running off the screen.
+   The prose writes alloy families with non-breaking hyphens -
+   "nickel-chromium-molybdenum" with U+2011, on 56 pages - which a browser will
+   not wrap at, so on a 360px phone the word ran past its paragraph and the page
+   scrolled sideways. break-word acts only on a word that would otherwise
+   overflow, and unlike anywhere it leaves table column widths alone. */
+body {
+  overflow-wrap: break-word;
+}
+
 /* The footer is dark on every page, so its override lives here with the token.
    Every other dark surface sets --heading-color: currentColor beside its own
    background rule - see hero.css, proof.css, pages.css and style.css. Keeping

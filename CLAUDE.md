@@ -2218,6 +2218,43 @@ the sidebar need the `:has()` rule, so check a new sidebar shape against those s
 that won on the 138 pages linking `pages.css` after `header.css`; that is why the rail's rules are
 `body`-qualified and its animation is `contact-rail-bob`. Delete the copies, don't edit them.
 
+**Nothing on a page may be wider than the phone it is read on.** On 2026-10-01 the published site
+had **33 of 801 pages scrolling sideways at 320px, 30 at 360px and 16 at 768px**. The page can
+then wobble left and right under a thumb, and the fixed contact rail pins itself to the widened
+edge, off the screen. Every count is now 0 at 320, 360, 414 and 768px. Each cause is a rule, not a
+page edit, so the next page built the same way is covered:
+
+- **Visually hidden text escaping a table's scroll box.** The powder pages' check-mark cells carry
+  a hidden "Yes", positioned absolutely by Bootstrap. The table wrappers in the table system are
+  `position: relative` so it stays inside them.
+- **The contents box.** `.table-of-content` is `width: 100%` on phones and also had 20px side margins
+  and a 1.05 scale. `.main-content`'s padding absorbed that on most pages, leaving the box
+  off-centre. The twelve pages that put it straight into a 12px container went 28px past a 360px
+  screen and 13px past a 768px one: the titanium alloy form pages, the Grade 2 powder page and the
+  Incoloy hollow bars page. Below 769px it has no side margins and no scale, and it is centred.
+- **Flex items held open by their content.** A flex item is never narrower than its longest word or
+  widest table unless told it may be, so `.description` and `.ss-content` take `min-width: 0`. And
+  `.image-section`, which is `width: fit-content`, is capped at 100% so the table inside it scrolls
+  in its own wrapper.
+- **Words that cannot wrap.** 56 pages write alloy families with non-breaking hyphens (U+2011), and
+  "nickel‑chromium‑molybdenum" is one word to a browser. `body { overflow-wrap: break-word }` in
+  `header.css` breaks only a word that would otherwise overflow. Unlike `anywhere`, it leaves table
+  column widths alone.
+- **Bootstrap pieces that never wrap.** `.badge` is `white-space: nowrap` and `.btn-group` is a
+  single row. Three pages put more into a badge than a screen holds (whole applications on the
+  Monel K-500 foil page, "Worldwide Export" at `fs-5` on two combined foil pages), and the 32140
+  strip page put four long links in a button group. Both now wrap, and only when they must.
+- **`.container` at 10px against rows built for 12.** A `.row`'s negative margins are half its 24px
+  gutter, so every row in a full-width container ran 2px past each side. `pages.css` now gives
+  `.container` Bootstrap's 12px.
+
+To check, load every `<loc>` in `sitemap.xml` at those four widths and compare
+`document.documentElement.scrollWidth` with `clientWidth`. To find a culprit, hide one child at a
+time from `<body>` down until the overflow stops. Reading bounding boxes misleads in two ways: a
+fixed element such as the contact rail sits at the widened edge without causing it, and a table
+past the edge inside an `overflow-x: auto` wrapper is not the cause either. Text running out of its
+box shows only through a `Range` over its text nodes.
+
 #### Tables are one system, and the link order used to decide how they looked
 
 There is **one table look**, in the block marked `table system` in `CSS/pages.css`, mirrored

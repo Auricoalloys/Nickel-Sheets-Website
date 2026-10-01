@@ -368,6 +368,17 @@
   @media (max-width: 768px) {
     .table-of-content {
       width: 100%;
+      /* 100% and the 20px side margins above came to 40px wider than the
+         column. On most pages .main-content's padding absorbed it, leaving the
+         box off-centre; on the twelve that put the contents box straight into a
+         12px container - the titanium alloy form pages among them - it pushed
+         the page 28px past a 360px screen. Without the side margins it is
+         centred in its column everywhere. */
+      margin-left: 0;
+      margin-right: 0;
+      /* The 1.05 scale on a box this wide ran it 13px past a 768px tablet on
+         the same twelve pages. */
+      transform: none;
     }
   }
   .ss-section-img{
@@ -381,6 +392,9 @@
   .description {
     flex: 1;
     padding: 0px 10px;
+    /* A flex item is never narrower than its longest word or its widest table
+       unless told it may be. Held open by one, it ran past a phone's screen. */
+    min-width: 0;
   }
 
   .description p {
@@ -391,6 +405,10 @@
   .image-section {
     flex: 0 0 auto;
     width: fit-content;
+    /* fit-content took the width of a wide table inside - the foil pages put a
+       comparison table here - and stretched the page past a phone's screen.
+       The table has its own scroll wrapper; capped, it scrolls. */
+    max-width: 100%;
     block-size: auto;
     margin-top: 5px;
     text-align: center;
@@ -440,6 +458,8 @@
 
   .ss-content {
     max-width: 1100px;
+    /* A flex item in .ss-section-img - see .description. */
+    min-width: 0;
     margin: auto;
     text-align: justify;
     padding: 10px;
@@ -981,7 +1001,25 @@ footer p a {
 
   .container {
     margin: 0 auto;
-    padding: 0 10px;
+    /* Bootstrap's 12px, not 10: a .row's negative margins are half its 24px
+       gutter, so in a 10px container every row ran 2px past each side of a
+       phone's screen, and the page scrolled sideways by that much. */
+    padding: 0 12px;
+  }
+
+  /* Bootstrap's .badge never wraps, and seven pages put more into one than a
+     screen holds: whole applications on the Monel K-500 foil page (446px of
+     text at 360px), "Worldwide Export" at fs-5 on the combined foil pages,
+     which overran a 768px tablet. body outranks Bootstrap in either link
+     order, and the K-500 page links it after this file. */
+  body .badge {
+    white-space: normal;
+  }
+
+  /* Bootstrap's .btn-group is a row that never wraps. The 32140 strip page puts
+     its four related-format links in one, which ran 23px past a 320px screen. */
+  body .btn-group {
+    flex-wrap: wrap;
   }
 
   /* One reading measure for page content. Three rules used to decide how wide a
