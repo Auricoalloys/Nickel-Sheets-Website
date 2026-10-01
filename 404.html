@@ -284,9 +284,9 @@ sitemap: false
       </section>
 
       <!-- data-enquiry is written by the script below, from the best guess at what the
-           visitor wanted. javascript/floating-form.js opens the enquiry panel with it on
-           click. The href stays the bare contact URL, which is what a click without that
-           script reaches. -->
+           visitor wanted, here and on the header's Get a Quote alike.
+           javascript/floating-form.js opens the enquiry panel with it on click. The href
+           stays the bare contact URL, which is what a click without that script reaches. -->
       <section class="nf-cta" aria-labelledby="nf-cta-title">
         <h2 id="nf-cta-title">Tell us what you were looking for</h2>
         <p>Send the grade, form and size you need and we will reply with price and availability within one working day.</p>
@@ -345,16 +345,24 @@ sitemap: false
   <div id="footer__container">{% include footer.html %}</div>
 
   <script defer src="/javascript/bootstrap.bundle.min.js"></script>
+  <!-- Every address a page lists in redirect_from, with the page it redirects to, as
+       [url, redirect_from] pairs closed by a null. Liquid writes it at build time from the
+       same front matter jekyll-redirect-from builds its stubs from, so it cannot disagree
+       with them and there is no generated file to fall behind. A stub answers only its own
+       spelling: /hastelloy/b2/coil/ missed the stub at /hastelloy/B2/coil/ and landed here,
+       although the site knew where that address goes. -->
+  <script type="application/json" id="nf-redirects">[{%- for p in site.html_pages -%}{%- if p.redirect_from -%}[{{ p.url | jsonify }},{{ p.redirect_from | jsonify }}],{%- endif -%}{%- endfor -%}null]</script>
   <script>
     // Recovery, then suggestions. Runs inline, while the page parses, so the enquiry
-    // link carries its data-enquiry before floating-form.js (a deferred module) starts.
+    // links carry their data-enquiry before floating-form.js (a deferred module) starts.
     //
-    // 1. Recovery. search-index.json lists every published page. If one of them has the
+    // 1. Recovery. search-index.json lists every published page, and #nf-redirects every
+    //    retired address the site still redirects. If exactly one page answers to the
     //    requested address apart from letter case, a missing trailing slash, a trailing
-    //    index.html or .html, trailing punctuation from a pasted sentence, or the hyphen
-    //    in a grade (c276 for C-276 is the same page on this site as K500 for K-500), go
-    //    there with location.replace, keeping the query and hash, so the dead address
-    //    does not stay in the back button's history.
+    //    index.html or .html, trailing punctuation from a pasted sentence, or the hyphen in
+    //    a grade (c276 for C-276 is the same page on this site as K500 for K-500), go there
+    //    with location.replace, keeping the query and hash, so the dead address does not
+    //    stay in the back button's history. A retired address goes where its stub goes.
     // 2. Otherwise, suggest the pages whose address shares the most words with the one
     //    asked for, and seed the enquiry with the best guess at what was wanted.
     //
@@ -374,20 +382,44 @@ sitemap: false
       var MAX_SUGGESTIONS = 6;
       var FETCH_TIMEOUT_MS = 8000;
       var GUARD_KEY = 'aurico_404_redirect';
+      // The note recover() leaves for the page it sends the visitor to. floating-form.js
+      // reads it there and reports the broken link; see takeHop() for the one page that
+      // must not.
+      var NOTE_KEY = 'aurico_404_recovered';
+      var NOTE_TTL_MS = 30000;
       // Words that say nothing about which material a page is for. The flat SEO
       // permalinks are full of the last group, so matching on them would rank every
       // "-supplier-exporter-in-mumbai-india" page alike.
       var STOP = ('html htm php asp aspx index www amp reg trade the and for of in to ' +
         'supplier suppliers stockist stockists exporter exporters manufacturer manufacturers ' +
         'dealer dealers india mumbai').split(' ');
+      // Mirrors NO_SUBJECT_PREFIXES in javascript/floating-form.js: routes whose own last
+      // crumb tells the sales desk nothing ("Pune", "Weight Calculator"), so their pages
+      // seed no subject. A guess landing on one of them seeds none either.
+      var NO_SUBJECT = ['/nickel-alloy-supplier-in-', '/supply-locations/', '/export-markets/',
+        '/pages/contact/', '/privacy/', '/terms/', '/tools/'];
 
       var rawPath = location.pathname;
       var path = decodePath(rawPath);
+      var hop = takeHop();
 
       var $ = function (id) { return document.getElementById(id); };
-      var quote = $('nf-quote');
       var whatsapp = $('nf-whatsapp');
       var whatsappBase = whatsapp ? whatsapp.getAttribute('href') : '';
+      // An explicit ?enquiry= says what the visitor clicked, and wins over anything this
+      // page could guess - the rule floating-form.js keeps on every other page.
+      var explicit = '';
+      try { explicit = (new URLSearchParams(location.search).get('enquiry') || '').trim().slice(0, 300); } catch (e) { /* old browser */ }
+      var enquiry = '';   // the enquiry text every quote link on this page hands the form
+      var panelSeed = ''; // what this page last wrote into the floating form's textarea
+
+      // Set by the first sign the visitor is using the page: a click or tap, a key, a
+      // field taking focus. The index can take seconds to arrive, and recovering then
+      // threw away an enquiry half typed into the panel this page invites them to open.
+      var acted = false;
+      ['click', 'keydown', 'input', 'focusin'].forEach(function (type) {
+        document.addEventListener(type, function () { acted = true; }, true);
+      });
 
       if ($('nf-path')) {
         $('nf-path').textContent = path;
@@ -395,7 +427,10 @@ sitemap: false
       }
       // Until the index says more, the enquiry names the address itself: a sales
       // desk reading "/hastelloy/c-276/tube" knows what was wanted.
-      seedEnquiry(path);
+      setSubject(path);
+      // floating-form.js builds the panel after this script and before DOMContentLoaded,
+      // so this is the first moment the launcher's own form can be seeded too.
+      document.addEventListener('DOMContentLoaded', seedPanel);
 
       // Someone opening /404.html directly is not following a broken link.
       if (rawPath === '/404.html') { pageView(); return; }
@@ -412,6 +447,22 @@ sitemap: false
         if (el) el.textContent = message;
       }
 
+      // This page is also where a recovery lands when the index still lists a page that
+      // has gone: recover() sent the visitor here, and this address 404ed too. The note it
+      // left is addressed to this page, so it is taken now, before floating-form.js - a
+      // deferred module - can read it and report a visit that ended on an error page as
+      // recovered, beside this page's own report of the same visit. One report goes, from
+      // here: not recovered, under the address that was asked for in the first place.
+      function takeHop() {
+        try {
+          var note = JSON.parse(sessionStorage.getItem(NOTE_KEY) || 'null');
+          if (!note || note.to !== path || typeof note.from !== 'string') return null;
+          if (!(Date.now() - (Number(note.at) || 0) < NOTE_TTL_MS)) return null;
+          sessionStorage.removeItem(NOTE_KEY);
+          return note;
+        } catch (e) { return null; }
+      }
+
       // Mirrors tidySubject() in javascript/floating-form.js, so an enquiry raised here
       // reads like one raised from any other page: collapse whitespace, cap at 120
       // characters, and title-case only a subject that is capitals and spaces alone -
@@ -422,19 +473,48 @@ sitemap: false
         return collapsed.replace(/\S+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); });
       }
 
-      function seedEnquiry(subject) {
-        var text = tidy(subject);
-        // Attribute and href only, never markup: the path is whatever the visitor, or
+      // One enquiry, everywhere a visitor can raise one from this page: the block's
+      // button, the header's Get a Quote, the WhatsApp link and the floating form the
+      // launcher opens. Only the block's button used to carry it, so on a desktop -
+      // where the header button is the most prominent - the visitor got a blank form.
+      function setSubject(subject) {
+        enquiry = explicit || 'Enquiry: ' + tidy(subject);
+        // Attributes and hrefs only, never markup: the path is whatever the visitor, or
         // whoever wrote the link they followed, put in the address bar.
-        if (quote) quote.setAttribute('data-enquiry', 'Enquiry: ' + text);
+        var links = document.querySelectorAll('#nf-quote, a.nav-cta');
+        for (var i = 0; i < links.length; i++) links[i].setAttribute('data-enquiry', enquiry);
         if (whatsapp && whatsappBase) {
-          var body = 'Hello Aurico Alloys, I would like a quote for: ' + text + '\n\nPage: ' + location.href;
+          var line = enquiry.split('\n')[0].replace(/^\s*enquiry\s*:\s*/i, '').trim();
+          var body = 'Hello Aurico Alloys, I would like a quote for: ' + line + '\n\nPage: ' + location.href;
           whatsapp.setAttribute('href', whatsappBase + '?text=' + encodeURIComponent(body));
         }
+        seedPanel();
+      }
+
+      // The floating form, once floating-form.js has built it, and only while nothing in
+      // it is the visitor's: empty, or still what this page last wrote. seed() keeps the
+      // trailing newline, so the caret lands under the subject, as on every other page.
+      function seedPanel() {
+        var panel = window.floatingForm;
+        var box = panel && panel.form && panel.form.querySelector('textarea[name="inquiry"]');
+        if (!box || typeof panel.seed !== 'function' || !enquiry) return;
+        var current = box.value.trim();
+        if (current && current !== panelSeed) return;
+        panel.seed(enquiry + '\n');
+        panelSeed = enquiry;
       }
 
       function pageView() {
         try { if (typeof window.gtag === 'function') window.gtag('event', 'page_view'); } catch (e) { /* never block the page */ }
+      }
+
+      // Where the broken link was followed from: the page, site or assistant holding it.
+      // Sent with page_not_found as link_referrer, recovered or not, because GA4 cannot
+      // see it on a recovered visit - the page it lands on has this error page as its
+      // referrer. 100 characters is GA4's limit for a parameter value.
+      function linkReferrer() {
+        var ref = hop && typeof hop.ref === 'string' ? hop.ref : document.referrer;
+        return String(ref || 'direct').slice(0, 100);
       }
 
       // A visitor who stays on this page: one page_view, and page_not_found with the
@@ -449,15 +529,22 @@ sitemap: false
       function report() {
         pageView();
         try {
-          if (typeof window.gtag === 'function') window.gtag('event', 'page_not_found', { page_path: rawPath, recovered: false });
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'page_not_found', {
+              page_path: hop ? hop.from : rawPath,
+              recovered: false,
+              link_referrer: linkReferrer()
+            });
+          }
         } catch (e) { /* analytics must never stop the page */ }
       }
 
       // Hands the visit to the page it was looking for. First-touch attribution is
       // written here if floating-form.js has not written it yet - otherwise the target
       // page records this error page as the referrer and the visitor's real source
-      // (a search engine, chatgpt.com) is lost - and corrected if it has, because the
-      // landing page is the target, not the address that 404ed.
+      // (a search engine, chatgpt.com) is lost from the lead - and corrected if it has,
+      // because the landing page is the target, not the address that 404ed. GA4's own
+      // session source cannot be corrected from here; link_referrer carries it instead.
       function recover(target) {
         try {
           var KEY = 'aurico_attribution';
@@ -470,41 +557,47 @@ sitemap: false
             if (v && !stored[k]) stored[k] = v;
           });
           sessionStorage.setItem(KEY, JSON.stringify(stored));
-          sessionStorage.setItem('aurico_404_recovered', JSON.stringify({ from: rawPath, to: target, at: Date.now() }));
+          sessionStorage.setItem(NOTE_KEY, JSON.stringify({ from: hop ? hop.from : rawPath, to: target, at: Date.now(), ref: linkReferrer() }));
         } catch (e) { /* private mode: the redirect still happens */ }
         location.replace(encodeURI(target) + location.search + location.hash);
       }
 
-      function loadIndex() {
+      // A same-site resource as text, given up after FETCH_TIMEOUT_MS.
+      function fetchText(url) {
         var controller = typeof AbortController === 'function' ? new AbortController() : null;
         var timer = setTimeout(function () { if (controller) controller.abort(); }, FETCH_TIMEOUT_MS);
         var request;
         try {
-          request = fetch(INDEX_URL, controller ? { signal: controller.signal } : {});
+          request = fetch(url, controller ? { signal: controller.signal } : {});
         } catch (e) {
           request = Promise.reject(e);
         }
-        request
+        return request
           .then(function (r) {
-            if (!r.ok) throw new Error('search index HTTP ' + r.status);
-            return r.json();
+            if (!r.ok) throw new Error(url + ' HTTP ' + r.status);
+            return r.text();
           })
-          .then(function (rows) {
-            clearTimeout(timer);
+          .then(function (text) { clearTimeout(timer); return text; },
+            function (error) { clearTimeout(timer); throw error; });
+      }
+
+      function loadIndex() {
+        fetchText(INDEX_URL)
+          .then(function (text) {
+            var rows = JSON.parse(text);
             if (!Array.isArray(rows)) throw new Error('search index is not a list');
             useIndex(rows.filter(function (r) { return r && isSafe(r.u) && typeof r.t === 'string'; }));
           })
           .catch(function () {
             // No index, no suggestions - the rest of the page stands on its own.
-            clearTimeout(timer);
             say('No similar address found. Browse the catalogue below, or send us your enquiry.');
             report();
           });
       }
 
-      // Only a same-site path from the index is ever navigated to or linked. The
-      // requested path is never a redirect target, so this page cannot be turned into
-      // an open redirect by a crafted link.
+      // Only a same-site path from the index or the redirect map is ever navigated to or
+      // linked. The requested path is never a redirect target, so this page cannot be
+      // turned into an open redirect by a crafted link.
       function isSafe(u) {
         return typeof u === 'string' && /^\/(?![\/\\])[^\\]*$/.test(u);
       }
@@ -529,13 +622,32 @@ sitemap: false
         return list.filter(function (x, i) { return list.indexOf(x) === i; });
       }
 
+      // The redirect map as {from, to} pairs: a retired address, and the page its stub
+      // sends a visitor to. Empty when the block is missing or unreadable, which leaves
+      // the live pages to match on their own.
+      function redirects() {
+        var pairs = [];
+        try {
+          var el = $('nf-redirects');
+          JSON.parse(el ? el.textContent : '[]').forEach(function (entry) {
+            if (!Array.isArray(entry) || !isSafe(entry[0])) return;
+            [].concat(entry[1]).forEach(function (from) {
+              if (typeof from === 'string' && from) pairs.push({ from: from, to: entry[0] });
+            });
+          });
+        } catch (e) { /* no map */ }
+        return pairs;
+      }
+
       function findTarget(rows) {
         if (rows.some(function (r) { return r.u === path; })) return null;
+        // Every address a visitor could have meant, and the page that answers it.
+        var known = rows.map(function (r) { return { from: r.u, to: r.u }; }).concat(redirects());
         var k = key(path);
-        var exact = unique(rows.filter(function (r) { return key(r.u) === k; }).map(function (r) { return r.u; }));
+        var exact = unique(known.filter(function (a) { return key(a.from) === k; }).map(function (a) { return a.to; }));
         if (exact.length) return exact.length === 1 ? exact[0] : null;
         var lk = looseKey(path);
-        var loose = unique(rows.filter(function (r) { return looseKey(r.u) === lk; }).map(function (r) { return r.u; }));
+        var loose = unique(known.filter(function (a) { return looseKey(a.from) === lk; }).map(function (a) { return a.to; }));
         return loose.length === 1 ? loose[0] : null;
       }
 
@@ -548,14 +660,18 @@ sitemap: false
 
       function useIndex(rows) {
         var target = findTarget(rows);
-        if (target && target !== path && !redirectedHereRecently()) {
+        if (target && (target === path || redirectedHereRecently())) target = null;
+        if (target && !acted) {
           try { sessionStorage.setItem(GUARD_KEY, JSON.stringify({ to: target, at: Date.now() })); } catch (e) { /* private mode */ }
           say('Found it – taking you to ' + target);
           recover(target);
           return;
         }
-        var shown = suggest(rows);
-        say(shown ? 'Closest matches are listed below.' : 'No similar address found. Browse the catalogue below, or send us your enquiry.');
+        // A visitor who has started on this page is not moved off it: the page they
+        // wanted is offered as a link instead.
+        if (target) say('That page is at a slightly different address – follow the link below.');
+        var shown = suggest(rows, target);
+        if (!target) say(shown ? 'Closest matches are listed below.' : 'No similar address found. Browse the catalogue below, or send us your enquiry.');
         report();
       }
 
@@ -628,13 +744,6 @@ sitemap: false
         return s;
       }
 
-      // A page name for the enquiry, from the index title without its marketing tail:
-      // "Stellite 6 Round Bar Supplier & Stockist" is asked about as "Stellite 6 Round Bar".
-      function pageName(row) {
-        var name = row.t.split(/\s+[-–|]\s+|:\s|,\s|\s+(?:supplier|stockist|manufacturer|exporter)s?\b/i)[0].trim();
-        return name || row.t;
-      }
-
       // Every page sharing a word with the request, best first.
       function rank(rows, all) {
         var scored = [];
@@ -664,35 +773,112 @@ sitemap: false
         });
       }
 
-      // The leading page's name, when it is a fair guess at what was asked for: it
-      // clearly beats the next page, and its own address or name accounts for every
-      // word in the request. Otherwise "", and the enquiry keeps the address itself,
-      // which is more specific than any page we would pick. The name has to account
-      // for the words and not just the title: "duplex 2205 pipe" matched the duplex
-      // pipes page through the S32205 in its title's UNS list, and the name that
-      // would have seeded the enquiry, "Duplex Steel Pipes", had lost the 2205.
-      function guessName(best, next, need) {
-        if (!best || !need.length || (next && next.s >= best.s)) return '';
-        var name = pageName(best.row);
-        // Titles carry identifiers - "Haynes 242 UNS N10242 Foil" is the index title of a
-        // family foil page - so a name with a number the request never mentioned is
-        // a guess at one grade's product, not what was asked for. Keep the address.
+      // A page's own name for what it sells: the last crumb of its BreadcrumbList, read
+      // the way breadcrumbSubject() in floating-form.js reads it on that page. It is the
+      // subject that page's quote button and form are seeded with, so an enquiry raised
+      // here about it says the same. The index title is not that name - "Titanium Grade 2
+      // | UNS R50400 | 3.7035 Round bar" indexes as "Titanium Grade 2" - and seeding from
+      // it sent round-bar enquiries without the form. "" when the page cannot be had.
+      function crumbOf(url) {
+        return fetchText(url).then(function (html) {
+          if (typeof DOMParser !== 'function') return '';
+          var blocks = new DOMParser().parseFromString(html, 'text/html')
+            .querySelectorAll('script[type="application/ld+json"]');
+          for (var i = 0; i < blocks.length; i++) {
+            var parsed;
+            try { parsed = JSON.parse(blocks[i].textContent); } catch (e) { continue; }
+            var nodes = Array.isArray(parsed) ? parsed
+              : parsed && Array.isArray(parsed['@graph']) ? parsed['@graph'] : [parsed];
+            for (var j = 0; j < nodes.length; j++) {
+              if (!nodes[j] || nodes[j]['@type'] !== 'BreadcrumbList') continue;
+              var items = (nodes[j].itemListElement || []).slice().sort(function (a, b) {
+                return ((a && a.position) || 0) - ((b && b.position) || 0);
+              });
+              var last = items[items.length - 1];
+              var name = String((last && (last.name || (last.item && last.item.name))) || '').trim();
+              if (name) return name;
+            }
+          }
+          return '';
+        }).catch(function () { return ''; });
+      }
+
+      function noSubject(u) {
+        return u === '/' || NO_SUBJECT.some(function (prefix) { return u.indexOf(prefix) === 0; });
+      }
+
+      // The segments the catalogue files grades under: the first segment of every
+      // /family/grade/form/ address in the index - inconel, duplex-steel, cobalt-alloys.
+      // Taken from the index, so a new family needs no edit here. A single-grade address
+      // such as /alloy-28/sheets/ has no third segment, so its first one, the grade,
+      // never counts as a family.
+      function familiesOf(rows) {
+        var out = {};
+        rows.forEach(function (r) {
+          var segments = r.u.split('/').filter(Boolean);
+          if (segments.length >= 3) out[segments[0].toLowerCase()] = true;
+        });
+        return out;
+      }
+
+      // Whether a page's name is a fair statement of what was asked for. It has to
+      // account for every word in the request itself: the page's address keeps words the
+      // name can lose, and counting them let the guess for /titanium/grade-2/round-bars
+      // link the right page and name it "Titanium Grade 2". The one part of an address
+      // excused is the family segment it starts with, which is a category and not part
+      // of the product's name: "Super Duplex 32750 Plates" answers
+      // /duplex-steel/32750/plate in full. The grade and the form are never excused.
+      // Nor may the name add a number nobody asked for: "Haynes 242 UNS N10242 Foil" is
+      // one grade's product, not an answer to a request for Haynes foil. Judging by the
+      // page's whole title was not enough either: /duplex/2205/pipe matched the duplex
+      // pipes page through the S32205 in its title's UNS list, and the name that would
+      // have seeded the enquiry, "Duplex Steel Pipes", had lost the 2205.
+      function fair(name, need, url, families) {
+        if (!need.length) return false;
         var adds = words(name).some(function (w) {
           return /\d/.test(w) && !need.some(function (q) { return near([w], q) > 0 || near([q], w) > 0; });
         });
-        if (adds) return '';
-        var own = best.row._tok.concat(words(name));
-        return need.every(function (q) { return near(own, q) > 0; }) ? name : '';
+        if (adds) return false;
+        var own = tokens(name);
+        // "625lcf" is in "Inconel 625 LCF", spelt without the space
+        var squashed = words(name).join('');
+        var segments = url.split('/').filter(Boolean);
+        var family = segments.length >= 2 && families[segments[0].toLowerCase()] ? words(segments[0]) : [];
+        return need.every(function (q) {
+          return near(own, q) > 0 || (q.length >= 4 && squashed.indexOf(q) >= 0) || near(family, q) > 0;
+        });
       }
 
-      function suggest(rows) {
+      function showGuess(url, label) {
+        var link = $('nf-guess-link');
+        link.setAttribute('href', url);
+        link.textContent = label;
+        $('nf-guess').hidden = false;
+        $('nf-matches').hidden = false;
+      }
+
+      // "Did you mean", and the enquiry with it. A guess from the ranking is offered
+      // only when its own name passes fair(); otherwise the list stands alone and the
+      // enquiry keeps the address, which is more specific than any page we would pick.
+      // A page this page found by its address (`exact`, the visitor having started
+      // before the index arrived) is offered whatever its name says, and named by it
+      // when it has one to give.
+      function offer(row, exact, need, families) {
+        if (exact) showGuess(row.u, row.t || row.u);
+        if (noSubject(row.u)) return;
+        crumbOf(row.u).then(function (crumb) {
+          var name = crumb ? tidy(crumb) : '';
+          if (!name || !(exact || fair(name, need, row.u, families))) return;
+          showGuess(row.u, name);
+          setSubject(name);
+        });
+      }
+
+      function suggest(rows, exact) {
         var all = tokens(key(path));
         // the words a strong match has to account for; joined forms are extras
         var need = unique(key(path).split('/').reduce(function (acc, seg) { return acc.concat(words(seg)); }, []).filter(keep));
-        if (!all.length) return 0;
-
-        var top = rank(rows, all).slice(0, MAX_SUGGESTIONS);
-        if (!top.length) return 0;
+        var top = all.length ? rank(rows, all).slice(0, MAX_SUGGESTIONS) : [];
 
         var list = $('nf-list');
         top.forEach(function (item) {
@@ -710,16 +896,14 @@ sitemap: false
           li.appendChild(a);
           list.appendChild(li);
         });
-        $('nf-matches').hidden = false;
+        if (top.length) $('nf-matches').hidden = false;
 
-        var best = top[0];
-        var name = guessName(best, top[1], need);
-        if (name) {
-          var link = $('nf-guess-link');
-          link.setAttribute('href', best.row.u);
-          link.textContent = name;
-          $('nf-guess').hidden = false;
-          seedEnquiry(name);
+        if (exact) {
+          var found = rows.filter(function (r) { return r.u === exact; })[0];
+          offer(found || { u: exact, t: '' }, true, need, {});
+        } else if (top.length && (!top[1] || top[1].s < top[0].s)) {
+          // the leading page has to clearly beat the next one to be offered as the answer
+          offer(top[0].row, false, need, familiesOf(rows));
         }
         return top.length;
       }

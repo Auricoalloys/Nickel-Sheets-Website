@@ -548,53 +548,101 @@ visitors it caught were the ones this site most wants: **153 live URLs carry cap
 typing lowercase them. A buyer following an assistant's `/hastelloy/c276/` link met a dead end on a
 page that exists.
 
-An inline script does three things, in order:
+An inline script does four things, in order:
 
 - **Recovers.** It fetches `search-index.json` and, when exactly one page has the requested address
   apart from letter case, a missing trailing slash, a trailing `index.html` or `.html`, trailing
   punctuation picked up from a pasted sentence, or the hyphen inside a segment (`c-276` for `C276`,
   `k500` for `K-500`), it `location.replace()`s there with the query and hash intact. Nothing in the
-  index today collides under either rule, and an ambiguous match redirects nowhere.
+  index today collides under either rule, and an ambiguous match redirects nowhere. **Every
+  `redirect_from` address is matched the same way** and goes where its stub goes: a stub answers
+  only its own spelling, so `/hastelloy/b2/coil/` missed the one at `/hastelloy/B2/coil/` and got
+  suggestions although the site knew the answer — 136 of the 173 capitalised `redirect_from`
+  addresses did, lowercased, and all 173 now go where their stubs go. Liquid writes the pairs into
+  the page at build time (`#nf-redirects`, about 3 KB gzipped) from the same front matter the stubs
+  are built from, so there is no generated file to fall behind.
+- **Waits for nobody who has started.** The index can take seconds on a slow line, and recovering
+  then threw away an enquiry half typed into the panel the page invites them to open. A click, a
+  key or a field taking focus first means the page stays, says the page is at a slightly different
+  address and offers it as the *Did you mean* link.
 - **Suggests.** Otherwise it ranks the index by words shared with the requested address and lists
-  the best six (four on a phone, so the enquiry block stays within reach). A lead page is offered
-  as *Did you mean* only when its own address or name accounts for every word asked for and it
-  clearly beats the next one.
+  the best six (four on a phone, so the enquiry block stays within reach). A lead page that clearly
+  beats the next one is offered as *Did you mean* under **its own last `BreadcrumbList` crumb**,
+  fetched from that page and tidied as `tidySubject()` does — the subject that page's own quote
+  button and form are seeded with. Not the index title: "Titanium Grade 2 | UNS R50400 | 3.7035
+  Round bar" indexes as "Titanium Grade 2", and the guess for `/titanium/grade-2/round-bars` linked
+  the right page under a name without the form — 45 of the 864 guesses made for 960 replayed
+  form-page variants (flat, singular, plural) dropped the form that way.
 - **Asks.** The enquiry block is `a[data-enquiry]` under the shared contract `floating-form.js`
   handles, placement `not_found`, bare `/pages/contact/` href. Its subject is the *Did you mean*
-  page's name when there is one and **the requested address itself** otherwise — "Enquiry:
-  /hastelloy/c-276/tube" tells the sales desk more than any page we could pick. Judging the guess by
-  the page's whole title is not enough: `/duplex/2205/pipe` matched the duplex pipes page through
-  the S32205 in its title's UNS list, and would have seeded "Duplex Steel Pipes" — the 2205 gone.
-  The WhatsApp link carries the same subject; the number is read from the markup, never typed into
-  the script.
+  name when there is one and **the requested address itself** otherwise — "Enquiry:
+  /hastelloy/c-276/tube" tells the sales desk more than any page we could pick. The header's Get a
+  Quote, the WhatsApp link and the floating form the launcher opens carry the same subject; until
+  2026-10-01 only the block's button did, and the header button opened a blank form. The form is
+  re-seeded only while it holds nothing the visitor wrote, and an explicit `?enquiry=` still wins.
+  The number is read from the markup, never typed into the script.
+
+The *Did you mean* name has to account for every word asked for **by itself**. Letting the page's
+address cover words is what dropped the form above. The one part excused is a family segment the
+address starts with — the first segment of any `/family/grade/form/` address in the index — since
+"Super Duplex 32750 Plates" answers `/duplex-steel/32750/plate` in full; grade and form never are.
+Nor may the name add a number nobody asked for ("Haynes 242 UNS N10242 Foil" is one grade's
+product), and judging by the page's whole title is not enough either: `/duplex/2205/pipe` matched
+the duplex pipes page through the S32205 in its title's UNS list, and would have seeded "Duplex
+Steel Pipes" — the 2205 gone. Routes in `NO_SUBJECT_PREFIXES` (the location pages, the tools,
+contact) are never named, mirrored in the page because a classic script cannot import the module:
+the guess for `/nickel-alloys-supplier-in-pune/` used to seed "Nickel Alloy", the city gone. A
+crumb that fails any of this leaves the address as the subject, which is never wrong. The two
+Stellite powder pages' crumbs read just "Powder", so they are never named — the page's breadcrumb
+is what needs the grade, as the Stellite sheet pages' did.
 
 **A recovered visit is reported from the page it lands on, not from this one.** The page's gtag
 config sets `send_page_view: false`. An automatic page view logged every recovered visit as a "Page
 Not Found" view at the broken address, which GA4 then took as the session's landing page, so one
 page's leads split between `/hastelloy/C276/` and `/hastelloy/c276/`. When it recovers, the script
 fixes first-touch attribution: `landing_page` becomes the target, and the original referrer and
-UTM tags survive. It also leaves a `sessionStorage` note, `aurico_404_recovered` = `{from, to,
-at}`, then `location.replace()`s at once. `floating-form.js` on the target page reads the note and
+UTM tags survive in the lead's attribution (not in GA4's — see below). It also leaves a
+`sessionStorage` note, `aurico_404_recovered` = `{from, to, at, ref}`, then `location.replace()`s
+at once. `floating-form.js` on the target page reads the note and
 sends `page_not_found` with `{page_path: <the broken address>, recovered: true}`, but only on the
 page the note names and only within 30 s. A fresh note for another page is left alone, because the
 module also runs on the 404 page itself. A visitor who stays gets one `page_view` and
 `page_not_found` with `recovered: false`; opening `/404.html` directly sends the `page_view` alone.
 The event name is written literally in the page: it is a classic inline script and cannot import
-`lead-config.js`. `recovered` reaches GA4's reports only once it is registered as an event-scoped
-custom dimension (Admin → Custom definitions), and GA4 does not backfill one.
+`lead-config.js`.
+
+**A recovery that lands on another 404 is reported once, as not recovered.** When the index still
+lists a page that has gone, the hop lands on this page again with a note addressed to it. The
+inline script takes that note before `floating-form.js` (a deferred module) can read it — which used
+to report the visit as `recovered: true` beside the error page's own `recovered: false` — and sends
+the one `page_not_found` with `recovered: false` under the address first asked for. GA4's own page
+path on that event is the stale address, so the two together say which index row to retire.
+
+**GA4 cannot see where a recovered visitor came from, and `link_referrer` is how it is carried.**
+The target page's referrer is the 404 address, a same-site referrer GA4 treats as no referrer, so a
+recovered session without UTM tags or a `gclid` — organic search, Perplexity, a forum's mis-cased
+link — reads as direct in GA4's session source. ChatGPT's citations survive only because their
+`utm_source` rides in the query. That is the cost of starting the session on the real page, and it
+is accepted rather than undone: the first-touch attribution in the lead payload keeps the real
+referrer, and is the authority for where a lead came from. For the broken link itself, every
+`page_not_found`, recovered or not, carries **`link_referrer`** — the page, site or assistant holding
+the link (`direct` when there is none), via the note on a recovered visit. That is the column to
+read before writing a `redirect_from`, and the lead-review task should know a recovered visit's
+session source is not its source. `recovered` and `link_referrer` reach GA4's reports only once each
+is registered as an event-scoped custom dimension (Admin → Custom definitions), and GA4 does not
+backfill one.
 
 **One-letter words count when matching.** They are grade codes here: the `x` in
 `/hastelloy/x/tube`, the `n` in `hastelloy-n-pipe`. Dropping them made "Hastelloy Tube" a complete
-answer to a request for Hastelloy X tube, and they match only as whole words. A *Did you mean* name
-is also refused when it adds a digit-bearing word near nothing the visitor asked for.
+answer to a request for Hastelloy X tube, and they match only as whole words.
 
 Four loop guards, because an error page that redirects to another error page bounces forever: never
 redirect to the address already showing; never redirect when the index lists this exact address
 (the page is gone and the index is stale — that case takes one hop, then stops); only redirect on a
 unique match; and a `sessionStorage` note refuses a second redirect away from an address this page
-just sent the visitor to. Index rows whose `u` is not a same-site path are dropped before matching,
-so the page cannot be turned into an open redirect, and the requested path is only ever written
-with `textContent` and `setAttribute`.
+just sent the visitor to. Index rows and redirect pairs whose page is not a same-site path are
+dropped before matching, so the page cannot be turned into an open redirect, and the requested
+path is only ever written with `textContent` and `setAttribute`.
 
 Rules the page keeps that are easy to undo:
 
@@ -611,9 +659,10 @@ Rules the page keeps that are easy to undo:
 
 GitHub Pages already serves the two real case-variant pairs (`/Hastelloy/foil/` vs
 `/hastelloy/foil/`, `/monel/K-500/sheets/` vs its lowercase stub), so those never reach it. What it
-**cannot** recover is anything the index does not list: a `sitemap: false` twin or a retired URL
-with no `redirect_from`. Those get suggestions, not a redirect — and the `page_not_found` rows in
-GA4 are the list of which ones deserve a `redirect_from`.
+**cannot** recover is anything neither the index nor a `redirect_from` names: a `sitemap: false`
+twin or a retired URL with no `redirect_from`. Those get suggestions, not a redirect — and the
+`page_not_found` rows in GA4 are the list of which ones deserve a `redirect_from`, which then
+covers every spelling of the address, not only its own.
 
 Test it against a server that behaves like GitHub Pages — directory → `index.html`, a directory
 without its slash → 301, anything else → `404.html` **with status 404** — not `jekyll serve`, which

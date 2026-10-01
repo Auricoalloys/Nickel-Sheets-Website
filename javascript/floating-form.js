@@ -1427,7 +1427,12 @@ function wireQuoteLinks() {
 // became the session's landing page, so leads split between /hastelloy/C276/ and
 // /hastelloy/c276/. It leaves this note instead, and the page it lands on reports
 // the broken inbound link - page_not_found with recovered: true, the same event
-// the error page sends itself when nothing matches.
+// the error page sends itself when nothing matches. A note addressed to an error
+// page - the index listed a page that has gone - is taken by 404.html itself
+// before this module runs, so that visit is reported once, as not recovered.
+//
+// link_referrer is where the broken link was followed from, carried in the note.
+// This page's own referrer is the error page, so GA4 sees nothing else of it.
 const RECOVERED_404_KEY = "aurico_404_recovered";
 
 function reportRecovered404() {
@@ -1456,7 +1461,11 @@ function reportRecovered404() {
     // private mode; nothing to clean up
   }
   if (note.to === here && !stale) {
-    track("page_not_found", { page_path: note.from, recovered: true });
+    track("page_not_found", {
+      page_path: note.from,
+      recovered: true,
+      link_referrer: typeof note.ref === "string" && note.ref ? note.ref.slice(0, 100) : "direct",
+    });
   }
 }
 
