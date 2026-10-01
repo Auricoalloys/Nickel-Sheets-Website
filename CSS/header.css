@@ -167,19 +167,52 @@ footer {
    products.css each carry a bare `img { width: 100%; height: auto }`, and the
    logo is an <img>, so it was sized by whatever room the navbar happened to
    leave it: 350x105 on a 390px phone, which pushed the menu button onto a
-   second row and made the sticky header 145-179px tall between 320 and 414px
+   second row and made the header 145-179px tall between 320 and 414px
    wide - a fifth of the screen, on every page, before a word of the page. At
    1366px it came out 325x98 on a form page and 91x27 on the homepage, because
    the nav left different room on each. The width attribute on the <img> says
    160, but any stylesheet width beats an attribute. Qualified with body, like
    body .container, so no <link> order or later bare rule can take it back.
    max-width lets it shrink in proportion where the desktop nav genuinely needs
-   the room (992-1199px, where the nav does not fit and never did) instead of
-   stretching where it does not. */
+   the room instead of stretching where it does not. */
 body .navbar-brand img {
   width: 160px;
   max-width: 100%;
   height: auto;
+}
+
+/* 992-1199px: the full desktop nav - eight links, Get a Quote and a search box
+   with a 12rem floor - is wider than the bar, and max-width above let the logo
+   pay for all of it: 8x2px at 992 and 1024 on form pages, i.e. invisible on an
+   iPad in landscape, and on the homepage and contact page, where the nav was
+   wider still, the bar overflowed and the whole page scrolled sideways.
+   Measured at 992/1024/1100/1199: a fixed 120x36 logo, tighter link padding, a
+   .92rem link size and an 8.5rem search floor fit one row with no overflow on
+   all four page types. From 1200px the bar has room and none of this applies. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  body .navbar-brand {
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+  }
+
+  body .navbar-brand img {
+    width: 120px;
+  }
+
+  body .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+    font-size: 0.92rem;
+  }
+
+  body .navbar .nav-link.nav-cta {
+    padding: 0.45rem 0.75rem;
+    margin-left: 0.25rem;
+  }
+
+  body .site-search__input {
+    min-width: 8.5rem;
+  }
 }
 
 /* The header's own container is 1320px on every page, the width pages.css
@@ -352,7 +385,7 @@ textarea:focus-visible,
         min-height: 48px;
     }
 
-    /* The rail is fixed at z-index 9999 and the sticky navbar at 1020, so an
+    /* The rail is fixed at z-index 9999 and the navbar (sticky-top) at 1020, so an
        opened menu slid underneath it and the rail sat on the right-hand end of
        the menu's rows for as long as it was open. Step aside while it is.
        :has() is the only way to see the menu from here, because the rail comes
@@ -363,11 +396,30 @@ textarea:focus-visible,
     }
 }
 
-@media (max-width: 575.98px) {
+/* Tablets in portrait: top: 40% put the rail across the page's <h1> once the
+   header shrank to 74px - on 56 of 161 sampled pages at 768x1024 and 52 at
+   820x1180, against none before. Anchored just above the scroll-to-top button
+   (#scrollUpBtn, bottom 55px, 50px tall) it covers no <h1> at either size. */
+@media (min-width: 576px) and (max-width: 991.98px) and (min-height: 500.02px) {
+    body .floating-contact-bar {
+        top: auto;
+        bottom: 120px;
+    }
+}
+
+/* Phones, and any screen under 500px tall - a phone held in landscape is wider
+   than 575px and so used to get the desktop rail: top: 40% with three 48px
+   tiles reached past the top of #scrollUpBtn at 844x390, and since the rail
+   sits above it (z-index 9999 against 999) a tap on the top of "back to top"
+   dialled the sales desk and logged a phone contact_click nobody made. */
+@media (max-width: 575.98px), (max-height: 500px) {
     /* top: 40% floats wherever a short viewport happens to put it, which
        landed the rail on top of the page's own <h1>. Anchor it just under the
-       sticky header instead: 74px tall now that the logo keeps its own size,
-       and 80px leaves room for the 5px lift of the bob.
+       header instead: 74px tall now that the logo keeps its own size, and 80px
+       leaves room for the 5px lift of the bob. The navbar carries sticky-top but
+       sticks only on the homepage: everywhere else its #header__container
+       wrapper is exactly its height, so it scrolls away and the rail then sits
+       over the text - which is what the scrolled views below count.
 
        A narrow column, not the row this used to be. The row fitted a ~55px gap
        under a 145-179px header; under a 74px one it lands on the page's first
@@ -408,6 +460,19 @@ textarea:focus-visible,
         overflow: hidden;
         clip: rect(0 0 0 0);
         margin-left: 0;
+    }
+}
+
+/* The column above still sat on the last word of a long <h1> on a few pages:
+   measured at landing on 161 pages, 3 at 390x844, 4 at 360x740 and 1 at
+   667x375 - the homepage, Alloy 28, Titanium Grade 16 and Ti-5-2-4-4. Keeping
+   the heading out of the rail's 36px plus 6px of air took all three to 0, the
+   same screens the column applies to. The banner captions are left out - they
+   centre themselves by transform inside a symmetric 10px box, which a one-sided
+   padding would knock lopsided, and the rail covered none of them. */
+@media (max-width: 575.98px), (max-height: 500px) {
+    body #main h1:not(.banner-title) {
+        padding-right: 42px;
     }
 }
 
