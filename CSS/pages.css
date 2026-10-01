@@ -680,6 +680,12 @@
   .grade-table-wrapper {
     overflow-x: auto;
     margin: 0 auto;
+    /* The containing block for anything absolutely positioned in a cell.
+       Bootstrap's .visually-hidden is position: absolute, and the powder pages'
+       check-mark cells carry a hidden "Yes" each; with no positioned ancestor
+       nearer than the page, those escaped the scroll box and widened the
+       document, so 8 of the 11 tabled powder pages scrolled sideways on a phone. */
+    position: relative;
   }
 
   /* Horizontal padding is 0 so a table is the full reading measure wherever it
@@ -1493,6 +1499,13 @@ footer p a {
     color: var(--primary-color);
     background: #fff;
     border-color: var(--primary-color);
+  }
+
+  /* A phone number split across two lines is a number misread: at 320px the
+     button broke "+91 79778" from "86611" on 519 of 626 pages. Kept whole, the
+     button wraps to its own row instead, which the flex row above allows. */
+  .quote-cta-actions .quote-cta-call {
+    white-space: nowrap;
   }
 
   .quote-cta-actions .quote-cta-wa:hover,

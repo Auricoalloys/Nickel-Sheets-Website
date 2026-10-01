@@ -170,6 +170,12 @@
   .grade-table-wrapper {
     overflow-x: auto;
     margin: 0 auto;
+    /* The containing block for anything absolutely positioned in a cell.
+       Bootstrap's .visually-hidden is position: absolute, and the powder pages'
+       check-mark cells carry a hidden "Yes" each; with no positioned ancestor
+       nearer than the page, those escaped the scroll box and widened the
+       document, so 8 of the 11 tabled powder pages scrolled sideways on a phone. */
+    position: relative;
   }
 
   /* Horizontal padding is 0 so a table is the full reading measure wherever it
