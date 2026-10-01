@@ -139,6 +139,8 @@ const BOILERPLATE = new Set([
   '48840764', // the form in 33 more breadcrumbs, "Premium" and "Reliable" out of them; navigation only, same as 587a4a1e
   '3ed989c8', // regenerated the quote block on 640 pages to keep the phone number whole; a sitewide element
   'cbe27794', // retired the second duplex wire page; the keeper gained a redirect_from line, a neighbour a link target
+  'b509d890', // took /inconel/X-750/ and its foil URL out of the Inconel hub's redirect_from; it renders the same
+  '98a84349', // the X-750 hub as the form pages' third crumb, and two neighbours' links; navigation only, same as c13cdb9c
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of

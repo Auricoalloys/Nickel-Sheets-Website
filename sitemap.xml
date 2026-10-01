@@ -2758,6 +2758,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/inconel/X-750/</loc>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/inconel/X-750/coil/</loc>
     <lastmod>2026-08-26</lastmod>
     <image:image>
@@ -2765,8 +2769,8 @@ sitemap: false
     </image:image>
   </url>
   <url>
-    <loc>https://www.nickelsheets.com/inconel/x-750/plates/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <loc>https://www.nickelsheets.com/inconel/X-750/plates/</loc>
+    <lastmod>2026-10-01</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/plates-banner.webp</image:loc>
     </image:image>
