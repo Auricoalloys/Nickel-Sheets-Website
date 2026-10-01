@@ -557,15 +557,39 @@ include, so every page gets it; module scripts dedupe by URL, so pages carrying 
 unaffected.
 
 `javascript/lead-config.js` is the single place to change where leads go. Submissions land in one of
-three honest states (verified / unverified / failed); a failure hands the visitor a pre-filled
-WhatsApp link so a broken pipe still yields a lead. The transport deliberately avoids `no-cors` as
-its primary path, since opaque responses previously reported success for leads that never arrived.
+three honest states (verified / unverified / failed), and the last two both hand the visitor
+pre-filled WhatsApp and email links so a broken pipe still yields a lead. The transport deliberately
+avoids `no-cors` as its primary path, since opaque responses previously reported success for leads
+that never arrived.
+
+**Unverified is not delivered.** It means the readable request failed and a `no-cors` retry went
+out whose answer cannot be read — which is what an Apps Script predating the CORS-aware deployment
+looks like (the lead landed), and equally what a deployment answering with a Google sign-in page, or
+an office firewall's block page, looks like (it did not). Until 2026-09-27 that state said "your
+enquiry has reached us", reset the form and closed the panel after four seconds, with no fallback:
+the outcome where the visitor most needed the WhatsApp link was the one that hid it. It now says the
+enquiry was sent but could not be confirmed, keeps the form filled and the panel open, and offers
+the same links as the failed state — one `fallbackLinks()` builds both, from the payload, before
+anything can reset the form. `form_submit_unverified` still fires, and a jump in it right after an
+Apps Script redeploy is the deployment, not the visitors.
 
 The destination is a Google Apps Script web app whose source lives at
 `docs/apps-script/lead-capture.gs` (versioned here, excluded from the build). Its header comments
 carry the deploy procedure — the important part is that updating means "Manage deployments → edit →
 New version", not "New deployment", which would mint a different `/exec` URL. Apps Script cannot set
 HTTP status codes, so the site reads `{ok: …}` out of the body; keep that contract.
+
+**The alert email is written for the desk to act on.** `notify()` names the product in the subject
+— the enquiry's first non-empty line, less the `Enquiry:` the form seeds it with — so the inbox
+reads "Website enquiry #123 - Inconel 625 Sheets - Acme Ltd (India)" instead of a company name and
+nothing about what was asked. It sets `replyTo` to the buyer, so pressing Reply answers them rather
+than the account the script sends from; the address is used only when it is one plausible address
+(whitespace, a comma, angle brackets or a leading formula character reject it outright, and the body
+then says Reply-To was not set). And the body prints what the visitor typed: `sanitizeCell()`'s
+leading quote guards the sheet, and stays there, but a plain-text email parses no formulas, and the
+guard's quote showed up in it — every phone number written `+91 …` read `'+91 …`.
+`displayText()` removes only a quote `sanitizeCell()` could have added. None of this reaches the
+inbox until the script is redeployed as a new version of the existing deployment.
 
 #### The enquiry field is seeded from the page's own breadcrumb
 
@@ -598,6 +622,54 @@ punctuation in the crumb means it is an identifier — leave it exactly as the p
 Because a seeded textarea hides its own placeholder, the "add the dimensions you need" guidance
 moved into a visible `.floating-form-hint` under the field. Do not put it back in the placeholder.
 
+**Get a Quote hands over the same seed.** The header's `a.nav-cta` is on every page and 573 in-body
+links on 359 pages point at `/pages/contact/`, and every one of them used to land on a blank form —
+a visitor reading about Inconel 625 sheets clicked a quote button and retyped what they had just
+been looking at, while the WhatsApp rail beside it already knew. `floating-form.js` now handles them
+by kind:
+
+- **Quote links** — `a.nav-cta` and any `a[data-enquiry]` — open the floating panel in place,
+  pre-filled with the link's `data-enquiry` or the page's `Enquiry: <subject>` (no trailing newline:
+  that exact string is the contract with the generated in-page quote buttons), and fire
+  `quote_cta_click` with a `placement` of `header`, `in_page` or the button's own `data-placement`.
+  On the contact page the header button scrolls to and focuses the inline form rather than opening a
+  second form; on a phone it collapses the Bootstrap menu first, by hand if the deferred bundle has
+  not loaded yet. Closing the panel returns focus to whatever opened it — or to the menu toggle,
+  when the opener was inside a menu that is now collapsed.
+- **Every other contact link** gets `?enquiry=` added, which the contact page's `ctaEnquiry()`
+  already seeds its inline form from. A link that carries its own `?enquiry=` — the powder pages'
+  "Request a sample" — is left alone. The seed gets the derived one's trailing newline unless it
+  already ends in whitespace: without it, a visitor who clicked into the box typed onto the product
+  line ("Enquiry: Inconel 625 Sheets3mm x 1000"), and the alert email reads its subject from that
+  line. The powder CTAs end `Quantity: ` and are meant to be continued on the same line.
+
+**The parameter is written at interaction time only** — `pointerdown`, `focusin`, `keydown`,
+`click` — never at page load, and the static hrefs stay bare `/pages/contact/`. Written at load,
+Googlebot would render hundreds of `/pages/contact/?enquiry=…` URLs that all canonicalise to one
+page: crawl waste and Search Console noise, for nothing. `pointerdown` is also what makes a middle
+click or "open in new tab" arrive seeded, since neither fires a `click`, and it is why modified
+clicks are simply left to the browser. Do not "simplify" this into rewriting hrefs in `start()`.
+
+**A double-click must not close what it opened.** The overlay appears the instant the panel opens
+and covers the control that opened it, so the second click of a double-click, or the second tap of
+a double tap, landed on it and shut the panel: the form flashed and vanished. Measured at 1366 px,
+two clicks on Get a Quote 60 or 120 ms apart left it shut; from about 200 ms the second click hits
+the panel sliding over the button instead, which is why the bug hides from a slow tester. The
+overlay now ignores a click whose `detail` is above 1, and any click in the panel's first 400 ms,
+since a double tap need not report itself in `detail`. Escape and the close button are untouched.
+
+The listeners are delegated from `document`, because the runtime product route injects its header
+after the module has run. And a quote click never loses what the visitor typed. `seed()` replaces
+the textarea outright only while it is empty, still the page-load seed, or still the last CTA's own
+text. Once the visitor has typed, it swaps the earlier seed's words for the new ones where they
+still stand and keeps everything around them, puts new words on top when none of the earlier seed
+is left, and does not put back words the visitor deleted. The weight calculator's `openWith()` goes
+through the same rule, and the calculator is what the rule has to satisfy in both directions: it
+used to overwrite unconditionally, which wiped the sizes typed under a result, and the first
+version of `seed()` refused new text instead, which left a recalculated weight out of the form
+with nothing to say so. After touching `seed()`, run calculate → quote → add a note → recalculate
+→ quote, and read the textarea.
+
 #### Country and company are optional, and are being measured
 
 As of **2026-08-29** the form asks for five required fields, not seven: name, phone, email and the
@@ -625,6 +697,24 @@ The prefill and the optional fields shipped together, which does confound them s
 mostly separable because a pre-filled textarea fires no `input` event and so does not itself move
 `form_start`. Field **order** was deliberately left alone for the same reason — moving the optional
 fields down the form is the obvious next test, and running it now would make the month unreadable.
+
+**The quote links moved the funnel's entry inside this same window.** Until the *Get a Quote hands
+over the same seed* change above reached `main` (committed 2026-09-27), Get a Quote loaded a blank
+contact page. After it, the header button and any in-page quote button open the floating panel in
+place, pre-filled, every contact link arrives seeded, and `quote_cta_click` counts the clicks. That
+changes how many visitors see the form and in what state, and it moves `form_start` from
+`form_location: inline` to `floating` for the same visitors. So the review splits the window on the
+day it reached `main`, which is the day it went live, reads each side on its own, and credits no
+shift across the split to the optional fields; and it reads `quote_cta_click` by `placement` against
+`form_start` and `generate_lead`. This dates the commit or merge that brought it in:
+
+```bash
+git log --first-parent -S quote_cta_click --format=%cd --date=short main -- javascript/lead-config.js
+```
+
+`placement` appears in GA4's reports only once it is registered as an event-scoped custom dimension
+(Admin → Custom definitions), and GA4 does not backfill one, so register it before that deploy. The
+review task's `SKILL.md` lives outside this repo and needs the same split.
 
 `supabase/migrations/` holds the `leads` table. RLS is on with **no** policies, so the public anon
 key gets no access — do not add an anon policy, the table holds customer contact details.

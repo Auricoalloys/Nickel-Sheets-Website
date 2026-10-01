@@ -67,6 +67,10 @@
  * ---------------------------------------------------------------------------
  * Project Settings -> Script Properties -> add NOTIFY_EMAIL = you@domain
  *
+ * Each alert names the product in its subject and carries the buyer's address
+ * as Reply-To, so Reply answers the buyer. Changes to notify() only reach the
+ * inbox once a new version is deployed - see UPDATING above.
+ *
  * ---------------------------------------------------------------------------
  * WHICH TAB THE LEADS LAND IN
  * ---------------------------------------------------------------------------
@@ -209,6 +213,84 @@ function sanitizeCell(value) {
   }
 
   return text;
+}
+
+/**
+ * The inverse of sanitizeCell(), for a value that is shown rather than stored.
+ *
+ * The alert email is plain text and nothing parses it for formulas, so the
+ * guard's quote has no job there - it just showed up, and a phone written
+ * "+91 98200 00000" reached the desk as "'+91 98200 00000". Only a quote
+ * sanitizeCell() could have added is removed: one directly followed by a
+ * character it guards against. That is also exactly how Sheets displays the
+ * stored cell, so the email and the sheet agree.
+ */
+function displayText(value) {
+  var text = value === undefined || value === null ? '' : String(value);
+  return /^'[=+\-@\t\r]/.test(text) ? text.slice(1) : text;
+}
+
+/**
+ * The buyer's email as the alert's Reply-To, or '' when it is not one plausible
+ * address - so that pressing Reply answers the buyer instead of the script's
+ * own account.
+ *
+ * MailApp takes a single address there and this value was typed by a stranger.
+ * Whitespace, a newline, a comma or angle brackets would turn it into a list or
+ * a display name of their choosing, so any of those rejects it outright rather
+ * than being cleaned into something else. So does a leading = + - @ or quote:
+ * a formula-shaped "address" is someone probing the sheet, not a buyer. A
+ * rejected address is still printed in the body, for the desk to judge.
+ */
+function replyToAddress(value) {
+  var text = displayText(value);
+  if (!text || text.length > 254) return '';
+  if (/[\s,<>;"()\[\]\\]/.test(text)) return '';
+  if (/^[=+\-@']/.test(text)) return '';
+  var address = /^[^@]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
+  return address.test(text) ? text : '';
+}
+
+/**
+ * One line of visitor text, safe for a subject or a labelled body line. A
+ * newline in a subject is the one place an attacker could write a line of their
+ * own choosing into the desk's inbox list - "Website enquiry #7 - ACTION
+ * REQUIRED: verify your account" - and in the body it would forge a line of the
+ * layout, a second "Email:" under the real one. Control characters and runs of
+ * whitespace become one space; `max` caps the length where one is given.
+ */
+function oneLine(value, max) {
+  var text = displayText(value)
+    .replace(/[\u0000-\u001f\u007f\u2028\u2029]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (max && text.length > max) {
+    text = text.slice(0, max - 1).trim() + '\u2026';
+  }
+  return text;
+}
+
+/**
+ * What the enquiry is for, for the subject line: its first non-empty line, less
+ * the "Enquiry:" the form seeds it with. The subject used to name only the
+ * company and country, so every alert read "Website enquiry #N - <company>" and
+ * the desk had to open each one to learn whether it was a price on 625 sheets or a question
+ * about delivery. A leading list marker goes too - an enquiry typed as "- 3mm
+ * sheet" is not about a dash.
+ */
+function enquirySubject(inquiry) {
+  var lines = displayText(inquiry).split(/\r\n|\r|\n/);
+  var first = '';
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i].trim()) {
+      first = lines[i];
+      break;
+    }
+  }
+  first = first
+    .replace(/^\s*enquiry\s*:\s*/i, '')
+    .replace(/^\s*[-*\u2022]+\s+/, '');
+  return oneLine(first, 60);
 }
 
 /** Strips anything that is not an expected field, and sanitises what is left. */
@@ -416,6 +498,10 @@ function syncHeaders(sheet, data) {
  * Emails the sales desk. A lead sitting unread in a spreadsheet is not much
  * better than a lead that was never captured, and the site now promises a reply
  * within one working day.
+ *
+ * `data` is the sanitised payload that went into the sheet. Every value is read
+ * back through displayText(), so the email shows what the visitor typed rather
+ * than the sheet's formula guard; the sheet itself keeps the guarded values.
  */
 function notify(data, rowNumber) {
   var to = PropertiesService.getScriptProperties().getProperty('NOTIFY_EMAIL');
@@ -428,36 +514,56 @@ function notify(data, rowNumber) {
     return;
   }
 
-  // The subject carries two visitor-supplied fields, so it is the one place an
-  // attacker could write a line of their own choosing into the desk's inbox
-  // list - "Website enquiry #7 - ACTION REQUIRED: verify your account". Newlines
-  // out, length capped, so it stays a subject line and reads as one.
-  var tidy = function (value) {
-    return String(value || '').replace(/[\r\n]+/g, ' ').trim().slice(0, 80);
+  // Single-line fields, flattened. The form's inputs cannot hold a newline, so
+  // one here came from a script POSTing directly, and would otherwise forge
+  // lines in the subject or the body layout. See oneLine().
+  var field = function (key, fallback) {
+    return oneLine(data[key]) || fallback;
   };
 
+  // Subject fields are capped as well, so the product and the company both
+  // survive into the inbox list rather than one pushing the other off the end.
+  var product = enquirySubject(data.inquiry);
+  var company = oneLine(data.company, 80);
+  var country = oneLine(data.country, 80);
+
   var subject = 'Website enquiry #' + rowNumber +
-    (data.company ? ' - ' + tidy(data.company) : '') +
-    (data.country ? ' (' + tidy(data.country) + ')' : '');
+    (product ? ' - ' + product : '') +
+    (company ? ' - ' + company : '') +
+    (country ? ' (' + country + ')' : '');
+
+  var email = field('email', '');
+  var replyTo = replyToAddress(data.email);
 
   var lines = [
-    'Name:     ' + (data.name || '-'),
-    'Company:  ' + (data.company || '-'),
-    'Email:    ' + (data.email || '-'),
-    'Phone:    ' + (data.phone || '-'),
-    'Country:  ' + (data.country || '-'),
-    'Quantity: ' + (data.quantity || '-'),
+    'Name:     ' + field('name', '-'),
+    'Company:  ' + field('company', '-'),
+    'Email:    ' + (email || '-'),
+    'Phone:    ' + field('phone', '-'),
+    'Country:  ' + field('country', '-'),
+    'Quantity: ' + field('quantity', '-'),
     '',
     'Enquiry:',
-    data.inquiry || '-',
+    // The one multi-line field, kept as written: sizes and quantities are
+    // usually on lines of their own.
+    displayText(data.inquiry) || '-',
     '',
-    'Page:     ' + (data.page_url || data.page || '-'),
-    'Source:   ' + (data.utm_source || data.referrer || 'direct'),
-    'Campaign: ' + (data.utm_campaign || '-')
+    'Page:     ' + (field('page_url', '') || field('page', '-')),
+    'Source:   ' + (field('utm_source', '') || field('referrer', 'direct')),
+    'Campaign: ' + field('utm_campaign', '-')
   ];
 
+  if (email && !replyTo) {
+    // Without a Reply-To, Reply goes back to the account this script sends
+    // from - say so, rather than let the desk believe they answered the buyer.
+    lines.push('', 'Reply-To not set: the email above does not look like a single valid address.');
+  }
+
+  var message = { to: to, subject: subject, body: lines.join('\n') };
+  if (replyTo) message.replyTo = replyTo;
+
   try {
-    MailApp.sendEmail({ to: to, subject: subject, body: lines.join('\n') });
+    MailApp.sendEmail(message);
   } catch (err) {
     // A failed notification must never fail the capture - the lead is already
     // safely in the sheet by this point.

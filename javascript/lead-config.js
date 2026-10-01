@@ -41,4 +41,10 @@ export const EVENTS = {
   // Fired when a visitor turns a weight-calculator result into an enquiry, so
   // the calculator -> RFQ funnel is measurable rather than a hunch.
   calculatorQuote: "calculator_quote_click",
+  // Fired when a visitor clicks a Get a Quote - the header button or an in-page
+  // quote button - with `placement` saying which ("header", "in_page", or the
+  // button's own data-placement). Set against form_start and generate_lead it
+  // says whether opening the form pre-filled, in place, turns more clicks into
+  // enquiries than the blank contact page they used to land on.
+  quoteClick: "quote_cta_click",
 };
