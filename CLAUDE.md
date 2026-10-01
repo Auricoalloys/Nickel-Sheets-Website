@@ -717,6 +717,38 @@ git log --first-parent -S quote_cta_click --format=%cd --date=short main -- java
 (Admin → Custom definitions), and GA4 does not backfill one, so register it before that deploy. The
 review task's `SKILL.md` lives outside this repo and needs the same split.
 
+**`generate_lead` counts form leads only, and a lot of enquiries never touch the form.** The review
+task lives outside this repo, at `~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, and
+should read three more events beside it:
+
+- **`contact_click`, split by its `method` parameter — `phone`, `whatsapp`, `email`.**
+  `floating-form.js` fires it on every `tel:`, `mailto:` and `wa.me` link on every page: the header
+  rail, the footer, the WhatsApp hand-off a failed submission offers. A buyer who rings the desk is
+  a lead the Sheet never sees.
+- **`calculator_quote_click`, split by `method` (`form` / `whatsapp`)** — a weight-calculator result
+  turned into an enquiry. Its `form` half opens the form, so it is intent in the same sense as
+  `quote_cta_click`; its `whatsapp` half is a hand-off the Sheet never sees. 316 form pages
+  deep-link into the calculator with the grade and form already chosen.
+- **`quote_cta_click`, split by `placement` (`header` / `in_page`)** — a click on a quote button that
+  opens the form in place. It is **intent, not an enquiry**: a visitor who clicks and then submits is
+  already one `generate_lead`, so adding the two double-counts the lead. Read it as the top of the
+  form funnel, against `form_start` and `generate_lead`.
+
+**Mark `contact_click` as a key event in GA4 Admin.** Until the owner does, calls and WhatsApp
+chats are conversions in no GA4 report, and a review reading key events reports a lead count that
+silently leaves them out. That is a setting in the property, not in this repo, so nothing here can
+make it and nothing here can tell whether it has been made — ask.
+
+**Until 2026-09-27 the calculator loaded no GA4 tag at all**, and neither did `/privacy/` or
+`/terms/`. `weight-calculator.js` guards every call with `typeof window.gtag === "function"` so that
+analytics can never break the tool — which also meant that, with no tag, every
+`calculator_quote_click`, `contact_click` and `generate_lead` raised there was dropped without an
+error, and a funnel that has never recorded an event reads exactly like a funnel nobody uses. The
+first runs after that date are the calculator's first data, not a trend. A sweep of every published
+page for `G-XZL7EXDTQ0` found those three missing and no others. `index.html` carries the tag at the
+foot of `<body>` rather than in the `<head>` — it works, but it is the one page that registers its
+page view last.
+
 `supabase/migrations/` holds the `leads` table. RLS is on with **no** policies, so the public anon
 key gets no access — do not add an anon policy, the table holds customer contact details.
 
@@ -1718,6 +1750,34 @@ and commit the result. That second commit touches only `sitemap.xml`, which is n
 dates change and it converges — you never need a third. `--check` tells you when you are in that
 state.
 
+**Regenerate only from a full clone — the script refuses a shallow one.** In a shallow clone the
+oldest commit present, the shallow boundary, has no parent to diff against, so `git log
+--name-only` reports it as touching *every file in the tree*, and each page nobody has edited since
+then takes the boundary's date. Cloud sessions clone **50 commits deep by default**, so this is the
+normal state of a fresh cloud checkout, not an edge case.
+
+It has already happened. On 2026-09-14 a cloud session found the generator disagreeing with the
+committed sitemap on hundreds of dates, took it for the one-commit-behind state above, and
+regenerated (`b060d0f7`, "lastmod dates were stale on hundreds of URLs"). **589 of 801 URLs** came
+out dated 2026-09-10, the day of `df0ceec3` — the boundary. Full history puts 63 of them there; the
+other **526 claimed an update they never had** — their real last edits run from 2026-08-12 to
+2026-09-09. That is the inflation `BOILERPLATE` exists to prevent, arriving from the other side, in
+a commit whose message called it a fix. A 20-deep test clone of the same tree dates all 801 URLs to
+one day.
+
+So `build-sitemap.mjs` now checks `git rev-parse --is-shallow-repository` before anything else and,
+in a shallow clone, exits 2 having written nothing — **in `--check` mode too**, because a check
+that ran there would report drift that is not there and send you to the write mode to "fix" it.
+The remedy is one command, after which the output is byte-identical to a full clone's:
+
+```bash
+git fetch --unshallow
+```
+
+The tell, for any other script that reads history: a regeneration that moves hundreds of dates **to
+the same day**, when nothing committed that day could explain them. Real drift after a batch of
+edits moves the pages that batch touched, to the day they were touched.
+
 **A brand-new page is invisible to this generator until git knows about it.** Pages are discovered
 with `git ls-files "*.html"`, so an untracked file is not enumerated — no URL, no warning, and
 `--check` still reports "up to date", because the page is missing from both sides of the
@@ -1734,6 +1794,16 @@ Pages are excluded when they are `published: false`, marked `sitemap: false`, ar
 fragment, or are disallowed in `robots.txt` — the last is read from `robots.txt` itself, so a route
 can never be both blocked and advertised. `<priority>` and `<changefreq>` are deliberately not
 emitted; Google's documentation says it ignores both.
+
+**A `noindex` page needs `sitemap: false` as well, because the generator does not read the robots
+meta.** `/privacy/` and `/terms/` say `noindex, follow` and were listed anyway, which Search Console
+reports as *Submitted URL marked 'noindex'* — the sitemap asking Google to index a page that tells it
+not to. Both carry `sitemap: false` since 2026-09-27. A sweep of every page for a `robots` or
+`googlebot` meta containing `noindex` found no third that would be listed —
+`/pure-nickel-strip/product/` is the only other, and `robots.txt` already keeps it out. The flag
+also drops a page from `search-index.json` and exempts it from `seo_audit.py`'s orphan check, both
+on purpose: those read the same front matter for the same reason. It does not exempt a page from the
+`<h1>` check, and neither of these needed it.
 
 **`<lastmod>` is only as good as the discipline behind it.** Google uses the value *only* while it is
 "consistently and verifiably accurate", comparing it against the page it actually fetched. Get it
