@@ -66,12 +66,12 @@ incoloy,903,Incoloy 903,/incoloy/903/,Controlled expansion,"Constant modulus and
 incoloy,909,Incoloy 909,/incoloy/909/,Controlled expansion,Low expansion with higher strength than 903
 incoloy,925,Incoloy 925,/incoloy/925/,Age hardened,Sour oil and gas service with high strength
 incoloy,945,Incoloy 945,/incoloy/945/,Age hardened,Higher strength again for downhole components
-nichrome,80/20,NiCr 80/20,,"80% Ni, 20% Cr",The highest usable temperature of the family; furnace elements
-nichrome,70/30,NiCr 70/30,,"70% Ni, 30% Cr","Higher resistivity, good oxidation resistance"
-nichrome,60/15,NiCr 60/15,,"60% Ni, 15% Cr","General purpose heating, iron balance"
-nichrome,40/20,NiCr 40/20,,"40% Ni, 20% Cr",Moderate temperature elements and resistors
-nichrome,30/20,NiCr 30/20,,"30% Ni, 20% Cr",Lower temperature service at lower cost
-nichrome,20/25,NiCr 20/25,,"20% Ni, 25% Cr",The most economical of the range
+nichrome,80/20,NiCr 80/20,/NiCr/80-20/,"80% Ni, 20% Cr",The highest usable temperature of the family; furnace elements
+nichrome,70/30,NiCr 70/30,/NiCr/70-30/,"70% Ni, 30% Cr","Higher resistivity, good oxidation resistance"
+nichrome,60/15,NiCr 60/15,/NiCr/60-15/,"60% Ni, 15% Cr","General purpose heating, iron balance"
+nichrome,40/20,NiCr 40/20,/NiCr/40-20/,"40% Ni, 20% Cr",Moderate temperature elements and resistors
+nichrome,30/20,NiCr 30/20,/NiCr/30-20/,"30% Ni, 20% Cr",Lower temperature service at lower cost
+nichrome,20/25,NiCr 20/25,/NiCr/20-25/,"20% Ni, 25% Cr",The most economical of the range
 cobalt-alloy,Haynes 25 (L-605),Haynes 25 (L-605),/haynes/25/,Co-Cr-W-Ni,"Wear and sulphidation resistance, sliding contact at temperature"
 cobalt-alloy,Haynes 188,Haynes 188,/haynes/188/,Co-Ni-Cr-W,High-temperature oxidation resistance for combustor hardware
 cobalt-alloy,Elgiloy,Elgiloy,/cobalt-alloys/elgiloy/sheets/,Co-Cr-Ni-Mo,"Springs and diaphragms, high fatigue strength, sour gas service"
