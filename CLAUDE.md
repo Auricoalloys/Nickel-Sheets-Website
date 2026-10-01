@@ -1883,6 +1883,15 @@ static check is the same one that finds the 404s, and it is cheaper than a build
 A redirect sweep is **boilerplate** for `<lastmod>`, like `e20a13f4` and `d506331b` before it:
 the targets gain a `redirect_from` line and say nothing new.
 
+**A duplicate pair retires the same way, and link count does not pick the keeper.**
+`/nichrome/pipes/` and `/pure-nickel/200-201/foil/` were second self-canonical, sitemapped copies
+of live pages; each is now `published: false` with a comment naming its keeper, which carries it
+as `redirect_from`, and every href was repointed (the `monel/k-500/sheets.html` precedent). By
+inbound links the foil retiree would have stayed, 14 to 1 — but the keeper sits with its sheets,
+plates and round-bar siblings, carries the generated grade tables, and already received the
+retired `/pure-nickel/200-201/` tier's redirect. Hrefs are cheap to repoint; the rest is not. A
+retiree's `prices.csv` row is left for the business: `build-prices.mjs` skips `published: false`.
+
 #### A "missing" form page may be a retired one — check before building it
 
 A sweep for grades whose hub has no sheets or plates page reports gaps, and a gap is not the same
