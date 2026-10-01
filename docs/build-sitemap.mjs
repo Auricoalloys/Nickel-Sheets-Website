@@ -136,6 +136,8 @@ const BOILERPLATE = new Set([
   '9aed1379', // finished three cut-off <title> tags; metadata only, same as d3624386
   'a32931f0', // 32140 page's crumb and Product name off a blog hook, plus its quote block; no product copy moved
   '587a4a1e', // the grade in 15 breadcrumbs, and the quote block on those pages; navigation only, same as c13cdb9c
+  '48840764', // the form in 33 more breadcrumbs, "Premium" and "Reliable" out of them; navigation only, same as 587a4a1e
+  '3ed989c8', // regenerated the quote block on 640 pages to keep the phone number whole; a sitewide element
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
