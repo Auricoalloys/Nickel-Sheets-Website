@@ -14,6 +14,30 @@ Pages has deployed a push to `main` and sends the changed URLs to Bing's IndexNo
 **IndexNow tells Bing when a page changes**. It is not part of the build, so "nothing runs at deploy
 time" below still holds.
 
+## Pending owner actions
+
+Settings only the owner can change, outside this repo, recorded 2026-10-01. Nothing here can make
+them or detect whether they have been made, so **ask before assuming one is done**, and delete its
+line once the owner confirms it. Each links to the section that says why.
+
+- **GA4 (Admin → Events): mark `contact_click` as a key event.** Until then calls and WhatsApp chats
+  count as conversions in no GA4 report. See *The enquiry form and lead pipeline*.
+- **GA4 (Admin → Custom definitions): register `placement`, `recovered` and `link_referrer` as
+  event-scoped custom dimensions.** GA4 does not backfill, so whatever is recorded before
+  registration is lost to every report that splits on them. See *The 404 page*.
+- **Apps Script: redeploy `docs/apps-script/lead-capture.gs` as a new version of the existing
+  deployment** (Manage deployments → edit → New version, never New deployment). Until then the
+  alert email's subject does not name the product, Reply goes to the sending account instead of
+  the buyer, and phone numbers show a stray leading quote.
+- **Lead-review task (`~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, on the owner's
+  machine): count leads as `generate_lead` plus `contact_click` only.** `quote_cta_click` and
+  `calculator_quote_click` are intent; adding them counts an enquiry twice or a click that never
+  became one. It should also read `link_referrer`, since a recovered 404 visit's GA4 session
+  source is not its real source.
+- **Bing: run the IndexNow workflow once with "all" ticked** (Actions → IndexNow → Run workflow),
+  **and add the site to Bing Webmaster Tools** (Import from Google Search Console). See *IndexNow
+  tells Bing when a page changes*.
+
 ## Commands
 
 ```bash
