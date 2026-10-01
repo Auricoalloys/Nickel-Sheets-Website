@@ -141,6 +141,7 @@ const BOILERPLATE = new Set([
   'cbe27794', // retired the second duplex wire page; the keeper gained a redirect_from line, a neighbour a link target
   'b509d890', // took /inconel/X-750/ and its foil URL out of the Inconel hub's redirect_from; it renders the same
   '98a84349', // the X-750 hub as the form pages' third crumb, and two neighbours' links; navigation only, same as c13cdb9c
+  '8619e14d', // capitals back on 62 pages' own product name, in the opening and one table caption; casing only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
