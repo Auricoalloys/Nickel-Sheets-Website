@@ -447,7 +447,10 @@ const ANCHORS = [
   },
   {
     // The stellite form pages: banner h1, breadcrumb, then the lead paragraph
-    // in its own <section id="introduction">.
+    // in its own <section class="container" id="introduction">. The block goes
+    // inside that section, before its end tag: the section is the page's
+    // container, and after it the block would run full-bleed into the
+    // calc-cta aside that build-calc-links.mjs writes straight after it.
     kind: "section#introduction (lead)",
     types: FORM_TYPES,
     find(s, sc) {
@@ -455,7 +458,13 @@ const ANCHORS = [
       if (from === -1) return null;
       const first = firstElement(sc, from);
       if (!first || first.name !== "section" || !/\bid="introduction"/.test(first.raw)) return null;
-      return { open: first.pos, end: closeOf(sc, first.pos, "section") };
+      const end = closeOf(sc, first.pos, "section");
+      if (end === -1) return { open: first.pos, end };
+      // The newline in front of the end tag's line, so the block lands on its
+      // own lines between the last child and </section>.
+      const insert = sc.lastIndexOf("\n", sc.lastIndexOf("</section", end));
+      if (insert <= first.pos) return { open: first.pos, end: -1 };
+      return { open: first.pos, end, insert, indentExtra: "  " };
     },
   },
   {
@@ -497,11 +506,13 @@ function findAnchor(s, sc, type) {
     const hit = a.find(s, sc);
     if (!hit) continue;
     if (hit.end === -1) return { refused: `${a.kind} anchor has no matching end tag` };
-    const open = openAt(sc, hit.end);
+    // Most anchors insert after the element; one inserts inside it.
+    const pos = hit.insert ?? hit.end;
+    const open = openAt(sc, pos);
     if (!open) return { refused: `${a.kind} anchor is outside <main>` };
     const bad = open.filter((n) => !ALLOWED_PARENTS.has(n));
     if (bad.length) return { refused: `${a.kind} anchor sits inside <${bad[bad.length - 1]}>` };
-    return { kind: a.kind, pos: hit.end, indent: indentAt(s, hit.open) };
+    return { kind: a.kind, pos, indent: indentAt(s, hit.open) + (hit.indentExtra || "") };
   }
   return null;
 }
@@ -567,6 +578,7 @@ const files = execSync('git ls-files "*.html" "*.HTML"', { cwd: ROOT, encoding: 
   .filter((p) => !p.startsWith(".claude/"));
 
 const written = [];          // { rel, url, type, kind, subject }
+const broken = [];
 const skipped = new Map();   // reason -> { list, items: [] }
 const changed = [];
 const skip = (reason, item, list = true) => {
@@ -590,13 +602,18 @@ for (const rel of files) {
   // in place - means a page whose anchor moved gets its block moved with it.
   const starts = (s0.match(/<!-- quote-cta:start/g) || []).length;
   const ends = (s0.match(/<!-- quote-cta:end -->/g) || []).length;
+  // A damaged block is a failure, not a skip. It used to be listed among the
+  // skips and nothing else, so --check printed "All quote CTAs up to date" and
+  // exited 0 over a page whose block had stopped being maintained.
   if (starts !== ends) {
     skip(`unbalanced quote-cta markers (${starts} start, ${ends} end) - repair by hand`, rel);
+    broken.push(rel);
     continue;
   }
   const base = s0.replace(BLOCK_RE, "");
   if (/quote-cta:(start|end)/.test(base)) {
     skip("quote-cta marker left over after removing the blocks - repair by hand", rel);
+    broken.push(rel);
     continue;
   }
   const had = starts > 0;
@@ -607,7 +624,7 @@ for (const rel of files) {
     if (had) {
       changed.push(rel);
       if (!CHECK) writeFileSync(fp, crlf ? base.replace(/\n/g, "\r\n") : base);
-      reason += " - stale block removed";
+      reason += CHECK ? " - stale block to remove" : " - stale block removed";
       list = true;
     }
     skip(reason, item, list);
@@ -687,8 +704,13 @@ for (const [reason, { list, items }] of [...skipped].sort((a, b) => b[1].items.l
   if (show.length < items.length) console.log(`       ... +${items.length - show.length} more (--list names them)`);
 }
 
+if (broken.length) {
+  console.error(`\n${broken.length} page(s) have damaged quote-cta markers and were left alone - repair by hand, then re-run:`);
+  for (const r of broken) console.error(`   ${r}`);
+}
+
 if (CHECK) {
-  if (changed.length) {
+  if (changed.length || broken.length) {
     console.error(`\n${changed.length} page(s) would change:`);
     for (const r of changed.slice(0, 30)) console.error(`   ${r}`);
     if (changed.length > 30) console.error(`   ... +${changed.length - 30} more`);
@@ -700,3 +722,4 @@ if (CHECK) {
 }
 
 console.log(`\n${changed.length} page(s) written.`);
+if (broken.length) process.exit(1);
