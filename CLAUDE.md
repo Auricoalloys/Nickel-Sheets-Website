@@ -2228,17 +2228,25 @@ exactly as tall as the navbar, so it has nowhere to stick and scrolls away with 
 at 390 and 1366px). Making it stick is a decision, not a fix: on a phone it is 74px of every screen.
 Between 992 and 1199px a compact nav block (a 120px logo, tighter links, a narrower search floor)
 keeps the full desktop nav on one row. Without it the logo absorbed the shortfall, down to 8×2px on
-an iPad in landscape, and the homepage and contact page scrolled sideways.
+an iPad in landscape, and the homepage and contact page scrolled sideways. From 1200px the nav links
+are pinned at 1rem: on the four pages that load `style.css` they inherited its fluid 18px body size,
+which squeezed the logo to 100×30 at 1200px and wrapped "About Us" onto two lines at 1366.
 The contact rail sits at `bottom: 120px` on portrait tablets and in the compact column at `top: 80px`
 on phones and anything under 500px tall. At `top: 40%` it covered the `<h1>` on 56 of 161 sampled
 pages at 768×1024, and on a phone held in landscape it reached over the scroll-to-top button, so a tap
-on "back to top" dialled the sales desk. On those same screens `#main h1` keeps 42px clear on the
-right for the rail. That took rail-over-heading from 3–4 pages in 161 to 0 at every size measured
-(390×844, 360×740, 844×390, 667×375, 768×1024, 820×1180). The banner captions are left out because
-they centre themselves by transform. Below 768px, `order` in `pages.css` puts the
-content above the "Similar Products" sidebar on all 620 pages that have one — the `<h1>` of
+on "back to top" dialled the sales desk. On those same screens the `<h1>`, and a family hub's lead
+sentence under it, keep clear of the rail by exactly as much as the rail reaches into them,
+`max(0px, 42px - (100vw - 100%) / 2)`. A flat 42px also counted the 12–32px the heading's container
+already leaves at the edge, and at 320px broke 14 long titles mid-word. Over every page at 320–575px
+and on landscape phones, no padded heading sits under the rail and no word breaks. The banner
+captions are left out because they centre themselves by transform; two of them keep 3–6px under
+the rail at 320px. Below 768px, `order` in `pages.css` puts the content above the "Similar
+Products" sidebar on all 620 pages that have one — the `<h1>` of
 `/inconel/625/sheets/` rose from 1,043px to 462px — and the 19 that close the `.row` straight after
-the sidebar need the `:has()` rule, so check a new sidebar shape against those selectors.
+the sidebar need the `:has()` rule, so check a new sidebar shape against those selectors. `order`
+moves pixels, not focus, so the same containers carry `reading-flow: flex-visual`, which makes Tab and
+the accessibility tree reach the content first in Chromium. Safari and Firefox do not support it yet
+and still reach the sidebar first; only moving the sidebar after the content in the markup fixes those.
 `pages.css` and `products.css` still hold dead copies of the contact rail, and a `@keyframes pulse`
 that won on the 138 pages linking `pages.css` after `header.css`; that is why the rail's rules are
 `body`-qualified and its animation is `contact-rail-bob`. Delete the copies, don't edit them.

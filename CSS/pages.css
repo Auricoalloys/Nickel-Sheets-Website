@@ -1080,8 +1080,19 @@ footer p a {
      the .row straight after the sidebar, so the content column is the row's
      next sibling rather than its partner, and only the parent can reorder
      them - hence the :has(), which leaves any other .content-container as it
-     was. Visual order now differs from tab order on these pages; a keyboard
-     user still meets the sidebar's links first, as before. */
+     was.
+
+     `order` moves pixels, not focus. Tab and the accessibility tree still read
+     the source, sidebar first: on /inconel/625/sheets/ at 390px, Tab went from
+     the breadcrumb (y 372) to the sidebar at y 9,296 - 13 stops - and only
+     then back up to the page's first link at y 1,232, which is what a
+     keyboard user, a screen reader and a desktop zoomed past 200% all met.
+     reading-flow: flex-visual makes both follow the drawn order instead, on
+     the same containers `order` acts on. Measured in Chromium on the one-row
+     and the row-closing shapes: Tab and the accessibility tree now reach the
+     content first and the sidebar after it. Safari and Firefox do not support
+     it yet and keep the source order; only moving the sidebar after the
+     content in the pages' own markup would fix those. */
   @media (max-width: 767.98px) {
     body .content-container > .row > .col-md-3 {
       order: 1;
@@ -1094,6 +1105,11 @@ footer p a {
 
     body .content-container > .row + .col-md-9 {
       order: -1;
+    }
+
+    body .content-container > .row:has(> .col-md-3),
+    body .content-container:has(> .row + .col-md-9) {
+      reading-flow: flex-visual;
     }
   }
 

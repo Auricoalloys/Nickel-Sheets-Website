@@ -198,7 +198,8 @@ body .navbar-brand img {
    wider still, the bar overflowed and the whole page scrolled sideways.
    Measured at 992/1024/1100/1199: a fixed 120x36 logo, tighter link padding, a
    .92rem link size and an 8.5rem search floor fit one row with no overflow on
-   all four page types. From 1200px the bar has room and none of this applies. */
+   all four page types. None of this applies from 1200px; see the link size
+   below for what does. */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   body .navbar-brand {
     flex-shrink: 0;
@@ -232,6 +233,21 @@ body .navbar-brand img {
    out of the rule above's reach, because max-width had no room to give back. */
 body .navbar > .container {
   max-width: 1320px;
+}
+
+/* From 1200px the nav links are 1rem on every page. They set no size of their
+   own, so on the four pages that load style.css - home, contact, quality and
+   about - they inherited its fluid body size, 18px at 1366, and that wider nav
+   took its room from the logo: 100x30 at 1200px, 137x41 at 1240, and "About
+   Us" and "Get a Quote" wrapped onto two lines at 1366, an 89-90px header on
+   the homepage. With it, at 1200-1440 on all page types the logo is 154x46 at
+   1200 and 159-160 from 1240, and the homepage header is 74px from 1320 like
+   every other page. Every page that already drew them at 16px, which is all
+   but those four, is unchanged. */
+@media (min-width: 1200px) {
+  body .navbar-expand-lg .navbar-nav .nav-link {
+    font-size: 1rem;
+  }
 }
 
 /* Contact rail: email, WhatsApp and Call.
@@ -475,14 +491,31 @@ textarea:focus-visible,
 
 /* The column above still sat on the last word of a long <h1> on a few pages:
    measured at landing on 161 pages, 3 at 390x844, 4 at 360x740 and 1 at
-   667x375 - the homepage, Alloy 28, Titanium Grade 16 and Ti-5-2-4-4. Keeping
-   the heading out of the rail's 36px plus 6px of air took all three to 0, the
-   same screens the column applies to. The banner captions are left out - they
-   centre themselves by transform inside a symmetric 10px box, which a one-sided
-   padding would knock lopsided, and the rail covered none of them. */
+   667x375 - the homepage, Alloy 28, Titanium Grade 16 and Ti-5-2-4-4. The
+   heading keeps out of the rail's 36px plus 6px of air, but only by as much as
+   the rail actually reaches into it. A flat 42px also counted the 12-32px its
+   container already leaves at the screen edge, and at 320px that squeezed 14
+   long titles until a word broke in two - "Temperatu|re", "Visakhapatna|m" -
+   6 of them still at 340px. (100vw - 100%) / 2 is that edge gap, since the
+   heading's container is symmetric at these widths: a grade hub in a 12px
+   .container gets 30px, a form page's .main-content heading 10px and a
+   full-bleed one the whole 42px. Over every page at ten widths from 320 to
+   575px and seven landscape phones, no padded heading sits under the rail and
+   no word breaks.
+
+   The quality page's banner heading sits in style.css's .header block, where
+   nothing positions it, so it is an ordinary centred heading: it was the one
+   still under the rail, at 380-405px. The real banner captions are left out -
+   they centre themselves by transform inside a symmetric 10px box, which a
+   one-sided padding would knock lopsided - and two of them keep 3-6px under
+   the rail at 320px, against 28 headings there before the column. The family
+   hubs' lead sentence sits directly under their heading, in the rail's band,
+   and lost the end of its first lines the same way. */
 @media (max-width: 575.98px), (max-height: 500px) {
-    body #main h1:not(.banner-title) {
-        padding-right: 42px;
+    body #main h1:not(.banner-title),
+    body #main .header h1,
+    body #main #family-intro > .lead:first-child {
+        padding-right: max(0px, 42px - (100vw - 100%) / 2);
     }
 }
 
