@@ -56,6 +56,12 @@ for (const fp of walk(ROOT)) {
   if (/^published:\s*false/m.test(front)) continue;
   if (/^sitemap:\s*false/m.test(front)) continue;
   if (rel.startsWith('html/')) continue;               // runtime fragment, not a page
+  // The error page GitHub Pages serves at every missing URL. Its sitemap: false
+  // already keeps it out, but that line is there for the sitemap; this one does
+  // not depend on it. A search result offering "Page Not Found" would send the
+  // visitor to a 404 from a search box, and 404.html reads this very file to
+  // suggest pages - it must never suggest itself.
+  if (rel === '404.html') continue;
   let url = (front.match(/^permalink:\s*(.+)$/m) || [, ''])[1].trim().replace(/^["']|["']$/g, '');
   if (!url) continue;
   if (!url.startsWith('/')) url = '/' + url;

@@ -537,6 +537,73 @@ Sanicro 28 in one comparison row and correctly stays silent, the same way the cr
 Verify it in the **built** page, not the source — the attribution comes from the include, so it
 does not exist until Jekyll runs.
 
+### The 404 page
+
+GitHub Pages serves `/404.html`, with status 404, at every address that has no page. Until
+`404.html` existed that was GitHub's bare error page — no menu, no search, no enquiry form — and the
+visitors it caught were the ones this site most wants: **153 live URLs carry capitals**
+(`/hastelloy/C276/`, `/inconel/X-750/sheets/`, `/stainless/904L/`), and chat assistants and people
+typing lowercase them. A buyer following an assistant's `/hastelloy/c276/` link met a dead end on a
+page that exists.
+
+An inline script does three things, in order:
+
+- **Recovers.** It fetches `search-index.json` and, when exactly one page has the requested address
+  apart from letter case, a missing trailing slash, a trailing `index.html` or `.html`, trailing
+  punctuation picked up from a pasted sentence, or the hyphen inside a segment (`c-276` for `C276`,
+  `k500` for `K-500`), it `location.replace()`s there with the query and hash intact. Nothing in the
+  index today collides under either rule, and an ambiguous match redirects nowhere.
+- **Suggests.** Otherwise it ranks the index by words shared with the requested address and lists
+  the best six (four on a phone, so the enquiry block stays within reach). A lead page is offered
+  as *Did you mean* only when its own address or name accounts for every word asked for and it
+  clearly beats the next one.
+- **Asks.** The enquiry block is `a[data-enquiry]` under the shared contract `floating-form.js`
+  handles, placement `not_found`, bare `/pages/contact/` href. Its subject is the *Did you mean*
+  page's name when there is one and **the requested address itself** otherwise — "Enquiry:
+  /hastelloy/c-276/tube" tells the sales desk more than any page we could pick. Judging the guess by
+  the page's whole title is not enough: `/duplex/2205/pipe` matched the duplex pipes page through
+  the S32205 in its title's UNS list, and would have seeded "Duplex Steel Pipes" — the 2205 gone.
+  The WhatsApp link carries the same subject; the number is read from the markup, never typed into
+  the script.
+
+`page_not_found` fires with `{page_path, recovered}` **before** any redirect, so a broken inbound
+link shows up in GA4 even when the visitor never saw the error. The redirect waits for gtag's
+`event_callback`, or one second when gtag.js is blocked, so the hit is not lost to the navigation.
+The event name is written literally in the page: it is a classic inline script and cannot import
+`lead-config.js`.
+
+Four loop guards, because an error page that redirects to another error page bounces forever: never
+redirect to the address already showing; never redirect when the index lists this exact address
+(the page is gone and the index is stale — that case takes one hop, then stops); only redirect on a
+unique match; and a `sessionStorage` note refuses a second redirect away from an address this page
+just sent the visitor to. Index rows whose `u` is not a same-site path are dropped before matching,
+so the page cannot be turned into an open redirect, and the requested path is only ever written
+with `textContent` and `setAttribute`.
+
+Rules the page keeps that are easy to undo:
+
+- **Every URL in it is root-absolute.** It is served at any depth; a relative `CSS/pages.css`
+  resolves under `/hastelloy/c276/` and the page renders unstyled exactly where it is needed.
+- **No canonical, and `noindex`.** It has no address of its own to name. `tools/seo_audit.py`
+  exempts it from `missing_canonical` by name (`ERROR_PAGES`), not by baseline, so a real page
+  losing its canonical still fails.
+- **`sitemap: false` and an explicit rule in `build-search-index.mjs`.** The front matter keeps it
+  out of the sitemap; the named rule keeps it out of search even if that line goes, because the
+  page reads the index to suggest pages and must never suggest itself.
+- **It works without the index.** A failed or slow fetch (8 s timeout) leaves the heading, the
+  enquiry block, the family and form links and the header search, and still reports the event.
+
+GitHub Pages already serves the two real case-variant pairs (`/Hastelloy/foil/` vs
+`/hastelloy/foil/`, `/monel/K-500/sheets/` vs its lowercase stub), so those never reach it. What it
+**cannot** recover is anything the index does not list: a `sitemap: false` twin or a retired URL
+with no `redirect_from`. Those get suggestions, not a redirect — and the `page_not_found` rows in
+GA4 are the list of which ones deserve a `redirect_from`.
+
+Test it against a server that behaves like GitHub Pages — directory → `index.html`, a directory
+without its slash → 301, anything else → `404.html` **with status 404** — not `jekyll serve`, which
+serves the 404 page for missing paths but is case-insensitive on Windows and so never 404s a
+re-cased URL in the first place.
+
 ### Two rendering models coexist
 
 Most pages are fully static. One route is data-driven:
