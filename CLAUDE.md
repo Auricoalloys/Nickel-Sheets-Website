@@ -132,14 +132,16 @@ item from a real finding that replaced it, which is how ten "orphans" sat for mo
 genuine one could have arrived unnoticed. When a check fires on something deliberate, teach the
 check, don't raise the number.
 
-Two classes are excluded by the checks themselves rather than by the baseline. A URL carrying
+Three classes are excluded by the checks themselves rather than by the baseline. A URL carrying
 `sitemap: false` or disallowed in `robots.txt` is **not an orphan** — the site withholds it on
 purpose, so requiring an inbound link is incoherent, and adding one would point internal links at a
 page that disclaims itself. And a robots-disallowed route is **not a missing-`<h1>`**: the one such
 page, `/pure-nickel-strip/product/`, renders its heading from Supabase at runtime and says in its
 own front matter not to "fix" it with static markup. Only robots-blocked pages get the `<h1>`
 exemption — the `sitemap: false` twins are pages a visitor still lands on from Google's index, so
-they stay checked.
+they stay checked. And `/404.html` is **not a missing canonical**: it is served at every address that
+has no page, so it has no address of its own to name, and carries `noindex` instead. `ERROR_PAGES`
+names it for that one check; every other check still applies to it.
 
 CI runs it on every pull request touching HTML, `_includes/`, `prices.csv` or `docs/specs.csv`,
 fails the PR on a regression, and on the daily 08:00 IST schedule opens an issue instead.
@@ -488,7 +490,7 @@ colon from the copy, and run `bundle exec jekyll build --source <copy> --destina
 That is what the script does anyway, minus the case-sensitivity flag — which costs you nothing
 unless you are checking one of the two case-variant URLs.
 
-Note that uppercase in a URL is not itself a problem: 142 URLs contain uppercase (`/NiCr/…`,
+Note that uppercase in a URL is not itself a problem: 153 URLs contain uppercase (`/NiCr/…`,
 `/stainless/904L/`) and none of them collide. Only two URLs differing *only* by case cause this.
 
 **Never run `git add --renormalize .` in this repo.** Some directories under
@@ -566,11 +568,25 @@ An inline script does three things, in order:
   The WhatsApp link carries the same subject; the number is read from the markup, never typed into
   the script.
 
-`page_not_found` fires with `{page_path, recovered}` **before** any redirect, so a broken inbound
-link shows up in GA4 even when the visitor never saw the error. The redirect waits for gtag's
-`event_callback`, or one second when gtag.js is blocked, so the hit is not lost to the navigation.
+**A recovered visit is reported from the page it lands on, not from this one.** The page's gtag
+config sets `send_page_view: false`. An automatic page view logged every recovered visit as a "Page
+Not Found" view at the broken address, which GA4 then took as the session's landing page, so one
+page's leads split between `/hastelloy/C276/` and `/hastelloy/c276/`. When it recovers, the script
+fixes first-touch attribution: `landing_page` becomes the target, and the original referrer and
+UTM tags survive. It also leaves a `sessionStorage` note, `aurico_404_recovered` = `{from, to,
+at}`, then `location.replace()`s at once. `floating-form.js` on the target page reads the note and
+sends `page_not_found` with `{page_path: <the broken address>, recovered: true}`, but only on the
+page the note names and only within 30 s. A fresh note for another page is left alone, because the
+module also runs on the 404 page itself. A visitor who stays gets one `page_view` and
+`page_not_found` with `recovered: false`; opening `/404.html` directly sends the `page_view` alone.
 The event name is written literally in the page: it is a classic inline script and cannot import
-`lead-config.js`.
+`lead-config.js`. `recovered` reaches GA4's reports only once it is registered as an event-scoped
+custom dimension (Admin → Custom definitions), and GA4 does not backfill one.
+
+**One-letter words count when matching.** They are grade codes here: the `x` in
+`/hastelloy/x/tube`, the `n` in `hastelloy-n-pipe`. Dropping them made "Hastelloy Tube" a complete
+answer to a request for Hastelloy X tube, and they match only as whole words. A *Did you mean* name
+is also refused when it adds a digit-bearing word near nothing the visitor asked for.
 
 Four loop guards, because an error page that redirects to another error page bounces forever: never
 redirect to the address already showing; never redirect when the index lists this exact address
@@ -671,11 +687,12 @@ the `<h1>`. Those two carry marketing tails ("| Premium Corrosion & High-Tempera
 entities, and on a couple of pages mojibake (`MonelÂ®`); the breadcrumb is hand-written, one clean
 noun phrase, and present on 740 of 774 pages. 638 pages seed a subject and ~103 routes are
 suppressed by name. The 8 with no breadcrumb to read are **every one of them `published: false`**,
-so on the live site a page either seeds a subject or is suppressed on purpose — there is no third
-case to worry about. If a page ever does turn up seeding nothing, the missing `BreadcrumbList` is
-the bug, not the form.
+so on the live site a page either seeds a subject or is suppressed on purpose. There is one
+deliberate exception: `/404.html` has no breadcrumb because it has no address of its own, and its
+enquiry block supplies an explicit subject instead (see **The 404 page**). If any other page turns
+up seeding nothing, the missing `BreadcrumbList` is the bug, not the form.
 
-**The suppression list is the point, not an afterthought.** The ~130 location pages
+**The suppression list is the point, not an afterthought.** The 97 location pages
 (`/nickel-alloy-supplier-in-mumbai/`) end their breadcrumb on a bare place name, so deriving from
 them seeds "Enquiry: Mumbai" — which tells the sales desk nothing and reads to the visitor as a
 bug. `NO_SUBJECT_PREFIXES` also covers `/privacy/`, `/terms/`, `/supply-locations/`,
@@ -780,23 +797,29 @@ shift across the split to the optional fields; and it reads `quote_cta_click` by
 git log --first-parent -S quote_cta_click --format=%cd --date=short main -- javascript/lead-config.js
 ```
 
-`placement` appears in GA4's reports only once it is registered as an event-scoped custom dimension
-(Admin → Custom definitions), and GA4 does not backfill one, so register it before that deploy. The
-review task's `SKILL.md` lives outside this repo and needs the same split.
+`placement` (on `quote_cta_click` and `contact_click`) and `recovered` (on `page_not_found`) appear
+in GA4's reports only once each is registered as an event-scoped custom dimension (Admin → Custom
+definitions). GA4 does not backfill one, so whatever it records before registration is lost to every
+report that splits on it. That is an owner's setting, like the key event below. The review task's
+`SKILL.md` lives outside this repo and needs the same split.
 
 **`generate_lead` counts form leads only, and a lot of enquiries never touch the form.** The review
 task lives outside this repo, at `~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, and
 should read three more events beside it:
 
 - **`contact_click`, split by its `method` parameter — `phone`, `whatsapp`, `email`.**
-  `floating-form.js` fires it on every `tel:`, `mailto:` and `wa.me` link on every page: the header
-  rail, the footer, the WhatsApp hand-off a failed submission offers. A buyer who rings the desk is
-  a lead the Sheet never sees.
+  `floating-form.js` fires it on every `tel:`, `mailto:`, `wa.me` and `api.whatsapp.com` link on
+  every page. A buyer who rings the desk is a lead the Sheet never sees. Its `placement` says where
+  the link was: `in_page` (the generated quote block), `rail` (the floating contact bar), `footer`,
+  `form_fallback` (the hand-off a failed or unconfirmed submission offers), the link's own
+  `data-placement` (`not_found` on the 404 page), or `other`. Read off the DOM at click time, so no
+  page markup carries it. Without it, a call from the quote block could not be told from one off the
+  rail beside it, because both carry the same links with the same text.
 - **`calculator_quote_click`, split by `method` (`form` / `whatsapp`)** — a weight-calculator result
   turned into an enquiry. Its `form` half opens the form, so it is intent in the same sense as
   `quote_cta_click`; its `whatsapp` half is a hand-off the Sheet never sees. 316 form pages
   deep-link into the calculator with the grade and form already chosen.
-- **`quote_cta_click`, split by `placement` (`header` / `in_page`)** — a click on a quote button that
+- **`quote_cta_click`, split by `placement` (`header` / `in_page` / `not_found`)** — a click on a quote button that
   opens the form in place. It is **intent, not an enquiry**: a visitor who clicks and then submits is
   already one `generate_lead`, so adding the two double-counts the lead. Read it as the top of the
   form funnel, against `form_start` and `generate_lead`.
@@ -806,7 +829,7 @@ chats are conversions in no GA4 report, and a review reading key events reports 
 silently leaves them out. That is a setting in the property, not in this repo, so nothing here can
 make it and nothing here can tell whether it has been made — ask.
 
-**Until 2026-09-27 the calculator loaded no GA4 tag at all**, and neither did `/privacy/` or
+**Until 2026-10-01, when the change reached `main`, the calculator loaded no GA4 tag at all**, and neither did `/privacy/` or
 `/terms/`. `weight-calculator.js` guards every call with `typeof window.gtag === "function"` so that
 analytics can never break the tool — which also meant that, with no tag, every
 `calculator_quote_click`, `contact_click` and `generate_lead` raised there was dropped without an
@@ -861,7 +884,9 @@ never separately.
 **A page absent from the CSV has its `offers` block removed.** That is deliberate. `offers` without a
 `price` is invalid markup: it earns no rich result and reports as an error in Search Console, and 477
 pages were in exactly that state. To retire a price, delete its row and re-run — the markup cleans
-itself up.
+itself up. The reverse is checked as well: a row whose URL is no published page (retired,
+unpublished or mistyped) prices nothing, so every run names it and `--check` fails on it. Retiring a
+page means deleting its row in the same commit.
 
 The strip alone does **not** make the page valid — it leaves a bare `Product` node, which Google
 reports under *"Either offers, review, or aggregateRating should be specified"*. So the same run also
@@ -1738,15 +1763,18 @@ and on a 390px phone only 6 showed any enquiry route on the first screen: the he
 sits inside the collapsed menu there, the floating launcher is an unlabelled circle, and the Price row
 sat a median 4,407px down. `docs/build-quote-cta.mjs` writes an `aside.quote-cta` — quote button,
 WhatsApp, call — between `<!-- quote-cta:start -->` / `<!-- quote-cta:end -->` markers directly after
-each page's lead heading block: the `div.title#title` on the older template, the lead `<p>` or
-`section#introduction` on the newer ones, `#family-intro` on a family hub, the `<h1>` and its lead `<p>`
-on a grade hub. 626 pages carry it (369 grade form pages, 95 grade hubs, 86 form hubs, 34 busbar
-pages, 32 combined family pages, 10 family hubs). It walks a tag stack at every insertion point and
+each page's lead heading block: the `div.title#title` on the older template, the lead `<p>` on the
+newer titanium one, `#family-intro` on a family hub, the `<h1>` and its lead `<p>` on a grade hub.
+The stellite form pages are the exception: the block goes *inside* their `section#introduction`,
+before its end tag. That section is the page's `.container`, and after it the block would run
+full-bleed into the calc-cta aside that follows. 640 pages carry it (381 grade form pages, 95 grade
+hubs, 86 form hubs, 36 busbar pages, 32 combined family pages, 10 family hubs). It walks a tag stack at every insertion point and
 refuses unless only `div`/`section`/`article` are open inside `<main>`, so the block cannot land in a
 `<p>`, table, list or heading, and a page with no such anchor is named rather than guessed at. Powder
-pages are skipped because they already carry "Request a sample", and so are the location pages (the
-same `NO_SUBJECT_PREFIXES` the form suppresses), the `/pages/products/<form>/` catalogue hubs and the
-application guides; every skip is printed by reason. Run it after adding a product page, changing a
+pages are skipped, because a powder enquiry is a sample request rather than a wrought-product quote:
+16 of the 18 carry their own "Request a sample", and the run names the two Stellite powder pages
+that do not. So are the location pages (the same `NO_SUBJECT_PREFIXES` the form suppresses), the
+`/pages/products/<form>/` catalogue hubs and the application guides; every skip is printed by reason. Run it after adding a product page, changing a
 page's breadcrumb, or changing the WhatsApp number; the block is styled by `.quote-cta` in
 `pages.css`, right after `.calc-cta`. Three rules it keeps, each of which was the obvious way to get
 it wrong:
@@ -1758,9 +1786,11 @@ it wrong:
   lands on the contact form, which is an honest fallback.
 - **The subject is the page's last `BreadcrumbList` crumb, tidied exactly as `tidySubject()` does it**,
   so the in-page button and the floating launcher cannot disagree about what a page sells. A crumb
-  that names only a form — the stellite form pages end on "Sheet", "Round Bar", "Strip" — is reported,
-  not written: "Enquiry: Sheet" is a question the desk cannot price, and the breadcrumb is what needs
-  the grade name. Fix it there and the next run picks the page up.
+  that names only a form is reported, not written: "Enquiry: Sheet" is a question the desk cannot
+  price, and the breadcrumb is what needs the grade name. Fix it there and the next run picks the
+  page up. The twelve stellite form pages ended on "Sheet", "Round Bar" and "Strip" until 2026-10-01,
+  when their crumbs (visible and JSON-LD together) took the name their parked `Product` node already
+  gave them, "Stellite 6 Sheet".
 - **The number is read from `FALLBACK_CONTACT` in `lead-config.js` at generation time**, never typed
   into the script, and printed as `+91 79778 86611` from those digits. Change it there and `--check`
   fails in CI until the blocks are regenerated — `lead-config.js` is in the workflow's path lists for
@@ -1768,7 +1798,14 @@ it wrong:
   every WhatsApp link at runtime with the subject and the page URL, and skips any link that already
   has a message, so a static one would have suppressed the richer seed.
 
-The page carries `WebApplication`, `BreadcrumbList` and `FAQPage` and **no `Product` node**, so none
+**A damaged block fails the run, in both modes.** Unbalanced markers, or a marker still standing
+after the blocks are removed, mean the page's block is no longer maintained. That used to be listed
+among the skips and nothing else, so `--check` printed "All quote CTAs up to date" and exited 0 over
+it. Now the page is named and the run exits 1. A page that stops qualifying (unpublished, given
+`sitemap: false`, its crumb broken) loses its block on the next run; `--check` reports it as a
+"stale block to remove".
+
+The calculator page carries `WebApplication`, `BreadcrumbList` and `FAQPage` and **no `Product` node**, so none
 of the offers/review invalid-item states apply to it. It quotes no price and must not start to: the
 optional rate-per-kg field is the visitor's own number, used in their browser only.
 
@@ -1826,7 +1863,10 @@ normal state of a fresh cloud checkout, not an edge case.
 It has already happened. On 2026-09-14 a cloud session found the generator disagreeing with the
 committed sitemap on hundreds of dates, took it for the one-commit-behind state above, and
 regenerated (`b060d0f7`, "lastmod dates were stale on hundreds of URLs"). **589 of 801 URLs** came
-out dated 2026-09-10, the day of `df0ceec3` — the boundary. Full history puts 63 of them there; the
+out dated 2026-09-10, the date of the clone's shallow boundary. This used to name `df0ceec3` as
+that commit, but no tip from that day puts it there. A real 50-deep fetch of each of that day's
+tips ends on a different commit (`cc09f52f` from `fa6bbefb`, `4a2f4e82` from `d72c8bd4`), every one
+of them dated 2026-09-10, so the evidence is the date, not a SHA. Full history puts 63 of them there; the
 other **526 claimed an update they never had** — their real last edits run from 2026-08-12 to
 2026-09-09. That is the inflation `BOILERPLATE` exists to prevent, arriving from the other side, in
 a commit whose message called it a fix. A 20-deep test clone of the same tree dates all 801 URLs to
@@ -1951,13 +1991,21 @@ A redirect sweep is **boilerplate** for `<lastmod>`, like `e20a13f4` and `d50633
 the targets gain a `redirect_from` line and say nothing new.
 
 **A duplicate pair retires the same way, and link count does not pick the keeper.**
-`/nichrome/pipes/` and `/pure-nickel/200-201/foil/` were second self-canonical, sitemapped copies
-of live pages; each is now `published: false` with a comment naming its keeper, which carries it
-as `redirect_from`, and every href was repointed (the `monel/k-500/sheets.html` precedent). By
-inbound links the foil retiree would have stayed, 14 to 1 — but the keeper sits with its sheets,
-plates and round-bar siblings, carries the generated grade tables, and already received the
-retired `/pure-nickel/200-201/` tier's redirect. Hrefs are cheap to repoint; the rest is not. A
-retiree's `prices.csv` row is left for the business: `build-prices.mjs` skips `published: false`.
+`/nichrome/pipes/` and `/pure-nickel/200-201/foil/` were second self-canonical, sitemapped pages
+for a product another live page already sold. They are not the same kind of duplicate: the Nichrome
+pair shared 95% of their text, while the two Nickel 200/201 foil pages shared under 2% and were
+written separately, competing for one query. Each retiree is now `published: false` with a comment
+naming its keeper, which carries it as `redirect_from`, and every href was repointed (the
+`monel/k-500/sheets.html` precedent). By inbound links the foil retiree would have stayed, 14 to 1.
+But the keeper sits with its sheets, plates and round-bar siblings under the `/nickel-200-201/` hub,
+which the retired `/pure-nickel/200-201/` tier already redirects to, and it carries the generated
+grade tables. Hrefs are cheap to repoint; the rest is not.
+
+**A retiree's `prices.csv` row goes with it.** `build-prices.mjs` skips `published: false`, so the
+foil retiree's row priced nothing and still counted among the priced pages, and nothing said so.
+It was deleted in `fa31c5ef`; the keeper has its own row, so no published figure moved and
+`# updated:` was left alone. `build-prices.mjs` now names every row whose URL is no published page,
+in both modes, and `--check` fails on one, so CI stops the next orphan the day its page goes.
 
 #### A "missing" form page may be a retired one — check before building it
 
@@ -2121,17 +2169,24 @@ local stub and nothing in CI sets it.
 
 `floating-form.js` (every page, via footer), `site-search.js` (every page, via footer) and
 `detailed.js` (~650 pages — TOC toggles, smooth anchor scroll, scroll-up button) are the live ones.
-`script.js` (mobile nav, language switcher, homepage marquee) is loaded only by `index.html`.
+`script.js` (mobile nav, homepage marquee) is loaded only by `index.html`.
 
-`site-search.js` powers the search box in the shared header and is **the consumer of
-`search-index.json`** — which is the reason to re-run `build-search-index.mjs` after adding or
-retitling a page, not just the sitemap cross-check it is mentioned for below. The index is ~200 KB,
+`site-search.js` powers the search box in the shared header and is **the main consumer of
+`search-index.json`**, which is the reason to re-run `build-search-index.mjs` after adding or
+retitling a page, not just the sitemap cross-check it is mentioned for below. `404.html` reads the
+same index to recover a mistyped address and to suggest pages, so a page missing from the index is
+also one the 404 page can neither redirect to nor offer. The index is ~200 KB,
 so it is fetched on the first real interaction rather than at page load: a visitor who never
 searches never downloads it. Like `floating-form.js` it loads from the **footer** include even
 though its markup is in the header, because the runtime product route injects the header with
 `innerHTML` and scripts inside injected markup never execute. `google-auth.js` and `detailed_database_page.js` were referenced by no page and have both been
-deleted; the latter also pulled Supabase from unpkg, which this site otherwise avoids. `javascript/translations/translations.js` is empty and no `<lang>.json`
-files exist, so the language switcher's fetch always no-ops — it fails silently by design.
+deleted; the latter also pulled Supabase from unpkg, which this site otherwise avoids.
+
+The language switcher is gone from `script.js`. It had no translation behind it: no page carries the
+markup or a `data-i18n` attribute, `javascript/translations/translations.js` is empty, and no
+`<lang>.json` was ever written. Its one real effect was rewriting the homepage URL to `?lang=xx`,
+which put three duplicates of the English homepage into Google's index as *Crawled – currently not
+indexed*. Restore it only with real translated content and `hreflang` tags.
 
 ### CSS
 
@@ -2141,8 +2196,21 @@ Stylesheets belong in each page's `<head>`, not in the shared includes.
 
 **On a phone the header is 74px and the product comes before its sidebar.** A bare
 `img { width: 100%; height: auto }` in `pages.css`, `style.css` and `products.css` stretched the
-160×48 logo to 350×105 at 390px and made the sticky header 145–179px tall on every page;
-`body .navbar-brand img` in `header.css` pins it. Below 768px, `order` in `pages.css` puts the
+160×48 logo to 350×105 at 390px and made the header 145–179px tall on every page;
+`body .navbar-brand img` in `header.css` pins it. The navbar carries Bootstrap's `sticky-top` but
+sticks **only on the homepage**. Everywhere else it sits in `<div id="header__container">`, which is
+exactly as tall as the navbar, so it has nowhere to stick and scrolls away with the page (measured
+at 390 and 1366px). Making it stick is a decision, not a fix: on a phone it is 74px of every screen.
+Between 992 and 1199px a compact nav block (a 120px logo, tighter links, a narrower search floor)
+keeps the full desktop nav on one row. Without it the logo absorbed the shortfall, down to 8×2px on
+an iPad in landscape, and the homepage and contact page scrolled sideways.
+The contact rail sits at `bottom: 120px` on portrait tablets and in the compact column at `top: 80px`
+on phones and anything under 500px tall. At `top: 40%` it covered the `<h1>` on 56 of 161 sampled
+pages at 768×1024, and on a phone held in landscape it reached over the scroll-to-top button, so a tap
+on "back to top" dialled the sales desk. On those same screens `#main h1` keeps 42px clear on the
+right for the rail. That took rail-over-heading from 3–4 pages in 161 to 0 at every size measured
+(390×844, 360×740, 844×390, 667×375, 768×1024, 820×1180). The banner captions are left out because
+they centre themselves by transform. Below 768px, `order` in `pages.css` puts the
 content above the "Similar Products" sidebar on all 620 pages that have one — the `<h1>` of
 `/inconel/625/sheets/` rose from 1,043px to 462px — and the 19 that close the `.row` straight after
 the sidebar need the `:has()` rule, so check a new sidebar shape against those selectors.
