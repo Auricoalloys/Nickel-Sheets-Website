@@ -305,6 +305,16 @@ what the grade is for, an `<h2>Available Forms</h2>` list linking every form pag
 specs block if the grade has a row in `docs/specs.csv`. Chemistry, mechanical properties and size
 ranges belong on the form pages — repeating them is what made these hubs duplicates.
 
+**The first paragraph says who supplies the grade, in which forms and from where.** It reads
+"Aurico Alloys LLP supplies Inconel 625 (UNS N06625, W.Nr. 2.4856) as sheet, plate, … from Mumbai,
+India, with EN 10204 3.1 mill test certificates." It is the sentence a search snippet or an AI
+answer lifts. Until 2026-10-01 it was the last line of 52 hubs, below the tables, while 29 opened
+on one product form instead (`/inconel/625/` on plates and ASTM B443). The forms are the ones the
+hub's own list links, and the identifiers come from `grades.csv`. Leave the identifiers out when
+the overview paragraph already gives them. Add nothing the page does not already claim: stock,
+sizes and lead times are the business's to state. `build-quote-cta.mjs` puts the quote block after
+the first paragraph, so the overview follows the block.
+
 Which schema depends on whether the hub is priced, and both endings from the `Product` rule above
 are in use:
 
