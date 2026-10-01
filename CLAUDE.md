@@ -1956,6 +1956,17 @@ Plain stylesheets in `CSS/`, no preprocessor. `header.css` and `footer.css` are 
 `pages.css` is the workhorse for content pages, `tables.css` for the spec/chemistry tables.
 Stylesheets belong in each page's `<head>`, not in the shared includes.
 
+**On a phone the header is 74px and the product comes before its sidebar.** A bare
+`img { width: 100%; height: auto }` in `pages.css`, `style.css` and `products.css` stretched the
+160×48 logo to 350×105 at 390px and made the sticky header 145–179px tall on every page;
+`body .navbar-brand img` in `header.css` pins it. Below 768px, `order` in `pages.css` puts the
+content above the "Similar Products" sidebar on all 620 pages that have one — the `<h1>` of
+`/inconel/625/sheets/` rose from 1,043px to 462px — and the 19 that close the `.row` straight after
+the sidebar need the `:has()` rule, so check a new sidebar shape against those selectors.
+`pages.css` and `products.css` still hold dead copies of the contact rail, and a `@keyframes pulse`
+that won on the 138 pages linking `pages.css` after `header.css`; that is why the rail's rules are
+`body`-qualified and its animation is `contact-rail-bob`. Delete the copies, don't edit them.
+
 #### Tables are one system, and the link order used to decide how they looked
 
 There is **one table look**, in the block marked `table system` in `CSS/pages.css`, mirrored

@@ -1021,6 +1021,38 @@ footer p a {
     max-width: 1100px;
   }
 
+  /* On a phone the page comes before its sidebar. Below Bootstrap's md
+     breakpoint the two columns stack in source order, and the source puts the
+     "Similar Products" sidebar first - on 271 pages as an accordion expanded by
+     default - so a visitor from search scrolled past a list of sibling products
+     before reaching the product they had searched for: the <h1> of
+     /inconel/625/sheets/ sat 1,043px down a 390x844 phone. `order` moves the
+     sidebar after the content without editing the 620 pages or moving a pixel
+     of the desktop layout, and the sidebar stays whole, only lower down.
+
+     Three shapes carry it. 599 pages put nav.col-md-3 and the content column
+     (a div, or <main> on 48) side by side in one .row, and 2 use a
+     div.col-md-3 > div.sidebar; the first rule covers all of them. 19 close
+     the .row straight after the sidebar, so the content column is the row's
+     next sibling rather than its partner, and only the parent can reorder
+     them - hence the :has(), which leaves any other .content-container as it
+     was. Visual order now differs from tab order on these pages; a keyboard
+     user still meets the sidebar's links first, as before. */
+  @media (max-width: 767.98px) {
+    body .content-container > .row > .col-md-3 {
+      order: 1;
+    }
+
+    body .content-container:has(> .row + .col-md-9) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    body .content-container > .row + .col-md-9 {
+      order: -1;
+    }
+  }
+
   /* Prose gets a measure of its own; tables, figures and card grids keep the
      full container width. At 1100px a paragraph runs about 120 characters to
      the line, well past the point where the eye loses the start of the next
