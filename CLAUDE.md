@@ -1790,9 +1790,15 @@ it wrong:
   price, and the breadcrumb is what needs the grade name. Fix it there and the next run picks the
   page up. The twelve stellite form pages ended on "Sheet", "Round Bar" and "Strip" until 2026-10-01,
   when their crumbs (visible and JSON-LD together) took the name their parked `Product` node already
-  gave them, "Stellite 6 Sheet".
+  gave them, "Stellite 6 Sheet". The crumb is the block's bold headline, so a crumb that opens with a
+  marketing word ("Need a price for Premium Titanium Grade 4 Round Bar?") or does not name the form
+  its URL sells ("Inconel 600" on the 600, 601 and 617 foil page) is written but named in the run's
+  output. 32 such crumbs were rewritten the same day, with one the check cannot see: "214 Foil" on
+  the page selling seven Haynes grades' foil.
 - **The number is read from `FALLBACK_CONTACT` in `lead-config.js` at generation time**, never typed
-  into the script, and printed as `+91 79778 86611` from those digits. Change it there and `--check`
+  into the script, and printed as `+91 79778 86611` from those digits, with non-breaking spaces so a
+  narrow column breaks the call button between "Call" and the number, never inside it (`nowrap` on
+  the whole link pushed it past the block's padding at 320px). Change it there and `--check`
   fails in CI until the blocks are regenerated — `lead-config.js` is in the workflow's path lists for
   that reason. The WhatsApp link deliberately carries **no `text=`**: `seedWhatsAppLinks()` fills
   every WhatsApp link at runtime with the subject and the page URL, and skips any link that already

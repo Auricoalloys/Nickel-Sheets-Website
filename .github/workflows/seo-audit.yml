@@ -197,8 +197,11 @@ jobs:
       # changes without re-running the generator: a renamed crumb would leave the
       # button asking for a price under the old name, and a changed number would
       # leave six hundred pages dialling the old one. It also fails on a stale
-      # block left on a page that no longer qualifies, and on a new product page
-      # that has not been given one.
+      # block left on a page that no longer qualifies, on a damaged block whose
+      # markers no longer pair up, and on a new product page it can place a
+      # block on that has not been given one. A new page it cannot place - an
+      # unrecognised URL shape, no safe anchor, a crumb naming only a form - is
+      # named in the step's output, not failed.
       - name: Quote CTAs match each page's breadcrumb and the contact number
         run: node docs/build-quote-cta.mjs --check
 

@@ -63,7 +63,9 @@
  *   node docs/build-quote-cta.mjs --list   # also name every page that carries one
  *
  * --check exits non-zero when any page would change, including a stale block on
- * a page that no longer qualifies (the next write run removes it).
+ * a page that no longer qualifies (the next write run removes it). Both modes
+ * exit non-zero on a damaged block - markers that no longer pair up - which
+ * only a hand repair can fix.
  *
  * Like every byte-comparing generator here it does its work in LF space and
  * restores the CRLF it found, or --check reports drift on a tree whose content
@@ -192,6 +194,33 @@ const REFUSED_SUBJECTS = {
     "last crumb is a headline, not a product name",
   "Monel® foil® Foil": "last crumb is garbled",
 };
+
+// Crumbs that are a product name, but read badly as the block's bold headline.
+// Before the block the last crumb only seeded a hidden textarea; here it is the
+// thing being priced, near the top of the page. 23 crumbs opened "Premium" or
+// "Reliable" - "Need a price for Premium Titanium Grade 4 Round Bar?" - and
+// nine foil pages named no form or the wrong one: "Inconel 600" on the page
+// selling 600, 601 and 617 foil, "Sheets & Plates" on the Alloy 59 foil page.
+// The block is still worth having, so these are written and reported, not
+// refused; the fix is the breadcrumb, which the floating form reads too.
+const MARKETING_LEAD = /^(premium|reliable|superior|trusted|leading|best|top|quality|high[- ]quality)\b/i;
+const FORM_WORD = /\b(sheets?|plates?|coils?|strips?|foils?|bars?|rods?|wires?|pipes?|tubes?|tubing|fittings?|billets?|busbars?|forgings?|flanges?)\b/i;
+// The form a URL's last segment names, as the stem its crumb should contain:
+// /alloy-59/foil/ -> "foil", /alloy-20-round-bar/ -> "bar". null when it names
+// none (/pure-nickel-strip/21700/), and then any form word will do.
+function urlFormStem(url) {
+  const last = (url.split("/").filter(Boolean).pop() || "").toLowerCase();
+  const m = last.match(/(?:^|-)(sheet|plate|coil|strip|foil|bar|rod|wire|pipe|tube|fitting|billet|busbar)s?(?=-|$)/);
+  return m ? m[1] : null;
+}
+function crumbNote(subject, url, type) {
+  if (MARKETING_LEAD.test(subject)) return "last crumb opens with a marketing word";
+  if (!FORM_TYPES.has(type)) return null;
+  const stem = urlFormStem(url);
+  if (stem ? !new RegExp(`\\b${stem}`, "i").test(subject) : !FORM_WORD.test(subject))
+    return "form page's last crumb does not name the form it sells";
+  return null;
+}
 
 /* ------------------------------------------------------------------ *
  * Page types
@@ -546,6 +575,13 @@ function block(subject, i) {
   // link that already carries a message. A static text= would therefore
   // suppress the richer seed the header rail gets on the same page.
   const wa = `https://api.whatsapp.com/send?phone=${DIGITS}`;
+  // The number's spaces are non-breaking, so where "Call +91 79778 86611" is
+  // wider than the column (the div#title pages' column at 320px) the button
+  // can break only between "Call" and the number. With plain spaces it broke
+  // "+91 79778" from "86611" on every one of those pages; white-space: nowrap
+  // on the link kept the number whole but ran the button 8px past the block's
+  // padding instead.
+  const number = esc(DISPLAY).replace(/ /g, "&nbsp;");
   return [
     `${i}${START}`,
     `${i}<aside class="quote-cta" aria-label="Request a quote">`,
@@ -554,7 +590,7 @@ function block(subject, i) {
     `${i}  <div class="quote-cta-actions">`,
     `${i}    <a class="quote-cta-btn" href="/pages/contact/" data-enquiry="${esc(enquiry)}" data-placement="in_page">Get a quote</a>`,
     `${i}    <a class="quote-cta-wa" href="${esc(wa)}" target="_blank" rel="noopener">WhatsApp</a>`,
-    `${i}    <a class="quote-cta-call" href="tel:+${DIGITS}">Call ${esc(DISPLAY)}</a>`,
+    `${i}    <a class="quote-cta-call" href="tel:+${DIGITS}">Call ${number}</a>`,
     `${i}  </div>`,
     `${i}</aside>`,
     `${i}${END}`,
@@ -580,6 +616,7 @@ const files = execSync('git ls-files "*.html" "*.HTML"', { cwd: ROOT, encoding: 
 const written = [];          // { rel, url, type, kind, subject }
 const broken = [];
 const skipped = new Map();   // reason -> { list, items: [] }
+const noted = new Map();     // reason -> [written pages whose crumb reads badly]
 const changed = [];
 const skip = (reason, item, list = true) => {
   if (!skipped.has(reason)) skipped.set(reason, { list, items: [] });
@@ -674,6 +711,11 @@ for (const rel of files) {
   const next =
     base.slice(0, anchor.pos) + "\n" + block(subject, anchor.indent) + base.slice(anchor.pos);
   written.push({ rel, url, type: cls.type, kind: anchor.kind, subject });
+  const note = crumbNote(subject, url, cls.type);
+  if (note) {
+    if (!noted.has(note)) noted.set(note, []);
+    noted.get(note).push(`${url}  "${subject}"`);
+  }
   if (next !== s0) {
     changed.push(rel);
     if (!CHECK) writeFileSync(fp, crlf ? next.replace(/\n/g, "\r\n") : next);
@@ -694,6 +736,10 @@ console.log(`  by page type : ${tally("type").map(([k, n]) => `${k} ${n}`).join(
 console.log(`  by anchor    : ${tally("kind").map(([k, n]) => `${k} ${n}`).join(", ")}`);
 console.log(`  number       : ${DISPLAY} (FALLBACK_CONTACT.whatsapp in javascript/lead-config.js)`);
 if (LIST) for (const w of written) console.log(`    ${w.url}  [${w.type}; ${w.kind}]  "${w.subject}"`);
+for (const [reason, items] of noted) {
+  console.log(`\n  written, but ${reason} - it is the block's headline, so fix the breadcrumb (${items.length}):`);
+  for (const it of items) console.log(`       ${it}`);
+}
 
 const skippedTotal = [...skipped.values()].reduce((n, r) => n + r.items.length, 0);
 console.log(`\n${skippedTotal} page(s) skipped, by reason - every page is either covered above or named here:`);
@@ -710,13 +756,15 @@ if (broken.length) {
 }
 
 if (CHECK) {
-  if (changed.length || broken.length) {
+  // A damaged block alone is not something a write run can repair, so it gets
+  // the "repair by hand" list above and not a "Run:" line that would not help.
+  if (changed.length) {
     console.error(`\n${changed.length} page(s) would change:`);
     for (const r of changed.slice(0, 30)) console.error(`   ${r}`);
     if (changed.length > 30) console.error(`   ... +${changed.length - 30} more`);
     console.error("\nRun: node docs/build-quote-cta.mjs");
-    process.exit(1);
   }
+  if (changed.length || broken.length) process.exit(1);
   console.log("\nAll quote CTAs up to date.");
   process.exit(0);
 }

@@ -1539,13 +1539,12 @@ footer p a {
     border-color: var(--primary-color);
   }
 
-  /* A phone number split across two lines is a number misread: at 320px the
-     button broke "+91 79778" from "86611" on 519 of 626 pages. Kept whole, the
-     button wraps to its own row instead, which the flex row above allows. */
-  .quote-cta-actions .quote-cta-call {
-    white-space: nowrap;
-  }
-
+  /* No white-space: nowrap on the call button. A phone number split across two
+     lines is a number misread, so the generator writes its spaces as &nbsp;
+     and the only place the label can break is between "Call" and the number.
+     nowrap on the whole link kept the number whole too, but at 320px it held
+     the button 8px wider than the block's content box on the 521 pages
+     anchored on div#title. */
   .quote-cta-actions .quote-cta-wa:hover,
   .quote-cta-actions .quote-cta-wa:focus,
   .quote-cta-actions .quote-cta-call:hover,
@@ -1554,10 +1553,12 @@ footer p a {
     background: var(--primary-color);
   }
 
-  /* On a phone the buttons grow to fill each row, so they wrap into two tidy
-     rows at 360-414px - "Get a quote" and "WhatsApp" side by side, the call
-     button full width beneath - and into three at 320px, never into a ragged
-     one. */
+  /* On a phone the buttons grow to fill each row, so a row is never ragged:
+     "Get a quote" and "WhatsApp" share a row where they fit side by side, with
+     the call button full width beneath, and take a row each where they do not.
+     How wide that is depends on the column and the font. Measured in headless
+     Chromium's fallback sans: two rows at 390 and 414px, three at 320px, and at
+     360px two on the wider hub column and three on the div#title pages. */
   @media (max-width: 575.98px) {
     .quote-cta {
       padding: 12px;
