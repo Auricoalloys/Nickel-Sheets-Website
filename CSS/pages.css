@@ -1422,3 +1422,97 @@ footer p a {
     background: var(--secondary-cta-dark);
     color: #fff;
   }
+
+  /* The quote call to action, written into the product pages by
+     docs/build-quote-cta.mjs directly under the lead heading block. A headless
+     audit found 298 of 382 grade-and-form pages with no quote, call or WhatsApp
+     link in their content, and 6 of 382 showing any enquiry link on a 390px
+     phone's first screen: there the header's "Get a Quote" sits inside the
+     collapsed menu and the floating launcher is an unlabelled circle.
+
+     It borrows the .calc-cta box above so the two read as one family, with a
+     navy rule where that one is orange so a page carrying both can tell them
+     apart. The quote button is the one solid fill - white on --secondary-cta is
+     4.58:1, AA - and WhatsApp and Call are outlined, navy on white at 10:1, so
+     the eye lands on the action first. Every link is at least 44px tall. The
+     text is left-aligned because `p` is justified site-wide, which opens
+     rivers in a sentence this short. */
+  .quote-cta {
+    margin: 0 0 24px;
+    padding: 14px 16px;
+    background: var(--light-color);
+    border: 1px solid #d9e2ea;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
+    text-align: left;
+  }
+
+  .quote-cta-text {
+    margin: 0 0 12px;
+    color: var(--text-color);
+    text-align: left;
+  }
+
+  .quote-cta-text strong {
+    color: var(--primary-color);
+  }
+
+  .quote-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .quote-cta-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .quote-cta-actions .quote-cta-btn {
+    color: #fff;
+    background: var(--secondary-cta);
+  }
+
+  .quote-cta-actions .quote-cta-btn:hover,
+  .quote-cta-actions .quote-cta-btn:focus {
+    color: #fff;
+    background: var(--secondary-cta-dark);
+  }
+
+  .quote-cta-actions .quote-cta-wa,
+  .quote-cta-actions .quote-cta-call {
+    color: var(--primary-color);
+    background: #fff;
+    border-color: var(--primary-color);
+  }
+
+  .quote-cta-actions .quote-cta-wa:hover,
+  .quote-cta-actions .quote-cta-wa:focus,
+  .quote-cta-actions .quote-cta-call:hover,
+  .quote-cta-actions .quote-cta-call:focus {
+    color: #fff;
+    background: var(--primary-color);
+  }
+
+  /* On a phone the buttons grow to fill each row, so they wrap into two tidy
+     rows at 360-414px - "Get a quote" and "WhatsApp" side by side, the call
+     button full width beneath - and into three at 320px, never into a ragged
+     one. */
+  @media (max-width: 575.98px) {
+    .quote-cta {
+      padding: 12px;
+    }
+
+    .quote-cta-actions a {
+      flex: 1 1 auto;
+    }
+  }

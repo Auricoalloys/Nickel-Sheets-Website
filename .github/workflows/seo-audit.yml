@@ -45,6 +45,8 @@ on:
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
       - "docs/build-breadcrumbs.mjs"
+      - "docs/build-quote-cta.mjs"
+      - "javascript/lead-config.js"
       - "docs/powder-datasheets/cuts.csv"
       - "docs/powder-datasheets/data.mjs"
       - "docs/powder-datasheets/build.mjs"
@@ -79,6 +81,8 @@ on:
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
       - "docs/build-breadcrumbs.mjs"
+      - "docs/build-quote-cta.mjs"
+      - "javascript/lead-config.js"
       - "docs/powder-datasheets/cuts.csv"
       - "docs/powder-datasheets/data.mjs"
       - "docs/powder-datasheets/build.mjs"
@@ -186,6 +190,17 @@ jobs:
       # knows by that id, which would land a buyer on the wrong material.
       - name: Calculator CTAs match the material list
         run: node docs/build-calc-links.mjs --check
+
+      # The in-page "Get a quote" block on the product pages. Its subject is the
+      # page's own last breadcrumb and its WhatsApp and call links carry the one
+      # number in javascript/lead-config.js, so this fails the build when either
+      # changes without re-running the generator: a renamed crumb would leave the
+      # button asking for a price under the old name, and a changed number would
+      # leave six hundred pages dialling the old one. It also fails on a stale
+      # block left on a page that no longer qualifies, and on a new product page
+      # that has not been given one.
+      - name: Quote CTAs match each page's breadcrumb and the contact number
+        run: node docs/build-quote-cta.mjs --check
 
       # The grade-hub crumb in the form pages' breadcrumbs, visible and JSON-LD.
       # 311 of 338 form pages once breadcrumbed straight past their grade hub to
