@@ -22,7 +22,7 @@
 # published already expired.
 #
 # generated: 2026-10-01 by docs/build-price-worklist.mjs
-# pending: 278 page(s)
+# pending: 277 page(s)
 
 url,low_inr,high_inr,low_usd,high_usd,unit
 
@@ -304,8 +304,7 @@ url,low_inr,high_inr,low_usd,high_usd,unit
 # /nichrome/round-bars/  (1)
 /nichrome/round-bars/,,,,,kg
 
-# /nickel-...  (12)
-/nickel-200-201/,,,,,kg
+# /nickel-...  (11)
 /nickel-alloy-coil-supplier-exporter-in-mumbai-india/,,,,,kg
 /nickel-alloy-fittings-supplier-exporter-in-mumbai-india/,,,,,kg
 /nickel-alloy-hex-bars-supplier-exporter-in-mumbai-india/,,,,,kg

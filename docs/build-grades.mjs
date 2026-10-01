@@ -312,6 +312,12 @@ const COMBINED = {
       ['nimonic', '86'], ['nimonic', '90'], ['nimonic', '105'],
       ['nimonic', '115'], ['nimonic', '263'], ['nimonic', '901'],
   ],
+  // The hub above the four Nickel 200/201 form pages. An entry whose URL names
+  // no form is a grade hub and gets identity tables only - see the combined
+  // branch below. Kept in step with PAIR_HUBS in docs/build-specs.mjs.
+  '/nickel-200-201/': [
+      ['nickel-alloy', 'Nickel 200'], ['nickel-alloy', 'Nickel 201'],
+  ],
   '/nickel-200-201/sheets/': [
       ['nickel-alloy', 'Nickel 200'], ['nickel-alloy', 'Nickel 201'],
   ],
@@ -1165,12 +1171,15 @@ for (const fp of walk(ROOT)) {
     const stack = (fn) => rows.map(r =>
       `<h3 class="h5 mt-4">${esc(fullName(r))}</h3>\n${fn(r)}`).join('\n');
 
-    if (writeBlocks(fp, raw, rel, [
-      { section: ID_SECTION, start: ID_START, end: ID_END,
-        html: stack(r => identityTable(r, form)) },
-      { section: CHEM_SECTION, start: CHEM_START, end: CHEM_END,
-        html: stack(r => chemTable(r, chemOf.get(key(r.family, r.grade)) || [])) },
-    ], publishedConstants(rows))) wrote++;
+    // An entry whose URL names no form is the grade hub for the grades it
+    // lists (/nickel-200-201/), and a hub carries identity only - the same rule
+    // the single-grade hubs below keep. Chemistry belongs on the form pages;
+    // repeating it is what made eleven hubs copies of one of their forms.
+    const blocks = [{ section: ID_SECTION, start: ID_START, end: ID_END,
+      html: stack(r => identityTable(r, form)) }];
+    if (form) blocks.push({ section: CHEM_SECTION, start: CHEM_START, end: CHEM_END,
+      html: stack(r => chemTable(r, chemOf.get(key(r.family, r.grade)) || [])) });
+    if (writeBlocks(fp, raw, rel, blocks, publishedConstants(rows))) wrote++;
     continue;
   }
 

@@ -143,6 +143,28 @@ const fullName = row => {
   return p && !row.grade.toLowerCase().startsWith(p.toLowerCase()) ? `${p} ${row.grade}` : row.grade;
 };
 
+// One table for a hub that sells two grades a mill publishes together, a column
+// each, so the reader compares them form by form instead of reading two tables
+// under the same heading. A cell either grade lacks prints a dash.
+function pairTable(pair) {
+  const forms = FORM_ORDER.filter(f => pair.some(r => r[f] && r[f] !== '-'));
+  if (!forms.length) return null;
+  const named = r => `${esc(fullName(r))}${r.uns && r.uns !== '-' ? ` (${esc(r.uns)})` : ''}`;
+  return [
+    `<h2>Specifications by Product Form</h2>`,
+    `<p>${pair.map(named).join(' and ')} are each supplied to a different standard in each form. Quote the one that matches the product and the grade you are ordering.</p>`,
+    '<div class="table-responsive">',
+    '<table class="table table-bordered grade-table">',
+    '<thead><tr><th scope="col">Product form</th>' +
+      pair.map(r => `<th scope="col">${esc(fullName(r))}</th>`).join('') + '</tr></thead>',
+    '<tbody>',
+    ...forms.map(f => `<tr><td>${esc(FORM_LABEL[f])}</td>${pair.map(r => `<td>${cell(r[f])}</td>`).join('')}</tr>`),
+    '</tbody>',
+    '</table>',
+    '</div>',
+  ].join('\n');
+}
+
 function gradeTable(row) {
   const forms = FORM_ORDER.filter(f => row[f] && row[f] !== '-');
   if (!forms.length) return null;
@@ -204,6 +226,16 @@ const SINGLE_GRADE = {
   'nitinol': ['nickel-alloy', 'Nitinol'],
 };
 
+// TWO-GRADE HUBS: an overview of two grades sold as one product, a single URL
+// segment long like the SINGLE_GRADE hubs. Special Metals publishes Nickel 200
+// and 201 in one bulletin and every Nickel 200/201 form page sells both, so the
+// hub above them does too. Kept in step with the /nickel-200-201/ entry in
+// COMBINED in docs/build-grades.mjs, which writes this hub's identity tables:
+// a hub in one and not the other gets one generated table and looks finished.
+const PAIR_HUBS = {
+  'nickel-200-201': [['nickel-alloy', 'Nickel 200'], ['nickel-alloy', 'Nickel 201']],
+};
+
 // GRADE SEGMENT ALIASES, keyed family -> normalised segment -> normalised grade.
 // /stainless/SMO-254/ normalises to "smo254" and the CSV grade "254 SMO" to
 // "254smo", so the hub matched no row and got no spec table. Kept in step with
@@ -250,10 +282,15 @@ for (const fp of walk(ROOT)) {
     // single-grade family, which has no family segment to carry.
     const one = url.match(/^\/([a-zA-Z0-9-]+)\/$/);
     const sg = one && SINGLE_GRADE[one[1].toLowerCase()];
+    const pair = one && PAIR_HUBS[one[1].toLowerCase()];
     if (sg) {
       const row = rows.find(r => r.family === sg[0] && r.grade === sg[1]);
       if (row) table = gradeTable(row);
       else noData.push(`${rel}  (${sg[0]} / ${sg[1]} - no specs.csv row)`);
+    } else if (pair) {
+      const found = pair.map(([f, g]) => rows.find(r => r.family === f && r.grade === g));
+      if (found.every(Boolean)) table = pairTable(found);
+      else noData.push(`${rel}  (${pair.map(p => p.join(' / ')).join(' + ')} - a grade has no specs.csv row)`);
     } else {
       const m = url.match(/^\/([a-zA-Z0-9-]+)\/([a-zA-Z0-9.-]+)\/$/);
       if (!m) continue;
