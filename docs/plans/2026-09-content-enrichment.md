@@ -1,6 +1,8 @@
 # Content enrichment plan: Inconel, Titanium, Hastelloy, Incoloy, Duplex, nickel strips
 
-**Status: parked on 2026-09-27, waiting on network access to the mills' sites.**
+**Status, 2026-10-01: the parts that need no outside source are done and published. The
+rest still waits on network access to the mills' sites and on facts from the business;
+see Progress below.** Parked on 2026-09-27.
 The owner asked for these six families to be made the site's strongest search and
 AI-answer pages, with applications added and the overview pages made substantive.
 
@@ -11,6 +13,57 @@ Decisions the owner made on 2026-09-27:
 - **Sources:** mill documents only, per CLAUDE.md's "Application guides select a
   grade, and every claim names the producer". The owner will allow the mill domains
   in the environment's network settings. Web-search summaries are not a source.
+
+## Progress (2026-10-01)
+
+Done and published to `main`:
+
+- **Step 3, the misplaced overviews.**
+  - `/nickel-200-201/` is the Nickel 200 / 201 overview: one identity table per grade
+    (`COMBINED` in `build-grades.mjs`) and one specification table with a column per
+    grade (`PAIR_HUBS` in `build-specs.mjs`).
+  - `/duplex-steel/duplex/` was a second duplex wire page. It is retired into
+    `/wire/duplex-steel/`, which carries it as `redirect_from`, and the header's "All
+    Duplex Grades" goes to `/duplex-steel/`.
+  - `/inconel/X-750/` is built. The plates page moved to `/inconel/X-750/plates/`, and
+    the plate and coil pages no longer cite ASTM B637, a bar standard, for flat product.
+- **Step 2, the quotable openings.** 51 grade hubs open with who supplies the grade, in
+  which forms and from where, built from each page's own closing sentence and forms
+  list, with no new claim:
+  - Inconel 600, 601, 617, 625, 686, 690, 693, 718, 725, 783 and the new X-750
+  - Titanium Grades 1-7, 9, 11, 12, 16, 23 and the five alloy hubs
+  - Hastelloy B-2, B-3, C-2000, C-22, C-276, C-4, G-30, N, X
+  - Incoloy 660, 800, 800H, 800HT, 825, 890, 903, 909, 925, 945, Alloy 330 / DS
+  - Duplex 2205, 32750, 32760
+  - Headings that carried a UNS or ASTM number now name the grade.
+  - `/titanium/grade-1/` moved onto the layout its siblings use.
+  - 62 pages that a template had lowercased ("inconel 740h") have their capitals back.
+- **Inconel 625 LCF, 740H and 751** already opened with the sentence. Each says "from
+  stock in Mumbai", which waits on the owner (see below).
+
+Still blocked:
+
+- **Step 1 and the rest of step 2** (sourced applications, "which grade to choose") and
+  **step 4** (the guides) need the mills' sites. On 2026-10-01 every mill domain still
+  failed with `CONNECT tunnel failed, response 403`.
+- **The nickel-strip hub and guide** need the business's strip facts, under
+  Prerequisites 2.
+
+Found on the way, waiting on a source or the owner:
+
+- **Ti-6-2-4-2 states two service temperatures.** The overview, from ATI's data sheet,
+  says long-term stability "up to 425 °C (800 °F)". The Key Properties line says "Used
+  to around 540 °C, the upper end for titanium in engine service", with no source. Read
+  ATI's sheet: one of them goes or is qualified.
+- **Stock claims to confirm.**
+  - "Ex-stock" is in the metadata of 240 pages, 92 of them in these five directories.
+  - "From ready stock in Mumbai" opens 58 pages, most of them form hubs.
+  - The three Inconel hubs above say "from stock in Mumbai".
+  - Ask which grades are held, not whether the sentence reads well. "Supplied from
+    Mumbai" is the wording where the answer is no (CLAUDE.md, the Waspaloy note).
+- **Titanium Grade 1's sheet range** (0.5-100 mm thick, 1000-3000 x 2000-6000 mm) left
+  the hub, which nested it under the sheet link. The sheet page itself says 0.2-10 mm.
+  If the business's real range differs, the sheet page is where it belongs.
 
 ## Prerequisites (check all three before starting)
 
@@ -27,9 +80,8 @@ Decisions the owner made on 2026-09-27:
      options, plated or bare, minimum order and dispatch time.
    - For every grade in these families: held in stock, or sourced to order. The pages
      must not say "ex-stock" where it isn't true (see the Waspaloy note in CLAUDE.md).
-3. **The 2026-09-27 enquiry/search batch is merged first.** It inserts a generated
-   quote block on ~380 product pages and touches several of these hubs. Writing into
-   the same pages in parallel would conflict.
+3. **The 2026-09-27 enquiry/search batch is merged first.** Done: it reached `main` on
+   2026-10-01, quote block and all.
 
 ## What the survey found (2026-09-27)
 
@@ -205,5 +257,5 @@ The guides:
 - **Location pages.** The 97 location pages repeat one sentence fragment in every row
   of their "Grades specified in X" table.
 - **Specifications.** 15 grades have no specification table.
-- **Unmerged image branch.** `claude/vigilant-swanson-20d0f4` fixes images that name
-  the wrong alloy.
+- **Image branch.** `claude/vigilant-swanson-20d0f4`, which fixes images that name the
+  wrong alloy, was merged in `01b6cdd1`.
