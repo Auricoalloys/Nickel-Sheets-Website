@@ -167,6 +167,11 @@ const unparkProduct = s => s.replace(PARKED, (_, node) => node);
 
 // ---- apply ------------------------------------------------------------------
 let priced = 0, stripped = 0, parkedPages = 0, drift = [], noAnchor = [], noSchemaAnchor = [];
+// Every row has to land on a published page. When /pure-nickel/200-201/foil/ was
+// retired into /nickel-200-201/foil/ on 2026-09-27 its row stayed behind, priced
+// nothing, and still counted in "268 priced pages" - a figure for a URL that now
+// only redirects, in the file that is supposed to be the truth about prices.
+const matchedRows = new Set();
 
 for (const fp of walk(ROOT)) {
   const rel = path.relative(ROOT, fp).split(path.sep).join('/');
@@ -194,6 +199,7 @@ for (const fp of walk(ROOT)) {
   s = unparkProduct(s);
 
   const row = rows.get(url);
+  if (row) matchedRows.add(url);
 
   if (row) {
     const cell = priceCell(row);
@@ -294,12 +300,22 @@ for (const fp of walk(ROOT)) {
   }
 }
 
+// A row whose URL is no published page: retired, renamed, unpublished or mistyped.
+// Reported in both modes and fails --check, so CI stops the next one the day the
+// page goes rather than leaving it to inflate the priced-page count.
+const orphanRows = [...rows.keys()].filter(u => !matchedRows.has(u));
+if (orphanRows.length) {
+  console.error(`prices.csv has ${orphanRows.length} row(s) matching no published page - move each to the page that sells it now, or delete it:`);
+  orphanRows.forEach(u => console.error('   ' + u));
+}
+
 if (CHECK) {
   if (drift.length) {
     console.error(`prices are STALE in ${drift.length} page(s) - run: node docs/build-prices.mjs`);
     drift.slice(0, 10).forEach(d => console.error('   ' + d));
     process.exit(1);
   }
+  if (orphanRows.length) process.exit(1);
   console.log(`prices are current (${rows.size} priced pages, valid until ${validUntil})`);
   process.exit(0);
 }
