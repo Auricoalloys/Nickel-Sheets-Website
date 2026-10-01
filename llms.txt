@@ -17,6 +17,21 @@ UNS number, Werkstoff (W.Nr.) number, applicable ASTM/ASME specifications,
 chemistry ranges, mechanical properties and the stocked size envelope for that
 grade and form.
 
+## Requesting a quote
+
+A request is answered fastest when it names the grade, the product form, the
+size (thickness x width x length, diameter, or OD x wall), the quantity, the
+specification or test certificate required, and the delivery city or country.
+The sales desk replies within one working day; office hours are Monday to
+Saturday, 9:00 AM to 8:00 PM India time (IST).
+
+- [Enquiry form](https://www.nickelsheets.com/pages/contact/): also opens from the "Get a quote" button on every product page, with the product already filled in
+- [WhatsApp or call +91 79778 86611](https://api.whatsapp.com/send?phone=917977886611)
+- [Email info@auricoalloys.com](mailto:info@auricoalloys.com)
+- [Weight calculator](https://www.nickelsheets.com/tools/weight-calculator/): theoretical weight of a sheet, plate, bar, tube, coil or section in a stocked grade, for stating a quantity in kilograms
+- [Alloys for sour service (NACE MR0175 / MR0103)](https://www.nickelsheets.com/alloys-for-sour-service-nace-mr0175-mr0103/): grade selection for H2S service, each limit attributed to the alloy's producer
+- [Alloys for acid and alkali service](https://www.nickelsheets.com/alloys-for-acid-and-alkali-service/): grade selection for sulphuric, hydrochloric, hydrofluoric, phosphoric, nitric and organic acids and caustic alkalis, from the producers' own corrosion data
+
 ## Alloy families
 
 - [Inconel](https://www.nickelsheets.com/inconel/): nickel-chromium superalloys — 600, 601, 617, 625, 625 LCF, 686, 690, 693, 718, 725, 740H, 751, 783, X-750
