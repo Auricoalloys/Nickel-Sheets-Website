@@ -982,9 +982,10 @@ nothing looked wrong. The next re-quote would have left every one of them assert
 They were removed, each price FAQ answer now points at the Price row, and three hollow-bar
 comparison tables lost a "Cost (per kg)" row nobody had quoted.
 
-Two sets of prices stay in page text on purpose. The C-22, C-276 and Haynes hub paragraphs state
+One set of prices stays in page text on purpose: the C-22, C-276 and Haynes hub paragraphs state
 ranges the business quoted, on hubs that have no Price row. The 32140 strip page's per-metre table
-is waiting on the owner. Anything else this finds is a regression:
+went on 2026-10-02, with its capacity, FOB and "China risk" figures, when the owner left that page
+to our judgement. Anything else this finds is a regression:
 
 ```bash
 git ls-files '*.html' | xargs grep -n -E '(₹|\$|€) ?[0-9][0-9,.]*( ?[-–] ?(₹|\$|€)?[0-9][0-9,.]*)? ?(/|per )kg'
@@ -1184,6 +1185,16 @@ title is not a scope in either direction.
 hand-written claims on 21 pages — wire hub titles such as "Hastelloy Wire: UNS N10276, ASTM B574
 Supplier", FAQ answers, JSON-LD descriptions. After changing a standard in `specs.csv`, grep the whole
 tree for the old number in a wire context, with the generated blocks stripped.
+
+**The Haynes pages were swept against their rows on 2026-10-02, and 22 disagreed.** A standard
+named beside a UNS has to cover that UNS. "Haynes sheets (UNS R30605, ASTM B435)" paired Haynes 25
+with a standard scoped to N06002, N06230, N12160 and R30556, and the hex bar page did the same with
+B572 for Haynes 25 and 188. Bar pages carried flat standards: B435, B434 and AMS 5878 on 230 and 242
+round bar. The hollow-bar page sold 230 to AMS 5878 and invented four requirements for it, and HR-120
+sheet cited BS HR 203, which is Nimonic 75's. HR-120 still has no row. Its pages now cite B409 for
+flat and B408 for bar, as its plate and bar pages already did, and the row needs reading off Haynes'
+HR-120 bulletin. Where a page covers several grades, name each grade's standard rather than one
+standard for all of them.
 
 **`build-specs.mjs` used to leave a stale table on a form hub that lost its last grade.** When all six
 Hastelloy wire cells became `-`, `/wire/hastelloy/` had no grades left, and the generator reported
@@ -2556,6 +2567,9 @@ business's word, and in all of its places at once, because nothing generates the
   descriptions. The minimum order and delivery time are also two rows above the Price row on
   the 28 strip product pages, or at the end of the table on the two without a price. The
   0.02–20 mm range stays on the hub: a product page gives the battery gauges below.
+  The 5–7 days is for plain strip, the raw material, export orders included; a custom design's
+  delivery "depends on order to order". The owner said so the same day, and every Delivery
+  time row and the hub's lead now say it.
 - **Battery strip gauges, 2026-10-02: 0.10, 0.12, 0.15, 0.20, 0.25, 0.30, 0.40 and 0.50 mm are
   the most used, 0.05 mm occasionally.** In the hub's second paragraph, and on each of the 28
   strip product pages as the Thickness row or the thickness part of its Dimensions row. The
@@ -2581,8 +2595,8 @@ business's word, and in all of its places at once, because nothing generates the
   descriptions. On 1P–6P and the 18650 battery-pack page it is the Width row, "3 mm to 600 mm,
   slit to tolerance", which had said 300. The cell-format pages keep their own widths (26–72.8 mm
   for H-type, 6–25 mm for 18650 zig-zag and so on), because those are the dimensions of a
-  formed part, not a slitting range. `/Plain-Nickel-Strips/` is the nickel *alloy* strip page
-  and still reads 3–300 mm, because the figure was given for pure nickel strip.
+  formed part, not a slitting range. The owner confirmed the same day that 3–600 mm holds for
+  nickel alloy strip too, so `/Plain-Nickel-Strips/`, the alloy strip page, reads 3–600 mm.
 - **Pure nickel strip purity, 2026-10-02: 99.6% Ni minimum, generally 99.8–99.9%.** It is in
   the hub's lead and descriptions. On the busbar-template pages (1P–6P, 4680, 18650 battery
   pack) it is "99.6%+ Ni" in the descriptions, the `material` property, the Material row and
@@ -2592,9 +2606,12 @@ business's word, and in all of its places at once, because nothing generates the
   H-type page. Special Metals' minimum for Nickel 200 and 201 is still 99.0%, and a page
   quoting the standard keeps that figure.
 
-Not yet given: whether nickel-plated strip is sold, the delivery time for export orders, and
-whether 3–600 mm also holds for nickel alloy strip.
-`docs/plans/2026-09-content-enrichment.md` lists the open questions.
+- **Nickel-plated steel strip, 2026-10-02: supplied on request, not stocked.** In the hub's
+  lead, and on the 32140 page as the budget option and a Minimum Order and Delivery item.
+
+Still open: whether the 32140 page's own test figures ("247 failed packs", "1,284 packs
+measured") are the business's. `docs/plans/2026-09-content-enrichment.md` lists the open
+questions.
 
 **Another seller's figure is never published, attributed or not.** The owner's word on
 2026-10-02, about lines such as "One commercial source cites S32750 plate thickness from about

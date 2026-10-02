@@ -80,23 +80,27 @@ Found on the way, waiting on a source or the owner:
   - The three Inconel hubs above say "from stock in Mumbai".
   - Ask which grades are held, not whether the sentence reads well. "Supplied from
     Mumbai" is the wording where the answer is no (CLAUDE.md, the Waspaloy note).
-- **The 32140 strip page's remaining figures.** Its per-metre price matrix (INR 152 /
-  142 / 135), "Monthly: 2K-50K m capacity", "Export: FOB Mumbai INR 1.8L/20ft" and a
-  "China Risk: 42-day lead + 18% duty + 28% plating failure rate" box came in the
-  2026-08-11 "SEO" commit. None comes from `prices.csv` or a named source, and the
-  re-quote cadence never refreshes them. Ask whether to keep them.
 - **The 1P-6P pages' template slips**: "manufactures 1p nickel strip busbars" and "In a
   1P group, 1 cells share the load". They are the near-duplicates step 4 already plans
   to fold into one configuration page.
-- **Strip questions still open**: whether the 5-7 day delivery time also applies to export
-  orders, and whether 3-600 mm also holds for nickel alloy strip -
-  `/Plain-Nickel-Strips/` still says 3-300 mm.
-- **ASTM B435 and B572 cited for grades outside their scope.** Both scope N06002, N06230,
-  N12160 and R30556 (B435 flat, B572 rod). The 242 plate page now cites B434, per
-  `docs/specs.csv`. Still to sweep: the Haynes sheets page (R30605, Haynes 25, with B435),
-  the Haynes hex bar page (B572 for Haynes 25, B435 for 188 and as a bar standard) and the
-  combined Haynes foil page ("foil to ASTM B435" across seven grades). Take each grade's
-  standard from `specs.csv`.
+- **Answered on 2026-10-02 and applied**: 3-600 mm also for nickel alloy strip; nickel-plated
+  steel strip on request, not stocked; 5-7 days for plain strip including export, custom designs
+  by order; the 32140 page's per-metre prices, capacity, FOB and "China risk" figures removed (the
+  owner left the call to us); Haynes standards corrected on 22 pages from `docs/specs.csv`.
+- **Still to ask**: whether the 32140 page's "247 failed packs" and "1,284 packs measured" are the
+  business's own figures.
+- **Found during the Haynes sweep, not fixed:**
+  - The Stellite foil link reads "Stellite UNS R30006 AMS 5894". R30006 is Stellite 6, and AMS 5894
+    is a 6B standard. `grades.csv` has no 6B row to settle it.
+  - `/cobalt-alloy-pipes-…/` cites ASTM B622 and B707 for Haynes 25 pipe, which `specs.csv` records
+    as not made in pipe or tube.
+  - `/haynes-alloy-wire-…/` sells Haynes 230 wire, while `specs.csv` gives 230 no wire product. The
+    page no longer cites a rod standard for it, but whether 230 wire is sold is the business's to say.
+  - The hollow-bar FAQ promises "100% AMS 2631 UT Level 3". AMS 2631 is a titanium ultrasonic
+    standard.
+  - 26 coil, tube and fittings hubs in other families give the template answer "ASTM B906 / A240 /
+    B265" (or B163 / B338 / A789, or A815 / B363) "as applicable". The Haynes three now name only
+    what applies.
 - **Price rows stranded in wider tables** on four more pages: Haynes 214 foil, the
   Haynes hex bar and pipe form hubs, and the duplex tube form hub. `build-prices.mjs`
   matches "spec-table" inside "spec-table-section" and writes into the next `</tbody>`;

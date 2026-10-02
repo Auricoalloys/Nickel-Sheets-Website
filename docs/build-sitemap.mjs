@@ -142,6 +142,7 @@ const BOILERPLATE = new Set([
   'b509d890', // took /inconel/X-750/ and its foil URL out of the Inconel hub's redirect_from; it renders the same
   '98a84349', // the X-750 hub as the form pages' third crumb, and two neighbours' links; navigation only, same as c13cdb9c
   '8619e14d', // capitals back on 62 pages' own product name, in the opening and one table caption; casing only
+  'a6c67d2d', // five pages' sidebar link to /haynes/foil/ relabelled from B572 to B434; a neighbour's label only
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
