@@ -1,8 +1,9 @@
 # Content enrichment plan: Inconel, Titanium, Hastelloy, Incoloy, Duplex, nickel strips
 
-**Status, 2026-10-01: the parts that need no outside source are done and published. The
-rest still waits on network access to the mills' sites and on facts from the business;
-see Progress below.** Parked on 2026-09-27.
+**Status, 2026-10-02: the parts that need no outside source are done and published, and
+so are the figures the business has given so far. The rest still waits on network access
+to the mills' sites and on more facts from the business; see Progress below.** Parked on
+2026-09-27.
 The owner asked for these six families to be made the site's strongest search and
 AI-answer pages, with applications added and the overview pages made substantive.
 
@@ -40,14 +41,22 @@ Done and published to `main`:
   - 62 pages that a template had lowercased ("inconel 740h") have their capitals back.
 - **Inconel 625 LCF, 740H and 751** already opened with the sentence. Each says "from
   stock in Mumbai", which waits on the owner (see below).
+- **The business's figures, given on 2026-10-02.**
+  - Pure nickel strip: 0.02-20 mm thick, minimum order 5 kg, delivery time 5-7 days.
+    `/pure-nickel-strips/` is kept as the strip hub and opens with all three; the 28 strip
+    product pages carry the last two as rows above their Price row. The hub now also
+    links 4680 and 1P-6P.
+  - Titanium Grade 1: 0.5-100 mm, now on the sheet and plate pages.
 
 Still blocked:
 
 - **Step 1 and the rest of step 2** (sourced applications, "which grade to choose") and
   **step 4** (the guides) need the mills' sites. On 2026-10-01 every mill domain still
   failed with `CONNECT tunnel failed, response 403`.
-- **The nickel-strip hub and guide** need the business's strip facts, under
-  Prerequisites 2.
+- **The nickel-strip guide** still needs the strip widths, the purity options
+  (Ni 200 / 201 / N6) and whether strip is supplied plated or bare. The pages disagree
+  on purity meanwhile: the hub says 99.6% Ni, `/pure-nickel-strip/21700-H-type/` says
+  99.9% and gives Nickel 200 "99.9% typ" (Special Metals' limit is 99.0% min).
 
 Found on the way, waiting on a source or the owner:
 
@@ -62,9 +71,21 @@ Found on the way, waiting on a source or the owner:
   - The three Inconel hubs above say "from stock in Mumbai".
   - Ask which grades are held, not whether the sentence reads well. "Supplied from
     Mumbai" is the wording where the answer is no (CLAUDE.md, the Waspaloy note).
-- **Titanium Grade 1's sheet range** (0.5-100 mm thick, 1000-3000 x 2000-6000 mm) left
-  the hub, which nested it under the sheet link. The sheet page itself says 0.2-10 mm.
-  If the business's real range differs, the sheet page is where it belongs.
+- **Other titanium sheet ranges.** Each grade's sheet page states its own range (0.2-8,
+  0.2-15, 0.5-30 mm and so on) and none is confirmed. Grade 1's was answered on
+  2026-10-02; ask whether the same 0.5-100 mm holds for the other CP grades.
+- **The 32140 strip page's remaining figures.** Its per-metre price matrix (INR 152 /
+  142 / 135), "Monthly: 2K-50K m capacity", "Export: FOB Mumbai INR 1.8L/20ft" and a
+  "China Risk: 42-day lead + 18% duty + 28% plating failure rate" box came in the
+  2026-08-11 "SEO" commit. None comes from `prices.csv` or a named source, and the
+  re-quote cadence never refreshes them. Ask whether to keep them.
+- **The 1P-6P pages' template slips**: "manufactures 1p nickel strip busbars" and "In a
+  1P group, 1 cells share the load". They are the near-duplicates step 4 already plans
+  to fold into one configuration page.
+- **Price rows stranded in wider tables** on four more pages: Haynes 214 foil, the
+  Haynes hex bar and pipe form hubs, and the duplex tube form hub. `build-prices.mjs`
+  matches "spec-table" inside "spec-table-section" and writes into the next `</tbody>`;
+  matching the class token and refusing a table wider than two cells would stop it.
 
 ## Prerequisites (check all three before starting)
 

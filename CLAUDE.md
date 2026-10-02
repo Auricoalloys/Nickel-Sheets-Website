@@ -2530,3 +2530,18 @@ mean (`Nickel 200 / 201, Monel 400, Inconel 600`); the hub had inherited the phr
 qualification. So when adding or reviewing a grade page, **ask whether that grade is actually
 carried before the boilerplate says it is**, and prefer "Supplied from Mumbai" where the answer is
 no. Confirmed sourced-to-order for Waspaloy on 2026-09-10 and corrected in `d743adba`.
+
+**Figures the business has confirmed, and every place they are printed.** Change one only on the
+business's word, and in all of its places at once, because nothing generates them:
+
+- **Pure nickel strip, 2026-10-02: 0.02–20 mm thick, minimum order 5 kg, delivery time 5–7
+  days.** All three open `/pure-nickel-strips/` and its meta, og, twitter and JSON-LD
+  descriptions. The minimum order and delivery time are also two rows above the Price row on
+  the 28 strip product pages, or at the end of the table on the two without a price. The
+  thickness range is not on the product pages: each one states the gauges of its own product
+  (0.10–0.50 mm on the 1P–6P pages), which sit inside it.
+- **Titanium Grade 1 sheet and plate, 2026-10-02: 0.5–100 mm.** On `/titanium/grade-1/sheets/`
+  and `/titanium/grade-1-plates/`, not on the hub.
+
+Not yet given: strip widths, purity options and plated or bare strip, and any other titanium
+grade's range. `docs/plans/2026-09-content-enrichment.md` lists the open questions.
