@@ -1202,7 +1202,7 @@ coil, tube, fittings and pipe hubs answered with one sentence listing several fa
 the Nimonic tube page, B366 / A815 / B363 on the titanium fittings page. Each now names the
 standards in its own generated table, grade by grade, in the JSON-LD FAQ, the Specifications row and
 the visible FAQ alike. Where `specs.csv` dashes the form for every grade on the page (Nimonic, cobalt
-and nichrome fittings, nichrome tube), the answer names no material standard at all. These answers
+and nichrome fittings, nichrome tube), the answer claims no standard for that form. These answers
 are hand-written copies the generator cannot reach, so they are part of the grep when a cell changes.
 
 **`build-specs.mjs` used to leave a stale table on a form hub that lost its last grade.** When all six
