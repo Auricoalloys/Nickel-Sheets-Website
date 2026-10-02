@@ -2538,10 +2538,24 @@ business's word, and in all of its places at once, because nothing generates the
   days.** All three open `/pure-nickel-strips/` and its meta, og, twitter and JSON-LD
   descriptions. The minimum order and delivery time are also two rows above the Price row on
   the 28 strip product pages, or at the end of the table on the two without a price. The
-  thickness range is not on the product pages: each one states the gauges of its own product
-  (0.10–0.50 mm on the 1P–6P pages), which sit inside it.
-- **Titanium Grade 1 sheet and plate, 2026-10-02: 0.5–100 mm.** On `/titanium/grade-1/sheets/`
-  and `/titanium/grade-1-plates/`, not on the hub.
+  0.02–20 mm range stays on the hub: a product page gives the battery gauges below.
+- **Battery strip gauges, 2026-10-02: 0.10, 0.12, 0.15, 0.20, 0.25, 0.30, 0.40 and 0.50 mm are
+  the most used, 0.05 mm occasionally.** In the hub's second paragraph, and on each of the 28
+  strip product pages as the Thickness row or the thickness part of its Dimensions row. The
+  21700 H-type and 18650 battery-pack pages' meta descriptions sum it up as 0.10 to 0.50 mm.
+- **Sheet and plate thickness, 2026-10-02: every sheet page 0.2–5 mm, every plate page 5–100
+  mm, whatever the alloy.** It replaced figures that ran from 0.1 to 150 mm on "sheet" pages.
+  On the 98 sheet and 95 plate pages it is the Thickness row, or the thickness in a "Size
+  range" row, which kept its width and length. 42 plate pages and Titanium Grade 4 sheet had no
+  such row and gained one. It is also:
+  - the opening paragraph of the three Stellite sheet pages, which have no spec table and so
+    no row;
+  - the first line of the `/pages/products/sheets/` and `/pages/products/plates/` catalogues;
+  - Aurico's own range claims in prose, FAQ answers and metadata on about 35 pages.
+  
+  Text that quotes a third party ("one commercial source cites …") and test-data thicknesses
+  were left alone, because they make no claim about what Aurico supplies. It replaced the
+  0.5–100 mm the business gave the same morning for Titanium Grade 1.
 
-Not yet given: strip widths, purity options and plated or bare strip, and any other titanium
-grade's range. `docs/plans/2026-09-content-enrichment.md` lists the open questions.
+Not yet given: strip widths, purity options and plated or bare strip.
+`docs/plans/2026-09-content-enrichment.md` lists the open questions.

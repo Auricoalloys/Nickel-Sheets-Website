@@ -46,7 +46,10 @@ Done and published to `main`:
     `/pure-nickel-strips/` is kept as the strip hub and opens with all three; the 28 strip
     product pages carry the last two as rows above their Price row. The hub now also
     links 4680 and 1P-6P.
-  - Titanium Grade 1: 0.5-100 mm, now on the sheet and plate pages.
+  - Battery strip gauges: 0.10, 0.12, 0.15, 0.20, 0.25, 0.30, 0.40 and 0.50 mm most used,
+    0.05 mm occasionally - on the hub and every strip product page.
+  - Every sheet page 0.2-5 mm and every plate page 5-100 mm, across all alloys (193
+    pages). This replaced the 0.5-100 mm given earlier the same day for Titanium Grade 1.
 
 Still blocked:
 
@@ -71,9 +74,6 @@ Found on the way, waiting on a source or the owner:
   - The three Inconel hubs above say "from stock in Mumbai".
   - Ask which grades are held, not whether the sentence reads well. "Supplied from
     Mumbai" is the wording where the answer is no (CLAUDE.md, the Waspaloy note).
-- **Other titanium sheet ranges.** Each grade's sheet page states its own range (0.2-8,
-  0.2-15, 0.5-30 mm and so on) and none is confirmed. Grade 1's was answered on
-  2026-10-02; ask whether the same 0.5-100 mm holds for the other CP grades.
 - **The 32140 strip page's remaining figures.** Its per-metre price matrix (INR 152 /
   142 / 135), "Monthly: 2K-50K m capacity", "Export: FOB Mumbai INR 1.8L/20ft" and a
   "China Risk: 42-day lead + 18% duty + 28% plating failure rate" box came in the
