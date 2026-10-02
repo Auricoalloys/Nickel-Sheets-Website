@@ -1196,6 +1196,15 @@ flat and B408 for bar, as its plate and bar pages already did, and the row needs
 HR-120 bulletin. Where a page covers several grades, name each grade's standard rather than one
 standard for all of them.
 
+**The form hubs' own standards answer had the same fault, in a template.** Until 2026-10-02, 27
+coil, tube, fittings and pipe hubs answered with one sentence listing several families' standards
+"as applicable": ASTM B906 / A240 / B265 on the cobalt alloy coil page, B622 / B163 / B338 / A789 on
+the Nimonic tube page, B366 / A815 / B363 on the titanium fittings page. Each now names the
+standards in its own generated table, grade by grade, in the JSON-LD FAQ, the Specifications row and
+the visible FAQ alike. Where `specs.csv` dashes the form for every grade on the page (Nimonic, cobalt
+and nichrome fittings, nichrome tube), the answer names no material standard at all. These answers
+are hand-written copies the generator cannot reach, so they are part of the grep when a cell changes.
+
 **`build-specs.mjs` used to leave a stale table on a form hub that lost its last grade.** When all six
 Hastelloy wire cells became `-`, `/wire/hastelloy/` had no grades left, and the generator reported
 "no table written" and moved on — so the old block, telling readers three rod standards "are the ones
@@ -2609,9 +2618,10 @@ business's word, and in all of its places at once, because nothing generates the
 - **Nickel-plated steel strip, 2026-10-02: supplied on request, not stocked.** In the hub's
   lead, and on the 32140 page as the budget option and a Minimum Order and Delivery item.
 
-Still open: whether the 32140 page's own test figures ("247 failed packs", "1,284 packs
-measured") are the business's. `docs/plans/2026-09-content-enrichment.md` lists the open
-questions.
+The 32140 page's own test figures were not the business's. "247 failed packs" and "1,284 packs
+measured" went on 2026-10-02, with the 4.2 °C, 3.8x, 87% and 62% figures that rested on them. Its
+current-rating table and its "1,200 cycle life", "salt spray qualified" and "drop tested" claims
+are still unconfirmed. `docs/plans/2026-09-content-enrichment.md` lists the open questions.
 
 **Another seller's figure is never published, attributed or not.** The owner's word on
 2026-10-02, about lines such as "One commercial source cites S32750 plate thickness from about
