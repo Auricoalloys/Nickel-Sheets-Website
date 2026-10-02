@@ -2543,8 +2543,10 @@ business's word, and in all of its places at once, because nothing generates the
   the most used, 0.05 mm occasionally.** In the hub's second paragraph, and on each of the 28
   strip product pages as the Thickness row or the thickness part of its Dimensions row. The
   21700 H-type and 18650 battery-pack pages' meta descriptions sum it up as 0.10 to 0.50 mm.
-- **Sheet and plate thickness, 2026-10-02: every sheet page 0.2–5 mm, every plate page 5–100
-  mm, whatever the alloy.** It replaced figures that ran from 0.1 to 150 mm on "sheet" pages.
+- **Sheet and plate thickness, 2026-10-02: every sheet page 0.2–4.75 mm, every plate page
+  4.75–150 mm, whatever the alloy.** 4.75 mm is the sheet/plate boundary the standards draw,
+  which `/pages/products/sheets/` already explains. It replaced figures that ran from 0.1 to
+  150 mm on "sheet" pages.
   On the 98 sheet and 95 plate pages it is the Thickness row, or the thickness in a "Size
   range" row, which kept its width and length. 42 plate pages and Titanium Grade 4 sheet had no
   such row and gained one. It is also:
@@ -2554,8 +2556,10 @@ business's word, and in all of its places at once, because nothing generates the
   - Aurico's own range claims in prose, FAQ answers and metadata on about 35 pages.
   
   Text that quotes a third party ("one commercial source cites …") and test-data thicknesses
-  were left alone, because they make no claim about what Aurico supplies. It replaced the
-  0.5–100 mm the business gave the same morning for Titanium Grade 1.
+  were left alone, because they make no claim about what Aurico supplies. The figures moved
+  twice that day: 0.5–100 mm for Titanium Grade 1 sheet and plate, then 0.2–5 mm sheet and
+  5–100 mm plate for every page, then these. A search for any of the earlier strings should
+  come back empty.
 
 Not yet given: strip widths, purity options and plated or bare strip.
 `docs/plans/2026-09-content-enrichment.md` lists the open questions.

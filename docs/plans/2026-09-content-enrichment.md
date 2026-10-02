@@ -48,8 +48,9 @@ Done and published to `main`:
     links 4680 and 1P-6P.
   - Battery strip gauges: 0.10, 0.12, 0.15, 0.20, 0.25, 0.30, 0.40 and 0.50 mm most used,
     0.05 mm occasionally - on the hub and every strip product page.
-  - Every sheet page 0.2-5 mm and every plate page 5-100 mm, across all alloys (193
-    pages). This replaced the 0.5-100 mm given earlier the same day for Titanium Grade 1.
+  - Every sheet page 0.2-4.75 mm and every plate page 4.75-150 mm, across all alloys
+    (193 pages), the boundary at the standards' 4.75 mm. This replaced the 0.2-5 / 5-100 mm
+    and the Titanium Grade 1 0.5-100 mm given earlier the same day.
 
 Still blocked:
 
