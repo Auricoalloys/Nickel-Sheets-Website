@@ -51,16 +51,21 @@ Done and published to `main`:
   - Every sheet page 0.2-4.75 mm and every plate page 4.75-150 mm, across all alloys
     (193 pages), the boundary at the standards' 4.75 mm. This replaced the 0.2-5 / 5-100 mm
     and the Titanium Grade 1 0.5-100 mm given earlier the same day.
+  - Pure nickel strip width 3-600 mm, on the hub and as the Width row on 1P-6P and the
+    18650 battery-pack page (which said 3-300 mm).
+  - Purity 99.6% Ni minimum, generally 99.8-99.9%, on the hub and all 28 strip pages. It
+    replaces figures from 99.2% to 99.96%, including the 21700 H-type page's 99.9% title.
+  - "Remove" for other sellers' figures: seven size quotes and the market-listing prices,
+    with every other price typed into page text, came off 42 pages. Price FAQ answers now
+    point at the generated Price row (see CLAUDE.md, *Prices come from prices.csv*).
 
 Still blocked:
 
 - **Step 1 and the rest of step 2** (sourced applications, "which grade to choose") and
   **step 4** (the guides) need the mills' sites. On 2026-10-01 every mill domain still
   failed with `CONNECT tunnel failed, response 403`.
-- **The nickel-strip guide** still needs the strip widths, the purity options
-  (Ni 200 / 201 / N6) and whether strip is supplied plated or bare. The pages disagree
-  on purity meanwhile: the hub says 99.6% Ni, `/pure-nickel-strip/21700-H-type/` says
-  99.9% and gives Nickel 200 "99.9% typ" (Special Metals' limit is 99.0% min).
+- **The nickel-strip guide** still needs to know whether nickel-plated strip is sold as well
+  as pure nickel. Width and purity are now given (above).
 
 Found on the way, waiting on a source or the owner:
 
@@ -83,6 +88,15 @@ Found on the way, waiting on a source or the owner:
 - **The 1P-6P pages' template slips**: "manufactures 1p nickel strip busbars" and "In a
   1P group, 1 cells share the load". They are the near-duplicates step 4 already plans
   to fold into one configuration page.
+- **Strip questions still open**: whether the 5-7 day delivery time also applies to export
+  orders, and whether 3-600 mm also holds for nickel alloy strip -
+  `/Plain-Nickel-Strips/` still says 3-300 mm.
+- **ASTM B435 and B572 cited for grades outside their scope.** Both scope N06002, N06230,
+  N12160 and R30556 (B435 flat, B572 rod). The 242 plate page now cites B434, per
+  `docs/specs.csv`. Still to sweep: the Haynes sheets page (R30605, Haynes 25, with B435),
+  the Haynes hex bar page (B572 for Haynes 25, B435 for 188 and as a bar standard) and the
+  combined Haynes foil page ("foil to ASTM B435" across seven grades). Take each grade's
+  standard from `specs.csv`.
 - **Price rows stranded in wider tables** on four more pages: Haynes 214 foil, the
   Haynes hex bar and pipe form hubs, and the duplex tube form hub. `build-prices.mjs`
   matches "spec-table" inside "spec-table-section" and writes into the next `</tbody>`;

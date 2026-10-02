@@ -973,6 +973,23 @@ a reader sees and the figure Google reads cannot drift apart. Marking up a price
 on the page breaches Google's structured data policy, which is why the two are written together and
 never separately.
 
+**A price typed into the page text is a second copy, and a re-quote cannot reach it.** On
+2026-10-02, 32 product pages carried per-kg figures in prose and FAQ answers beside the generated
+Price row. Most were framed as someone else's figure: "Mumbai price listings show", "Published
+India price tables", "Leading … dealers offer", "Buyers track … in the ₹1,600–₹2,000/kg range".
+Many matched their row exactly, because 21 rows were first taken from that prose (`27e85454`), so
+nothing looked wrong. The next re-quote would have left every one of them asserting the old figure.
+They were removed, each price FAQ answer now points at the Price row, and three hollow-bar
+comparison tables lost a "Cost (per kg)" row nobody had quoted.
+
+Two sets of prices stay in page text on purpose. The C-22, C-276 and Haynes hub paragraphs state
+ranges the business quoted, on hubs that have no Price row. The 32140 strip page's per-metre table
+is waiting on the owner. Anything else this finds is a regression:
+
+```bash
+git ls-files '*.html' | xargs grep -n -E '(₹|\$|€) ?[0-9][0-9,.]*( ?[-–] ?(₹|\$|€)?[0-9][0-9,.]*)? ?(/|per )kg'
+```
+
 **A page absent from the CSV has its `offers` block removed.** That is deliberate. `offers` without a
 `price` is invalid markup: it earns no rich result and reports as an error in Search Console, and 477
 pages were in exactly that state. To retire a price, delete its row and re-run — the markup cleans
@@ -2555,11 +2572,35 @@ business's word, and in all of its places at once, because nothing generates the
   - the first line of the `/pages/products/sheets/` and `/pages/products/plates/` catalogues;
   - Aurico's own range claims in prose, FAQ answers and metadata on about 35 pages.
   
-  Text that quotes a third party ("one commercial source cites …") and test-data thicknesses
-  were left alone, because they make no claim about what Aurico supplies. The figures moved
-  twice that day: 0.5–100 mm for Titanium Grade 1 sheet and plate, then 0.2–5 mm sheet and
-  5–100 mm plate for every page, then these. A search for any of the earlier strings should
-  come back empty.
+  Test-data thicknesses were left alone, because they make no claim about what Aurico
+  supplies. The figures moved twice that day: 0.5–100 mm for Titanium Grade 1 sheet and
+  plate, then 0.2–5 mm sheet and 5–100 mm plate for every page, then these. The owner
+  confirmed "all alloys on the website" the same day. A search for any of the earlier
+  strings should come back empty.
+- **Pure nickel strip width, 2026-10-02: 3–600 mm.** In the hub's lead and its four
+  descriptions. On 1P–6P and the 18650 battery-pack page it is the Width row, "3 mm to 600 mm,
+  slit to tolerance", which had said 300. The cell-format pages keep their own widths (26–72.8 mm
+  for H-type, 6–25 mm for 18650 zig-zag and so on), because those are the dimensions of a
+  formed part, not a slitting range. `/Plain-Nickel-Strips/` is the nickel *alloy* strip page
+  and still reads 3–300 mm, because the figure was given for pure nickel strip.
+- **Pure nickel strip purity, 2026-10-02: 99.6% Ni minimum, generally 99.8–99.9%.** It is in
+  the hub's lead and descriptions. On the busbar-template pages (1P–6P, 4680, 18650 battery
+  pack) it is "99.6%+ Ni" in the descriptions, the `material` property, the Material row and
+  both copies of the "What purity do you supply?" answer. It is also in the grade sentences and
+  chemistry rows of the 20 cell-format pages. It replaced figures from 99.2% to 99.96%:
+  "Nickel 201 (≥99.9% Ni)", a "Ni+Cr 99.2% Ni" row and a title claiming 99.9% on the 21700
+  H-type page. Special Metals' minimum for Nickel 200 and 201 is still 99.0%, and a page
+  quoting the standard keeps that figure.
 
-Not yet given: strip widths, purity options and plated or bare strip.
+Not yet given: whether nickel-plated strip is sold, the delivery time for export orders, and
+whether 3–600 mm also holds for nickel alloy strip.
 `docs/plans/2026-09-content-enrichment.md` lists the open questions.
+
+**Another seller's figure is never published, attributed or not.** The owner's word on
+2026-10-02, about lines such as "One commercial source cites S32750 plate thickness from about
+1.5 mm up to 20 mm", "Global suppliers stock NiCr 60:15 Round Bars from 5mm to 60mm diameter" and
+"Indian market listings show Nimonic 90 … ₹7,000–₹10,000 per kg". A buyer reads each one as
+Aurico's offer, and naming someone else as the source does not stop that. The seven size quotes
+went that day, with the price quotes described under *Prices come from prices.csv*. Property data
+credited to "some sources", such as a tensile strength, was left alone, because it describes the
+alloy, not what Aurico sells.
