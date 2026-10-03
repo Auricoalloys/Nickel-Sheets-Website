@@ -1205,6 +1205,13 @@ the visible FAQ alike. Where `specs.csv` dashes the form for every grade on the 
 and nichrome fittings, nichrome tube), the answer claims no standard for that form. These answers
 are hand-written copies the generator cannot reach, so they are part of the grep when a cell changes.
 
+**The owner confirmed on 2026-10-03 that all four of those forms are sold.** The dash records that
+no mill publishes the grade in that form, not that Aurico does not supply it, so it is no reason to
+retire those pages. The same day the owner confirmed the form hubs' Grades and Equivalents tables
+as accurate, including the grades with no row in the generated table beside them: Inconel 718 and
+X-750 on the Inconel fittings hub, Stellite on the cobalt alloy coil hub, and the rest. Leave those
+lists as they stand.
+
 **`build-specs.mjs` used to leave a stale table on a form hub that lost its last grade.** When all six
 Hastelloy wire cells became `-`, `/wire/hastelloy/` had no grades left, and the generator reported
 "no table written" and moved on — so the old block, telling readers three rod standards "are the ones
@@ -2620,8 +2627,11 @@ business's word, and in all of its places at once, because nothing generates the
 
 The 32140 page's own test figures were not the business's. "247 failed packs" and "1,284 packs
 measured" went on 2026-10-02, with the 4.2 °C, 3.8x, 87% and 62% figures that rested on them. Its
-current-rating table and its "1,200 cycle life", "salt spray qualified" and "drop tested" claims
-are still unconfirmed. `docs/plans/2026-09-content-enrichment.md` lists the open questions.
+current-rating tables went on 2026-10-03 at the owner's word, with every other amp rating on the
+page (the 32A in its heading, the fuse notches, the application cards, "Ni limits at 48A") and the
+"1,200 cycle life", "salt spray qualified", "drop tested", "10min bridge" and "marine certified"
+claims. Each card keeps its strip type, such as "0.20mm H-type". No amp rating for strip is
+published anywhere until the business supplies one.
 
 **Another seller's figure is never published, attributed or not.** The owner's word on
 2026-10-02, about lines such as "One commercial source cites S32750 plate thickness from about

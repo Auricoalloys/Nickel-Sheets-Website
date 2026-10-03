@@ -90,16 +90,11 @@ Found on the way, waiting on a source or the owner:
   32140 page's "247 failed packs" and "1,284 packs measured" removed as not the business's, with
   the 4.2 °C, 3.8x, 87% and 62% figures that rested on them; the template standards answer replaced
   on 27 coil, tube, fittings and pipe hubs with the standards in each page's own table.
-- **Still to ask**:
-  - The 32140 page's current-rating table (amps per thickness and width) and its "1,200 cycle
-    life", "salt spray qualified", "drop tested" and "Ni limits at 48A" claims. Nobody has
-    confirmed them, and some rows read oddly: 18 A against widths up to 250 mm at 0.10 mm.
-  - Whether Nimonic, cobalt alloy and nichrome fittings and nichrome tube are sold. `specs.csv`
-    dashes every grade in those forms, so those four hubs now name no material standard.
-  - The form hubs' "Grades and Equivalents" tables list grades with no row in the generated
-    table: Stellite 6, 12 and 21 on the cobalt pages, 2101 and 2304 on duplex, B-3 on Hastelloy,
-    925 on Incoloy, 718 and X-750 on Inconel fittings, Monel 401, NiCr 40/20, 30/20 and 20/25,
-    AM-350 and HR-120. Which of those each form is really stocked in is the business's to say.
+- **Answered on 2026-10-03 and applied**: the 32140 page's current-rating tables, its other amp
+  ratings and its "1,200 cycle life", "salt spray qualified", "drop tested", "10min bridge" and
+  "marine certified" claims removed; Nimonic, cobalt alloy and nichrome fittings and nichrome tube
+  are sold, so those four hubs stay; the form hubs' grade lists are accurate as they stand,
+  including Stellite on the cobalt pages and 718 and X-750 on Inconel fittings.
 - **Found during the Haynes sweep, not fixed:**
   - The Stellite foil link reads "Stellite UNS R30006 AMS 5894". R30006 is Stellite 6, and AMS 5894
     is a 6B standard. `grades.csv` has no 6B row to settle it.
