@@ -92,7 +92,7 @@ Found on the way, waiting on a source or the owner:
   on 27 coil, tube, fittings and pipe hubs with the standards in each page's own table.
 - **Answered on 2026-10-03 and applied**: the 32140 page's current-rating tables, its other amp
   ratings and its "1,200 cycle life", "salt spray qualified", "drop tested", "10min bridge" and
-  "marine certified" claims removed; Nimonic, cobalt alloy and nichrome fittings and nichrome tube
+  "marine certified" claims removed, and its unsourced "Submerged Use" comparison; Nimonic, cobalt alloy and nichrome fittings and nichrome tube
   are sold, so those four hubs stay; the form hubs' grade lists are accurate as they stand,
   including Stellite on the cobalt pages and 718 and X-750 on Inconel fittings.
 - **Found during the Haynes sweep, not fixed:**

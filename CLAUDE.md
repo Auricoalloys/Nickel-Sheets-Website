@@ -2631,7 +2631,9 @@ current-rating tables went on 2026-10-03 at the owner's word, with every other a
 page (the 32A in its heading, the fuse notches, the application cards, "Ni limits at 48A") and the
 "1,200 cycle life", "salt spray qualified", "drop tested", "10min bridge" and "marine certified"
 claims. Each card keeps its strip type, such as "0.20mm H-type". No amp rating for strip is
-published anywhere until the business supplies one.
+published anywhere until the business supplies one. The "Submerged Use" card went the same day: it
+ranked 316L above nickel in saltwater with no producer behind the ranking, which is the rule the
+application guides keep.
 
 **Another seller's figure is never published, attributed or not.** The owner's word on
 2026-10-02, about lines such as "One commercial source cites S32750 plate thickness from about
