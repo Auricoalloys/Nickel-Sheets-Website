@@ -1,4 +1,16 @@
 /**
+ * !!! DO NOT DEPLOY THIS FILE AS IT STANDS (recorded 2026-10-09) !!!
+ *
+ * The live deployment (project "Nickel Sheets Backend", /exec URL ending
+ * ...lK-mIHXlJFRwM9/exec) runs a NEWER script than this one: it also forwards
+ * each enquiry to the CRM (CRM_WEBHOOK_URL in Script Properties, with
+ * external_id and a crm_status column). That code was written straight into
+ * Apps Script and never committed here. Pasting this file over it would stop
+ * every enquiry reaching the CRM. Bring the live code into this file first,
+ * then make changes on top of it.
+ */
+
+/**
  * Aurico Alloys - website enquiry capture.
  *
  * Receives enquiries from javascript/floating-form.js, writes them to a sheet,

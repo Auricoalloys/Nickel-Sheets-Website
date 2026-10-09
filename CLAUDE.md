@@ -20,10 +20,14 @@ Settings only the owner can change, outside this repo, recorded 2026-10-01. Noth
 them or detect whether they have been made, so **ask before assuming one is done**, and delete its
 line once the owner confirms it. Each links to the section that says why.
 
-- **Apps Script: redeploy `docs/apps-script/lead-capture.gs` as a new version of the existing
-  deployment** (Manage deployments → edit → New version, never New deployment). Until then the
-  alert email's subject does not name the product, Reply goes to the sending account instead of
-  the buyer, and phone numbers show a stray leading quote.
+- **Apps Script: the live script is not the one in this repo.** On 2026-10-09 the owner showed
+  that the deployment the site posts to (project "Nickel Sheets Backend", `/exec` ending
+  `…lK-mIHXlJFRwM9/exec`) also forwards every enquiry to the CRM (`CRM_WEBHOOK_URL`,
+  `external_id`, `crm_status`). That code was written straight into Apps Script and never
+  committed, so `docs/apps-script/lead-capture.gs` is missing it. **Never paste the repo file over
+  the live code.** Get the live code from the owner, commit it here, and only then merge in the
+  `notify()` changes from `9c6d428a` (product in the subject, Reply-To the buyer, no stray quote
+  before phone numbers) and redeploy as a new version of the existing deployment.
 - **Lead-review task (`~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, on the owner's
   machine): count leads as `generate_lead` plus `contact_click` only.** `quote_cta_click` and
   `calculator_quote_click` are intent; adding them counts an enquiry twice or a click that never
@@ -959,7 +963,9 @@ second query at the end of that migration lists every public table still missing
 The repo backs a public GitHub Pages site: everything under `javascript/` is served verbatim. The
 Supabase anon key and the Apps Script `/exec` URL are public by design. The CRM bearer token is not,
 and must never be committed anywhere in this repo — the CRM webhook cannot be called from a browser
-at all (401 on preflight, no CORS headers) and needs a server-side hop that does not exist yet.
+at all (401 on preflight, no CORS headers), so it needs a server-side hop. That hop exists: the live
+Apps Script forwards to it, holding the token in Script Properties. Its code is not in this repo yet;
+see *Pending owner actions*.
 
 ### Prices come from prices.csv — do not edit them in the pages
 
