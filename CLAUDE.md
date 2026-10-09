@@ -34,8 +34,7 @@ line once the owner confirms it. Each links to the section that says why.
   `calculator_quote_click` are intent; adding them counts an enquiry twice or a click that never
   became one. It should also read `link_referrer`, since a recovered 404 visit's GA4 session
   source is not its real source.
-- **Bing: run the IndexNow workflow once with "all" ticked** (Actions → IndexNow → Run workflow),
-  **and add the site to Bing Webmaster Tools** (Import from Google Search Console). See *IndexNow
+- **Bing: add the site to Bing Webmaster Tools** (Import from Google Search Console). See *IndexNow
   tells Bing when a page changes*.
 
 ## Commands
@@ -2275,7 +2274,8 @@ deployed yet.
 
 **Seed the index once**: Actions tab → IndexNow → *Run workflow* → tick **all**. That submits every
 `<loc>` in `sitemap.xml` (801 on the day it was added). Do it once after this lands, not as a habit:
-the protocol is for URLs that changed, and the sitemap already lists the rest.
+the protocol is for URLs that changed, and the sitemap already lists the rest. **Done 2026-10-09**
+(run 37883565403): 797 URLs, HTTP 200. Do not repeat it.
 
 **Also add the site to Bing Webmaster Tools** — that part needs the owner's Microsoft account, so it
 is not done. *Import from Google Search Console* takes minutes and carries the verification over, so
