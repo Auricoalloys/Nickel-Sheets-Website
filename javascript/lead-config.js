@@ -9,14 +9,14 @@
 // Pages site and anyone who can read the token can file fake enquiries.
 //
 // The CRM webhook cannot be called from the browser at all: it answers the
-// OPTIONS preflight with 401 and no CORS headers, by design. Reaching it needs
-// a server-side hop that holds the token and forwards the lead. That hop is not
-// built yet - when it is, add it to the list below as a same-origin URL.
+// OPTIONS preflight with 401 and no CORS headers, by design. The Apps Script
+// below is the server-side hop: it holds the token and forwards each lead
+// (docs/apps-script/lead-capture.gs).
 
 export const LEAD_ENDPOINTS = [
   {
-    // Google Apps Script -> Google Sheet. Currently the only destination, and
-    // the store of record for every enquiry.
+    // Google Apps Script -> Google Sheet, and from there to the CRM. The only
+    // destination, and the store of record for every enquiry.
     name: "sheet",
     url: "https://script.google.com/macros/s/AKfycbwzxL3Z3fxIWCnQO6EyEu1r3_QttTFE1uLkl3tx8QpCoGecyohNy1lK-mIHXlJFRwM9/exec",
     enabled: true,
