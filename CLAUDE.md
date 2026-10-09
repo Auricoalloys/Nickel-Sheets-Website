@@ -20,11 +20,6 @@ Settings only the owner can change, outside this repo, recorded 2026-10-01. Noth
 them or detect whether they have been made, so **ask before assuming one is done**, and delete its
 line once the owner confirms it. Each links to the section that says why.
 
-- **GA4 (Admin → Events): mark `contact_click` as a key event.** Until then calls and WhatsApp chats
-  count as conversions in no GA4 report. See *The enquiry form and lead pipeline*.
-- **GA4 (Admin → Custom definitions): register `placement`, `recovered` and `link_referrer` as
-  event-scoped custom dimensions.** GA4 does not backfill, so whatever is recorded before
-  registration is lost to every report that splits on them. See *The 404 page*.
 - **Apps Script: redeploy `docs/apps-script/lead-capture.gs` as a new version of the existing
   deployment** (Manage deployments → edit → New version, never New deployment). Until then the
   alert email's subject does not name the product, Reply goes to the sending account instead of
@@ -661,9 +656,8 @@ referrer, and is the authority for where a lead came from. For the broken link i
 `page_not_found`, recovered or not, carries **`link_referrer`** — the page, site or assistant holding
 the link (`direct` when there is none), via the note on a recovered visit. That is the column to
 read before writing a `redirect_from`, and the lead-review task should know a recovered visit's
-session source is not its source. `recovered` and `link_referrer` reach GA4's reports only once each
-is registered as an event-scoped custom dimension (Admin → Custom definitions), and GA4 does not
-backfill one.
+session source is not its source. `recovered` and `link_referrer` are registered as event-scoped
+custom dimensions since 2026-10-09; GA4 does not backfill, so reports split on them start that day.
 
 **One-letter words count when matching.** They are grade codes here: the `x` in
 `/hastelloy/x/tube`, the `n` in `hastelloy-n-pipe`. Dropping them made "Hastelloy Tube" a complete
@@ -879,11 +873,11 @@ shift across the split to the optional fields; and it reads `quote_cta_click` by
 git log --first-parent -S quote_cta_click --format=%cd --date=short main -- javascript/lead-config.js
 ```
 
-`placement` (on `quote_cta_click` and `contact_click`) and `recovered` (on `page_not_found`) appear
-in GA4's reports only once each is registered as an event-scoped custom dimension (Admin → Custom
-definitions). GA4 does not backfill one, so whatever it records before registration is lost to every
-report that splits on it. That is an owner's setting, like the key event below. The review task's
-`SKILL.md` lives outside this repo and needs the same split.
+`placement` (on `quote_cta_click` and `contact_click`), `recovered` and `link_referrer` (on
+`page_not_found`) were registered as event-scoped custom dimensions on 2026-10-09. GA4 does not
+backfill one, so a report split on them starts that day, and anything recorded before reads as
+`(not set)`. A new parameter needs the same registration (Admin → Custom definitions) before it is
+worth sending. The review task's `SKILL.md` lives outside this repo and needs the same split.
 
 **`generate_lead` counts form leads only, and a lot of enquiries never touch the form.** The lead
 count is `generate_lead` plus `contact_click`. The review should read three more events beside
@@ -915,10 +909,13 @@ edit or tell whether it has been made — ask.
   already one `generate_lead`, so adding the two double-counts the lead. Read it as the top of the
   form funnel, against `form_start` and `generate_lead`.
 
-**Mark `contact_click` as a key event in GA4 Admin.** Until the owner does, calls and WhatsApp
-chats are conversions in no GA4 report, and a review reading key events reports a lead count that
-silently leaves them out. That is a setting in the property, not in this repo, so nothing here can
-make it and nothing here can tell whether it has been made — ask.
+**The key events are `generate_lead` and `contact_click`, and only those two.** Both were starred
+on 2026-10-09 in the GA4 property behind `G-XZL7EXDTQ0` (stream "Nickel Sheets"); neither was a key
+event before, so conversion counts in GA4 start that day. `quote_cta_click`, `form_start` and
+`calculator_quote_click` stay unstarred: each is a step before a lead, and starring one counts a
+single enquiry two or three times. The same Google login also holds a property whose stream is
+`G-SRTLJ2V730`, URL www.nickelsheets.com, which no page sends to and which has received nothing.
+It is not this site's analytics; change settings only in the `G-XZL7EXDTQ0` one.
 
 **Until 2026-10-01, when the change reached `main`, the calculator loaded no GA4 tag at all**, and neither did `/privacy/` or
 `/terms/`. `weight-calculator.js` guards every call with `typeof window.gtag === "function"` so that
