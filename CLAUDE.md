@@ -20,13 +20,6 @@ Settings only the owner can change, outside this repo, recorded 2026-10-01. Noth
 them or detect whether they have been made, so **ask before assuming one is done**, and delete its
 line once the owner confirms it. Each links to the section that says why.
 
-- **Apps Script: redeploy `docs/apps-script/lead-capture.gs` as a new version of the existing
-  deployment** (project "Nickel Sheets Backend", `/exec` ending `…lK-mIHXlJFRwM9/exec`; Manage
-  deployments → edit → New version, never New deployment). The live code was exported and
-  committed on 2026-10-09 (`f698b3e7`); this file is that code with the formula guard, field
-  allow-list, spam tab and alert-email fixes merged in, its CRM push unchanged. Until it is
-  deployed the live script still stores formulas typed into the form, sends scripted spam to the
-  CRM and the desk, and sends the old alert email.
 - **Lead-review task (`~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, on the owner's
   machine): count leads as `generate_lead` plus `contact_click` only.** `quote_cta_click` and
   `calculator_quote_click` are intent; adding them counts an enquiry twice or a click that never
