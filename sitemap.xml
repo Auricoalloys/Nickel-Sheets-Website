@@ -9,7 +9,7 @@ sitemap: false
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.nickelsheets.com/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/office_photo.webp</image:loc>
     </image:image>
