@@ -215,7 +215,9 @@ hastelloy,C-4,N06455,ASTM B575,ASTM B574,-,ASTM B619 / B622,ASTM B366
 # on its rod and bar line. B564 is the forgings standard, so the cell reads as the standards
 # a bar is supplied to, not as B564's own scope.
 hastelloy,C-22,N06022,ASTM B575,ASTM B574 / B564,-,ASTM B619 / B622,ASTM B366
-hastelloy,C-276,N10276,ASTM B575,ASTM B574,-,ASTM B619 / B622 / B626,ASTM B366
+# C-276 bar carries B564 as well (2026-10-13), on the same terms as C-22 above: the business
+# confirmed it supplies C276 round bar to B564 / SB564.
+hastelloy,C-276,N10276,ASTM B575,ASTM B574 / B564,-,ASTM B619 / B622 / B626,ASTM B366
 hastelloy,C-2000,N06200,ASTM B575,ASTM B574,-,ASTM B619 / B622,ASTM B366
 hastelloy,G-30,N06030,ASTM B582,ASTM B581,-,ASTM B619 / B622,ASTM B366
 # Checked 2026-08-25 against the Specifications table on the Haynes HASTELLOY N
