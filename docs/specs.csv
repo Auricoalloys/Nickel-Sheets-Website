@@ -87,7 +87,10 @@ family,grade,uns,flat,bar,wire,pipe_tube,fitting
 # both SMC-027 and Elgiloy. AMS 5950 is NOT added to 718 although SMC-045 lists it:
 # SAE titles it sheet and strip in "Inconel 718SPF", a superplastic-forming variant,
 # so it would certify a different product.
-inconel,600,N06600,ASTM B168 / AMS 5540,ASTM B166 / AMS 5665,ASTM B166 / AMS 5687,ASTM B167,ASTM B366
+# 600 and 625 bar carry B564 as well (2026-10-13), on the same terms as the Hastelloy and Monel
+# 400 rows above. ASTM's B564 abstract lists N06600 and N06625; it does NOT list N06601 or N05500,
+# so 601 bar does not carry it and K-500 forgings stay with B865, which covers them.
+inconel,600,N06600,ASTM B168 / AMS 5540,ASTM B166 / B564 / AMS 5665,ASTM B166 / AMS 5687,ASTM B167,ASTM B366
 inconel,601,N06601,ASTM B168 / AMS 5870,ASTM B166 / AMS 5715,ASTM B166,ASTM B167,ASTM B366
 # 602 CA moved to the nickel-alloy family on 2026-08-26 - the row is in that
 # block below. Special Metals does not make this alloy; VDM Metals does.
@@ -106,7 +109,7 @@ inconel,601,N06601,ASTM B168 / AMS 5870,ASTM B166 / AMS 5715,ASTM B166,ASTM B167
 # use of ASTM's own scope that settled B649 below - and B546 stays for welded pipe.
 # Same shape as the Alloy 330 row: seamless and welded standards listed together.
 inconel,617,N06617,ASTM B168 / AMS 5888 / 5889,ASTM B166 / AMS 5887,ASTM B166 / ISO 9724,ASTM B167 / B546,ASTM B366
-inconel,625,N06625,ASTM B443 / AMS 5599 / 5869,ASTM B446 / AMS 5666,ISO 9724 / AMS 5837,ASTM B444,ASTM B366
+inconel,625,N06625,ASTM B443 / AMS 5599 / 5869,ASTM B446 / B564 / AMS 5666,ISO 9724 / AMS 5837,ASTM B444,ASTM B366
 # N06626 IS NOT COVERED BY ASTM OR ASME. The ATI 625HP data sheet - the only
 # published source for this grade, Special Metals issuing no 625LCF bulletin -
 # says so in as many words: "N06626 is not covered by ASTM or ASME
