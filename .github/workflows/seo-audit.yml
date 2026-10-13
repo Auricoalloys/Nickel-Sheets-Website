@@ -45,6 +45,7 @@ on:
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
       - "docs/build-form-links.mjs"
+      - "docs/build-bar-notes.mjs"
       - "docs/build-breadcrumbs.mjs"
       - "docs/build-quote-cta.mjs"
       - "javascript/lead-config.js"
@@ -82,6 +83,7 @@ on:
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
       - "docs/build-form-links.mjs"
+      - "docs/build-bar-notes.mjs"
       - "docs/build-breadcrumbs.mjs"
       - "docs/build-quote-cta.mjs"
       - "javascript/lead-config.js"
@@ -198,6 +200,12 @@ jobs:
       # and its siblings' lists were not regenerated.
       - name: Form-page sibling links are current
         run: node docs/build-form-links.mjs --check
+
+      # The one-sentence bar-standard note on the round-bar pages, derived from the bar
+      # and flat cells of docs/specs.csv. Fails when a cell is edited and the sentence
+      # is not regenerated, so a page cannot name a bar standard the CSV no longer holds.
+      - name: Round-bar standard notes match specs.csv
+        run: node docs/build-bar-notes.mjs --check
 
       # The in-page "Get a quote" block on the product pages. Its subject is the
       # page's own last breadcrumb and its WhatsApp and call links carry the one

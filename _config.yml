@@ -89,6 +89,9 @@ exclude:
   # Writes the "also supplied as" sibling-link block into the form pages. Excluded
   # in the same commit that adds it, per the docs/ note above.
   - docs/build-form-links.mjs
+  # Writes the one-sentence bar-standard note into the round-bar pages. Excluded in the
+  # same commit that adds it, per the docs/ note above.
+  - docs/build-bar-notes.mjs
   # Writes the grade-hub crumb into the form pages' breadcrumbs. Excluded in the
   # same commit that adds it, per the docs/ note above.
   - docs/build-breadcrumbs.mjs

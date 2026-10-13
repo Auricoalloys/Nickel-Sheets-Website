@@ -54,7 +54,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Fifteen generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Sixteen generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -70,6 +70,7 @@ node docs/build-calc-links.mjs         # after adding/renaming a form page, or a
 node docs/build-breadcrumbs.mjs        # after adding/renaming a form page, or adding a grade hub
 node docs/build-quote-cta.mjs          # after adding a product page, changing a breadcrumb, or the WhatsApp number
 node docs/build-form-links.mjs         # after adding, renaming or retiring a form page of a grade in its GRADES list
+node docs/build-bar-notes.mjs          # after editing the bar or flat cell of a grade in its PAGES list in docs/specs.csv
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
@@ -1977,6 +1978,25 @@ Meta descriptions were left alone: they already name the UNS and standard. Both 
 `BOILERPLATE`. **Measure it, don't assume it:** re-read the Performance report in about six weeks
 for those pages' impressions, and re-inspect `/inconel/718/sheets/`.
 
+### The round-bar pages' duplicate was a hand-typed table, and it carried the errors
+
+Measured 2026-10-13 (5-word shingles of visible text): round-bar pages of the Inconel and Hastelloy
+grades share 44–49% of their text with the next grade's, against 15–33% for plates pages, which
+Google was not rejecting for duplication. The shared part was the hand-written Specification
+Overview table and nothing in the prose (introduction, applications and FAQ run 0–17%). That
+table also held the mistakes this repo exists to stop: EN 10295, a castings standard, in the
+Standards row of four bar pages; AMS 5962 and an unconditional NACE claim on 718; NACE on 601 with
+no certificate; a bare "EN" and a mislabelled DIN. All were corrected against `specs.csv`, the
+sour-service evidence and the mills' data sheets, and the pages' B564 / SB564, MR0103 and
+Werkstoff lines now follow the same sources.
+
+`docs/build-bar-notes.mjs` writes one sentence under that table on the round-bar pages of the
+grades in its `PAGES` list: the standard a bar is ordered to and the flat-product standard it must
+not be confused with, both read from `specs.csv`. It writes nothing for a grade whose bar or flat
+cell is `-` or `mill`. **B564 is the forgings standard.** It is in a bar cell only where ASTM's own
+abstract lists the UNS (N06600, N06625, N08825, N10276, N06022, N04400) **and** the business confirmed
+the supply; it is not on 601 (N06601 is not listed) or K-500 (B865 covers its forgings).
+
 ### Powder data sheets are generated, and are not Certificates of Analysis
 
 `docs/powder-datasheets/` holds seventeen metal powder grade data sheets generated from
@@ -2640,6 +2660,12 @@ business's word, and in all of its places at once, because nothing generates the
   "Nickel 201 (≥99.9% Ni)", a "Ni+Cr 99.2% Ni" row and a title claiming 99.9% on the 21700
   H-type page. Special Metals' minimum for Nickel 200 and 201 is still 99.0%, and a page
   quoting the standard keeps that figure.
+
+- **Round bar diameter, 2026-10-13: 6–400 mm.** The Diameter Range row and the intro paragraph of the
+  round-bar pages of Inconel 600, 601, 625 and 718, Hastelloy C276 and C22, and the Standard Diameter
+  Range row of Titanium Grade 5. They read 6–350, 3–600 and 3–200 mm before. **The other ~95 round-bar
+  pages still state their own ranges** (3–800 mm Monel and Incoloy, 1–3000 mm AM-350, and so on) and
+  have not been confirmed; length, finishes and stock wording are also unconfirmed.
 
 - **Nickel-plated steel strip, 2026-10-02: supplied on request, not stocked.** In the hub's
   lead, and on the 32140 page as the budget option and a Minimum Order and Delivery item.

@@ -1496,6 +1496,14 @@ footer p a {
     border-radius: 6px;
   }
 
+  /* The one-sentence bar-standard note written by docs/build-bar-notes.mjs under the
+     Specification Overview. `p` is justified site-wide, which opens rivers in a sentence
+     this short, so it is left-aligned. */
+  .bar-standard-note {
+    margin: 12px 0 22px;
+    text-align: left;
+  }
+
   .form-links-title {
     margin: 0 0 6px;
     text-align: left;
