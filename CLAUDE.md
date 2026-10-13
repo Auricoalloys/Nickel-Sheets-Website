@@ -20,11 +20,6 @@ Settings only the owner can change, outside this repo, recorded 2026-10-01. Noth
 them or detect whether they have been made, so **ask before assuming one is done**, and delete its
 line once the owner confirms it. Each links to the section that says why.
 
-- **Lead-review task (`~/.claude/scheduled-tasks/nickelsheets-lead-review/SKILL.md`, on the owner's
-  machine): count leads as `generate_lead` plus `contact_click` only.** `quote_cta_click` and
-  `calculator_quote_click` are intent; adding them counts an enquiry twice or a click that never
-  became one. It should also read `link_referrer`, since a recovered 404 visit's GA4 session
-  source is not its real source.
 - **Bing: add the site to Bing Webmaster Tools** (Import from Google Search Console). See *IndexNow
   tells Bing when a page changes*.
 
