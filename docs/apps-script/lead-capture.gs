@@ -588,8 +588,11 @@ function orNull(value) {
  * the CRM dedupes on it and returns the original enquiry.
  */
 function buildCrmPayload(data, rowNumber) {
-  // The customer types one free-text requirement; the page they were on is the
-  // best available product name, since the form does not ask for a product id.
+  // The form does not ask for a product id. The enquiry's first line is what the
+  // form seeded from the page's breadcrumb ("Enquiry: Inconel 625 Sheets"), so
+  // it names the product cleanly; the <title> carries a marketing tail and is
+  // only the fallback when the visitor cleared that line.
+  var productName = enquirySubject(data.inquiry) || orNull(data.page_title);
   var page = orNull(data.page_url) || orNull(data.page);
   var campaign = orNull(data.utm_campaign);
   var source = orNull(data.utm_source);
@@ -614,7 +617,7 @@ function buildCrmPayload(data, rowNumber) {
     },
     interest: {
       product_id: null,
-      product_name: orNull(data.page_title),
+      product_name: orNull(productName),
       requirement: orNull(data.inquiry),
       // Free text on purpose - the CRM parses "500 kg" / "2 MT" best-effort and
       // keeps the original string in the enquiry notes either way.
