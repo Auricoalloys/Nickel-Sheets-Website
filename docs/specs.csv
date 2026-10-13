@@ -133,7 +133,12 @@ inconel,693,N06693,ASTM B168 / B906,ASTM B166,ASTM B166,ASTM B167,ASTM B366
 # on the 602 CA pattern below: /inconel/718/fittings/ stays published, the identity table
 # omits the row instead of printing a blank, and the page says 718 fittings are machined
 # from bar and forging stock to B637 / AMS 5662 / 5663 of the same heat.
-inconel,718,N07718,ASTM B670 / B906 / AMS 5596 / 5597,ASTM B637 / AMS 5662 / 5663,AMS 5962 / 5832 / ISO 9724,AMS 5589 / 5590,-
+# 718 bar carries AMS 5962 as well (2026-10-13): the business confirmed it supplies 718
+# round bar to AMS 5662 / 5663 / 5962 (cold drawn bar), B637 / ASME SB 637 and API 6A CRA,
+# and SAE titles AMS 5962 "Round Bars and Wire", so it is in scope for bar and for wire.
+# API 6A CRA is a conditional certification, not a product standard, and stays on the
+# product page and the sour-service guide rather than in this table.
+inconel,718,N07718,ASTM B670 / B906 / AMS 5596 / 5597,ASTM B637 / AMS 5662 / 5663 / 5962,AMS 5962 / 5832 / ISO 9724,AMS 5589 / 5590,-
 inconel,725,N07725,-,ASTM B805,ASTM B805,-,-
 inconel,751,N07751,-,mill,-,-,-
 inconel,783,R30783,-,AMS 5940 / ASTM B637,-,-,-

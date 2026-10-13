@@ -1175,6 +1175,8 @@ wherever a wire mill sells its wire product to it — Nimonic 90 AMS 5829 and Wa
 listed by Alloy Wire International. That last case is the protected note in `specs.csv`: a catalogue
 title is not a scope in either direction.
 
+**EN 10295 is not a bar standard.** It covers heat-resistant steel castings, and sat in the Standards row of the Inconel 600 and 625, Hastelloy N and Incoloy round-bar pages until 2026-10-13. A grep for it is now 0, so any reappearance is a regression.
+
 **Hand-written copy repeats the cell, and the generators cannot reach it.** Fixing the CSV left 81
 hand-written claims on 21 pages — wire hub titles such as "Hastelloy Wire: UNS N10276, ASTM B574
 Supplier", FAQ answers, JSON-LD descriptions. After changing a standard in `specs.csv`, grep the whole
