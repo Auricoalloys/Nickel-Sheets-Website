@@ -54,7 +54,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Fourteen generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Fifteen generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -69,6 +69,7 @@ node docs/build-weight-data.mjs        # after editing docs/materials.csv or any
 node docs/build-calc-links.mjs         # after adding/renaming a form page, or a grade's calculator id
 node docs/build-breadcrumbs.mjs        # after adding/renaming a form page, or adding a grade hub
 node docs/build-quote-cta.mjs          # after adding a product page, changing a breadcrumb, or the WhatsApp number
+node docs/build-form-links.mjs         # after adding, renaming or retiring a form page of a grade in its GRADES list
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
@@ -1950,6 +1951,29 @@ optional rate-per-kg field is the visitor's own number, used in their browser on
 Formulas were checked against published section tables before shipping — 2″ sch40 pipe, 25 mm round
 bar, 20 mm hex, ISMB 200, and a coil cross-check proving the OD/ID volume equals width × thickness ×
 developed length exactly. Re-run that comparison rather than trusting a diff if you touch a formula.
+
+### Sibling form links exist because Google had never crawled the plates and sheets pages
+
+Search Console on 2026-10-13 (3 months, `https://www.nickelsheets.com/` property): 163 clicks, 13K
+impressions, average position 29.5, 425 pages indexed against 469 not. `/inconel/718/sheets/`
+inspected as *Discovered – currently not indexed* with **no crawl at all** — known from
+`sitemap.xml` and one catalogue page, never fetched. The sheets and plates pages of Inconel 600,
+718, 625 and 601, Hastelloy C276 and C22, and Titanium Grade 2 and 5 earned between 0 and 76
+impressions each, at positions 30–76. A title cannot help a page nobody has read, so link
+structure came first.
+
+`docs/build-form-links.mjs` writes an `aside.form-links` ("Also supplied as" every sibling form
+and the grade hub) after the `calc-cta:end` marker, for the grades named in its `GRADES` list.
+Labels are each sibling's own last breadcrumb crumb. Add a grade by adding a line. Fittings pages
+and `/titanium/grade-5-plates/` have no calc-cta to anchor on, so they receive no block but are
+listed on their siblings'. The homepage carries a hand-written "Popular Grades and Forms" section
+for the same eight grades; every link in it was checked against a published permalink.
+
+The same pass rewrote the slogan titles on those pages ("Hastelloy C276 Round Bars | The Gold
+Standard") to the coil pages' shape: `<grade form> Supplier & Stockist | <UNS> | Aurico Alloys`.
+Meta descriptions were left alone: they already name the UNS and standard. Both commits are in
+`BOILERPLATE`. **Measure it, don't assume it:** re-read the Performance report in about six weeks
+for those pages' impressions, and re-inspect `/inconel/718/sheets/`.
 
 ### Powder data sheets are generated, and are not Certificates of Analysis
 
