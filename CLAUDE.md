@@ -20,8 +20,7 @@ Settings only the owner can change, outside this repo, recorded 2026-10-01. Noth
 them or detect whether they have been made, so **ask before assuming one is done**, and delete its
 line once the owner confirms it. Each links to the section that says why.
 
-- **Bing: add the site to Bing Webmaster Tools** (Import from Google Search Console). See *IndexNow
-  tells Bing when a page changes*.
+None at present.
 
 ## Commands
 
@@ -2272,9 +2271,8 @@ deployed yet.
 the protocol is for URLs that changed, and the sitemap already lists the rest. **Done 2026-10-09**
 (run 37883565403): 797 URLs, HTTP 200. Do not repeat it.
 
-**Also add the site to Bing Webmaster Tools** — that part needs the owner's Microsoft account, so it
-is not done. *Import from Google Search Console* takes minutes and carries the verification over, so
-no new DNS record or meta tag is needed. It is the only place Bing reports crawl errors, index
+**The site is in Bing Webmaster Tools** (added 2026-10-13; the Search Console import failed with
+"unable to fetch data", so it was added by hand). It is the only place Bing reports crawl errors, index
 coverage and which IndexNow submissions it received: **IndexNow on its own gives no feedback at
 all**, beyond a 200 or 202 that means "received", not "indexed".
 
