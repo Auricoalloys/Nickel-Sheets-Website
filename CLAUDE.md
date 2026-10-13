@@ -2661,11 +2661,18 @@ business's word, and in all of its places at once, because nothing generates the
   H-type page. Special Metals' minimum for Nickel 200 and 201 is still 99.0%, and a page
   quoting the standard keeps that figure.
 
-- **Round bar diameter, 2026-10-13: 6–400 mm.** The Diameter Range row and the intro paragraph of the
-  round-bar pages of Inconel 600, 601, 625 and 718, Hastelloy C276 and C22, and the Standard Diameter
-  Range row of Titanium Grade 5. They read 6–350, 3–600 and 3–200 mm before. **The other ~95 round-bar
-  pages still state their own ranges** (3–800 mm Monel and Incoloy, 1–3000 mm AM-350, and so on) and
-  have not been confirmed; length, finishes and stock wording are also unconfirmed.
+- **Round bar, 2026-10-13: diameter 6–400 mm, length up to 12 meters, finish black bar and bright
+  bar.** On the Diameter Range, Length and Finish rows of 102 round-bar pages (every grade page and
+  family hub with such a row), and in the intro paragraphs and FAQ answers that repeated the old
+  figures. Diameter was confirmed first for the eight priority grades, then for every page not
+  already confirmed, so no round-bar page now states another range. Titanium's Standard Diameter
+  Range, Standard Length Options and Surface Finish Options rows took the same figures; their
+  Delivery Condition rows describe condition, not finish, and were left. The three Stellite pages,
+  Titanium Grade 2 and the `/pages/products/round-bar/` catalogue have no such rows and were not
+  touched. The "Delivery" and stock wording ("global stock", "readily stocked") is still unconfirmed.
+  Mixed rows (a "Condition and finish" cell, MP35N's finish cell) keep their condition text and
+  replace only the finish. The earlier figures read 3–800 mm Monel and Incoloy, 1–3000 mm AM-350,
+  6–120 mm NiCr, up to 6000 mm length; a search for them should now come back empty.
 
 - **Nickel-plated steel strip, 2026-10-02: supplied on request, not stocked.** In the hub's
   lead, and on the 32140 page as the budget option and a Minimum Order and Delivery item.
