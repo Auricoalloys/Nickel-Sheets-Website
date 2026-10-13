@@ -61,7 +61,7 @@ node docs/build-sitemap.mjs            # after adding/removing/renaming/editing 
 node docs/build-search-index.mjs       # after adding/removing/renaming/retitling a page
 node docs/build-prices.mjs             # after editing prices.csv
 node docs/build-price-worklist.mjs     # after adding/removing a page, or to queue up pricing work
-node docs/build-specs.mjs              # after editing docs/specs.csv
+node docs/build-specs.mjs              # after editing docs/specs.csv (then build-grades.mjs: it prints each form page's own spec row from the same cell)
 node docs/build-grades.mjs             # after editing grades.csv, chemistry.csv or properties.csv
 node docs/build-hub-grades.mjs         # after editing docs/hub-grades.csv or a grade's UNS
 node docs/build-cuts.mjs               # after editing docs/powder-datasheets/cuts.csv
