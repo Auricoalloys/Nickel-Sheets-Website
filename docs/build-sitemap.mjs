@@ -128,6 +128,8 @@ const BOILERPLATE = new Set([
   'f0997d1a', // redirected 53 retired URLs; the targets gained only a redirect_from line
   'e050e4b6', // linked the orphaned titanium plates pages; a neighbour's link, no grade copy moved
   'd3624386', // finished 86 truncated <title> tags; metadata only, no page's subject matter moved
+  '53728428', // sheet/plate/bar titles reworded to name grade, form and UNS; same subject, same precedent as d3624386
+  '6aac45f1', // sibling-form links on 42 form pages; navigation only, same as e050e4b6
   '6e57c6b0', // added the generated quote block to 626 product pages; a sitewide element, no product copy moved
   'af2fd408', // GA4 tag on the calculator, privacy and terms, and sitemap: false on the last two
   'f3fe24fc', // retired two duplicate pages into their keepers; redirect_from lines and repointed hrefs only
