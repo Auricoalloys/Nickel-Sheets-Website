@@ -210,7 +210,11 @@ incoloy,660 (A286),S66286,AMS 5525 / 5858,ASTM A638 / ASME SA-638 / AMS 5731 / 5
 # replaced it - so it follows its family rather than a source of its own.
 hastelloy,B-2,N10665,ASTM B333,ASTM B335,-,ASTM B619 / B622,ASTM B366
 hastelloy,C-4,N06455,ASTM B575,ASTM B574,-,ASTM B619 / B622,ASTM B366
-hastelloy,C-22,N06022,ASTM B575,ASTM B574,-,ASTM B619 / B622,ASTM B366
+# C-22 bar carries B564 as well (2026-10-13): the business confirmed it supplies C22 round bar
+# to B564 / SB564, and VDM's Alloy 22 data sheet (Nov 2020, UNS N06022) lists B574 and B564
+# on its rod and bar line. B564 is the forgings standard, so the cell reads as the standards
+# a bar is supplied to, not as B564's own scope.
+hastelloy,C-22,N06022,ASTM B575,ASTM B574 / B564,-,ASTM B619 / B622,ASTM B366
 hastelloy,C-276,N10276,ASTM B575,ASTM B574,-,ASTM B619 / B622 / B626,ASTM B366
 hastelloy,C-2000,N06200,ASTM B575,ASTM B574,-,ASTM B619 / B622,ASTM B366
 hastelloy,G-30,N06030,ASTM B582,ASTM B581,-,ASTM B619 / B622,ASTM B366
