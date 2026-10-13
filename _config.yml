@@ -86,6 +86,9 @@ exclude:
   # generator, not a page - excluded in the same commit that adds it, per the
   # docs/ note above.
   - docs/build-calc-links.mjs
+  # Writes the "also supplied as" sibling-link block into the form pages. Excluded
+  # in the same commit that adds it, per the docs/ note above.
+  - docs/build-form-links.mjs
   # Writes the grade-hub crumb into the form pages' breadcrumbs. Excluded in the
   # same commit that adds it, per the docs/ note above.
   - docs/build-breadcrumbs.mjs

@@ -44,6 +44,7 @@ on:
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
+      - "docs/build-form-links.mjs"
       - "docs/build-breadcrumbs.mjs"
       - "docs/build-quote-cta.mjs"
       - "javascript/lead-config.js"
@@ -80,6 +81,7 @@ on:
       - "docs/build-weight-data.mjs"
       - "javascript/weight-data.js"
       - "docs/build-calc-links.mjs"
+      - "docs/build-form-links.mjs"
       - "docs/build-breadcrumbs.mjs"
       - "docs/build-quote-cta.mjs"
       - "javascript/lead-config.js"
@@ -190,6 +192,12 @@ jobs:
       # knows by that id, which would land a buyer on the wrong material.
       - name: Calculator CTAs match the material list
         run: node docs/build-calc-links.mjs --check
+
+      # The "also supplied as" sibling links on the form pages of the graded
+      # list in the generator. Fails when a form page is added, renamed or retired
+      # and its siblings' lists were not regenerated.
+      - name: Form-page sibling links are current
+        run: node docs/build-form-links.mjs --check
 
       # The in-page "Get a quote" block on the product pages. Its subject is the
       # page's own last breadcrumb and its WhatsApp and call links carry the one
