@@ -131,6 +131,7 @@ const BOILERPLATE = new Set([
   '53728428', // sheet/plate/bar titles reworded to name grade, form and UNS; same subject, same precedent as d3624386
   '6aac45f1', // sibling-form links on 42 form pages; navigation only, same as e050e4b6
   'e3876195', // two links repointed from redirect stubs to their targets; navigation only
+  '26fe7df4', // titles and headings reworded to name what people search for; same subject, same precedent as d3624386
   '6e57c6b0', // added the generated quote block to 626 product pages; a sitewide element, no product copy moved
   'af2fd408', // GA4 tag on the calculator, privacy and terms, and sitemap: false on the last two
   'f3fe24fc', // retired two duplicate pages into their keepers; redirect_from lines and repointed hrefs only
