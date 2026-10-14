@@ -54,7 +54,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Sixteen generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Seventeen generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -71,6 +71,7 @@ node docs/build-breadcrumbs.mjs        # after adding/renaming a form page, or a
 node docs/build-quote-cta.mjs          # after adding a product page, changing a breadcrumb, or the WhatsApp number
 node docs/build-form-links.mjs         # after adding, renaming or retiring a form page of a grade in its GRADES list
 node docs/build-bar-notes.mjs          # after editing the bar or flat cell of a grade in its PAGES list in docs/specs.csv
+node docs/build-nichrome-facts.mjs     # after editing a nichrome row of grades.csv, chemistry.csv or properties.csv
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
@@ -1996,6 +1997,26 @@ not be confused with, both read from `specs.csv`. It writes nothing for a grade 
 cell is `-` or `mill`. **B564 is the forgings standard.** It is in a bar cell only where ASTM's own
 abstract lists the UNS (N06600, N06625, N08825, N10276, N06022, N04400) **and** the business confirmed
 the supply; it is not on 601 (N06601 is not listed) or K-500 (B865 covers its forgings).
+
+### The nichrome hub answers the questions people type, from the CSVs
+
+Search Console on 2026-10-14: `/nichrome/` was the site's largest page by impressions (748 in three
+months, average position 43) and the queries behind them were questions: "nichrome meaning",
+"nichrome composition", "melting point of nichrome", "nichrome properties", "what is nichrome". The
+page explained the idea and stated no figure, so it could answer none of them.
+
+`docs/build-nichrome-facts.mjs` writes a "What is nichrome?" section, with a composition paragraph, a
+melting-point paragraph and a properties table, from `grades.csv`, `chemistry.csv` and
+`properties.csv`, so the family hub cannot state a second, different density (see *A generated
+constant gets one home per page*). It publishes only verified rows. A grade whose data sheet prints no
+melting point is named as having none: grades.csv records that for NiCr 40/20, 30/20 and 20/25. Their
+resistivity cells are a dash, **not** "not published", because properties.csv simply has no rows for
+them and nothing there says the JLC sheet omits the figure. Check the sheet before changing that.
+
+The same day's pass retitled the stamping, hollow-bar, coil, Invar, titanium round-bar and foil pages
+to name what people search for. **Invar titles carry no UNS** because the four Invar pages disagree
+(K93600 on foil and plates, K93603 on sheets and round bar) and Invar has no row in `grades.csv`; fix
+the identity first, then add it.
 
 ### Powder data sheets are generated, and are not Certificates of Analysis
 

@@ -92,6 +92,9 @@ exclude:
   # Writes the one-sentence bar-standard note into the round-bar pages. Excluded in the
   # same commit that adds it, per the docs/ note above.
   - docs/build-bar-notes.mjs
+  # Writes the 'What is nichrome?' section into nichrome.html. Excluded in the same
+  # commit that adds it, per the docs/ note above.
+  - docs/build-nichrome-facts.mjs
   # Writes the grade-hub crumb into the form pages' breadcrumbs. Excluded in the
   # same commit that adds it, per the docs/ note above.
   - docs/build-breadcrumbs.mjs
