@@ -41,9 +41,10 @@ hastelloy,X,Hastelloy X,/hastelloy/X/,Ni-Cr-Fe-Mo,"Strength and oxidation resist
 # Haynes: the seven grade hubs (/haynes/25/ ... /haynes/HR-120/) were built on
 # 2026-09-09, after these rows were written with an empty url, and nobody filled
 # the cells in - so the family hub linked none of them and each grade hub's only
-# inbound links came from its own form pages. 556 and HR-160 still have no grade
-# hub, so their url stays empty and haynes.html links their form pages from its
-# #forms section instead. Their Type and Chosen-for are read off grades.csv's
+# inbound links came from its own form pages. 556 and HR-160 had no grade hub
+# until 2026-10-15, so their url sat empty and haynes.html linked their form pages
+# from its #forms section instead; that list went when /haynes/556/ and
+# /haynes/HR-160/ were built. Their Type and Chosen-for are read off grades.csv's
 # source notes and chemistry.csv (556 is iron-balance, HR-160 nickel-balance)
 # and the pages' own text, not typed from memory.
 haynes,25,Haynes 25 (L-605),/haynes/25/,Cobalt base,"Wear and sulphidation resistance, sliding contact at temperature"
@@ -53,8 +54,8 @@ haynes,230,Haynes 230,/haynes/230/,Ni-Cr-W-Mo,"Strength, oxidation resistance an
 haynes,242,Haynes 242,/haynes/242/,Age hardened,"Strength with low thermal expansion, seal rings and ducting"
 haynes,282,Haynes 282,/haynes/282/,Age hardened,Creep strength with better weldability than earlier disc alloys
 haynes,HR-120,Haynes HR-120,/haynes/HR-120/,Fe-Ni-Cr,A lower-cost heat resisting grade for furnace and process service
-haynes,556,Haynes 556,,Fe-Ni-Cr-Co,"Sulphidising, carburising and chlorine-bearing atmospheres at high temperature"
-haynes,HR-160,Haynes HR-160,,Ni-Co-Cr-Si,Sulphidation and chlorination in mixed-gas waste-to-energy service
+haynes,556,Haynes 556,/haynes/556/,Fe-Ni-Cr-Co,"Sulphidising, carburising and chlorine-bearing atmospheres at high temperature"
+haynes,HR-160,Haynes HR-160,/haynes/HR-160/,Ni-Co-Cr-Si,Sulphidation and chlorination in mixed-gas waste-to-energy service
 incoloy,DS,Incoloy DS,/incoloy/DS/,Heat resisting,Carburisation and thermal cycling in furnace parts
 incoloy,800,Incoloy 800,/incoloy/800/,Heat resisting,General furnace and process service
 incoloy,800H,Incoloy 800H,/incoloy/800H/,Heat resisting,Controlled carbon and grain size for creep strength
@@ -75,7 +76,7 @@ nichrome,20/25,NiCr 20/25,/NiCr/20-25/,"20% Ni, 25% Cr",The most economical of t
 cobalt-alloy,Haynes 25 (L-605),Haynes 25 (L-605),/haynes/25/,Co-Cr-W-Ni,"Wear and sulphidation resistance, sliding contact at temperature"
 cobalt-alloy,Haynes 188,Haynes 188,/haynes/188/,Co-Ni-Cr-W,High-temperature oxidation resistance for combustor hardware
 cobalt-alloy,Elgiloy,Elgiloy,/cobalt-alloys/elgiloy/sheets/,Co-Cr-Ni-Mo,"Springs and diaphragms, high fatigue strength, sour gas service"
-cobalt-alloy,MP35N,MP35N,/cobalt-alloys/mp35n/round-bar/,Co-Ni-Cr-Mo,Multiphase alloy with very high strength and corrosion resistance for fasteners
+cobalt-alloy,MP35N,MP35N,/cobalt-alloys/mp35n/,Co-Ni-Cr-Mo,Multiphase alloy with very high strength and corrosion resistance for fasteners
 cobalt-alloy,CoCrMo,CoCrMo,/cobalt-alloys/cocrmo/powder/,Co-Cr-Mo,Implants and additive manufacturing feedstock
 cobalt-alloy,6,Stellite 6,/stellite/,Co-Cr-W,"General-purpose wear resistance, hardfacing and valve seats",stellite
 cobalt-alloy,12,Stellite 12,/stellite/,Co-Cr-W,Higher carbon and tungsten for abrasion and low-angle erosion,stellite

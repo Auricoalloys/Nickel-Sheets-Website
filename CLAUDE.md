@@ -352,7 +352,13 @@ Four things it refuses rather than guesses at, each of which was a way to make t
 - **A form page whose grade hub does not exist** — 68 of them, mostly `/NiCr/<ratio>/` and
   `/duplex-steel/<grade>/`. Linking anyway would trade uncrawled URLs for **404s**, which is the
   same mistake one direction over. They are listed on every run: the hubs are missing, and building
-  them is the fix.
+  them is the fix. Down to 8 on 2026-10-15, when `/haynes/556/`, `/haynes/HR-160/` and
+  `/cobalt-alloys/mp35n/` were built: six powder pages and two `published: false` duplicates.
+  Before building a hub for one, check whether the hub already exists under another spelling.
+  The 625 LCF form pages sit under `/inconel/625-LCF/` with their hub at `/inconel/625LCF/`, and
+  the C276 foil page is at `/Hastelloy/C276/foil/` under `/hastelloy/C276/`. `HUB_ALIAS` states
+  those pairs rather than deriving them, for the reason `build-grades.mjs` states its irregular
+  maps.
 - **A grade hub whose own last crumb names a product form.** `/hastelloy/C22/` calls itself
   "Hastelloy C22 Foil" and `/incoloy/903/` "Incoloy 903 Sheets", so adopting the label would publish
   "Hastelloy C22 Foil › Hastelloy C22 Plates" — a breadcrumb asserting plates live under foil. **18

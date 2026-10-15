@@ -180,13 +180,26 @@ const NOT_GRADE_ROUTES = /^\/(pages|docs|html|tools|supply|export)\//;
 const formPages = pages.filter((p) =>
   p.url.split('/').filter(Boolean).length === 3 && !NOT_GRADE_ROUTES.test(p.url));
 
+// A grade whose form pages and hub spell it differently. The 625 LCF hub is /inconel/625LCF/,
+// which /inconel/ and hub-grades.csv link, while its two form pages sit under /inconel/625-LCF/.
+// The C276 foil page is published at /Hastelloy/C276/foil/, capital H, under a hub at
+// /hastelloy/C276/. Reading the hub off the form page's own path reported all three as hubless,
+// so their only route up was the family crumb. Stated rather than derived, for the reason
+// build-grades.mjs states its irregular URL maps: a guessed hub is a crumb that 404s. Key and
+// value are both exact, case included: GitHub Pages serves paths case-sensitively.
+const HUB_ALIAS = {
+  '/inconel/625-LCF/': '/inconel/625LCF/',
+  '/Hastelloy/C276/': '/hastelloy/C276/',
+};
+
 for (const p of formPages) {
   FORM_WORDS.add(p.url.split('/').filter(Boolean)[2].replace(/-/g, ' ').toLowerCase());
 }
 
 for (const p of formPages) {
   const segs = p.url.split('/').filter(Boolean);
-  const hubUrl = `/${segs[0]}/${segs[1]}/`;
+  const ownHub = `/${segs[0]}/${segs[1]}/`;
+  const hubUrl = HUB_ALIAS[ownHub] || ownHub;
 
   if (!byUrl.has(hubUrl)) { skip(`no grade hub page at ${'<family>/<grade>/'}`, `${p.url}  needs ${hubUrl}`); continue; }
   const label = hubLabel(hubUrl);
