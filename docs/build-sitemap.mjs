@@ -147,6 +147,7 @@ const BOILERPLATE = new Set([
   '98a84349', // the X-750 hub as the form pages' third crumb, and two neighbours' links; navigation only, same as c13cdb9c
   '8619e14d', // capitals back on 62 pages' own product name, in the opening and one table caption; casing only
   'a6c67d2d', // five pages' sidebar link to /haynes/foil/ relabelled from B572 to B434; a neighbour's label only
+  'a4f8c747', // grade-hub crumb on ten form pages, and the 556/HR-160/MP35N links on two family hubs; navigation only, same as c13cdb9c
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of

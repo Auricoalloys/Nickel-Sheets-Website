@@ -498,6 +498,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/cobalt-alloys/mp35n/</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/cobalt-alloys/mp35n/round-bar/</loc>
     <lastmod>2026-10-15</lastmod>
     <image:image>
@@ -1427,6 +1431,10 @@ sitemap: false
     </image:image>
   </url>
   <url>
+    <loc>https://www.nickelsheets.com/haynes/556/</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+  <url>
     <loc>https://www.nickelsheets.com/haynes/556/plates/</loc>
     <lastmod>2026-10-15</lastmod>
     <image:image>
@@ -1493,6 +1501,10 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/alloy-plates-flat-bar-circular-blanks.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.nickelsheets.com/haynes/HR-160/</loc>
+    <lastmod>2026-10-15</lastmod>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/haynes/HR-160/plates/</loc>
