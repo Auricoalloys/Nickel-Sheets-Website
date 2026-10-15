@@ -2700,9 +2700,16 @@ business's word, and in all of its places at once, because nothing generates the
   depending on grade and size; availability and lead time confirmed at quotation." What the row
   kept is the certificates and export packaging the owner confirmed, and any cut-to-length, machining
   or RoHS item it already carried. The "global stock", "direct stock", "urgent" and "rapid" phrases
-  went from the row. They are still in the prose of 107 round-bar pages (463 matches, among them 77
-  "Stock & Product Availability" sections, FAQ answers and some meta descriptions), which the owner
-  has not yet decided on.
+  went from the row. The owner then had the same sentence put at the head of the Delivery row of the
+  84 plates, sheets and foil pages (28, 25 and 31), with the same rule: stock and speed phrases out,
+  certificates and export packing in. That pass also dropped a "5-7 days turnaround" from
+  Titanium Grade 9 foil, a figure the owner confirmed for plain nickel strip only, and the "price per
+  kg" and "verified stockholders" search phrases that sat in the Titanium foil rows. Left alone on
+  purpose: the "Delivery Condition" rows (three on plates and sheets, ten on titanium round bar), the
+  location pages' Delivery rows (freight routes from the Mumbai and Kalamboli warehouses), and the
+  pure-nickel-strip "Delivery time" rows. The stock wording is still in the prose of 107 round-bar
+  pages (463 matches, among them 77 "Stock & Product Availability" sections, FAQ answers and some
+  meta descriptions), and the owner said on 2026-10-15 not to change it.
   Mixed rows (a "Condition and finish" cell, MP35N's finish cell) keep their condition text and
   replace only the finish. The earlier figures read 3–800 mm Monel and Incoloy, 1–3000 mm AM-350,
   6–120 mm NiCr, up to 6000 mm length; a search for them should now come back empty.
