@@ -2016,9 +2016,12 @@ them and nothing there says the JLC sheet omits the figure. Check the sheet befo
 The same day's pass retitled the stamping, hollow-bar, coil, Invar, titanium round-bar and foil pages
 to name what people search for. **Invar titles carry no UNS.** The four Invar pages cite K93600 (foil, plates) or K93603 (sheets,
 round bar), and that is **not** a conflict: ATI's 36 technical data sheet prints "UNS K93600 or
-K93603" for Invar 36, and the owner confirmed on 2026-10-15 that both are right. Invar still has no
-row in `grades.csv`, so nothing generates its identity; add a row (UNS as `K93600 / K93603`, most
-current first) before putting a UNS in a title, and do not "correct" either number on a page.
+K93603" for Invar 36, and the owner confirmed on 2026-10-15 that both are right. Invar 36 has a
+verified row (`nickel-alloy,Invar 36`, UNS `K93600 / K93601 / K93602 / K93603` from VDM Metals' Alloy 36
+data sheet of March 2022, with chemistry rows) and `invar` is mapped in `SINGLE_GRADE`, so the four
+pages' identity tables are generated and linted against it. The titles carry no UNS only because a
+title names one number and the pages cite two. This note said until 2026-10-15 that Invar had no
+row; it had, since 2026-09-14. Do not "correct" either number on a page.
 
 ### Powder data sheets are generated, and are not Certificates of Analysis
 
@@ -2692,7 +2695,14 @@ business's word, and in all of its places at once, because nothing generates the
   Range, Standard Length Options and Surface Finish Options rows took the same figures; their
   Delivery Condition rows describe condition, not finish, and were left. The three Stellite pages,
   Titanium Grade 2 and the `/pages/products/round-bar/` catalogue have no such rows and were not
-  touched. The "Delivery" and stock wording ("global stock", "readily stocked") is still unconfirmed.
+  touched. The owner approved one Delivery sentence on 2026-10-15, and it
+  heads the Delivery row of 78 round-bar pages: "Supplied from stock or arranged against order,
+  depending on grade and size; availability and lead time confirmed at quotation." What the row
+  kept is the certificates and export packaging the owner confirmed, and any cut-to-length, machining
+  or RoHS item it already carried. The "global stock", "direct stock", "urgent" and "rapid" phrases
+  went from the row. They are still in the prose of 107 round-bar pages (463 matches, among them 77
+  "Stock & Product Availability" sections, FAQ answers and some meta descriptions), which the owner
+  has not yet decided on.
   Mixed rows (a "Condition and finish" cell, MP35N's finish cell) keep their condition text and
   replace only the finish. The earlier figures read 3–800 mm Monel and Incoloy, 1–3000 mm AM-350,
   6–120 mm NiCr, up to 6000 mm length; a search for them should now come back empty.
