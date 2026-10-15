@@ -2014,9 +2014,11 @@ resistivity cells are a dash, **not** "not published", because properties.csv si
 them and nothing there says the JLC sheet omits the figure. Check the sheet before changing that.
 
 The same day's pass retitled the stamping, hollow-bar, coil, Invar, titanium round-bar and foil pages
-to name what people search for. **Invar titles carry no UNS** because the four Invar pages disagree
-(K93600 on foil and plates, K93603 on sheets and round bar) and Invar has no row in `grades.csv`; fix
-the identity first, then add it.
+to name what people search for. **Invar titles carry no UNS.** The four Invar pages cite K93600 (foil, plates) or K93603 (sheets,
+round bar), and that is **not** a conflict: ATI's 36 technical data sheet prints "UNS K93600 or
+K93603" for Invar 36, and the owner confirmed on 2026-10-15 that both are right. Invar still has no
+row in `grades.csv`, so nothing generates its identity; add a row (UNS as `K93600 / K93603`, most
+current first) before putting a UNS in a title, and do not "correct" either number on a page.
 
 ### Powder data sheets are generated, and are not Certificates of Analysis
 
