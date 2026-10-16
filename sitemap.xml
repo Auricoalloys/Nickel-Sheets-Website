@@ -9,12 +9,12 @@ sitemap: false
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.nickelsheets.com/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/office_photo.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/images/nickel-zigzag-busbar-coil.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nickel-alloy-coil.webp</image:loc>
@@ -4122,9 +4122,9 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/nickel-strip-for-18650-battery-pack/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5384,7 +5384,7 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/18650/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
@@ -5394,15 +5394,12 @@ sitemap: false
     <image:image>
       <image:loc>https://www.nickelsheets.com/docs/images/nickel-h-type-busbar-18650-26650.webp</image:loc>
     </image:image>
-    <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/1P/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5487,9 +5484,9 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/2P/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -5564,37 +5561,37 @@ sitemap: false
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/3P/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/4680/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/4P/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/5P/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.nickelsheets.com/pure-nickel-strip/6P/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
-      <image:loc>https://www.nickelsheets.com/docs/images/h-type-nickel-busbar-18650.webp</image:loc>
+      <image:loc>https://www.nickelsheets.com/docs/media/busbar-1.webp</image:loc>
     </image:image>
   </url>
   <url>
