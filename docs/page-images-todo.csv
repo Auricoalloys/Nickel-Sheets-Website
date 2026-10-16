@@ -12,7 +12,7 @@
 # run node docs/build-page-images.mjs. A row "url,-,reason" records a page looked at
 # and found to have no usable photo; its reason is the note below.
 #
-# 746 page(s) in 75 group(s); 54 page(s) adopted.
+# 746 page(s) in 74 group(s); 54 page(s) adopted.
 
 lead_image,url,note
 
@@ -421,6 +421,43 @@ lead_image,url,note
 /docs/media/Foil-New-Banner.webp,/titanium/grade-7/foil/,
 /docs/media/Foil-New-Banner.webp,/titanium/grade-9/foil/,
 
+# /docs/media/busbar-1.webp  -  leads 35 page(s), shown on 36  -  collage of eight strip and busbar photos; one tile is the shot also published with a RAMANI STEEL HOUSE watermark
+/docs/media/busbar-1.webp,/Aluminum-Busbar-for-Prismatic-Cells/,
+/docs/media/busbar-1.webp,/Aluminum-busbar/,
+/docs/media/busbar-1.webp,/Copper-Aluminum-Sandwich-Busbar/,
+/docs/media/busbar-1.webp,/Copper-Busbar-for-Lithium-Ion-Battery/,
+/docs/media/busbar-1.webp,/Copper-Busbar-for-Prismatic-Cells/,
+/docs/media/busbar-1.webp,/copper-busbar/,
+/docs/media/busbar-1.webp,/Nickel-Copper-Sandwich-Busbar/,
+/docs/media/busbar-1.webp,/nickel-strip-for-18650-battery-pack/,
+/docs/media/busbar-1.webp,/pure-nickel-strip-for-32140-manufacturer-exporter/,its photo 32140-nickel-strips.webp is the same shot as nickel-zigzag-busbar-cylindrical-cells.webp on the busbar manufacturer page
+/docs/media/busbar-1.webp,/pure-nickel-strip/18650-H-type/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/18650-honeycomb/,its photo Fuse-Type-Nickel-Strip-18650-2.webp is the same shot as the 18650 zig-zag page's and as nickel-zigzag-busbar-coil.webp on the busbar manufacturer page
+/docs/media/busbar-1.webp,/pure-nickel-strip/18650-zigzag/,its photo Fuse-Type-Nickel-Strip-18650-2-1.webp is a crop of the 18650 honeycomb page's photo, and shows a honeycomb fuse strip rather than a zig-zag one
+/docs/media/busbar-1.webp,/pure-nickel-strip/18650/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/1P/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/21700-H-type/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/21700-honeycomb/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/21700-zigzag/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/21700/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/26650-H-type/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/26650-zigzag/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/26650/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/2P/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/32140-H-type/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/32140-honeycomb/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/32140-zigzag/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/32650-H-type/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/32650-honeycomb/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/32650-zigzag/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/32650/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/3P/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/4680/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/4P/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/5P/,
+/docs/media/busbar-1.webp,/pure-nickel-strip/6P/,
+/docs/media/busbar-1.webp,/pure-nickel-strips-&-busbar-manufacturer-supplier-exporter-in-mumbai-india/,its strip photos are the same shots as the 18650 and 32140 pages'; its other photos are copper and aluminium busbars
+
 # /docs/images/oil-and-gas-industry.webp  -  leads 30 page(s), shown on 30  -  an industry scene, not the product
 /docs/images/oil-and-gas-industry.webp,/export-markets/,
 /docs/images/oil-and-gas-industry.webp,/nickel-alloy-supplier-in-alberta/,
@@ -484,35 +521,6 @@ lead_image,url,note
 /docs/media/Hollow-Bars-Banner.webp,/titanium-alloy-hollow-bars-supplier-exporter-mumbai-india/,
 /docs/media/Hollow-Bars-Banner.webp,/titanium-alloy-pipes-supplier-exporter-mumbai-india/,
 /docs/media/Hollow-Bars-Banner.webp,/titanium-alloy-tube-supplier-exporter-mumbai-india/,
-
-# /docs/media/busbar-1.webp  -  leads 27 page(s), shown on 28  -  collage of eight strip and busbar photos
-/docs/media/busbar-1.webp,/Aluminum-Busbar-for-Prismatic-Cells/,
-/docs/media/busbar-1.webp,/Aluminum-busbar/,
-/docs/media/busbar-1.webp,/Copper-Aluminum-Sandwich-Busbar/,
-/docs/media/busbar-1.webp,/Copper-Busbar-for-Lithium-Ion-Battery/,
-/docs/media/busbar-1.webp,/Copper-Busbar-for-Prismatic-Cells/,
-/docs/media/busbar-1.webp,/copper-busbar/,
-/docs/media/busbar-1.webp,/Nickel-Copper-Sandwich-Busbar/,
-/docs/media/busbar-1.webp,/pure-nickel-strip-for-32140-manufacturer-exporter/,its photo 32140-nickel-strips.webp is the same shot as nickel-zigzag-busbar-cylindrical-cells.webp on the busbar manufacturer page
-/docs/media/busbar-1.webp,/pure-nickel-strip/18650-H-type/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/18650-honeycomb/,its photo Fuse-Type-Nickel-Strip-18650-2.webp is the same shot as the 18650 zig-zag page's and as nickel-zigzag-busbar-coil.webp on the busbar manufacturer page
-/docs/media/busbar-1.webp,/pure-nickel-strip/18650-zigzag/,its photo Fuse-Type-Nickel-Strip-18650-2-1.webp is a crop of the 18650 honeycomb page's photo, and shows a honeycomb fuse strip rather than a zig-zag one
-/docs/media/busbar-1.webp,/pure-nickel-strip/18650/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/21700-H-type/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/21700-honeycomb/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/21700-zigzag/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/21700/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/26650-H-type/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/26650-zigzag/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/26650/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/32140-H-type/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/32140-honeycomb/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/32140-zigzag/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/32650-H-type/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/32650-honeycomb/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/32650-zigzag/,
-/docs/media/busbar-1.webp,/pure-nickel-strip/32650/,
-/docs/media/busbar-1.webp,/pure-nickel-strips-&-busbar-manufacturer-supplier-exporter-in-mumbai-india/,its strip photos are the same shots as the 18650 and 32140 pages'; its other photos are copper and aluminium busbars
 
 # /docs/images/nickel-alloy-round-bar.webp  -  leads 18 page(s), shown on 21
 /docs/images/nickel-alloy-round-bar.webp,/alloy-59/round-bar/,
@@ -672,16 +680,6 @@ lead_image,url,note
 /docs/images/cobalt-alloy-sheets.webp,/stellite/21/strips/,
 /docs/images/cobalt-alloy-sheets.webp,/stellite/6/sheets/,
 /docs/images/cobalt-alloy-sheets.webp,/stellite/6/strips/,
-
-# /docs/images/h-type-nickel-busbar-18650.webp  -  leads 8 page(s), shown on 10  -  carries a RAMANI STEEL HOUSE watermark: another company's photograph
-/docs/images/h-type-nickel-busbar-18650.webp,/nickel-strip-for-18650-battery-pack/,
-/docs/images/h-type-nickel-busbar-18650.webp,/pure-nickel-strip/1P/,
-/docs/images/h-type-nickel-busbar-18650.webp,/pure-nickel-strip/2P/,
-/docs/images/h-type-nickel-busbar-18650.webp,/pure-nickel-strip/3P/,
-/docs/images/h-type-nickel-busbar-18650.webp,/pure-nickel-strip/4680/,
-/docs/images/h-type-nickel-busbar-18650.webp,/pure-nickel-strip/4P/,
-/docs/images/h-type-nickel-busbar-18650.webp,/pure-nickel-strip/5P/,
-/docs/images/h-type-nickel-busbar-18650.webp,/pure-nickel-strip/6P/,
 
 # /docs/images/inconel-pipes.webp  -  leads 8 page(s), shown on 9
 /docs/images/inconel-pipes.webp,/inconel/600/pipe/,

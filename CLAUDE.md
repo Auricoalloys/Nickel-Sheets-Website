@@ -1990,11 +1990,15 @@ with the reason. Fourteen exist.
 Every other indexable page is in `docs/page-images-todo.csv`, grouped by the image it leads with,
 largest group first: 746 pages, 121 of them on the `plates-banner.webp` collage. **That backlog is the
 owner's: new photos are a business decision, and no visible image, banner or watermark was changed.**
-It also records that `h-type-nickel-busbar-18650.webp` carries a **RAMANI STEEL HOUSE** watermark,
-another company's photograph. It is the banner, `og:image`, `twitter:image` and Product `image` of
-1P to 6P, 4680 and the 18650 battery-pack page, and is also shown on `/pure-nickel-strip/18650/` and
-the homepage. So those eight pages already offer it to Google as their thumbnail. It was listed for
-the owner, not replaced: the fix is a photo of our own.
+**A competitor's watermarked photo was on ten pages until 2026-10-16.** `h-type-nickel-busbar-18650.webp`
+carried a **RAMANI STEEL HOUSE** watermark. It was the banner, `og:image`, `twitter:image` and
+Product `image` of 1P to 6P, 4680 and the 18650 battery-pack page, so those pages offered it to
+Google as their thumbnail. It was also on a homepage card and an 18650 page card. The owner had it
+deleted, with its PNG copy `H-Type Busbar (4).png`. The eight banners now show `busbar-1.webp`, as
+their 27 sibling strip pages do. The same shot with **our** watermark is still a tile in
+`busbar-1.webp` and `busbar-photos.webp`, and is `Nickel Strip (2).png`. The files cannot show
+which company took it. The owner was told, and those were left alone. The deleted file is still in
+git history.
 
 An image-only change is **boilerplate** for `<lastmod>`: no word a reader sees moves.
 

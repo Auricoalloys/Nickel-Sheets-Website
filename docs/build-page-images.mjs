@@ -104,13 +104,15 @@ const IMAGE_NOTES = {
   '/docs/media/plates-banner.webp': 'collage of four plate photos, 1200x280 (over 4:1)',
   '/docs/media/Foil-New-Banner.webp': 'collage of four foil photos',
   '/docs/media/hex-bar-flat-banner.webp': 'collage of four hex bar photos',
-  '/docs/media/busbar-1.webp': 'collage of eight strip and busbar photos',
-  '/docs/media/busbar-photos.webp': 'collage of four strip photos',
+  // One tile of each is the ladder-strip shot that h-type-nickel-busbar-18650.webp carried with a
+  // RAMANI STEEL HOUSE watermark; here it carries ours. That file was deleted on 2026-10-16 at the
+  // owner's word. Which company took the photograph is not known from the files.
+  '/docs/media/busbar-1.webp': 'collage of eight strip and busbar photos; one tile is the shot also published with a RAMANI STEEL HOUSE watermark',
+  '/docs/media/busbar-photos.webp': 'collage of four strip photos; one tile is the shot also published with a RAMANI STEEL HOUSE watermark',
   '/docs/media/Haynes-2.webp': 'collage of nine bar photos',
   '/docs/images/chemical-manufacturing.webp': 'an industry scene, not the product',
   '/docs/images/oil-and-gas-industry.webp': 'an industry scene, not the product',
   '/docs/images/aerospace.webp': 'an industry scene (a jet engine), not the product',
-  '/docs/images/h-type-nickel-busbar-18650.webp': 'carries a RAMANI STEEL HOUSE watermark: another company\'s photograph',
   '/docs/images/inconel-wire.webp': 'renders copper-coloured wire',
 };
 
