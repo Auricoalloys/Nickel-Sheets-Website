@@ -1995,10 +1995,10 @@ carried a **RAMANI STEEL HOUSE** watermark. It was the banner, `og:image`, `twit
 Product `image` of 1P to 6P, 4680 and the 18650 battery-pack page, so those pages offered it to
 Google as their thumbnail. It was also on a homepage card and an 18650 page card. The owner had it
 deleted, with its PNG copy `H-Type Busbar (4).png`. The eight banners now show `busbar-1.webp`, as
-their 27 sibling strip pages do. The same shot with **our** watermark is still a tile in
-`busbar-1.webp` and `busbar-photos.webp`, and is `Nickel Strip (2).png`. The files cannot show
-which company took it. The owner was told, and those were left alone. The deleted file is still in
-git history.
+their 27 sibling strip pages do. **The photograph is Aurico's**, the owner confirmed the same day.
+The Ramani file was our ladder-strip shot under their watermark. The copies with our watermark are
+ours and stay: a tile in `busbar-1.webp` and `busbar-photos.webp`, and `Nickel Strip (2).png`. The
+deleted file is still in git history, and the owner chose not to rewrite it.
 
 An image-only change is **boilerplate** for `<lastmod>`: no word a reader sees moves.
 
