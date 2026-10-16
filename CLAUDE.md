@@ -54,7 +54,7 @@ bundle exec jekyll build --config _config.yml,_config.local.yml
 ```
 
 There is no lint, test, or bundler step, and nothing runs at deploy time — GitHub Pages only runs
-Jekyll. Seventeen generators exist and must be run **by hand**, then committed like any other source:
+Jekyll. Eighteen generators exist and must be run **by hand**, then committed like any other source:
 
 ```bash
 node docs/build-sitemap.mjs            # after adding/removing/renaming/editing a page
@@ -72,13 +72,14 @@ node docs/build-quote-cta.mjs          # after adding a product page, changing a
 node docs/build-form-links.mjs         # after adding, renaming or retiring a form page of a grade in its GRADES list
 node docs/build-bar-notes.mjs          # after editing the bar or flat cell of a grade in its PAGES list in docs/specs.csv
 node docs/build-nichrome-facts.mjs     # after editing a nichrome row of grades.csv, chemistry.csv or properties.csv
+node docs/build-page-images.mjs        # after editing docs/page-images.csv, or changing a page's photos
 node docs/purge-bootstrap.mjs          # after using a Bootstrap component the site did not use before
 node docs/powder-datasheets/build.mjs  # after editing docs/powder-datasheets/data.mjs
 ```
 
 Every one of those except `purge-bootstrap` takes `--check`, which reports drift and exits non-zero
 without writing. CI runs the price, specification, grade-data, hub-grade, weight-calculator,
-calculator-CTA, quote-CTA, breadcrumb and table-system checks on
+calculator-CTA, quote-CTA, breadcrumb, page-image and table-system checks on
 every pull request, because a price the HTML no longer matches is worse than no price at all, a
 specification cited for the wrong product form tells a buyer the material is certified to something
 it is not, and a wrong UNS number tells them it is a different material altogether.
@@ -1961,6 +1962,41 @@ optional rate-per-kg field is the visitor's own number, used in their browser on
 Formulas were checked against published section tables before shipping — 2″ sch40 pipe, 25 mm round
 bar, 20 mm hex, ISMB 200, and a coil cross-check proving the OD/ID volume equals width × thickness ×
 developed length exactly. Re-run that comparison rather than trusting a diff if you touch a formula.
+
+### Each page names its own photo as its preferred image, from docs/page-images.csv
+
+The owner asked on 2026-10-15 why competitors' results carry a photo and ours do not. Google takes
+the thumbnail from `primaryImageOfPage`, the main entity's `image` and `og:image`, and asks for an
+image of the page's own subject: not a logo, not a picture shared across many pages, not an extreme
+aspect ratio. 569 of 804 published pages named `aurico-logo.webp` as `og:image`, and where the
+JSON-LD named an image it was a shared banner. On the powder pages it was `inconel-sheets.webp`.
+
+`docs/build-page-images.mjs` writes all three from `docs/page-images.csv` (`url,image[,note]`).
+`primaryImageOfPage` goes on the page's top-level WebPage-type node (a `FAQPage` only when it is the
+sole one), or on a WebPage block of its own between `page-image:start`/`page-image:end` markers.
+The live `Product` node's `image` is set to the same photo. Both are edited by offset, not
+re-serialised, because other generators read these blocks as text. It refuses a row naming a logo,
+a missing file or a photo the page does not show. `--check` runs in CI.
+
+**A row is a judgement, and the seed (54 pages, 2026-10-16) was made by eye.** A photo qualifies when
+no other page shows it, except as a catalogue card linking to this page, and when a person has seen
+it is one product: not a collage, an industry scene or the wrong form. Filenames prove nothing. A
+perceptual hash found four pairs that are one photograph (`coil.webp` and `duplex-steel-coil.webp`,
+`Fittings.webp` and `incoloy-fittings.webp`, `tool-steel-powder.webp` and `metal-am-powder.webp`,
+`32140-nickel-strips.webp` and `nickel-zigzag-busbar-cylindrical-cells.webp`), and three 18650
+strip files are crops of one shot. A row whose image is `-` records a page looked at and refused,
+with the reason. Fourteen exist.
+
+Every other indexable page is in `docs/page-images-todo.csv`, grouped by the image it leads with,
+largest group first: 746 pages, 121 of them on the `plates-banner.webp` collage. **That backlog is the
+owner's: new photos are a business decision, and no visible image, banner or watermark was changed.**
+It also records that `h-type-nickel-busbar-18650.webp` carries a **RAMANI STEEL HOUSE** watermark,
+another company's photograph. It is the banner, `og:image`, `twitter:image` and Product `image` of
+1P to 6P, 4680 and the 18650 battery-pack page, and is also shown on `/pure-nickel-strip/18650/` and
+the homepage. So those eight pages already offer it to Google as their thumbnail. It was listed for
+the owner, not replaced: the fix is a photo of our own.
+
+An image-only change is **boilerplate** for `<lastmod>`: no word a reader sees moves.
 
 ### Sibling form links exist because Google had never crawled the plates and sheets pages
 

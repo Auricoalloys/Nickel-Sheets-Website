@@ -101,6 +101,13 @@ exclude:
   # Writes the in-page "Get a quote" block into the product pages. Excluded in
   # the same commit that adds it, per the docs/ note above.
   - docs/build-quote-cta.mjs
+  # Writes each page's preferred image (og:image, twitter:image, primaryImageOfPage)
+  # from its CSV, and the photo backlog beside it. Excluded in the same commit that
+  # adds them, per the docs/ note above: the backlog names which pages still lead
+  # with a shared banner, a collage or another company's photograph.
+  - docs/build-page-images.mjs
+  - docs/page-images.csv
+  - docs/page-images-todo.csv
   # The queue of pages still waiting for a price. A working file, not a page:
   # it lists what the site does not yet quote, which is nobody else’s business.
   - prices-todo.csv

@@ -1,0 +1,108 @@
+# The photo each page names as its preferred image: og:image, twitter:image,
+# schema.org primaryImageOfPage and its Product node's image, all written from
+# here by docs/build-page-images.mjs. Google takes the thumbnail beside a search
+# result from those, and asks for an image of the page's own subject - not the
+# site logo, not a collage, not one picture shared across dozens of pages.
+#
+# A row names a photo that is:
+#   - shown on the page itself, in an <img> of its own markup (the generator
+#     refuses one the reader cannot see, as it refuses a logo);
+#   - shown on no other page, except as a catalogue card that links to this one;
+#   - a single product, looked at by a person: not a collage, not an industry
+#     scene, not the wrong product form, and not the same photograph as another
+#     page's under a different filename (four such pairs exist - see the
+#     generator's header).
+#
+# image "-" records a page that was looked at and has no usable photo; the third
+# column says why, and the page goes to docs/page-images-todo.csv, the photo
+# backlog for the owner. The third column may contain commas.
+#
+# After editing: node docs/build-page-images.mjs        then commit the pages.
+# node docs/build-page-images.mjs --check reports drift and exits non-zero.
+url,image,note
+
+# Pure nickel strip and busbar pages
+/pure-nickel-strips/,/docs/images/nickel-strip.webp,its banner Copper_busbar_banner.webp shows copper-coloured busbars; this ladder strip is the nickel
+/pure-nickel-strip/26650-honeycomb/,/docs/media/Honeycomb-busbar-1.webp
+/pure-nickel-strip/18650-honeycomb/,-,its photo Fuse-Type-Nickel-Strip-18650-2.webp is the same shot as the 18650 zig-zag page's and as nickel-zigzag-busbar-coil.webp on the busbar manufacturer page
+/pure-nickel-strip/18650-zigzag/,-,its photo Fuse-Type-Nickel-Strip-18650-2-1.webp is a crop of the 18650 honeycomb page's photo, and shows a honeycomb fuse strip rather than a zig-zag one
+/pure-nickel-strip-for-32140-manufacturer-exporter/,-,its photo 32140-nickel-strips.webp is the same shot as nickel-zigzag-busbar-cylindrical-cells.webp on the busbar manufacturer page
+/pure-nickel-strips-&-busbar-manufacturer-supplier-exporter-in-mumbai-india/,-,its strip photos are the same shots as the 18650 and 32140 pages'; its other photos are copper and aluminium busbars
+
+# Metal powder pages
+/aluminium/alsi10mg/powder/,/docs/images/alsi10mg-aluminium-powder.webp
+/cobalt-alloys/cocrmo/powder/,/docs/images/cocrmo-cobalt-alloy-powder.webp
+/inconel/625/powder/,/docs/images/inconel-625-powder.webp
+/inconel/718/powder/,/docs/images/inconel-718-powder.webp
+/inconel/powder/,/docs/images/nickel-alloy-powder.webp
+/stainless/17-4-ph/powder/,/docs/images/17-4-ph-stainless-steel-powder.webp
+/stainless/316l/powder/,/docs/images/ss316l-stainless-steel-powder.webp
+/stainless/powder/,/docs/images/stainless-steel-powder.webp
+/stellite/6/powder/,/docs/images/cocrw-cobalt-alloy-powder.webp
+/titanium/grade-23/powder/,/docs/images/ti64-grade-23-powder.webp
+/titanium/grade-5/powder/,/docs/images/ti64-grade-5-powder.webp
+/titanium/powder/,/docs/images/titanium-alloy-powder.webp
+/tool-steel/h13/powder/,/docs/images/h13-tool-steel-powder.webp
+/tool-steel/maraging/powder/,/docs/images/maraging-steel-ms1-powder.webp
+
+# Coil pages
+/hastelloy-coil-supplier-exporter-mumbai-india/,/docs/images/hastelloy-coil-metal-for-website-image.webp
+/haynes-alloy-coil-supplier-exporter-mumbai-india/,/docs/images/haynes-alloy-coil-metal-for-website-image.webp
+/incoloy-coil-supplier-exporter-mumbai-india/,/docs/images/incoloy-coil.webp
+/monel-coil-supplier-exporter-mumbai-india/,/docs/images/monel-coil-metal-for-website-image.webp
+/nimonic-coil-supplier-exporter-mumbai-india/,/docs/images/nimonic-coil-metal-for-website-image.webp
+/special-stainless-steel-coil-supplier-exporter-mumbai-india/,/docs/images/special-stainless-steel-coil-metal.webp
+
+# Fittings pages
+/cobalt-alloy-fittings-supplier-exporter-mumbai-india/,/docs/images/cobalt-alloy-fittings.webp
+/duplex-steel-fittings-supplier-exporter-mumbai-india/,/docs/images/duplex-steel-fittings.webp
+/hastelloy-fittings-supplier-exporter-mumbai-india/,/docs/images/hastelloy-fittings.webp
+/haynes-alloy-fittings-supplier-exporter-mumbai-india/,/docs/images/haynes-alloy-fittings.webp
+/monel-fittings-supplier-exporter-mumbai-india/,/docs/images/monel-fittings.webp
+/nichrome-fittings-supplier-exporter-mumbai-india/,/docs/images/nichrome-fittings.webp
+/nimonic-fittings-supplier-exporter-mumbai-india/,/docs/images/nimonic-fittings.webp
+/special-stainless-steel-fittings-supplier-exporter-mumbai-india/,/docs/images/special-stainless-steel-fittings.webp
+/titanium-alloy-fittings-supplier-exporter-mumbai-india/,/docs/images/titanium-and-titanium-alloy-fittings.webp
+
+# Pipe and tube pages
+/hastelloy-pipes-supplier-exporter-mumbai-india/,/docs/images/hastelloy-pipes.webp
+/haynes-alloy-tube-supplier-exporter-mumbai-india/,/docs/images/haynes-alloy-tubes.webp
+/incoloy-tube-supplier-exporter-mumbai-india/,/docs/images/incoloy-tube.webp
+/monel-tube-supplier-exporter-mumbai-india/,/docs/images/monel-tube.webp
+/nichrome-tube-supplier-exporter-mumbai-india/,/docs/images/nichrome-tube.webp
+/nimonic-tube-supplier-exporter-mumbai-india/,/docs/images/nimonic-tube.webp
+
+# Grade and form pages
+/Hastelloy/foil/,/docs/media/hastelloy-foil.webp
+/incoloy/800H/round-bar/,/docs/media/Incoloy-800H-round-bars.webp
+/titanium/grade-1/foil/,/docs/media/titanium-foil-grade-1.webp
+/titanium/grade-4/sheets/,/docs/media/Titanium-Grade-4-sheets.webp
+
+# Product catalogue pages
+/pages/products/foil/,/docs/images/haynes-alloy-foil-metal.webp
+/pages/products/hex-bar/,/docs/images/nichrome-hex-bars-metal-for-website-image.webp
+/pages/products/hollow-bar/,/docs/images/monel-hollow-bars.webp
+/pages/products/pipes/,/docs/images/monel-pipes.webp
+/pages/products/plates/,/docs/images/inconel-plates.webp
+/pages/products/sheets/,/docs/images/nimonic-sheets.webp
+/pages/products/tubes/,/docs/images/Tubes.webp
+/pages/products/wire/,/docs/images/Wire.webp
+
+# Company and service pages
+/laser-cutting/,/docs/media/Laser-Cutting2.webp
+/pages/about/,/docs/images/office_front.webp
+/pages/quality/,/docs/images/proof-alloy-600-6mm-pmi-and-marking.webp
+/pages/services/plasma-cutting/,/docs/media/Plasma-Cutting.webp
+/pages/services/waterjet-cutting/,/docs/media/waterjet-cutting.webp
+
+# Looked at, no usable photo
+/,-,home page: no single product stands for the whole catalogue; the owner should choose
+/duplex-steel-coil-supplier-exporter-mumbai-india/,-,its banner duplex-steel-coil.webp is the same photo as coil.webp on /pages/products/coil/
+/incoloy-fittings-supplier-exporter-mumbai-india/,-,its banner incoloy-fittings.webp is the same photo as Fittings.webp on /pages/products/fittings/
+/nichrome-coil-supplier-exporter-mumbai-india/,-,its banner (nichrome-coil-metal.webp) renders a copper-coloured coil; nichrome is silver-grey
+/pages/products/coil/,-,its banner coil.webp is the same photo as duplex-steel-coil.webp on the duplex coil page
+/pages/products/fittings/,-,its banner Fittings.webp is the same photo as incoloy-fittings.webp on the Incoloy fittings page
+/pages/services/shearing/,-,its only own image (Shearing-in-metal.webp) shows a cutting head throwing sparks, not a shear
+/titanium/grade-5/round-bar/,-,its only own image (titanium-grade-5-plates.webp) shows plates on a round-bar page
+/tool-steel/powder/,-,its banner tool-steel-powder.webp is the same photo as metal-am-powder.webp, shown on other pages
+/waspaloy/,-,its only own image (aerospace_metal.webp) is a biplane, not the product

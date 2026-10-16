@@ -49,6 +49,8 @@ on:
       - "docs/build-nichrome-facts.mjs"
       - "docs/build-breadcrumbs.mjs"
       - "docs/build-quote-cta.mjs"
+      - "docs/build-page-images.mjs"
+      - "docs/page-images.csv"
       - "javascript/lead-config.js"
       - "docs/powder-datasheets/cuts.csv"
       - "docs/powder-datasheets/data.mjs"
@@ -88,6 +90,8 @@ on:
       - "docs/build-nichrome-facts.mjs"
       - "docs/build-breadcrumbs.mjs"
       - "docs/build-quote-cta.mjs"
+      - "docs/build-page-images.mjs"
+      - "docs/page-images.csv"
       - "javascript/lead-config.js"
       - "docs/powder-datasheets/cuts.csv"
       - "docs/powder-datasheets/data.mjs"
@@ -238,6 +242,16 @@ jobs:
       # uncrawled URL into a 404.
       - name: Breadcrumbs name the grade hub
         run: node docs/build-breadcrumbs.mjs --check
+
+      # Each page's preferred image - the photo Google may show beside its search
+      # result - is written into og:image, twitter:image and primaryImageOfPage from
+      # docs/page-images.csv. This fails the build when a row was added or changed
+      # without re-running the generator, and when a row names the logo, a file that
+      # does not exist, or a photo the page does not show: a preferred image the
+      # reader cannot see breaks the rule a marked-up price keeps.
+      # The photo backlog (docs/page-images-todo.csv) is reported, never failed.
+      - name: Page images match docs/page-images.csv
+        run: node docs/build-page-images.mjs --check
 
       # Which particle size cuts a grade is sold in is not uniform - that is the
       # whole reason cuts.csv exists - and the cut lists on the fourteen family
