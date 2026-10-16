@@ -150,6 +150,7 @@ const BOILERPLATE = new Set([
   'a4f8c747', // grade-hub crumb on ten form pages, and the 556/HR-160/MP35N links on two family hubs; navigation only, same as c13cdb9c
   '24bdd8ad', // og:image, twitter:image, primaryImageOfPage and Product image on 54 pages; metadata only, no word or visible image moved
   '22da4892', // ten redirect_from lines for addresses Bing had as 404s; the targets render the same
+  '36bc8c37', // the Maps listing in sameAs and the landline in the Organization JSON-LD; no word a reader sees
 ]);
 
 // A commit here is skipped for every page it touched, so a sweep that also carried a handful of
